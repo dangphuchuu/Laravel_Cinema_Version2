@@ -22,6 +22,6 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 ## Install Laravel
-Step 1 : composer install
-Step 2 : php artisan migrate:refresh --seed
-Step 3 : php artisan serve
+Step 1 : composer install.
+Step 2 : php artisan migrate:refresh --seed.
+Step 3 : php artisan serve.
