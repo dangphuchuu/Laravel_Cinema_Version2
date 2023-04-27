@@ -25,3 +25,9 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - Step 1 : composer install.
 - Step 2 : php artisan migrate:refresh --seed.
 - Step 3 : php artisan serve.
+## Command Line
+- create database and model: "php artisan make:model Example -m"
+- create Controller: "php artisan make:controller ExampleController"
+- rollback database: "php artisan migrate:rollback"
+- run database: "php artisan migrate"
+- run seed: "php artisan db:seed"
