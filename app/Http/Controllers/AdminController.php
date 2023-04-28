@@ -9,8 +9,9 @@ class AdminController extends Controller
     function __construct()
     {
     }
+
     public function home()
     {
-        return view('admin/home/home');
+        return view('admin.home.home');
     }
 }
