@@ -7,75 +7,113 @@
         </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+    <div class="w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active" href="./pages/dashboard.html">
+                <a class="nav-link active" href="./admin/movie_genres">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        <i class="fas fa-theater-masks text-primary text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Dashboard</span>
+                    <span class="nav-link-text ms-1">Movie Genres</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="./pages/tables.html">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+                        <i class="fa-solid fa-film text-warning text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Tables</span>
+                    <span class="nav-link-text ms-1">List Movies</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="./pages/billing.html">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+                        <i class="fa-solid fa-tv text-success text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Billing</span>
+                    <span class="nav-link-text ms-1">Cinema</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="./pages/virtual-reality.html">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-info text-sm opacity-10"></i>
+                        <i class="fa-solid fa-calendar-days text-info text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Virtual Reality</span>
+                    <span class="nav-link-text ms-1">Schedule Movies</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="./pages/rtl.html">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+                        <i class="fa-regular fa-calendar-check text-danger text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">RTL</span>
-                </a>
-            </li>
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="./pages/profile.html">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Profile</span>
+                    <span class="nav-link-text ms-1">Events</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="./pages/sign-in.html">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
+                        <i class="fa-solid fa-ticket text-warning text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Sign In</span>
+                    <span class="nav-link-text ms-1">Book Ticket</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./pages/sign-up.html">
+                <a class="nav-link " href="./pages/sign-in.html">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-collection text-info text-sm opacity-10"></i>
+                        <i class="fa-solid fa-burger text-muted text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Sign Up</span>
+                    <span class="nav-link-text ms-1">Food/Topping</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link " href="./pages/sign-in.html">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-utensils text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Combo</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="./pages/sign-in.html">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-user text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Users</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="./pages/sign-in.html">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-user-tie text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Staff</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="./pages/sign-in.html">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-rectangle-ad text-success text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Banners</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="./pages/sign-in.html">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-square-poll-vertical text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">statistical</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="./pages/sign-in.html">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-info text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Web's information</span>
+                </a>
+            </li>
+
         </ul>
     </div>
 </aside>
