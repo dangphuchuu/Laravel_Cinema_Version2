@@ -26,7 +26,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./pages/billing.html">
+                <a class="nav-link " href="./admin/cinema">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-tv text-success text-sm opacity-10"></i>
                     </div>
@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./pages/virtual-reality.html">
+                <a class="nav-link " href="./admin/schedule">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-calendar-days text-info text-sm opacity-10"></i>
                     </div>
@@ -42,7 +42,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./pages/rtl.html">
+                <a class="nav-link " href="./admin/events">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-regular fa-calendar-check text-danger text-sm opacity-10"></i>
                     </div>
@@ -50,7 +50,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./pages/sign-in.html">
+                <a class="nav-link " href="./admin/book_ticket">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-ticket text-warning text-sm opacity-10"></i>
                     </div>

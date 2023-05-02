@@ -40,4 +40,50 @@ class AdminController extends Controller
     {
         return view('admin.list_movie.edit');
     }
+
+    //Cinematics
+    public function cinema()
+    {
+        return view('admin.cinema.list');
+    }
+    public function create_cinema()
+    {
+        return view('admin.cinema.create');
+    }
+    public function edit_cinema()
+    {
+        return view('admin.cinema.edit');
+    }
+
+    //Schedule Movie
+    public function schedule()
+    {
+        return view('admin.schedules.list');
+    }
+    public function create_schedule()
+    {
+        return view('admin.schedules.create');
+    }
+    public function edit_schedule()
+    {
+        return view('admin.schedules.edit');
+    }
+
+    //Events
+    public function events()
+    {
+        return view('admin.events.list');
+    }
+    public function create_events()
+    {
+        return view('admin.events.create');
+    }
+    public function edit_events()
+    {
+        return view('admin.events.edit');
+    }
+    public function book_ticket()
+    {
+        return view('admin.book_ticket.list');
+    }
 }
