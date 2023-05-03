@@ -1,44 +1,45 @@
-<footer class="footer-wrapper">
+<footer class="container-fluid py-5" style="background: #fafafa">
     <section class="container">
-        <div class="col-xs-4 col-md-2 footer-nav">
-            <ul class="nav-link">
-                <li><a href="#" class="nav-link__item">Cities</a></li>
-                <li><a href="movie-list-left.html" class="nav-link__item">Movies</a></li>
-                <li><a href="trailer.html" class="nav-link__item">Trailers</a></li>
-                <li><a href="rates-left.html" class="nav-link__item">Rates</a></li>
-            </ul>
-        </div>
-        <div class="col-xs-4 col-md-2 footer-nav">
-            <ul class="nav-link">
-                <li><a href="coming-soon.html" class="nav-link__item">Coming soon</a></li>
-                <li><a href="cinema-list.html" class="nav-link__item">Cinemas</a></li>
-                <li><a href="offers.html" class="nav-link__item">Best offers</a></li>
-                <li><a href="news-left.html" class="nav-link__item">News</a></li>
-            </ul>
-        </div>
-        <div class="col-xs-4 col-md-2 footer-nav">
-            <ul class="nav-link">
-                <li><a href="#" class="nav-link__item">Terms of use</a></li>
-                <li><a href="gallery-four.html" class="nav-link__item">Gallery</a></li>
-                <li><a href="contact.html" class="nav-link__item">Contacts</a></li>
-                <li><a href="page-elements.html" class="nav-link__item">Shortcodes</a></li>
-            </ul>
-        </div>
-        <div class="col-xs-12 col-md-6">
-            <div class="footer-info">
-                <p class="heading-special--small">A.Movie<br><span class="title-edition">in the social media</span></p>
+        <div class="row">
+            <div class="col-sm-4 col-xl-2">
+                <h5>Giới thiệu</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="link-secondary" href="#">Cities</a></li>
+                    <li><a class="link-secondary" href="movie-list-left.html">Movies</a></li>
+                    <li><a class="link-secondary" href="trailer.html">Trailers</a></li>
+                    <li><a class="link-secondary" href="rates-left.html">Rates</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-4 col-xl-2">
+                <h5></h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="link-secondary" href="coming-soon.html">Coming soon</a></li>
+                    <li><a class="link-secondary" href="cinema-list.html">Cinemas</a></li>
+                    <li><a class="link-secondary" href="offers.html">Best offers</a></li>
+                    <li><a class="link-secondary" href="news-left.html">News</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-4 col-xl-2">
+                <ul class="list-unstyled text-small">
+                    <li><a class="link-secondary" href="#">Terms of use</a></li>
+                    <li><a class="link-secondary" href="gallery-four.html">Gallery</a></li>
+                    <li><a class="link-secondary" href="contact.html">Contacts</a></li>
+                    <li><a class="link-secondary" href="page-elements.html">Shortcodes</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-12 col-xl-6">
+                <div class="d-inline-flex">
+                    <p class="heading-special--small">HuuMinh Cinema<br><span
+                            class="title-edition">the box office</span></p>
 
-                <div class="social">
-                    <a href='#' class="social__variant fa fa-facebook"></a>
-                    <a href='#' class="social__variant fa fa-twitter"></a>
-                    <a href='#' class="social__variant fa fa-vk"></a>
-                    <a href='#' class="social__variant fa fa-instagram"></a>
-                    <a href='#' class="social__variant fa fa-tumblr"></a>
-                    <a href='#' class="social__variant fa fa-pinterest"></a>
+                    <div class="social">
+                        <a class="btn btn-lg rounded-circle fs-3" href='#'><i class="fa-brands fa-facebook"></i></a>
+                        <a class="btn btn-lg rounded-circle fs-3" href='#'><i class="fa-brands fa-twitter"></i></a>
+                        <a class="btn btn-lg rounded-circle fs-3" href='#'><i class="fa-brands fa-instagram"></i></a>
+                        <a class="btn btn-lg rounded-circle fs-3" href='#'><i class="fa-brands fa-youtube"></i></a>
+                    </div>
                 </div>
-
-                <div class="clearfix"></div>
-                <p class="copy">&copy; A.Movie, 2013. All rights reserved. Done by Olia Gozha</p>
+                <p class="copy mt-4">&copy; HuuMinh, 2023. All rights reserved. Done by HuuMinh</p>
             </div>
         </div>
     </section>

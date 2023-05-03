@@ -1,748 +1,158 @@
 @extends('user.layout.index')
 @section('content')
-    <!-- Slider -->
-    <div class="bannercontainer rev_slider_wrapper">
-
-        <!-- the ID here will be used in the JavaScript below to initialize the slider -->
-        <div id="rev_slider_1" class="banner rev_slider" style="display:none">
-
-            <!-- BEGIN SLIDES LIST -->
-            <ul>
-                <!-- SLIDE 1 -->
-                <li data-transition="fade" class="slide" data-title='Rush.'>
-
-                    <!-- SLIDE'S MAIN BACKGROUND IMAGE -->
-                    <img class="rev-slidebg" alt='' width="100%" src="user_assets/images/slides/first-slide.jpg">
-
-                    <div class="tp-caption slide__name margin-slider"
-                         data-x="right"
-                         data-y="80"
-                         data-frames='[{
-                               "delay":300,
-                               "split":"chars",
-                               "splitdelay":0.1,
-                               "speed":700,
-                               "frame":"0",
-                               "from":"x:[-100%];opacity:0;",
-                               "mask":"x:0px;y:0px;s:inherit;e:inherit;",
-                               "to":"o:1;",
-                               "ease":"Power4.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        RUSH
-                    </div>
-
-                    <div class="tp-caption n slide__time margin-slider"
-                         data-x="right"
-                         data-hoffset='250'
-                         data-y="186"
-                         data-frames='[{
-                               "delay":1200,
-                               "speed":300,
-                               "frame":"0",
-                               "from":"x:[50%];opacity:0;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        From
-                    </div>
-
-                    <div class="tp-caption  slide__date margin-slider"
-                         data-x="right"
-                         data-hoffset='149'
-                         data-y="186"
-                         data-frames='[{
-                               "delay":1700,
-                               "speed":500,
-                               "frame":"0",
-                               "from":"y:100px;opacity:0;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        October 18
-                    </div>
-                    <div class="tp-caption slide__time margin-slider"
-                         data-x="right"
-                         data-hoffset='120'
-                         data-y="186"
-                         data-frames='[{
-                               "delay":1200,
-                               "speed":300,
-                               "frame":"0",
-                               "from":"x:[50%];opacity:0;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        till
-                    </div>
-                    <div class="tp-caption slide__date margin-slider"
-                         data-x="right"
-                         data-y="186"
-                         data-frames='[{
-                               "delay":1700,
-                               "speed":500,
-                               "frame":"0",
-                               "from":"y:100px;opacity:0;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        November 01
-                    </div>
-                    <div class="tp-caption slide__text margin-slider text-right"
-                         data-x="right"
-                         data-y="250"
-                         data-frames='[{
-                               "delay":2300,
-                               "speed":400,
-                               "frame":"0",
-                               "from":"y:100px;skX:50px;opacity:0;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        Two-time Academy Award winner Ron Howard, teams once again with fellow two-time Academy<br> Award nominee, writer Peter Morgan , on Rush, a spectacular big-screen re-creation of the merciless<br> 1970s rivalry between James Hunt and Niki Lauda
-                    </div>
-                    <div class="tp-caption margin-slider"
-                         data-x="right"
-                         data-y="324"
-                         data-frames='[{
-                               "delay":2600,
-                               "speed":400,
-                               "frame":"0",
-                               "from":"y:100px;opacity:0;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        <a href="#" class="slide__link">check out cinemas &amp; time</a>
-                    </div>
-
-                </li>
-
-                <!-- SLIDE 2 -->
-                <li data-transition="fade" class="slide" data-title='Travel worldwide. Create trip film.'>
-
-                    <!-- SLIDE'S MAIN BACKGROUND IMAGE -->
-                    <img class="rev-slidebg" alt='' src="user_assets/images/bg-video.jpg">
-                    <div class="rs-background-video-layer"
-                         data-forcerewind="on"
-                         data-volume="mute"
-                         data-videowidth="100%"
-                         data-videoheight="100%"
-                         data-videomp4="video/TravelIs.mp4"
-                         data-videopreload="auto"
-                         data-videoloop="loop"
-                         data-forceCover="1"
-                         data-aspectratio="16:9"
-                         data-autoplay="true"
-                         data-autoplayonlyfirsttime="false"
-                    ></div>
-                    <div class="tp-caption slide__name slide__name--smaller"
-                         data-x="center"
-                         data-y="160"
-
-                         data-splitin="chars"
-                         data-elementdelay="0.1"
-
-                         data-speed="700"
-                         data-start="1400"
-                         data-easing="easeOutBack"
-
-                         data-frames='[{
-                               "delay":1400,
-                               "speed":700,
-                               "split":"chars",
-                               "splitdelay":0.1,
-                               "frame":"0",
-                               "from":"opacity:0;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        Travel, Admire, Remember.
-                    </div>
-                    <div class="tp-caption slide__time"
-                         data-x="center"
-                         data-hoffset='-115'
-                         data-y="242"
-                         data-frames='[{
-                               "delay":1800,
-                               "speed":300,
-                               "frame":"0",
-                               "from":"x:[50%];opacity:0;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        From
-                    </div>
-                    <div class="tp-caption slide__date position-center postion-place--two lfb ltb"
-                         data-x="center"
-                         data-hoffset='-50'
-                         data-y="242"
-                         data-frames='[{
-                               "delay":2200,
-                               "speed":500,
-                               "frame":"0",
-                               "from":"y:100px;opacity:0;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        April 18
-                    </div>
-                    <div class="tp-caption slide__time"
-                         data-x="center"
-                         data-hoffset='5'
-                         data-y="242"
-                         data-frames='[{
-                               "delay":1800,
-                               "speed":300,
-                               "frame":"0",
-                               "from":"x:[50%];opacity:0;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        - till
-                    </div>
-                    <div class="tp-caption slide__date"
-                         data-x="center"
-                         data-hoffset='60'
-                         data-y="242"
-                         data-frames='[{
-                               "delay":2200,
-                               "speed":500,
-                               "frame":"0",
-                               "from":"y:100px;opacity:0;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        May 01
-                    </div>
-
-                    <div class="tp-caption slider-wrap-btn"
-                         data-x="center"
-                         data-y="310"
-                         data-frames='[{
-                               "delay":2800,
-                               "speed":400,
-                               "frame":"0",
-                               "from":"y:100px;opacity:0;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        <a href="#" class="btn btn-md btn--danger btn--wide slider--btn">learn more</a>
-                    </div>
-                </li>
-
-                <!-- SLIDE 3 -->
-                <li data-transition="fade" class="slide" data-title='Stop wishing. Start doing.'>
-
-                    <!-- SLIDE'S MAIN BACKGROUND IMAGE -->
-                    <img class="rev-slidebg" alt='' src="user_assets/images/slides/next-slide.jpg">
-                    <div class="tp-caption slide__name slide__name--smaller slide__name--specific"
-                         data-x="center"
-                         data-y="160"
-                         data-frames='[{
-                               "delay":1400,
-                               "speed":700,
-                               "frame":"0",
-                               "from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;",
-                               "mask":"x:0px;y:[100%];s:inherit;e:inherit;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        Stop <span class="highlight">wishing.</span> Start <span class="highlight">doing.</span>
-                    </div>
-
-                    <div class="tp-caption slide__descript"
-                         data-x="center"
-                         data-y="240"
-                         data-frames='[{
-                               "delay":2000,
-                               "speed":500,
-                               "frame":"0",
-                               "from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;",
-                               "mask":"x:0px;y:[100%];s:inherit;e:inherit;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        find your best match movie with A.MOVIE
-                    </div>
-
-                    <div class="tp-caption slider-wrap-btn"
-                         data-x="center"
-                         data-y="310"
-                         data-frames='[{
-                               "delay":2500,
-                               "speed":500,
-                               "frame":"0",
-                               "from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;",
-                               "mask":"x:0px;y:[100%];s:inherit;e:inherit;",
-                               "to":"o:1;",
-                               "ease":"Power3.easeInOut"
-                               },{
-                               "delay":"wait",
-                               "speed":300,
-                               "frame":"999",
-                               "to":"opacity:0;",
-                               "ease":"Power3.easeInOut"
-                             }]'>
-                        <a href="#" class="btn btn-md btn--danger slider--btn">check out movies</a>
-                    </div>
-                </li>
-
-
-            </ul><!-- END SLIDES LIST -->
-
-        </div><!-- END SLIDER CONTAINER -->
-
-    </div><!-- END SLIDER CONTAINER WRAPPER -->
-    <!--end slider -->
-
-
-    <!-- Main content -->
-    <section class="container">
-        <div class="col-sm-12">
-            <div class="mega-select-present mega-select-top mega-select--full">
-                <div class="mega-select-marker">
-                    <div class="marker-indecator location">
-                        <p class="select-marker"><span>movie to watch now</span> <br>in your city</p>
-                    </div>
-
-                    <div class="marker-indecator cinema">
-                        <p class="select-marker"><span>find your </span> <br>cinema</p>
-                    </div>
-
-                    <div class="marker-indecator film-category">
-                        <p class="select-marker"><span>find movie due to </span> <br> your mood</p>
-                    </div>
-
-                    <div class="marker-indecator actors">
-                        <p class="select-marker"><span> like particular stars</span> <br>find them</p>
-                    </div>
-
-                    <div class="marker-indecator director">
-                        <p class="select-marker"><span>admire personalities - find </span> <br>by director</p>
-                    </div>
-
-                    <div class="marker-indecator country">
-                        <p class="select-marker"><span>search for movie from certain </span> <br>country?</p>
-                    </div>
-                </div>
-
-                <div class="mega-select pull-right">
-                    <span class="mega-select__point">Search by</span>
-                    <ul class="mega-select__sort">
-                        <li class="filter-wrap"><a href="#" class="mega-select__filter filter--active" data-filter='location'>Location</a></li>
-                        <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='cinema'>Cinema</a></li>
-                        <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='film-category'>Category</a></li>
-                        <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='actors'>Actors</a></li>
-                        <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='director'>Director</a></li>
-                        <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='country'>Country</a></li>
-                    </ul>
-
-                    <input name="search-input" type='text' class="select__field">
-
-                    <div class="select__btn">
-                        <a href="#" class="btn btn-md btn--danger location">find <span class="hidden-exrtasm">your city</span></a>
-                        <a href="#" class="btn btn-md btn--danger cinema">find <span class="hidden-exrtasm">suitable cimema</span></a>
-                        <a href="#" class="btn btn-md btn--danger film-category">find <span class="hidden-exrtasm">best category</span></a>
-                        <a href="#" class="btn btn-md btn--danger actors">find <span class="hidden-exrtasm">talented actors</span></a>
-                        <a href="#" class="btn btn-md btn--danger director">find <span class="hidden-exrtasm">favorite director</span></a>
-                        <a href="#" class="btn btn-md btn--danger country">find <span class="hidden-exrtasm">produced country</span></a>
-                    </div>
-
-                    <div class="select__dropdowns">
-                        <ul class="select__group location">
-                            <li class="select__variant" data-value='London'>London</li>
-                            <li class="select__variant" data-value='New York'>New York</li>
-                            <li class="select__variant" data-value='Paris'>Paris</li>
-                            <li class="select__variant" data-value='Berlin'>Berlin</li>
-                            <li class="select__variant" data-value='Moscow'>Moscow</li>
-                            <li class="select__variant" data-value='Minsk'>Minsk</li>
-                            <li class="select__variant" data-value='Warsawa'>Warsawa</li>
-                        </ul>
-
-                        <ul class="select__group cinema">
-                            <li class="select__variant" data-value='Cineworld'>Cineworld</li>
-                            <li class="select__variant" data-value='Empire'>Empire</li>
-                            <li class="select__variant" data-value='Everyman'>Everyman</li>
-                            <li class="select__variant" data-value='Odeon'>Odeon</li>
-                            <li class="select__variant" data-value='Picturehouse'>Picturehouse</li>
-                        </ul>
-
-                        <ul class="select__group film-category">
-                            <li class="select__variant" data-value="Children's">Children's</li>
-                            <li class="select__variant" data-value='Comedy'>Comedy</li>
-                            <li class="select__variant" data-value='Drama'>Drama</li>
-                            <li class="select__variant" data-value='Fantasy'>Fantasy</li>
-                            <li class="select__variant" data-value='Horror'>Horror</li>
-                            <li class="select__variant" data-value='Thriller'>Thriller</li>
-                        </ul>
-
-                        <ul class="select__group actors">
-                            <li class="select__variant" data-value='Leonardo DiCaprio'>Leonardo DiCaprio</li>
-                            <li class="select__variant" data-value='Johnny Depp'>Johnny Depp</li>
-                            <li class="select__variant" data-value='Jack Nicholson'>Jack Nicholson</li>
-                            <li class="select__variant" data-value='Robert De Niro'>Robert De Niro</li>
-                            <li class="select__variant" data-value='Morgan Freeman'>Morgan Freeman</li>
-                            <li class="select__variant" data-value='Jim Carrey'>Jim Carrey</li>
-                            <li class="select__variant" data-value='Adam Sandler'>Adam Sandler</li>
-                            <li class="select__variant" data-value='Ben Stiller'>Ben Stiller</li>
-                        </ul>
-
-                        <ul class="select__group director">
-                            <li class="select__variant" data-value='Steven Spielberg'>Steven Spielberg</li>
-                            <li class="select__variant" data-value='Martin Scorsese'>Martin Scorsese</li>
-                            <li class="select__variant" data-value='Guy Ritchie'>Guy Ritchie</li>
-                            <li class="select__variant" data-value='Christopher Nolan'>Christopher Nolan</li>
-                            <li class="select__variant" data-value='Tim Burton'>Tim Burton</li>
-                        </ul>
-
-                        <ul class="select__group country">
-                            <li class="select__variant" data-value='USA'>USA</li>
-                            <li class="select__variant" data-value='Germany'>Germany</li>
-                            <li class="select__variant" data-value='Australia'>Australia</li>
-                            <li class="select__variant" data-value='UK'>UK</li>
-                            <li class="select__variant" data-value='Japan'>Japan</li>
-                            <li class="select__variant" data-value='Serbia'>Serbia</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="clearfix"></div>
-
-        <h2 id='target' class="page-heading heading--outcontainer">Now in the cinema</h2>
-
-        <div class="col-sm-12">
+    <section>
+        <!-- Search bar -->
+        <div class="px-5 py-4 d-flex justify-content-end aligns-items-center" style="background: #2e292e">
             <div class="row">
-                <div class="col-sm-8 col-md-12">
-                    <!-- Movie variant with time -->
-                    <div class="movie movie--test movie--test--dark movie--test--left">
-                        <div class="movie__images">
-                            <a href="movie-page-left.html" class="movie-beta__link">
-                                <img alt='' src="user_assets/images/movie/movie_time8.jpg">
-                            </a>
-                        </div>
-
-                        <div class="movie__info">
-                            <a href='movie-page-left.html' class="movie__title">Gravity (2013)  </a>
-
-                            <p class="movie__time">91 min</p>
-
-                            <p class="movie__option"><a href="#">Sci-Fi</a> | <a href="#">Thriller</a> | <a href="#">Drama</a></p>
-
-                            <div class="movie__rate">
-                                <div class="score"></div>
-                                <span class="movie__rating">4.1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Movie variant with time -->
-
-                    <!-- Movie variant with time -->
-                    <div class="movie movie--test movie--test--light movie--test--left">
-                        <div class="movie__images">
-                            <a href="movie-page-left.html" class="movie-beta__link">
-                                <img alt='' src="user_assets/images/movie/movie-time1.jpg">
-                            </a>
-                        </div>
-
-                        <div class="movie__info">
-                            <a href='movie-page-left.html' class="movie__title">The Hobbit: The Desolation of Smaug (2013)  </a>
-
-                            <p class="movie__time">169 min</p>
-
-                            <p class="movie__option"><a href="#">Adventure</a> | <a href="#">Fantasy</a> | <a href="#">Drama</a></p>
-
-                            <div class="movie__rate">
-                                <div class="score"></div>
-                                <span class="movie__rating">5.0</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Movie variant with time -->
-
-                    <!-- Movie variant with time -->
-                    <div class="movie movie--test movie--test--light movie--test--right">
-                        <div class="movie__images">
-                            <a href="movie-page-left.html" class="movie-beta__link">
-                                <img alt='' src="user_assets/images/movie/movie-time9.jpg">
-                            </a>
-                        </div>
-
-                        <div class="movie__info">
-                            <a href='movie-page-left.html' class="movie__title">The Hunger Games: Catching Fire (2013)   </a>
-
-                            <p class="movie__time">146 min</p>
-
-                            <p class="movie__option"><a href="#">Action</a> | <a href="#">Adventure</a> | <a href="#">Sci-Fi</a></p>
-
-                            <div class="movie__rate">
-                                <div class="score"></div>
-                                <span class="movie__rating">4.9</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Movie variant with time -->
-
-                    <!-- Movie variant with time -->
-                    <div class="movie movie--test movie--test--dark movie--test--right">
-                        <div class="movie__images">
-                            <a href="movie-page-left.html" class="movie-beta__link">
-                                <img alt='' src="user_assets/images/movie/movie-time10.jpg">
-                            </a>
-                        </div>
-
-                        <div class="movie__info">
-                            <a href='movie-page-left.html' class="movie__title">Thor: The Dark World (2013) </a>
-
-                            <p class="movie__time">112 min</p>
-
-                            <p class="movie__option"><a href="#">Action</a> | <a href="#">Adventure</a> | <a href="#">Fantasy</a></p>
-
-                            <div class="movie__rate">
-                                <div class="score"></div>
-                                <span class="movie__rating">5.0</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Movie variant with time -->
-
-                    <!-- Movie variant with time -->
-                    <div class="movie movie--test movie--test--dark movie--test--left">
-                        <div class="movie__images">
-                            <a href="movie-page-left.html" class="movie-beta__link">
-                                <img alt='' src="user_assets/images/movie/movie-time11.jpg">
-                            </a>
-                        </div>
-
-                        <div class="movie__info">
-                            <a href='movie-page-left.html' class="movie__title">World War Z (2013)  </a>
-
-                            <p class="movie__time">116 min</p>
-
-                            <p class="movie__option"><a href="#">Action</a> | <a href="#">Adventure</a> | <a href="#">Horror</a></p>
-
-                            <div class="movie__rate">
-                                <div class="score"></div>
-                                <span class="movie__rating">4.1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Movie variant with time -->
-
-                    <!-- Movie variant with time -->
-                    <div class="movie movie--test movie--test--light movie--test--left">
-                        <div class="movie__images">
-                            <a href="movie-page-left.html" class="movie-beta__link">
-                                <img alt='' src="user_assets/images/movie/movie-time12.jpg">
-                            </a>
-                        </div>
-
-                        <div class="movie__info">
-                            <a href='movie-page-left.html' class="movie__title">Prisoners (2013) </a>
-
-                            <p class="movie__time">153 min</p>
-
-                            <p class="movie__option"><a href="#">Crime</a> | <a href="#">Thriller</a> | <a href="#">Drama</a></p>
-
-                            <div class="movie__rate">
-                                <div class="score"></div>
-                                <span class="movie__rating">5.0</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Movie variant with time -->
-
-                    <!-- Movie variant with time -->
-                    <div class="movie movie--test movie--test--light movie--test--right">
-                        <div class="movie__images">
-                            <a href="movie-page-left.html" class="movie-beta__link">
-                                <img alt='' src="user_assets/images/movie/movie-time13.jpg">
-                            </a>
-                        </div>
-
-                        <div class="movie__info">
-                            <a href='movie-page-left.html' class="movie__title">This Is the End (2013)   </a>
-
-                            <p class="movie__time">107 min</p>
-
-                            <p class="movie__option"><a href="#">Comedy</a> | <a href="#">Fantasy</a></p>
-
-                            <div class="movie__rate">
-                                <div class="score"></div>
-                                <span class="movie__rating">4.9</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Movie variant with time -->
-
-                    <!-- Movie variant with time -->
-                    <div class="movie movie--test movie--test--dark movie--test--right">
-                        <div class="movie__images">
-                            <a href="movie-page-left.html" class="movie-beta__link">
-                                <img alt='' src="user_assets/images/movie/movie-time14.jpg">
-                            </a>
-                        </div>
-
-                        <div class="movie__info">
-                            <a href='movie-page-left.html' class="movie__title">The Internship (2013)  </a>
-
-                            <p class="movie__time">112 min</p>
-
-                            <p class="movie__option"><a href="#">Comedy</a></p>
-
-                            <div class="movie__rate">
-                                <div class="score"></div>
-                                <span class="movie__rating">5.0</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="input-group col-5">
+                    <label>
+                        <select class="form-select">
+                            <option class="text-light" value="1" style="background: #2e292e" selected>Tất cả
+                            </option>
+                            <option class="text-light" value="2" style="background: #2e292e">Phim</option>
+                            <option class="text-light" value="3" style="background: #2e292e">Diễn viên</option>
+                            <option class="text-light" value="4" style="background: #2e292e">Đạo diễn</option>
+                            <option class="text-light" value="5" style="background: #2e292e">Năm</option>
+                        </select>
+                    </label>
+                    <input type="text" class="form-control" placeholder="Search..."
+                           aria-label="Recipient's username with two button addons">
+                    <button class="btn btn-danger" type="button">Tìm kiếm</button>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-12">
-            <h2 class="page-heading">Latest news</h2>
 
-            <div class="col-sm-4 similar-wrap col--remove">
-                <div class="post post--preview post--preview--wide">
-                    <div class="post__image">
-                        <img alt='' src="user_assets/images/client-photo/post-thor.jpg">
-                        <div class="social social--position social--hide">
-                            <span class="social__name">Share:</span>
-                            <a href='#' class="social__variant social--first fa fa-facebook"></a>
-                            <a href='#' class="social__variant social--second fa fa-twitter"></a>
-                            <a href='#' class="social__variant social--third fa fa-vk"></a>
-                        </div>
-                    </div>
-                    <p class="post__date">22 October 2013 </p>
-                    <a href="single-page-left.html" class="post__title">"Thor: The Dark World" - World Premiere</a>
-                    <a href="single-page-left.html" class="btn read-more post--btn">read more</a>
+        <!-- Slider -->
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img
+                        src="https://ocwckgy6c1obj.vcdn.cloud/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980x448px_4.jpg"
+                        class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img
+                        src="https://ocwckgy6c1obj.vcdn.cloud/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980x448__8.jpg"
+                        class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img
+                        src="https://ocwckgy6c1obj.vcdn.cloud/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980x448_1__36.jpg"
+                        class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img
+                        src="https://ocwckgy6c1obj.vcdn.cloud/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980wx448h_29.jpg"
+                        class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img
+                        src="https://ocwckgy6c1obj.vcdn.cloud/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980x448_213.jpg"
+                        class="d-block w-100" alt="...">
                 </div>
             </div>
-            <div class="col-sm-4 similar-wrap col--remove">
-                <div class="post post--preview post--preview--wide">
-                    <div class="post__image">
-                        <img alt='' src="user_assets/images/client-photo/post-annual.jpg">
-                        <div class="social social--position social--hide">
-                            <span class="social__name">Share:</span>
-                            <a href='#' class="social__variant social--first fa fa-facebook"></a>
-                            <a href='#' class="social__variant social--second fa fa-twitter"></a>
-                            <a href='#' class="social__variant social--third fa fa-vk"></a>
-                        </div>
-                    </div>
-                    <p class="post__date">22 October 2013 </p>
-                    <a href="single-page-left.html" class="post__title">30th Annual Night Of Stars Presented By The Fashion Group International</a>
-                    <a href="single-page-left.html" class="btn read-more post--btn">read more</a>
-                </div>
-            </div>
-            <div class="col-sm-4 similar-wrap col--remove">
-                <div class="post post--preview post--preview--wide">
-                    <div class="post__image">
-                        <img alt='' src="user_assets/images/client-photo/post-awards.jpg">
-                        <div class="social social--position social--hide">
-                            <span class="social__name">Share:</span>
-                            <a href='#' class="social__variant social--first fa fa-facebook"></a>
-                            <a href='#' class="social__variant social--second fa fa-twitter"></a>
-                            <a href='#' class="social__variant social--third fa fa-vk"></a>
-                        </div>
-                    </div>
-                    <p class="post__date">22 October 2013 </p>
-                    <a href="single-page-left.html" class="post__title">Hollywood Film Awards 2013</a>
-                    <a href="single-page-left.html" class="btn read-more post--btn">read more</a>
-                </div>
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
+        <!--end slider -->
 
-    </section>
+        <!-- Main content -->
+        <section class="m-4 overflow-hidden">
+            <div class="container">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="h5 nav-link active" aria-current="page" href="#">Phim đang chiếu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="h5 nav-link" href="#">Phim sắp chiếu</a>
+                    </li>
+                </ul>
+
+                <div class="row gy-2 mt-2 justify-content-center">
+                    @foreach($movies as $movie)
+                        <!-- Movie  -->
+                        <div class="card mb-3 col-sm-10 col-12 col-xl-5 mx-2"
+                             style="max-width: 540px; background: #f5f5f5">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="{{ $movie->poster }}" class="img-fluid rounded-start"
+                                         alt="{{ $movie->name }}">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{$movie->name}}</h5>
+                                        <p class="card-text text-danger">{{ $movie->runningTime }} min</p>
+                                        <p class="card-text"><a href="#">Sci-Fi</a> | <a href="#">Thriller</a> | <a
+                                                href="#">Drama</a></p>
+                                        <p class="card-text">Rated: {{$movie->rated}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Movie : end -->
+                    @endforeach
+
+                    @for($i = 0; $i < 8; $i++)
+                        <!-- Movie -->
+                        <div class="card mb-3 col-sm-10 col-12 col-xl-5 mx-2"
+                             style="max-width: 540px;background: #f5f5f5">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="..." class="img-fluid rounded-start"
+                                         alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Gravity (2003)</h5>
+                                        <p class="card-text text-danger">91 min</p>
+                                        <p class="card-text"><a href="#">Sci-Fi</a> | <a href="#">Thriller</a> | <a
+                                                href="#">Drama</a></p>
+                                        <p class="card-text">Rated: C13</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Movie: end -->
+                    @endfor
+                </div>
+            </div>
+
+            <div class="container mt-5">
+                <h5 class="page-heading">Latest news</h5>
+
+                <div class="row gy-2 mt-2 justify-content-start">
+                    @for($i = 0; $i < 3; $i++)
+                        {{--  Post item  --}}
+                        <div class="card mb-3 col-12 col-sm-6 col-xl-4 mx-2 border-0 w-100" style="max-width: 420px">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img
+                                        src="https://cdn.galaxycine.vn/media/2023/4/30/guardians-of-the-galaxy-vol-3-lay-lai-niem-tin-danh-cho-dong-phim-sieu-anh-hung-2_1682827769754.jpg"
+                                        class="img-fluid rounded-start w-100 mt-3" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title ">30th Annual Night Of Stars Presented</h5>
+                                        <p class="card-text  text-truncate">This content is a little bit
+                                            longer.jzxnc,mzxnczx,mnczx,mnczm,cnzx,mcnzx,mcn,mnxcz</p>
+                                        <p class="card-text"><small class="text-muted">22 October 2013</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{--  Post item: end  --}}
+                    @endfor
+                </div>
+            </div>
+        </section>
 
 @endsection
