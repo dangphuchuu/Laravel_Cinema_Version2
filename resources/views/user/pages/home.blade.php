@@ -73,7 +73,7 @@
                         <a class="h5 nav-link active" aria-current="page" href="#">Phim đang chiếu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="h5 nav-link" href="#">Phim sắp chiếu</a>
+                        <a class="h5 nav-link link-secondary" href="#">Phim sắp chiếu</a>
                     </li>
                 </ul>
 
@@ -103,20 +103,26 @@
 
                     @for($i = 0; $i < 8; $i++)
                         <!-- Movie -->
-                        <div class="card mb-3 col-sm-10 col-12 col-xl-5 mx-2"
+                        <div class="card mb-3 col-sm-10 col-12 col-xl-5 mx-2 ps-0"
                              style="max-width: 540px;background: #f5f5f5">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="..." class="img-fluid rounded-start"
-                                         alt="...">
+                                    <img
+                                        src="https://ocwckgy6c1obj.vcdn.cloud/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/l/m/lm6_2x3_layout.jpg"
+                                        class="img-fluid rounded-start"
+                                        alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title">Gravity (2003)</h5>
-                                        <p class="card-text text-danger">91 min</p>
-                                        <p class="card-text"><a href="#">Sci-Fi</a> | <a href="#">Thriller</a> | <a
-                                                href="#">Drama</a></p>
-                                        <p class="card-text">Rated: C13</p>
+                                        <h5 class="card-title">LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH</h5>
+                                        <p class="card-text text-danger">132 phút</p>
+                                        <p class="card-text">
+                                            <a class="link link-dark" href="#">Hài</a> |
+                                            <a class="link link-dark" href="#">Hành động</a> |
+                                            <a class="link link-dark" href="#">Tâm lý</a>
+                                        </p>
+                                        <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 16 TUỔI
+                                            TRỞ LÊN (16+)</p>
                                     </div>
                                 </div>
                             </div>
@@ -127,30 +133,67 @@
             </div>
 
             <div class="container mt-5">
-                <h5 class="page-heading">Latest news</h5>
+                <h5 class="page-heading">Tin tức mới nhất</h5>
 
                 <div class="row gy-2 mt-2 justify-content-start">
-                    @for($i = 0; $i < 3; $i++)
+                    {{--  Post item  --}}
+                    <div class="card mb-3 col-12 col-sm-6 col-xl-4 mx-2 border-0 w-100" style="max-width: 420px">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img
+                                    src="https://cdn.galaxycine.vn/media/2023/4/30/guardians-of-the-galaxy-vol-3-lay-lai-niem-tin-danh-cho-dong-phim-sieu-anh-hung-2_1682827769754.jpg"
+                                    class="img-fluid rounded-start w-100 mt-3" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title ">[Preview] Guardians Of The Galaxy Vol.3 Lấy Lại Niềm Tin Dành Cho Dòng Phim Siêu Anh Hùng</h5>
+                                    <p class="card-text  text-truncate">Dù đã đến gần ngày công chiếu, đa số thông tin về nội dung phim vẫn chỉ gói gọn trong hai chữ “tin đồn”.</p>
+                                    <p class="card-text"><small class="text-muted">22 October 2013</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{--  Post item: end  --}}
                         {{--  Post item  --}}
                         <div class="card mb-3 col-12 col-sm-6 col-xl-4 mx-2 border-0 w-100" style="max-width: 420px">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img
-                                        src="https://cdn.galaxycine.vn/media/2023/4/30/guardians-of-the-galaxy-vol-3-lay-lai-niem-tin-danh-cho-dong-phim-sieu-anh-hung-2_1682827769754.jpg"
+                                        src="https://cdn.galaxycine.vn/media/2023/4/24/450_1682320686796.jpg"
                                         class="img-fluid rounded-start w-100 mt-3" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title ">30th Annual Night Of Stars Presented</h5>
-                                        <p class="card-text  text-truncate">This content is a little bit
-                                            longer.jzxnc,mzxnczx,mnczx,mnczm,cnzx,mcnzx,mcn,mnxcz</p>
+                                        <h5 class="card-title ">[Review] Con Nhót Mót Chồng: Tình Cha Con Cảm Động Và
+                                            Màn Tái Xuất Ấn Tượng Của Thái Hòa</h5>
+                                        <p class="card-text  text-truncate">Một người cha bợm nhậu, một đứa con “lỡ
+                                            thì”, một xóm lao động hơi “náo nhiệt”…, gần như tất cả những điều có vẻ bất
+                                            ổn đó đã tạo nên Con Nhót Mót Chồng vô cùng gần gũi và chân thật.</p>
                                         <p class="card-text"><small class="text-muted">22 October 2013</small></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         {{--  Post item: end  --}}
-                    @endfor
+                    {{--  Post item  --}}
+                    <div class="card mb-3 col-12 col-sm-6 col-xl-4 mx-2 border-0 w-100" style="max-width: 420px">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img
+                                    src="https://cdn.galaxycine.vn/media/2023/4/29/450_1682743963042.jpg"
+                                    class="img-fluid rounded-start w-100 mt-3" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title ">[Review] Lật Mặt 6: Khẳng Định Giá Trị Thương Hiệu Trăm
+                                        Tỷ</h5>
+                                    <p class="card-text  text-truncate">Lật Mặt 6: Tấm Vé Định Mệnh đã ra mắt tại phòng vé và tiếp tục tạo cơn địa chấn đáng chú ý vào dịp Lễ.</p>
+                                    <p class="card-text"><small class="text-muted">22 October 2013</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{--  Post item: end  --}}
                 </div>
             </div>
         </section>

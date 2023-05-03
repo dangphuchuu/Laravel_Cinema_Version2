@@ -2,32 +2,32 @@
     <section class="container">
         <div class="row">
             <div class="col-sm-4 col-xl-2">
-                <h5>Giới thiệu</h5>
+                <h5>HuuMinh Cinema</h5>
                 <ul class="list-unstyled text-small">
-                    <li><a class="link-secondary" href="#">Cities</a></li>
-                    <li><a class="link-secondary" href="movie-list-left.html">Movies</a></li>
+                    <li><a class="link-secondary" href="#">Giới thiệu</a></li>
+                    <li><a class="link-secondary" href="movie-list-left.html">Phim</a></li>
                     <li><a class="link-secondary" href="trailer.html">Trailers</a></li>
                     <li><a class="link-secondary" href="rates-left.html">Rates</a></li>
                 </ul>
             </div>
             <div class="col-sm-4 col-xl-2">
-                <h5></h5>
+                <h5>Điều khoản sử dụng</h5>
                 <ul class="list-unstyled text-small">
-                    <li><a class="link-secondary" href="coming-soon.html">Coming soon</a></li>
-                    <li><a class="link-secondary" href="cinema-list.html">Cinemas</a></li>
-                    <li><a class="link-secondary" href="offers.html">Best offers</a></li>
-                    <li><a class="link-secondary" href="news-left.html">News</a></li>
+                    <li><a class="link-secondary" href="coming-soon.html">Điều khoản chung</a></li>
+                    <li><a class="link-secondary" href="cinema-list.html">Chính sách thanh toán</a></li>
+                    <li><a class="link-secondary" href="offers.html">Chính sách bảo mật</a></li>
+                    <li><a class="link-secondary" href="news-left.html">Câu hỏi thường gặp</a></li>
                 </ul>
             </div>
             <div class="col-sm-4 col-xl-2">
+                <h5>Hỗ trợ</h5>
                 <ul class="list-unstyled text-small">
-                    <li><a class="link-secondary" href="#">Terms of use</a></li>
-                    <li><a class="link-secondary" href="gallery-four.html">Gallery</a></li>
-                    <li><a class="link-secondary" href="contact.html">Contacts</a></li>
-                    <li><a class="link-secondary" href="page-elements.html">Shortcodes</a></li>
+                    <li><a class="link-secondary" href="#">Liên hệ</a></li>
+                    <li><a class="link-secondary" href="gallery-four.html">Góp ý</a></li>
                 </ul>
             </div>
             <div class="col-sm-12 col-xl-6">
+                <h5>Kết nối</h5>
                 <div class="d-inline-flex">
                     <p class="heading-special--small">HuuMinh Cinema<br><span
                             class="title-edition">the box office</span></p>

@@ -54,8 +54,8 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog container">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">SIGN IN</h5>
+            <div class="modal-header text-uppercase">
+                <h5 class="modal-title" id="exampleModalLabel">Đăng nhập</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body my-4">
@@ -75,8 +75,8 @@
 
                     <div class="modal-footer justify-content-center">
                         <div class="row text-center">
-                            <button type='submit' class="btn btn-warning col-12">sign in</button>
-                            <a href="#" class="link link-secondary col-12 mt-4">Forgot password?</a>
+                            <button type='submit' class="btn btn-warning col-12 text-uppercase">Đăng nhập</button>
+                            <a href="#" class="link link-secondary col-12 mt-4">Quên mật khẩu?</a>
                         </div>
                     </div>
                 </form>
