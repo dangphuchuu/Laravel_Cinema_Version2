@@ -28,15 +28,14 @@
             </div>
             <div class="col-sm-12 col-xl-6">
                 <h5>Kết nối</h5>
-                <div class="d-inline-flex">
-                    <p class="heading-special--small">HuuMinh Cinema<br><span
-                            class="title-edition">the box office</span></p>
+                <div class="row">
+                    <p class="fs-4 col-sm-12 col-xl-6">HuuMinh Cinema</p>
 
-                    <div class="social">
-                        <a class="btn btn-lg rounded-circle fs-3" href='#'><i class="fa-brands fa-facebook"></i></a>
-                        <a class="btn btn-lg rounded-circle fs-3" href='#'><i class="fa-brands fa-twitter"></i></a>
-                        <a class="btn btn-lg rounded-circle fs-3" href='#'><i class="fa-brands fa-instagram"></i></a>
-                        <a class="btn btn-lg rounded-circle fs-3" href='#'><i class="fa-brands fa-youtube"></i></a>
+                    <div class="social col-sm-12 col-xl-6">
+                        <a class="link link-dark text-decoration-none rounded-circle fs-4" href='#'><i class="fa-brands fa-facebook"></i></a>
+                        <a class="link link-dark text-decoration-none rounded-circle fs-4" href='#'><i class="fa-brands fa-twitter"></i></a>
+                        <a class="link link-dark text-decoration-none rounded-circle fs-4" href='#'><i class="fa-brands fa-instagram"></i></a>
+                        <a class="link link-dark text-decoration-none rounded-circle fs-4" href='#'><i class="fa-brands fa-youtube"></i></a>
                     </div>
                 </div>
                 <p class="copy mt-4">&copy; HuuMinh, 2023. All rights reserved. Done by HuuMinh</p>
