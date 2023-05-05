@@ -143,6 +143,16 @@
         console.error(error);
       });
   </script>
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#condition'))
+      .then(condition => {
+        console.log(condition);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  </script>
 </body>
 
 </html>

@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="d-flex align-items-center">
-                        <p class="mb-0">Event</p>
+                        <p class="mb-0">Cinema</p>
                         <button class="btn btn-primary btn-sm ms-auto">Submit</button>
                     </div>
                 </div>
@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Event</label>
+                                <label for="example-text-input" class="form-control-label">Cinema</label>
                                 <input class="form-control" type="text" value="" placeholder="Cinema's Name">
                             </div>
                         </div>

@@ -40,7 +40,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Condition</label>
-                                <textarea class="form-control" placeholder="Condition"></textarea>
+                                <textarea class="form-control" name="content" id="condition" placeholder="Content"></textarea>
                             </div>
                         </div>
                     </div>

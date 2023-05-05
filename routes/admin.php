@@ -39,4 +39,8 @@ Route::prefix('admin')->group(function () {
        //TODO Book_Ticket
 
        Route::get('/book_ticket', [AdminController::class, 'book_ticket']);
+
+       //TODO Food/Topping
+
+       Route::get('/book_ticket', [AdminController::class, 'book_ticket']);
 });
