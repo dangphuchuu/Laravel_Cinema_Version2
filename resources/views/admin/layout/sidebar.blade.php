@@ -74,7 +74,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./pages/sign-in.html">
+                <a class="nav-link " href="./admin/user">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-user text-primary text-sm opacity-10"></i>
                     </div>
@@ -82,7 +82,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./pages/sign-in.html">
+                <a class="nav-link " href="./admin/staff">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-user-tie text-danger text-sm opacity-10"></i>
                     </div>
@@ -90,7 +90,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./pages/sign-in.html">
+                <a class="nav-link " href="./admin/banners">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-rectangle-ad text-success text-sm opacity-10"></i>
                     </div>
@@ -98,7 +98,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./pages/sign-in.html">
+                <a class="nav-link " href="./admin/statistical">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-square-poll-vertical text-info text-sm opacity-10"></i>
                     </div>

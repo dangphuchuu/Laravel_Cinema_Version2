@@ -82,8 +82,46 @@ class AdminController extends Controller
     {
         return view('admin.events.edit');
     }
+
+    //Book Ticket
     public function book_ticket()
     {
         return view('admin.book_ticket.list');
+    }
+
+    //User
+    public function user()
+    {
+        return view('admin.user_account.list');
+    }
+
+    //Staff
+    public function staff()
+    {
+        return view('admin.staff_account.list');
+    }
+    public function create_staff()
+    {
+        return view('admin.staff_account.create');
+    }
+
+    //Banners
+    public function banners()
+    {
+        return view('admin.banners.list');
+    }
+    public function create_banners()
+    {
+        return view('admin.banners.create');
+    }
+    public function edit_banners()
+    {
+        return view('admin.banners.edit');
+    }
+
+    //statistical
+    public function statistical()
+    {
+        return view('admin.statistical.list');
     }
 }
