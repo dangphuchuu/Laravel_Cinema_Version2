@@ -36,10 +36,10 @@
                                 chiếu: </strong>26/04/2023
                         </li>
                         <li class="list-group-item d-flex align-items-center"><strong class="pe-1">Thể loại: </stro
-                            <a class="link link-dark ps-1" href="#!">Hài</a>,
-                            <a class="link link-dark ps-1" href="#!">Tình Cảm</a>,
-                            <a class="link link-dark ps-1" href="#!">Tâm Lý</a>,
-                            <a class="link link-dark ps-1" href="#!">Hành Động</a>
+                                <a class="link link-dark ps-1" href="#!">Hài</a>,
+                                <a class="link link-dark ps-1" href="#!">Tình Cảm</a>,
+                                <a class="link link-dark ps-1" href="#!">Tâm Lý</a>,
+                                <a class="link link-dark ps-1" href="#!">Hành Động</a>
                         </li>
                         <li class="list-group-item d-flex align-items-center"><strong class="pe-1">Đạo diễn: </strong>Lý
                             Hải
@@ -103,29 +103,44 @@
                 <input type="date" id="datepicker" value="2023-05-07" class="form-control">
             </div>
             <div class="col-12 mt-2 mb-5">
-                <div class="row bg-light">
+                <div class="row" style="background: #f5f5f5">
                     @for($i = 1; $i <= 3; $i++)
-                        <div class="col-3 d-flex align-items-center border-end border-1 border-light">
+                        <div class="col-3 d-flex align-items-center border-end border-bottom border-2 border-white">
                             <h4 class="align-middle" scope="row" rowspan="2">HuuMinh
                                 Cinema {{ $i }}</h4>
                         </div>
                         {{-- a Theater schedule --}}
-                        <div class="col-9">
+                        <div class="col-9 border-bottom border-2 border-white p-2">
                             <div class="row">
                                 <div class="fw-bold">2D</div>
                                 <div class="d-block gap-2">
-                                    <a class="btn btn-warning rounded-0 me-4 border border-light border-1">19 : 30</a>
-                                    <a class="btn btn-warning rounded-0 me-4 border border-light border-1">22 : 00</a>
-                                    <a class="btn btn-warning rounded-0 me-4 border border-light border-1">22 : 00</a>
+                                    <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                       style="border-width: 2px; border-style: solid dashed;"><p
+                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">19 :
+                                            30</p></a>
+                                    <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                       style="border-width: 2px; border-style: solid dashed;"><p
+                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">22 : 00</p>
+                                    </a>
+                                    <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                       style="border-width: 2px; border-style: solid dashed;"><p
+                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">22 : 00</p>
+                                    </a>
                                 </div>
                             </div>
 
 
-                            <div class="row">
+                            <div class="row mt-2 ">
                                 <div class="fw-bold">3D</div>
                                 <div class="d-grid gap-2 d-md-block">
-                                    <a class="btn btn-warning rounded-0 me-4 border border-light border-1">16 : 30</a>
-                                    <a class="btn btn-warning rounded-0 me-4 border border-light border-1">18 : 00</a>
+                                    <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                       style="border-width: 2px; border-style: solid dashed;"><p
+                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">16 : 30</p>
+                                    </a>
+                                    <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                       style="border-width: 2px; border-style: solid dashed;"><p
+                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">18 : 00</p>
+                                    </a>
                                 </div>
                             </div>
                         </div>
