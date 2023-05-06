@@ -35,7 +35,7 @@
                         <li class="list-group-item d-flex align-items-center"><strong class="pe-1">Ngày khởi
                                 chiếu: </strong>26/04/2023
                         </li>
-                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">Thể loại: </strong>
+                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">Thể loại: </stro
                             <a class="link link-dark ps-1" href="#!">Hài</a>,
                             <a class="link link-dark ps-1" href="#!">Tình Cảm</a>,
                             <a class="link link-dark ps-1" href="#!">Tâm Lý</a>,
