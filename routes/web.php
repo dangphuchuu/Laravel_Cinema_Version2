@@ -16,10 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Admin Route
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'home']);
-});
-
+require 'admin.php';
 
 // Web Route
 Route::get('/', [WebController::class, 'home']);

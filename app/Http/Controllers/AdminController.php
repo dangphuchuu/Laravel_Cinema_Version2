@@ -9,9 +9,119 @@ class AdminController extends Controller
     function __construct()
     {
     }
-
     public function home()
     {
-        return view('admin.home.home');
+        return view('admin.home.list');
+    }
+    //! Movie Genres
+    public function movie_genres()
+    {
+        return view('admin.movie_genres.list');
+    }
+    public function create_movie_genres()
+    {
+        return view('admin.movie_genres.create');
+    }
+    public function edit_movie_genres()
+    {
+        return view('admin.movie_genres.edit');
+    }
+
+    //! List Movie
+    public function list_movie()
+    {
+        return view('admin.list_movie.list');
+    }
+    public function create_list_movie()
+    {
+        return view('admin.list_movie.create');
+    }
+    public function edit_list_movie()
+    {
+        return view('admin.list_movie.edit');
+    }
+
+    //Cinematics
+    public function cinema()
+    {
+        return view('admin.cinema.list');
+    }
+    public function create_cinema()
+    {
+        return view('admin.cinema.create');
+    }
+    public function edit_cinema()
+    {
+        return view('admin.cinema.edit');
+    }
+
+    //Schedule Movie
+    public function schedule()
+    {
+        return view('admin.schedules.list');
+    }
+    public function create_schedule()
+    {
+        return view('admin.schedules.create');
+    }
+    public function edit_schedule()
+    {
+        return view('admin.schedules.edit');
+    }
+
+    //Events
+    public function events()
+    {
+        return view('admin.events.list');
+    }
+    public function create_events()
+    {
+        return view('admin.events.create');
+    }
+    public function edit_events()
+    {
+        return view('admin.events.edit');
+    }
+
+    //Book Ticket
+    public function book_ticket()
+    {
+        return view('admin.book_ticket.list');
+    }
+
+    //User
+    public function user()
+    {
+        return view('admin.user_account.list');
+    }
+
+    //Staff
+    public function staff()
+    {
+        return view('admin.staff_account.list');
+    }
+    public function create_staff()
+    {
+        return view('admin.staff_account.create');
+    }
+
+    //Banners
+    public function banners()
+    {
+        return view('admin.banners.list');
+    }
+    public function create_banners()
+    {
+        return view('admin.banners.create');
+    }
+    public function edit_banners()
+    {
+        return view('admin.banners.edit');
+    }
+
+    //statistical
+    public function statistical()
+    {
+        return view('admin.statistical.list');
     }
 }
