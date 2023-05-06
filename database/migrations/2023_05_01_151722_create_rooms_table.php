@@ -21,6 +21,9 @@ return new class extends Migration
             $table->foreignIdFor(RoomType::class, "roomType_id");
             $table->foreignIdFor(Theater::class, "theater_id");
             $table->timestamps();
+
+
+//            $table->foreign('products_id')->references('id')->on('products')
         });
     }
 

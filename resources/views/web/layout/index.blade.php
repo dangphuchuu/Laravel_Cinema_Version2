@@ -24,20 +24,20 @@
 <div class="wrapper">
 
     {{-- Header --}}
-    @include('user.common.header')
+    @include('web.common.header')
 
     {{--  Search  --}}
-    @include('user.common.search')
+    @include('web.common.search')
 
     @yield('content')
 
     {{-- Footer --}}
-    @include('user.common.footer')
+    @include('web.common.footer')
 
 </div>
 
 {{-- login --}}
-@include('user.common.login')
+@include('web.common.login')
 
 
 

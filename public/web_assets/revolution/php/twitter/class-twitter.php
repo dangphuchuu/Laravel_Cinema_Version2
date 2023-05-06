@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'RestApi.php';
 /**
  * Twitter
@@ -76,7 +76,7 @@ class TP_twitter {
     $connection = $twitter->connectAsApplication();
 
     /*
-     * Collection of the most recent Tweets posted by the user indicated by the screen_name, without replies
+     * Collection of the most recent Tweets posted by the web indicated by the screen_name, without replies
      * https://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline
      */
     $tweets = $connection->get('/statuses/user_timeline',array('screen_name' => $twitter_account,  'entities' => 1, 'trim_user' => 0 , 'exclude_replies' => 'true'));
@@ -117,6 +117,6 @@ class TP_twitter {
   public static function makeClickableLinks($s) {
     return preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $s);
   }
-  
+
 }
 ?>

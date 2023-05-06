@@ -17,8 +17,8 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->foreignIdFor(Schedule::class, 'schedule_id');
-            $table->foreignIdFor(User::class, 'user_id');
+            $table->foreign("schedule_id")->references("id")->on("schedules");
+            $table->foreign("user_id")->references("id")->on("users");
             $table->text('qrcode');
             $table->timestamps();
         });
