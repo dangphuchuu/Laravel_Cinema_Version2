@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Admin Route
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'home']);
 });
 
-Route::prefix('/')->group(function () {
-    Route::get('/', [HomeController::class, 'home']);
-});
+
+// Web Route
+Route::get('/', [WebController::class, 'home']);
+Route::get('/movie/{id}', [WebController::class, 'movieDetail']);
