@@ -22,7 +22,7 @@ return new class extends Migration
         });
     }
 
-    /**
+    /**g
      * Reverse the migrations.
      *
      * @return void
