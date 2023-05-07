@@ -16,8 +16,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('combo_detail', function (Blueprint $table) {
-            $table->foreignIdFor(Combo::class, 'combo_id');
-            $table->foreignIdFor(Food::class, 'food_id');
+            $table->bigInteger('combo_id')->unsigned();
+            $table->bigInteger('food_id')->unsigned();
+            $table->foreign('combo_id')->references('id')->on('combos');
+            $table->foreign('food_id')->references('id')->on('foods');
+            $table->integer('quantity')->default(0);
             $table->timestamps();
         });
     }

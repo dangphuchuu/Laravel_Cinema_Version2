@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rated', function (Blueprint $table) {
+        Schema::create('foods', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('name');
-            $table->string('description');
+            $table->string('name', 255);
+            $table->text('image');
+            $table->integer('price');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rateds');
+        Schema::dropIfExists('foods');
     }
 };

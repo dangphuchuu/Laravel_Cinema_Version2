@@ -14,7 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ticket_combo', function (Blueprint $table) {
-            $table->id();
+            $table->bigInteger('ticket_id')->unsigned();
+            $table->bigInteger('combo_id')->unsigned();
+            $table->foreign('ticket_id')->references('id')->on('tickets');
+            $table->foreign('combo_id')->references('id')->on('combos');
             $table->timestamps();
         });
     }

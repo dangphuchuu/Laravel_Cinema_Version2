@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use \App\Models\Room;
+use \App\Models\Movie;
 
 return new class extends Migration
 {
@@ -13,13 +15,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('seats', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('name', 255);
-            $table->integer('price');
             $table->bigInteger('room_id')->unsigned();
-            $table->foreign('room_id')->references('id')->on('rooms');
-            $table->string('status');
+            $table->bigInteger('movie_id')->unsigned();
+            $table->foreign("room_id")->references("id")->on("rooms");
+            $table->foreign("movie_id")->references("id")->on("movies");
+            $table->dateTime("screening_start");
+            $table->integer("seatsNo");
+            $table->string("status");
             $table->timestamps();
         });
     }
@@ -31,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seats');
+        Schema::dropIfExists('schedules');
     }
 };

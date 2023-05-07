@@ -16,8 +16,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ticket_seat', function (Blueprint $table) {
-            $table->foreignIdFor(Ticket::class, 'ticket_id');
-            $table->foreignIdFor(Seat::class, 'seat_id');
+            $table->bigInteger('ticket_id')->unsigned();
+            $table->bigInteger('seat_id')->unsigned();
+            $table->foreign('ticket_id')->references('id')->on('tickets');
+            $table->foreign('seat_id')->references('id')->on('seats');
             $table->timestamps();
         });
     }

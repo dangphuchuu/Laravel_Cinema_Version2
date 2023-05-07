@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('languages', function (Blueprint $table) {
+        Schema::create('rated', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('audio');
-            $table->string('sub');
+            $table->string('name');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -28,6 +28,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('languages');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('rated');
     }
 };

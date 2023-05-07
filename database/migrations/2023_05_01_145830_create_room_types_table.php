@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('room_types', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string("name", 255);
+            $table->string('name', 255);
             $table->timestamps();
         });
     }
