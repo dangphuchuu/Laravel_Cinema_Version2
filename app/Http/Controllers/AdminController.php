@@ -124,4 +124,9 @@ class AdminController extends Controller
     {
         return view('admin.statistical.list');
     }
+    //Sign_in
+    public function sign_in()
+    {
+        return view('admin.sign_in');
+    }
 }

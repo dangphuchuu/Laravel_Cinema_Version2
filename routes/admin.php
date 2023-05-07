@@ -5,7 +5,8 @@ use App\Http\Controllers\AdminController;
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'home']);
-
+    //Sign-in admin
+    Route::get('/sign_in', [AdminController::class, 'sign_in']);
     //TODO Movie Genres
 
     Route::get('/movie_genres', [AdminController::class, 'movie_genres']);
@@ -59,7 +60,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/banners/create', [AdminController::class, 'create_banners']);
     Route::get('/banners/edit', [AdminController::class, 'edit_banners']);
 
-     //TODO statistical
+    //TODO statistical
 
-     Route::get('/statistical', [AdminController::class, 'statistical']);
+    Route::get('/statistical', [AdminController::class, 'statistical']);
 });

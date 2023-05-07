@@ -30,6 +30,7 @@
     </div>
   </main>
   <!--   Core JS Files   -->
+  @section('scripts')
   <script src="admin_assets/js/core/popper.min.js"></script>
   <script src="admin_assets/js/core/bootstrap.min.js"></script>
   <script src="admin_assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -153,6 +154,8 @@
         console.error(error);
       });
   </script>
+  @endsection
+  @yield('scripts')
 </body>
 
 </html>
