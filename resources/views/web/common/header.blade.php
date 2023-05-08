@@ -26,7 +26,7 @@
                     <a class="nav-link" href="#">Hỗ trợ</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link text-warning text-decoration-underline" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <a class="nav-link link-warning text-decoration-underline" href="#loginModal" data-bs-toggle="modal" data-bs-target="#loginModal">
                         sign in
                     </a>
                 </li>

@@ -120,11 +120,13 @@
                                             30</p></a>
                                     <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                        style="border-width: 2px; border-style: solid dashed;"><p
-                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">22 : 00</p>
+                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">22 :
+                                            00</p>
                                     </a>
                                     <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                        style="border-width: 2px; border-style: solid dashed;"><p
-                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">22 : 00</p>
+                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">22 :
+                                            00</p>
                                     </a>
                                 </div>
                             </div>
@@ -135,11 +137,13 @@
                                 <div class="d-grid gap-2 d-md-block">
                                     <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                        style="border-width: 2px; border-style: solid dashed;"><p
-                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">16 : 30</p>
+                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">16 :
+                                            30</p>
                                     </a>
                                     <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                        style="border-width: 2px; border-style: solid dashed;"><p
-                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">18 : 00</p>
+                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">18 :
+                                            00</p>
                                     </a>
                                 </div>
                             </div>
