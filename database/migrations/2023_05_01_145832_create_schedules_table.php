@@ -19,11 +19,13 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->bigInteger('room_id')->unsigned();
             $table->bigInteger('movie_id')->unsigned();
+            $table->bigInteger('language_id')->unsigned();
             $table->foreign("room_id")->references("id")->on("rooms");
             $table->foreign("movie_id")->references("id")->on("movies");
+            $table->foreign('language_id')->references('id')->on('languages');
             $table->dateTime("screening_start");
             $table->integer("seatsNo");
-            $table->string("status");
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

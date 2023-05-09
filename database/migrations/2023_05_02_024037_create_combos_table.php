@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string('name', 255);
             $table->integer('price');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

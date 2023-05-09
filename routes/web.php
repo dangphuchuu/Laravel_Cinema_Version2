@@ -21,3 +21,4 @@ require 'admin.php';
 // Web Route
 Route::get('/', [WebController::class, 'home']);
 Route::get('/movie/{id}', [WebController::class, 'movieDetail']);
+Route::get('/tickets/{movie_id}/', [WebController::class, 'ticket']);

@@ -23,10 +23,9 @@ return new class extends Migration
             $table->string('director', 255);
             $table->string('cast', 255);
             $table->string('description', 255);
-            $table->bigInteger('language_id')->unsigned();
             $table->bigInteger('rated_id')->unsigned();
-            $table->foreign('language_id')->references('id')->on('languages');
             $table->foreign('rated_id')->references('id')->on('rated');
+            $table->boolean('status')->default(false);
             $table->timestamps();
 
         });

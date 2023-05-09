@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('password', 255);
             $table->string('email', 255)->unique();
             $table->string('phone', 10)->unique();
-            $table->string("role")->default('web');
-            $table->integer('status')->default(1);
+            $table->boolean('status')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

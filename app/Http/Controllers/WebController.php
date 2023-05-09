@@ -8,11 +8,18 @@ class WebController extends Controller
 {
     public function home()
     {
-        $movies = DB::select('select * from movies');
-        return view('web.pages.home', ['movies' => $movies]);
+        return view('web.pages.home');
     }
 
     public function movieDetail() {
         return view('web.pages.movieDetail');
     }
+
+    public function  ticket() {
+        return view('web.pages.ticket', [
+            "title"=>"warning",
+            "content"=>"Huu ngu ngu ngu ngu"
+        ]);
+    }
+
 }
