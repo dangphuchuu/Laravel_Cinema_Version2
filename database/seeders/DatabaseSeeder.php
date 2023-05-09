@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('1'),
             'email' => 'admin@gmail.com',
             'phone' => '123456789',
-            'status' => 1,
+            'status' => false,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

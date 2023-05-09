@@ -41,7 +41,6 @@
                     {{ session('warning') }}
                   </div>
                   @endif
-
                   <h4 class="font-weight-bolder">Sign In</h4>
                   <p class="mb-0">Enter your email and password to sign in</p>
                 </div>
