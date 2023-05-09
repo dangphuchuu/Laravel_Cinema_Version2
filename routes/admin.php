@@ -5,8 +5,9 @@ use App\Http\Controllers\AdminController;
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'home']);
-    //Sign-in admin
+    //TODO Sign-in admin
     Route::get('/sign_in', [AdminController::class, 'sign_in']);
+    Route::post('/sign_in', [AdminController::class, 'Post_sign_in']);
     //TODO Movie Genres
 
     Route::get('/movie_genres', [AdminController::class, 'movie_genres']);

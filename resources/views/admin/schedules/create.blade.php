@@ -31,7 +31,7 @@
                                 <input class="form-control" type="text" value="" placeholder="format">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Movie</label>
                                 <input class="form-control" type="text" value="" placeholder="Movie's Name">
@@ -41,6 +41,16 @@
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Time</label>
                                 <input class="form-control" type="date" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="example-text-input" class="form-control-label">Language</label>
+                                <select name="cat_id" class="form-control form-control-primary">
+                                    <option value="">Lồng tiếng</option>
+                                    <option value="">Phụ đề việt</option>
+                                    <option value="">Phụ đề anh</option>
+                                </select>
                             </div>
                         </div>
                     </div>
