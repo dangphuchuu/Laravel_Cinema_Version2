@@ -22,3 +22,5 @@ require 'admin.php';
 Route::get('/', [WebController::class, 'home']);
 Route::get('/movie/{id}', [WebController::class, 'movieDetail']);
 Route::get('/tickets/{movie_id}/', [WebController::class, 'ticket']);
+Route::post('/signIn', [WebController::class, 'signIn']);
+Route::get('/signOut', [WebController::class, 'signOut']);

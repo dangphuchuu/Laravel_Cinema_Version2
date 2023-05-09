@@ -8,6 +8,7 @@ Route::prefix('admin')->group(function () {
     //TODO Sign-in admin
     Route::get('/sign_in', [AdminController::class, 'sign_in']);
     Route::post('/sign_in', [AdminController::class, 'Post_sign_in']);
+    Route::get('/sign_out', [AdminController::class, 'sign_out']);
     //TODO Movie Genres
 
     Route::get('/movie_genres', [AdminController::class, 'movie_genres']);

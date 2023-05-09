@@ -7,8 +7,20 @@ use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
-    public function home(Request $request)
+    public function home()
     {
+        return view('web.pages.home');
+    }
+
+    public function movieDetail() {
+        return view('web.pages.movieDetail');
+    }
+
+    public function  ticket() {
+        return view('web.pages.ticket');
+    }
+
+    public function signIn(Request $request) {
         $request->validate(
             [
                 'email' => 'required',
@@ -22,16 +34,12 @@ class WebController extends Controller
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
             return redirect('/');
         } else {
-            return redirect('web.pages.home')->with('warning', "Sign in unsuccessfully!");
+            return redirect('/');
         }
     }
 
-    public function movieDetail() {
-        return view('web.pages.movieDetail');
+    public function signOut() {
+        Auth::logout();
+        return redirect('/');
     }
-
-    public function  ticket() {
-        return view('web.pages.ticket');
-    }
-
 }
