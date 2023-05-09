@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreign('schedule_id')->references('id')->on('schedules');
             $table->foreign('user_id')->references("id")->on('users');
             $table->text('qrcode');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

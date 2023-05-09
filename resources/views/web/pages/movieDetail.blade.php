@@ -28,14 +28,14 @@
 
                 <div class="col-sm-6 col-lg-9">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex align-items-center">169 min</li> {{--movie running time--}}
+                        <li class="list-group-item d-flex align-items-center text-danger">169 min</li> {{--movie running time--}}
                         <li class="list-group-item d-flex align-items-center"><strong class="pe-1">Quốc gia: </strong>Việt
                             Nam
                         </li>
                         <li class="list-group-item d-flex align-items-center"><strong class="pe-1">Ngày khởi
                                 chiếu: </strong>26/04/2023
                         </li>
-                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">Thể loại: </stro
+                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">Thể loại: </strong>
                                 <a class="link link-dark ps-1" href="#!">Hài</a>,
                                 <a class="link link-dark ps-1" href="#!">Tình Cảm</a>,
                                 <a class="link link-dark ps-1" href="#!">Tâm Lý</a>,
@@ -114,16 +114,16 @@
                             <div class="row">
                                 <div class="fw-bold">2D</div>
                                 <div class="d-block gap-2">
-                                    <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                    <a href="/tickets/1" class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                        style="border-width: 2px; border-style: solid dashed;"><p
                                             class="btn btn-warning rounded-0 m-0 border border-light border-1">19 :
                                             30</p></a>
-                                    <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                    <a href="/tickets/1" class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                        style="border-width: 2px; border-style: solid dashed;"><p
                                             class="btn btn-warning rounded-0 m-0 border border-light border-1">22 :
                                             00</p>
                                     </a>
-                                    <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                    <a href="/tickets/1" class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                        style="border-width: 2px; border-style: solid dashed;"><p
                                             class="btn btn-warning rounded-0 m-0 border border-light border-1">22 :
                                             00</p>
@@ -132,15 +132,15 @@
                             </div>
 
 
-                            <div class="row mt-2 ">
+                            <div class="row mt-4">
                                 <div class="fw-bold">3D</div>
                                 <div class="d-grid gap-2 d-md-block">
-                                    <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                    <a href="/tickets/1" class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                        style="border-width: 2px; border-style: solid dashed;"><p
                                             class="btn btn-warning rounded-0 m-0 border border-light border-1">16 :
                                             30</p>
                                     </a>
-                                    <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                    <a href="/tickets/1" class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                        style="border-width: 2px; border-style: solid dashed;"><p
                                             class="btn btn-warning rounded-0 m-0 border border-light border-1">18 :
                                             00</p>
