@@ -16,10 +16,7 @@ class WebController extends Controller
     }
 
     public function  ticket() {
-        return view('web.pages.ticket', [
-            "title"=>"warning",
-            "content"=>"Huu ngu ngu ngu ngu"
-        ]);
+        return view('web.pages.ticket');
     }
 
 }

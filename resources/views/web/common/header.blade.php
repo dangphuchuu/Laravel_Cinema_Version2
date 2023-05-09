@@ -6,7 +6,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-            <ul class="navbar-nav  text-uppercase">
+            <ul class="navbar-nav text-uppercase">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Phim

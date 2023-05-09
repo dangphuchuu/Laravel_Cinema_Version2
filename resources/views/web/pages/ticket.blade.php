@@ -11,22 +11,6 @@
             </ol>
         </nav>
 
-        <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
-
-        <div class="toast-container bg-{{$title}} position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <img src="..." class="rounded me-2" alt="...">
-                    <strong class="me-auto">Bootstrap</strong>
-                    <small>11 mins ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    {{$content}}
-                </div>
-            </div>
-        </div>
-
         <div class="mt-5">
             <h4>Thông tin vé</h4>
             <div class="card mb-3 text-light" style="background: #2e292e">
@@ -52,19 +36,18 @@
                                         diễn: </strong>Lý
                                     Hải
                                 </li>
-                                <li class="list-group-item bg-transparent d-flex align-items-center text-truncate text-light"><strong
-                                        class="pe-1">Diễn
-                                        viên: </strong>
-                                    Hoàng Mèo, Trần Kim Hải, Thanh Thức, Huy Khánh, Quốc Cường, Trung Dũng
-                                </li>
                                 <li class="list-group-item bg-transparent d-flex align-items-center text-light"><strong
                                         class="pe-1">Rated: </strong><img
                                         class="img-fluid rounded-1 border-2" src="images/rated/C16.png" alt="..."
                                         style="max-width: 50px"></li>
                             </ul>
                         </div>
-                        <div class="card-body">
-
+                        <div class="card-body bg-dark">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-transparent d-flex align-items-center text-light justify-content-between">
+                                    Combo: <p class="align-items- mb-0">0 đ</p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
