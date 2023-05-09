@@ -148,4 +148,9 @@ class AdminController extends Controller
             return redirect('admin/sign_in')->with('warning', "Sign in unsuccessfully!");
         }
     }
+    public function sign_out()
+    {
+        Auth::logout();
+        return redirect('admin/sign_in');
+    }
 }
