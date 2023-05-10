@@ -11,26 +11,30 @@
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   [Simple, fast routing engine](https://laravel.com/docs/routing).
+-   [Powerful dependency injection container](https://laravel.com/docs/container).
+-   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+-   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+-   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+-   [Robust background job processing](https://laravel.com/docs/queues).
+-   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 ## Install Laravel
-- Step 1 : composer install.
-- Step 2 : cp .env.example .env
-- Step 3 : php artisan key:generate
-- Step 4 : create database and setting .env
-- Step 5 : php artisan migrate:refresh --seed.
-- Step 6 : php artisan serve.
+
+-   Step 1 : composer install.
+-   Step 2 : cp .env.example .env
+-   Step 3 : php artisan key:generate
+-   Step 4 : create database and setting .env
+-   Step 5 : php artisan migrate:refresh --seed.
+-   Step 6 : php artisan serve.
+
 ## Command Line
-- create database and model: "php artisan make:model Example -m"
-- create Controller: "php artisan make:controller ExampleController"
-- rollback database: "php artisan migrate:rollback"
-- run database: "php artisan migrate"
-- run seed: "php artisan db:seed"
+
+-   composer require spatie/laravel-permission
+-   create database and model: "php artisan make:model Example -m"
+-   create Controller: "php artisan make:controller ExampleController"
+-   rollback database: "php artisan migrate:rollback"
+-   run database: "php artisan migrate"
+-   run seed: "php artisan db:seed"
