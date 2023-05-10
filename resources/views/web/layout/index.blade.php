@@ -27,6 +27,8 @@
 
         {{-- Search  --}}
         @include('web.common.search')
+
+        {{-- Warning  --}}
         @if(count($errors) > 0)
         <div class="alert alert-danger">
             @foreach($errors->all() as $arr)
@@ -39,6 +41,8 @@
             {{ session('warning') }}
         </div>
         @endif
+
+
         @yield('content')
 
         {{-- Footer --}}
