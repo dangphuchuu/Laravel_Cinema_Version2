@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
@@ -16,10 +17,29 @@ class WebController extends Controller
     }
 
     public function  ticket() {
-        return view('web.pages.ticket', [
-            "title"=>"warning",
-            "content"=>"Huu ngu ngu ngu ngu"
-        ]);
+        return view('web.pages.ticket');
     }
 
+    public function signIn(Request $request) {
+        $request->validate(
+            [
+                'email' => 'required',
+                'password' => 'required'
+            ],
+            [
+                'email.required' => 'Please enter your email!',
+                'password.required' => 'Please enter your password!'
+            ]
+        );
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+            return redirect('/');
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function signOut() {
+        Auth::logout();
+        return redirect('/');
+    }
 }

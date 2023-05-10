@@ -7,7 +7,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body my-4">
-                <form method='get'>
+                <form method='post' action="/signIn">
+                    @csrf
                     <div class="mb-3">
                         <input class="form-control" type="email" placeholder="Email..." name="email">
                     </div>
@@ -45,7 +46,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body my-4">
-                <form method='get'>
+                <form method='post'>
                     <div class="mb-3">
                         <input class="form-control" type="email" placeholder="Nhập Email..." name="email">
                     </div>
