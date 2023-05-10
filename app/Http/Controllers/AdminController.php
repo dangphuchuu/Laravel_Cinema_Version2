@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -93,13 +94,15 @@ class AdminController extends Controller
     //User
     public function user()
     {
-        return view('admin.user_account.list');
+        $users = User::with('roles', 'permissions')->get();
+        return view('admin.user_account.list', ['users' => $users]);
     }
 
     //Staff
     public function staff()
     {
-        return view('admin.staff_account.list');
+        $staff = User::with('roles', 'permissions')->get();
+        return view('admin.staff_account.list', ['staff' => $staff]);
     }
     public function create_staff()
     {

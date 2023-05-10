@@ -4,11 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'home']);
     //TODO Sign-in admin
     Route::get('/sign_in', [AdminController::class, 'sign_in']);
     Route::post('/sign_in', [AdminController::class, 'Post_sign_in']);
     Route::get('/sign_out', [AdminController::class, 'sign_out']);
+});
+Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function () {
+    Route::get('/', [AdminController::class, 'home']);
+
     //TODO Movie Genres
 
     Route::get('/movie_genres', [AdminController::class, 'movie_genres']);

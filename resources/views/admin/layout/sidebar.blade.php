@@ -54,7 +54,7 @@
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-ticket text-warning text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Book Ticket</span>
+                    <span class="nav-link-text ms-1">Ticket</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -105,15 +105,6 @@
                     <span class="nav-link-text ms-1">statistical</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link " href="./pages/sign-in.html">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-info text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Web's information</span>
-                </a>
-            </li>
-
         </ul>
     </div>
 </aside>
