@@ -19,27 +19,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'fullName' => 'Phúc Hữu',
-            'password' => bcrypt('1'),
-            'email' => 'admin@gmail.com',
-            'phone' => '123456789',
-            'status' => true,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-        DB::table('users')->insert([
-            'fullName' => 'Quốc Minh',
-            'password' => bcrypt('1'),
-            'email' => 'minh@gmail.com',
-            'phone' => '1212121212',
-            'status' => true,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
+        //TODO: User 
+        require 'user.php';
+
+        //TODO: Create Role
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'staff']);
         Role::create(['name' => 'user']);
+
+        
         //TODO:Permissions
         require 'permissions.php';
 
@@ -54,5 +42,11 @@ class DatabaseSeeder extends Seeder
         //TODO: Set role for user
         $user = User::find(2);
         $user->assignRole('user');
+
+        //TODO: Movie Genre
+        require 'movie_genre.php';
+
+        //TODO: Rated
+        require 'rated.php';
     }
 }

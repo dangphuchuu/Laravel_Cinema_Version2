@@ -16,7 +16,7 @@
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Movie Genres</th>
-                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7  ">Image</th>
+                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7 ">Image</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Movie Name</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Time</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">National</th>

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('combos', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name', 255);
+            $table->text('image');
             $table->integer('price');
             $table->boolean('status')->default(false);
             $table->timestamps();

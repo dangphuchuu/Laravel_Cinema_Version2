@@ -57,8 +57,13 @@
                         </div>
                         <div class="col-md-1">
                             <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Limit Age</label>
-                                <input class="form-control" type="text" value="" placeholder="Age">
+                                <label for="example-text-input" class="form-control-label">Rated</label>
+                                <select class="form-select">
+                                    <option value="0">C13</option>
+                                    <option value="0">C16</option>
+                                    <option value="0">C18</option>
+                                    <option value="0">P</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">

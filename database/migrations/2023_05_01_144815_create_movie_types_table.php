@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('movie_types', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name', 255);
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

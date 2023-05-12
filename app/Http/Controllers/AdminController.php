@@ -15,19 +15,6 @@ class AdminController extends Controller
     {
         return view('admin.home.list');
     }
-    //! Movie Genres
-    public function movie_genres()
-    {
-        return view('admin.movie_genres.list');
-    }
-    public function create_movie_genres()
-    {
-        return view('admin.movie_genres.create');
-    }
-    public function edit_movie_genres()
-    {
-        return view('admin.movie_genres.edit');
-    }
 
     //! List Movie
     public function list_movie()

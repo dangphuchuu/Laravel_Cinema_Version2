@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MovieTypeController;
 
 Route::prefix('admin')->group(function () {
     //TODO Sign-in admin
@@ -14,9 +15,9 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
 
     //TODO Movie Genres
 
-    Route::get('/movie_genres', [AdminController::class, 'movie_genres']);
-    Route::get('/movie_genres/create', [AdminController::class, 'create_movie_genres']);
-    Route::get('/movie_genres/edit', [AdminController::class, 'edit_movie_genres']);
+    Route::get('/movie_genres', [MovieTypeController::class, 'movie_genres']);
+    Route::get('/movie_genres/create', [MovieTypeController::class, 'create_movie_genres']);
+    Route::get('/movie_genres/edit', [MovieTypeController::class, 'edit_movie_genres']);
 
     //TODO List Movie
 

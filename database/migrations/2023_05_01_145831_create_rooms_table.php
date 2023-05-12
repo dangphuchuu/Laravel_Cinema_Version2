@@ -22,10 +22,11 @@ return new class extends Migration
             $table->bigInteger('theater_id')->unsigned();
             $table->foreign('room_type_id')->references('id')->on('room_types');
             $table->foreign('theater_id')->references('id')->on('theaters');
+            $table->boolean('status')->default(true);
             $table->timestamps();
 
 
-//            $table->foreign('products_id')->references('id')->on('products')
+            //            $table->foreign('products_id')->references('id')->on('products')
         });
     }
 

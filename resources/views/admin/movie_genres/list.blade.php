@@ -23,42 +23,23 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach($movieType as $value)
                 <tr>
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">Phim Kinh Dị</h6>
+                        <h6 class="mb-0 text-sm">{!! $value['name'] !!}</h6>
                         <!-- <p class="text-xs text-secondary mb-0">john@creative-tim.com</p> -->
                       </div>
                     </div>
                   </td>
                   <td></td>
                   <td class="align-middle text-center text-sm">
+                    @if($value['status'] == 1)
                     <span class="badge badge-sm bg-gradient-success">Online</span>
-                  </td>
-                  <td class="align-middle">
-                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                      Edit
-                    </a>
-                  </td>
-                  <td class="align-middle">
-                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                      Delete
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex px-2 py-1">
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">Phim Tình Cảm</h6>
-                        <!-- <p class="text-xs text-secondary mb-0">alexa@creative-tim.com</p> -->
-                      </div>
-                    </div>
-                  </td>
-                  <td></td>
-                  <td class="align-middle text-center text-sm">
+                    @else
                     <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                    @endif
                   </td>
                   <td class="align-middle">
                     <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -71,6 +52,7 @@
                     </a>
                   </td>
                 </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
