@@ -19,8 +19,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     Route::get('/movie_genres', [MovieGenresController::class, 'movie_genres']);
     Route::get('/movie_genres/create', [MovieGenresController::class, 'getCreate']);
     Route::post('/movie_genres/create', [MovieGenresController::class, 'postCreate']);
-    Route::get('/movie_genres/edit', [MovieGenresController::class, 'getEdit']);
-    Route::post('/movie_genres/edit', [MovieGenresController::class, 'postEdit']);
+    Route::post('/movie_genres/edit/{id}', [MovieGenresController::class, 'postEdit']);
     Route::delete('ajax/delete_movie_genres/{id}', [MovieGenresController::class, 'delete_movie_genres']);
 
     //TODO List Movie

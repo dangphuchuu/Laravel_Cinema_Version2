@@ -27,12 +27,17 @@ class MovieGenresController extends Controller
         MovieGenres::create($request->all());
         return redirect('admin/movie_genres')->with('success', 'Added Successfully!');
     }
-    public function getEdit($id)
-    {
-        return view('admin.movie_genres.edit');
-    }
     public function postEdit(Request $request, $id)
     {
+        $movieGenres = MovieGenres::find($id);
+        $request->validate([
+            'name' => 'required|unique:movie_genres'
+        ], [
+            'name.required' => "Please enter movie genre",
+            'name.unique' => 'Movie genre exists'
+        ]);
+        $movieGenres->update($request->all());
+        return redirect('admin/movie_genres')->with('success', 'Updated Successfully!');
     }
     public function delete_movie_genres($id)
     {
