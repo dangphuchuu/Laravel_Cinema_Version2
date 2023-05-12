@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MovieType extends Model
+class MovieGenres extends Model
 {
     use HasFactory;
     protected $fillable = [

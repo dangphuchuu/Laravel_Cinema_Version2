@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MovieGenresController;
 use App\Http\Controllers\MovieTypeController;
 
 Route::prefix('admin')->group(function () {
@@ -15,9 +16,12 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
 
     //TODO Movie Genres
 
-    Route::get('/movie_genres', [MovieTypeController::class, 'movie_genres']);
-    Route::get('/movie_genres/create', [MovieTypeController::class, 'create_movie_genres']);
-    Route::get('/movie_genres/edit', [MovieTypeController::class, 'edit_movie_genres']);
+    Route::get('/movie_genres', [MovieGenresController::class, 'movie_genres']);
+    Route::get('/movie_genres/create', [MovieGenresController::class, 'getCreate']);
+    Route::post('/movie_genres/create', [MovieGenresController::class, 'postCreate']);
+    Route::get('/movie_genres/edit', [MovieGenresController::class, 'getEdit']);
+    Route::post('/movie_genres/edit', [MovieGenresController::class, 'postEdit']);
+    Route::delete('ajax/delete_movie_genres/{id}', [MovieGenresController::class, 'delete_movie_genres']);
 
     //TODO List Movie
 

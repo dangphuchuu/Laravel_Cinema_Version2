@@ -12,7 +12,7 @@ $mutiple = [
     'Thể Thao', 'Tài Liệu'
 ];
 for ($i = 0; $i < count($mutiple); $i++) {
-    DB::table('movie_types')->insert([
+    DB::table('movie_genres')->insert([
         'name' =>  $mutiple[$i],
         'status' => true,
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
