@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class WebController extends Controller
 {
@@ -12,15 +13,18 @@ class WebController extends Controller
         return view('web.pages.home');
     }
 
-    public function movieDetail() {
+    public function movieDetail()
+    {
         return view('web.pages.movieDetail');
     }
 
-    public function  ticket() {
+    public function  ticket()
+    {
         return view('web.pages.ticket');
     }
 
-    public function signIn(Request $request) {
+    public function signIn(Request $request)
+    {
         $request->validate(
             [
                 'email' => 'required',
@@ -37,8 +41,28 @@ class WebController extends Controller
             return redirect('/');
         }
     }
-
-    public function signOut() {
+    public function signUp(Request $request)
+    {
+        $request->validate([
+            'fullName' => 'required|min:1',
+            'email' => 'required|unique:users',
+            'password' => 'required',
+            'repassword' => 'required|same:password',
+        ], [
+            'fullName.required' => 'fullName is required',
+            'email.required' => 'Email is required',
+            'email.unique' => 'Email already exists',
+            'password.required' => 'Password is required',
+            'repassword.required' => 'Password is required',
+            'repassword.same' => "Password doesn't match",
+        ]);
+        $request['password'] = bcrypt($request['password']);
+        $user = User::create($request->all());
+        $user->syncRoles('user');
+        return redirect('/')->with('success', 'Sign Up Successfully!');
+    }
+    public function signOut()
+    {
         Auth::logout();
         return redirect('/');
     }

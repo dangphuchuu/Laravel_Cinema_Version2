@@ -21,7 +21,7 @@
         @endif
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
-            <button style="float:right;padding-right:30px;" class="me-5 text-light btn btn-primary float-right mb-3" data-bs-toggle="modal" data-bs-target="#movie_genre">
+            <button style="float:right;padding-right:30px;" class="me-5  btn btn-primary float-right mb-3" data-bs-toggle="modal" data-bs-target="#movie_genre">
               Create
             </button>
             <table class="table align-items-center mb-0">
@@ -48,7 +48,9 @@
                   <td></td>
                   <td class="align-middle text-center text-sm">
                     @if($value['status'] == 1)
-                    <span class="badge badge-sm bg-gradient-success">Online</span>
+                    <a href="#">
+                      <span class="badge badge-sm bg-gradient-success">Online</span>
+                    </a>
                     @else
                     <span class="badge badge-sm bg-gradient-secondary">Offline</span>
                     @endif
@@ -107,6 +109,14 @@
 
     });
   });
+</script>
+<script>
+  $(function() {
+    $('#toggle-two').bootstrapToggle({
+      on: 'Enabled',
+      off: 'Disabled'
+    });
+  })
 </script>
 @endsection
 @endsection

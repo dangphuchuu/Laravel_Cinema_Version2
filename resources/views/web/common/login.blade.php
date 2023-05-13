@@ -25,8 +25,7 @@
                     <div class="modal-footer justify-content-center text-center">
                         <button type='submit' class="btn btn-warning text-uppercase">Đăng nhập</button>
                         <p class="text-dark w-100">Chưa có tài khoản?
-                            <a class="link link-warning" data-bs-target="#registerModal"
-                               data-bs-toggle="modal" href="#registerModal">Đăng ký
+                            <a class="link link-warning" data-bs-target="#registerModal" data-bs-toggle="modal" href="#registerModal">Đăng ký
                             </a>
                         </p>
                         <a href="#" class="link link-secondary col-12 mt-4">Quên mật khẩu?</a>
@@ -46,7 +45,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body my-4">
-                <form method='post'>
+                <form method='post' action="/signUp">
+                    @csrf
+                    <div class="mb-3">
+                        <input class="form-control" type="text" placeholder="Nhập họ tên..." name="fullName">
+                    </div>
                     <div class="mb-3">
                         <input class="form-control" type="email" placeholder="Nhập Email..." name="email">
                     </div>
@@ -54,20 +57,12 @@
                         <input class="form-control" type="password" placeholder="Nhập mật khẩu..." name="password">
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="password" placeholder="Nhập lại mật khẩu..." name="password">
+                        <input class="form-control" type="password" placeholder="Nhập lại mật khẩu..." name="repassword">
                     </div>
-                    <div class="form-check mb-4">
-                        <input class="form-check-input" type="checkbox" value="" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">
-                            Nhớ mật khẩu
-                        </label>
-                    </div>
-
                     <div class="modal-footer justify-content-center text-center">
                         <button type='submit' class="btn btn-warning text-uppercase">Đăng ký</button>
                         <p class="text-dark w-100">Chưa có tài khoản?
-                            <a class="link link-warning" data-bs-target="#loginModal"
-                               data-bs-toggle="modal" href="#loginModal">Đăng nhập
+                            <a class="link link-warning" data-bs-target="#loginModal" data-bs-toggle="modal" href="#loginModal">Đăng nhập
                             </a>
                         </p>
                     </div>

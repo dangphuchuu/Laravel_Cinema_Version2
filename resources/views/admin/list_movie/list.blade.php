@@ -9,7 +9,7 @@
         </div>
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
-            <a href="admin/list_movie/create" style="float:right;padding-right:30px;" class="text-light">
+            <a href="admin/list_movie/create" style="float:right;padding-right:30px;">
               <button class=" btn btn-primary float-right mb-3">Create</button>
             </a>
             <table class="table align-items-center mb-0 ">
@@ -21,7 +21,7 @@
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Time</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">National</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Director</th>
-                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7 ">Release Date</th>
+                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Release Date</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
