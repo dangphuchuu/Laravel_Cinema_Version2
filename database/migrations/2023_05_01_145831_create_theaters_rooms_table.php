@@ -15,6 +15,19 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::create('theaters', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('name', 255);
+            $table->string('address', 255);
+            $table->boolean('status')->default(false);
+            $table->timestamps();
+        });
+        Schema::create('room_types', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('name', 255);
+            $table->boolean('status')->default(false);
+            $table->timestamps();
+        });
         Schema::create('rooms', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name', 255);
@@ -24,9 +37,6 @@ return new class extends Migration
             $table->foreign('theater_id')->references('id')->on('theaters');
             $table->boolean('status')->default(true);
             $table->timestamps();
-
-
-            //            $table->foreign('products_id')->references('id')->on('products')
         });
     }
 
@@ -37,6 +47,8 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('theaters');
+        Schema::dropIfExists('room_types');
         Schema::dropIfExists('rooms');
     }
 };

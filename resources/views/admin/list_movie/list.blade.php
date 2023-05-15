@@ -18,10 +18,11 @@
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Movie Genres</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7 ">Image</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Movie Name</th>
-                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Time</th>
+                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">ShowTime</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">National</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Director</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Release Date</th>
+                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">End Date</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
@@ -49,6 +50,9 @@
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary font-weight-bold">23/04/18</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary font-weight-bold">20/05/18</span>
                   </td>
                   <td class="align-middle text-center text-sm">
                     <span class="badge badge-sm bg-gradient-success">Online</span>

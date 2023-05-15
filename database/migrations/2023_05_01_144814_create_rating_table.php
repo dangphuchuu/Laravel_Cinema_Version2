@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rated', function (Blueprint $table) {
+        Schema::create('rating', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name');
             $table->string('description');
@@ -29,6 +29,6 @@ return new class extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('rated');
+        Schema::dropIfExists('rating');
     }
 };

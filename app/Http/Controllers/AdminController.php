@@ -91,9 +91,25 @@ class AdminController extends Controller
         $staff = User::with('roles', 'permissions')->get();
         return view('admin.staff_account.list', ['staff' => $staff]);
     }
-    public function create_staff()
+    public function create_staff(Request $request)
     {
-        return view('admin.staff_account.create');
+        $request->validate([
+            'fullName' => 'required|min:1',
+            'email' => 'required|unique:users',
+            'phone' => 'required|unique:users',
+            'password' => 'required',
+        ], [
+            'fullName.required' => 'fullName is required',
+            'email.required' => 'Email is required',
+            'email.unique' => 'Email already exists',
+            'password.required' => 'Password is required',
+            'phone.required' => 'Phone is required',
+            'phone.unique' => 'Phone already exists'
+        ]);
+        $request['password'] = bcrypt($request['password']);
+        $staff = User::create($request->all());
+        $staff->syncRoles('staff');
+        return redirect('admin.staff_account.list')->with('success', 'Create Account Successfully!');
     }
 
     //Banners
@@ -103,7 +119,8 @@ class AdminController extends Controller
     }
     public function create_banners()
     {
-        return view('admin.banners.create');
+
+        return redirect('admin.banners.create');
     }
     public function edit_banners()
     {

@@ -61,7 +61,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     //TODO staff_account
 
     Route::get('/staff', [AdminController::class, 'staff']);
-    Route::get('/staff/create', [AdminController::class, 'create_staff']);
+    Route::post('/staff/create', [AdminController::class, 'create_staff']);
 
     //TODO banners
 

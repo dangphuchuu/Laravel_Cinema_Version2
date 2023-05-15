@@ -25,7 +25,8 @@ return new class extends Migration
             $table->foreign("movie_id")->references("id")->on("movies");
             $table->foreign('audio_id')->references('id')->on('audio');
             $table->foreign('sub_id')->references('id')->on('sub');
-            $table->dateTime("screening_start");
+            $table->dateTime("time");
+            $table->boolean('early')->default(false);
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

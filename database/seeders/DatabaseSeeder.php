@@ -47,6 +47,7 @@ class DatabaseSeeder extends Seeder
         require 'movie_genre.php';
 
         //TODO: Rated
-        require 'rated.php';
+        require 'rating.php';
+        
     }
 }

@@ -19,8 +19,10 @@
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7  ">Room's Name</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Movie</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Format</th>
+                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Date</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Time</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Language</th>
+                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Subtitle</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
@@ -44,43 +46,16 @@
                     <span class="text-secondary font-weight-bold">26/4/2023</span>
                   </td>
                   <td class="align-middle text-center">
+                    <span class="text-secondary font-weight-bold">15:00:00</span>
+                  </td>
+                  <td class="align-middle text-center">
                     <span class="text-secondary font-weight-bold">Lồng tiếng</span>
-                  </td>
-                  <td class="align-middle text-center text-sm">
-                    <span class="badge badge-sm bg-gradient-success">Online</span>
-                  </td>
-                  <td class="align-middle">
-                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                      Edit
-                    </a>
-                  </td>
-                  <td class="align-middle">
-                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                      Delete
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="align-middle text-center">
-                    <h6 class="mb-0 text-sm ">Movie Cinema Quận 1</h6>
-                  </td>
-                  <td class="align-middle text-center">
-                    <h6 class="mb-0 text-sm ">Phòng số 21</h6>
-                  </td>
-                  <td class="align-middle text-center">
-                    <h6 class="mb-0 text-sm ">Avatar 2</h6>
-                  </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary font-weight-bold">4D</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary font-weight-bold">30/4/2023 18:00:00</span>
                   </td>
                   <td class="align-middle text-center">
                     <span class="text-secondary font-weight-bold">Phụ đề</span>
                   </td>
                   <td class="align-middle text-center text-sm">
-                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                    <span class="badge badge-sm bg-gradient-success">Online</span>
                   </td>
                   <td class="align-middle">
                     <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
