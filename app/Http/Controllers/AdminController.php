@@ -16,19 +16,7 @@ class AdminController extends Controller
         return view('admin.home.list');
     }
 
-    //! List Movie
-    public function list_movie()
-    {
-        return view('admin.list_movie.list');
-    }
-    public function create_list_movie()
-    {
-        return view('admin.list_movie.create');
-    }
-    public function edit_list_movie()
-    {
-        return view('admin.list_movie.edit');
-    }
+   
 
     //Cinematics
     public function cinema()
@@ -109,7 +97,7 @@ class AdminController extends Controller
         $request['password'] = bcrypt($request['password']);
         $staff = User::create($request->all());
         $staff->syncRoles('staff');
-        return redirect('admin.staff_account.list')->with('success', 'Create Account Successfully!');
+        return redirect('/admin/staff')->with('success', 'Create Account Successfully!');
     }
 
     //Banners

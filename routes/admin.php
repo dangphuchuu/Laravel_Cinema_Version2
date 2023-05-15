@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CastController;
+use App\Http\Controllers\DirectorController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieGenresController;
 use App\Http\Controllers\MovieTypeController;
 
@@ -22,11 +25,12 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     Route::post('/movie_genres/edit/{id}', [MovieGenresController::class, 'postEdit']);
     Route::delete('ajax/delete_movie_genres/{id}', [MovieGenresController::class, 'delete_movie_genres']);
 
-    //TODO List Movie
+    //TODO Movie
 
-    Route::get('/list_movie', [AdminController::class, 'list_movie']);
-    Route::get('/list_movie/create', [AdminController::class, 'create_list_movie']);
-    Route::get('/list_movie/edit', [AdminController::class, 'edit_list_movie']);
+    Route::get('/movie', [MovieController::class, 'movie']);
+    Route::get('/movie/create', [MovieController::class, 'getCreate']);
+    Route::post('/movie/create', [MovieController::class, 'postCreate']);
+    Route::get('/movie/edit', [MovieController::class, 'edit_movie']);
 
     //TODO Cinema
 
@@ -68,6 +72,20 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     Route::get('/banners', [AdminController::class, 'banners']);
     Route::get('/banners/create', [AdminController::class, 'create_banners']);
     Route::get('/banners/edit', [AdminController::class, 'edit_banners']);
+
+    //TODO Director
+
+    Route::get('/director', [DirectorController::class, 'director']);
+    Route::get('/director/create', [DirectorController::class, 'getCreate']);
+    Route::post('/director/create', [DirectorController::class, 'postCreate']);
+    Route::post('/director/edit', [DirectorController::class, 'postEdit']);
+
+     //TODO Cast
+
+     Route::get('/cast', [CastController::class, 'cast']);
+     Route::get('/cast/create', [CastController::class, 'getCreate']);
+     Route::post('/cast/create', [CastController::class, 'postCreate']);
+     Route::post('/cast/edit', [CastController::class, 'postEdit']);
 
     //TODO statistical
 

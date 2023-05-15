@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         Role::create(['name' => 'staff']);
         Role::create(['name' => 'user']);
 
-        
+
         //TODO:Permissions
         require 'permissions.php';
 
@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
 
         //TODO: Rated
         require 'rating.php';
-        
+        //TODO: director
+        require 'director.php';
     }
 }

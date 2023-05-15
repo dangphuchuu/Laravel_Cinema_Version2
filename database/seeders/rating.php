@@ -18,7 +18,7 @@ DB::table('rating')->insert([[
     'description' => 'PHIM ĐƯỢC PHÉP PHỔ BIẾN ĐẾN NGƯỜI XEM Ở MỌI ĐỘ TUỔI.',
 ]]);
 
-DB::table('audio')->insert([[
+DB::table('audios')->insert([[
     'audio' => 'Việt'
 ], [
     'audio' => 'Anh'
@@ -38,7 +38,7 @@ DB::table('audio')->insert([[
     'audio' => 'Lồng tiếng'
 ]]);
 
-DB::table('sub')->insert([
+DB::table('subs')->insert([
     [
         'sub' => 'Việt'
     ], [

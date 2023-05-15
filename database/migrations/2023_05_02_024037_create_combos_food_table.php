@@ -30,7 +30,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('combo_detail', function (Blueprint $table) {
+        Schema::create('combo_details', function (Blueprint $table) {
             $table->bigInteger('combo_id')->unsigned();
             $table->bigInteger('food_id')->unsigned();
             $table->foreign('combo_id')->references('id')->on('combos');
@@ -47,8 +47,8 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('combo_details');
         Schema::dropIfExists('combos');
         Schema::dropIfExists('foods');
-        Schema::dropIfExists('combo_detail');
     }
 };

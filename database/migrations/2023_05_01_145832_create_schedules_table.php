@@ -23,8 +23,8 @@ return new class extends Migration
             $table->bigInteger('sub_id')->unsigned();
             $table->foreign("room_id")->references("id")->on("rooms");
             $table->foreign("movie_id")->references("id")->on("movies");
-            $table->foreign('audio_id')->references('id')->on('audio');
-            $table->foreign('sub_id')->references('id')->on('sub');
+            $table->foreign('audio_id')->references('id')->on('audios');
+            $table->foreign('sub_id')->references('id')->on('subs');
             $table->dateTime("time");
             $table->boolean('early')->default(false);
             $table->boolean('status')->default(false);

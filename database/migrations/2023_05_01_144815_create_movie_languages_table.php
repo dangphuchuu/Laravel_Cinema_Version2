@@ -19,18 +19,18 @@ return new class extends Migration
             $table->boolean('status')->default(false);
             $table->timestamps();
         });
-        
-        Schema::create('director', function (Blueprint $table) {
+
+        Schema::create('directors', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name', 255);
             $table->text('image');
-            $table->date('birthday');
+            $table->dateTime('birthday');
             $table->string('national', 255);
-            $table->string('content', 255);
+            $table->text('content');
             $table->timestamps();
         });
 
-        Schema::create('cast', function (Blueprint $table) {
+        Schema::create('casts', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name', 255);
             $table->text('image');
@@ -43,7 +43,7 @@ return new class extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name', 255);
-            $table->dateTime('showTime');
+            $table->date('showTime');
             $table->date('releaseDate');
             $table->date('endDate');
             $table->bigInteger('director_id')->unsigned();
@@ -51,8 +51,8 @@ return new class extends Migration
             $table->string('description', 255);
             $table->bigInteger('rating_id')->unsigned();
             $table->foreign('rating_id')->references('id')->on('rating');
-            $table->foreign('director_id')->references('id')->on('director');
-            $table->foreign('cast_id')->references('id')->on('cast');
+            $table->foreign('director_id')->references('id')->on('directors');
+            $table->foreign('cast_id')->references('id')->on('casts');
             $table->boolean('upcomming')->default(true);
             $table->boolean('status')->default(false);
             $table->timestamps();
@@ -66,13 +66,13 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('audio', function (Blueprint $table) {
+        Schema::create('audios', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('audio', 255);
             $table->timestamps();
         });
 
-        Schema::create('sub', function (Blueprint $table) {
+        Schema::create('subs', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('sub', 255);
             $table->timestamps();
@@ -86,12 +86,12 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('movie_genres_movies');
         Schema::dropIfExists('movie_genres');
         Schema::dropIfExists('movies');
-        Schema::dropIfExists('director');
-        Schema::dropIfExists('cast');
-        Schema::dropIfExists('movie_genres_movies');
-        Schema::dropIfExists('audio');
-        Schema::dropIfExists('sub');
+        Schema::dropIfExists('directors');
+        Schema::dropIfExists('casts');
+        Schema::dropIfExists('audios');
+        Schema::dropIfExists('subs');
     }
 };

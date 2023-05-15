@@ -18,11 +18,11 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./admin/list_movie">
+                <a class="nav-link " href="./admin/movie">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-film text-warning text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">List Movies</span>
+                    <span class="nav-link-text ms-1">Movies</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -52,7 +52,7 @@
             <li class="nav-item">
                 <a class="nav-link " href="./admin/book_ticket">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-ticket text-warning text-sm opacity-10"></i>
+                        <i class="fa-sharp fa-solid fa-ticket text-warning text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Ticket</span>
                 </a>
@@ -60,7 +60,7 @@
             <li class="nav-item">
                 <a class="nav-link " href="./pages/sign-in.html">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-burger text-muted text-sm opacity-10"></i>
+                        <i class="fa-sharp fa-solid fa-popcorn text-success text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Food/Topping</span>
                 </a>
@@ -98,17 +98,17 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./admin/statistical">
+                <a class="nav-link " href="./admin/director">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-square-poll-vertical text-info text-sm opacity-10"></i>
+                        <i class="fa-sharp fa-light fa-camera-movie text-info text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Director</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="./admin/statistical">
+                <a class="nav-link " href="./admin/cast">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-square-poll-vertical text-info text-sm opacity-10"></i>
+                        <i class="fa-solid fa-elevator text-danger text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Cast</span>
                 </a>
@@ -116,7 +116,7 @@
             <li class="nav-item">
                 <a class="nav-link " href="./admin/statistical">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-square-poll-vertical text-info text-sm opacity-10"></i>
+                        <i class="fa-regular fa-money-bill-trend-up text-info text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">statistical</span>
                 </a>
