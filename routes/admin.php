@@ -76,7 +76,6 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     //TODO Director
 
     Route::get('/director', [DirectorController::class, 'director']);
-    Route::get('/director/create', [DirectorController::class, 'getCreate']);
     Route::post('/director/create', [DirectorController::class, 'postCreate']);
     Route::post('/director/edit', [DirectorController::class, 'postEdit']);
 

@@ -27,12 +27,13 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 -   Step 2 : cp .env.example .env
 -   Step 3 : php artisan key:generate
 -   Step 4 : create database and setting .env
--   Step 5 : php artisan migrate:refresh --seed.
--   Step 6 : php artisan serve.
+-   Step 5 : php artisan migrate --seed.
+-   Step 6 : composer require spatie/laravel-permission
+-   Step 7 : composer require cloudinary/cloudinary_php
+-   Step 8 : php artisan serve.
 
 ## Command Line
 
--   composer require spatie/laravel-permission
 -   create database and model: "php artisan make:model Example -m"
 -   create Controller: "php artisan make:controller ExampleController"
 -   rollback database: "php artisan migrate:rollback"

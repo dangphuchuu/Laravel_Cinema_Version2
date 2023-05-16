@@ -15,31 +15,32 @@
             <table class="table align-items-center mb-0 ">
               <thead>
                 <tr>
-                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Cinema</th>
-                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7  ">Image</th>
-                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Address</th>
-                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Room</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Name</th>
+                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Image</th>
+                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Birthday</th>
+                  <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">National</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Content</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                 </tr>
               </thead>
               <tbody>
+                @foreach($cast as $value)
                 <tr>
                   <td class="align-middle text-center">
-                    <h6 class="mb-0 text-sm ">Movie Cinema Cao Lỗ</h6>
+                    <h6 class="mb-0 text-sm ">{!! $value['name'] !!}</h6>
                   </td>
                   <td class="align-middle text-center">
-                    <img style="width: 300px" src="https://tselighting.com.vn/wp-content/uploads/2021/01/galaxy-2.jpg" alt="user1">
+                    <img style="width: 300px" src="{!! $value['image'] !!}" alt="user1">
                   </td>
                   <td class="align-middle text-center">
-                    <h6 class="mb-0 text-sm ">180 Cao Lỗ</h6>
+                    <h6 class="mb-0 text-sm ">{!! $value['birthday'] !!}</h6>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary font-weight-bold">20</span>
+                    <span class="text-secondary font-weight-bold">{!! $value['national'] !!}</span>
                   </td>
                   <td class="align-middle text-center text-sm">
-                    <span class="badge badge-sm bg-gradient-success">Online</span>
+                    <span class="mb-0 text-sm">{!! $value['content'] !!}</span>
                   </td>
                   <td class="align-middle">
                     <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -52,33 +53,7 @@
                     </a>
                   </td>
                 </tr>
-                <tr>
-                  <td class="align-middle text-center">
-                    <h6 class="mb-0 text-sm ">Movie Cinema Quận 1</h6>
-                  </td>
-                  <td class="align-middle text-center">
-                    <img style="width: 300px" src="https://img.theculturetrip.com/wp-content/uploads/2020/01/c745bg.jpg" alt="user1">
-                  </td>
-                  <td class="align-middle text-center">
-                    <h6 class="mb-0 text-sm ">180 Nguyễn Trãi</h6>
-                  </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary font-weight-bold">20</span>
-                  </td>
-                  <td class="align-middle text-center text-sm">
-                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                  </td>
-                  <td class="align-middle">
-                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                      Edit
-                    </a>
-                  </td>
-                  <td class="align-middle">
-                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                      Delete
-                    </a>
-                  </td>
-                </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

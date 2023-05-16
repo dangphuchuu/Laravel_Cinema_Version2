@@ -14,3 +14,12 @@ DB::table('directors')->insert([
     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
     'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
 ]);
+DB::table('casts')->insert([
+    'name' => 'Leonardo DiCaprio',
+    'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Leonardo_Dicaprio_Cannes_2019.jpg/250px-Leonardo_Dicaprio_Cannes_2019.jpg',
+    'birthday' => Carbon::create(1974, 11, 11),
+    'national' => 'Mỹ',
+    'content' => 'Leonardo Wilhelm DiCaprio  (sinh ngày 11 tháng 11 năm 1974) là một nam diễn viên, nhà sản xuất phim người Mỹ. Nổi tiếng với những bộ phim tiểu sử và cổ trang, anh đã nhận được nhiều giải thưởng khác nhau, bao gồm 1 giải Oscar, 1 giải thưởng Điện ảnh Viện Hàn lâm Anh Quốc và 3 giải Quả cầu vàng. Tính đến năm 2019, các tác phẩm của DiCaprio thu về hơn 7,2 tỷ đô la trên toàn thế giới và anh đã 8 lần được xếp vào danh sách những nam diễn viên có thu nhập cao nhất thế giới hàng năm.',
+    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+    'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+]);
