@@ -1,4 +1,4 @@
-<div class="mt-5">
+<div id="schedulesByTheater" class="mt-5">
     <h4>Lịch chiếu phim</h4>
     <div class="">
         <div class="input-group mb-2 mt-4">
