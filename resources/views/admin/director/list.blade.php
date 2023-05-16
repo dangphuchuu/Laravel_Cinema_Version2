@@ -31,7 +31,7 @@
                     <h6 class="mb-0 text-sm ">{!! $value['name'] !!}</h6>
                   </td>
                   <td class="align-middle text-center">
-                    <img style="width: 300px" src="{!! $value['image'] !!}" alt="user1">
+                    <img style="width: 300px" src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{!! $value['image'] !!}.jpg" alt="user1">
                   </td>
                   <td class="align-middle text-center">
                     <h6 class="mb-0 text-sm ">{!! $value['birthday'] !!}</h6>
@@ -48,7 +48,7 @@
                     </a>
                   </td>
                   <td class="align-middle">
-                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                    <a href="admin/director/delete/{!!$value['id']!!}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                       Delete
                     </a>
                   </td>

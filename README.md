@@ -29,11 +29,13 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 -   Step 4 : create database and setting .env
 -   Step 5 : php artisan migrate --seed.
 -   Step 6 : composer require spatie/laravel-permission
--   Step 7 : composer require cloudinary/cloudinary_php
+-   Step 7 : composer require cloudinary-labs/cloudinary-laravel
+-   Step 8 : php artisan vendor:publish --provider="CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider" --tag="cloudinary-laravel-config"
 -   Step 8 : php artisan serve.
 
 ## Command Line
 
+-   https://github.com/cloudinary-devs/cloudinary-laravel#installation
 -   create database and model: "php artisan make:model Example -m"
 -   create Controller: "php artisan make:controller ExampleController"
 -   rollback database: "php artisan migrate:rollback"
