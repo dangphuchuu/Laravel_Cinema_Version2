@@ -12,10 +12,6 @@ class MovieGenresController extends Controller
         $movieGenres = MovieGenres::all();
         return view('admin.movie_genres.list', ['movieGenres' => $movieGenres]);
     }
-    public function getCreate()
-    {
-        return view('admin.movie_genres.create');
-    }
     public function postCreate(Request $request)
     {
         $request->validate([

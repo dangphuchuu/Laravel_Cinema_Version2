@@ -24,7 +24,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string('name', 255);
             $table->text('image');
-            $table->dateTime('birthday');
+            $table->date('birthday');
             $table->string('national', 255);
             $table->text('content');
             $table->timestamps();

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Director;
 use Illuminate\Http\Request;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-use Illuminate\Contracts\Filesystem\Cloud;
 
 class DirectorController extends Controller
 {
@@ -21,35 +20,57 @@ class DirectorController extends Controller
         ], [
             'name.required' => 'Name is required',
         ]);
-        $file = $request->file('Image');
-        $img = $request['image'] = $file;
-        $cloud = Cloudinary::upload($img->getRealPath(), [
-            'folder' => 'cinema',
-            'format' => 'jpg',
+        if ($request->hasFile('Image')) {
+            $file = $request->file('Image');
+            $img = $request['image'] = $file;
+            $cloud = Cloudinary::upload($img->getRealPath(), [
+                'folder' => 'director',
+                'format' => 'jpg',
 
-        ])->getPublicId();
-        $director = new Director(
-            [
-                'name' => $request->name,
-                'image' => $cloud,
-                'birthday' => $request->birthday,
-                'national' => $request->national,
-                'content' => $request->content
-            ]
-        );
+            ])->getPublicId();
+            $director = new Director(
+                [
+                    'name' => $request->name,
+                    'image' => $cloud,
+                    'birthday' => $request->birthday,
+                    'national' => $request->national,
+                    'content' => $request->content
+                ]
+            );
+        }
         $director->save();
-
         return redirect('admin/director')->with('success', 'Add Director Successfully!');
     }
-    public function postEdit()
+    public function postEdit(Request $request, $id)
     {
-        return view('admin.director.edit');
+        $director = Director::find($id);
+
+        $request->validate([
+            'name' => 'required'
+        ], [
+            'name.required' => "Please enter director's name"
+        ]);
+
+        if ($request->hasFile('Image')) {
+            $file = $request->file('Image');
+            $img = $request['image'] = $file;
+            if ($director['image'] != '') {
+                Cloudinary::destroy($director['image']);
+            }
+            $cloud = Cloudinary::upload($img->getRealPath(), [
+                'folder' => 'director',
+                'format' => 'jpg',
+            ])->getPublicId();
+            $request['image'] = $cloud;
+        }
+        $director->update($request->all());
+        return redirect('admin/director')->with('success', 'Updated Successfully!');
     }
     public function delete($id)
     {
         $director = Director::find($id);
         Cloudinary::destroy($director['image']);
         $director->delete();
-        return redirect('admin/director')->with('success', 'Add Director Successfully!');
+        return response()->json(['success' => 'Delete Successfully']);
     }
 }
