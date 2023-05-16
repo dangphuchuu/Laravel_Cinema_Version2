@@ -1,6 +1,9 @@
 @extends('web.layout.index')
+@section('movies')
+    active
+@endsection
 @section('content')
-    <section class="container-lg">
+    <section class="container-lg clearfix">
         <!-- Slider -->
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -47,9 +50,12 @@
         <div class="mt-5" id="mainContent">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="h5 nav-link active" href="#phimdangchieu"
+                    <a class="h5 nav-link active"
+                       href="#phimdangchieu"
                        aria-controls="phimdangchieu"
-                       aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#phimdangchieu">
+                       aria-expanded="true"
+                       data-bs-toggle="collapse"
+                       data-bs-target="#phimdangchieu">
                         Phim đang chiếu
                     </a>
                 </li>
@@ -60,7 +66,7 @@
                 </li>
             </ul>
 
-            <div id="phimsapchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse "
+            <div id="phimsapchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse"
                  data-bs-parent="#mainContent">
                 @for($i = 0; $i < 6; $i++)
                     <!-- Movie -->
