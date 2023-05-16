@@ -78,13 +78,13 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     Route::get('/director', [DirectorController::class, 'director']);
     Route::post('/director/create', [DirectorController::class, 'postCreate']);
     Route::post('/director/edit', [DirectorController::class, 'postEdit']);
+    Route::get('/director/delete/{id}', [DirectorController::class, 'delete']);
+    //TODO Cast
 
-     //TODO Cast
-
-     Route::get('/cast', [CastController::class, 'cast']);
-     Route::get('/cast/create', [CastController::class, 'getCreate']);
-     Route::post('/cast/create', [CastController::class, 'postCreate']);
-     Route::post('/cast/edit', [CastController::class, 'postEdit']);
+    Route::get('/cast', [CastController::class, 'cast']);
+    Route::get('/cast/create', [CastController::class, 'getCreate']);
+    Route::post('/cast/create', [CastController::class, 'postCreate']);
+    Route::post('/cast/edit', [CastController::class, 'postEdit']);
 
     //TODO statistical
 
