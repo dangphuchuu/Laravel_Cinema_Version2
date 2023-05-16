@@ -39,7 +39,7 @@ class DirectorController extends Controller
             ]
         );
         $cloud = $cloudinary->uploadApi()->upload($img->getRealPath());
-        dd($cloud->storage());
+        dd($cloud);
         // $cloud = Cloudinary::upload($img->getRealPath())->getPublicId();
         // $clouinary = new Cloudinary();
         // $clouinary->image($cloud)
