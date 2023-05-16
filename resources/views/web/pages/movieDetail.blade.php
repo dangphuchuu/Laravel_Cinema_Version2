@@ -84,74 +84,7 @@
             </div>
         </div>
 
-        <h4 class="mt-5">Lịch chiếu phim</h4>
-        <div class="row">
-            <div class="form-group col-6">
-                <form id='select' class="select" method='get'>
-                    <label for="select-sort" class="form-label">Rạp</label>
-                    <select name="select_item is-invalid" id="select-sort" class="form-select" tabindex="0">
-                        <option value="1" selected>TP Hồ Chí Minh</option>
-                        <option value="2">Hà Nội</option>
-                        <option value="3">Đà Nẵng</option>
-                        <option value="4">Hải Phòng</option>
-                        <option value="5">Phú Yên</option>
-                    </select>
-                </form>
-            </div>
-            <div class="form-group col-6">
-                <label class="form-label" for="datepicker">Ngày chiếu</label>
-                <input type="date" id="datepicker" value="2023-05-07" class="form-control">
-            </div>
-            <div class="col-12 mt-2 mb-5">
-                <div class="row" style="background: #f5f5f5">
-                    @for($i = 1; $i <= 3; $i++)
-                        <div class="col-3 d-flex align-items-center border-end border-bottom border-2 border-white">
-                            <h4 class="align-middle" scope="row" rowspan="2">HuuMinh
-                                Cinema {{ $i }}</h4>
-                        </div>
-                        {{-- a Theater schedule --}}
-                        <div class="col-9 border-bottom border-2 border-white p-2">
-                            <div class="row">
-                                <div class="fw-bold">2D</div>
-                                <div class="d-block gap-2">
-                                    <a href="/tickets/1" class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
-                                       style="border-width: 2px; border-style: solid dashed;"><p
-                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">19 :
-                                            30</p></a>
-                                    <a href="/tickets/1" class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
-                                       style="border-width: 2px; border-style: solid dashed;"><p
-                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">22 :
-                                            00</p>
-                                    </a>
-                                    <a href="/tickets/1" class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
-                                       style="border-width: 2px; border-style: solid dashed;"><p
-                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">22 :
-                                            00</p>
-                                    </a>
-                                </div>
-                            </div>
+        @include('web.layout.schedulesByMovie')
 
-
-                            <div class="row mt-4">
-                                <div class="fw-bold">3D</div>
-                                <div class="d-grid gap-2 d-md-block">
-                                    <a href="/tickets/1" class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
-                                       style="border-width: 2px; border-style: solid dashed;"><p
-                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">16 :
-                                            30</p>
-                                    </a>
-                                    <a href="/tickets/1" class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
-                                       style="border-width: 2px; border-style: solid dashed;"><p
-                                            class="btn btn-warning rounded-0 m-0 border border-light border-1">18 :
-                                            00</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- a Theater schedule: end --}}
-                    @endfor
-                </div>
-            </div>
-        </div>
     </section>
 @endsection

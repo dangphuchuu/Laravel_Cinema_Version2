@@ -22,9 +22,11 @@ class WebController extends Controller
     {
         return view('web.pages.ticket');
     }
+    public function  schedules() {
+        return view('web.pages.schedules');
+    }
 
-    public function signIn(Request $request)
-    {
+    public function signIn(Request $request) {
         $request->validate(
             [
                 'email' => 'required',
