@@ -53,8 +53,8 @@
                     </a>
                   </td>
                 </tr>
-                @include('admin.director.create')
                 @endforeach
+                @include('admin.director.create')
               </tbody>
             </table>
           </div>

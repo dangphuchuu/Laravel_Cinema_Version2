@@ -67,9 +67,9 @@
                     </a>
                   </td>
                 </tr>
-                @include('admin.movie_genres.create')
                 @include('admin.movie_genres.edit')
                 @endforeach
+                @include('admin.movie_genres.create')
               </tbody>
             </table>
           </div>

@@ -1,12 +1,12 @@
-<form action="admin/director/create" method="POST" enctype="multipart/form-data">
-    @csrf
-    <div class="modal fade" id="director" tabindex="-1" aria-labelledby="director_title" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="director_title">Director</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+<div class="modal fade" id="director" tabindex="-1" aria-labelledby="director_title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="director_title">Director</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="admin/director/create" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="row">
@@ -43,11 +43,12 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-</form>
+</div>
