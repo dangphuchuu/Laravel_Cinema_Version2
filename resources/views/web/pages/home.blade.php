@@ -129,9 +129,9 @@
                                             <h5 class="card-title">LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH</h5>
                                             <p class="card-text text-danger">132 phút</p>
                                             <p class="card-text">
-                                                <a class="link link-dark" href="#!2">Hài</a> |
-                                                <a class="link link-dark" href="#!2">Hành động</a> |
-                                                <a class="link link-dark" href="#!2">Tâm lý</a>
+                                                <a class="link link-dark" href="#">Hài</a> |
+                                                <a class="link link-dark" href="#">Hành động</a> |
+                                                <a class="link link-dark" href="#">Tâm lý</a>
                                             </p>
                                             <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
                                                 BIẾN ĐẾN
@@ -160,7 +160,7 @@
                         <div class="card border-0">
                             <div class="row g-0">
                                 <div class="col-lg-4 col-12">
-                                    <a class="link" href="#!">
+                                    <a class="link" href="#">
                                         <img
                                             src="https://cdn.galaxycine.vn/media/2023/4/30/guardians-of-the-galaxy-vol-3-lay-lai-niem-tin-danh-cho-dong-phim-sieu-anh-hung-2_1682827769754.jpg"
                                             class="img-fluid mt-3 w-100" alt="...">
@@ -168,7 +168,7 @@
                                 </div>
                                 <div class="col-lg-8 col-12">
                                     <div class="card-body">
-                                        <a href="#!1" class="link link-dark text-decoration-none">
+                                        <a href="#" class="link link-dark text-decoration-none">
                                             <h5 class="card-title"
                                                 style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical">
                                                 [Preview]

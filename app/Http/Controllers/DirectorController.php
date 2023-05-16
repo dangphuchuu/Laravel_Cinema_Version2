@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Director;
+use Cloudinary\Transformation\Format;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Cloudinary\Api\Upload\UploadApi;
-use Cloudinary\Transformation\Resize;
-use Cloudinary\Configuration\Configuration;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Cloudinary\Cloudinary;
 
 class DirectorController extends Controller
 {
@@ -26,17 +23,24 @@ class DirectorController extends Controller
         ]);
         $file = $request->file('Image');
         $img = $request['image'] = $file;
-        $jpg = $img->encode('jpg', 75);
-        $cloud = Cloudinary::upload($jpg->getRealPath())->getPublicId();
-        $director = new Director([
-                'name' => $request->name,
-                'image' => $cloud,
-                'birthday' => $request->birthday,
-                'national' => $request->national,
-                'content' => $request->contents
+        $cloudinary = new Cloudinary([
+            'cloud' => [
+                'cloud_name' => 'dbddwzgho',
+                'api_key'    => '936271816677711',
+                'api_secret' => 'ganXE2LZyH2T6RpN10-4oqPyhJI',
+            ],
         ]);
-
-        $director->save();
+        $cloud = $cloudinary->uploadApi()->upload($img->getRealPath());
+//        $cloudinary->image($cloud)->delivery(Format::JPG);
+//        $director = new Director([
+//                'name' => $request->name,
+//                'image' => $cloud,
+//                'birthday' => $request->birthday,
+//                'national' => $request->national,
+//                'content' => $request->contents
+//        ]);
+//
+//        $director->save();
         return redirect('admin/director')->with('success', 'Add Director Successfully!');
     }
     public function postEdit()
