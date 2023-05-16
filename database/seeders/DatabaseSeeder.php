@@ -48,7 +48,5 @@ class DatabaseSeeder extends Seeder
 
         //TODO: Rated
         require 'rating.php';
-        //TODO: director
-        require 'director.php';
     }
 }
