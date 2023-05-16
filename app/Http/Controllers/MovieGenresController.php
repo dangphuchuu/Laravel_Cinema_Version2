@@ -7,14 +7,21 @@ use App\Models\MovieGenres;
 
 class MovieGenresController extends Controller
 {
+    function __construct()
+    {
+        $movieGenres = MovieGenres::all();
+        view()->share('movieGenres', $movieGenres);
+    }
+
+    public function findAll()
+    {
+        return MovieGenres::all();
+    }
+
     public function movie_genres()
     {
         $movieGenres = MovieGenres::all();
         return view('admin.movie_genres.list', ['movieGenres' => $movieGenres]);
-    }
-    public function getCreate()
-    {
-        return view('admin.movie_genres.create');
     }
     public function postCreate(Request $request)
     {

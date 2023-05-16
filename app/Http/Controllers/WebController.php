@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MovieGenres;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
-use
+use App\Models\MovieGenres;
 
 class WebController extends Controller
 {
@@ -29,8 +28,9 @@ class WebController extends Controller
     }
 
     public function movies() {
-        $movieGenres = new MovieGenres::all();
-        return view('web.pages.movies');
+        $movieGenres =  MovieGenres::all();
+        dd($movieGenres);
+        return view('web.pages.movies', ['movieGenres', $movieGenres]);
     }
 
     public function signIn(Request $request) {

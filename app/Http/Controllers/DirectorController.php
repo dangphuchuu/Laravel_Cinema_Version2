@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Director;
 use Illuminate\Http\Request;
-use App\Models\Cast;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-class CastController extends Controller
+
+class DirectorController extends Controller
 {
-    public function cast()
+    public function director()
     {
-        $cast = Cast::all();
-        return view('admin.cast.list', ['cast' => $cast]);
+        $director = Director::all();
+        return view('admin.director.list', ['director' => $director]);
     }
     public function postCreate(Request $request)
     {
@@ -23,11 +24,11 @@ class CastController extends Controller
             $file = $request->file('Image');
             $img = $request['image'] = $file;
             $cloud = Cloudinary::upload($img->getRealPath(), [
-                'folder' => 'cast',
+                'folder' => 'director',
                 'format' => 'jpg',
 
             ])->getPublicId();
-            $cast = new Cast(
+            $director = new Director(
                 [
                     'name' => $request->name,
                     'image' => $cloud,
@@ -37,39 +38,39 @@ class CastController extends Controller
                 ]
             );
         }
-        $cast->save();
-        return redirect('admin/cast')->with('success', 'Add Cast Successfully!');
+        $director->save();
+        return redirect('admin/director')->with('success', 'Add Director Successfully!');
     }
-    public function postEdit(Request $request,$id)
+    public function postEdit(Request $request, $id)
     {
-        $cast = Cast::find($id);
+        $director = Director::find($id);
 
         $request->validate([
             'name' => 'required'
         ], [
-            'name.required' => "Please enter cast's name"
+            'name.required' => "Please enter director's name"
         ]);
 
         if ($request->hasFile('Image')) {
             $file = $request->file('Image');
             $img = $request['image'] = $file;
-            if ($cast['image'] != '') {
-                Cloudinary::destroy($cast['image']);
+            if ($director['image'] != '') {
+                Cloudinary::destroy($director['image']);
             }
             $cloud = Cloudinary::upload($img->getRealPath(), [
-                'folder' => 'cast',
+                'folder' => 'director',
                 'format' => 'jpg',
             ])->getPublicId();
             $request['image'] = $cloud;
         }
-        $cast->update($request->all());
-        return redirect('admin/cast')->with('success', 'Updated Successfully!');
+        $director->update($request->all());
+        return redirect('admin/director')->with('success', 'Updated Successfully!');
     }
     public function delete($id)
     {
-        $cast = Cast::find($id);
-        Cloudinary::destroy($cast['image']);
-        $cast->delete();
+        $director = Director::find($id);
+        Cloudinary::destroy($director['image']);
+        $director->delete();
         return response()->json(['success' => 'Delete Successfully']);
     }
 }

@@ -24,7 +24,7 @@ class CheckBanned
 
             $request->session()->regenerateToken();
 
-            return redirect()->back()->with('warning', 'Your account has been banned ');
+            return redirect()->back()->with('warning', 'Tài khoản của bạn đã bị khóa. Vui lòng liện hệ ban quản trị ! ');
         }
         return $next($request);
     }

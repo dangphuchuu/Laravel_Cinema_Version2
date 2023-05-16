@@ -38,7 +38,9 @@
                     <label class="form-label" for="director">Thể loại</label>
                     <select id="cast" name="director" class="form-select dropdown"></select>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"></li>
+                        @foreach($movieGenres as $gen)
+                        <li class="dropdown-item">{!! $gen->name !!} </li>
+                        @endforeach
                     </ul>
                 </div>
             </ul>

@@ -5,7 +5,7 @@
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">
-          <h6>Cinema</h6>
+          <h6>Director</h6>
         </div>
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
@@ -19,7 +19,7 @@
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Image</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Birthday</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">National</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Content</th>
+                  <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Content</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                 </tr>
@@ -39,20 +39,21 @@
                   <td class="align-middle text-center">
                     <span class="text-secondary font-weight-bold">{!! $value['national'] !!}</span>
                   </td>
-                  <td class="align-middle text-center text-sm">
-                    <span class="mb-0 text-sm">{!! $value['content'] !!}</span>
+                  <td class="align-middle text-center text-sm ">
+                    <span class="mb-0 text-sm " style="width:200px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical">{!! $value['content'] !!}</span>
                   </td>
                   <td class="align-middle">
-                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                    <a href="#editDirector" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit director" data-bs-target="#editDirector{!! $value['id'] !!}" data-bs-toggle="modal">
                       Edit
                     </a>
                   </td>
                   <td class="align-middle">
-                    <a href="admin/director/delete/{!!$value['id']!!}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                    <a href="javascript:void(0)" data-url="{{ url('admin/director/ajax/delete_director', $value['id'] ) }}" class="text-secondary font-weight-bold text-xs delete-director" data-toggle="tooltip">
                       Delete
                     </a>
                   </td>
                 </tr>
+                @include('admin.director.edit')
                 @endforeach
                 @include('admin.director.create')
               </tbody>
@@ -63,4 +64,50 @@
     </div>
   </div>
 </div>
+
+@section('scripts')
+<script>
+  $(document).ready(function() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $('.delete-director').on('click', function() {
+      var userURL = $(this).data('url');
+      var trObj = $(this);
+      if (confirm("Are you sure you want to remove it?") == true) {
+        $.ajax({
+          url: userURL,
+          type: 'DELETE',
+          dataType: 'json',
+          success: function(data) {
+            if (data['success']) {
+              // alert(data.success);
+              trObj.parents("tr").remove();
+            } else if (data['error']) {
+              alert(data.error);
+            }
+          }
+        });
+      }
+
+    });
+  });
+</script>
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $('.file-uploader .img_direc').attr('src', e.target.result).removeClass('d-none');
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $(".image-director").change(function() {
+    readURL(this);
+  });
+</script>
+@endsection
 @endsection

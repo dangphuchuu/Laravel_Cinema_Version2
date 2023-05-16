@@ -7,6 +7,7 @@ use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieGenresController;
 use App\Http\Controllers\MovieTypeController;
+use App\Http\Controllers\BannerController;
 
 Route::prefix('admin')->group(function () {
     //TODO Sign-in admin
@@ -18,75 +19,88 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     Route::get('/', [AdminController::class, 'home']);
 
     //TODO Movie Genres
-
-    Route::get('/movie_genres', [MovieGenresController::class, 'movie_genres']);
-    Route::get('/movie_genres/create', [MovieGenresController::class, 'getCreate']);
-    Route::post('/movie_genres/create', [MovieGenresController::class, 'postCreate']);
-    Route::post('/movie_genres/edit/{id}', [MovieGenresController::class, 'postEdit']);
-    Route::delete('ajax/delete_movie_genres/{id}', [MovieGenresController::class, 'delete_movie_genres']);
+    Route::prefix('movie_genres')->group(function () {
+        Route::get('/', [MovieGenresController::class, 'movie_genres']);
+        Route::post('/create', [MovieGenresController::class, 'postCreate']);
+        Route::post('/edit/{id}', [MovieGenresController::class, 'postEdit']);
+        Route::delete('delete/{id}', [MovieGenresController::class, 'delete_movie_genres']);
+    });
 
     //TODO Movie
-
-    Route::get('/movie', [MovieController::class, 'movie']);
-    Route::get('/movie/create', [MovieController::class, 'getCreate']);
-    Route::post('/movie/create', [MovieController::class, 'postCreate']);
-    Route::get('/movie/edit', [MovieController::class, 'edit_movie']);
-
-    //TODO Cinema
-
-    Route::get('/cinema', [AdminController::class, 'cinema']);
-    Route::get('/cinema/create', [AdminController::class, 'create_cinema']);
-    Route::get('/cinema/edit', [AdminController::class, 'edit_cinema']);
+    Route::prefix('movie')->group(function () {
+        Route::get('/', [MovieController::class, 'movie']);
+        Route::get('/create', [MovieController::class, 'getCreate']);
+        Route::post('/create', [MovieController::class, 'postCreate']);
+        Route::get('/edit', [MovieController::class, 'edit_movie']);
+    });
 
     //TODO Cinema
+    Route::prefix('cinema')->group(function () {
+        Route::get('/', [AdminController::class, 'cinema']);
+        Route::get('/create', [AdminController::class, 'create_cinema']);
+        Route::get('/edit', [AdminController::class, 'edit_cinema']);
+    });
 
-    Route::get('/schedule', [AdminController::class, 'schedule']);
-    Route::get('/schedule/create', [AdminController::class, 'create_schedule']);
-    Route::get('/schedule/edit', [AdminController::class, 'edit_schedule']);
+    //TODO Cinema
+    Route::prefix('schedule')->group(function () {
+        Route::get('/', [AdminController::class, 'schedule']);
+        Route::get('/create', [AdminController::class, 'create_schedule']);
+        Route::get('/edit', [AdminController::class, 'edit_schedule']);
+    });
 
     //TODO Events
-
-    Route::get('/events', [AdminController::class, 'events']);
-    Route::get('/events/create', [AdminController::class, 'create_events']);
-    Route::get('/events/edit', [AdminController::class, 'edit_events']);
+    Route::prefix('events')->group(function () {
+        Route::get('/', [AdminController::class, 'events']);
+        Route::get('/create', [AdminController::class, 'create_events']);
+        Route::get('/edit', [AdminController::class, 'edit_events']);
+    });
 
     //TODO Book_Ticket
-
-    Route::get('/book_ticket', [AdminController::class, 'book_ticket']);
+    Route::prefix('ticket')->group(function () {
+        Route::get('/', [TicketController::class, 'ticket']);
+    });
 
     //TODO Food/Topping
-
-    Route::get('/book_ticket', [AdminController::class, 'book_ticket']);
+    Route::prefix('food')->group(function () {
+        Route::get('/', [FoodController::class, 'food']);
+    });
 
     //TODO user_account
-
-    Route::get('/user', [AdminController::class, 'user']);
+    Route::prefix('user')->group(function () {
+        Route::get('/', [AdminController::class, 'user']);
+    });
 
     //TODO staff_account
-
-    Route::get('/staff', [AdminController::class, 'staff']);
-    Route::post('/staff/create', [AdminController::class, 'create_staff']);
+    Route::prefix('staff')->group(function () {
+        Route::get('/', [AdminController::class, 'staff']);
+        Route::post('/create', [AdminController::class, 'create_staff']);
+    });
 
     //TODO banners
-
-    Route::get('/banners', [AdminController::class, 'banners']);
-    Route::get('/banners/create', [AdminController::class, 'create_banners']);
-    Route::get('/banners/edit', [AdminController::class, 'edit_banners']);
+    Route::prefix('banners')->group(function () {
+        Route::get('/', [BannerController::class, 'banners']);
+        Route::post('/create', [BannerController::class, 'postCreate']);
+        Route::post('/edit/{id}', [BannerController::class, 'postEdit']);
+        Route::delete('ajax/delete_director/{id}', [BannerController::class, 'delete']);
+    });
 
     //TODO Director
-
-    Route::get('/director', [DirectorController::class, 'director']);
-    Route::post('/director/create', [DirectorController::class, 'postCreate']);
-    Route::post('/director/edit', [DirectorController::class, 'postEdit']);
-    Route::get('/director/delete/{id}', [DirectorController::class, 'delete']);
+    Route::prefix('director')->group(function () {
+        Route::get('/', [DirectorController::class, 'director']);
+        Route::post('/create', [DirectorController::class, 'postCreate']);
+        Route::post('/edit/{id}', [DirectorController::class, 'postEdit']);
+        Route::delete('ajax/delete_director/{id}', [DirectorController::class, 'delete']);
+    });
     //TODO Cast
-
-    Route::get('/cast', [CastController::class, 'cast']);
-    Route::get('/cast/create', [CastController::class, 'getCreate']);
-    Route::post('/cast/create', [CastController::class, 'postCreate']);
-    Route::post('/cast/edit', [CastController::class, 'postEdit']);
+    Route::prefix('cast')->group(function () {
+        Route::get('/', [CastController::class, 'cast']);
+        Route::post('/create', [CastController::class, 'postCreate']);
+        Route::post('/edit/{id}', [CastController::class, 'postEdit']);
+        Route::delete('ajax/delete_cast/{id}', [CastController::class, 'delete']);
+    });
 
     //TODO statistical
-
-    Route::get('/statistical', [AdminController::class, 'statistical']);
+    Route::prefix('statistical')->group(function () {
+        Route::get('/', [AdminController::class, 'statistical']);
+    });
 });
