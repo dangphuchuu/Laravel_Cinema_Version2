@@ -55,12 +55,14 @@
                                         <a href="/schedules/#" class="link link-dark text-decoration-none text-center">
                                             <h5 class="card-title fs-4">Theater {{ $i }}</h5>
                                             <p class="card-text fs-6 text-secondary">
-                                                <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận 8, TP.HCM
+                                                <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận 8,
+                                                TP.HCM
                                             </p>
                                         </a>
                                     </div>
                                     <div class="card-footer">
-                                        <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98" class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ</a>
+                                        <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98"
+                                           class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ</a>
                                     </div>
                                 </div>
                             </div>
@@ -78,12 +80,14 @@
                                         <a href="/schedules/#" class="link link-dark text-decoration-none text-center">
                                             <h5 class="card-title fs-4">Theater {{ $i }}</h5>
                                             <p class="card-text fs-6 text-secondary">
-                                                <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận 8, TP.HCM
+                                                <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận 8,
+                                                TP.HCM
                                             </p>
                                         </a>
                                     </div>
                                     <div class="card-footer">
-                                        <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98" class="btn w-100 h-100" target="_blank">xem Bản đồ</a>
+                                        <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98" class="btn w-100 h-100"
+                                           target="_blank">xem Bản đồ</a>
                                     </div>
                                 </div>
                             </div>
@@ -96,6 +100,7 @@
             </div>
 
             <div id="lichtheophim" class="collapse show" data-bs-parent="#schedules">
+                {{-- Carousel Movies --}}
                 <div class="d-flex flex-row flex-nowrap overflow-auto mb-4">
                     @for($i = 0; $i < 10; $i++)
                         <button class="btn btn-block border-0 p-2">
@@ -106,6 +111,7 @@
                         </button>
                     @endfor
                 </div>
+
                 <!-- Movie -->
                 <div class="d-flex flex-column flex-sm-row align-items-center" style="background: #f5f5f5">
                     <div class="flex-shrink-0 justify-content-center">
@@ -131,11 +137,11 @@
                             TRỞ LÊN (16+)</p>
                     </div>
                 </div>
-            </div>
-            <!-- Movie: end -->
+                <!-- Movie: end -->
 
-            @include('web.layout.schedulesByMovie')
-        </div>
+                @include('web.layout.schedulesByMovie')
+            </div>
+
 
         </div>
     </section>
