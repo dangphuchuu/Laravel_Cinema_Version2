@@ -19,6 +19,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string('name', 255);
             $table->string('address', 255);
+            $table->text('location');
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

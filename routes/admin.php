@@ -7,6 +7,7 @@ use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieGenresController;
 use App\Http\Controllers\MovieTypeController;
+use App\Http\Controllers\BannerController;
 
 Route::prefix('admin')->group(function () {
     //TODO Sign-in admin
@@ -77,9 +78,10 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
 
     //TODO banners
     Route::prefix('banners')->group(function () {
-        Route::get('/', [AdminController::class, 'banners']);
-        Route::get('/create', [AdminController::class, 'create_banners']);
-        Route::get('/edit', [AdminController::class, 'edit_banners']);
+        Route::get('/', [BannerController::class, 'banners']);
+        Route::post('/create', [BannerController::class, 'postCreate']);
+        Route::post('/edit/{id}', [BannerController::class, 'postEdit']);
+        Route::delete('ajax/delete_director/{id}', [BannerController::class, 'delete']);
     });
 
     //TODO Director
@@ -93,8 +95,8 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     Route::prefix('cast')->group(function () {
         Route::get('/', [CastController::class, 'cast']);
         Route::post('/create', [CastController::class, 'postCreate']);
-        Route::post('/edit', [CastController::class, 'postEdit']);
-        Route::delete('ajax/delete_director/{id}', [CastController::class, 'delete']);
+        Route::post('/edit/{id}', [CastController::class, 'postEdit']);
+        Route::delete('ajax/delete_cast/{id}', [CastController::class, 'delete']);
     });
 
     //TODO statistical
