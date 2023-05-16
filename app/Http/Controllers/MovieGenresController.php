@@ -7,6 +7,11 @@ use App\Models\MovieGenres;
 
 class MovieGenresController extends Controller
 {
+    public function __construct()
+    {
+        $movieGenres = MovieGenres::all();
+        view()->share('movieGenres', $movieGenres);
+    }
     public function movie_genres()
     {
         $movieGenres = MovieGenres::all();
