@@ -7,14 +7,8 @@
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
             <ul class="navbar-nav text-uppercase">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown @yield('movies')" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Phim
-                    </a>
-                    <ul class="dropdown-menu" style="background-color: #2e292e">
-                        <li><a class="dropdown-item link-light" href="#">Phim đang chiếu</a></li>
-                        <li><a class="dropdown-item link-light" href="#">Phim sắp chiếu</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link @yield('movies')" href="/movies" role="button">Phim</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link @yield('schedules')" href="/schedules">Lịch chiếu phim</a>

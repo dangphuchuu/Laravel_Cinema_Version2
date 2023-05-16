@@ -7,11 +7,6 @@ use App\Models\MovieGenres;
 
 class MovieGenresController extends Controller
 {
-    public function web_movie_genres()
-    {
-        $movieGenres = MovieGenres::all();
-        return view('web.pages.movies', ['movieGenres' => $movieGenres]);
-    }
     public function movie_genres()
     {
         $movieGenres = MovieGenres::all();

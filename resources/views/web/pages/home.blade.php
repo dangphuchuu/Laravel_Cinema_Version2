@@ -1,7 +1,4 @@
 @extends('web.layout.index')
-@section('movies')
-    active
-@endsection
 @section('content')
     <section class="container-lg clearfix">
         <!-- Slider -->

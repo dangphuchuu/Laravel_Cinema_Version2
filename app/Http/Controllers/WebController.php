@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\MovieGenres;
 
 class WebController extends Controller
 {
+    function __construct()
+    {
+        $movieGenres = MovieGenres::all();
+        view()->share('movieGenres', $movieGenres);
+    }
     public function home()
     {
         return view('web.pages.home');
@@ -22,11 +28,20 @@ class WebController extends Controller
     {
         return view('web.pages.ticket');
     }
-    public function  schedules() {
+    public function  schedules()
+    {
         return view('web.pages.schedules');
     }
 
-    public function signIn(Request $request) {
+    public function movies()
+    {
+        $movieGenres =  MovieGenres::all();
+
+        return view('web.pages.movies');
+    }
+
+    public function signIn(Request $request)
+    {
         $request->validate(
             [
                 'email' => 'required',

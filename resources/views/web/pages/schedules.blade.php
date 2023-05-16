@@ -27,17 +27,17 @@
 
             <div id="lichtheorap" class="collapse" data-bs-parent="#schedules">
                 <div class="d-flex flex-row mt-4">
-                    <div class="p-2 m-1 border-0">
+                    <div class="flex-city p-2 m-1 border-0">
                         <button class="btn btn-warning p-3" aria-expanded="true" data-bs-toggle="collapse"
                                 data-bs-target="#tphcm" disabled>TP Hồ Chí Minh
                         </button>
                     </div>
-                    <div class="p-2 m-1 border-0">
+                    <div class="flex-city p-2 m-1 border-0">
                         <button class="btn btn-secondary p-3" aria-expanded="false" data-bs-toggle="collapse"
                                 data-bs-target="#hanoi">Hà Nội
                         </button>
                     </div>
-                    <div class="p-2 m-1 border-0">
+                    <div class="flex-city p-2 m-1 border-0">
                         <button class="btn btn-secondary  p-3" aria-expanded="false" data-bs-toggle="collapse"
                                 data-bs-target="#danang">Đà Nẵng
                         </button>
@@ -70,8 +70,9 @@
                         @endfor
                     </div>
 
-                    <div id="danang" data-bs-parent="#theater" class="row g-4 mt-2 row-cols-2 row-cols-md-4 collapse">
-                        @for($i = 0; $i < 2; $i++)
+                    <div id="hanoi" data-bs-parent="#theater"
+                         class="row g-4 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-4 collapse">
+                        @for($i = 0; $i < 4; $i++)
                             <!-- Movie -->
                             <div class="col">
                                 <div class="card px-0 overflow-hidden"
@@ -85,6 +86,32 @@
                                             </p>
                                         </a>
                                     </div>
+                                    <div class="card-footer">
+                                        <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98"
+                                           class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Movie: end -->
+                        @endfor
+                    </div>
+
+                    <div id="danang" data-bs-parent="#theater"
+                         class="row g-4 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-4 collapse">
+                        @for($i = 0; $i < 2; $i++)
+                            <!-- Movie -->
+                            <div class="col">
+                                <div class="card  text-bg-warning px-0 overflow-hidden">
+                                    <button class="btn" aria-expanded="true"
+                                            data-bs-toggle="collapse" data-bs-target="#schedulesByTheater">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center fs-4">Theater {{ $i }}</h5>
+                                            <p class="card-text fs-6">
+                                                <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận 8,
+                                                TP.HCM
+                                            </p>
+                                        </div>
+                                    </button>
                                     <div class="card-footer">
                                         <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98" class="btn w-100 h-100"
                                            target="_blank">xem Bản đồ</a>
@@ -154,8 +181,8 @@
             $(this).addClass("active link-warning fw-bold border-bottom border-2 border-warning").removeClass("link-secondary").prop('disabled', true);
         });
 
-        $("#lichtheorap .d-flex .m-1 .btn").on("click", function () {
-            $("#lichtheorap .m-1").find(".btn").removeClass("btn-warning").addClass("btn-secondary").prop('disabled', false);
+        $("#lichtheorap .d-flex .flex-city .btn").on("click", function () {
+            $("#lichtheorap .flex-city").find(".btn").removeClass("btn-warning").addClass("btn-secondary").prop('disabled', false);
             $(this).addClass("btn-warning").removeClass("btn-secondary").prop('disabled', true);
         });
     </script>
