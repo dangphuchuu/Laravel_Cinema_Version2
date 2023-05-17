@@ -36,7 +36,7 @@ return new class extends Migration
             $table->text('image');
             $table->date('birthday');
             $table->string('national', 255);
-            $table->string('content', 255);
+            $table->text('content');
             $table->timestamps();
         });
 
