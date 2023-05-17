@@ -9,8 +9,8 @@
         </div>
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
-            <a href="admin/banners/create" style="float:right;padding-right:30px;" class="text-light">
-              <button class=" btn btn-primary float-right mb-3">Create</button>
+            <a style="float:right;padding-right:30px;" class="text-light">
+              <button class=" btn btn-primary float-right mb-3" data-bs-toggle="modal" data-bs-target="#banner">Create</button>
             </a>
             <table class="table align-items-center mb-0 ">
               <thead>
@@ -22,42 +22,34 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach($banners as $value)
                 <tr>
                   <td class="align-middle text-center">
-                    <img style="width: 300px" src="https://tselighting.com.vn/wp-content/uploads/2021/01/galaxy-2.jpg" alt="user1">
+                    <img style="width: 300px" src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{!! $value['image'] !!}.jpg" alt="user1">
                   </td>
                   <td class="align-middle text-center text-sm">
-                    <span class="badge badge-sm bg-gradient-success">Online</span>
-                  </td>
-                  <td class="align-middle">
-                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                      Edit
+                    @if($value['status'] == 1)
+                    <a href="#">
+                      <span class="badge badge-sm bg-gradient-success">Online</span>
                     </a>
-                  </td>
-                  <td class="align-middle">
-                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                      Delete
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="align-middle text-center">
-                    <img style="width: 300px" src="https://img.theculturetrip.com/wp-content/uploads/2020/01/c745bg.jpg" alt="user1">
-                  </td>
-                  <td class="align-middle text-center text-sm">
+                    @else
                     <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                    @endif
                   </td>
                   <td class="align-middle">
-                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                    <a href="#editBanner" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit banner" data-bs-target="#editBanner{!! $value['id'] !!}" data-bs-toggle="modal">
                       Edit
                     </a>
                   </td>
                   <td class="align-middle">
-                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                    <a href="javascript:void(0)" data-url="{{ url('admin/banners/ajax/delete_banner', $value['id'] ) }}" class="text-secondary font-weight-bold text-xs delete-banner" data-toggle="tooltip">
                       Delete
                     </a>
                   </td>
                 </tr>
+                @include('admin.banners.edit')
+                @endforeach
+                @include('admin.banners.create')
               </tbody>
             </table>
           </div>
@@ -66,4 +58,49 @@
     </div>
   </div>
 </div>
+@section('scripts')
+<script>
+  $(document).ready(function() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $('.delete-banner').on('click', function() {
+      var userURL = $(this).data('url');
+      var trObj = $(this);
+      if (confirm("Are you sure you want to remove it?") == true) {
+        $.ajax({
+          url: userURL,
+          type: 'DELETE',
+          dataType: 'json',
+          success: function(data) {
+            if (data['success']) {
+              // alert(data.success);
+              trObj.parents("tr").remove();
+            } else if (data['error']) {
+              alert(data.error);
+            }
+          }
+        });
+      }
+
+    });
+  });
+</script>
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $('.file-uploader .img_direc').attr('src', e.target.result).removeClass('d-none');
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $(".image-director").change(function() {
+    readURL(this);
+  });
+</script>
+@endsection
 @endsection

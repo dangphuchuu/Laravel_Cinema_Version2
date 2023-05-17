@@ -81,7 +81,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/', [BannerController::class, 'banners']);
         Route::post('/create', [BannerController::class, 'postCreate']);
         Route::post('/edit/{id}', [BannerController::class, 'postEdit']);
-        Route::delete('ajax/delete_director/{id}', [BannerController::class, 'delete']);
+        Route::delete('ajax/delete_banner/{id}', [BannerController::class, 'delete']);
     });
 
     //TODO Director
