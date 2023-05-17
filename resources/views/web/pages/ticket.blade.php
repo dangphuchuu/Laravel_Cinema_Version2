@@ -111,8 +111,8 @@
                             <div class="m-1 border border-0 align-middle border-dark text-center"
                                  style="width: 25px; height: 25px"></div>
                         </div>
-                        <div class="w-100 d-flex justify-content-center">
-                                <div class="border-bottom border-2 border-dark text-center pb-1 mb-5" style="max-width: 520px"><span class="fs-5">Màn hình</span></div>
+                        <div class="w-100 d-flex">
+                                <div class="border-bottom border-2 border-dark text-center pb-1 mb-5 mx-auto" style="max-width: 520px"><span class="fs-5">Màn hình</span></div>
 {{--                                <div class="d-flex"><div class="bg-dark w-100 mb-5" style="height: 2px; max-width: 520px"></div></div>--}}
                         </div>
                     </div>
