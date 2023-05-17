@@ -13,6 +13,7 @@ class WebController extends Controller
     {
         $movieGenres = MovieGenres::all();
         view()->share('movieGenres', $movieGenres);
+//        $rating = Rating
     }
     public function home()
     {
@@ -32,11 +33,8 @@ class WebController extends Controller
     {
         return view('web.pages.schedules');
     }
-
     public function movies()
     {
-        $movieGenres =  MovieGenres::all();
-
         return view('web.pages.movies');
     }
 

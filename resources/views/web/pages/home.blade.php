@@ -2,7 +2,7 @@
 @section('content')
     <section class="container-lg clearfix">
         <!-- Slider -->
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleControls" class="carousel slide shadow" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img

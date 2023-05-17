@@ -49,20 +49,28 @@
                         @for($i = 0; $i < 6; $i++)
                             <!-- Movie -->
                             <div class="col">
-                                <div class="card px-0 overflow-hidden"
+                                <div class="card px-0 overflow-hidden theater_item"
                                      style="background: #f5f5f5">
-                                    <div class="card-body">
-                                        <a href="/schedules/#" class="link link-dark text-decoration-none text-center">
-                                            <h5 class="card-title fs-4">Theater {{ $i }}</h5>
-                                            <p class="card-text fs-6 text-secondary">
-                                                <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận 8,
-                                                TP.HCM
-                                            </p>
-                                        </a>
-                                    </div>
+                                    <button class="btn rounded-0 border-0 btn_theater @if($i==0) btn-warning @endif" aria-expanded="true"
+                                            data-bs-toggle="collapse" data-bs-target="#schedulesByTheater"
+                                            @if($i==0) disabled @endif>
+                                        <div class="card-body">
+                                            <a href="/schedules/#"
+                                               class="link link-dark text-decoration-none text-center">
+                                                <h5 class="card-title fs-4">Theater {{ $i }}</h5>
+                                                <p class="card-text fs-6 text-secondary">
+                                                    <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận
+                                                    8,
+                                                    TP.HCM
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </button>
+
                                     <div class="card-footer">
                                         <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98"
-                                           class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ</a>
+                                           class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ <i
+                                                class="fa-solid fa-map-location-dot"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -75,20 +83,26 @@
                         @for($i = 0; $i < 4; $i++)
                             <!-- Movie -->
                             <div class="col">
-                                <div class="card px-0 overflow-hidden"
+                                <div class="card px-0 overflow-hidden theater_item"
                                      style="background: #f5f5f5">
-                                    <div class="card-body">
-                                        <a href="/schedules/#" class="link link-dark text-decoration-none text-center">
-                                            <h5 class="card-title fs-4">Theater {{ $i }}</h5>
-                                            <p class="card-text fs-6 text-secondary">
-                                                <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận 8,
-                                                TP.HCM
-                                            </p>
-                                        </a>
-                                    </div>
+                                    <button class="btn rounded-0 border-0 btn_theater" aria-expanded="true"
+                                            data-bs-toggle="collapse" data-bs-target="#schedulesByTheater">
+                                        <div class="card-body">
+                                            <a href="/schedules/#"
+                                               class="link link-dark text-decoration-none text-center">
+                                                <h5 class="card-title fs-4">Theater {{ $i }}</h5>
+                                                <p class="card-text fs-6 text-secondary">
+                                                    <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận
+                                                    8,
+                                                    TP.HCM
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </button>
                                     <div class="card-footer">
                                         <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98"
-                                           class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ</a>
+                                           class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ <i
+                                                class="fa-solid fa-map-location-dot"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -101,8 +115,8 @@
                         @for($i = 0; $i < 2; $i++)
                             <!-- Movie -->
                             <div class="col">
-                                <div class="card  text-bg-warning px-0 overflow-hidden">
-                                    <button class="btn" aria-expanded="true"
+                                <div class="card px-0 overflow-hidden theater_item">
+                                    <button class="btn rounded-0 border-0 btn_theater" aria-expanded="true"
                                             data-bs-toggle="collapse" data-bs-target="#schedulesByTheater">
                                         <div class="card-body">
                                             <h5 class="card-title text-center fs-4">Theater {{ $i }}</h5>
@@ -114,7 +128,7 @@
                                     </button>
                                     <div class="card-footer">
                                         <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98" class="btn w-100 h-100"
-                                           target="_blank">xem Bản đồ</a>
+                                           target="_blank">xem Bản đồ <i class="fa-solid fa-map-location-dot"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -184,6 +198,11 @@
         $("#lichtheorap .d-flex .flex-city .btn").on("click", function () {
             $("#lichtheorap .flex-city").find(".btn").removeClass("btn-warning").addClass("btn-secondary").prop('disabled', false);
             $(this).addClass("btn-warning").removeClass("btn-secondary").prop('disabled', true);
+        });
+
+        $(".theater_item .btn_theater").on("click", function () {
+            $(".theater_item ").find(".btn_theater").removeClass("btn-warning").prop('disabled', false);
+            $(this).addClass("btn-warning").prop('disabled', true);
         });
     </script>
 @endsection
