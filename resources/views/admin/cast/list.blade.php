@@ -19,7 +19,7 @@
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Image</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Birthday</th>
                   <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">National</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Content</th>
+                  <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Content</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                 </tr>
@@ -40,7 +40,7 @@
                     <span class="text-secondary font-weight-bold">{!! $value['national'] !!}</span>
                   </td>
                   <td class="align-middle text-center text-sm">
-                    <span class="mb-0 text-sm">{!! $value['content'] !!}</span>
+                    <span class="mb-0 text-sm " style="width:200px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical">{!! $value['content'] !!}</span>
                   </td>
                   <td class="align-middle">
                     <a href="#editCast" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit cast" data-bs-target="#editCast{!! $value['id'] !!}" data-bs-toggle="modal">
