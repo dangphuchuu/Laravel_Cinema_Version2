@@ -9,6 +9,14 @@ use App\Models\MovieGenres;
 
 class WebController extends Controller
 {
+    function __construct()
+    {
+        $movieGenres = MovieGenres::all();
+        view()->share('movieGenres', $movieGenres);
+
+//        $rating = Rating
+    }
+
     public function home()
     {
         return view('web.pages.home');
@@ -28,9 +36,7 @@ class WebController extends Controller
     }
 
     public function movies() {
-        $movieGenres =  MovieGenres::all();
-        dd($movieGenres);
-        return view('web.pages.movies', ['movieGenres', $movieGenres]);
+        return view('web.pages.movies', ['movieGenres', MovieGenres::all()]);
     }
 
     public function signIn(Request $request) {

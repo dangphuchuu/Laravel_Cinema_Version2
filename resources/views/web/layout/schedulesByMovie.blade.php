@@ -25,7 +25,7 @@
                     <h6 class="fw-bold">HuuMinh Cinema {{ $i }}</h6>
                 </div>
                 {{-- a Theater schedule --}}
-                <div class="flex-fill border-start border-5 border-white p-2">
+                <div class="flex-fill border-start border-5 border-white p-2 ps-4">
                     <div class="d-flex flex-column flex-nowrap overflow-auto">
                         <div class="fw-bold">2D</div>
                         <div class="d-flex flex-row flex-wrap overflow-wrapper">

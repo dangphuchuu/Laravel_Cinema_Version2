@@ -1,4 +1,4 @@
-<footer class="container-fluid mt-5 py-5" style="background: #fafafa">
+<footer class="container-fluid mt-5 py-5 shadow" style="background: #fafafa">
     <section class="container">
         <div class="row">
             <div class="col-sm-4 col-xl-2">

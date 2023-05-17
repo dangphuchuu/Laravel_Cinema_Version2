@@ -6,7 +6,7 @@
     <section class="container-lg clearfix">
         <!-- Main content -->
         <div class="mt-5" id="Movies">
-            <ul class="nav justify-content-start mb-4">
+            <ul class="nav justify-content-start mb-4 align-items-center">
                 <li class="nav-item">
                     <button class="h5 nav-link link-warning active fw-bold border-bottom border-2 border-warning"
                             aria-expanded="true"
@@ -24,26 +24,63 @@
                     </button>
                 </li>
 
-                <div class="form-group ms-2">
-                    <label class="form-label" for="cast">Diễn viên</label>
-                    <input id="cast" name="cast" type="text" class="form-control">
-                </div>
-
-                <div class="form-group ms-2">
-                    <label class="form-label" for="director">Đạo diễn</label>
-                    <input id="cast" name="director" type="text" class="form-control">
-                </div>
-
-                <div class="form-group ms-2">
-                    <label class="form-label" for="director">Thể loại</label>
-                    <select id="cast" name="director" class="form-select dropdown"></select>
-                    <ul class="dropdown-menu">
-                        @foreach($movieGenres as $gen)
-                        <li class="dropdown-item">{!! $gen->name !!} </li>
-                        @endforeach
-                    </ul>
-                </div>
+                <button class="btn" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <i class="fa-solid fa-filter"></i> Bộ lọc
+                </button>
             </ul>
+
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                 aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasRightLabel">Bộ lọc</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <form>
+                        <div class="form-group m-2">
+                            <label class="form-label" for="cast">Diễn viên</label>
+                            <input id="cast" name="cast" type="text" class="form-control">
+                        </div>
+
+                        <div class="form-group m-2">
+                            <label class="form-label" for="director">Đạo diễn</label>
+                            <input id="cast" name="director" type="text" class="form-control">
+                        </div>
+
+                        <div class="m-2 form-group">
+                            <label class="form-label" for="movieGenres">Thể loại</label>
+                            <select id="movieGenres" class="form-select">
+                                <option selected>Tất cả</option>
+                                @foreach($movieGenres as $movieGenre)
+                                    <option>{{ $movieGenre->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="m-2 form-group">
+                            <label class="form-label" for="rating">Độ tuổi</label>
+                            <select id="rating" class="form-select">
+                                <option value="4" selected>
+                                    P - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM MỌI ĐỘ TUỔI
+                                </option>
+                                <option value="1">
+                                    C13 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 13 TUỔI TRỞ LÊN (13+)
+                                </option>
+                                <option value="2">
+                                    C16 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 16 TUỔI TRỞ LÊN (16+)
+                                </option>
+                                <option value="3">
+                                    C18 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 18 TUỔI TRỞ LÊN (18+)
+                                </option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary m-2 mt-4 w-100">Áp dụng</button>
+                    </form>
+                </div>
+            </div>
 
             <div id="phimsapchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse"
                  data-bs-parent="#Movies">
