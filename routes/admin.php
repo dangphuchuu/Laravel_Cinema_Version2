@@ -33,7 +33,12 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/create', [MovieController::class, 'postCreate']);
         Route::get('/edit', [MovieController::class, 'edit_movie']);
     });
-
+    //TODO Movie
+    Route::prefix('room')->group(function () {
+        Route::get('/', [RoomController::class, 'room']);
+        Route::post('/create', [RoomController::class, 'postCreate']);
+        Route::get('/edit', [RoomController::class, 'postEdit']);
+    });
     //TODO Cinema
     Route::prefix('cinema')->group(function () {
         Route::get('/', [AdminController::class, 'cinema']);

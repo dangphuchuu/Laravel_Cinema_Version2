@@ -11,9 +11,9 @@ class WebController extends Controller
 {
     function __construct()
     {
-        $movieGenres = MovieGenres::all();
+        $movieGenres = MovieGenres::where('status', 1)->get();
         view()->share('movieGenres', $movieGenres);
-//        $rating = Rating
+        //        $rating = Rating
     }
     public function home()
     {

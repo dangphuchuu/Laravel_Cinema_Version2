@@ -1,7 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-use Cloudinary\Cloudinary;
 
 define('LARAVEL_START', microtime(true));
 
@@ -22,15 +21,6 @@ require __DIR__ . '/vendor/autoload.php';
 $app = require_once __DIR__ . '/bootstrap/app.php';
 
 
-$cloudinary = new Cloudinary(
-    [
-        'cloud' => [
-            'cloud_name' => 'dgk9ztl5h',
-            'api_key'    => '945974289843947',
-            'api_secret' => '9bEXv8Aoc9QY_CzjcOTrQrGlBHo',
-        ],
-    ]
-);
 
 
 /*
