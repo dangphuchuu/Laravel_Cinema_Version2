@@ -16,11 +16,20 @@ active
                     </button>
                 </li>
                 <li class="vr mx-5"></li>
-                <li class="nav-item me-auto">
+                <li class="nav-item">
                     <button class="h5 nav-link link-secondary"
                             aria-expanded="false"
                             data-bs-toggle="collapse" data-bs-target="#phimsapchieu">
                         Phim sắp chiếu
+                    </button>
+                </li>
+
+                <li class="vr mx-5"></li>
+                <li class="nav-item me-auto">
+                    <button class="h5 nav-link link-secondary"
+                            aria-expanded="false"
+                            data-bs-toggle="collapse" data-bs-target="#sukien">
+                        Vé bán trước
                     </button>
                 </li>
 
@@ -39,17 +48,17 @@ active
                 </div>
                 <div class="offcanvas-body">
                     <form>
-                        <div class="form-group m-2">
+                        <div class="form-group m-2 mb-3">
                             <label class="form-label" for="cast">Diễn viên</label>
                             <input id="cast" name="cast" type="text" class="form-control">
                         </div>
 
-                        <div class="form-group m-2">
+                        <div class="form-group m-2 mb-3">
                             <label class="form-label" for="director">Đạo diễn</label>
                             <input id="cast" name="director" type="text" class="form-control">
                         </div>
 
-                        <div class="m-2 form-group">
+                        <div class="m-2 form-group mb-3">
                             <label class="form-label" for="movieGenres">Thể loại</label>
                             <select id="movieGenres" class="form-select">
                                 <option selected>Tất cả</option>
@@ -59,7 +68,7 @@ active
                             </select>
                         </div>
 
-                        <div class="m-2 form-group">
+                        <div class="m-2 form-group mb-3">
                             <label class="form-label" for="rating">Độ tuổi</label>
                             <select id="rating" class="form-select">
                                 <option value="4" selected>

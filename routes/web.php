@@ -23,6 +23,7 @@ Route::get('/', [WebController::class, 'home']);
 Route::get('/movie/{id}', [WebController::class, 'movieDetail']);
 Route::get('/tickets/{movie_id}/', [WebController::class, 'ticket']);
 Route::get('/schedules', [WebController::class, 'schedules']);
+Route::get('/events', [WebController::class, 'events']);
 Route::get('/movies', [WebController::class, 'movies']);
 Route::post('/signIn', [WebController::class, 'signIn']);
 Route::post('/signUp', [WebController::class, 'signUp']);

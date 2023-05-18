@@ -38,6 +38,10 @@ class WebController extends Controller
         return view('web.pages.movies');
     }
 
+    public function events() {
+        return view('web.pages.events');
+    }
+
     public function signIn(Request $request)
     {
         $request->validate(
