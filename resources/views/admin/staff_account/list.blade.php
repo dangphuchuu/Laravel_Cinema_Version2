@@ -44,10 +44,7 @@
                                             Role
                                         </th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
-                                            Edit Role
-                                        </th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
-                                            Edit Permissions
+                                            Permissions
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Status
@@ -70,9 +67,6 @@
                                                     <td class="align-middle text-center">
                                                         <span
                                                             class="text-secondary font-weight-bold"> {!! $role['name'] !!}</span>
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        <button class="btn btn-link text-success">Role</button>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <button href="#permission" class="btn btn-link text-danger "
@@ -145,7 +139,7 @@
             $('.delete-staff').on('click', function () {
                 var userURL = $(this).data('url');
                 var trObj = $(this);
-                if (confirm("Are you sure you want to remove it?") == true) {
+                if (confirm("Are you sure you want to remove it?") === true) {
                     $.ajax({
                         url: userURL,
                         type: 'DELETE',
