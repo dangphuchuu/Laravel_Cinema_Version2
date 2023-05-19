@@ -13,6 +13,7 @@ class DirectorController extends Controller
         $director = Director::all();
         return view('admin.director.list', ['director' => $director]);
     }
+
     public function postCreate(Request $request)
     {
         $request->validate([
@@ -34,13 +35,14 @@ class DirectorController extends Controller
                     'image' => $cloud,
                     'birthday' => $request->birthday,
                     'national' => $request->national,
-                    'content' => $request->content
+                    'content' => $request->contents
                 ]
             );
         }
         $director->save();
         return redirect('admin/director')->with('success', 'Add Director Successfully!');
     }
+
     public function postEdit(Request $request, $id)
     {
         $director = Director::find($id);
@@ -66,6 +68,7 @@ class DirectorController extends Controller
         $director->update($request->all());
         return redirect('admin/director')->with('success', 'Updated Successfully!');
     }
+
     public function delete($id)
     {
         $director = Director::find($id);

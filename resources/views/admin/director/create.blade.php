@@ -14,19 +14,22 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Name</label>
-                                    <input class="form-control" type="text" value="" name="name" placeholder="type name">
+                                    <input class="form-control" type="text" value="" name="name"
+                                           placeholder="type name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">National</label>
-                                    <input class="form-control" type="text" value="" name="national" placeholder="type national">
+                                    <input class="form-control" type="text" value="" name="national"
+                                           placeholder="type national">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Birthday</label>
-                                    <input class="form-control" type="date" value="" name="birthday" placeholder="" min="1900-01-01" max="2100-01-01">
+                                    <input class="form-control" type="date" value="" name="birthday" placeholder=""
+                                           min="1900-01-01" max="2100-01-01">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -39,7 +42,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Content</label>
-                                    <textarea class="form-control" name="content" id="editor" placeholder="Content"></textarea>
+                                    <textarea class="form-control" name="contents" id="editor"
+                                              placeholder="Content"></textarea>
                                 </div>
                             </div>
                         </div>

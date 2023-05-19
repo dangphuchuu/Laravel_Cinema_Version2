@@ -23,7 +23,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/', [MovieGenresController::class, 'movie_genres']);
         Route::post('/create', [MovieGenresController::class, 'postCreate']);
         Route::post('/edit/{id}', [MovieGenresController::class, 'postEdit']);
-        Route::delete('delete/{id}', [MovieGenresController::class, 'delete_movie_genres']);
+        Route::delete('/delete/{id}', [MovieGenresController::class, 'delete_movie_genres']);
     });
 
     //TODO Movie
@@ -73,7 +73,9 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     //TODO staff_account
     Route::prefix('staff')->group(function () {
         Route::get('/', [AdminController::class, 'staff']);
-        Route::post('/create', [AdminController::class, 'create_staff']);
+        Route::post('/create', [AdminController::class, 'postCreate']);
+        Route::post('/permission/{id}', [AdminController::class, 'postPermission']);
+        Route::delete('/delete/{id}', [AdminController::class, 'delete_staff']);
     });
 
     //TODO banners

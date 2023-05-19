@@ -2,31 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MovieGenres;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
     function __construct()
     {
     }
+
     public function home()
     {
         return view('admin.home.list');
     }
 
-   
 
     //Cinematics
     public function cinema()
     {
         return view('admin.cinema.list');
     }
+
     public function create_cinema()
     {
         return view('admin.cinema.create');
     }
+
     public function edit_cinema()
     {
         return view('admin.cinema.edit');
@@ -37,10 +42,12 @@ class AdminController extends Controller
     {
         return view('admin.schedules.list');
     }
+
     public function create_schedule()
     {
         return view('admin.schedules.create');
     }
+
     public function edit_schedule()
     {
         return view('admin.schedules.edit');
@@ -51,10 +58,12 @@ class AdminController extends Controller
     {
         return view('admin.events.list');
     }
+
     public function create_events()
     {
         return view('admin.events.create');
     }
+
     public function edit_events()
     {
         return view('admin.events.edit');
@@ -77,9 +86,12 @@ class AdminController extends Controller
     public function staff()
     {
         $staff = User::with('roles', 'permissions')->get();
-        return view('admin.staff_account.list', ['staff' => $staff]);
+        $permission = Permission::orderBy('id', 'asc')->get();
+
+        return view('admin.staff_account.list', ['staff' => $staff, 'permission' => $permission]);
     }
-    public function create_staff(Request $request)
+
+    public function postCreate(Request $request)
     {
         $request->validate([
             'fullName' => 'required|min:1',
@@ -100,16 +112,42 @@ class AdminController extends Controller
         return redirect('/admin/staff')->with('success', 'Create Account Successfully!');
     }
 
+    public function postPermission(Request $request, $id)
+    {
+        $data = $request->all();
+        $user = User::find($id);
+        if ($user->hasRole('admin')) {
+            return redirect('admin/staff')->with('warning', 'Cannot change permission for admin!');
+        } else {
+            if (array_key_exists('permission', $data)) {
+                $user->syncPermissions($data['permission']);
+            } else {
+                return redirect('admin/staff')->with('warning', 'Please check least 1 Permission!');
+            }
+        }
+
+
+        return redirect('admin/staff')->with('success', 'Updated Permission Sucessfully !');
+    }
+
+    public function delete_staff($id)
+    {
+        User::destroy($id);
+        return response()->json(['success' => 'Delete Successfully']);
+    }
+
     //Banners
     public function banners()
     {
         return view('admin.banners.list');
     }
+
     public function create_banners()
     {
 
         return redirect('admin.banners.create');
     }
+
     public function edit_banners()
     {
         return view('admin.banners.edit');
@@ -120,11 +158,13 @@ class AdminController extends Controller
     {
         return view('admin.statistical.list');
     }
+
     //Sign_in
     public function sign_in()
     {
         return view('admin.sign_in');
     }
+
     public function Post_sign_in(Request $request)
     {
         $request->validate(
@@ -143,6 +183,7 @@ class AdminController extends Controller
             return redirect('admin/sign_in')->with('warning', "Sign in unsuccessfully!");
         }
     }
+
     public function sign_out()
     {
         Auth::logout();
