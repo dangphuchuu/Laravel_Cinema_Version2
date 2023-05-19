@@ -69,12 +69,6 @@ class AdminController extends Controller
         return view('admin.events.edit');
     }
 
-    //Book Ticket
-    public function book_ticket()
-    {
-        return view('admin.book_ticket.list');
-    }
-
     //User
     public function user()
     {
