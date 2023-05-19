@@ -41,6 +41,9 @@
                                             Email
                                         </th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
+                                            Phone
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
                                             Role
                                         </th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
@@ -63,6 +66,10 @@
                                                     <td class="align-middle text-center">
                                                         <span
                                                             class="text-secondary font-weight-bold">{!! $value['email'] !!}</span>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <span
+                                                            class="text-secondary font-weight-bold">{!! $value['phone'] !!}</span>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <span

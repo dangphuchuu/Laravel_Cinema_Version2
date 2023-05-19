@@ -88,7 +88,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/', [BannerController::class, 'banners']);
         Route::post('/create', [BannerController::class, 'postCreate']);
         Route::post('/edit/{id}', [BannerController::class, 'postEdit']);
-        Route::delete('ajax/delete_banner/{id}', [BannerController::class, 'delete']);
+        Route::delete('/delete/{id}', [BannerController::class, 'delete']);
     });
 
     //TODO Director
@@ -96,14 +96,14 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/', [DirectorController::class, 'director']);
         Route::post('/create', [DirectorController::class, 'postCreate']);
         Route::post('/edit/{id}', [DirectorController::class, 'postEdit']);
-        Route::delete('ajax/delete_director/{id}', [DirectorController::class, 'delete']);
+        Route::delete('/delete/{id}', [DirectorController::class, 'delete']);
     });
     //TODO Cast
     Route::prefix('cast')->group(function () {
         Route::get('/', [CastController::class, 'cast']);
         Route::post('/create', [CastController::class, 'postCreate']);
         Route::post('/edit/{id}', [CastController::class, 'postEdit']);
-        Route::delete('ajax/delete_cast/{id}', [CastController::class, 'delete']);
+        Route::delete('/delete/{id}', [CastController::class, 'delete']);
     });
 
     //TODO statistical
