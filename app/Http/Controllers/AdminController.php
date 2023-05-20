@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MovieGenres;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
@@ -18,23 +16,6 @@ class AdminController extends Controller
     public function home()
     {
         return view('admin.home.list');
-    }
-
-
-    //Cinematics
-    public function cinema()
-    {
-        return view('admin.cinema.list');
-    }
-
-    public function create_cinema()
-    {
-        return view('admin.cinema.create');
-    }
-
-    public function edit_cinema()
-    {
-        return view('admin.cinema.edit');
     }
 
     //Schedule Movie

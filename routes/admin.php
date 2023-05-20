@@ -1,15 +1,13 @@
 <?php
 
-use App\Http\Controllers\FoodController;
-use App\Http\Controllers\TicketController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CastController;
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieGenresController;
-use App\Http\Controllers\MovieTypeController;
-use App\Http\Controllers\BannerController;
+use App\Http\Controllers\TheaterController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
     //TODO Sign-in admin
@@ -42,10 +40,10 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/edit', [RoomController::class, 'postEdit']);
     });
     //TODO Cinema
-    Route::prefix('cinema')->group(function () {
-        Route::get('/', [AdminController::class, 'cinema']);
-        Route::get('/create', [AdminController::class, 'create_cinema']);
-        Route::get('/edit', [AdminController::class, 'edit_cinema']);
+    Route::prefix('theater')->group(function () {
+        Route::get('/', [TheaterController::class, 'theater']);
+//        Route::get('/create', [AdminController::class, 'create_cinema']);
+//        Route::get('/edit', [AdminController::class, 'edit_cinema']);
     });
 
     //TODO Cinema

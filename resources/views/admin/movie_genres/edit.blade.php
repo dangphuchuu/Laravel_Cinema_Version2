@@ -12,8 +12,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Genres</label>
-                                    <input class="form-control" type="text" value="{!! $value['name'] !!}" name="name" placeholder="type genres">
+                                    <label for="name" class="form-control-label">Genres</label>
+                                    <input class="form-control" id="name" type="text" value="{!! $value['name'] !!}" name="name" placeholder="type
+                                    genres">
                                 </div>
                             </div>
                         </div>
