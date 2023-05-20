@@ -353,7 +353,7 @@ function init_BookingOne() {
                 var movie = $('.choosen-movie'),
                     city = $('.choosen-city'),
                     date = $('.choosen-date'),
-                    cinema = $('.choosen-cinema'),
+                    cinema = $('.choosen-theater'),
                     time = $('.choosen-time');
 
     //3. Swiper slider
@@ -829,7 +829,7 @@ function init_CinemaList () {
                         var filter = $(this).attr('data-filter');
 
                         //show all the list items(this is needed to get the hidden ones shown)
-                        $(".cinema-item").show();
+                        $(".theater-item").show();
                         //hide advertazing and pagination block
                         $('.adv-place').show();
                         $('.pagination').show();
@@ -837,7 +837,7 @@ function init_CinemaList () {
                         /*using the :not attribute and the filter class in it we are selecting
                             only the list items that don't have that class and hide them '*/
                         if ( filter.toLowerCase()!=='all'){
-                            $('.cinema-item:not(.' + filter + ')').hide();
+                            $('.theater-item:not(.' + filter + ')').hide();
                             //show advertazing and pagination block only on filter (all)
                             $('.pagination').hide();
                             $('.adv-place').hide();
@@ -1737,7 +1737,7 @@ function init_Cinema () {
     "use strict";
 
 	//1. Swiper slider
-				//init cinema sliders
+				//init theater sliders
                 var mySwiper = new Swiper('.swiper-container',{
                     slidesPerView:8,
                     loop:true,

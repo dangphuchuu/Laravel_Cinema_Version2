@@ -14,9 +14,9 @@ Permission::create(['name' => 'create movies']);
 Permission::create(['name' => 'edit movies']);
 
 //TODO: Cinema
-Permission::create(['name' => 'list cinema']);
-Permission::create(['name' => 'create cinema']);
-Permission::create(['name' => 'edit cinema']);
+Permission::create(['name' => 'list theater']);
+Permission::create(['name' => 'create theater']);
+Permission::create(['name' => 'edit theater']);
 
 //TODO: Schedule Movies
 Permission::create(['name' => 'list schedule_movie']);

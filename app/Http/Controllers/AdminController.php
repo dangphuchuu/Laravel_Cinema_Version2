@@ -16,22 +16,6 @@ class AdminController extends Controller
         return view('admin.home.list');
     }
 
-   
-
-    //Cinematics
-    public function cinema()
-    {
-        return view('admin.cinema.list');
-    }
-    public function create_cinema()
-    {
-        return view('admin.cinema.create');
-    }
-    public function edit_cinema()
-    {
-        return view('admin.cinema.edit');
-    }
-
     //Schedule Movie
     public function schedule()
     {
