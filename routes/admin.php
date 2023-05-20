@@ -2,15 +2,16 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\TicketController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CastController;
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieGenresController;
-use App\Http\Controllers\MovieTypeController;
-use App\Http\Controllers\BannerController;
+use App\Http\Controllers\TheaterController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
     //TODO Sign-in admin
@@ -26,7 +27,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/', [MovieGenresController::class, 'movie_genres']);
         Route::post('/create', [MovieGenresController::class, 'postCreate']);
         Route::post('/edit/{id}', [MovieGenresController::class, 'postEdit']);
-        Route::delete('/delete/{id}', [MovieGenresController::class, 'delete_movie_genres']);
+        Route::delete('/delete/{id}', [MovieGenresController::class, 'delete']);
     });
 
     //TODO Movie
@@ -43,24 +44,23 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/edit', [RoomController::class, 'postEdit']);
     });
     //TODO Cinema
-    Route::prefix('cinema')->group(function () {
-        Route::get('/', [AdminController::class, 'cinema']);
-        Route::get('/create', [AdminController::class, 'create_cinema']);
-        Route::get('/edit', [AdminController::class, 'edit_cinema']);
+    Route::prefix('theater')->group(function () {
+        Route::get('/', [TheaterController::class, 'theater']);
     });
 
     //TODO Cinema
     Route::prefix('schedule')->group(function () {
         Route::get('/', [AdminController::class, 'schedule']);
-        Route::get('/create', [AdminController::class, 'postCreate']);
-        Route::get('/edit', [AdminController::class, 'postEdit']);
+        Route::post('/create', [AdminController::class, 'postCreate']);
+        Route::post('/edit', [AdminController::class, 'postEdit']);
     });
 
     //TODO Events
     Route::prefix('events')->group(function () {
         Route::get('/', [EventController::class, 'events']);
-        Route::get('/create', [EventController::class, 'postCreate']);
-        Route::get('/edit', [EventController::class, 'postEdit']);
+        Route::post('/create', [EventController::class, 'postCreate']);
+        Route::post('/edit/{id}', [EventController::class, 'postEdit']);
+        Route::delete('/delete/{id}', [EventController::class, 'delete']);
     });
 
     //TODO Book_Ticket

@@ -81,7 +81,7 @@
             $('.delete-director').on('click', function () {
                 var userURL = $(this).data('url');
                 var trObj = $(this);
-                if (confirm("Are you sure you want to remove it?") == true) {
+                if (confirm("Are you sure you want to remove it?") === true) {
                     $.ajax({
                         url: userURL,
                         type: 'DELETE',

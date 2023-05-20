@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //TODO: User 
+        //TODO: User
         require 'user.php';
 
         //TODO: Create Role
@@ -31,16 +31,27 @@ class DatabaseSeeder extends Seeder
         //TODO:Permissions
         require 'permissions.php';
 
-        //TODO: Set role for admin
+        //TODO: Set role for admin with id 1
         $user = User::find(1);
         $user->assignRole('admin');
 
-        //TODO: Set permissions for admin
+        //TODO: Set role for admin with id 2
+        $user = User::find(2);
+        $user->assignRole('admin');
+
+        //TODO: Set permissions for admin with id 1
         $permission = Permission::all();
         $user->givePermissionTo($permission);
 
+        //TODO: Set permissions for admin with id 2
+        $user->givePermissionTo($permission);
+
         //TODO: Set role for user
-        $user = User::find(2);
+        $user = User::find(3);
+        $user->assignRole('user');
+
+        //TODO: Set role for user
+        $user = User::find(4);
         $user->assignRole('user');
 
         //TODO: Movie Genre
