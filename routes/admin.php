@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
@@ -51,15 +52,15 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     //TODO Cinema
     Route::prefix('schedule')->group(function () {
         Route::get('/', [AdminController::class, 'schedule']);
-        Route::get('/create', [AdminController::class, 'create_schedule']);
-        Route::get('/edit', [AdminController::class, 'edit_schedule']);
+        Route::get('/create', [AdminController::class, 'postCreate']);
+        Route::get('/edit', [AdminController::class, 'postEdit']);
     });
 
     //TODO Events
     Route::prefix('events')->group(function () {
-        Route::get('/', [AdminController::class, 'events']);
-        Route::get('/create', [AdminController::class, 'create_events']);
-        Route::get('/edit', [AdminController::class, 'edit_events']);
+        Route::get('/', [EventController::class, 'events']);
+        Route::get('/create', [EventController::class, 'postCreate']);
+        Route::get('/edit', [EventController::class, 'postEdit']);
     });
 
     //TODO Book_Ticket
