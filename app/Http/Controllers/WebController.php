@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\MovieGenres;
+use App\Models\Rating;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WebController extends Controller
 {
     function __construct()
     {
-        $movieGenres = MovieGenres::all();
-        view()->share('movieGenres', $movieGenres);
-//        $rating = Rating
     }
+
     public function home()
     {
         return view('web.pages.home');
@@ -25,17 +24,24 @@ class WebController extends Controller
         return view('web.pages.movieDetail');
     }
 
-    public function  ticket()
+    public function ticket()
     {
         return view('web.pages.ticket');
     }
-    public function  schedules()
+
+    public function schedules()
     {
         return view('web.pages.schedules');
     }
+
     public function movies()
     {
-        return view('web.pages.movies');
+        $movieGenres = MovieGenres::all();
+        $rating = Rating::all();
+        return view('web.pages.movies', [
+            'movieGenres' => $movieGenres,
+            'rating' => $rating
+        ]);
     }
 
     public function signIn(Request $request)
@@ -56,6 +62,7 @@ class WebController extends Controller
             return redirect('/');
         }
     }
+
     public function signUp(Request $request)
     {
         $request->validate([
@@ -76,6 +83,7 @@ class WebController extends Controller
         $user->syncRoles('user');
         return redirect('/')->with('success', 'Sign Up Successfully!');
     }
+
     public function signOut()
     {
         Auth::logout();

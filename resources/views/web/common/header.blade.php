@@ -2,7 +2,8 @@
 <nav class="header navbar navbar-expand-lg navbar-dark shadow" style="background-color: #2e292e">
     <div class="container">
         <a class="navbar-brand" href="#">HuuMinh Cinema</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
@@ -23,7 +24,8 @@
             </ul>
             @if(Auth::check())
                 <div class="nav-item dropdown mx-2">
-                    <a class="nav-link link-warning font-weight-bold text-decoration-underline dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link link-warning font-weight-bold text-decoration-underline dropdown" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-id-card me-sm-1"></i>
                         <span class="d-sm-inline d-none">{{ Auth::user()->fullName }}</span>
                     </a>
