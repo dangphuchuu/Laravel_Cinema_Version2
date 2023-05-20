@@ -1,6 +1,6 @@
 @extends('web.layout.index')
 @section('movies')
-active
+    active
 @endsection
 @section('content')
     <section class="container-lg clearfix">
@@ -46,7 +46,7 @@ active
 
                         <div class="form-group m-2">
                             <label class="form-label" for="director">Đạo diễn</label>
-                            <input id="cast" name="director" type="text" class="form-control">
+                            <input id="dicretor" name="director" type="text" class="form-control">
                         </div>
 
                         <div class="m-2 form-group">
@@ -62,18 +62,12 @@ active
                         <div class="m-2 form-group">
                             <label class="form-label" for="rating">Độ tuổi</label>
                             <select id="rating" class="form-select">
-                                <option value="4" selected>
-                                    P - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM MỌI ĐỘ TUỔI
-                                </option>
-                                <option value="1">
-                                    C13 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 13 TUỔI TRỞ LÊN (13+)
-                                </option>
-                                <option value="2">
-                                    C16 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 16 TUỔI TRỞ LÊN (16+)
-                                </option>
-                                <option value="3">
-                                    C18 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 18 TUỔI TRỞ LÊN (18+)
-                                </option>
+                                @foreach($rating as $value)
+                                    <option value="{{ $value->id }}" selected title="{{
+                                    $value->description }}">
+                                        {{ $value->name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -83,81 +77,87 @@ active
             </div>
 
             <div id="phimsapchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse" data-bs-parent="#Movies">
-                @for($i = 0; $i < 6; $i++) <!-- Movie -->
-                <div class="col">
-                    <div class="card px-0 overflow-hidden" style="background: #f5f5f5">
-                        <div class="row g-0">
-                            <div class="col-lg-4 col-12">
-                                <a href="/movie/1">
-                                    <img src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/t/h/the_accursed.c_n_th_nh_n_t_c_i_m_-_payoff_poster_-_kc_12.05.2023_1_.jpg" class="img-fluid w-100" alt="...">
-                                </a>
-                            </div>
-                            <div class="col-lg-8 col-12">
-                                <div class="card-body">
+                @for($i = 0; $i < 6; $i++)
+                    <!-- Movie -->
+                    <div class="col">
+                        <div class="card px-0 overflow-hidden" style="background: #f5f5f5">
+                            <div class="row g-0">
+                                <div class="col-lg-4 col-12">
                                     <a href="/movie/1">
-                                        <h5 class="card-title">LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH</h5>
-                                        <p class="card-text text-danger">132 phút</p>
-                                        <p class="card-text">
-                                            <a class="link link-dark" href="#">Hài</a> |
-                                            <a class="link link-dark" href="#">Hành động</a> |
-                                            <a class="link link-dark" href="#">Tâm lý</a>
-                                        </p>
-                                        <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
-                                            BIẾN
-                                            ĐẾN
-                                            NGƯỜI XEM TỪ ĐỦ 16 TUỔI
-                                            TRỞ LÊN (16+)</p>
+                                        <img
+                                            src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/t/h/the_accursed.c_n_th_nh_n_t_c_i_m_-_payoff_poster_-_kc_12.05.2023_1_.jpg"
+                                            class="img-fluid w-100" alt="...">
                                     </a>
+                                </div>
+                                <div class="col-lg-8 col-12">
+                                    <div class="card-body">
+                                        <a href="/movie/1">
+                                            <h5 class="card-title">LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH</h5>
+                                            <p class="card-text text-danger">132 phút</p>
+                                            <p class="card-text">
+                                                <a class="link link-dark" href="#">Hài</a> |
+                                                <a class="link link-dark" href="#">Hành động</a> |
+                                                <a class="link link-dark" href="#">Tâm lý</a>
+                                            </p>
+                                            <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
+                                                BIẾN
+                                                ĐẾN
+                                                NGƯỜI XEM TỪ ĐỦ 16 TUỔI
+                                                TRỞ LÊN (16+)</p>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Movie: end -->
+                    <!-- Movie: end -->
                 @endfor
-        </div>
+            </div>
 
-        <div id="phimdangchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse show" data-bs-parent="#Movies">
-            @for($i = 0; $i < 6; $i++) <!-- Movie -->
-                <div class="card-col">
-                    <article class="card px-0 overflow-hidden" style="background: #f5f5f5">
-                        <div class="row g-0">
-                            <div class="col-lg-4 col-12">
-                                <a href="/movie/1">
-                                    <img src="https://ocwckgy6c1obj.vcdn.cloud/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/l/m/lm6_2x3_layout.jpg" class="img-fluid rounded w-100" alt="...">
-                                </a>
-                            </div>
-                            <div class="col-lg-8 col-12">
-                                <div class="card-body">
-                                    <a href="movie/1" class="link link-dark text-decoration-none">
-                                        <h5 class="card-title">LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH</h5>
-                                        <p class="card-text text-danger">132 phút</p>
-                                        <p class="card-text">
-                                            <a class="link link-dark" href="#">Hài</a> |
-                                            <a class="link link-dark" href="#">Hành động</a> |
-                                            <a class="link link-dark" href="#">Tâm lý</a>
-                                        </p>
-                                        <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
-                                            BIẾN ĐẾN
-                                            NGƯỜI XEM TỪ ĐỦ 16 TUỔI
-                                            TRỞ LÊN (16+)</p>
+            <div id="phimdangchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse show" data-bs-parent="#Movies">
+                @for($i = 0; $i < 6; $i++)
+                    <!-- Movie -->
+                    <div class="card-col">
+                        <article class="card px-0 overflow-hidden" style="background: #f5f5f5">
+                            <div class="row g-0">
+                                <div class="col-lg-4 col-12">
+                                    <a href="/movie/1">
+                                        <img
+                                            src="https://ocwckgy6c1obj.vcdn.cloud/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/l/m/lm6_2x3_layout.jpg"
+                                            class="img-fluid rounded w-100" alt="...">
                                     </a>
                                 </div>
+                                <div class="col-lg-8 col-12">
+                                    <div class="card-body">
+                                        <a href="movie/1" class="link link-dark text-decoration-none">
+                                            <h5 class="card-title">LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH</h5>
+                                            <p class="card-text text-danger">132 phút</p>
+                                            <p class="card-text">
+                                                <a class="link link-dark" href="#">Hài</a> |
+                                                <a class="link link-dark" href="#">Hành động</a> |
+                                                <a class="link link-dark" href="#">Tâm lý</a>
+                                            </p>
+                                            <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
+                                                BIẾN ĐẾN
+                                                NGƯỜI XEM TỪ ĐỦ 16 TUỔI
+                                                TRỞ LÊN (16+)</p>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </article>
-                </div>
-                <!-- Movie: end -->
+                        </article>
+                    </div>
+                    <!-- Movie: end -->
                 @endfor
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 @endsection
 @section('js')
-<script>
-    $("#Movies .nav .nav-item .nav-link").on("click", function() {
-        $("#Movies .nav-item").find(".active").removeClass("active link-warning fw-bold border-bottom border-2 border-warning").addClass("link-secondary").prop('disabled', false);
-        $(this).addClass("active link-warning fw-bold border-bottom border-2 border-warning").removeClass("link-secondary").prop('disabled', true);
-    });
-</script>
+    <script>
+        $("#Movies .nav .nav-item .nav-link").on("click", function () {
+            $("#Movies .nav-item").find(".active").removeClass("active link-warning fw-bold border-bottom border-2 border-warning").addClass("link-secondary").prop('disabled', false);
+            $(this).addClass("active link-warning fw-bold border-bottom border-2 border-warning").removeClass("link-secondary").prop('disabled', true);
+        });
+    </script>
 @endsection

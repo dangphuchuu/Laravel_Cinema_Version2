@@ -21,52 +21,47 @@
 
 <body>
 
-    <div class="wrapper">
+<div class="wrapper">
 
-        {{-- Header --}}
-        @include('web.common.header')
+    {{-- Header --}}
+    @include('web.common.header')
 
-        {{-- Search  --}}
-        @include('web.common.search')
+    {{-- Search  --}}
+    @include('web.common.search')
 
-        {{-- Warning  --}}
-        @if(count($errors) > 0)
+    {{-- Warning  --}}
+    @if(count($errors) > 0)
         <div class="alert alert-danger">
             @foreach($errors->all() as $arr)
-            {{ $arr }}<br>
+                {{ $arr }}<br>
             @endforeach
         </div>
-        @endif
-        @if (session('warning'))
+    @endif
+    @if (session('warning'))
         <div class="alert alert-warning">
             {{ session('warning') }}
         </div>
-        @endif
+    @endif
 
 
-        @yield('content')
+    @yield('content')
 
-        {{-- Footer --}}
-        @include('web.common.footer')
+    {{-- Footer --}}
+    @include('web.common.footer')
 
-    </div>
+</div>
 
-    {{-- login --}}
-    @include('web.common.login')
+{{-- login --}}
+@include('web.common.login')
 
 <!-- JavaScript -->
 <!-- JQuery -->
-<script
-    src="https://code.jquery.com/jquery-3.6.4.js"
-    integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
-    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous"></script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous">s</script>
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
-<!-- FontAwesome -->
-{{--<script src="https://kit.fontawesome.com/3212388768.js" crossorigin="anonymous"></script>--}}
 @yield('js')
 </body>
 
