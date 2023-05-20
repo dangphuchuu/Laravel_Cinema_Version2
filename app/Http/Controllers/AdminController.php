@@ -34,21 +34,6 @@ class AdminController extends Controller
         return view('admin.schedules.edit');
     }
 
-    //Events
-    public function events()
-    {
-        return view('admin.events.list');
-    }
-
-    public function create_events()
-    {
-        return view('admin.events.create');
-    }
-
-    public function edit_events()
-    {
-        return view('admin.events.edit');
-    }
 
     //User
     public function user()

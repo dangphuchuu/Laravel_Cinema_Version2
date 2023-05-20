@@ -12,6 +12,7 @@ class MovieGenresController extends Controller
         $movieGenres = MovieGenres::all();
         return view('admin.movie_genres.list', ['movieGenres' => $movieGenres]);
     }
+
     public function postCreate(Request $request)
     {
         $request->validate([
@@ -23,6 +24,7 @@ class MovieGenresController extends Controller
         MovieGenres::create($request->all());
         return redirect('admin/movie_genres')->with('success', 'Added Successfully!');
     }
+
     public function postEdit(Request $request, $id)
     {
         $movieGenres = MovieGenres::find($id);
@@ -35,7 +37,8 @@ class MovieGenresController extends Controller
         $movieGenres->update($request->all());
         return redirect('admin/movie_genres')->with('success', 'Updated Successfully!');
     }
-    public function delete_movie_genres($id)
+
+    public function delete($id)
     {
         MovieGenres::destroy($id);
         return response()->json(['success' => 'Delete Successfully']);

@@ -69,51 +69,50 @@
             </div>
         </div>
     </div>
-
-    @section('scripts')
-        <script>
-            $(document).ready(function () {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $('.delete-director').on('click', function () {
-                    var userURL = $(this).data('url');
-                    var trObj = $(this);
-                    if (confirm("Are you sure you want to remove it?") == true) {
-                        $.ajax({
-                            url: userURL,
-                            type: 'DELETE',
-                            dataType: 'json',
-                            success: function (data) {
-                                if (data['success']) {
-                                    // alert(data.success);
-                                    trObj.parents("tr").remove();
-                                } else if (data['error']) {
-                                    alert(data.error);
-                                }
-                            }
-                        });
-                    }
-
-                });
-            });
-        </script>
-        <script>
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $('.file-uploader .img_direc').attr('src', e.target.result).removeClass('d-none');
-                    }
-                    reader.readAsDataURL(input.files[0]);
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-            }
-
-            $(".image-director").change(function () {
-                readURL(this);
             });
-        </script>
-    @endsection
+            $('.delete-director').on('click', function () {
+                var userURL = $(this).data('url');
+                var trObj = $(this);
+                if (confirm("Are you sure you want to remove it?") === true) {
+                    $.ajax({
+                        url: userURL,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data['success']) {
+                                // alert(data.success);
+                                trObj.parents("tr").remove();
+                            } else if (data['error']) {
+                                alert(data.error);
+                            }
+                        }
+                    });
+                }
+
+            });
+        });
+    </script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.file-uploader .img_direc').attr('src', e.target.result).removeClass('d-none');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".image-director").change(function () {
+            readURL(this);
+        });
+    </script>
 @endsection

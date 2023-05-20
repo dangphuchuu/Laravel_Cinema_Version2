@@ -16,6 +16,24 @@ DB::table('users')->insert([
 DB::table('users')->insert([
     'fullName' => 'Quốc Minh',
     'password' => bcrypt('1'),
+    'email' => 'tqminh0907@gmail.com',
+    'phone' => '789456123',
+    'status' => true,
+    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+    'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+]);
+DB::table('users')->insert([
+    'fullName' => 'Phúc Hữu',
+    'password' => bcrypt('1'),
+    'email' => 'phuchuu0120@gmail.com',
+    'phone' => '1111111',
+    'status' => true,
+    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+    'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+]);
+DB::table('users')->insert([
+    'fullName' => 'Quốc Minh',
+    'password' => bcrypt('1'),
     'email' => 'minh@gmail.com',
     'phone' => '1212121212',
     'status' => true,

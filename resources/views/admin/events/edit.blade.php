@@ -1,52 +1,55 @@
-@extends('admin.layout.index')
-@section('content')
-<div class="container-fluid py-4">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header pb-0">
-                    <div class="d-flex align-items-center">
-                        <p class="mb-0">Event</p>
-                        <button class="btn btn-warning btn-sm ms-auto">Submit</button>
+<form action="admin/events/edit/{!! $value['id'] !!}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="modal fade" id="editEvent{!! $value['id'] !!}" tabindex="-1" aria-labelledby="events_title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="events_title">Events</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Title</label>
+                                    <input class="form-control" type="text" value="{!! $value['title'] !!}" name="title"
+                                           placeholder="type name">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group file-uploader">
+                                    <label for="example-text-input" class="form-control-label">Image</label>
+                                    <input type='file' name='Image' class="form-control image-event">
+                                    <img style="width: 300px" src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{!! $value['image'] !!}.jpg"
+                                         class="img_event" alt="user1">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Content</label>
+                                    <textarea class="form-control" name="contents" id="editor"
+                                              placeholder="Content">{!! $value['content'] !!}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Conditions</label>
+                                    <textarea class="form-control" name="conditions" id="condition"
+                                              placeholder="Content">{!! $value['conditions'] !!}</textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <p class="text-uppercase text-sm">Edit</p>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Event's Name </label>
-                                <input class="form-control" type="text" value="" placeholder="event's Name">
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Time</label>
-                                <input class="form-control" type="date" value="">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Image</label>
-                                <input type='file' name='Image' class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Content</label>
-                                <textarea class="form-control" name="content" id="editor" placeholder="Content"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Condition</label>
-                                <textarea class="form-control" name="content" id="condition" placeholder="Content"></textarea>
-                            </div>
-                        </div>
-                    </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
+
             </div>
         </div>
     </div>
-</div>
-@endsection
+</form>
