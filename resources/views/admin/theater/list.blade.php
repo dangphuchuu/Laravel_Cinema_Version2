@@ -9,9 +9,9 @@
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
-                            <a href="admin/cinema/create"
-                               style="float:right;padding-right:30px;"
-                               class="text-light">
+                            <a
+                                style="float:right;padding-right:30px;"
+                                class="text-light">
                                 <button
                                     class=" btn btn-primary float-right mb-3">
                                     Create
@@ -86,6 +86,5 @@
             </div>
         </div>
     </div>
-
 @endsection
 
