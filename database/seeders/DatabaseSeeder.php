@@ -30,21 +30,19 @@ class DatabaseSeeder extends Seeder
 
         //TODO:Permissions
         require 'permissions.php';
-
+        $permission = Permission::all();
         //TODO: Set role for admin with id 1
         $user = User::find(1);
         $user->assignRole('admin');
+        //TODO: Set permissions for admin with id 1
+        $user->givePermissionTo($permission);
 
         //TODO: Set role for admin with id 2
         $user = User::find(2);
         $user->assignRole('admin');
-
-        //TODO: Set permissions for admin with id 1
-        $permission = Permission::all();
-        $user->givePermissionTo($permission);
-
         //TODO: Set permissions for admin with id 2
         $user->givePermissionTo($permission);
+
 
         //TODO: Set role for user
         $user = User::find(3);
@@ -59,5 +57,7 @@ class DatabaseSeeder extends Seeder
 
         //TODO: Rated
         require 'rating.php';
+        //TODO: Directors
+        require 'director.php';
     }
 }

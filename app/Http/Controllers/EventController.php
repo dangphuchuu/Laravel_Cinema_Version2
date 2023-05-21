@@ -12,7 +12,7 @@ class EventController extends Controller
 {
     public function events()
     {
-        $post = Post::all();
+        $post = Post::orderBy('id', 'DESC')->Paginate(5);
         return view('admin.events.list', ['post' => $post]);
     }
 

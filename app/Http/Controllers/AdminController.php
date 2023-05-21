@@ -38,14 +38,14 @@ class AdminController extends Controller
     //User
     public function user()
     {
-        $users = User::with('roles', 'permissions')->get();
+        $users = User::orderBy('id', 'DESC')->with('roles', 'permissions')->Paginate(20);
         return view('admin.user_account.list', ['users' => $users]);
     }
 
     //Staff
     public function staff()
     {
-        $staff = User::with('roles', 'permissions')->get();
+        $staff = User::orderBy('id', 'DESC')->with('roles', 'permissions')->Paginate(20);
         $permission = Permission::orderBy('id', 'asc')->get();
 
         return view('admin.staff_account.list', ['staff' => $staff, 'permission' => $permission]);
