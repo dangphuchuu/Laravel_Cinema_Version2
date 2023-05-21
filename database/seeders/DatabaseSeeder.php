@@ -59,5 +59,7 @@ class DatabaseSeeder extends Seeder
         require 'rating.php';
         //TODO: Directors
         require 'director.php';
+        //TODO: Casts
+        require 'cast.php';
     }
 }

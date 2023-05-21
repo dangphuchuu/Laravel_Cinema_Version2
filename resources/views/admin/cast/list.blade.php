@@ -59,7 +59,7 @@
                                                 </a>
                                             </td>
                                             <td class="align-middle">
-                                                <a href="javascript:void(0)" data-url="{{ url('admin/cast/ajax/delete_cast', $value['id'] ) }}"
+                                                <a href="javascript:void(0)" data-url="{{ url('admin/cast/delete', $value['id'] ) }}"
                                                    class="text-secondary font-weight-bold text-xs delete-cast" data-toggle="tooltip">
                                                     Delete
                                                 </a>
@@ -118,13 +118,13 @@
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    $('.file-uploader .img_direc').attr('src', e.target.result).removeClass('d-none');
+                    $('.file-uploader .img_cast').attr('src', e.target.result).removeClass('d-none');
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
-        $(".image-director").change(function () {
+        $(".image-cast").change(function () {
             readURL(this);
         });
     </script>

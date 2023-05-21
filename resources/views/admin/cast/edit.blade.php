@@ -34,9 +34,14 @@
                             <div class="col-md-12">
                                 <div class="form-group file-uploader">
                                     <label for="example-text-input" class="form-control-label">Image</label>
-                                    <input type='file' name='Image' class="form-control image-director">
-                                    <img style="width: 300px" src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{!! $value['image'] !!}.jpg"
-                                         class="img_direc" alt="user1">
+                                    <input type='file' name='Image' class="form-control image-cast">
+                                    @if(strstr($value['image'],"https") == "")
+                                        <img style="width: 300px" src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{!! $value['image'] !!}.jpg"
+                                             class="img_cast" alt="user1">
+                                    @else
+                                        <img style="width: 300px"
+                                             src="{!! $value['image'] !!}" class="img_cast" alt="user1">
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-12">

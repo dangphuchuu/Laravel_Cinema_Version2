@@ -27,7 +27,7 @@ Hennie's most notable success has been as a film actor. He made his debut starri
     [
         'name' => 'Jorma Tommila',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Jorma_Tommila_2020_Cropped.jpg/220px-Jorma_Tommila_2020_Cropped.jpg',
-        'birthday' => '1959',
+        'birthday' => '1959-01-01',
         'national' => 'Finland',
         'content' => "Whilst at Helsinki Theatre Academy in 1987, Tommila was one of four founding members of God's Theater, a Finnish theater group that made experimental and radical stage art, which included full frontal nudity, setting of fire extinguishers and throwing faeces into the crowd.[4] The four were arrested and fined and given suspended prison sentences and were expelled from the college which caused protest riots from fellow students.[5]
 In 1997 Tommila won the Jussi Award for Best Actor for his role in the film The Christmas Party, directed by his God Theatre’s fellow founder Jari Halonen.[6]",
@@ -208,7 +208,7 @@ Vào năm 2015, cô là đồng vai chính trong Trainwreck và là nhân vật 
     [
         'name' => 'Hoàng Mèo',
         'image' => 'https://35express.org/wp-content/uploads/2022/01/hoang-meo-la-ai-1-35express.jpg',
-        'birthday' => '1982',
+        'birthday' => '1982-01-01',
         'national' => 'Việt Nam',
         'content' => "Hoàng Mèo sinh năm 1982, ghi dấu ấn trong các tác phẩm như Lật mặt: Nhà có khách, Bố già, Chị Mười Ba... Đại Ngọc Trâm xuất thân là diễn viên kịch, sau đó lấn sân phim ảnh. Chị từng đóng các phim như Vợ tui tui sợ, Cặp đôi nội chiến...
 
@@ -219,7 +219,7 @@ Hoàng Mèo và Đại Ngọc Trâm gắn bó khi cùng hoạt động ở sân 
     [
         'name' => 'Trần Kim Hải',
         'image' => 'https://assets.htv.com.vn/Images/DanQuynh/2023/kkcd/quy2/kimhai.jpg',
-        'birthday' => '?',
+        'birthday' => '1982-01-01',
         'national' => 'Việt Nam',
         'content' => 'Với vẻ ngoài gai góc và đậm chất điện ảnh, Trần Kim Hải là gương mặt mới được đạo diễn Lý Hải tin tưởng giao vai Toàn trong dự án Lật mặt 6 - Tấm vé định mệnh. Với Kim Hải, bộ phim là một bước ngoặt lớn trên hành trình theo đuổi đam mê, mang anh đến gần hơn với công chúng, sau nhiều năm miệt mài làm nghệ thuật. Dự án dài hơi và đầy tâm huyết của một tập thể lớn, đặc biệt dưới thương hiệu đầy uy tín mang tên Lật mặt đã cho anh một cơ hội lớn để thực sự sống với điện ảnh.',
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -267,7 +267,7 @@ Năm 2018, Huy Khánh tham gia phim truyền hình Nhà ông Hoàng có ma. Vai 
     [
         'name' => 'Trung Dũng',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Trung_Dung1973.jpg/200px-Trung_Dung1973.jpg',
-        'birthday' => '1973',
+        'birthday' => '1973-01-01',
         'national' => 'Việt Nam',
         'content' => 'Phạm Trung Dũng (sinh năm 1973) nổi tiếng với nghệ danh Trung Dũng, là một nam diễn viên và MC người Việt Nam. Năm 2015, anh đoạt giải thưởng "Nam diễn viên chính xuất sắc" tại Lễ trao giải Cánh diều với vai diễn Trung trong Lạc giới.[1]',
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -276,7 +276,7 @@ Năm 2018, Huy Khánh tham gia phim truyền hình Nhà ông Hoàng có ma. Vai 
     [
         'name' => 'Tiến Luật',
         'image' => 'https://khafa.org.vn/wp-content/uploads/2021/12/202005120252528015-e68fd400-a0c8-4b5b-a065-df5c2657a42b.png',
-        'birthday' => '1982',
+        'birthday' => '1982-01-01',
         'national' => 'Việt Nam',
         'content' => 'Diễn viên hài Tiến Luật sinh năm 1982, tính đến nay anh đã 39 tuổi. Tiến Luật hiện nay anh đang sinh sống và làm việc tại TP. Hồ Chí Minh, nước Việt Nam. Tiến Luật chắc hẳn không còn là cái tên xa lạ đối với khán giả qua các bộ phim, cũng như các tiểu phẩm hài. Tiến Luật hiện tại anh đang công tác ở Sân khấu Thế giới trẻ TP HCM. Anh đã được khán giả yêu mến bởi một lối diễn xuất chân thật, và hóm hỉnh. Tiến Luật cũng chính là diễn viên đầy tài năng, đầy nhiệt huyết, và luôn hết lòng đối với sự nghiệp diễn xuất.',
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -317,20 +317,20 @@ Hiện tại, Thái Hòa đang sống với người vợ mới tên Hồng Thu.
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
     ],
     [
-        'name' => 'Trấn Thành',
-        'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Tr%E1%BA%A5n_Th%C3%A0nh_191226.png/250px-Tr%E1%BA%A5n_Th%C3%A0nh_191226.png',
-        'birthday' => '1987-02-05',
-        'national' => 'Việt Nam',
-        'content' => 'Trấn Thành sinh ra và lớn lên tại Thành phố Hồ Chí Minh, có cha là người gốc Hoa đến từ Quảng Đông và mẹ là người Tiền Giang. Ngoài tiếng Việt, anh còn có thể nói tiếng Anh, tiếng Quảng Đông và Quan thoại.[1] Trấn Thành từng theo học khoa diễn viên Đại học Sân khấu - Điện ảnh.',
-        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-    ],
-    [
         'name' => 'Kiều Minh Tuấn',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/KIEU_MINH_TUAN.jpg/250px-KIEU_MINH_TUAN.jpg',
         'birthday' => '1988-02-26',
         'national' => 'Việt Nam',
         'content' => 'Kiều Minh Tuấn (sinh ngày 26 tháng 2 năm 1988) là một nam diễn viên người Việt Nam.[1][2] Anh được biết đến và nổi tiếng qua các tác phẩm điện ảnh như: Bụi đời Chợ Lớn (2013), Scandal: Hào quang trở lại (2014), Em chưa 18 (2017), Lật mặt: Ba chàng khuyết (2018), Hạnh phúc của mẹ (2019) Anh Trai Yêu Quái (2019) Nắng 3: Lời hứa của cha (2020), Chị Mười Ba: Ba Ngày Sinh Tử (2020), Tiệc trăng máu (2020), Chìa khóa trăm tỷ (2022).',
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+    ],
+    [
+        'name' => 'Trấn Thành',
+        'image' => 'https://image-us.24h.com.vn/upload/4-2022/images/2022-12-11/scsacsacsac-1670760945-945-width660height628.jpg',
+        'birthday' => '1987-02-05',
+        'national' => 'Việt Nam',
+        'content' => 'Trấn Thành sinh ra và lớn lên tại Thành phố Hồ Chí Minh, có cha là người gốc Hoa đến từ Quảng Đông và mẹ là người Tiền Giang. Ngoài tiếng Việt, anh còn có thể nói tiếng Anh, tiếng Quảng Đông và Quan thoại.[1] Trấn Thành từng theo học khoa diễn viên Đại học Sân khấu - Điện ảnh.',
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
     ],
