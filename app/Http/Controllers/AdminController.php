@@ -90,7 +90,7 @@ class AdminController extends Controller
         return redirect('admin/staff')->with('success', 'Updated Permission Sucessfully !');
     }
 
-    public function delete_staff($id)
+    public function delete($id)
     {
         User::destroy($id);
         return response()->json(['success' => 'Delete Successfully']);

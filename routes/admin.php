@@ -68,11 +68,15 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     //TODO Book_Ticket
     Route::prefix('ticket')->group(function () {
         Route::get('/', [TicketController::class, 'ticket']);
+
     });
 
     //TODO Food/Topping
     Route::prefix('food')->group(function () {
         Route::get('/', [FoodController::class, 'food']);
+        Route::post('/create', [FoodController::class, 'postCreate']);
+        Route::post('/edit/{id}', [FoodController::class, 'postEdit']);
+        Route::delete('/delete/{id}', [FoodController::class, 'delete']);
     });
 
     //TODO user_account
@@ -85,7 +89,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/', [AdminController::class, 'staff']);
         Route::post('/create', [AdminController::class, 'postCreate']);
         Route::post('/permission/{id}', [AdminController::class, 'postPermission']);
-        Route::delete('/delete/{id}', [AdminController::class, 'delete_staff']);
+        Route::delete('/delete/{id}', [AdminController::class, 'delete']);
     });
 
     //TODO banners

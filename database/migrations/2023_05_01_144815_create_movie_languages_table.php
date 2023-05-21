@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->text('image');
             $table->date('birthday');
             $table->string('national', 255);
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->timestamps();
         });
 
@@ -35,7 +35,7 @@ return new class extends Migration {
             $table->text('image');
             $table->date('birthday');
             $table->string('national', 255);
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->timestamps();
         });
 
