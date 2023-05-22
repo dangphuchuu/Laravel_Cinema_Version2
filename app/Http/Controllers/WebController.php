@@ -44,6 +44,10 @@ class WebController extends Controller
         ]);
     }
 
+    public function events() {
+        return view('web.pages.events');
+    }
+
     public function signIn(Request $request)
     {
         $request->validate(

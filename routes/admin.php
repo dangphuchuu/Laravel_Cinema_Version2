@@ -38,7 +38,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/create', [MovieController::class, 'postCreate']);
         Route::get('/edit', [MovieController::class, 'edit_movie']);
     });
-    //TODO Movie
+    //TODO Room
     Route::prefix('room')->group(function () {
         Route::get('/', [RoomController::class, 'room']);
         Route::post('/create', [RoomController::class, 'postCreate']);
@@ -47,8 +47,8 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     //TODO Cinema
     Route::prefix('theater')->group(function () {
         Route::get('/', [TheaterController::class, 'theater']);
-//        Route::get('/create', [AdminController::class, 'create_cinema']);
-//        Route::get('/edit', [AdminController::class, 'edit_cinema']);
+        Route::get('/create', [TheaterController::class, 'create_cinema']);
+        Route::get('/edit', [TheaterController::class, 'edit_cinema']);
     });
 
     //TODO Cinema

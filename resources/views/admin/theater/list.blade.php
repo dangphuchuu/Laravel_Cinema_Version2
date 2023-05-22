@@ -62,10 +62,10 @@
                                                 @endif
                                             </td>
                                             <td class="align-middle">
-                                                <button class="btn" data-bs-toggle="modal" data-bs-target="#TheaterEditModal">
+                                                <button class="btn" data-bs-toggle="modal" data-bs-target="#TheaterEditModal{{ $theater->id }}">
                                                     <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                                 </button>
-
+                                                @include('admin.theater.edit')
                                             </td>
                                             <td class="align-middle">
                                                 <a href="javascript:;"
@@ -76,9 +76,12 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                        @include('admin.theater.edit')
-                                        @include('admin.theater.room.edit')
+                                        @foreach($theater->rooms as $room)
+                                            @include('admin.room.edit')
+                                        @endforeach
                                     @endforeach
+                                    @include('admin.theater.create')
+
                                     </tbody>
                                 </table>
                             </div>
@@ -91,4 +94,6 @@
         <h1 align="center">Permissions Deny</h1>
     @endcan
 @endsection
+
+
 

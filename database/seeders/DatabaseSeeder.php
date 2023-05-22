@@ -2,13 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -57,8 +54,13 @@ class DatabaseSeeder extends Seeder
 
         //TODO: Rated
         require 'rating.php';
+
+        //TODO: theater, room, seat
+        require 'theater_room_seat.php';
+
         //TODO: Directors
         require 'director.php';
+        
         //TODO: Casts
         require 'cast.php';
     }
