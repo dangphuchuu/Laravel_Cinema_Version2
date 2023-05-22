@@ -12,12 +12,12 @@
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Genres</label>
                                 @foreach($movie_genres as $value)
-                                <div class="form-check form-check-info text-start">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        {!! $value['name'] !!}
-                                    </label>
-                                </div>
+                                    <div class="form-check form-check-info text-start">
+                                        <input class="form-check-input" type="checkbox" name="movieGenres[]" value="{{$value->id}}" id="movieGenres">
+                                        <label class="form-check-label" for="movieGenres">
+                                            {!! $value['name'] !!}
+                                        </label>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -26,7 +26,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>

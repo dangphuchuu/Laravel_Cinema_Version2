@@ -42,7 +42,7 @@ return new class extends Migration {
         Schema::create('movies', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name', 255);
-            $table->time('showTime');
+            $table->integer('showTime');
             $table->date('releaseDate');
             $table->date('endDate');
             $table->bigInteger('director_id')->unsigned();
