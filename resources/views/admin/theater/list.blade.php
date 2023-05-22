@@ -13,7 +13,7 @@
                                 style="float:right;padding-right:30px;"
                                 class="text-light">
                                 <button
-                                    class=" btn btn-primary float-right mb-3">
+                                    class=" btn btn-primary float-right mb-3" data-bs-toggle="modal" data-bs-target="#TheaterCreateModal">
                                     Create
                                 </button>
                             </a>
@@ -43,15 +43,14 @@
                                             <h6 class="mb-0 text-sm ">{{ $theater->name }}</h6>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">{{ $theater->address }}
-                                                , {{ $theater->city }}</h6>
+                                            <h6 class="mb-0 text-sm ">{{ $theater->address }}, {{ $theater->city }}</h6>
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary font-weight-bold">{{ count($theater->rooms) }}</span>
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             @if($theater->status == 1)
-                                                <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#RoomsModal">
+                                                <button class="btn btn-link">
                                                     <span
                                                         class="badge badge-sm bg-gradient-success">Online</span>
                                                 </button>
@@ -61,10 +60,10 @@
                                             @endif
                                         </td>
                                         <td class="align-middle">
-                                            <button class="btn" data-bs-toggle="modal" data-bs-target="#TheaterEditModal">
+                                            <button class="btn" data-bs-toggle="modal" data-bs-target="#TheaterEditModal{{ $theater->id }}">
                                                 <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                             </button>
-
+                                            @include('admin.theater.edit')
                                         </td>
                                         <td class="align-middle">
                                             <a href="javascript:;"
@@ -75,9 +74,12 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    @include('admin.theater.edit')
-                                    @include('admin.theater.room.edit')
+                                    @foreach($theater->rooms as $room)
+                                        @include('admin.room.edit')
+                                    @endforeach
                                 @endforeach
+                                @include('admin.theater.create')
+
                                 </tbody>
                             </table>
                         </div>
@@ -87,4 +89,6 @@
         </div>
     </div>
 @endsection
+
+
 
