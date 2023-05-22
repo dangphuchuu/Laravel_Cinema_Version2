@@ -1,10 +1,10 @@
-<form action="admin/food/create" method="POST" enctype="multipart/form-data">
+<form action="admin/combo/edit/{!! $value['id'] !!}" method="POST" enctype="multipart/form-data">
     @csrf
-    <div class="modal fade" id="food" tabindex="-1" aria-labelledby="food_title" aria-hidden="true">
+    <div class="modal fade" id="editCombo{!! $value['id'] !!}" tabindex="-1" aria-labelledby="combo_title" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="food_title">Food</h5>
+                    <h5 class="modal-title" id="combo_title">Combo</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -14,25 +14,23 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Name</label>
-                                    <input class="form-control" type="text" value="" name="name"
-                                           placeholder="type name">
+                                    <input class="form-control" type="text" value="{!! $value['name'] !!}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Price</label>
-                                    <input class="form-control" type="number" value="" name="price"
-                                           placeholder="price">
+                                    <input class="form-control" type="number" value="{!! $value['price']!!}" name="price">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group file-uploader">
                                     <label for="example-text-input" class="form-control-label">Image</label>
                                     <input type='file' name='Image' class="form-control image-food">
-                                    <img style="width: 300px" src="" class="img_food d-none" alt="user1">
+                                    <img style="width: 300px" src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{!! $value['image'] !!}.jpg"
+                                         class="img_food" alt="user1">
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

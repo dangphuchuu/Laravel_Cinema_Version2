@@ -12,10 +12,15 @@
     </title>
     <base href="{{asset('')}}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <link href="admin_assets/css/virtual-select.min.css" rel="stylesheet"/>
     <link href="admin_assets/css/nucleo-icons.css" rel="stylesheet"/>
     <link href="admin_assets/css/nucleo-svg.css" rel="stylesheet"/>
     <link href="\web_assets\fonts\fontawesome\css\all.css" rel="stylesheet"/>
     <link href="admin_assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css"
+        rel="stylesheet"
+    />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link id="pagestyle" href="admin_assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
@@ -34,6 +39,11 @@
     </div>
 </main>
 <!--   Bootstrap JS   -->
+<script type="text/javascript" src="admin_assets/js/virtual-select.min.js"></script>
+<script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"
+></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
         integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"

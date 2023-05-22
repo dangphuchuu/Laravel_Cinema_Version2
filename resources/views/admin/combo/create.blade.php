@@ -1,10 +1,10 @@
-<form action="admin/food/create" method="POST" enctype="multipart/form-data">
+<form action="admin/combo/create" method="POST" enctype="multipart/form-data">
     @csrf
-    <div class="modal fade" id="food" tabindex="-1" aria-labelledby="food_title" aria-hidden="true">
+    <div class="modal fade" id="combo" tabindex="-1" aria-labelledby="combo_title" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="food_title">Food</h5>
+                    <h5 class="modal-title" id="combo_title">Combo</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -22,7 +22,27 @@
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Price</label>
                                     <input class="form-control" type="number" value="" name="price"
-                                           placeholder="price">
+                                           placeholder="type national">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Food</label>
+                                    <select class="select" multiple>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                        <option value="4">Four</option>
+                                        <option value="5">Five</option>
+                                    </select>
+                                    <label class="form-label select-label">Example label</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Quantity</label>
+                                    <input class="form-control" type="number" value="" name="quantity"
+                                           placeholder="type quantity">
                                 </div>
                             </div>
                             <div class="col-md-12">

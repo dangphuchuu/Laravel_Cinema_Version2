@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComboController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\RoomController;
@@ -113,6 +114,13 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/create', [CastController::class, 'postCreate']);
         Route::post('/edit/{id}', [CastController::class, 'postEdit']);
         Route::delete('/delete/{id}', [CastController::class, 'delete']);
+    });
+    //TODO Combo
+    Route::prefix('combo')->group(function () {
+        Route::get('/', [ComboController::class, 'combo']);
+        Route::post('/create', [ComboController::class, 'postCreate']);
+        Route::post('/edit/{id}', [ComboController::class, 'postEdit']);
+        Route::delete('/delete/{id}', [ComboController::class, 'delete']);
     });
 
     //TODO statistical
