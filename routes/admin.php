@@ -1,16 +1,17 @@
 <?php
 
+use App\Http\Controllers\ComboController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\FoodController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CastController;
 use App\Http\Controllers\DirectorController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\FoodController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieGenresController;
-use App\Http\Controllers\RoomController;
 use App\Http\Controllers\TheaterController;
-use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
@@ -37,7 +38,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/create', [MovieController::class, 'postCreate']);
         Route::get('/edit', [MovieController::class, 'edit_movie']);
     });
-    //TODO Movie
+    //TODO Room
     Route::prefix('room')->group(function () {
         Route::get('/', [RoomController::class, 'room']);
         Route::post('/create', [RoomController::class, 'postCreate']);
@@ -113,6 +114,13 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/create', [CastController::class, 'postCreate']);
         Route::post('/edit/{id}', [CastController::class, 'postEdit']);
         Route::delete('/delete/{id}', [CastController::class, 'delete']);
+    });
+    //TODO Combo
+    Route::prefix('combo')->group(function () {
+        Route::get('/', [ComboController::class, 'combo']);
+        Route::post('/create', [ComboController::class, 'postCreate']);
+        Route::post('/edit/{id}', [ComboController::class, 'postEdit']);
+        Route::delete('/delete/{id}', [ComboController::class, 'delete']);
     });
 
     //TODO statistical
