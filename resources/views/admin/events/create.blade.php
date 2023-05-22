@@ -35,7 +35,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Conditions</label>
-                                    <textarea class="form-control" name="conditions" id="condition"
+                                    <textarea class="form-control" name="conditions" id="conditions"
                                               placeholder="Content"></textarea>
                                 </div>
                             </div>

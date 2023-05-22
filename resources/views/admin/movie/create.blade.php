@@ -45,7 +45,11 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Director</label>
-                                    <input class="form-control" type="text" value="" placeholder="Director's name">
+                                    <select class="form-control director-input" name="direactor[]" multiple>
+                                        @foreach($director as $direct)
+                                        <option value="{!! $direct['id'] !!}">{!! $direct['name'] !!}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -85,8 +89,12 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Actors</label>
-                                    <textarea class="form-control" value="" placeholder="Actors"></textarea>
+                                    <label for="example-text-input" class="form-control-label">Casts</label>
+                                    <select class="form-control cast-input" name="cast[]" multiple>
+                                        @foreach($cast as $c)
+                                            <option value="{!! $c['id'] !!}">{!! $c['name'] !!}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -103,4 +111,20 @@
         </form>
     </div>
 </div>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            $('.director-input').select2({
+                tags: true
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.cast-input').select2({
+                tags: true
+            });
+        });
+    </script>
 @endsection

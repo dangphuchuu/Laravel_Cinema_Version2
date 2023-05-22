@@ -139,10 +139,11 @@
             readURL(this);
         });
     </script>
-
-    {{--    <script type="text/javascript">--}}
-    {{--        VirtualSelect.init({--}}
-    {{--            ele: 'multipleSelect'--}}
-    {{--        });--}}
-    {{--    </script>--}}
+    <script>
+        $(document).ready(function () {
+            $('.food-input').select2({
+                tags: true
+            });
+        });
+    </script>
 @endsection

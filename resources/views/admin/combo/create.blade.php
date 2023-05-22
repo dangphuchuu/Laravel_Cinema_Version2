@@ -26,21 +26,6 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <label for="food-input" class="form-control-label">Food</label>
-                                <select class="form-control food-input" name="food[]" multiple="multiple">
-                                    <option selected="selected" value="1">orange</option>
-                                    <option value="2">white</option>
-                                    <option value="3">purple</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="quantity-input" class="form-control-label">Quantity</label>
-                                    <input class="form-control" type="number" value="" name="quantity" id="quantity-input"
-                                           placeholder="type quantity">
-                                </div>
-                            </div>
-                            <div class="col-12">
                                 <div class="form-group file-uploader">
                                     <label for="image-input" class="form-control-label">Image</label>
                                     <input type='file' name='Image' class="form-control image-food" id="image-input">
@@ -62,12 +47,4 @@
     </div>
 </form>
 
-@section('scripts')
-    <script>
-        $(document).ready(function () {
-            $('.food-input').select2({
-                tags: true
-            });
-        });
-    </script>
-@endsection
+

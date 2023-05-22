@@ -10,13 +10,20 @@
         Admin Cinema
     </title>
     <base href="{{asset('')}}">
+
+    {{--Img--}}
     <link rel="apple-touch-icon" sizes="76x76" href="admin_assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="admin_assets/img/favicon.png">
+    {{--Google api--}}
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
-    <link href="admin_assets/css/virtual-select.min.css" rel="stylesheet"/>
+
+    {{--Nucleo icon--}}
     <link href="admin_assets/css/nucleo-icons.css" rel="stylesheet"/>
-    <link href="admin_assets/css/nucleo-svg.css" rel="stylesheet"/>
+
+    {{--Font Awesome--}}
     <link href="\web_assets\fonts\fontawesome\css\all.css" rel="stylesheet"/>
+
+    {{--SVG--}}
     <link href="admin_assets/css/nucleo-svg.css" rel="stylesheet"/>
 
     {{--Select2--}}
@@ -26,8 +33,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
-
+    {{--Argon dashboard css--}}
     <link id="pagestyle" href="admin_assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
+
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -62,15 +70,41 @@
     }
 </script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+{{--dashboard script--}}
+
 <script src="admin_assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 
 {{-- Jquery --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
+
 {{-- Select2 --}}
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
+
+{{-- CKeditor --}}
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .then( editor => {
+            console.log( editor );
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#conditions' ) )
+        .then( editor => {
+            console.log( editor );
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 
 @yield('scripts')
 </body>
