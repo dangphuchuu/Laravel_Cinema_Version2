@@ -10,7 +10,7 @@ class DirectorController extends Controller
 {
     public function director()
     {
-        $director = Director::all();
+        $director = Director::orderBy('id', 'DESC')->Paginate(5);
         return view('admin.director.list', ['director' => $director]);
     }
 

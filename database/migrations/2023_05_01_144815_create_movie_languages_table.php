@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -26,7 +25,7 @@ return new class extends Migration
             $table->text('image');
             $table->date('birthday');
             $table->string('national', 255);
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->timestamps();
         });
 
@@ -36,14 +35,14 @@ return new class extends Migration
             $table->text('image');
             $table->date('birthday');
             $table->string('national', 255);
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->timestamps();
         });
 
         Schema::create('movies', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name', 255);
-            $table->date('showTime');
+            $table->time('showTime');
             $table->date('releaseDate');
             $table->date('endDate');
             $table->bigInteger('director_id')->unsigned();

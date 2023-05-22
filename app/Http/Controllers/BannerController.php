@@ -10,9 +10,10 @@ class BannerController extends Controller
 {
     public function banners()
     {
-        $banners = Banner::all();
+        $banners = Banner::orderBy('id', 'DESC')->Paginate(10);
         return view('admin.banners.list', ['banners' => $banners]);
     }
+
     public function postCreate(Request $request)
     {
         if ($request->hasFile('Image')) {
@@ -32,6 +33,7 @@ class BannerController extends Controller
         $banner->save();
         return redirect('admin/banners')->with('success', 'Add Director Successfully!');
     }
+
     public function postEdit(Request $request, $id)
     {
         $banners = Banner::find($id);
@@ -51,6 +53,7 @@ class BannerController extends Controller
         $banners->update($request->all());
         return redirect('admin/banners')->with('success', 'Updated Successfully!');
     }
+
     public function delete($id)
     {
         $banners = Banner::find($id);

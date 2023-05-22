@@ -9,7 +9,7 @@ class MovieGenresController extends Controller
 {
     public function movie_genres()
     {
-        $movieGenres = MovieGenres::all();
+        $movieGenres = MovieGenres::orderBy('id', 'DESC')->Paginate(10);
         return view('admin.movie_genres.list', ['movieGenres' => $movieGenres]);
     }
 

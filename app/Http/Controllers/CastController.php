@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cast;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 class CastController extends Controller
 {
     public function cast()
     {
-        $cast = Cast::all();
+        $cast = Cast::orderBy('id', 'DESC')->Paginate(5);
         return view('admin.cast.list', ['cast' => $cast]);
     }
+
     public function postCreate(Request $request)
     {
         $request->validate([
@@ -33,14 +35,15 @@ class CastController extends Controller
                     'image' => $cloud,
                     'birthday' => $request->birthday,
                     'national' => $request->national,
-                    'content' => $request->content
+                    'content' => $request->contents
                 ]
             );
         }
         $cast->save();
         return redirect('admin/cast')->with('success', 'Add Cast Successfully!');
     }
-    public function postEdit(Request $request,$id)
+
+    public function postEdit(Request $request, $id)
     {
         $cast = Cast::find($id);
 
@@ -65,6 +68,7 @@ class CastController extends Controller
         $cast->update($request->all());
         return redirect('admin/cast')->with('success', 'Updated Successfully!');
     }
+
     public function delete($id)
     {
         $cast = Cast::find($id);

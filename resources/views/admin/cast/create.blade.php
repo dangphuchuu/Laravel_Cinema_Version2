@@ -39,7 +39,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Content</label>
-                                    <textarea class="form-control" name="content" id="editor" placeholder="Content"></textarea>
+                                    <textarea class="form-control" name="contents" id="editor" placeholder="Content"></textarea>
                                 </div>
                             </div>
                         </div>

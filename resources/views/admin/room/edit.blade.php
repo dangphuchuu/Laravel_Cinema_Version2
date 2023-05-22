@@ -130,7 +130,6 @@
     </div>
 </div>
 
-{{$final_col++}}
 @section('scripts')
     <script>
         $(document).ready(() => {
