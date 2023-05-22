@@ -53,13 +53,13 @@
                        aria-expanded="true"
                        data-bs-toggle="collapse"
                        data-bs-target="#phimdangchieu">
-                        Phim đang chiếu
+                        Phim Mới
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="h5 nav-link link-secondary" href="#phimsapchieu" aria-controls="phimsapchieu"
                        aria-expanded="false"
-                       data-bs-toggle="collapse" data-bs-target="#phimsapchieu">Phim sắp chiếu</a>
+                       data-bs-toggle="collapse" data-bs-target="#phimsapchieu">Vé bán trước</a>
                 </li>
             </ul>
 
@@ -220,14 +220,15 @@
                                 </div>
                                 <div class="col-lg-8 col-12">
                                     <div class="card-body">
-                                        <h5 class="card-title"
-                                            style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical">
+                                        <h5 class="card-title" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical">
                                             [Review] Lật Mặt 6: Khẳng
                                             Định Giá Trị Thương Hiệu Trăm
-                                            Tỷ</h5>
-                                        <p class="card-text text-truncate">Lật Mặt 6: Tấm Vé Định Mệnh đã ra mắt tại
-                                            phòng
-                                            vé và tiếp tục tạo cơn địa chấn đáng chú ý vào dịp Lễ.</p>
+                                            Tỷ
+                                        </h5>
+                                        <p class="card-text text-truncate">
+                                            Lật Mặt 6: Tấm Vé Định Mệnh đã ra mắt tại
+                                            phòng vé và tiếp tục tạo cơn địa chấn đáng chú ý vào dịp Lễ.
+                                        </p>
                                         <p class="card-text"><small class="text-muted">22 October 2013</small></p>
                                     </div>
                                 </div>

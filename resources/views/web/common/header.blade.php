@@ -15,7 +15,7 @@
                     <a class="nav-link @yield('schedules')" href="/schedules">Lịch chiếu phim</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link @yield('events')" href="#">Tin tức/ Sự kiện</a>
+                    <a class="nav-link @yield('events')" href="/events">Tin tức/ Sự kiện</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link @yield('support')" href="#">Hỗ trợ</a>
