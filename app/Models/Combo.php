@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Combo extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'name',
+        'image',
+        'price',
+        'status'
+    ];
 
 }
