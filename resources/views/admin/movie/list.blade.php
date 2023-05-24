@@ -30,35 +30,53 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($movie as $value)
                                     <tr>
+                                        @foreach($value['generes'] as $vl)
+                                            @foreach($vl['movie_genres'] as $v)
                                         <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">Action</h6>
+                                            <h6 class="mb-0 text-sm ">{!! $v['name'] !!}</h6>
+                                        </td>
+                                            @endforeach
+                                        @endforeach
+                                        <td class="align-middle text-center">
+                                            @if(strstr($value['image'],"https") == "")
+                                                <img style="width: 300px"
+                                                     src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{!! $value['image'] !!}.jpg"
+                                                     alt="user1">
+                                            @else
+                                                <img style="width: 300px"
+                                                     src="{!! $value['image'] !!}" alt="user1">
+                                            @endif
                                         </td>
                                         <td class="align-middle text-center">
-                                            <img style="width: 300px"
-                                                 src="https://vcdn-giaitri.vnecdn.net/2022/12/02/transformers-72-4007-166996346-4557-5406-1669966946.png"
-                                                 alt="user1">
+                                            <h6 class="mb-0 text-sm ">{!! $value['name'] !!}</h6>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">Transformer</h6>
+                                            <span class="text-secondary font-weight-bold">{!! $value['showTime'] !!}</span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">1:59:10</span>
+                                            <h6 class="mb-0 text-sm ">{!! $value['national'] !!}</h6>
+                                        </td>
+                                        @foreach($value['directors'] as $director)
+                                        <td class="align-middle text-center">
+                                            <h6 class="mb-0 text-sm ">{!! $director['name'] !!}</h6>
+                                        </td>
+                                        @endforeach
+                                        <td class="align-middle text-center">
+                                            <span class="text-secondary font-weight-bold">{!!$value['releaseDate']!!}</span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">United States</h6>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">Steven Caple JR</h6>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">23/04/18</span>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">20/05/18</span>
+                                            <span class="text-secondary font-weight-bold">{!!$value['endDate']!!}</span>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <span class="badge badge-sm bg-gradient-success">Online</span>
+                                            @if($value['status'] == 1)
+                                                <a href="#">
+                                                    <span class="badge badge-sm bg-gradient-success">Online</span>
+                                                </a>
+                                            @else
+                                                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                            @endif
                                         </td>
                                         <td class="align-middle">
                                             <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
@@ -73,6 +91,8 @@
                                             </a>
                                         </td>
                                     </tr>
+
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

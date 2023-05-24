@@ -60,8 +60,11 @@ class DatabaseSeeder extends Seeder
 
         //TODO: Directors
         require 'director.php';
-        
+
         //TODO: Casts
         require 'cast.php';
+
+        //TODO: Film
+        require 'film.php';
     }
 }

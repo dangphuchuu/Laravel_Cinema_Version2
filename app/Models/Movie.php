@@ -11,9 +11,11 @@ class Movie extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'image',
         'showTime',
         'releaseDate',
         'endDate',
+        'national',
         'director_id',
         'cast_id',
         'description',
@@ -21,4 +23,12 @@ class Movie extends Model
         'upcomming',
         'status'
     ];
+    public function generes()
+    {
+        return $this->hasMany(Movie_genres_movie::class, 'movie_id', 'id');
+    }
+    public function directors()
+    {
+        return $this->hasMany(Director::class, 'id', 'director_id');
+    }
 }
