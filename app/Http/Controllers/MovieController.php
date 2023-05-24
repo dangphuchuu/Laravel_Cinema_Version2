@@ -6,6 +6,7 @@ use App\Models\Cast;
 use App\Models\Director;
 use App\Models\Movie;
 use App\Models\MovieGenres;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -26,7 +27,33 @@ class MovieController extends Controller
 
     public function postCreate(Request $request)
     {
-        dd($request);
+        if ($request->hasFile('Image')) {
+            $file = $request->file('Image');
+            $img = $request['Image'] = $file;
+            $cloud = Cloudinary::upload($img->getRealPath(), [
+                'folder' => 'movies',
+                'format' => 'jpg',
+
+            ])->getPublicId();
+            $movie = new Movie(
+                [
+                    'name' => $request->name,
+                    'image' => $cloud,
+                    'showTime' => $request->showTime['hour'] . ':' . $request->showTime['minute'],
+                    'releaseDate' => $request->releaseDate,
+                    'endDate' => $request->endDate,
+                    'national' => $request->national,
+                    'rating_id' => $request->rating,
+                    'description' => $request->description
+                ]
+            );
+
+//            $movie->casts = $request->casts;
+//            $movie->directors = $request->directors;
+//            $movie->movieGenres = $request->movieGenres;
+
+            $movie->save();
+        }
         return redirect('admin/movie');
     }
 

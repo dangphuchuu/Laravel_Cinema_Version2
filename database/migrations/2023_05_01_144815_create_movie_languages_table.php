@@ -42,27 +42,37 @@ return new class extends Migration {
         Schema::create('movies', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name', 255);
-            $table->integer('showTime');
+            $table->string('showTime', 255);
             $table->date('releaseDate');
             $table->date('endDate');
-            $table->bigInteger('director_id')->unsigned();
-            $table->bigInteger('cast_id')->unsigned();
             $table->string('description', 255);
             $table->bigInteger('rating_id')->unsigned();
             $table->foreign('rating_id')->references('id')->on('rating');
-            $table->foreign('director_id')->references('id')->on('directors');
-            $table->foreign('cast_id')->references('id')->on('casts');
             $table->boolean('upcomming')->default(true);
             $table->boolean('status')->default(false);
             $table->timestamps();
         });
 
-        Schema::create('movie_genres_movies', function (Blueprint $table) {
+        Schema::create('movieGenres_movies', function (Blueprint $table) {
             $table->bigInteger('movie_id')->unsigned();
-            $table->bigInteger('movie_genres_id')->unsigned();
+            $table->bigInteger('movieGenre_id')->unsigned();
             $table->foreign('movie_id')->references('id')->on('movies');
-            $table->foreign('movie_genres_id')->references('id')->on('movie_genres');
+            $table->foreign('movieGenre_id')->references('id')->on('movie_genres');
             $table->timestamps();
+        });
+
+        Schema::create('casts_movies', function (Blueprint $table) {
+            $table->bigInteger('movie_id')->unsigned();
+            $table->bigInteger('cast_id')->unsigned();
+            $table->foreign('movie_id')->references('id')->on('movies');
+            $table->foreign('cast_id')->references('id')->on('casts');
+        });
+
+        Schema::create('directors_movies', function (Blueprint $table) {
+            $table->bigInteger('movie_id')->unsigned();
+            $table->bigInteger('director_id')->unsigned();
+            $table->foreign('movie_id')->references('id')->on('movies');
+            $table->foreign('director_id')->references('id')->on('directors');
         });
 
         Schema::create('audios', function (Blueprint $table) {
@@ -85,7 +95,7 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('movie_genres_movies');
+        Schema::dropIfExists('movieGenres_movies');
         Schema::dropIfExists('movie_genres');
         Schema::dropIfExists('movies');
         Schema::dropIfExists('directors');

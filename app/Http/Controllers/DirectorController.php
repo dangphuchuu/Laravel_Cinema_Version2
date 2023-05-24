@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Director;
-use Illuminate\Http\Request;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Http\Request;
 
 class DirectorController extends Controller
 {
@@ -27,7 +27,6 @@ class DirectorController extends Controller
             $cloud = Cloudinary::upload($img->getRealPath(), [
                 'folder' => 'director',
                 'format' => 'jpg',
-
             ])->getPublicId();
             $director = new Director(
                 [

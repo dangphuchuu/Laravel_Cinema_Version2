@@ -9,6 +9,7 @@ class Movie extends Model
 {
 
     use HasFactory;
+
     protected $fillable = [
         'name',
         'showTime',
@@ -21,4 +22,19 @@ class Movie extends Model
         'upcomming',
         'status'
     ];
+
+    public function casts()
+    {
+        return $this->belongsToMany(Cast::class, 'casts_movies', 'movie_id', 'cast_id');
+    }
+
+    public function directors()
+    {
+        return $this->belongsToMany(Director::class, 'directors_movies', 'movie_id', 'director_id');
+    }
+
+    public function movieGenres()
+    {
+        return $this->belongsToMany(MovieGenres::class, 'moviegenres_movies', 'movie_id', 'movieGenre_id');
+    }
 }
