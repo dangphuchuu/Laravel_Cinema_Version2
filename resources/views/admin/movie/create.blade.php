@@ -20,7 +20,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="movieName" class="form-control-label">Movie Name</label>
-                                            <input class="form-control" name="movieName" id="movieName" type="text" value="" placeholder="Movie Name">
+                                            <input class="form-control" name="name" id="movieName" type="text" value="" placeholder="Movie Name">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
@@ -336,18 +336,18 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="rating" class="form-label">Rating</label>
-                                            <select id="rating" class="form-select">
-                                                <option value="1" class="text-light fw-bold" style="background-color: #e8e10a">C13</option>
-                                                <option value="2" class="text-light fw-bold" style="background-color: #f3a001">C16</option>
-                                                <option value="3" class="text-light fw-bold" style="background-color: #ea3b24">C18</option>
-                                                <option value="4" class="text-light fw-bold" style="background-color: #799d46">P</option>
+                                            <select id="rating" class="form-select" name="rating">
+                                                @foreach($rating as $item)
+                                                    <option value="{{ $item->id }}" class="fw-bold" title="{{ $item->description }}}">{{ $item->name
+                                                }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="movieImage" class="form-label">Image</label>
-                                            <input id="movieImage" type='file' name='Image' class="form-control">
+                                            <input id="movieImage" type="file" name="image" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">

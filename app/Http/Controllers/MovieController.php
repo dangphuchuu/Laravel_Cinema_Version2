@@ -6,6 +6,7 @@ use App\Models\Cast;
 use App\Models\Director;
 use App\Models\Movie;
 use App\Models\MovieGenres;
+use App\Models\Rating;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 
@@ -23,38 +24,50 @@ class MovieController extends Controller
         $casts = Cast::all();
         $directors = Director::all();
         $movieGenres = MovieGenres::all();
-        return view('admin.movie.create', ['movieGenres' => $movieGenres, 'directors' => $directors, 'casts' => $casts]);
+        $rating = Rating::all();
+        return view('admin.movie.create', [
+            'movieGenres' => $movieGenres,
+            'directors' => $directors,
+            'casts' => $casts,
+            'rating' => $rating
+        ]);
     }
 
     public function postCreate(Request $request)
     {
-        if ($request->hasFile('Image')) {
-            $file = $request->file('Image');
-            $img = $request['Image'] = $file;
-            $cloud = Cloudinary::upload($img->getRealPath(), [
-                'folder' => 'movies',
-                'format' => 'jpg',
+//        if ($request->hasFile('Image')) {
+        $file = $request->file('image');
+        $img = $request['image'] = $file;
+        dd($request->image);
+        $cloud = Cloudinary::upload($img->getRealPath(), [
+            'folder' => 'movies',
+            'format' => 'jpg',
 
-            ])->getPublicId();
-            $movie = new Movie(
-                [
-                    'name' => $request->name,
-                    'image' => $cloud,
-                    'showTime' => $request->showTime['hour'] . ':' . $request->showTime['minute'],
-                    'releaseDate' => $request->releaseDate,
-                    'endDate' => $request->endDate,
-                    'national' => $request->national,
-                    'rating_id' => $request->rating,
-                    'description' => $request->description
-                ]
-            );
-
-            $movie->casts()->create($request->casts);
-            $movie->directors()->create($request->directors);
-            $movie->movieGenres()->create($request->movieGenres);
-
-            $movie->save();
-        }
+        ])->getPublicId();
+//        $movie = new Movie(
+//            [
+//                'name' => $request->name,
+//                'image' => null,
+//                'showTime' => $request->showTime['hour'] . ':' . $request->showTime['minute'],
+//                'releaseDate' => $request->releaseDate,
+//                'endDate' => $request->endDate,
+//                'national' => $request->national,
+//                'rating_id' => $request->rating,
+//                'description' => $request->description
+//            ]
+//        );
+//
+//        $movie->save();
+//
+//        $casts = Cast::find($request->casts);
+//        $movie->casts()->attach($casts);
+//
+//        $directors = Director::find($request->directors);
+//        $movie->directors()->attach($directors);
+//
+//        $movieGenres = MovieGenres::find($request->movieGenres);
+//        $movie->movieGenres()->attach($movieGenres);
+//        }
         return redirect('admin/movie');
     }
 
