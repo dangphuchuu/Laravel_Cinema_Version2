@@ -21,7 +21,7 @@
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Image</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Price</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Status</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Detail</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                     </tr>
@@ -57,13 +57,15 @@
                                                 @endif
                                             </td>
                                             <td class="align-middle">
-                                                <a href="" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip">
-                                                    Delete
+                                                <a href="" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                                                   data-original-title="Detail combo" data-bs-target="#detailCombo{!! $value['id'] !!}"
+                                                   data-bs-toggle="modal">
+                                                    Detail
                                                 </a>
                                             </td>
                                             <td class="align-middle">
                                                 <a href="#editCombo" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                                   data-original-title="Edit director" data-bs-target="#editCombo{!! $value['id'] !!}"
+                                                   data-original-title="Edit combo" data-bs-target="#editCombo{!! $value['id'] !!}"
                                                    data-bs-toggle="modal">
                                                     Edit
                                                 </a>
@@ -75,6 +77,7 @@
                                                 </a>
                                             </td>
                                         </tr>
+                                        @include('admin.combo.detail')
                                         @include('admin.combo.edit')
                                     @endforeach
                                     @include('admin.combo.create')
@@ -139,11 +142,30 @@
             readURL(this);
         });
     </script>
-    <script>
-        $(document).ready(function () {
-            $('.food-input').select2({
-                tags: true
-            });
+    <script type="text/javascript">
+        var i = 0;
+        $("#btn_detail").on('click', function () {
+                ++i;
+                $('.form_detail').append(
+                    '<div class="col-md-6">\
+                    <div class="form-group">\
+                    <label for="example-text-input" class="form-control-label">Food</label>\
+                <select id="select_combo '+i+'" name="addmore['+i+'][food]" class="form-select">\
+                @foreach($food as $f)
+                        <option value="{!! $f['id'] !!}">\
+                {!! $f['name'] !!}\
+                </option>\
+                @endforeach
+                        </select>\
+                            </div>\
+                       </div>\
+                            <div class="col-md-6">\
+                                <div class="form-group">\
+                                    <label for="example-text-input" class="form-control-label">Quantity</label>\
+                                    <input class="form-control" type="number" name="addmore['+i+'][quantity]" min="0" max="100">\
+                                </div>\
+                            </div>');
+
         });
     </script>
 @endsection

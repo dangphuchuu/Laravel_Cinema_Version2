@@ -315,8 +315,8 @@
                                         <div class="form-group">
                                             <label for="director" class="form-control-label">Director</label>
                                             <select id="director" class="form-control director-input" name="directors[]" multiple>
-                                                @foreach($director as $direct)
-                                                    <option value="{!! $direct['id'] !!}">{!! $direct['name'] !!}</option>
+                                                @foreach($directors as $director)
+                                                    <option value="{{ $director->id }}">{!! $director->name !!}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -360,8 +360,8 @@
                                         <div class="form-group">
                                             <label for="cast" class="form-label">Casts</label>
                                             <select id="cast" class="form-control cast-input" name="casts[]" multiple>
-                                                @foreach($cast as $c)
-                                                    <option value="{!! $c['id'] !!}">{!! $c['name'] !!}</option>
+                                                @foreach($casts as $cart)
+                                                    <option value="{{ $cart->id }}">{{ $cart->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

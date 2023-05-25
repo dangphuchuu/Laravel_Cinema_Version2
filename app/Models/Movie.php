@@ -12,11 +12,11 @@ class Movie extends Model
 
     protected $fillable = [
         'name',
+        'image',
         'showTime',
         'releaseDate',
         'endDate',
-        'director_id',
-        'cast_id',
+        'national',
         'description',
         'rating_id',
         'upcomming',

@@ -13,16 +13,17 @@ class MovieController extends Controller
 {
     public function movie()
     {
-        $movie = Movie::orderBy('id', 'DESC')->Paginate(5);
-        return view('admin.movie.list', ['movie' => $movie]);
+
+        $movies = Movie::orderBy('id', 'DESC')->Paginate(5);
+        return view('admin.movie.list', ['movies' => $movies]);
     }
 
     public function getCreate()
     {
-        $cast = Cast::all();
-        $director = Director::all();
-        $movie_genres = MovieGenres::all();
-        return view('admin.movie.create', ['movie_genres' => $movie_genres, 'director' => $director, 'cast' => $cast]);
+        $casts = Cast::all();
+        $directors = Director::all();
+        $movieGenres = MovieGenres::all();
+        return view('admin.movie.create', ['movieGenres' => $movieGenres, 'directors' => $directors, 'casts' => $casts]);
     }
 
     public function postCreate(Request $request)
@@ -48,9 +49,9 @@ class MovieController extends Controller
                 ]
             );
 
-//            $movie->casts = $request->casts;
-//            $movie->directors = $request->directors;
-//            $movie->movieGenres = $request->movieGenres;
+            $movie->casts()->create($request->casts);
+            $movie->directors()->create($request->directors);
+            $movie->movieGenres()->create($request->movieGenres);
 
             $movie->save();
         }

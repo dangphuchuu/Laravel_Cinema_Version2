@@ -10,7 +10,7 @@ class FoodController extends Controller
 {
     public function food()
     {
-        $food = Food::orderBy('id', 'DESC')->Paginate(5);
+        $food = Food::orderBy('id', 'DESC')->Paginate(10);
         return view('admin.food.list', ['food' => $food]);
     }
 
@@ -48,7 +48,7 @@ class FoodController extends Controller
         $request->validate([
             'name' => 'required'
         ], [
-            'name.required' => "Please enter director's name"
+            'name.required' => "Please enter Food's name"
         ]);
 
         if ($request->hasFile('Image')) {

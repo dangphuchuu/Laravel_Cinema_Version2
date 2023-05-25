@@ -30,49 +30,67 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">Action</h6>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <img style="width: 300px"
-                                                 src="https://vcdn-giaitri.vnecdn.net/2022/12/02/transformers-72-4007-166996346-4557-5406-1669966946.png"
-                                                 alt="user1">
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">Transformer</h6>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">1:59:10</span>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">United States</h6>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">Steven Caple JR</h6>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">23/04/18</span>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">20/05/18</span>
-                                        </td>
-                                        <td class="align-middle text-center text-sm">
-                                            <span class="badge badge-sm bg-gradient-success">Online</span>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                               data-original-title="Edit user">
-                                                Edit
-                                            </a>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                               data-original-title="Edit user">
-                                                Delete
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach($movies as $movie)
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                @foreach($movie->movieGenres as $genre)
+                                                    <h6 class="mb-0 text-sm ">{{ $genre->name }}</h6>
+                                                @endforeach
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @if(strstr($movie->image,"https") == "")
+                                                    <img style="width: 300px"
+                                                         src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{$movie->image}}.jpg"
+                                                         alt="user1">
+                                                @else
+                                                    <img style="width: 300px"
+                                                         src="{{ $movie->image }}" alt="user1">
+                                                @endif
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <h6 class="mb-0 text-sm ">{{ $movie->name }}</h6>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary font-weight-bold">{{ $movie->showTime }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <h6 class="mb-0 text-sm ">{{ $movie->national }}</h6>
+                                            </td>
+                                            @foreach($movie->directors as $director)
+                                                <td class="align-middle text-center">
+                                                    <h6 class="mb-0 text-sm ">{{ $director->name }}</h6>
+                                                </td>
+                                            @endforeach
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary font-weight-bold">{{ $movie->releaseDate }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary font-weight-bold">{{ $movie->endDate }}</span>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                @if($movie->status == 1)
+                                                    <a href="#">
+                                                        <span class="badge badge-sm bg-gradient-success">Online</span>
+                                                    </a>
+                                                @else
+                                                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                                @endif
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                                                   data-original-title="Edit user">
+                                                    Edit
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                                                   data-original-title="Edit user">
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

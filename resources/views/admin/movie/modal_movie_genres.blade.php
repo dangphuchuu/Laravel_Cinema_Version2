@@ -11,11 +11,12 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Genres</label>
-                                @foreach($movie_genres as $value)
+                                @foreach($movieGenres as $genre)
                                     <div class="form-check form-check-info text-start">
-                                        <input class="form-check-input" type="checkbox" name="movieGenres[]" value="{{$value->id}}" id="movieGenres">
+                                        <input class="form-check-input" type="checkbox" name="movieGenres[]" value="{{ $genre->id }}"
+                                               id="movieGenres">
                                         <label class="form-check-label" for="movieGenres">
-                                            {!! $value['name'] !!}
+                                            {{ $genre->name }}
                                         </label>
                                     </div>
                                 @endforeach

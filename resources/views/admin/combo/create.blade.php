@@ -21,15 +21,15 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="price" class="form-control-label">Price</label>
-                                    <input class="form-control" type="number" value="" name="price" id="price"
+                                    <input class="form-control" type="number" name="price" id="price"
                                            placeholder="type national">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group file-uploader">
                                     <label for="image-input" class="form-control-label">Image</label>
-                                    <input type='file' name='Image' class="form-control image-food" id="image-input">
-                                    <img style="width: 300px" src="" class="img_food d-none" alt="user1">
+                                    <input type='file' name='Image' class="form-control image-combo" id="image-input">
+                                    <img style="width: 300px" src="" class="img_combo d-none" alt="user1">
                                 </div>
                             </div>
 
