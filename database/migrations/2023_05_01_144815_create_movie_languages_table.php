@@ -58,24 +58,24 @@ return new class extends Migration {
         Schema::create('movieGenres_movies', function (Blueprint $table) {
             $table->bigInteger('movie_id')->unsigned();
             $table->bigInteger('movieGenre_id')->unsigned();
-            $table->foreign('movie_id')->references('id')->on('movies');
-            $table->foreign('movieGenre_id')->references('id')->on('movie_genres');
+            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
+            $table->foreign('movieGenre_id')->references('id')->on('movie_genres')->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('casts_movies', function (Blueprint $table) {
             $table->bigInteger('movie_id')->unsigned();
             $table->bigInteger('cast_id')->unsigned();
-            $table->foreign('movie_id')->references('id')->on('movies');
-            $table->foreign('cast_id')->references('id')->on('casts');
+            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
+            $table->foreign('cast_id')->references('id')->on('casts')->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('directors_movies', function (Blueprint $table) {
             $table->bigInteger('movie_id')->unsigned();
             $table->bigInteger('director_id')->unsigned();
-            $table->foreign('movie_id')->references('id')->on('movies');
-            $table->foreign('director_id')->references('id')->on('directors');
+            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
+            $table->foreign('director_id')->references('id')->on('directors')->onDelete('cascade');
             $table->timestamps();
         });
 

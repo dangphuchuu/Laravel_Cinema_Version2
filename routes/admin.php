@@ -36,7 +36,9 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/', [MovieController::class, 'movie']);
         Route::get('/create', [MovieController::class, 'getCreate']);
         Route::post('/create', [MovieController::class, 'postCreate']);
-        Route::get('/edit', [MovieController::class, 'edit_movie']);
+        Route::get('/edit/{id}', [MovieController::class, 'getEdit']);
+        Route::post('/edit/{id}', [MovieController::class, 'postEdit']);
+        Route::delete('/delete/{id}', [MovieController::class, 'delete']);
     });
     //TODO Room
     Route::prefix('room')->group(function () {

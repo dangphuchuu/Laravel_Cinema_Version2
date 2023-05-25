@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Models\MovieGenres;
 
@@ -40,7 +41,14 @@ class MovieGenresController extends Controller
 
     public function delete($id)
     {
-        MovieGenres::destroy($id);
-        return response()->json(['success' => 'Delete Successfully']);
+        $movie_genres = MovieGenres::find($id);
+        $check = count($movie_genres->movies);
+        if($check ==0){
+            MovieGenres::destroy($id);
+            return response()->json(['success' => 'Delete Successfully']);
+        }
+        else{
+            return response()->json(['error' => "Can't delete because Movie Generes exist Movie" ]);
+        }
     }
 }
