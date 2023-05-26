@@ -1,17 +1,18 @@
 <?php
 
-use App\Http\Controllers\ComboController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\FoodController;
-use App\Http\Controllers\RoomController;
-use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CastController;
+use App\Http\Controllers\ComboController;
 use App\Http\Controllers\DirectorController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\FoodController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieGenresController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\SeatController;
 use App\Http\Controllers\TheaterController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
@@ -44,6 +45,13 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/create', [RoomController::class, 'postCreate']);
         Route::get('/edit', [RoomController::class, 'postEdit']);
     });
+
+    //TODO Room
+    Route::prefix('seat')->group(function () {
+        Route::post('/create', [SeatController::class, 'postCreate']);
+        Route::get('/edit', [SeatController::class, 'postEdit']);
+    });
+
     //TODO Cinema
     Route::prefix('theater')->group(function () {
         Route::get('/', [TheaterController::class, 'theater']);

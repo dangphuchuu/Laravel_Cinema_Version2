@@ -38,7 +38,7 @@ class MovieController extends Controller
 //        if ($request->hasFile('Image')) {
         $file = $request->file('image');
         $img = $request['image'] = $file;
-        dd($request->image);
+        dd($file);
         $cloud = Cloudinary::upload($img->getRealPath(), [
             'folder' => 'movies',
             'format' => 'jpg',

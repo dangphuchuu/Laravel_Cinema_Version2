@@ -338,7 +338,7 @@
                                             <label for="rating" class="form-label">Rating</label>
                                             <select id="rating" class="form-select" name="rating">
                                                 @foreach($rating as $item)
-                                                    <option value="{{ $item->id }}" class="fw-bold" title="{{ $item->description }}}">{{ $item->name
+                                                    <option value="{{ $item->id }}" class="fw-bold" title="{{ $item->description }}">{{ $item->name
                                                 }}</option>
                                                 @endforeach
                                             </select>
