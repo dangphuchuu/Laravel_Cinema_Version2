@@ -1,3 +1,4 @@
+
 <div class="modal fade" id="movie_genre" tabindex="-1" aria-labelledby="movie_title" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -13,7 +14,15 @@
                                 <label for="example-text-input" class="form-control-label">Genres</label>
                                 @foreach($movieGenres as $genre)
                                     <div class="form-check form-check-info text-start">
-                                        <input class="form-check-input" type="checkbox" name="movieGenres[]" value="{{ $genre->id }}"
+                                        <input class="form-check-input" type="checkbox"
+                                               @if(isset($movie))
+                                                   @foreach($movie['movieGenres'] as $value)
+                                                       @if($value['id'] == $genre['id'])
+                                                           checked
+                                                       @endif
+                                                   @endforeach
+                                               @endif
+                                               name="movieGenres[]" value="{{ $genre->id }}"
                                                id="movieGenres">
                                         <label class="form-check-label" for="movieGenres">
                                             {{ $genre->name }}

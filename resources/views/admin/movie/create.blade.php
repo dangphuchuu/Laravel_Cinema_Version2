@@ -25,18 +25,7 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label class="form-label" for="showTime">Show time</label>
-                                            <div class="d-flex">
-                                                <select id="showTime" name="showTime[hour]" class="form-select">
-                                                    @for($i = 1; $i <= 12; $i++)
-                                                        <option value="{{ $i }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
-                                                    @endfor
-                                                </select>
-                                                <select id="showTime" name="showTime[minute]" class="form-select">
-                                                    @for($i = 0; $i <= 59; $i++)
-                                                        <option value="{{ $i }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
-                                                    @endfor
-                                                </select>
-                                            </div>
+                                            <input id="showTime" class="form-control" name="showTime" type="number" value="">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
