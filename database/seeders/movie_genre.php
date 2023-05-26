@@ -9,7 +9,7 @@ $mutiple = [
     'Giả Tưởng', 'Chiến Tranh', 'Trinh Thám',
     'Tình Cảm', 'Lãng Mạn', 'Ca Nhạc', 'Hoạt Hình',
     'Trẻ Em', 'Gia Đình', 'Phiêu Lưu', 'Lịch Sử',
-    'Thể Thao', 'Tài Liệu'
+    'Thể Thao', 'Tài Liệu','Tâm Lý'
 ];
 for ($i = 0; $i < count($mutiple); $i++) {
     DB::table('movie_genres')->insert([

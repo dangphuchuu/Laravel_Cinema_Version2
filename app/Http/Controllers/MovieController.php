@@ -18,7 +18,6 @@ class MovieController extends Controller
     }
     public function movie()
     {
-
         $movies = Movie::orderBy('id', 'DESC')->Paginate(5);
         return view('admin.movie.list', ['movies' => $movies]);
     }

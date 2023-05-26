@@ -17,7 +17,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Movie Genres</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7 ">Image</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Image</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Movie Name</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">ShowTime</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">National</th>
@@ -48,7 +48,8 @@
                                                 @endif
                                             </td>
                                             <td class="align-middle text-center">
-                                                <h6 class="mb-0 text-sm ">{{ $movie->name }}</h6>
+                                                <h6 class="mb-0 text-sm " style="width:200px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical">{{ $movie->name }}</h6>
+
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary font-weight-bold">{{ $movie->showTime }} phút</span>
@@ -93,6 +94,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="d-flex justify-content-center mt-3">
+                                {!! $movies->links() !!}
                             </div>
                         </div>
                     </div>

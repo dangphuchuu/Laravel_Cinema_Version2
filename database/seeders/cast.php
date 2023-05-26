@@ -127,7 +127,7 @@ Vào tháng 8 năm 2012, Bautista ký hợp đồng với Classic Entertainment 
         'name' => 'Vin Diesel',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Vin_Diesel_XXX_Return_of_Xander_Cage_premiere.png/250px-Vin_Diesel_XXX_Return_of_Xander_Cage_premiere.png',
         'birthday' => '1967-07-18',
-        'national' => 'Mỹ',
+        'national' => 'United States',
         'content' => 'Vin Diesel (tên khai sinh là Mark Sinclair[1] hay Mark Vincent;[2] sinh ngày 18 tháng 7 năm 1967) , là một diễn viên và nhà sản xuất người Mỹ. Là một trong những nam diễn viên có doanh thu cao nhất thế giới, anh được biết đến với vai Dominic Toretto trong loạt phim Fast & Furious.
 
 Diesel bắt đầu sự nghiệp của mình vào năm 1990 nhưng chật vật để giành được các vai diễn cho đến khi anh viết kịch bản, đạo diễn, sản xuất và đóng vai chính trong bộ phim ngắn Multi-Facial (1995). Điều này thu hút sự chú ý của Steven Spielberg, người đang phát triển Saving Private Ryan (1998), và viết lại các yếu tố của bộ phim để cho phép Diesel xuất hiện trong một vai phụ. Diesel sau đó đã lồng tiếng cho nhân vật chính trong The Iron Giant (1999) trong khi nổi danh như một ngôi sao hành động sau khi gây ấn tượng với loạt phim Fast & Furious, XXX và The Chronicles of Riddick.
@@ -142,7 +142,7 @@ Anh thành lập công ty sản xuất One Race Films, nơi anh cũng là nhà s
         'name' => 'Michelle Rodriguez',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Michelle_Rodriguez_by_Gage_Skidmore_2.jpg/250px-Michelle_Rodriguez_by_Gage_Skidmore_2.jpg',
         'birthday' => '1978-07-12',
-        'national' => 'Anh',
+        'national' => 'United Kingdom',
         'content' => 'Mayte Michelle Rodriguez[2] (sinh ngày 12 tháng 7 năm 1978),[3] thường chỉ gọi là Michelle Rodriguez, là một diễn viên, nhà viết kịch bản phim và người chỉnh nhạc.[4] Vai diễn mang tính bước ngoặt trong sự nghiệp của Rodriguez là trong bộ phim độc lập Girlfight (2000). Trong phim, cô đảm nhiệm nhân vật một vận động viên quyền Anh, và phần thể hiện của cô đã nhận được những lời tán dương từ giới phê bình và mang về cho cô một số giải thưởng, trong đó có giải Independent Spirit Award (Giải Tinh thần độc lập)[5] và giải Gotham Award cho Vai diễn khởi đầu xuất sắc nhất.[6] Sau đó, cô lần đầu tiên đến với Hollywood với vai Letty Ortiz trong bom tấn The Fast and the Furious (2001), và tiếp tục đảm nhận vai diễn này trong hai phần tiếp theo là Fast & Furious (2009) và Fast & Furious 6 (2013).
 
 Trong sự nghiệp của mình, cô đã tham gia một số phim hành động khá thành công, với những vai diễn cứng rắn, độc lập như Blue Crush, S.W.A.T., Battle: Los Angeles và bom tấn của đạo diễn James Cameron, Avatar. Cô cũng được biết đến với các vai diễn như Shé trong hai bộ phim hành động hài hước của Robert Rodriguez, Machete và Machete Kills, và vai Rain Ocampo trong loạt phim khoa học viễn tưởng Resident Evil và Resident Evil: Retribution.
@@ -157,7 +157,7 @@ Với tổng doanh thu tất cả các phim cô tham gia là trên 5,2 tỷ USD,
         'name' => 'Jason Momoa',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Jason_Momoa_by_Gage_Skidmore.jpg/200px-Jason_Momoa_by_Gage_Skidmore.jpg',
         'birthday' => '1979-08-01',
-        'national' => 'Mỹ',
+        'national' => 'United States',
         'content' => 'Joseph Jason Namakaeha Momoa (sinh ngày 1 tháng 8 năm 1979) là nam diễn viên, đạo diễn và nhà sản xuất phim người Mỹ.[1]
 
 Jason Momoa nổi tiếng với các vai diễn siêu anh hùng trong vũ trụ DC Mở rộng DC Extended Universe, bắt đầu từ năm 2016 với vai thủy thần Aquaman trong Batman v Superman: Dawn of Justice, Justice League và Aquaman.[2][3][4].
@@ -172,7 +172,7 @@ Road to Paloma là bộ phim đầu tiên mà Jason Momoa làm giám đốc sả
         'name' => 'Charlize Theron',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Charlize-theron-IMG_6045.jpg/220px-Charlize-theron-IMG_6045.jpg',
         'birthday' => '1975-08-07',
-        'national' => 'Mỹ,Nam Phi',
+        'national' => 'United States',
         'content' => "Charlize Theron (phát âm theo tiếng Anh kiểu Mỹ: /ʃɑːrˈliːz ˈθɛrən/; phát âm theo tiếng Afrikaans: [ʃɐrˈlis tron];[1] sinh ngày 7 tháng 8 năm 1975) là một nữ diễn viên kiêm nhà làm phim người Mỹ gốc Nam Phi. Là một trong những nữ diễn viên được trả lương cao nhất thế giới, cô là chủ nhân của nhiều giải thưởng khác nhau, bao gồm giải Oscar, giải SAG và giải Quả cầu vàng. Năm 2016, Time đã vinh danh cô là một trong 100 người có ảnh hưởng nhất trên thế giới.
 
 Theron trở nên nổi tiếng quốc tế vào những năm 1990 khi đóng vai phụ nữ hàng đầu trong các bộ phim Hollywood The Devil's Advocate (1997), Mighty Joe Young (1998) và The Cider House Rules (1999). Cô được giới phê bình đánh giá cao nhờ vai diễn kẻ giết người hàng loạt Aileen Wuornos trong Monster (2003), nhờ đó cô đã giành được giải Gấu bạc và Giải Oscar cho nữ diễn viên chính xuất sắc nhất, trở thành người Nam Phi đầu tiên giành giải Oscar ở hạng mục diễn xuất. Cô nhận được một đề cử giải Oscar khác cho vai một phụ nữ bị lạm dụng tình dục đi tìm công lý trong bộ phim truyền hình North Country (2005).
@@ -187,7 +187,7 @@ Từ đầu những năm 2000, Theron đã mạo hiểm sản xuất phim với 
         'name' => 'Brie Larson',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Captain_Marvel_trailer_at_the_National_Air_and_Space_Museum_4_%28cropped%29.jpg/240px-Captain_Marvel_trailer_at_the_National_Air_and_Space_Museum_4_%28cropped%29.jpg',
         'birthday' => '1989-10-01',
-        'national' => 'Mỹ',
+        'national' => 'United States',
         'content' => 'Brianne Sidonie Desaulniers (sinh ngày 1 tháng 10 năm 1989), được biết đến với nghệ danh Brie Larson (phiên âm tiếng Việt: Bri Lác-xơn[1]), là nữ diễn viên và ca sĩ người Mỹ. Brie Larson được giáo dục tại nhà ở Sacramento, bang California trước khi đi học diễn xuất tại nhà hát American Conservatory Theater.
 
 Cô bắt đầu sự nghiệp với tư cách diễn viên nhí trong các chương trình hài kịch trên The Tonight Show with Jay Leno. Cô bắt đầu tham gia các vai phụ trong Sleepover và 13 Going on 30 đều trong năm 2004. Năm 2010, Larson góp mặt trong các bộ phim Greenberg và Scott Pilgrim vs. the World. Trên sóng truyền hình Larson vào vai Kate Gregson trong series hài của Diablo Cody mang tên United States of Tara từ 2009 tới 2011. Cô tiếp tục các vai trò diễn viên phụ trong Rampart (2011), 21 Jump Street (2012), Don Jon (2013) và The Spectacular Now (2013) trước khi đột phá với vai chính trong Short Term 12 (2013).
@@ -200,7 +200,7 @@ Vào năm 2015, cô là đồng vai chính trong Trainwreck và là nhân vật 
         'name' => 'Jason Statham',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Jason_Statham_2018.jpg/250px-Jason_Statham_2018.jpg',
         'birthday' => '1967-07-26',
-        'national' => 'Anh',
+        'national' => 'United Kingdom',
         'content' => 'Jason Statham (sinh ngày 26 tháng 7, năm 1967 tại Shirebrook, Derbyshire, Anh Quốc) là một nam diễn viên điện ảnh và vận động viên nhảy cầu người Anh, được biết đến qua những vai diễn trong những bộ phim tội phạm Lock, Stock and Two Smoking Barrels, Revolver, Snatch,... Statham cũng đóng vai phụ trong vài bộ phim của Mỹ như The Italian Job, cũng như vai chính trong các phim The Transporter, Crank, The Bank Job, War và Death Race.',
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -209,7 +209,7 @@ Vào năm 2015, cô là đồng vai chính trong Trainwreck và là nhân vật 
         'name' => 'Hoàng Mèo',
         'image' => 'https://35express.org/wp-content/uploads/2022/01/hoang-meo-la-ai-1-35express.jpg',
         'birthday' => '1982-01-01',
-        'national' => 'Việt Nam',
+        'national' => 'Viet Nam',
         'content' => "Hoàng Mèo sinh năm 1982, ghi dấu ấn trong các tác phẩm như Lật mặt: Nhà có khách, Bố già, Chị Mười Ba... Đại Ngọc Trâm xuất thân là diễn viên kịch, sau đó lấn sân phim ảnh. Chị từng đóng các phim như Vợ tui tui sợ, Cặp đôi nội chiến...
 
 Hoàng Mèo và Đại Ngọc Trâm gắn bó khi cùng hoạt động ở sân khấu Nụ cười mới. Họ yêu nhau 6 năm trước khi đi đến hôn nhân vào năm 2010. Họ có 2 con chung tên thân mật là Mì Gói và Bún Gạo.",
@@ -220,7 +220,7 @@ Hoàng Mèo và Đại Ngọc Trâm gắn bó khi cùng hoạt động ở sân 
         'name' => 'Trần Kim Hải',
         'image' => 'https://assets.htv.com.vn/Images/DanQuynh/2023/kkcd/quy2/kimhai.jpg',
         'birthday' => '1982-01-01',
-        'national' => 'Việt Nam',
+        'national' => 'Viet Nam',
         'content' => 'Với vẻ ngoài gai góc và đậm chất điện ảnh, Trần Kim Hải là gương mặt mới được đạo diễn Lý Hải tin tưởng giao vai Toàn trong dự án Lật mặt 6 - Tấm vé định mệnh. Với Kim Hải, bộ phim là một bước ngoặt lớn trên hành trình theo đuổi đam mê, mang anh đến gần hơn với công chúng, sau nhiều năm miệt mài làm nghệ thuật. Dự án dài hơi và đầy tâm huyết của một tập thể lớn, đặc biệt dưới thương hiệu đầy uy tín mang tên Lật mặt đã cho anh một cơ hội lớn để thực sự sống với điện ảnh.',
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -229,7 +229,7 @@ Hoàng Mèo và Đại Ngọc Trâm gắn bó khi cùng hoạt động ở sân 
         'name' => 'Thanh Thức',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/ThanhThuc1984.jpg/200px-ThanhThuc1984.jpg',
         'birthday' => '1984-04-10',
-        'national' => 'Việt Nam',
+        'national' => 'Viet Nam',
         'content' => 'Thanh Thức tên đầy đủ là Phạm Thanh Thức, sinh ra tại Trà Vinh, Việt Nam, là một diễn viên, người mẫu nổi tiếng của làng giải trí Việt Nam. Sở hữu gương mặt lạnh, nam tính, lịch lãm, và chiều cao lý tưởng 1m81, Thanh Thức là gương mặt người mẫu xuất hiện trong nhiều sự kiện thời trang lớn nhỏ trong nước. Anh còn được biết đến qua nhiều vai diễn phim truyền hình.[1]
 
 Năm 2006, Thanh Thức giành giải Ba cuộc thi Thời trang Xuân do Nhà văn hóa Thanh Niên tổ chức.[2] Cũng từ đây, anh chính thức bước chân vào sự nghiệp người mẫu chuyên nghiệp. Ngoài ra, anh còn thường xuyên xuất hiện trong chương trình Thời trang và cuộc sống của HTV7, và nhiều chương trình thời trang như: Phong cách đam mê, Duyên dáng Việt Nam, Thời trang và cuộc sống, Hoa hậu Thế giới người Việt...
@@ -246,7 +246,7 @@ Là một người kín tiếng trong chuyện đời tư, vậy nên ít ai bi�
         'name' => 'Huy Khánh',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Dien-vien-huy-khanh.jpg/200px-Dien-vien-huy-khanh.jpg',
         'birthday' => '1981-01-07',
-        'national' => 'Việt Nam',
+        'national' => 'Viet Nam',
         'content' => 'Anh sinh năm 1981 tại Thành phố Hồ Chí Minh, có cha là người Việt còn mẹ là người Pháp. Anh tốt nghiệp trường Đại học Sân khấu – Điện ảnh Thành phố Hồ Chí Minh.[2] Huy Khánh được khán giả biết đến rộng rãi lần đầu tiên qua bộ phim Dốc tình năm 2004 của đạo diễn Lưu Trọng Ninh qua vai Thái.[2] Năm 2009, anh tham gia phim Chuyện tình xa xứ của đạo diễn Việt kiều Victor Vũ. Năm 2011, anh tiếp tục hợp tác với Victor Vũ khi đóng trong phim Cô dâu đại chiến.
 
 Năm 2012, anh là người dẫn chương trình cho mùa thứ tư của cuộc thi âm nhạc Vietnam Idol.
@@ -259,7 +259,7 @@ Năm 2018, Huy Khánh tham gia phim truyền hình Nhà ông Hoàng có ma. Vai 
         'name' => 'Trương Quốc Cường',
         'image' => 'https://images2.thanhnien.vn/thumb_w/640/528068263637045248/2023/3/25/edit-quoc-cuongg-167976189473145731174.png',
         'birthday' => '1969-09-30',
-        'national' => 'Việt Nam',
+        'national' => 'Viet Nam',
         'content' => 'Trương Quốc Cường xuất thân trong gia đình có 7 anh chị em, ông đứng thứ 5. Ông tốt nghiệp trường Islamic Kasim Tuet Memorial College. Năm 15 tuổi, ông thi vào Hội thể thao Du Viên, triển khai sự nghiệp đá bóng. Năm 1975, ông làm thành viên đội đại diện bóng đá Hong Kong đến Kuwait tham dự tranh giải U19 của Hiệp hội bóng đá Á Châu. Từ đó, ông được lên đội dự bị tại Du Viên, sau đó lại thăng lên tổ A. Về sau ông từng đá cho đội Đông Phương và Hải Phong, nhưng ít có cơ hội ra sân, trong thời gian đó, ông đã làm quen với Đàm Vịnh Lân và Trần Bách Tường do 2 người thuộc đội dự bị của CLB bóng đá không chuyên. Năm 1976, do TVB tuyển cầu thủ tham gia phim ngắn Vô hoa quả, ông đi thử vai do ham vui, kết quả lại được chọn. Vì cơ duyên đó mà ông đã gia nhập làng giải trí.',
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -268,7 +268,7 @@ Năm 2018, Huy Khánh tham gia phim truyền hình Nhà ông Hoàng có ma. Vai 
         'name' => 'Trung Dũng',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Trung_Dung1973.jpg/200px-Trung_Dung1973.jpg',
         'birthday' => '1973-01-01',
-        'national' => 'Việt Nam',
+        'national' => 'Viet Nam',
         'content' => 'Phạm Trung Dũng (sinh năm 1973) nổi tiếng với nghệ danh Trung Dũng, là một nam diễn viên và MC người Việt Nam. Năm 2015, anh đoạt giải thưởng "Nam diễn viên chính xuất sắc" tại Lễ trao giải Cánh diều với vai diễn Trung trong Lạc giới.[1]',
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -277,7 +277,7 @@ Năm 2018, Huy Khánh tham gia phim truyền hình Nhà ông Hoàng có ma. Vai 
         'name' => 'Tiến Luật',
         'image' => 'https://khafa.org.vn/wp-content/uploads/2021/12/202005120252528015-e68fd400-a0c8-4b5b-a065-df5c2657a42b.png',
         'birthday' => '1982-01-01',
-        'national' => 'Việt Nam',
+        'national' => 'Viet Nam',
         'content' => 'Diễn viên hài Tiến Luật sinh năm 1982, tính đến nay anh đã 39 tuổi. Tiến Luật hiện nay anh đang sinh sống và làm việc tại TP. Hồ Chí Minh, nước Việt Nam. Tiến Luật chắc hẳn không còn là cái tên xa lạ đối với khán giả qua các bộ phim, cũng như các tiểu phẩm hài. Tiến Luật hiện tại anh đang công tác ở Sân khấu Thế giới trẻ TP HCM. Anh đã được khán giả yêu mến bởi một lối diễn xuất chân thật, và hóm hỉnh. Tiến Luật cũng chính là diễn viên đầy tài năng, đầy nhiệt huyết, và luôn hết lòng đối với sự nghiệp diễn xuất.',
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -286,7 +286,7 @@ Năm 2018, Huy Khánh tham gia phim truyền hình Nhà ông Hoàng có ma. Vai 
         'name' => 'Thu Trang',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/THU_TRANG_2020.jpg/250px-THU_TRANG_2020.jpg',
         'birthday' => '1984-09-23',
-        'national' => 'Việt Nam',
+        'national' => 'Viet Nam',
         'content' => 'Thu Trang sinh ngày 23 tháng 9 năm 1984 tại Quận 6, Thành phố Hồ Chí Minh trong một gia đình tiểu thương khá giả. Năm 18 tuổi, vừa tốt nghiệp cấp 3, gia đình cô gặp khó khăn về kinh tế.
 
 Từ năm 2002, khi đang học năm nhất trường Cao đẳng Sân khấu – Điện ảnh Thành phố Hồ Chí Minh (nay là trường Đại học Sân khấu – Điện ảnh Thành phố Hồ Chí Minh), Thu Trang đã bắt đầu đi diễn hài cùng các nghệ sĩ đàn anh để kiếm thêm thu nhập hỗ trợ cho gia đình. Sau một thời gian, cô nhận được nhiều lời mời đi đóng phim nên cuộc sống dần ổn định.[3]
@@ -307,7 +307,7 @@ Năm 2021, cô tiếp tục tham gia dự án điện ảnh Chìa khóa trăm t�
         'name' => 'Thái Hòa',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/THAI_HOA.jpg/250px-THAI_HOA.jpg',
         'birthday' => '1974-08-10',
-        'national' => 'Việt Nam',
+        'national' => 'Viet Nam',
         'content' => 'Thái Hòa sinh ngày 10 tháng 8 năm 1974 tại Sài Gòn. Sau này lớn lên, do có lòng đam mê nghệ thuật nên anh quyết định làm diễn viên hài lẫn diễn viên kịch, cách diễn xuất của Thái Hòa khiến không ít khán giả yêu quý. Không những thế, anh còn đảm nhận luôn vai trò biên kịch sân khấu và đạo diễn sân khấu, hai tác phẩm ăn khách nhất của anh là Người vợ ma và Quả tim máu
 
 Thái Hòa còn lấn sân sang lĩnh vực điện ảnh, bộ phim đầu tiên anh tham gia là phim Những đứa con thành phố, sau này anh gây nhiều ấn tượng với những bộ phim hài của đạo diễn Việt kiều Charlie Nguyễn như là Để Mai tính, Long Ruồi, Cưới ngay kẻo lỡ, Tèo em và Để Mai tính 2. gần đây nhất là phim " cây táo nở hoa".
@@ -320,7 +320,7 @@ Hiện tại, Thái Hòa đang sống với người vợ mới tên Hồng Thu.
         'name' => 'Kiều Minh Tuấn',
         'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/KIEU_MINH_TUAN.jpg/250px-KIEU_MINH_TUAN.jpg',
         'birthday' => '1988-02-26',
-        'national' => 'Việt Nam',
+        'national' => 'Viet Nam',
         'content' => 'Kiều Minh Tuấn (sinh ngày 26 tháng 2 năm 1988) là một nam diễn viên người Việt Nam.[1][2] Anh được biết đến và nổi tiếng qua các tác phẩm điện ảnh như: Bụi đời Chợ Lớn (2013), Scandal: Hào quang trở lại (2014), Em chưa 18 (2017), Lật mặt: Ba chàng khuyết (2018), Hạnh phúc của mẹ (2019) Anh Trai Yêu Quái (2019) Nắng 3: Lời hứa của cha (2020), Chị Mười Ba: Ba Ngày Sinh Tử (2020), Tiệc trăng máu (2020), Chìa khóa trăm tỷ (2022).',
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -329,8 +329,83 @@ Hiện tại, Thái Hòa đang sống với người vợ mới tên Hồng Thu.
         'name' => 'Trấn Thành',
         'image' => 'https://image-us.24h.com.vn/upload/4-2022/images/2022-12-11/scsacsacsac-1670760945-945-width660height628.jpg',
         'birthday' => '1987-02-05',
-        'national' => 'Việt Nam',
+        'national' => 'Viet Nam',
         'content' => 'Trấn Thành sinh ra và lớn lên tại Thành phố Hồ Chí Minh, có cha là người gốc Hoa đến từ Quảng Đông và mẹ là người Tiền Giang. Ngoài tiếng Việt, anh còn có thể nói tiếng Anh, tiếng Quảng Đông và Quan thoại.[1] Trấn Thành từng theo học khoa diễn viên Đại học Sân khấu - Điện ảnh.',
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+    ],
+    [
+        'name' => 'Yasamin Jasem',
+        'image' => 'https://cdns.klimg.com/merdeka.com/i/w/news/2020/10/13/1230867/content_images/670x335/20201013145852-1-yasamin-003-miftahul-arifin.jpg',
+        'birthday' => '2004-02-21',
+        'national' => 'Indonesia',
+        'content' => "Updating",
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+    ],
+    [
+        'name' => 'Tika Bravani',
+        'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Tika_Bravani_on_Kartini_1.jpg/220px-Tika_Bravani_on_Kartini_1.jpg',
+        'birthday' => '1990-02-17',
+        'national' => 'Indonesia',
+        'content' => "Ratu Tika Bravani was born in Denpasar, Bali from Bantenese father named Tubagus Zubir Ramadhan and Minangkabau mother named Kemalia Dewi.[1] The Ratu first name is the Bantenese noble title which is pinned to the female descendants of the first sultan of Banten, Maulana Hasanuddin patrilineally derived from the father who has a first name Tubagus as noble title.[2]
+Since sixteen years old, Bravani had parted ways with her father because her parents divorced and she chose to live with her mother, Kemalia Dewi.[3] On July 30, 2014, Bravani's mother died at the fourth day of Eid al-Fitr. Dewi has been sick for a year, and was treated for nine months in hospital for cervical cancer.[4] For Bravani, her mother was a great and tough person, and she never complained even if she had problems.[5] Before she died, Dewi told Bravani to get married soon.",
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+    ],  [
+        'name' => 'Mizuta Wasabi',
+        'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYa06nFydDQ-owVW2eph8oQ66rInym5u--p0YtOhoo&s',
+        'birthday' => '1974-08-04',
+        'national' => 'Japan',
+        'content' => "Mizuta Wasabi, sinh 4 tháng 8 năm 1974 tại Aoyama, Mie, là một nữ seiyū. Hiện tại, cô sống ở Iga, Mie và làm việc cho ban quản lý seiyū Ken Production của Utsumi Kenji. Vào tháng 4 năm 2005, cô tham gia lồng tiếng nhân vật Doraemon trong loạt phim hoạt hình dài cùng tên.",
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+    ], [
+        'name' => 'Megumi Oohara',
+        'image' => 'https://resizing.flixster.com/OEIX6AxtTma5vHOS3c8b_X_AjHg=/218x280/v2/https://flxt.tmsimg.com/assets/1091062_v9_aa.jpg',
+        'birthday' => '1975-04-16',
+        'national' => 'Japan',
+        'content' => "Ohara Megumi, sinh ngày 16 tháng 4 năm 1975 tại Tokyo, Nhật Bản, là một nữ seiyū. Cô có sở thích là nấu ăn và nghe nhạc. Vào tháng 4 năm 2005, cô tham gia lồng tiếng nhân vật Nobita trong loạt phim hoạt hình dài cùng tên.",
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+    ], [
+        'name' => 'Sophie Thompson',
+        'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIf9zen6jfc_xKlrgOPfIuDw62NxOB-g-szgbwavhF3JoHMOZr',
+        'birthday' => '1962-01-20',
+        'national' => 'United Kingdom',
+        'content' => "Được dịch từ tiếng Anh-Sophie Thompson là một nữ diễn viên người Anh đã từng làm việc trong lĩnh vực điện ảnh, truyền hình và sân khấu. Từng sáu lần được đề cử Giải thưởng Olivier, cô đã giành được Giải thưởng Olivier năm 1999 cho Nữ diễn viên chính xuất sắc nhất trong một vở nhạc kịch cho sự hồi sinh của Into the Woods ở London.",
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+    ], [
+        'name' => 'Taliyah Blair',
+        'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwvE7QRTkXd45V0GXOLbBcL-IExdQmU6Gbqag4g86m&s',
+        'birthday' => '1962-01-20',
+        'national' => 'United Kingdom',
+        'content' => "Taliyah Blair is a British actress, who has become known for her acting in Aladdin (2019), The War of the Worlds (2019), and The Creeping (2021). She began her professional acting career back in 2019. Taliyah also owns a self-titled YouTube channel. Born on , , Taliyah Blair hails from London, United Kingdom. As in 2023, Taliyah Blair's age is N/A. Check below for more deets about Taliyah Blair. This page will put a light upon the Taliyah Blair bio, wiki, age, birthday, family details, affairs, controversies, caste, height, weight, rumors, lesser-known facts, and more.",
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+    ],[
+        'name' => 'Riann Steele',
+        'image' => 'https://m.media-amazon.com/images/M/MV5BNDk3MWQ2ODAtYTk3OS00YzgwLWJhMzYtNzZkM2YzYTY2YzBjXkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_.jpg',
+        'birthday' => '1987-05-23',
+        'national' => 'United Kingdom',
+        'content' => "Riann Steele là một nữ diễn viên người Anh gốc Mỹ. Cô bắt đầu sự nghiệp của mình trong nhà hát. Các bộ phim của cô bao gồm Treacle Jr., Sket và The Creeping. Trên truyền hình, cô đóng vai chính trong bộ phim hài E4 Crazyhead và loạt phim NBC Debris.",
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+    ],[
+        'name' => 'Jonah Hauer-King',
+        'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyncc1okwDauj-Wguyt34QBv4WqNDkA_GVpQ6TvriW&s',
+        'birthday' => '1995-05-30',
+        'national' => 'United Kingdom',
+        'content' => "Jonah Hauer-King (sinh ngày 30 tháng 5 năm 1995) là một nam diễn viên người Anh.[1] Anh đã thủ vai Laurie trong phiên bản 2017 của BBC Little Women,[2][3] và đóng vai Andrius Aras trong phim Ashes in the Snow (2018), Bel Powley, David trong Postcards from London (2018), và Lucas trong phim A Dog's Way Home (2019).[4] Ngoài ra, anh còn tham gia diễn xuất trong các phim The Song of Names và Once Upon a Time in Staten Island.",
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+    ],[
+        'name' => 'Halle Bailey',
+        'image' => 'https://media-cdn-v2.laodong.vn/storage/newsportal/2022/9/20/1095362/Halle-Bailey.jpg',
+        'birthday' => '2000-03-27',
+        'national' => 'United States',
+        'content' => "Halle Lynn Bailey là một nữ ca sĩ, nhạc sĩ và diễn viên người Mỹ. Cô được biết đến với tư cách là thành viên của bộ đôi Chloe x Halle cùng với chị gái của mình là Chloe Bailey, họ được đề cử cho 5 giải Grammy kể từ năm 2018.",
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
     ],
