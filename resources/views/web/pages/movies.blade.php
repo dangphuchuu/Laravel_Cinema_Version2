@@ -47,32 +47,41 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <form action="/movies" method="get">
+                    <form action="/movies/search" method="get">
+                        @csrf
                         <div class="form-group m-2 mb-3">
-                            <label class="form-label" for="cast">Diễn viên</label>
-                            <input id="cast" name="cast" type="text" class="form-control">
+                            <label for="cast" class="form-label">Casts</label>
+                            <select id="cast" class="form-control cast-input" name="casts[]" multiple>
+                                @foreach($casts as $cast)
+                                    <option value="{{ $cast->id }}">{{ $cast->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group m-2 mb-3">
-                            <label class="form-label" for="director">Đạo diễn</label>
-                            <input id="director" name="director" type="text" class="form-control">
+                            <label for="director" class="form-control-label">Director</label>
+                            <select id="director" class="form-control director-input" name="directors[]" multiple>
+                                @foreach($directors as $director)
+                                    <option value="{{ $director->id }}">{{ $director->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="m-2 form-group mb-3">
                             <label class="form-label" for="movieGenres">Thể loại</label>
-                            <select id="movieGenres" class="form-select">
-                                <option selected>Tất cả</option>
+                            <select id="movieGenres" class="form-control director-input" name="movieGenres[]" multiple>
                                 @foreach($movieGenres as $movieGenre)
-                                    <option>{{ $movieGenre->name }}</option>
+                                    <option value="{{ $movieGenre->id }}">{{ $movieGenre->name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="m-2 form-group mb-3">
                             <label class="form-label" for="rating">Độ tuổi</label>
-                            <select id="rating" class="form-select">
+                            <select id="rating" class="form-select" name="rating">
+                                <option value="" selected>Tất cả</option>
                                 @foreach($rating as $value)
-                                    <option value="{{ $value->id }}" selected
+                                    <option value="{{ $value->id }}"
                                             title="{{ $value->description }}">
                                         {{ $value->name }}
                                     </option>
@@ -157,7 +166,7 @@
                                                         <a class="link link-dark" href="#">{{ $genres->name }}</a> |
                                                     @endforeach
                                                 </p>
-                                                <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
+                                                <p class="card-text">Rated: <b class="text-danger">{{ $movie->rating->name }}</b> - PHIM ĐƯỢC PHỔ
                                                     BIẾN ĐẾN
                                                     NGƯỜI XEM TỪ ĐỦ 16 TUỔI
                                                     TRỞ LÊN (16+)</p>
@@ -172,7 +181,7 @@
                 @endforeach
             </div>
 
-            <div id="vebantruoc" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse show" data-bs-parent="#Movies">
+            <div id="vebantruoc" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse" data-bs-parent="#Movies">
                 @foreach($movies as $movie)
                     @if($movie->upcoming)
                         <!-- Movie -->
@@ -219,10 +228,27 @@
 @endsection
 @section('js')
     <script>
-        $("#Movies .nav .nav-item .nav-link").on("click", function () {
-            $("#Movies .nav-item").find(".active").removeClass("active link-warning fw-bold border-bottom border-2 border-warning").addClass("link-secondary").prop('disabled', false);
-            $(this).addClass("active link-warning fw-bold border-bottom border-2 border-warning").removeClass("link-secondary").prop('disabled', true);
+        $(document).ready(function () {
+            $('.director-input').select2({
+                tags: true
+            });
+
+            $('#rating').select2({
+                tags: true
+            })
+
+            $('#movieGenres').select2({
+                tags: true
+            });
+
+            $('.cast-input').select2({
+                tags: true
+            });
+
+            $("#Movies .nav .nav-item .nav-link").on("click", function () {
+                $("#Movies .nav-item").find(".active").removeClass("active link-warning fw-bold border-bottom border-2 border-warning").addClass("link-secondary").prop('disabled', false);
+                $(this).addClass("active link-warning fw-bold border-bottom border-2 border-warning").removeClass("link-secondary").prop('disabled', true);
+            });
         });
-        
     </script>
 @endsection

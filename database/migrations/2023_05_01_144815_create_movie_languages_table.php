@@ -43,7 +43,7 @@ return new class extends Migration {
             $table->id()->autoIncrement();
             $table->string('name', 255);
             $table->text('image');
-            $table->string('showTime', 255);
+            $table->integer('showTime');
             $table->date('releaseDate');
             $table->date('endDate');
             $table->string('national', 255);

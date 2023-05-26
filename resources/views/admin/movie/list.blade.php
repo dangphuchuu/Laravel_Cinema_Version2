@@ -51,7 +51,7 @@
                                                 <h6 class="mb-0 text-sm ">{{ $movie->name }}</h6>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary font-weight-bold">{{ $movie->showTime }}</span>
+                                                <span class="text-secondary font-weight-bold">{{ $movie->showTime }} phút</span>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <h6 class="mb-0 text-sm ">{{ $movie->national }}</h6>

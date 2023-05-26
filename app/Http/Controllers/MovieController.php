@@ -46,7 +46,7 @@ class MovieController extends Controller
                 [
                     'name' => $request->name,
                     'image' => $cloud,
-                    'showTime' => $request->showTime['hour'] . ':' . $request->showTime['minute'],
+                    'showTime' => $request->showTime,
                     'releaseDate' => $request->releaseDate,
                     'endDate' => $request->endDate,
                     'national' => $request->national,
@@ -71,8 +71,16 @@ class MovieController extends Controller
 
     public function getEdit($id)
     {
+        $casts = Cast::all();
+        $directors = Director::all();
+        $movieGenres = MovieGenres::all();
+        $rating = Rating::all();
         $movie = Movie::find($id);
-        return view('admin.movie.edit', ['movie' => $movie]);
+        return view('admin.movie.edit', ['movie' => $movie,
+            'movieGenres' => $movieGenres,
+            'directors' => $directors,
+            'casts' => $casts,
+            'rating' => $rating]);
     }
 
     public function postEdit($id)

@@ -13,7 +13,6 @@ class ComboController extends Controller
     {
         $food = Food::all();
         $combo = Combo::orderBy('id', 'DESC')->paginate(10);
-//        return view('admin.combo.test');
         return view('admin.combo.list', ['combo' => $combo, 'food' => $food]);
     }
 
