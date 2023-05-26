@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use App\Models\MovieGenres;
 use App\Models\Rating;
 use App\Models\User;
@@ -31,20 +32,29 @@ class WebController extends Controller
 
     public function schedules()
     {
-        return view('web.pages.schedules');
+        $movies = Movie::all();
+        foreach ($movies as $movie) {
+            dd($movie->releaseDate >= date("YYYY-mm-dd"));
+        }
+        return view('web.pages.schedules', [
+            'movies' => $movies
+        ]);
     }
 
     public function movies()
     {
+        $movies = Movie::all();
         $movieGenres = MovieGenres::all();
         $rating = Rating::all();
         return view('web.pages.movies', [
+            'movies' => $movies,
             'movieGenres' => $movieGenres,
             'rating' => $rating
         ]);
     }
 
-    public function events() {
+    public function events()
+    {
         return view('web.pages.events');
     }
 
