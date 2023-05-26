@@ -40,7 +40,7 @@
                                             <td class="align-middle text-center">
                                                 @if(strstr($movie->image,"https") == "")
                                                     <img style="width: 300px"
-                                                         src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{$movie->image}}.jpg"
+                                                         src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{$movie->image}}.jpg"
                                                          alt="user1">
                                                 @else
                                                     <img style="width: 300px"
@@ -77,14 +77,14 @@
                                                 @endif
                                             </td>
                                             <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                                                <a href="admin/movie/edit/{!! $movie['id'] !!}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                                    data-original-title="Edit user">
                                                     Edit
                                                 </a>
                                             </td>
                                             <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                                   data-original-title="Edit user">
+                                                <a href="javascript:;" data-url="{{ url('admin/movie/delete', $movie['id'] ) }}" class="text-secondary font-weight-bold text-xs delete-movie" data-toggle="tooltip"
+                                                   data-original-title="Delete movie">
                                                     Delete
                                                 </a>
                                             </td>
@@ -102,4 +102,35 @@
     @else
         <h1 align="center">Permissions Deny</h1>
     @endcan
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('.delete-movie').on('click', function () {
+                var userURL = $(this).data('url');
+                var trObj = $(this);
+                if (confirm("Are you sure you want to remove it?") === true) {
+                    $.ajax({
+                        url: userURL,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data['success']) {
+                                // alert(data.success);
+                                trObj.parents("tr").remove();
+                            } else if (data['error']) {
+                                alert(data.error);
+                            }
+                        }
+                    });
+                }
+
+            });
+        });
+    </script>
 @endsection

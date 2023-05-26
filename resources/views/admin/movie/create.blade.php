@@ -2,7 +2,6 @@
 @section('content')
     <div class="container-fluid py-4">
         <div class="row">
-            <form action="admin/movie/create" method="POST">
                 <div class="col-md-12">
                     <div class="card">
                         <form method="post" action="/admin/movie/create" enctype="multipart/form-data">
@@ -345,9 +344,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group file-uploader">
                                             <label for="movieImage" class="form-label">Image</label>
-                                            <input id="movieImage" type="file" name="image" class="form-control">
+                                            <input id="movieImage" type="file" name="Image" class="form-control image-movie">
+                                            <img style="width: 300px" src="" class="img_movie d-none" alt="user1">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -379,7 +379,6 @@
                     </div>
 
                 </div>
-            </form>
         </div>
     </div>
 @endsection
@@ -395,6 +394,21 @@
             });
 
             $('#national').select2();
+        });
+    </script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.file-uploader .img_movie').attr('src', e.target.result).removeClass('d-none');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".image-movie").change(function () {
+            readURL(this);
         });
     </script>
 @endsection
