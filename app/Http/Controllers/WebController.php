@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cast;
+use App\Models\Director;
+use App\Models\Movie;
 use App\Models\MovieGenres;
 use App\Models\Rating;
+use App\Models\Theater;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,20 +36,95 @@ class WebController extends Controller
 
     public function schedules()
     {
-        return view('web.pages.schedules');
-    }
-
-    public function movies()
-    {
-        $movieGenres = MovieGenres::all();
-        $rating = Rating::all();
-        return view('web.pages.movies', [
-            'movieGenres' => $movieGenres,
-            'rating' => $rating
+        $movies = Movie::whereDate('releaseDate', '<=', Carbon::today()->toDateString())->get();
+        $theaters = Theater::all();
+        $film = new Movie();
+        foreach ($movies as $movie) {
+            $film = $movie;
+            break;
+        }
+        $cities = [];
+        foreach ($theaters as $theater) {
+            if (array_search($theater->city, $cities)) {
+                continue;
+            } else {
+                array_push($cities, $theater->city);
+            }
+        }
+        return view('web.pages.schedules', [
+            'movies' => $movies,
+            'film' => $film,
+            'theaters' => $theaters,
+            'cities' => $cities
         ]);
     }
 
-    public function events() {
+    public function movies(Request $request)
+    {
+        $casts = Cast::all();
+        $directors = Director::all();
+        $movies = Movie::all();
+        $movieGenres = MovieGenres::all();
+        $rating = Rating::all();
+
+        return view('web.pages.movies', [
+            'movies' => $movies,
+            'movieGenres' => $movieGenres,
+            'rating' => $rating,
+            'casts' => $casts,
+            'directors' => $directors
+        ]);
+    }
+
+    public function movieSearch(Request $request)
+    {
+        $casts = Cast::all();
+        $directors = Director::all();
+        $movieGenres = MovieGenres::all();
+        $rating = Rating::all();
+
+
+        if ($request->casts == null && $request->directors == null && $request->movieGenres == null && $request->rating == null) {
+            return redirect('/movies');
+        } else {
+            $ratings = (int)$request->rating;
+            $movies = Movie::with(['casts' => function ($query) use ($request) {
+                if ($request->casts)
+                    $query->whereIn('cast_id', $request->casts);
+            }, 'directors' => function ($query) use ($request) {
+                if ($request->directors)
+                    $query->whereIn('director_id', $request->directors);
+            }, 'movieGenres' => function ($query) use ($request) {
+                if ($request->movieGenres)
+                    $query->whereIn('movieGenre_id', $request->movieGenres);
+            }])
+                ->whereHas('casts', function ($query) use ($request) {
+                    if ($request->casts)
+                        $query->whereIn('cast_id', $request->casts);
+                })
+                ->whereHas('directors', function ($query) use ($request) {
+                    if ($request->directors)
+                        $query->whereIn('director_id', $request->directors);
+                })
+                ->whereHas('movieGenres', function ($query) use ($request) {
+                    if ($request->movieGenres)
+                        $query->whereIn('movieGenre_id', $request->movieGenres);
+                })->where('rating_id', $ratings)->get();
+
+            return view('web.pages.movies', [
+                'movies' => $movies,
+                'movieGenres' => $movieGenres,
+                'rating' => $rating,
+                'casts' => $casts,
+                'directors' => $directors
+            ]);
+        }
+
+
+    }
+
+    public function events()
+    {
         return view('web.pages.events');
     }
 

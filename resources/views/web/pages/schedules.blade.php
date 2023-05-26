@@ -7,6 +7,7 @@
     <section class="container-lg clearfix">
         <!-- Main content -->
         <div class="mt-5" id="schedules">
+            {{-- SubNav --}}
             <ul class="nav justify-content-center mb-4">
                 <li class="nav-item">
                     <button class="h5 nav-link link-warning active fw-bold border-bottom border-2 border-warning"
@@ -27,114 +28,109 @@
 
             <div id="lichtheorap" class="collapse" data-bs-parent="#schedules">
                 <div class="d-flex flex-row mt-4">
-                    <div class="flex-city p-2 m-1 border-0">
-                        <button class="btn btn-warning p-3" aria-expanded="true" data-bs-toggle="collapse"
-                                data-bs-target="#tphcm" disabled>TP Hồ Chí Minh
-                        </button>
-                    </div>
-                    <div class="flex-city p-2 m-1 border-0">
-                        <button class="btn btn-secondary p-3" aria-expanded="false" data-bs-toggle="collapse"
-                                data-bs-target="#hanoi">Hà Nội
-                        </button>
-                    </div>
-                    <div class="flex-city p-2 m-1 border-0">
-                        <button class="btn btn-secondary  p-3" aria-expanded="false" data-bs-toggle="collapse"
-                                data-bs-target="#danang">Đà Nẵng
-                        </button>
-                    </div>
+                    @foreach($cities as $city)
+                        <div class="flex-city p-2 m-1 border-0">
+                            <button class="btn @if($loop->first) btn-warning @else btn-secondary @endif p-3" aria-expanded="true"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#{{$city}}" @if($loop->first) disabled @endif>{{$city}}
+                            </button>
+                        </div>
+                    @endforeach
                 </div>
                 <div id="theater">
-                    <div id="tphcm" data-bs-parent="#theater"
-                         class="row g-4 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-4 show collapse">
-                        @for($i = 0; $i < 6; $i++)
-                            <!-- Movie -->
-                            <div class="col">
-                                <div class="card px-0 overflow-hidden theater_item"
-                                     style="background: #f5f5f5">
-                                    <button class="btn rounded-0 border-0 btn_theater @if($i==0) btn-warning @endif" aria-expanded="true"
-                                            data-bs-toggle="collapse" data-bs-target="#schedulesByTheater"
-                                            @if($i==0) disabled @endif>
-                                        <div class="card-body">
-                                            <a href="/schedules/#"
-                                               class="link link-dark text-decoration-none text-center">
-                                                <h5 class="card-title fs-4">Theater {{ $i }}</h5>
-                                                <p class="card-text fs-6 text-secondary">
-                                                    <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận
-                                                    8,
-                                                    TP.HCM
-                                                </p>
-                                            </a>
-                                        </div>
-                                    </button>
+                    @foreach($cities as $city)
+                        <div id="{{$city}}" data-bs-parent="#theater"
+                             class="row g-4 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-4 @if($loop->first) show @endif collapse">
+                            @foreach($theaters as $theater)
+                                @if($city == $theater->city)
+                                    <!-- Theater -->
+                                    <div class="col">
+                                        <div class="card px-0 overflow-hidden theater_item"
+                                             style="background: #f5f5f5">
+                                            <button class="btn rounded-0 border-0 btn_theater @if($loop->first) btn-warning @endif"
+                                                    aria-expanded="true"
+                                                    data-bs-toggle="collapse" data-bs-target="#schedulesByTheater"
+                                                    @if($loop->first) disabled @endif>
+                                                <div class="card-body">
+                                                    <a href="/schedules/#"
+                                                       class="link link-dark text-decoration-none text-center">
+                                                        <h5 class="card-title fs-4">{{ $theater->name }}</h5>
+                                                        <p class="card-text fs-6 text-secondary">
+                                                            <i class="fa-solid fa-location-dot"></i> {{ $theater->address }}
+                                                        </p>
+                                                    </a>
+                                                </div>
+                                            </button>
 
-                                    <div class="card-footer">
-                                        <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98"
-                                           class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ <i
-                                                class="fa-solid fa-map-location-dot"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Movie: end -->
-                        @endfor
-                    </div>
-
-                    <div id="hanoi" data-bs-parent="#theater"
-                         class="row g-4 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-4 collapse">
-                        @for($i = 0; $i < 4; $i++)
-                            <!-- Movie -->
-                            <div class="col">
-                                <div class="card px-0 overflow-hidden theater_item"
-                                     style="background: #f5f5f5">
-                                    <button class="btn rounded-0 border-0 btn_theater" aria-expanded="true"
-                                            data-bs-toggle="collapse" data-bs-target="#schedulesByTheater">
-                                        <div class="card-body">
-                                            <a href="/schedules/#"
-                                               class="link link-dark text-decoration-none text-center">
-                                                <h5 class="card-title fs-4">Theater {{ $i }}</h5>
-                                                <p class="card-text fs-6 text-secondary">
-                                                    <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận
-                                                    8,
-                                                    TP.HCM
-                                                </p>
-                                            </a>
+                                            <div class="card-footer">
+                                                <a href="{{ $theater->location }}"
+                                                   class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ <i
+                                                        class="fa-solid fa-map-location-dot"></i></a>
+                                            </div>
                                         </div>
-                                    </button>
-                                    <div class="card-footer">
-                                        <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98"
-                                           class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ <i
-                                                class="fa-solid fa-map-location-dot"></i></a>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- Movie: end -->
-                        @endfor
-                    </div>
+                                    <!-- Theater: end -->
+                                @endif
+                            @endforeach
+                        </div>
+                    @endforeach
+                    {{--                    <div id="hanoi" data-bs-parent="#theater"--}}
+                    {{--                         class="row g-4 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-4 collapse">--}}
+                    {{--                        @for($i = 0; $i < 4; $i++)--}}
+                    {{--                            <!-- Movie -->--}}
+                    {{--                            <div class="col">--}}
+                    {{--                                <div class="card px-0 overflow-hidden theater_item"--}}
+                    {{--                                     style="background: #f5f5f5">--}}
+                    {{--                                    <button class="btn rounded-0 border-0 btn_theater" aria-expanded="true"--}}
+                    {{--                                            data-bs-toggle="collapse" data-bs-target="#schedulesByTheater">--}}
+                    {{--                                        <div class="card-body">--}}
+                    {{--                                            <a href="/schedules/#"--}}
+                    {{--                                               class="link link-dark text-decoration-none text-center">--}}
+                    {{--                                                <h5 class="card-title fs-4">Theater {{ $i }}</h5>--}}
+                    {{--                                                <p class="card-text fs-6 text-secondary">--}}
+                    {{--                                                    <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận--}}
+                    {{--                                                    8,--}}
+                    {{--                                                    TP.HCM--}}
+                    {{--                                                </p>--}}
+                    {{--                                            </a>--}}
+                    {{--                                        </div>--}}
+                    {{--                                    </button>--}}
+                    {{--                                    <div class="card-footer">--}}
+                    {{--                                        <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98"--}}
+                    {{--                                           class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ <i--}}
+                    {{--                                                class="fa-solid fa-map-location-dot"></i></a>--}}
+                    {{--                                    </div>--}}
+                    {{--                                </div>--}}
+                    {{--                            </div>--}}
+                    {{--                            <!-- Movie: end -->--}}
+                    {{--                        @endfor--}}
+                    {{--                    </div>--}}
 
-                    <div id="danang" data-bs-parent="#theater"
-                         class="row g-4 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-4 collapse">
-                        @for($i = 0; $i < 2; $i++)
-                            <!-- Movie -->
-                            <div class="col">
-                                <div class="card px-0 overflow-hidden theater_item">
-                                    <button class="btn rounded-0 border-0 btn_theater" aria-expanded="true"
-                                            data-bs-toggle="collapse" data-bs-target="#schedulesByTheater">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-center fs-4">Theater {{ $i }}</h5>
-                                            <p class="card-text fs-6">
-                                                <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận 8,
-                                                TP.HCM
-                                            </p>
-                                        </div>
-                                    </button>
-                                    <div class="card-footer">
-                                        <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98" class="btn w-100 h-100"
-                                           target="_blank">xem Bản đồ <i class="fa-solid fa-map-location-dot"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Movie: end -->
-                        @endfor
-                    </div>
+                    {{--                    <div id="danang" data-bs-parent="#theater"--}}
+                    {{--                         class="row g-4 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-4 collapse">--}}
+                    {{--                        @for($i = 0; $i < 2; $i++)--}}
+                    {{--                            <!-- Movie -->--}}
+                    {{--                            <div class="col">--}}
+                    {{--                                <div class="card px-0 overflow-hidden theater_item">--}}
+                    {{--                                    <button class="btn rounded-0 border-0 btn_theater" aria-expanded="true"--}}
+                    {{--                                            data-bs-toggle="collapse" data-bs-target="#schedulesByTheater">--}}
+                    {{--                                        <div class="card-body">--}}
+                    {{--                                            <h5 class="card-title text-center fs-4">Theater {{ $i }}</h5>--}}
+                    {{--                                            <p class="card-text fs-6">--}}
+                    {{--                                                <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận 8,--}}
+                    {{--                                                TP.HCM--}}
+                    {{--                                            </p>--}}
+                    {{--                                        </div>--}}
+                    {{--                                    </button>--}}
+                    {{--                                    <div class="card-footer">--}}
+                    {{--                                        <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98" class="btn w-100 h-100"--}}
+                    {{--                                           target="_blank">xem Bản đồ <i class="fa-solid fa-map-location-dot"></i></a>--}}
+                    {{--                                    </div>--}}
+                    {{--                                </div>--}}
+                    {{--                            </div>--}}
+                    {{--                            <!-- Movie: end -->--}}
+                    {{--                        @endfor--}}
+                    {{--                    </div>--}}
                 </div>
 
                 @include('web.layout.schedulesByTheater')
@@ -142,67 +138,110 @@
 
             <div id="lichtheophim" class="collapse show" data-bs-parent="#schedules">
                 {{-- Carousel Movies --}}
-                <div class="d-flex flex-row flex-nowrap overflow-auto mb-4">
-                    @for($i = 0; $i < 10; $i++)
-                        <button class="btn btn-block border-0 p-2">
-                            <img
-                                src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/t/h/the_accursed.c_n_th_nh_n_t_c_i_m_-_payoff_poster_-_kc_12.05.2023_1_.jpg"
-                                class="rounded d-block"
-                                alt="..." style="max-width: 320px">
-                        </button>
-                    @endfor
+                <div class="d-flex container flex-row flex-nowrap overflow-auto mb-4 carousel_movie">
+                    @foreach($movies as $movie)
+                        @for($i = 0; $i <= 12; $i++)
+                                <?php $film[$movie->id] = $movie ?>
+                            <button onclick="movie({{ $i }})" class="btn btn-block border-0 p-2">
+                                @if(strstr($movie->image,"https") === "")
+                                    <img class="rounded d-block" style="max-width: 200px" alt="..."
+                                         src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg">
+                                @else
+                                    <img class="rounded d-block" style="max-width: 200px" alt="..." src="{{ $movie->image }}">
+                                @endif
+                            </button>
+                        @endfor
+                    @endforeach
                 </div>
 
                 <!-- Movie -->
-                <div class="d-flex flex-column flex-sm-row align-items-center" style="background: #f5f5f5">
+                <div class="d-flex flex-column flex-sm-row align-items-center" id="movieChoice" style="background: #f5f5f5">
                     <div class="flex-shrink-0 justify-content-center">
                         <a href="/movie/1">
-                            <img
-                                src="https://ocwckgy6c1obj.vcdn.cloud/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/l/m/lm6_2x3_layout.jpg"
-                                class="img-fluid"
-                                alt="..." style="max-height: 361px; max-width: 241px">
+                            @if(strstr($film->image,"https") === "")
+                                <img class="img-fluid" style="max-height: 361px; max-width: 241px" alt="..."
+                                     src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg">
+                            @else
+                                <img class="img-fluid" style="max-height: 361px; max-width: 241px" alt="..." src="{{ $movie->image }}">
+                            @endif
                         </a>
                     </div>
                     <div class="flex-grow-1 ms-3 mt-3 mt-sm-0">
-                        <h5 class="fw-bold text-center text-sm-start">LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH</h5>
-                        <p class="card-text text-danger text-center text-sm-start">132 phút</p>
+                        <h5 class="fw-bold text-center text-sm-start">2</h5>
+                        <p class="card-text text-danger text-center text-sm-start">{{ $film->showTime }}</p>
                         <p class="card-text text-center text-sm-start">
-                            <a class="link link-dark" href="#!2">Hài</a> |
-                            <a class="link link-dark" href="#!2">Hành động</a> |
-                            <a class="link link-dark" href="#!2">Tâm lý</a>
+                            @foreach($film->movieGenres as $genre)
+                                <a class="link link-dark" href="#!2">{{ $genre->name }}</a> |
+                            @endforeach
                         </p>
-                        <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC
-                            PHỔ
-                            BIẾN ĐẾN
-                            NGƯỜI XEM TỪ ĐỦ 16 TUỔI
-                            TRỞ LÊN (16+)</p>
+                        <p class="card-text">Rated:
+                            <b class="text-danger">{{ $film->rating->name }}</b>
+                            - {{ $film->rating->description }}</p>
                     </div>
                 </div>
                 <!-- Movie: end -->
 
                 @include('web.layout.schedulesByMovie')
             </div>
-
-
         </div>
     </section>
 @endsection
 
 @section('js')
     <script>
-        $("#schedules .nav .nav-item .nav-link").on("click", function () {
-            $("#schedules .nav-item").find(".active").removeClass("active link-warning fw-bold border-bottom border-2 border-warning").addClass("link-secondary").prop('disabled', false);
-            $(this).addClass("active link-warning fw-bold border-bottom border-2 border-warning").removeClass("link-secondary").prop('disabled', true);
-        });
+        $(document).ready(function () {
+            $("#schedules .nav .nav-item .nav-link").on("click", function () {
+                $("#schedules .nav-item").find(".active").removeClass("active link-warning fw-bold border-bottom border-2 border-warning").addClass("link-secondary").prop('disabled', false);
+                $(this).addClass("active link-warning fw-bold border-bottom border-2 border-warning").removeClass("link-secondary").prop('disabled', true);
+            });
 
-        $("#lichtheorap .d-flex .flex-city .btn").on("click", function () {
-            $("#lichtheorap .flex-city").find(".btn").removeClass("btn-warning").addClass("btn-secondary").prop('disabled', false);
-            $(this).addClass("btn-warning").removeClass("btn-secondary").prop('disabled', true);
-        });
+            $("#lichtheorap .d-flex .flex-city .btn").on("click", function () {
+                $("#lichtheorap .flex-city").find(".btn").removeClass("btn-warning").addClass("btn-secondary").prop('disabled', false);
+                $(this).addClass("btn-warning").removeClass("btn-secondary").prop('disabled', true);
+            });
 
-        $(".theater_item .btn_theater").on("click", function () {
-            $(".theater_item ").find(".btn_theater").removeClass("btn-warning").prop('disabled', false);
-            $(this).addClass("btn-warning").prop('disabled', true);
-        });
+            $(".theater_item .btn_theater").on("click", function () {
+                $(".theater_item ").find(".btn_theater").removeClass("btn-warning").prop('disabled', false);
+                $(this).addClass("btn-warning").prop('disabled', true);
+            });
+
+
+        })
+
+        function movie(id) {
+            @foreach($movies as $movie)
+            if (id === {{ $movie->id }}) {
+                    <?php $film = $movie ?>
+                var divMovieChoice = '' +
+                    '<div class="d-flex flex-column flex-sm-row align-items-center" id="movieChoice" style="background: #f5f5f5">\
+                    <div class="flex-shrink-0 justify-content-center">\
+                <a href="/movie/1">\
+                    @if(strstr($film->image,"https") === "")
+                        <img class="img-fluid" style="max-height: 361px; max-width: 241px" alt="..."\
+                    src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg">\
+                    @else
+                        <img class="img-fluid" style="max-height: 361px; max-width: 241px" alt="..." src="{{ $movie->image }}">\
+                    @endif
+                        </a>\
+                </div>\
+                    <div class="flex-grow-1 ms-3 mt-3 mt-sm-0">\
+                        <h5 class="fw-bold text-center text-sm-start">{{ $film->id }}</h5>\
+                    <p class="card-text text-danger text-center text-sm-start">{{ $film->showTime }}</p>\
+                    <p class="card-text text-center text-sm-start">\
+                        @foreach($film->movieGenres as $genre)
+                        <a class="link link-dark" href="#!2">{{ $genre->name }}</a> |\
+                        @endforeach
+                        </p>\
+                        <p class="card-text">Rated:\
+                            <b class="text-danger">{{ $film->rating->name }}</b>\
+                        - {{ $film->rating->description }}</p>\
+                </div>\
+            </div>';
+
+                $('#movieChoice').replaceWith(divMovieChoice);
+            }
+            @break
+            @endforeach
+        }
     </script>
 @endsection

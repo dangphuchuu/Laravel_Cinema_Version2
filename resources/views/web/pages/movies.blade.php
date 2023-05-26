@@ -28,7 +28,7 @@
                 <li class="nav-item me-auto">
                     <button class="h5 nav-link link-secondary"
                             aria-expanded="false"
-                            data-bs-toggle="collapse" data-bs-target="#sukien">
+                            data-bs-toggle="collapse" data-bs-target="#vebantruoc">
                         Vé bán trước
                     </button>
                 </li>
@@ -47,33 +47,42 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <form>
+                    <form action="/movies/search" method="get">
+                        @csrf
                         <div class="form-group m-2 mb-3">
-                            <label class="form-label" for="cast">Diễn viên</label>
-                            <input id="cast" name="cast" type="text" class="form-control">
+                            <label for="cast" class="form-label">Casts</label>
+                            <select id="cast" class="form-control cast-input" name="casts[]" multiple>
+                                @foreach($casts as $cast)
+                                    <option value="{{ $cast->id }}">{{ $cast->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group m-2 mb-3">
-                            <label class="form-label" for="director">Đạo diễn</label>
-                            <input id="dicretor" name="director" type="text" class="form-control">
+                            <label for="director" class="form-control-label">Director</label>
+                            <select id="director" class="form-control director-input" name="directors[]" multiple>
+                                @foreach($directors as $director)
+                                    <option value="{{ $director->id }}">{{ $director->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="m-2 form-group mb-3">
                             <label class="form-label" for="movieGenres">Thể loại</label>
-                            <select id="movieGenres" class="form-select">
-                                <option selected>Tất cả</option>
+                            <select id="movieGenres" class="form-control director-input" name="movieGenres[]" multiple>
                                 @foreach($movieGenres as $movieGenre)
-                                    <option>{{ $movieGenre->name }}</option>
+                                    <option value="{{ $movieGenre->id }}">{{ $movieGenre->name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="m-2 form-group mb-3">
                             <label class="form-label" for="rating">Độ tuổi</label>
-                            <select id="rating" class="form-select">
+                            <select id="rating" class="form-select" name="rating">
+                                <option value="" selected>Tất cả</option>
                                 @foreach($rating as $value)
-                                    <option value="{{ $value->id }}" selected title="{{
-                                    $value->description }}">
+                                    <option value="{{ $value->id }}"
+                                            title="{{ $value->description }}">
                                         {{ $value->name }}
                                     </option>
                                 @endforeach
@@ -86,87 +95,160 @@
             </div>
 
             <div id="phimsapchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse" data-bs-parent="#Movies">
-                @for($i = 0; $i < 6; $i++)
-                    <!-- Movie -->
-                    <div class="col">
-                        <div class="card px-0 overflow-hidden" style="background: #f5f5f5">
-                            <div class="row g-0">
-                                <div class="col-lg-4 col-12">
-                                    <a href="/movie/1">
-                                        <img
-                                            src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/t/h/the_accursed.c_n_th_nh_n_t_c_i_m_-_payoff_poster_-_kc_12.05.2023_1_.jpg"
-                                            class="img-fluid w-100" alt="...">
-                                    </a>
-                                </div>
-                                <div class="col-lg-8 col-12">
-                                    <div class="card-body">
-                                        <a href="/movie/1">
-                                            <h5 class="card-title">LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH</h5>
-                                            <p class="card-text text-danger">132 phút</p>
-                                            <p class="card-text">
-                                                <a class="link link-dark" href="#">Hài</a> |
-                                                <a class="link link-dark" href="#">Hành động</a> |
-                                                <a class="link link-dark" href="#">Tâm lý</a>
-                                            </p>
-                                            <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
-                                                BIẾN
-                                                ĐẾN
-                                                NGƯỜI XEM TỪ ĐỦ 16 TUỔI
-                                                TRỞ LÊN (16+)</p>
+                @foreach($movies as $movie)
+                    @if(!($movie->upcoming) && ($movie->releaseDate > date("YYYY-mm-dd")))
+                        <!-- Movie -->
+                        <div class="card-col">
+                            <article class="card px-0 overflow-hidden" style="background: #f5f5f5">
+                                <div class="row g-0">
+                                    <div class="col-lg-4 col-12">
+                                        <a href="/movie/{{ $movie->id }}">
+                                            @if(strstr($movie->image,"https") === "")
+                                                <img class="img-fluid rounded w-100"
+                                                     src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg"
+                                                     alt="">
+                                            @else
+                                                <img class="img-fluid rounded w-100" src="{{ $movie->image }}" alt="">
+                                            @endif
                                         </a>
                                     </div>
+                                    <div class="col-lg-8 col-12">
+                                        <div class="card-body">
+                                            <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
+                                                <h5 class="card-title">{{ $movie->name }}</h5>
+                                                <p class="card-text text-danger">{{ $movie->showTime }}</p>
+                                                <p class="card-text">
+                                                    @foreach($movie->movieGenres as $genres)
+                                                        <a class="link link-dark" href="#">{{ $genres->name }}</a> |
+                                                    @endforeach
+                                                </p>
+                                                <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
+                                                    BIẾN ĐẾN
+                                                    NGƯỜI XEM TỪ ĐỦ 16 TUỔI
+                                                    TRỞ LÊN (16+)</p>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </article>
                         </div>
-                    </div>
-                    <!-- Movie: end -->
-                @endfor
+                        <!-- Movie: end -->
+                    @endif
+                @endforeach
             </div>
 
             <div id="phimdangchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse show" data-bs-parent="#Movies">
-                @for($i = 0; $i < 6; $i++)
-                    <!-- Movie -->
-                    <div class="card-col">
-                        <article class="card px-0 overflow-hidden" style="background: #f5f5f5">
-                            <div class="row g-0">
-                                <div class="col-lg-4 col-12">
-                                    <a href="/movie/1">
-                                        <img
-                                            src="https://ocwckgy6c1obj.vcdn.cloud/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/l/m/lm6_2x3_layout.jpg"
-                                            class="img-fluid rounded w-100" alt="...">
-                                    </a>
-                                </div>
-                                <div class="col-lg-8 col-12">
-                                    <div class="card-body">
-                                        <a href="movie/1" class="link link-dark text-decoration-none">
-                                            <h5 class="card-title">LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH</h5>
-                                            <p class="card-text text-danger">132 phút</p>
-                                            <p class="card-text">
-                                                <a class="link link-dark" href="#">Hài</a> |
-                                                <a class="link link-dark" href="#">Hành động</a> |
-                                                <a class="link link-dark" href="#">Tâm lý</a>
-                                            </p>
-                                            <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
-                                                BIẾN ĐẾN
-                                                NGƯỜI XEM TỪ ĐỦ 16 TUỔI
-                                                TRỞ LÊN (16+)</p>
+                @foreach($movies as $movie)
+                    @if(!($movie->upcoming) && ($movie->releaseDate <= date("YYYY-mm-dd")))
+                        {{--                        {{  dd($movie->releaseDate >= date("YYYY-mm-dd"))}}--}}
+                        <!-- Movie -->
+                        <div class="card-col">
+                            <article class="card px-0 overflow-hidden" style="background: #f5f5f5">
+                                <div class="row g-0">
+                                    <div class="col-lg-4 col-12">
+                                        <a href="/movie/{{ $movie->id }}">
+                                            @if(strstr($movie->image,"https") === "")
+                                                <img class="img-fluid rounded w-100"
+                                                     src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg"
+                                                     alt="">
+                                            @else
+                                                <img class="img-fluid rounded w-100" src="{{ $movie->image }}" alt="">
+                                            @endif
                                         </a>
                                     </div>
+                                    <div class="col-lg-8 col-12">
+                                        <div class="card-body">
+                                            <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
+                                                <h5 class="card-title">{{ $movie->name }}</h5>
+                                                <p class="card-text text-danger">{{ $movie->showTime }}</p>
+                                                <p class="card-text">
+                                                    @foreach($movie->movieGenres as $genres)
+                                                        <a class="link link-dark" href="#">{{ $genres->name }}</a> |
+                                                    @endforeach
+                                                </p>
+                                                <p class="card-text">Rated: <b class="text-danger">{{ $movie->rating->name }}</b> - PHIM ĐƯỢC PHỔ
+                                                    BIẾN ĐẾN
+                                                    NGƯỜI XEM TỪ ĐỦ 16 TUỔI
+                                                    TRỞ LÊN (16+)</p>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                    </div>
-                    <!-- Movie: end -->
-                @endfor
+                            </article>
+                        </div>
+                        <!-- Movie: end -->
+                    @endif
+                @endforeach
+            </div>
+
+            <div id="vebantruoc" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse" data-bs-parent="#Movies">
+                @foreach($movies as $movie)
+                    @if($movie->upcoming)
+                        <!-- Movie -->
+                        <div class="card-col">
+                            <article class="card px-0 overflow-hidden" style="background: #f5f5f5">
+                                <div class="row g-0">
+                                    <div class="col-lg-4 col-12">
+                                        <a href="/movie/{{ $movie->id }}">
+                                            @if(strstr($movie->image,"https") === "")
+                                                <img class="img-fluid rounded w-100"
+                                                     src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg"
+                                                     alt="">
+                                            @else
+                                                <img class="img-fluid rounded w-100" src="{{ $movie->image }}" alt="">
+                                            @endif
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-8 col-12">
+                                        <div class="card-body">
+                                            <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
+                                                <h5 class="card-title">{{ $movie->name }}</h5>
+                                                <p class="card-text text-danger">{{ $movie->showTime }}</p>
+                                                <p class="card-text">
+                                                    @foreach($movie->movieGenres as $genres)
+                                                        <a class="link link-dark" href="#">{{ $genres->name }}</a> |
+                                                    @endforeach
+                                                </p>
+                                                <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
+                                                    BIẾN ĐẾN
+                                                    NGƯỜI XEM TỪ ĐỦ 16 TUỔI
+                                                    TRỞ LÊN (16+)</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Movie: end -->
+                    @endif
+                @endforeach
             </div>
         </div>
     </section>
 @endsection
 @section('js')
     <script>
-        $("#Movies .nav .nav-item .nav-link").on("click", function () {
-            $("#Movies .nav-item").find(".active").removeClass("active link-warning fw-bold border-bottom border-2 border-warning").addClass("link-secondary").prop('disabled', false);
-            $(this).addClass("active link-warning fw-bold border-bottom border-2 border-warning").removeClass("link-secondary").prop('disabled', true);
+        $(document).ready(function () {
+            $('.director-input').select2({
+                tags: true
+            });
+
+            $('#rating').select2({
+                tags: true
+            })
+
+            $('#movieGenres').select2({
+                tags: true
+            });
+
+            $('.cast-input').select2({
+                tags: true
+            });
+
+            $("#Movies .nav .nav-item .nav-link").on("click", function () {
+                $("#Movies .nav-item").find(".active").removeClass("active link-warning fw-bold border-bottom border-2 border-warning").addClass("link-secondary").prop('disabled', false);
+                $(this).addClass("active link-warning fw-bold border-bottom border-2 border-warning").removeClass("link-secondary").prop('disabled', true);
+            });
         });
     </script>
 @endsection

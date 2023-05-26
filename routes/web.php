@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +24,7 @@ Route::get('/tickets/{movie_id}/', [WebController::class, 'ticket']);
 Route::get('/schedules', [WebController::class, 'schedules']);
 Route::get('/events', [WebController::class, 'events']);
 Route::get('/movies', [WebController::class, 'movies']);
+Route::get('/movies/search', [WebController::class, 'movieSearch']);
 Route::post('/signIn', [WebController::class, 'signIn']);
 Route::post('/signUp', [WebController::class, 'signUp']);
 Route::get('/signOut', [WebController::class, 'signOut']);
