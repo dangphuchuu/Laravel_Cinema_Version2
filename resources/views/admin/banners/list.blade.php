@@ -27,7 +27,7 @@
                                         <tr>
                                             <td class="align-middle text-center">
                                                 <img style="width: 300px"
-                                                     src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{!! $value['image'] !!}.jpg" alt="user1">
+                                                     src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg" alt="user1">
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 @if($value['status'] == 1)
@@ -42,13 +42,13 @@
                                                 <a href="#editBanner" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                                    data-original-title="Edit banner" data-bs-target="#editBanner{!! $value['id'] !!}"
                                                    data-bs-toggle="modal">
-                                                    Edit
+                                                    <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                                 </a>
                                             </td>
                                             <td class="align-middle">
                                                 <a href="javascript:void(0)" data-url="{{ url('admin/banners/delete', $value['id'] ) }}"
                                                    class="text-secondary font-weight-bold text-xs delete-banner" data-toggle="tooltip">
-                                                    Delete
+                                                    <i class="fa-solid fa-trash-can fa-lg"></i>
                                                 </a>
                                             </td>
                                         </tr>

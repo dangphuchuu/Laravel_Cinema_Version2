@@ -56,11 +56,11 @@
                                             <td class="align-middle text-center">
                                                 <h6 class="mb-0 text-sm ">{{ $movie->national }}</h6>
                                             </td>
-                                            @foreach($movie->directors as $director)
                                                 <td class="align-middle text-center">
+                                                    @foreach($movie->directors as $director)
                                                     <h6 class="mb-0 text-sm ">{{ $director->name }}</h6>
+                                                    @endforeach
                                                 </td>
-                                            @endforeach
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary font-weight-bold">{{ $movie->releaseDate }}</span>
                                             </td>
@@ -79,13 +79,13 @@
                                             <td class="align-middle">
                                                 <a href="admin/movie/edit/{!! $movie['id'] !!}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                                    data-original-title="Edit user">
-                                                    Edit
+                                                    <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                                 </a>
                                             </td>
                                             <td class="align-middle">
                                                 <a href="javascript:;" data-url="{{ url('admin/movie/delete', $movie['id'] ) }}" class="text-secondary font-weight-bold text-xs delete-movie" data-toggle="tooltip"
                                                    data-original-title="Delete movie">
-                                                    Delete
+                                                    <i class="fa-solid fa-trash-can fa-lg"></i>
                                                 </a>
                                             </td>
                                         </tr>

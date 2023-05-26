@@ -8,6 +8,10 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class CastController extends Controller
 {
+    function __construct(){
+        $cloud_name = cloud_name();
+        view()->share('cloud_name',$cloud_name);
+    }
     public function cast()
     {
         $cast = Cast::orderBy('id', 'DESC')->Paginate(5);

@@ -61,14 +61,14 @@
                                             <td class="align-middle">
                                                 <a href="#editModal" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                                    data-bs-target="#editModal{!! $value['id'] !!}" data-bs-toggle="modal">
-                                                    Edit
+                                                    <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                                 </a>
                                             </td>
 
                                             <td class="align-middle">
                                                 <a href="javascript:void(0)" data-url="{{ url('admin/movie_genres/delete', $value['id'] ) }}"
                                                    class="text-secondary font-weight-bold text-xs delete-genres" data-toggle="tooltip">
-                                                    Delete
+                                                    <i class="fa-solid fa-trash-can fa-lg"></i>
                                                 </a>
                                             </td>
                                         </tr>

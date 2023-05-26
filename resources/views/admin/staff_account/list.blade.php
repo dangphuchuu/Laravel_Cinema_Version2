@@ -79,7 +79,7 @@
                                                     <button href="#permission" class="btn btn-link text-danger "
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#permission{!! $value['id'] !!}">
-                                                        Permission
+                                                        Permission &nbsp<i style="color:white" class="fa-solid fa-pen-to-square fa-lg"></i>
                                                     </button>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
@@ -96,7 +96,7 @@
                                                        data-url="{{ url('admin/staff/delete', $value['id'] ) }}"
                                                        class="text-secondary font-weight-bold text-xs delete-staff"
                                                        data-toggle="tooltip" data-original-title="Edit user">
-                                                        Delete
+                                                        <i class="fa-solid fa-trash-can fa-lg"></i>
                                                     </a>
                                                 </td>
                                             </tr>

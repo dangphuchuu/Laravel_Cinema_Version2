@@ -9,6 +9,10 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ComboController extends Controller
 {
+    function __construct(){
+        $cloud_name = cloud_name();
+        view()->share('cloud_name',$cloud_name);
+    }
     public function combo()
     {
         $food = Food::all();

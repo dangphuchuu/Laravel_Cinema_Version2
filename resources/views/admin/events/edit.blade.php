@@ -22,7 +22,7 @@
                                 <div class="form-group file-uploader">
                                     <label for="example-text-input" class="form-control-label">Image</label>
                                     <input type='file' name='Image' class="form-control image-event">
-                                    <img style="width: 300px" src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{!! $value['image'] !!}.jpg"
+                                    <img style="width: 300px" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
                                          class="img_event" alt="user1">
                                 </div>
                             </div>

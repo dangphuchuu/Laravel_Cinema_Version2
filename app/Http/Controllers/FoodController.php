@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class FoodController extends Controller
 {
+    function __construct(){
+        $cloud_name = cloud_name();
+        view()->share('cloud_name',$cloud_name);
+    }
     public function food()
     {
         $food = Food::orderBy('id', 'DESC')->Paginate(10);
