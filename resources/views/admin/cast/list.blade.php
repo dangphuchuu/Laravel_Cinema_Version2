@@ -34,7 +34,7 @@
                                             <td class="align-middle text-center">
                                                 @if(strstr($value['image'],"https") == "")
                                                     <img style="width: 300px"
-                                                         src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{!! $value['image'] !!}.jpg"
+                                                         src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
                                                          alt="user1">
                                                 @else
                                                     <img style="width: 300px"
@@ -55,13 +55,13 @@
                                                 <a href="#editCast" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                                    data-original-title="Edit cast" data-bs-target="#editCast{!! $value['id'] !!}"
                                                    data-bs-toggle="modal">
-                                                    Edit
+                                                    <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                                 </a>
                                             </td>
                                             <td class="align-middle">
                                                 <a href="javascript:void(0)" data-url="{{ url('admin/cast/delete', $value['id'] ) }}"
                                                    class="text-secondary font-weight-bold text-xs delete-cast" data-toggle="tooltip">
-                                                    Delete
+                                                    <i class="fa-solid fa-trash-can fa-lg"></i>
                                                 </a>
                                             </td>
                                         </tr>

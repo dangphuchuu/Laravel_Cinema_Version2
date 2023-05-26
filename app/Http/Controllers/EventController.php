@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
+    function __construct(){
+        $cloud_name = cloud_name();
+        view()->share('cloud_name',$cloud_name);
+    }
     public function events()
     {
         $post = Post::orderBy('id', 'DESC')->Paginate(5);

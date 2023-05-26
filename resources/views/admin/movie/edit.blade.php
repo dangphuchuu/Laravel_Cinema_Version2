@@ -324,7 +324,13 @@
                                         <label for="rating" class="form-label">Rating</label>
                                         <select id="rating" class="form-select" name="rating">
                                             @foreach($rating as $item)
-                                                <option value="{{ $item->id }}" class="fw-bold" title="{{ $item->description }}">{{ $item->name}}</option>
+                                                <option
+                                                @if(isset($movie))
+                                                    @if($movie['rating_id'] == $item['id'])
+                                                       selected
+                                                    @endif
+                                                @endif
+                                                value="{{ $item->id }}" class="fw-bold" title="{{ $item->description }}">{{ $item->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -333,13 +339,22 @@
                                     <div class="form-group file-uploader">
                                         <label for="movieImage" class="form-label">Image</label>
                                         <input id="movieImage" type="file" name="Image" class="form-control image-movie">
-                                        <img style="width: 300px" src="" class="img_movie d-none" alt="user1">
+                                        @if(strstr($movie['image'],"https") == "")
+                                            <img style="width: 300px" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $movie['image'] !!}.jpg"
+                                                 class="img_movie" alt="user1">
+                                        @else
+                                            <img style="width: 300px"
+                                                 src="{!! $movie['image'] !!}" class="img_movie" alt="user1">
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="trailer" class="form-label">Trailer</label>
-                                        <input id="trailer" name="trailer" class="form-control" type="text" value="" placeholder="Trailer">
+                                        <input class="form-control" name="trailer" placeholder="https://www.youtube.com/watch?v=" value="{!! $movie['trailer'] !!}"/>
+                                        <iframe style="height: 450px;" width="700px" src="@if(isset($movie['trailer']))
+                                            https://www.youtube.com/embed/{!! $movie['trailer'] !!}
+                                            @endif" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -356,7 +371,7 @@
                                     <div class="form-group">
                                         <label for="editor" class="form-label">Description</label>
                                         <textarea class="form-control" name="description" id="editor"
-                                                  placeholder="description"></textarea>
+                                                  placeholder="description">{!! $movie['description'] !!}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -371,12 +386,19 @@
     <script>
         $(document).ready(function () {
             $('#national option[value="{!! $movie['national'] !!}"]').prop("selected",true);
-            @foreach($movie['directors'] as $director)
-            $('.director-input').val('{!! $director['id'] !!}');
-            @endforeach
-            @foreach($casts as $cast)
-            $('.cast-input').val('{!! $cast['id'] !!}');
-            @endforeach
+
+            $('.director-input').val([
+                @foreach($movie['directors'] as $director)
+                {!! $director['id'] !!},
+                    @endforeach
+            ]);
+
+            $('.cast-input').val([
+                @foreach($movie['casts'] as $cast)
+                {!! $cast['id'] !!},
+                @endforeach
+            ]);
+
             $('.director-input').select2({
                 tags: true
             });

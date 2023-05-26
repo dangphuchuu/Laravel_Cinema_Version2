@@ -18,6 +18,7 @@ class Movie extends Model
         'endDate',
         'national',
         'description',
+        'trailer',
         'rating_id',
         'upcomming',
         'status'

@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class DirectorController extends Controller
 {
+    function __construct(){
+        $cloud_name = cloud_name();
+        view()->share('cloud_name',$cloud_name);
+    }
     public function director()
     {
         $director = Director::orderBy('id', 'DESC')->Paginate(5);

@@ -8,6 +8,10 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class BannerController extends Controller
 {
+    function __construct(){
+        $cloud_name = cloud_name();
+        view()->share('cloud_name',$cloud_name);
+    }
     public function banners()
     {
         $banners = Banner::orderBy('id', 'DESC')->Paginate(10);

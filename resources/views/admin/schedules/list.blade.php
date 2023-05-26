@@ -61,13 +61,13 @@
                                         <td class="align-middle">
                                             <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                                data-original-title="Edit user">
-                                                Edit
+                                                <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                             </a>
                                         </td>
                                         <td class="align-middle">
                                             <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                                data-original-title="Edit user">
-                                                Delete
+                                                <i class="fa-solid fa-trash-can fa-lg"></i>
                                             </a>
                                         </td>
                                     </tr>

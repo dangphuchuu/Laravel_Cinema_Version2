@@ -35,7 +35,7 @@
                                             </td>
                                             <td class="align-middle text-center">
                                                 <img style="width: 300px"
-                                                     src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{!! $value['image'] !!}.jpg"
+                                                     src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
                                                      alt="user1">
                                             </td>
                                             <td class="align-middle text-center text-sm ">
@@ -65,13 +65,13 @@
                                                 <a href="#editEvent" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                                    data-original-title="Edit event" data-bs-target="#editEvent{!! $value['id'] !!}"
                                                    data-bs-toggle="modal">
-                                                    Edit
+                                                    <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                                 </a>
                                             </td>
                                             <td class="align-middle">
                                                 <a href="javascript:void(0)" data-url="{{ url('admin/events/delete', $value['id'] ) }}"
                                                    class="text-secondary font-weight-bold text-xs delete-event" data-toggle="tooltip">
-                                                    Delete
+                                                    <i class="fa-solid fa-trash-can fa-lg"></i>
                                                 </a>
                                             </td>
                                         </tr>

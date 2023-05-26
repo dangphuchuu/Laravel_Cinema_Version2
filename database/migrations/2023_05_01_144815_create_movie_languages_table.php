@@ -48,6 +48,7 @@ return new class extends Migration {
             $table->date('endDate');
             $table->string('national', 255);
             $table->text('description');
+            $table->text('trailer')->nullable();
             $table->bigInteger('rating_id')->unsigned();
             $table->foreign('rating_id')->references('id')->on('rating');
             $table->boolean('upcoming')->default(true);
