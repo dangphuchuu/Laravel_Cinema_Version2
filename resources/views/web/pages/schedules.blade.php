@@ -74,63 +74,6 @@
                             @endforeach
                         </div>
                     @endforeach
-                    {{--                    <div id="hanoi" data-bs-parent="#theater"--}}
-                    {{--                         class="row g-4 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-4 collapse">--}}
-                    {{--                        @for($i = 0; $i < 4; $i++)--}}
-                    {{--                            <!-- Movie -->--}}
-                    {{--                            <div class="col">--}}
-                    {{--                                <div class="card px-0 overflow-hidden theater_item"--}}
-                    {{--                                     style="background: #f5f5f5">--}}
-                    {{--                                    <button class="btn rounded-0 border-0 btn_theater" aria-expanded="true"--}}
-                    {{--                                            data-bs-toggle="collapse" data-bs-target="#schedulesByTheater">--}}
-                    {{--                                        <div class="card-body">--}}
-                    {{--                                            <a href="/schedules/#"--}}
-                    {{--                                               class="link link-dark text-decoration-none text-center">--}}
-                    {{--                                                <h5 class="card-title fs-4">Theater {{ $i }}</h5>--}}
-                    {{--                                                <p class="card-text fs-6 text-secondary">--}}
-                    {{--                                                    <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận--}}
-                    {{--                                                    8,--}}
-                    {{--                                                    TP.HCM--}}
-                    {{--                                                </p>--}}
-                    {{--                                            </a>--}}
-                    {{--                                        </div>--}}
-                    {{--                                    </button>--}}
-                    {{--                                    <div class="card-footer">--}}
-                    {{--                                        <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98"--}}
-                    {{--                                           class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ <i--}}
-                    {{--                                                class="fa-solid fa-map-location-dot"></i></a>--}}
-                    {{--                                    </div>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-                    {{--                            <!-- Movie: end -->--}}
-                    {{--                        @endfor--}}
-                    {{--                    </div>--}}
-
-                    {{--                    <div id="danang" data-bs-parent="#theater"--}}
-                    {{--                         class="row g-4 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-4 collapse">--}}
-                    {{--                        @for($i = 0; $i < 2; $i++)--}}
-                    {{--                            <!-- Movie -->--}}
-                    {{--                            <div class="col">--}}
-                    {{--                                <div class="card px-0 overflow-hidden theater_item">--}}
-                    {{--                                    <button class="btn rounded-0 border-0 btn_theater" aria-expanded="true"--}}
-                    {{--                                            data-bs-toggle="collapse" data-bs-target="#schedulesByTheater">--}}
-                    {{--                                        <div class="card-body">--}}
-                    {{--                                            <h5 class="card-title text-center fs-4">Theater {{ $i }}</h5>--}}
-                    {{--                                            <p class="card-text fs-6">--}}
-                    {{--                                                <i class="fa-solid fa-location-dot"></i> 180 Cao Lỗ, Phường 4, Quận 8,--}}
-                    {{--                                                TP.HCM--}}
-                    {{--                                            </p>--}}
-                    {{--                                        </div>--}}
-                    {{--                                    </button>--}}
-                    {{--                                    <div class="card-footer">--}}
-                    {{--                                        <a href="https://goo.gl/maps/hfTBKWjGTjVxTHi98" class="btn w-100 h-100"--}}
-                    {{--                                           target="_blank">xem Bản đồ <i class="fa-solid fa-map-location-dot"></i></a>--}}
-                    {{--                                    </div>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-                    {{--                            <!-- Movie: end -->--}}
-                    {{--                        @endfor--}}
-                    {{--                    </div>--}}
                 </div>
 
                 @include('web.layout.schedulesByTheater')
@@ -140,17 +83,15 @@
                 {{-- Carousel Movies --}}
                 <div class="d-flex container flex-row flex-nowrap overflow-auto mb-4 carousel_movie">
                     @foreach($movies as $movie)
-                        @for($i = 0; $i <= 12; $i++)
-                                <?php $film[$movie->id] = $movie ?>
-                            <button onclick="movie({{ $i }})" class="btn btn-block border-0 p-2">
-                                @if(strstr($movie->image,"https") === "")
-                                    <img class="rounded d-block" style="max-width: 200px" alt="..."
-                                         src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg">
-                                @else
-                                    <img class="rounded d-block" style="max-width: 200px" alt="..." src="{{ $movie->image }}">
-                                @endif
-                            </button>
-                        @endfor
+                            <?php $film[$movie->id] = $movie ?>
+                        <button onclick="movie({{ $movie->id }})" class="btn btn-block border-0 p-2">
+                            @if(strstr($movie->image,"https") === "")
+                                <img class="rounded d-block" style="width: 200px; height: 300px" alt="..."
+                                     src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg">
+                            @else
+                                <img class="rounded d-block" style="width: 200px; height: 300px" alt="..." src="{{ $movie->image }}">
+                            @endif
+                        </button>
                     @endforeach
                 </div>
 
@@ -167,7 +108,7 @@
                         </a>
                     </div>
                     <div class="flex-grow-1 ms-3 mt-3 mt-sm-0">
-                        <h5 class="fw-bold text-center text-sm-start">2</h5>
+                        <h5 class="fw-bold text-center text-sm-start">{{ $movie->name }}}</h5>
                         <p class="card-text text-danger text-center text-sm-start">{{ $film->showTime }}</p>
                         <p class="card-text text-center text-sm-start">
                             @foreach($film->movieGenres as $genre)
@@ -210,7 +151,8 @@
 
         function movie(id) {
             @foreach($movies as $movie)
-            if (id === {{ $movie->id }}) {
+                movie_id = {{$movie->id}};
+            if (id == movie_id) {
                     <?php $film = $movie ?>
                 var divMovieChoice = '' +
                     '<div class="d-flex flex-column flex-sm-row align-items-center" id="movieChoice" style="background: #f5f5f5">\
@@ -225,7 +167,7 @@
                         </a>\
                 </div>\
                     <div class="flex-grow-1 ms-3 mt-3 mt-sm-0">\
-                        <h5 class="fw-bold text-center text-sm-start">{{ $film->id }}</h5>\
+                        <h5 class="fw-bold text-center text-sm-start">{{ $film->name }}</h5>\
                     <p class="card-text text-danger text-center text-sm-start">{{ $film->showTime }}</p>\
                     <p class="card-text text-center text-sm-start">\
                         @foreach($film->movieGenres as $genre)
@@ -239,8 +181,9 @@
             </div>';
 
                 $('#movieChoice').replaceWith(divMovieChoice);
+                return;
             }
-            @break
+
             @endforeach
         }
     </script>
