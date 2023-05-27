@@ -23,8 +23,8 @@ return new class extends Migration {
             $table->id()->autoIncrement();
             $table->string('name', 255);
             $table->text('image');
-            $table->date('birthday');
-            $table->string('national', 255);
+            $table->date('birthday')->nullable();
+            $table->string('national', 255)->nullable();
             $table->text('content')->nullable();
             $table->timestamps();
         });
@@ -51,7 +51,7 @@ return new class extends Migration {
             $table->text('trailer')->nullable();
             $table->bigInteger('rating_id')->unsigned();
             $table->foreign('rating_id')->references('id')->on('rating');
-            $table->boolean('upcoming')->default(true);
+            $table->boolean('preSale')->default(false);
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

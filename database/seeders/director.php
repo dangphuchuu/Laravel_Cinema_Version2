@@ -84,7 +84,7 @@ DB::table('directors')->insert([
         Trên truyền hình, anh đóng vai chính trong bộ phim truyền hình CBS A Gifted Man (2011–2012), và Lou Solverson trong mùa thứ hai của FX (kênh truyền hình) Fargo (2015), mà anh đã nhận được đề cử Giải Quả cầu vàng. Anh đã được chọn làm Orm Marius / Ocean Master trong phim phim siêu anh hùng DC Extended Universe tựa Aquaman (2018).",
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-    ],[
+    ], [
         'name' => 'Anggy Umbara',
         'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfiU5ipjTAsk9HR2FhF0OJ8yagCy8xbng_59mfKRBC&usqp=CAE&s',
         'birthday' => '1980-10-21',
@@ -92,7 +92,7 @@ DB::table('directors')->insert([
         'content' => "Updating",
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-    ],[
+    ], [
         'name' => 'Douyama Takumi',
         'image' => 'https://cdn-us.anidb.net/images/main/201065.jpg',
         'birthday' => '1980-10-21',
@@ -100,7 +100,7 @@ DB::table('directors')->insert([
         'content' => "Updating",
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-    ],[
+    ], [
         'name' => 'Jamie Hooper',
         'image' => 'https://blazingminds.co.uk/wp-content/uploads/2022/08/WriterDirector_JamieHooper-800x586.jpg',
         'birthday' => '1980-10-21',
@@ -108,7 +108,7 @@ DB::table('directors')->insert([
         'content' => "Jamie's passion for filmmaking began at an early age, ever since his Dad bought a VHS-C camera and he claimed it as his own. Amazingly he's now an award winning filmmaker (who isn't?), with films that have screened at festivals around the world, from LSFF to Fantastic Fest. If Jamie isn't wielding a camera or slouched behind a computer he can usually be found in a kitchen eating peanut butter on toast.",
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-    ],[
+    ], [
         'name' => 'Rob Marshall',
         'image' => 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRdTWaLJZdipsbn4Y9Y-G78-HrwjSqrvvzEuhW5-0u00YHDKtTo',
         'birthday' => '1960-10-17',

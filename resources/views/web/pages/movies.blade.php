@@ -96,7 +96,7 @@
 
             <div id="phimsapchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse" data-bs-parent="#Movies">
                 @foreach($movies as $movie)
-                    @if(!($movie->upcoming) && ($movie->releaseDate > date("YYYY-mm-dd")))
+                    @if(!($movie->preSale) && ($movie->releaseDate > date("Y-m-d")))
                         <!-- Movie -->
                         <div class="card-col">
                             <article class="card px-0 overflow-hidden" style="background: #f5f5f5">
@@ -122,10 +122,9 @@
                                                         <a class="link link-dark" href="#">{{ $genres->name }}</a> |
                                                     @endforeach
                                                 </p>
-                                                <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
-                                                    BIẾN ĐẾN
-                                                    NGƯỜI XEM TỪ ĐỦ 16 TUỔI
-                                                    TRỞ LÊN (16+)</p>
+                                                <p class="card-text">Rated:
+                                                    <b class="text-danger">{{ $movie->rating->name }}</b>
+                                                    - {{ $movie->rating->description }}</p>
                                             </a>
                                         </div>
                                     </div>
@@ -139,7 +138,7 @@
 
             <div id="phimdangchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse show" data-bs-parent="#Movies">
                 @foreach($movies as $movie)
-                    @if(!($movie->upcoming) && ($movie->releaseDate <= date("YYYY-mm-dd")))
+                    @if(!($movie->preSale) && ($movie->releaseDate <= date("Y-m-d")))
                         {{--                        {{  dd($movie->releaseDate >= date("YYYY-mm-dd"))}}--}}
                         <!-- Movie -->
                         <div class="card-col">
@@ -166,10 +165,10 @@
                                                         <a class="link link-dark" href="#">{{ $genres->name }}</a> |
                                                     @endforeach
                                                 </p>
-                                                <p class="card-text">Rated: <b class="text-danger">{{ $movie->rating->name }}</b> - PHIM ĐƯỢC PHỔ
-                                                    BIẾN ĐẾN
-                                                    NGƯỜI XEM TỪ ĐỦ 16 TUỔI
-                                                    TRỞ LÊN (16+)</p>
+                                                <p class="card-text">Rated:
+                                                    <b class="text-danger">{{ $movie->rating->name }}</b>
+                                                    - {{ $movie->rating->description }}
+                                                </p>
                                             </a>
                                         </div>
                                     </div>

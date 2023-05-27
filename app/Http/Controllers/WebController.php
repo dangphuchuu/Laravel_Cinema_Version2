@@ -87,7 +87,6 @@ class WebController extends Controller
         if ($request->casts == null && $request->directors == null && $request->movieGenres == null && $request->rating == null) {
             return redirect('/movies');
         } else {
-            $ratings = (int)$request->rating;
             $movies = Movie::with(['casts' => function ($query) use ($request) {
                 if ($request->casts)
                     $query->whereIn('cast_id', $request->casts);
@@ -97,6 +96,9 @@ class WebController extends Controller
             }, 'movieGenres' => function ($query) use ($request) {
                 if ($request->movieGenres)
                     $query->whereIn('movieGenre_id', $request->movieGenres);
+            }, 'rating' => function ($query) use ($request) {
+                if ($request->rating)
+                    $query->where('id', $request->rating);
             }])
                 ->whereHas('casts', function ($query) use ($request) {
                     if ($request->casts)
@@ -109,7 +111,12 @@ class WebController extends Controller
                 ->whereHas('movieGenres', function ($query) use ($request) {
                     if ($request->movieGenres)
                         $query->whereIn('movieGenre_id', $request->movieGenres);
-                })->where('rating_id', $ratings)->get();
+                })
+                ->whereHas('rating', function ($query) use ($request) {
+                    if ($request->rating) {
+                        $query->where('id', $request->rating);
+                    }
+                })->get();
 
             return view('web.pages.movies', [
                 'movies' => $movies,
