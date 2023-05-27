@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Cast;
 use App\Models\Director;
 use App\Models\Movie;
@@ -17,16 +18,21 @@ class WebController extends Controller
 {
     function __construct()
     {
+        $cloud_name = cloud_name();
+        view()->share('cloud_name',$cloud_name);
     }
 
     public function home()
     {
-        return view('web.pages.home');
+        $banners = Banner::all();
+        $movie = Movie::get()->where('status',1)->take(6);
+        return view('web.pages.home',['movie'=>$movie,'banners'=>$banners]);
     }
 
-    public function movieDetail()
+    public function movieDetail($id)
     {
-        return view('web.pages.movieDetail');
+        $movie = Movie::find($id);
+        return view('web.pages.movieDetail',['movie'=>$movie]);
     }
 
     public function ticket()
@@ -63,7 +69,7 @@ class WebController extends Controller
     {
         $casts = Cast::all();
         $directors = Director::all();
-        $movies = Movie::all();
+        $movies = Movie::all()->where('status',1);
         $movieGenres = MovieGenres::all();
         $rating = Rating::all();
 

@@ -4,31 +4,33 @@
         <!-- Slider -->
         <div id="carouselExampleControls" class="carousel slide shadow" data-bs-ride="carousel">
             <div class="carousel-inner">
+                @foreach($banners as $value)
+                    @if($value['id'] == 1)
                 <div class="carousel-item active">
-                    <img
-                        src="https://ocwckgy6c1obj.vcdn.cloud/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980x448px_4.jpg"
-                        class="d-block w-100" alt="...">
+                    @if(strstr($value['image'],"https") == "")
+                        <img
+                            src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
+                            class="d-block w-100" alt="...">
+                    @else
+                        <img
+                            src="{!! $value['image'] !!}"
+                            class="d-block w-100" alt="...">
+                    @endif
                 </div>
+                    @else
                 <div class="carousel-item">
-                    <img
-                        src="https://ocwckgy6c1obj.vcdn.cloud/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980x448__8.jpg"
-                        class="d-block w-100" alt="...">
+                        @if(strstr($value['image'],"https") == "")
+                            <img
+                                src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
+                                class="d-block w-100" alt="...">
+                        @else
+                            <img
+                                src="{!! $value['image'] !!}"
+                                class="d-block w-100" alt="...">
+                        @endif
                 </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://ocwckgy6c1obj.vcdn.cloud/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980x448_1__36.jpg"
-                        class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://ocwckgy6c1obj.vcdn.cloud/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980wx448h_29.jpg"
-                        class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://ocwckgy6c1obj.vcdn.cloud/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980x448_213.jpg"
-                        class="d-block w-100" alt="...">
-                </div>
+                    @endif
+                @endforeach
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                     data-bs-slide="prev">
@@ -65,35 +67,40 @@
 
             <div id="phimsapchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse"
                  data-bs-parent="#mainContent">
-                @for($i = 0; $i < 6; $i++)
+                @foreach($movie as $value)
+                    @if(!($value->preSale) && ($value->releaseDate > date("Y-m-d")))
                     <!-- Movie -->
                     <div class="col">
                         <div class="card px-0 overflow-hidden"
                              style="background: #f5f5f5">
                             <div class="row g-0">
                                 <div class="col-lg-4 col-12">
-                                    <a href="/movie/1">
-                                        <img
-                                            src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/t/h/the_accursed.c_n_th_nh_n_t_c_i_m_-_payoff_poster_-_kc_12.05.2023_1_.jpg"
-                                            class="img-fluid w-100"
-                                            alt="...">
+                                    <a href="/movie/{!! $value['id'] !!}">
+                                        @if(strstr($value['image'],"https") === "")
+                                            <img
+                                                src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
+                                                class="img-fluid rounded w-100"
+                                                alt="...">
+                                        @else
+                                            <img
+                                                src="{!! $value['image'] !!}"
+                                                class="img-fluid rounded w-100"
+                                                alt="...">
+                                        @endif
                                     </a>
                                 </div>
                                 <div class="col-lg-8 col-12">
                                     <div class="card-body">
-                                        <a href="/movie/1">
-                                            <h5 class="card-title">LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH</h5>
-                                            <p class="card-text text-danger">132 phút</p>
+                                        <a href="/movie/{!! $value['id'] !!}" class="link link-dark text-decoration-none">
+                                            <h5 class="card-title">{!! $value['name'] !!}</h5>
+                                            <p class="card-text text-danger">{!! $value['showTime'] !!} phút</p>
                                             <p class="card-text">
-                                                <a class="link link-dark" href="#">Hài</a> |
-                                                <a class="link link-dark" href="#">Hành động</a> |
-                                                <a class="link link-dark" href="#">Tâm lý</a>
+                                                @foreach($value['movieGenres'] as $genre)
+                                                    <a class="link link-dark" href="#">{!! $genre['name'] !!}</a> |
+                                                @endforeach
                                             </p>
-                                            <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
-                                                BIẾN
-                                                ĐẾN
-                                                NGƯỜI XEM TỪ ĐỦ 16 TUỔI
-                                                TRỞ LÊN (16+)</p>
+                                            <p class="card-text">Rated: <b class="text-danger">{!! $value['rating']['name'] !!}</b>
+                                                - {!! $value['rating']['description'] !!}</p>
                                         </a>
                                     </div>
                                 </div>
@@ -101,39 +108,46 @@
                         </div>
                     </div>
                     <!-- Movie: end -->
-                @endfor
+                    @endif
+                @endforeach
             </div>
 
             <div id="phimdangchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse show"
                  data-bs-parent="#mainContent">
-                @for($i = 0; $i < 6; $i++)
+                @foreach($movie as $value)
+                    @if(!($value->preSale) && ($value->releaseDate <= date("Y-m-d")))
                     <!-- Movie -->
                     <div class="card-col">
                         <article class="card px-0 overflow-hidden"
                                  style="background: #f5f5f5">
                             <div class="row g-0">
                                 <div class="col-lg-4 col-12">
-                                    <a href="/movie/1">
+                                    <a href="/movie/{!! $value['id'] !!}">
+                                        @if(strstr($value['image'],"https") == "")
                                         <img
-                                            src="https://ocwckgy6c1obj.vcdn.cloud/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/l/m/lm6_2x3_layout.jpg"
+                                            src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
                                             class="img-fluid rounded w-100"
                                             alt="...">
+                                        @else
+                                            <img
+                                                src="{!! $value['image'] !!}"
+                                                class="img-fluid rounded w-100"
+                                                alt="...">
+                                        @endif
                                     </a>
                                 </div>
                                 <div class="col-lg-8 col-12">
                                     <div class="card-body">
-                                        <a href="movie/1" class="link link-dark text-decoration-none">
-                                            <h5 class="card-title">LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH</h5>
-                                            <p class="card-text text-danger">132 phút</p>
+                                        <a href="movie/{!! $value['id'] !!}" class="link link-dark text-decoration-none">
+                                            <h5 class="card-title">{!! $value['name'] !!}</h5>
+                                            <p class="card-text text-danger">{!! $value['showTime'] !!} phút</p>
                                             <p class="card-text">
-                                                <a class="link link-dark" href="#">Hài</a> |
-                                                <a class="link link-dark" href="#">Hành động</a> |
-                                                <a class="link link-dark" href="#">Tâm lý</a>
+                                                @foreach($value['movieGenres'] as $genre)
+                                                <a class="link link-dark" href="#">{!! $genre['name'] !!}</a> |
+                                                @endforeach
                                             </p>
-                                            <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
-                                                BIẾN ĐẾN
-                                                NGƯỜI XEM TỪ ĐỦ 16 TUỔI
-                                                TRỞ LÊN (16+)</p>
+                                            <p class="card-text">Rated: <b class="text-danger">{!! $value['rating']['name'] !!}</b>
+                                                - {!! $value['rating']['description'] !!}</p>
                                         </a>
                                     </div>
                                 </div>
@@ -141,7 +155,8 @@
                         </article>
                     </div>
                     <!-- Movie: end -->
-                @endfor
+                    @endif
+                @endforeach
             </div>
 
             <div class="row m-2 mb-5 justify-content-end">

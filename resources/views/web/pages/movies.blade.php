@@ -105,7 +105,7 @@
                                         <a href="/movie/{{ $movie->id }}">
                                             @if(strstr($movie->image,"https") === "")
                                                 <img class="img-fluid rounded w-100"
-                                                     src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg"
+                                                     src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $movie->image }}.jpg"
                                                      alt="">
                                             @else
                                                 <img class="img-fluid rounded w-100" src="{{ $movie->image }}" alt="">
