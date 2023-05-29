@@ -6,15 +6,15 @@
         <!-- Slider -->
         <div id="carouselExampleControls" class="carousel slide shadow" data-bs-ride="carousel">
             <div class="carousel-inner">
-                @foreach($banners as $value)
+                @foreach($banners as $banner)
                     <div class="carousel-item @if($loop->first) active @endif">
-                        @if(strstr($value['image'],"https") == "")
+                        @if(strstr($banner->image,"https") == "")
                             <img
                                 src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
                                 class="d-block w-100" style="max-height: 600px; object-fit: contain; object-position: 50% 100%" alt="...">
                         @else
                             <img
-                                src="{!! $value['image'] !!}"
+                                src="{{ $banner->image }}"
                                 class="d-block w-100" style="max-height: 600px; object-fit: contain; object-position: 50% 100%" alt="...">
                         @endif
                     </div>
@@ -55,23 +55,23 @@
 
             <div id="vebantruoc" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse"
                  data-bs-parent="#mainContent">
-                @foreach($movie as $value)
-                    @if(!($value->preSale) && ($value->releaseDate > date("Y-m-d")))
+                @foreach($movies as $movie)
+                    @if(!($movie->preSale) && ($movie->releaseDate > date("Y-m-d")))
                         <!-- Movie -->
-                        <div class="col">
-                            <div class="card px-0 overflow-hidden"
-                                 style="background: #f5f5f5">
+                        <div class="card-col">
+                            <article class="card px-0 overflow-hidden"
+                                     style="background: #f5f5f5; ">
                                 <div class="row g-0">
                                     <div class="col-lg-4 col-12">
-                                        <a href="/movie/{!! $value['id'] !!}">
-                                            @if(strstr($value['image'],"https") === "")
+                                        <a href="/movie/{{ $movie->id }}">
+                                            @if(strstr($movie->image,"https") == "")
                                                 <img
                                                     src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
                                                     class="img-fluid rounded w-100"
                                                     alt="...">
                                             @else
                                                 <img
-                                                    src="{!! $value['image'] !!}"
+                                                    src="{{ $movie->image }}"
                                                     class="img-fluid rounded w-100"
                                                     alt="...">
                                             @endif
@@ -79,21 +79,25 @@
                                     </div>
                                     <div class="col-lg-8 col-12">
                                         <div class="card-body">
-                                            <a href="/movie/{!! $value['id'] !!}" class="link link-dark text-decoration-none">
-                                                <h5 class="card-title">{!! $value['name'] !!}</h5>
-                                                <p class="card-text text-danger">{!! $value['showTime'] !!} phút</p>
+                                            <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
+                                                <h5 class="card-title">{{ $movie->name }}</h5>
+                                                <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
                                                 <p class="card-text">
-                                                    @foreach($value['movieGenres'] as $genre)
-                                                        <a class="link link-dark" href="#">{!! $genre['name'] !!}</a> |
+                                                    @foreach($movie->movieGenres as $genre)
+                                                        @if ($loop->first)
+                                                            <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                        @else
+                                                            | <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                        @endif
                                                     @endforeach
                                                 </p>
-                                                <p class="card-text">Rated: <b class="text-danger">{!! $value['rating']['name'] !!}</b>
-                                                    - {!! $value['rating']['description'] !!}</p>
+                                                <p class="card-text">Rated: <b class="text-danger">{{ $movie->rating->name }}</b>
+                                                    - {{ $movie->rating->description }}</p>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </article>
                         </div>
                         <!-- Movie: end -->
                     @endif
@@ -102,23 +106,23 @@
 
             <div id="phimmoi" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse show"
                  data-bs-parent="#mainContent">
-                @foreach($movie as $value)
-                    @if(!($value->preSale) && ($value->releaseDate <= date("Y-m-d")))
+                @foreach($movies as $movie)
+                    @if(!($movie->preSale) && ($movie->releaseDate <= date("Y-m-d")))
                         <!-- Movie -->
                         <div class="card-col">
                             <article class="card px-0 overflow-hidden"
                                      style="background: #f5f5f5; ">
                                 <div class="row g-0">
                                     <div class="col-lg-4 col-12">
-                                        <a href="/movie/{!! $value['id'] !!}">
-                                            @if(strstr($value['image'],"https") == "")
+                                        <a href="/movie/{{ $movie->id }}">
+                                            @if(strstr($movie->image,"https") == "")
                                                 <img
                                                     src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
                                                     class="img-fluid rounded w-100"
                                                     alt="...">
                                             @else
                                                 <img
-                                                    src="{!! $value['image'] !!}"
+                                                    src="{{ $movie->image }}"
                                                     class="img-fluid rounded w-100"
                                                     alt="...">
                                             @endif
@@ -126,20 +130,20 @@
                                     </div>
                                     <div class="col-lg-8 col-12">
                                         <div class="card-body">
-                                            <a href="movie/{!! $value['id'] !!}" class="link link-dark text-decoration-none">
-                                                <h5 class="card-title">{!! $value['name'] !!}</h5>
-                                                <p class="card-text text-danger">{!! $value['showTime'] !!} phút</p>
+                                            <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
+                                                <h5 class="card-title">{{ $movie->name }}</h5>
+                                                <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
                                                 <p class="card-text">
-                                                    @foreach($value['movieGenres'] as $genre)
+                                                    @foreach($movie->movieGenres as $genre)
                                                         @if ($loop->first)
-                                                            <a class="link link-dark" href="#">{!! $genre['name'] !!}</a>
+                                                            <a class="link link-dark" href="#">{{ $genre->name }}</a>
                                                         @else
-                                                            | <a class="link link-dark" href="#">{!! $genre['name'] !!}</a>
+                                                            | <a class="link link-dark" href="#">{{ $genre->name }}</a>
                                                         @endif
                                                     @endforeach
                                                 </p>
-                                                <p class="card-text">Rated: <b class="text-danger">{!! $value['rating']['name'] !!}</b>
-                                                    - {!! $value['rating']['description'] !!}</p>
+                                                <p class="card-text">Rated: <b class="text-danger">{{ $movie->rating->name }}</b>
+                                                    - {{ $movie->rating->description }}</p>
                                             </a>
                                         </div>
                                     </div>

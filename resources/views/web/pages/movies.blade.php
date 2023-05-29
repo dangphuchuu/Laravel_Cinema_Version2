@@ -116,10 +116,14 @@
                                         <div class="card-body">
                                             <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
                                                 <h5 class="card-title">{{ $movie->name }}</h5>
-                                                <p class="card-text text-danger">{{ $movie->showTime }}</p>
+                                                <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
                                                 <p class="card-text">
-                                                    @foreach($movie->movieGenres as $genres)
-                                                        <a class="link link-dark" href="#">{{ $genres->name }}</a> |
+                                                    @foreach($movie->movieGenres as $genre)
+                                                        @if ($loop->first)
+                                                            <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                        @else
+                                                            | <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                        @endif
                                                     @endforeach
                                                 </p>
                                                 <p class="card-text">Rated:
@@ -159,10 +163,14 @@
                                         <div class="card-body">
                                             <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
                                                 <h5 class="card-title">{{ $movie->name }}</h5>
-                                                <p class="card-text text-danger">{{ $movie->showTime }}</p>
+                                                <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
                                                 <p class="card-text">
-                                                    @foreach($movie->movieGenres as $genres)
-                                                        <a class="link link-dark" href="#">{{ $genres->name }}</a> |
+                                                    @foreach($movie->movieGenres as $genre)
+                                                        @if ($loop->first)
+                                                            <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                        @else
+                                                            | <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                        @endif
                                                     @endforeach
                                                 </p>
                                                 <p class="card-text">Rated:
@@ -202,10 +210,14 @@
                                         <div class="card-body">
                                             <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
                                                 <h5 class="card-title">{{ $movie->name }}</h5>
-                                                <p class="card-text text-danger">{{ $movie->showTime }}</p>
+                                                <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
                                                 <p class="card-text">
-                                                    @foreach($movie->movieGenres as $genres)
-                                                        <a class="link link-dark" href="#">{{ $genres->name }}</a> |
+                                                    @foreach($movie->movieGenres as $genre)
+                                                        @if ($loop->first)
+                                                            <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                        @else
+                                                            | <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                        @endif
                                                     @endforeach
                                                 </p>
                                                 <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ

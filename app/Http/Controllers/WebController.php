@@ -13,26 +13,27 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class WebController extends Controller
 {
     function __construct()
     {
         $cloud_name = cloud_name();
-        view()->share('cloud_name',$cloud_name);
+        view()->share('cloud_name', $cloud_name);
     }
 
     public function home()
     {
         $banners = Banner::all();
-        $movie = Movie::get()->where('status',1)->take(6);
-        return view('web.pages.home',['movie'=>$movie,'banners'=>$banners]);
+        $movies = Movie::get()->where('status', 1)->take(6);
+        return view('web.pages.home', ['movies' => $movies, 'banners' => $banners]);
     }
 
     public function movieDetail($id)
     {
         $movie = Movie::find($id);
-        return view('web.pages.movieDetail',['movie'=>$movie]);
+        return view('web.pages.movieDetail', ['movie' => $movie]);
     }
 
     public function ticket()
@@ -69,7 +70,7 @@ class WebController extends Controller
     {
         $casts = Cast::all();
         $directors = Director::all();
-        $movies = Movie::all()->where('status',1);
+        $movies = Movie::all()->where('status', 1);
         $movieGenres = MovieGenres::all();
         $rating = Rating::all();
 
@@ -93,36 +94,53 @@ class WebController extends Controller
         if ($request->casts == null && $request->directors == null && $request->movieGenres == null && $request->rating == null) {
             return redirect('/movies');
         } else {
-            $movies = Movie::with(['casts' => function ($query) use ($request) {
-                if ($request->casts)
-                    $query->whereIn('cast_id', $request->casts);
-            }, 'directors' => function ($query) use ($request) {
-                if ($request->directors)
-                    $query->whereIn('director_id', $request->directors);
-            }, 'movieGenres' => function ($query) use ($request) {
-                if ($request->movieGenres)
-                    $query->whereIn('movieGenre_id', $request->movieGenres);
-            }, 'rating' => function ($query) use ($request) {
-                if ($request->rating)
-                    $query->where('id', $request->rating);
-            }])
-                ->whereHas('casts', function ($query) use ($request) {
-                    if ($request->casts)
-                        $query->whereIn('cast_id', $request->casts);
-                })
-                ->whereHas('directors', function ($query) use ($request) {
-                    if ($request->directors)
-                        $query->whereIn('director_id', $request->directors);
-                })
-                ->whereHas('movieGenres', function ($query) use ($request) {
-                    if ($request->movieGenres)
-                        $query->whereIn('movieGenre_id', $request->movieGenres);
-                })
-                ->whereHas('rating', function ($query) use ($request) {
-                    if ($request->rating) {
-                        $query->where('id', $request->rating);
-                    }
-                })->get();
+
+            $query = 'SELECT id FROM movies ';
+            $join = '';
+            $where = ' WHERE ';
+            $groupby = ' GROUP BY movies.id';
+            $arr = [];
+            if ($request->movieGenres) {
+                $i = 0;
+                foreach ($request->movieGenres as $genre) {
+                    $i++;
+                    $join .= ' INNER JOIN moviegenres_movies AS genre_' . $i . ' ON movies.id = genre_' . $i . '.movie_id';
+                    $where .= 'genre_' . $i . '.movieGenre_id = ? AND ';
+                }
+                $arr = array_merge($arr, $request->movieGenres);
+            }
+            if ($request->casts) {
+                $i = 0;
+                foreach ($request->casts as $cast) {
+                    $i++;
+                    $join .= ' INNER JOIN casts_movies AS cast_' . $i . ' ON movies.id = cast_' . $i . '.movie_id';
+                    $where .= 'cast_' . $i . '.cast_id = ? AND ';
+                }
+                $arr = array_merge($arr, $request->casts);
+            }
+            if ($request->directors) {
+                $i = 0;
+                foreach ($request->directors as $director) {
+                    $i++;
+                    $join .= ' INNER JOIN directors_movies AS director_' . $i . ' ON movies.id = director_' . $i . '.movie_id';
+                    $where .= 'director_' . $i . '.director_id = ? AND ';
+                }
+                $arr = array_merge($arr, $request->directors);
+            }
+            if ($request->rating) {
+                $where .= 'rating_id = ? AND ';
+                array_push($arr, $request->rating);
+            }
+
+            $query .= $join .= $where;
+            $query = substr($query, 0, -5);
+            $query .= $groupby;
+            $moviesquery = DB::select($query, $arr);
+            $movies_id = [];
+            foreach ($moviesquery as $item) {
+                array_push($movies_id, $item->id);
+            }
+            $movies = Movie::find($movies_id);
 
             return view('web.pages.movies', [
                 'movies' => $movies,

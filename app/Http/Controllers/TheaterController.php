@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\SeatType;
 use App\Models\Theater;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class TheaterController extends Controller
 {
@@ -19,5 +21,20 @@ class TheaterController extends Controller
             'theaters' => $theaters,
             'seatTypes' => $seatTypes
         ]);
+    }
+
+    public function create(Request $request)
+    {
+        $theater = new Theater([
+            'name' => $request->name,
+            'address' => $request->address,
+            'city' => $request->city,
+            'location' => $request->location,
+            'created_at' => Carbon::today(),
+            'updated_at' => null,
+        ]);
+
+        $theater->save();
+        return redirect('/admin/theater');
     }
 }

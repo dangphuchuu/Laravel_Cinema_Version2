@@ -57,7 +57,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     //TODO Cinema
     Route::prefix('theater')->group(function () {
         Route::get('/', [TheaterController::class, 'theater']);
-        Route::get('/create', [TheaterController::class, 'create_cinema']);
+        Route::post('/create', [TheaterController::class, 'postCreate']);
         Route::get('/edit', [TheaterController::class, 'edit_cinema']);
     });
 
