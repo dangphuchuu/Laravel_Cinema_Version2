@@ -182,7 +182,7 @@
 
             <div id="vebantruoc" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse" data-bs-parent="#Movies">
                 @foreach($movies as $movie)
-                    @if($movie->upcoming)
+                    @if($movie->preSale)
                         <!-- Movie -->
                         <div class="card-col">
                             <article class="card px-0 overflow-hidden" style="background: #f5f5f5">
