@@ -49,13 +49,15 @@
                                                 </div>
                                             </td>
                                             <td></td>
-                                            <td class="align-middle text-center text-sm">
+                                            <td id="status{!! $value['id'] !!}" class="align-middle text-center text-sm ">
                                                 @if($value['status'] == 1)
-                                                    <a href="#">
+                                                    <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},0)">
                                                         <span class="badge badge-sm bg-gradient-success">Online</span>
                                                     </a>
                                                 @else
-                                                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                                    <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},1)">
+                                                        <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                                    </a>
                                                 @endif
                                             </td>
                                             <td class="align-middle">
@@ -119,5 +121,40 @@
 
             });
         });
+    </script>
+    <script>
+        function changestatus(genre_id,active){
+            if(active === 1){
+                $("#status" + genre_id).html(' <a href="javascript:void(0)"  class="btn_active" onclick="changestatus('+ genre_id +',0)">\
+                    <span class="badge badge-sm bg-gradient-success">Online</span>\
+            </a>')
+            }else{
+                $("#status" + genre_id).html(' <a  href="javascript:void(0)" class="btn_active"  onclick="changestatus('+ genre_id +',1)">\
+                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>\
+            </a>')
+            }
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "/admin/movie_genres/status",
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    'active': active,
+                    'genre_id': genre_id
+                },
+                success: function (data) {
+                    if (data['success']) {
+                        // alert(data.success);
+                    } else if (data['error']) {
+                        alert(data.error);
+                    }
+                }
+            });
+        }
+
     </script>
 @endsection

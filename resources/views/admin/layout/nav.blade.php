@@ -1,6 +1,7 @@
 <style>
     .dropdown .dropdown-menu.show:before {
-        top: 0px !important;
+        top: -11px !important;
+        position: absolute!important;
     }
 </style>
 <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
@@ -15,9 +16,11 @@
                         <i class="fa-solid fa-id-card me-sm-1"></i>
                         <span class="d-sm-inline d-none">{{ Auth::user()->fullName }}</span>
                     </a>
-                    <ul class="dropdown-menu" style="top: -0.5rem!important;left: -55px;">
+                    <ul class="dropdown-menu" style="top: -0.5rem!important;left: -25px;">
                         <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li><a class="dropdown-item" href="/admin/sign_out">Sign Out</a></li>
+                        <li><a class="dropdown-item" href="lang/en">@lang('lang.en')</a></li>
+                        <li><a class="dropdown-item" href="lang/vi">@lang('lang.vi')</a></li>
                     </ul>
                 </li>
                 @endif

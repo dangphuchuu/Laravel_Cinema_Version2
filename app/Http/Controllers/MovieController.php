@@ -136,4 +136,10 @@ class MovieController extends Controller
         $movie->delete();
         return response()->json(['success' => 'Delete Successfully']);
     }
+    public function status(Request $request){
+        $movie = Movie::find($request->movie_id);
+        $movie['status'] = $request->active;
+        $movie->save();
+        return response();
+    }
 }

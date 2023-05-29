@@ -51,4 +51,10 @@ class MovieGenresController extends Controller
             return response()->json(['error' => "Can't delete because Movie Generes exist Movie" ]);
         }
     }
+    public function status(Request $request){
+        $movie_genres = MovieGenres::find($request->genre_id);
+        $movie_genres['status'] = $request->active;
+        $movie_genres->save();
+        return response();
+    }
 }

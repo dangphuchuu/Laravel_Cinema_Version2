@@ -37,4 +37,12 @@ class TheaterController extends Controller
         $theater->save();
         return redirect('/admin/theater');
     }
+
+    public function status(Request $request)
+    {
+        $theaters = Theater::find($request->theater_id);
+        $theaters['status'] = $request->active;
+        $theaters->save();
+        return response();
+    }
 }

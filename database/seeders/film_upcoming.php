@@ -89,7 +89,7 @@ function film2()
         'showTime' => '101',
         'releaseDate' => '2023-06-02',
         'endDate' => '2023-06-30',
-        'national' => 'Thai Lan',
+        'national' => 'Thailand',
         'description' => 'Được lấy cảm hứng từ loại bùa hình nhân hộ mệnh nổi tiếng ở Thái Lan, phim theo chân Tham trong hành trình đến một hòn đảo hẻo lánh để tìm người anh trai của mình đang tu hành ở đó. Tham phát hiện ra anh trai đã bị sát hại sau khi bị buộc tội giết người và trộm cắp. Quyết tâm ở lại hòn đảo để điều tra cũng như minh oan cho anh trai nhưng Tham lại vô tình khám phá ra nhiều cái chết bí ẩn khác tại ngôi làng bên cạnh.',
         'trailer' => 'PcCAFRdiPe4',
         'rating_id' => 2,
