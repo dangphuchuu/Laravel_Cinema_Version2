@@ -26,13 +26,13 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 -   Step 1 : composer install.
 -   Step 2 : cp .env.example .env
 -   Step 3 : php artisan key:generate
--   Step 4 : create database and setting .env
--   Step 5 : php artisan migrate --seed.
--   Step 6 : composer require spatie/laravel-permission
--   Step 7 : composer require cloudinary-labs/cloudinary-laravel
--   Step 8 : php artisan vendor:publish --provider="CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider" --tag="cloudinary-laravel-config"
--   Step 8 : php artisan serve.
-
+-   Step 4 : create database with name cinema and setting .env
+-   Step 5 : composer require spatie/laravel-permission
+-   Step 6 : composer require cloudinary-labs/cloudinary-laravel
+-   Step 7 : php artisan vendor:publish --provider="CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider" --tag="cloudinary-laravel-config"
+-   Step 8 : php artisan migrate:fresh --seed.
+-   Step 9 : composer  dumpautoload.
+-   Step 10: php artisan serve
 ## Command Line
 
 -   https://github.com/cloudinary-devs/cloudinary-laravel#installation

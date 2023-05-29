@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\SeatType;
 use App\Models\Theater;
+use Illuminate\Http\Request;
 
 class TheaterController extends Controller
 {
@@ -19,5 +21,11 @@ class TheaterController extends Controller
             'theaters' => $theaters,
             'seatTypes' => $seatTypes
         ]);
+    }
+    public function status(Request $request){
+        $theaters = Theater::find($request->theater_id);
+        $theaters['status'] = $request->active;
+        $theaters->save();
+        return response();
     }
 }

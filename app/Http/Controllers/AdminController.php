@@ -92,8 +92,15 @@ class AdminController extends Controller
 
     public function delete($id)
     {
-        User::destroy($id);
-        return response()->json(['success' => 'Delete Successfully']);
+        $user = User::find($id);
+        if($user->hasRole('admin')){
+            return response()->json(['error' => "Can't Delete Admin Account !"]);
+        }
+        else{
+            User::destroy($id);
+            return response()->json(['success' => 'Delete Successfully']);
+        }
+
     }
 
     //Banners
@@ -148,5 +155,15 @@ class AdminController extends Controller
     {
         Auth::logout();
         return redirect('admin/sign_in');
+    }
+    public function status(Request $request){
+        $user = User::find($request->user_id);
+        if($user->hasRole('admin')){
+            return response()->json(['error' => "Can't change Admin Status!"]);
+        }
+       else{
+           $user['status'] = $request->active;
+           $user->save();
+       }
     }
 }

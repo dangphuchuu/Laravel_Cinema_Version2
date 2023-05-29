@@ -49,13 +49,15 @@
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary font-weight-bold">{!! $value['created_at'] !!}</span>
                                             </td>
-                                            <td class="align-middle text-center text-sm">
+                                            <td id="status{!! $value['id'] !!}" class="align-middle text-center text-sm ">
                                                 @if($value['status'] == 1)
-                                                    <a href="#">
+                                                    <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},0)">
                                                         <span class="badge badge-sm bg-gradient-success">Online</span>
                                                     </a>
                                                 @else
-                                                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                                    <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},1)">
+                                                        <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                                    </a>
                                                 @endif
                                             </td>
                                             <td class="align-middle text-center">
@@ -134,5 +136,40 @@
         $(".image-event").change(function () {
             readURL(this);
         });
+    </script>
+    <script>
+        function changestatus(event_id,active){
+            if(active === 1){
+                $("#status" + event_id).html(' <a href="javascript:void(0)"  class="btn_active" onclick="changestatus('+ event_id +',0)">\
+                    <span class="badge badge-sm bg-gradient-success">Online</span>\
+            </a>')
+            }else{
+                $("#status" + event_id).html(' <a  href="javascript:void(0)" class="btn_active"  onclick="changestatus('+ event_id +',1)">\
+                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>\
+            </a>')
+            }
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "/admin/events/status",
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    'active': active,
+                    'event_id': event_id
+                },
+                success: function (data) {
+                    if (data['success']) {
+                        // alert(data.success);
+                    } else if (data['error']) {
+                        alert(data.error);
+                    }
+                }
+            });
+        }
+
     </script>
 @endsection

@@ -310,13 +310,13 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="releaseDate" class="form-control-label">Release Date</label>
-                                        <input id="releaseDate" class="form-control" name="releaseDate" type="date" value="{!! $movie['releaseDate'] !!}">
+                                        <input id="releaseDate" class="form-control" name="releaseDate" type="date" value="{!! $movie['releaseDate'] !!}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="endDate" class="form-control-label">End Date</label>
-                                        <input id="endDate" name="endDate" class="form-control" type="date" value="{!! $movie['endDate'] !!}">
+                                        <input id="endDate" name="endDate" class="form-control" type="date" value="{!! $movie['endDate'] !!}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-2">

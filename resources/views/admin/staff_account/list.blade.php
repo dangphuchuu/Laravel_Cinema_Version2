@@ -1,6 +1,6 @@
 @extends('admin.layout.index')
 @section('content')
-    @role('admin')
+@role('admin')
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
@@ -82,15 +82,18 @@
                                                         Permission &nbsp<i style="color:white" class="fa-solid fa-pen-to-square fa-lg"></i>
                                                     </button>
                                                 </td>
-                                                <td class="align-middle text-center text-sm">
+                                                <td id="status{!! $value['id'] !!}" class="align-middle text-center text-sm ">
                                                     @if($value['status'] == 1)
-                                                        <span
-                                                            class="badge badge-sm bg-gradient-success">Online</span>
+                                                        <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},0)">
+                                                            <span class="badge badge-sm bg-gradient-success">Online</span>
+                                                        </a>
                                                     @else
-                                                        <span
-                                                            class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                                        <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},1)">
+                                                            <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                                        </a>
                                                     @endif
                                                 </td>
+                                                @hasrole('admin')
                                                 <td class="align-middle">
                                                     <a href="javascript:void(0)"
                                                        data-url="{{ url('admin/staff/delete', $value['id'] ) }}"
@@ -99,6 +102,7 @@
                                                         <i class="fa-solid fa-trash-can fa-lg"></i>
                                                     </a>
                                                 </td>
+                                                @endhasrole
                                             </tr>
                                             @include('admin.staff_account.permisson')
                                         @endif
@@ -116,55 +120,90 @@
             </div>
         </div>
     </div>
-    @else
-        <h1 align="center">Permissions Deny</h1>
-        @endrole
-        @endsection
-        @section('scripts')
-            <script>
-                function selects() {
-                    var ele = document.getElementsByName('permission[]');
-                    for (var i = 0; i < ele.length; i++) {
-                        if (ele[i].type === 'checkbox')
-                            ele[i].checked = true;
-                    }
-                }
+@else
+<h1 align="center">Permissions Deny</h1>
+@endrole
+@endsection
+@section('scripts')
+    <script>
+        function selects() {
+            var ele = document.getElementsByName('permission[]');
+            for (var i = 0; i < ele.length; i++) {
+                if (ele[i].type === 'checkbox')
+                    ele[i].checked = true;
+            }
+        }
 
-                function unselects() {
-                    var ele = document.getElementsByName('permission[]');
-                    for (var i = 0; i < ele.length; i++) {
-                        if (ele[i].type === 'checkbox')
-                            ele[i].checked = false;
-                    }
+        function unselects() {
+            var ele = document.getElementsByName('permission[]');
+            for (var i = 0; i < ele.length; i++) {
+                if (ele[i].type === 'checkbox')
+                    ele[i].checked = false;
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            });
+            $('.delete-staff').on('click', function () {
+                var userURL = $(this).data('url');
+                var trObj = $(this);
+                if (confirm("Are you sure you want to remove it?") === true) {
+                    $.ajax({
+                        url: userURL,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data['success']) {
+                                // alert(data.success);
+                                trObj.parents("tr").remove();
+                            } else if (data['error']) {
+                                alert(data.error);
+                            }
                         }
                     });
-                    $('.delete-staff').on('click', function () {
-                        var userURL = $(this).data('url');
-                        var trObj = $(this);
-                        if (confirm("Are you sure you want to remove it?") === true) {
-                            $.ajax({
-                                url: userURL,
-                                type: 'DELETE',
-                                dataType: 'json',
-                                success: function (data) {
-                                    if (data['success']) {
-                                        // alert(data.success);
-                                        trObj.parents("tr").remove();
-                                    } else if (data['error']) {
-                                        alert(data.error);
-                                    }
-                                }
-                            });
-                        }
+                }
 
-                    });
-                });
-            </script>
-        @endsection
+            });
+        });
+    </script>
+    <script>
+        function changestatus(user_id,active){
+            if(active === 1){
+                $("#status" + user_id).html(' <a href="javascript:void(0)"  class="btn_active" onclick="changestatus('+ user_id +',0)">\
+            <span class="badge badge-sm bg-gradient-success">Online</span>\
+    </a>')
+            }else{
+                $("#status" + user_id).html(' <a  href="javascript:void(0)" class="btn_active"  onclick="changestatus('+ user_id +',1)">\
+            <span class="badge badge-sm bg-gradient-secondary">Offline</span>\
+    </a>')
+            }
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "/admin/user/status",
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    'active': active,
+                    'user_id': user_id
+                },
+                success: function (data) {
+                    if (data['success']) {
+                        // alert(data.success);
+                    } else if (data['error']) {
+                        alert(data.error);
+                    }
+                }
+            });
+        }
+
+    </script>
+@endsection

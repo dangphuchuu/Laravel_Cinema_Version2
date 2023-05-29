@@ -4,9 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
-class CheckBanned
+class Language
 {
     /**
      * Handle an incoming request.
@@ -17,14 +17,9 @@ class CheckBanned
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && (auth()->user()->status == 0)) {
-            Auth::logout();
-
-            $request->session()->invalidate();
-
-            $request->session()->regenerateToken();
-
-            return redirect()->back()->with('warning', 'Tài khoản của bạn đã bị khóa. Vui lòng liên hệ ban quản trị ! ');
+        if(session()->has('locale'))
+        {
+            App::setlocale(session()->get('locale'));
         }
         return $next($request);
     }

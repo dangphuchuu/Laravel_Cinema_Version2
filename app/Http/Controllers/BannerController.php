@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\MovieGenres;
 use Illuminate\Http\Request;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
@@ -64,5 +65,11 @@ class BannerController extends Controller
         Cloudinary::destroy($banners['image']);
         $banners->delete();
         return response()->json(['success' => 'Delete Successfully']);
+    }
+    public function status(Request $request){
+        $banners = Banner::find($request->banner_id);
+        $banners['status'] = $request->active;
+        $banners->save();
+        return response();
     }
 }

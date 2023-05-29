@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>List Movie</h6>
+                            <h6>Movies</h6>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
@@ -21,7 +21,6 @@
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Movie Name</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">ShowTime</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">National</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Director</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Release Date</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">End Date</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
@@ -57,24 +56,21 @@
                                             <td class="align-middle text-center">
                                                 <h6 class="mb-0 text-sm ">{{ $movie->national }}</h6>
                                             </td>
-                                                <td class="align-middle text-center">
-                                                    @foreach($movie->directors as $director)
-                                                    <h6 class="mb-0 text-sm ">{{ $director->name }}</h6>
-                                                    @endforeach
-                                                </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary font-weight-bold">{{ $movie->releaseDate }}</span>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary font-weight-bold">{{ $movie->endDate }}</span>
                                             </td>
-                                            <td class="align-middle text-center text-sm">
-                                                @if($movie->status == 1)
-                                                    <a href="#">
+                                            <td id="status{!! $movie['id'] !!}" class="align-middle text-center text-sm">
+                                                @if($movie['status'] == 1)
+                                                    <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $movie['id'] !!},0)">
                                                         <span class="badge badge-sm bg-gradient-success">Online</span>
                                                     </a>
                                                 @else
-                                                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                                    <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $movie['id'] !!},1)">
+                                                        <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                                    </a>
                                                 @endif
                                             </td>
                                             <td class="align-middle">
@@ -136,5 +132,40 @@
 
             });
         });
+    </script>
+    <script>
+        function changestatus(movie_id,active){
+            if(active === 1){
+                $("#status" + movie_id).html(' <a href="javascript:void(0)"  class="btn_active" onclick="changestatus('+ movie_id +',0)">\
+                    <span class="badge badge-sm bg-gradient-success">Online</span>\
+            </a>')
+            }else{
+                $("#status" + movie_id).html(' <a  href="javascript:void(0)" class="btn_active"  onclick="changestatus('+ movie_id +',1)">\
+                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>\
+            </a>')
+            }
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "/admin/movie/status",
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    'active': active,
+                    'movie_id': movie_id
+                },
+                success: function (data) {
+                    if (data['success']) {
+                        // alert(data.success);
+                    } else if (data['error']) {
+                        alert(data.error);
+                    }
+                }
+            });
+        }
+
     </script>
 @endsection

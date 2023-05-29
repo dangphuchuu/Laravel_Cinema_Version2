@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Food;
+use App\Models\Post;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 
@@ -77,5 +78,11 @@ class FoodController extends Controller
         Cloudinary::destroy($food['image']);
         $food->delete();
         return response()->json(['success' => 'Delete Successfully']);
+    }
+    public function status(Request $request){
+        $food = Food::find($request->food_id);
+        $food['status'] = $request->active;
+        $food->save();
+        return response();
     }
 }
