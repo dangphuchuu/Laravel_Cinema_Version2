@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RoomType;
 use App\Models\SeatType;
 use App\Models\Theater;
 use Carbon\Carbon;
@@ -17,13 +18,15 @@ class TheaterController extends Controller
     {
         $theaters = Theater::all();
         $seatTypes = SeatType::all();
+        $roomTypes = RoomType::all();
         return view('admin.theater.list', [
             'theaters' => $theaters,
-            'seatTypes' => $seatTypes
+            'seatTypes' => $seatTypes,
+            'roomTypes' => $roomTypes
         ]);
     }
 
-    public function create(Request $request)
+    public function postCreate(Request $request)
     {
         $theater = new Theater([
             'name' => $request->name,
@@ -35,7 +38,7 @@ class TheaterController extends Controller
         ]);
 
         $theater->save();
-        return redirect('/admin/theater');
+        return redirect('/admin/theater')->with('success', 'Add Theater Successfully!');
     }
 
     public function status(Request $request)

@@ -41,6 +41,18 @@
                     </a>
                 </div>
             @endif
+
         </div>
+
+    </div>
+    <div class=" mx-2 dropdown float-end">
+        <button class="btn btn-link link-warning dropdown-toggle" href="#"
+                data-bs-toggle="dropdown" aria-expanded="false">
+            Ngôn ngữ
+        </button>
+        <ul class="dropdown-menu shadow dropdown-menu-end" style="background-color: #f5f5f5">
+            <li><a class="dropdown-item" href="#"><img src="image/language" alt="engligt"> Tiếng Anh</a></li>
+            <li><a class="dropdown-item" href="#"><img src="image/language" alt="vietnamese">Tiếng Việt</a></li>
+        </ul>
     </div>
 </nav>

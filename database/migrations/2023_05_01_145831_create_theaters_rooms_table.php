@@ -3,11 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use \App\Models\RoomType;
-use \App\Models\Theater;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -24,7 +21,7 @@ return new class extends Migration
             $table->boolean('status')->default(false);
             $table->timestamps();
         });
-        Schema::create('room_types', function (Blueprint $table) {
+        Schema::create('roomTypes', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name', 255);
             $table->boolean('status')->default(false);
@@ -33,9 +30,9 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name', 255);
-            $table->bigInteger('room_type_id')->unsigned();
+            $table->bigInteger('roomType_id')->unsigned();
             $table->bigInteger('theater_id')->unsigned();
-            $table->foreign('room_type_id')->references('id')->on('room_types');
+            $table->foreign('roomType_id')->references('id')->on('roomTypes');
             $table->foreign('theater_id')->references('id')->on('theaters');
             $table->boolean('status')->default(true);
             $table->timestamps();
@@ -51,6 +48,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('rooms');
         Schema::dropIfExists('theaters');
-        Schema::dropIfExists('room_types');
+        Schema::dropIfExists('roomTypes');
     }
 };

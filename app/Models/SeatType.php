@@ -9,13 +9,11 @@ class SeatType extends Model
 {
     use HasFactory;
 
+    protected $table = 'seattypes';
+
     protected $fillable = [
         'name',
         'price',
+        'color'
     ];
-
-    public function seats()
-    {
-        return $this->hasMany(Seat::class, 'seat_type_id', 'id');
-    }
 }

@@ -16,12 +16,11 @@ use App\Http\Controllers\TheaterController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('lang/{locale}',function($locale) {
-    if(! in_array($locale,['en','vi']))
-    {
+Route::get('lang/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'vi'])) {
         abort('404');
     }
-    session()->put('locale',$locale);
+    session()->put('locale', $locale);
     return redirect()->back();
 });
 
@@ -53,6 +52,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::delete('/delete/{id}', [MovieController::class, 'delete']);
         Route::get('/status', [MovieController::class, 'status']);
     });
+
     //TODO Room
     Route::prefix('room')->group(function () {
         Route::get('/', [RoomController::class, 'room']);

@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('seat_types', function (Blueprint $table) {
+        Schema::create('seatTypes', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name');
             $table->integer('price');
@@ -23,10 +23,13 @@ return new class extends Migration {
             $table->id()->autoIncrement();
             $table->string('row', 255);
             $table->integer('col');
-            $table->bigInteger('seat_type_id')->unsigned();
+            $table->integer('ms')->default(0);
+            $table->integer('me')->default(0);
+            $table->integer('mb')->default(0);
+            $table->bigInteger('seatType_id')->unsigned();
             $table->bigInteger('room_id')->unsigned();
             $table->foreign('room_id')->references('id')->on('rooms');
-            $table->foreign('seat_type_id')->references('id')->on('seat_types');
+            $table->foreign('seatType_id')->references('id')->on('seatTypes');
             $table->string('status');
             $table->timestamps();
         });
@@ -40,7 +43,7 @@ return new class extends Migration {
     public function down()
     {
         Schema::dropIfExists('seats');
-        Schema::dropIfExists('seat_types');
+        Schema::dropIfExists('seatTypes');
 
     }
 };

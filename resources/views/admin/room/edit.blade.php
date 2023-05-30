@@ -47,9 +47,9 @@
                                 @for($i = 65; $i <= 90; $i++)
                                     {{--                                    @foreach($room->seats as $seat)--}}
                                     {{--                                        @if($seat->row === chr($i))--}}
-                                    <div class="flex-fill d-flex">
+                                    <div class="flex-fill d-flex mt-1" style="height: 30px">
                                         <button type="button"
-                                                class="flex-shrink-0 btn rounded-0 fw-bold text-center border border-1 border-dark m-1 p-1 seat_row_btn"
+                                                class="flex-shrink-0 btn rounded-0 fw-bold text-center border border-1 border-dark p-1 seat_row_btn"
                                                 style="width: 30px; height: 30px; font-size: 10px"
                                                 data-bs-toggle="offcanvas"
                                                 data-bs-target="#EditSeatRow" aria-controls="EditSeatRow">{{ chr($i) }}</button>
@@ -83,8 +83,11 @@
                                             <div class="flex-shrink-0"></div>
                                             <div class="flex-grow-1 d-flex justify-content-center seats_row_{{ chr($i) }}">
                                                 @for($j = 1; $j <= 12; $j++)
-                                                    <div class="d-block border border-1 border-dark text-center m-1 seat_at_row_{{ chr($i) }}"
-                                                         style="background-color: #fff0c7; width: 30px; height: 30px; font-size: 10px; line-height: 30px">
+                                                    <div class="d-block border border-1 border-dark text-center me-1 ms-1 mb-1 mt-1 seat_at_row_{{ chr
+                                                    ($i)
+                                                     }}"
+                                                         style="background-color: #fff0c7; width: 30px; height: 30px; font-size: 10px; line-height:
+                                                          30px;">
                                                         {{ chr($i).$j }}
                                                         <input type="hidden" class="seat_input_row_{{ chr($i) }}" name="seatType"
                                                                value="1" aria-label="">
