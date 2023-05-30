@@ -103,27 +103,15 @@ class AdminController extends Controller
 
     }
 
-    //Banners
-    public function banners()
+    //Profile
+    public function profile()
     {
-        return view('admin.banners.list');
-    }
-
-    public function create_banners()
-    {
-
-        return redirect('admin.banners.create');
-    }
-
-    public function edit_banners()
-    {
-        return view('admin.banners.edit');
-    }
-
-    //statistical
-    public function statistical()
-    {
-        return view('admin.statistical.list');
+        if (Auth::check()) {
+            $user = Auth()->user();
+        } else {
+            return redirect('admin/sign_in');
+        }
+        return view('admin.profile',['user'=>$user])->with('roles','permissions');
     }
 
     //Sign_in

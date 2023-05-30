@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/sign_in', [AdminController::class, 'sign_in']);
     Route::post('/sign_in', [AdminController::class, 'Post_sign_in']);
     Route::get('/sign_out', [AdminController::class, 'sign_out']);
+    Route::get('/profile', [AdminController::class, 'profile']);
 });
 Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function () {
     Route::get('/', [AdminController::class, 'home']);
