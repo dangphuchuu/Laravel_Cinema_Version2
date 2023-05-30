@@ -46,13 +46,23 @@
 
     </div>
     <div class=" mx-2 dropdown float-end">
-        <button class="btn btn-link link-warning dropdown-toggle" href="#"
+        <button class="btn btn-link text-decoration-none link-light" href="#"
                 data-bs-toggle="dropdown" aria-expanded="false">
-            Ngôn ngữ
+            Ngôn ngữ: <img class="rounded ms-1" style="max-width: 30px" src="images/language/vietnam.png" alt="vietnamese">
         </button>
         <ul class="dropdown-menu shadow dropdown-menu-end" style="background-color: #f5f5f5">
-            <li><a class="dropdown-item" href="#"><img src="image/language" alt="engligt"> Tiếng Anh</a></li>
-            <li><a class="dropdown-item" href="#"><img src="image/language" alt="vietnamese">Tiếng Việt</a></li>
+            <li>
+                <a class="dropdown-item" href="#">
+                    <img class="rounded me-1" style="max-width: 30px" src="images/language/united-states.png" alt="engligh">
+                    Tiếng Anh
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="#">
+                    <img class="rounded me-1" style="max-width: 30px" src="images/language/vietnam.png" alt="vietnamese">
+                    Tiếng Việt
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
