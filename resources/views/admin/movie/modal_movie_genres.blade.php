@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="movie_title">Movie Genres</h5>
+                <h5 class="modal-title" id="movie_title">@lang('lang.movie_genre')</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Genres</label>
+                                <label for="example-text-input" class="form-control-label">@lang('lang.genre')</label>
                                 @foreach($movieGenres as $genre)
                                     <div class="form-check form-check-info text-start">
                                         <input class="form-check-input" type="checkbox"
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Add</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('lang.save')</button>
             </div>
         </div>
     </div>

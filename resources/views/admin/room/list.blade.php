@@ -2,13 +2,13 @@
     <thead>
     <tr>
         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
-            Name
+            @lang('lang.name')
         </th>
         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
-            Room Type
+            @lang('lang.room_type')
         </th>
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-            Status
+            @lang('lang.status')
         </th>
         <th></th>
         <th></th>
@@ -52,7 +52,7 @@
     @endforeach
     <tr>
         <td colspan="5">
-            <button class="btn w-100"><i class="fa-light fa-circle-plus pe-1"></i>ADD ROOM</button>
+            <button class="btn w-100"><i class="fa-light fa-circle-plus pe-1"></i>@lang('lang.add') @lang('lang.room')</button>
         </td>
     </tr>
     </tbody>

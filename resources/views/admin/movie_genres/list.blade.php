@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>Movie Genres</h6>
+                            <h6>@lang('lang.movie_genre')</h6>
                         </div>
                         @if(count($errors)>0)
                             <div class="alert alert-danger">
@@ -25,14 +25,14 @@
                                 <button style="float:right;padding-right:30px;"
                                         class="me-5  btn btn-primary float-right mb-3" data-bs-toggle="modal"
                                         data-bs-target="#movie_genre">
-                                    Create
+                                    @lang('lang.create')
                                 </button>
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Genres</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.genre')</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"></th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.status')</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"></th>
                                         <th class="text-secondary opacity-7"></th>
                                     </tr>

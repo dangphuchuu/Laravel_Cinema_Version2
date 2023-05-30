@@ -8,31 +8,31 @@
                             @csrf
                             <div class="card-header pb-0">
                                 <div class="d-flex align-items-center">
-                                    <p class="mb-0">List Movie</p>
-                                    <button type="submit" class="btn btn-primary btn-sm ms-auto">Submit</button>
+                                    <p class="mb-0">@lang('lang.movies')</p>
+                                    <button type="submit" class="btn btn-primary btn-sm ms-auto">@lang('lang.submit')</button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <p class="text-uppercase text-sm">Create</p>
+                                <p class="text-uppercase text-sm">@lang('lang.create')</p>
 
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="movieName" class="form-control-label">Movie Name</label>
-                                            <input class="form-control" name="name" id="movieName" type="text" value="" placeholder="Movie Name">
+                                            <label for="movieName" class="form-control-label">@lang('lang.movie_name')</label>
+                                            <input class="form-control" name="name" id="movieName" type="text" value="" placeholder="@lang('lang.movie_name')">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label class="form-label" for="showTime">Show time</label>
-                                            <input id="showTime" class="form-control" name="showTime" type="number" value="">
+                                            <label class="form-label" for="showTime">@lang('lang.showtime')</label>
+                                            <input id="showTime" class="form-control" name="showTime" placeholder="@lang('lang.showtime')" type="number" value="">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="national" class="form-control-label">National</label>
+                                            <label for="national" class="form-control-label">@lang('lang.national')</label>
                                             <select class="form-select" name="national" id="national">
-                                                <option value="">National</option>
+                                                <option value="">@lang('lang.national')</option>
                                                 <option value="Afghanistan">Afghanistan</option>
                                                 <option value="Aland Islands">Quần đảo Aland</option>
                                                 <option value="Albania">Albania</option>
@@ -291,17 +291,17 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="movieGenres" class="form-label">Movie Genres</label>
+                                            <label for="movieGenres" class="form-label">@lang('lang.movie_genre')</label>
                                             <button type="button" class="form-control btn btn-danger float-right mb-3" data-bs-toggle="modal"
                                                     data-bs-target="#movie_genre">
-                                                Select
+                                                @lang('lang.select')
                                             </button>
                                         </div>
                                     </div>
                                     @include('admin.movie.modal_movie_genres')
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="director" class="form-control-label">Director</label>
+                                            <label for="director" class="form-control-label">@lang('lang.directors')</label>
                                             <select id="director" class="form-control director-input" name="directors[]" multiple>
                                                 @foreach($directors as $director)
                                                     <option value="{{ $director->id }}">{!! $director->name !!}</option>
@@ -311,19 +311,19 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="releaseDate" class="form-control-label">Release Date</label>
+                                            <label for="releaseDate" class="form-control-label">@lang('lang.release_date')</label>
                                             <input id="releaseDate" class="form-control" name="releaseDate" type="date" value="">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="endDate" class="form-control-label">End Date</label>
+                                            <label for="endDate" class="form-control-label">@lang('lang.end_date')</label>
                                             <input id="endDate" name="endDate" class="form-control" type="date" value="">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="rating" class="form-label">Rating</label>
+                                            <label for="rating" class="form-label">@lang('lang.rated')</label>
                                             <select id="rating" class="form-select" name="rating">
                                                 @foreach($rating as $item)
                                                     <option value="{{ $item->id }}" class="fw-bold" title="{{ $item->description }}">{{ $item->name
@@ -334,7 +334,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group file-uploader">
-                                            <label for="movieImage" class="form-label">Image</label>
+                                            <label for="movieImage" class="form-label">@lang('lang.image')</label>
                                             <input id="movieImage" type="file" name="Image" class="form-control image-movie">
                                             <img style="width: 300px" src="" class="img_movie d-none" alt="user1">
                                         </div>
@@ -347,7 +347,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="cast" class="form-label">Casts</label>
+                                            <label for="cast" class="form-label">@lang('lang.casts')</label>
                                             <select id="cast" class="form-control cast-input" name="casts[]" multiple>
                                                 @foreach($casts as $cart)
                                                     <option value="{{ $cart->id }}">{{ $cart->name }}</option>
@@ -357,7 +357,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="editor" class="form-label">Description</label>
+                                            <label for="editor" class="form-label">@lang('lang.description')</label>
                                             <textarea class="form-control" name="description" id="editor"
                                                       placeholder="description"></textarea>
                                         </div>

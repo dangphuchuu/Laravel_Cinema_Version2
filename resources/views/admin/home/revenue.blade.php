@@ -3,7 +3,7 @@
         <div class="card ">
             <div class="card-header pb-0 p-3">
                 <div class="d-flex justify-content-between">
-                    <h6 class="mb-2">Revenue by Movie</h6>
+                    <h6 class="mb-2">@lang('lang.revenue_by_movie')</h6>
                 </div>
             </div>
             <div class="table-responsive">
@@ -13,26 +13,26 @@
                             <td class="w-30">
                                 <div class="d-flex px-2 py-1 align-items-center">
                                     <div class="ms-4">
-                                        <p class="text-xs font-weight-bold mb-0">Movie:</p>
+                                        <p class="text-xs font-weight-bold mb-0">@lang('lang.movies')</p>
                                         <h6 class="text-sm mb-0">TransFormer</h6>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Tickets Sold</p>
+                                    <p class="text-xs font-weight-bold mb-0">@lang('lang.ticket_sold')</p>
                                     <h6 class="text-sm mb-0">2500</h6>
                                 </div>
                             </td>
                             <td>
                                 <div class="text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Total Price</p>
+                                    <p class="text-xs font-weight-bold mb-0">@lang('lang.total_price')</p>
                                     <h6 class="text-sm mb-0">$230,900</h6>
                                 </div>
                             </td>
                             <td class="align-middle text-sm">
                                 <div class="col text-center">
-                                    <p class="text-xs font-weight-bold mb-0">In Week:</p>
+                                    <p class="text-xs font-weight-bold mb-0">@lang('lang.in_week')</p>
                                     <h6 class="text-sm mb-0">29.9%</h6>
                                 </div>
                             </td>
@@ -130,7 +130,7 @@
         <div class="card ">
             <div class="card-header pb-0 p-3">
                 <div class="d-flex justify-content-between">
-                    <h6 class="mb-2">Revenue by Cinema</h6>
+                    <h6 class="mb-2">@lang('lang.revenue_by_theater')</h6>
                 </div>
             </div>
             <div class="table-responsive">
@@ -140,26 +140,26 @@
                             <td class="w-30">
                                 <div class="d-flex px-2 py-1 align-items-center">
                                     <div class="ms-4">
-                                        <p class="text-xs font-weight-bold mb-0">Cinema:</p>
+                                        <p class="text-xs font-weight-bold mb-0">@lang('lang.theater')</p>
                                         <h6 class="text-sm mb-0">Movie cinema quận 1</h6>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Tickets Sold</p>
+                                    <p class="text-xs font-weight-bold mb-0">@lang('lang.ticket_sold')</p>
                                     <h6 class="text-sm mb-0">2500</h6>
                                 </div>
                             </td>
                             <td>
                                 <div class="text-center">
-                                    <p class="text-xs font-weight-bold mb-0">Total Price</p>
+                                    <p class="text-xs font-weight-bold mb-0">@lang('lang.total_price')</p>
                                     <h6 class="text-sm mb-0">$230,900</h6>
                                 </div>
                             </td>
                             <td class="align-middle text-sm">
                                 <div class="col text-center">
-                                    <p class="text-xs font-weight-bold mb-0">In Week:</p>
+                                    <p class="text-xs font-weight-bold mb-0">@lang('lang.in_week')</p>
                                     <h6 class="text-sm mb-0">29.9%</h6>
                                 </div>
                             </td>
