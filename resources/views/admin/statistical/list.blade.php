@@ -1,28 +1,28 @@
 @extends('admin.layout.index')
 @section('content')
-    @can('list statistical')
+    @can('statistical')
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>Statistical</h6>
+                            <h6>@lang('lang.statistical')</h6>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group" style="text-align:center">
-                                        <label for="example-text-input" class="form-control-label">Type of time</label>
+                                        <label for="example-text-input" class="form-control-label">@lang('lang.type_of_time')</label>
                                         <select style="width: 70%">
-                                            <option value="volvo" selected>Lọc Theo Tuần</option>
-                                            <option value="saab">Lọc Theo Tháng</option>
-                                            <option value="vw">Lọc Theo Năm</option>
+                                            <option value="volvo" selected>@lang('lang.sort_by_week')</option>
+                                            <option value="saab">@lang('lang.sort_by_month')</option>
+                                            <option value="vw">@lang('lang.sort_by_year')</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group" style="text-align:center">
-                                        <label for="example-text-input" class="form-control-label">Cinema</label>
+                                        <label for="example-text-input" class="form-control-label">@lang('lang.theater')</label>
                                         <select style="width: 70%">
                                             <option value="volvo" selected>Movie Cinema quận 1</option>
                                             <option value="saab">Movie Cinema Nguyễn trãi</option>
@@ -34,13 +34,13 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group" style="text-align:center">
-                                        <label for="example-text-input" class="form-control-label">Start time</label>
+                                        <label for="example-text-input" class="form-control-label">@lang('lang.start_time')</label>
                                         <input class="" style="width:70%" type="date" value="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group" style="text-align:center">
-                                        <label for="example-text-input" class="form-control-label">End Time</label>
+                                        <label for="example-text-input" class="form-control-label">@lang('lang.end_time')</label>
                                         <input class="" style="width:70%" type="date" value="">
                                     </div>
                                 </div>
@@ -51,14 +51,13 @@
                                 <table class="table align-items-center mb-0 ">
                                     <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Time</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Cinema</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Tickets</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">ToTal Tickets</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.time')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.theater')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.ticket')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.total_ticket')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Combo</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">ToTal Combo</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Revenue</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.total_combo')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.total_revenue')</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -83,12 +82,6 @@
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary font-weight-bold">1.212.000.000 Vnđ</span>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                               data-original-title="Edit user">
-                                                Delete
-                                            </a>
                                         </td>
                                     </tr>
                                     </tbody>

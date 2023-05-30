@@ -1,6 +1,6 @@
 @extends('admin.layout.index')
 @section('content')
-    @can('list events')
+    @can('events')
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">

@@ -1,5 +1,6 @@
 @extends('admin.layout.index')
 @section('content')
+    @can('movies')
     <div class="container-fluid py-4">
         <div class="row">
                 <div class="col-md-12">
@@ -370,6 +371,9 @@
                 </div>
         </div>
     </div>
+    @else
+        <h1 align="center">Permissions Deny</h1>
+    @endcan
 @endsection
 @section('scripts')
     <script>

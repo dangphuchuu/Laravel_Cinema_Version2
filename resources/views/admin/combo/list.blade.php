@@ -1,6 +1,6 @@
 @extends('admin.layout.index')
 @section('content')
-    @can('list director')
+    @can('food')
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
@@ -11,16 +11,16 @@
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
                                 <a style="float:right;padding-right:30px;" class="text-light">
-                                    <button class=" btn btn-primary float-right mb-3" data-bs-toggle="modal" data-bs-target="#combo">Create
+                                    <button class=" btn btn-primary float-right mb-3" data-bs-toggle="modal" data-bs-target="#combo">@lang('lang.create')
                                     </button>
                                 </a>
                                 <table class="table align-items-center mb-0 ">
                                     <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Name</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Image</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Price</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Status</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.name')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.image')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.price')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.status')</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
@@ -60,7 +60,7 @@
                                                 <a href="" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                                    data-original-title="Detail combo" data-bs-target="#detailCombo{!! $value['id'] !!}"
                                                    data-bs-toggle="modal">
-                                                    Detail
+                                                    @lang('lang.detail')
                                                 </a>
                                             </td>
                                             <td class="align-middle">
@@ -149,7 +149,7 @@
                 $('.form_detail').append(
                     '<div class="col-md-6">\
                     <div class="form-group">\
-                    <label for="example-text-input" class="form-control-label">Food</label>\
+                    <label for="example-text-input" class="form-control-label">@lang('lang.food')</label>\
                 <select id="select_combo '+i+'" name="addmore['+i+'][food]" class="form-select">\
                 @foreach($food as $f)
                         <option value="{!! $f['id'] !!}">\
@@ -161,7 +161,7 @@
                        </div>\
                             <div class="col-md-6">\
                                 <div class="form-group">\
-                                    <label for="example-text-input" class="form-control-label">Quantity</label>\
+                                    <label for="example-text-input" class="form-control-label">@lang('lang.quantity')</label>\
                                     <input class="form-control" type="number" name="addmore['+i+'][quantity]" min="0" max="100">\
                                 </div>\
                             </div>');

@@ -1,6 +1,6 @@
 @extends('admin.layout.index')
 @section('content')
-    @can('list schedule_movie')
+    @can('schedule_movie')
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">

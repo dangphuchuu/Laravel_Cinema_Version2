@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Staff Account</h6>
+                        <h6>@lang('lang.staff_account')</h6>
                     </div>
                     @if(count($errors)>0)
                         <div class="alert alert-danger">
@@ -35,22 +35,22 @@
                                 <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
-                                        FullName
+                                        @lang('lang.fullname')
                                     </th>
                                     <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
                                         Email
                                     </th>
                                     <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
-                                        Phone
+                                        @lang('lang.phone')
                                     </th>
                                     <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
-                                        Role
+                                        @lang('lang.role')
                                     </th>
                                     <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
-                                        Permissions
+                                        @lang('lang.permissions')
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Status
+                                        @lang('lang.status')
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                 </tr>
@@ -79,7 +79,7 @@
                                                     <button href="#permission" class="btn btn-link text-danger "
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#permission{!! $value['id'] !!}">
-                                                        Permission &nbsp<i style="color:white" class="fa-solid fa-pen-to-square fa-lg"></i>
+                                                        @lang('lang.permissions') &nbsp<i style="color:white" class="fa-solid fa-pen-to-square fa-lg"></i>
                                                     </button>
                                                 </td>
                                                 <td id="status{!! $value['id'] !!}" class="align-middle text-center text-sm ">
