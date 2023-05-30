@@ -4,41 +4,40 @@ use Spatie\Permission\Models\Permission;
 
 
 //TODO: Movie_Genres
-Permission::create(['name' => 'list movie_genre']);
+Permission::create(['name' => 'movie_genre']);
 
-//TODO: List Movies
-Permission::create(['name' => 'list movies']);
+//TODO:  Movies
+Permission::create(['name' => 'movies']);
 
 //TODO: Cinema
-Permission::create(['name' => 'list theater']);
+Permission::create(['name' => 'theater']);
 
 //TODO: Schedule Movies
-Permission::create(['name' => 'list schedule_movie']);
+Permission::create(['name' => 'schedule_movie']);
 
 //TODO: Events
-Permission::create(['name' => 'list events']);
+Permission::create(['name' => 'events']);
 
 //TODO: Ticket
-Permission::create(['name' => 'list ticket']);
+Permission::create(['name' => 'ticket']);
 
 //TODO: Food/Combo
-Permission::create(['name' => 'list food_combo']);
-
+Permission::create(['name' => 'food']);
 
 //TODO: User
-Permission::create(['name' => 'list user']);
+Permission::create(['name' => 'user']);
 
 //TODO: staff
-Permission::create(['name' => 'list staff']);
+Permission::create(['name' => 'staff']);
 
 //TODO: Banners
-Permission::create(['name' => 'list banners']);
+Permission::create(['name' => 'banners']);
 //TODO: Directors
-Permission::create(['name' => 'list director']);
+Permission::create(['name' => 'director']);
 
 //TODO: Cast
-Permission::create(['name' => 'list cast']);
+Permission::create(['name' => 'cast']);
 
 //TODO: Statistical
-Permission::create(['name' => 'list statistical']);
+Permission::create(['name' => 'statistical']);
 

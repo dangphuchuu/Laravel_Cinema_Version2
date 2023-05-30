@@ -17,8 +17,8 @@
                         <span class="d-sm-inline d-none">{{ Auth::user()->fullName }}</span>
                     </a>
                     <ul class="dropdown-menu" style="top: -0.5rem!important;left: -25px;">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><a class="dropdown-item" href="/admin/sign_out">Sign Out</a></li>
+                        <li><a class="dropdown-item" href="#">@lang('lang.profile')</a></li>
+                        <li><a class="dropdown-item" href="/admin/sign_out">@lang('lang.signout')</a></li>
                         <li><a class="dropdown-item" href="lang/en">@lang('lang.en')</a></li>
                         <li><a class="dropdown-item" href="lang/vi">@lang('lang.vi')</a></li>
                     </ul>

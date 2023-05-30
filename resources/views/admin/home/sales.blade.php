@@ -5,13 +5,13 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Money</p>
+                            <p class="text-sm mb-0 text-uppercase font-weight-bold">@lang('lang.today_money')</p>
                             <h5 class="font-weight-bolder">
                                 $53,000
                             </h5>
                             <p class="mb-0">
                                 <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                since yesterday
+                                @lang('lang.since_yesterday')
                             </p>
                         </div>
                     </div>
@@ -30,13 +30,13 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Tickets</p>
+                            <p class="text-sm mb-0 text-uppercase font-weight-bold">@lang('lang.today_ticket')</p>
                             <h5 class="font-weight-bolder">
                                 2,300
                             </h5>
                             <p class="mb-0">
                                 <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                since yesterday
+                                @lang('lang.since_yesterday')
                             </p>
                         </div>
                     </div>
@@ -55,13 +55,13 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">New Clients</p>
+                            <p class="text-sm mb-0 text-uppercase font-weight-bold">@lang('lang.new_clients')</p>
                             <h5 class="font-weight-bolder">
                                 +3,462
                             </h5>
                             <p class="mb-0">
                                 <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                since last week
+                                @lang('lang.since_lastweek')
                             </p>
                         </div>
                     </div>
@@ -80,12 +80,12 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">ToTal Revenue</p>
+                            <p class="text-sm mb-0 text-uppercase font-weight-bold">@lang('lang.total_revenue')</p>
                             <h5 class="font-weight-bolder">
                                 $103,430
                             </h5>
                             <p class="mb-0">
-                                <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
+                                <span class="text-success text-sm font-weight-bolder">+5%</span>  @lang('lang.than_lastmonth')
                             </p>
                         </div>
                     </div>

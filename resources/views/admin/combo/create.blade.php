@@ -13,21 +13,21 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="name-input" class="form-control-label">Name</label>
+                                    <label for="name-input" class="form-control-label">@lang('lang.name')</label>
                                     <input class="form-control" type="text" value="" name="name" id="name-input"
-                                           placeholder="type name">
+                                           placeholder="@lang('lang.type') @lang('lang.name')">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="price" class="form-control-label">Price</label>
+                                    <label for="price" class="form-control-label">@lang('lang.price')</label>
                                     <input class="form-control" type="number" name="price" id="price"
-                                           placeholder="type national">
+                                           placeholder="@lang('lang.type') @lang('lang.price')">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group file-uploader">
-                                    <label for="image-input" class="form-control-label">Image</label>
+                                    <label for="image-input" class="form-control-label">@lang('lang.image')</label>
                                     <input type='file' name='Image' class="form-control image-combo" id="image-input">
                                     <img style="width: 300px" src="" class="img_combo d-none" alt="user1">
                                 </div>
@@ -38,8 +38,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('lang.close')</button>
+                    <button type="submit" class="btn btn-primary">@lang('lang.save')</button>
                 </div>
 
             </div>

@@ -10,7 +10,7 @@
     <hr class="horizontal dark mt-0">
     <div class="w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
-            @can('list movie_genre')
+            @can('movie_genre')
             <li class="nav-item">
                 <a class="nav-link" href="./admin/movie_genres">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -20,7 +20,7 @@
                 </a>
             </li>
             @endcan
-            @can('list movies')
+            @can('movies')
             <li class="nav-item">
                 <a class="nav-link " href="./admin/movie">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -30,7 +30,7 @@
                 </a>
             </li>
             @endcan
-            @can('list theater')
+            @can('theater')
             <li class="nav-item">
                 <a class="nav-link " href="./admin/theater">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -40,7 +40,7 @@
                 </a>
             </li>
             @endcan
-            @can('list schedule_movie')
+            @can('schedule_movie')
             <li class="nav-item">
                 <a class="nav-link " href="./admin/schedule">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -50,7 +50,7 @@
                 </a>
             </li>
             @endcan
-            @can('list events')
+            @can('events')
             <li class="nav-item">
                 <a class="nav-link " href="./admin/events">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -60,7 +60,7 @@
                 </a>
             </li>
             @endcan
-            @can('list ticket')
+            @can('ticket')
             <li class="nav-item">
                 <a class="nav-link " href="./admin/ticket">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -70,7 +70,7 @@
                 </a>
             </li>
             @endcan
-            @can('list food_combo')
+            @can('food_combo')
             <li class="nav-item">
                 <a class="nav-link " href="./admin/food">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -88,7 +88,7 @@
                 </a>
             </li>
             @endcan
-            @can('list user')
+            @can('user')
             <li class="nav-item">
                 <a class="nav-link " href="./admin/user">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -108,7 +108,7 @@
                 </a>
             </li>
             @endrole
-            @can('list events')
+            @can('events')
             <li class="nav-item">
                 <a class="nav-link " href="./admin/news">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -118,7 +118,7 @@
                 </a>
             </li>
             @endcan
-            @can('list banners')
+            @can('banners')
             <li class="nav-item">
                 <a class="nav-link " href="./admin/banners">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -128,7 +128,7 @@
                 </a>
             </li>
             @endcan
-            @can('list director')
+            @can('director')
             <li class="nav-item">
                 <a class="nav-link " href="./admin/director">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -138,7 +138,7 @@
                 </a>
             </li>
             @endcan
-            @can('list cast')
+            @can('cast')
             <li class="nav-item">
                 <a class="nav-link " href="./admin/cast">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -148,7 +148,7 @@
                 </a>
             </li>
             @endcan
-            @can('list statistical')
+            @can('statistical')
             <li class="nav-item">
                 <a class="nav-link " href="./admin/statistical">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">

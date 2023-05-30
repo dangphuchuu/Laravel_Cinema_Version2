@@ -1,12 +1,12 @@
 @extends('admin.layout.index')
 @section('content')
-    @can('list user')
+    @can('user')
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>User Account</h6>
+                            <h6>@lang('lang.user_account')</h6>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
@@ -14,14 +14,14 @@
                                     <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Id</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Full Name</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.fullname')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Email</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Phone</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.phone')</th>
                                         @role('admin')
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.status')</th>
                                         @endrole
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Created_At</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Updated_At</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.created_at')</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.updated_at')</th>
                                     </tr>
                                     </thead>
                                     <tbody>

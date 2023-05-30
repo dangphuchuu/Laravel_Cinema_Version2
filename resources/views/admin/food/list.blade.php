@@ -1,26 +1,26 @@
 @extends('admin.layout.index')
 @section('content')
-    @can('list director')
+    @can('food')
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>Food</h6>
+                            <h6>@lang('lang.food')</h6>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
                                 <a style="float:right;padding-right:30px;" class="text-light">
-                                    <button class=" btn btn-primary float-right mb-3" data-bs-toggle="modal" data-bs-target="#food">Create
+                                    <button class=" btn btn-primary float-right mb-3" data-bs-toggle="modal" data-bs-target="#food">@lang('lang.create')
                                     </button>
                                 </a>
                                 <table class="table align-items-center mb-0 ">
                                     <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Name</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Image</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Price</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Status</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.name')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.image')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.price')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.status')</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                     </tr>

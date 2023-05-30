@@ -2,13 +2,13 @@
     <thead>
     <tr>
         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
-            Name
+            @lang('lang.name')
         </th>
         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
-            Room Type
+            @lang('lang.room_type')
         </th>
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-            Status
+            @lang('lang.status')
         </th>
         <th></th>
         <th></th>
@@ -53,7 +53,7 @@
     <tr>
         <td colspan="5">
             <button class="btn w-100" data-bs-toggle="modal" data-bs-target="#RoomCreateModal_Theater_{{ $theater->id }}">
-                <i class="fa-light fa-circle-plus pe-1"></i>ADD ROOM
+                <i class="fa-light fa-circle-plus pe-1"></i>@lang('lang.add') @lang('lang.room')
             </button>
         </td>
     </tr>

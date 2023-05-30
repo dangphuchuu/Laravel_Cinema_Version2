@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="TheaterModalLabel">Edit Theater</h1>
+                <h1 class="modal-title fs-5" id="TheaterModalLabel">{{$room->name}}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -13,7 +13,7 @@
                     <div class="flex-nowrap overflow-auto">
                         <div class="d-inline-flex mt-5 clearfix">
                             <div class="d-flex flex-fill flex-nowrap">
-                                <div class="flex-shrink-1 fw-bold border-0 text-nowrap">Giá vé:</div>
+                                <div class="flex-shrink-1 fw-bold border-0 text-nowrap">@lang('lang.ticket_price')</div>
                                 @foreach($seatTypes as $seatType)
                                     <div class="flex-fill d-flex border-0 ps-3 me-4 text-nowrap">
                                     <span class="fw-bold d-block text-center me-1"
@@ -34,7 +34,7 @@
                             </div>
                             <div class="flex-grow-1 d-block" style="min-width: 449px">
                                 <div class="text-center pb-1 mb-2 fs-5">
-                                    Màn hình
+                                    @lang('lang.screen')
                                 </div>
                                 <div class="d-flex justify-content-center">
                                     <div class="bg-dark w-100 mb-5" style="height: 2px; max-width: 520px;"></div>
@@ -56,7 +56,7 @@
                                         <div class="offcanvas offcanvas-start" tabindex="-1" id="EditSeatRow"
                                              aria-labelledby="EditSeatRowLabel">
                                             <div class="offcanvas-header">
-                                                <h5 class="offcanvas-title" id="EditSeatRowLabel">Edit Seat Row</h5>
+                                                <h5 class="offcanvas-title" id="EditSeatRowLabel">@lang('lang.edit') @lang('lang.seat_row')</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                                                         aria-label="Close"></button>
                                             </div>
@@ -75,7 +75,7 @@
                                                     </div>
                                                 @endforeach
                                                 <button type="button" class="btn btn-primary seat_color_btn mt-4 seat_color_submit"
-                                                        data-bs-dismiss="offcanvas">Confirm
+                                                        data-bs-dismiss="offcanvas">@lang('lang.confirm')
                                                 </button>
                                             </div>
                                         </div>
@@ -145,8 +145,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('lang.close')</button>
+                <button type="button" class="btn btn-primary">@lang('lang.save')</button>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 @extends('admin.layout.index')
 @section('content')
-    @can('list theater')
+    @can('theater')
         <div class="container-fluid py-4">
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -15,13 +15,13 @@
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>Cinema</h6>
+                            <h6>@lang('lang.theater')</h6>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
                                 <a style="float:right;padding-right:30px;" class="text-light">
                                     <button class=" btn btn-primary float-right mb-3" data-bs-toggle="modal" data-bs-target="#theaterCreateModal">
-                                        Create
+                                        @lang('lang.create')
                                     </button>
                                 </a>
 
@@ -29,16 +29,16 @@
                                     <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
-                                            Name
+                                            @lang('lang.name')
                                         </th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
-                                            Address
+                                            @lang('lang.address')
                                         </th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">
-                                            Room
+                                            @lang('lang.room')
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Status
+                                            @lang('lang.status')
                                         </th>
                                         <th></th>
                                         <th></th>
