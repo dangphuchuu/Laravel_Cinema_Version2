@@ -96,5 +96,8 @@ return [
     'sort_by_year'=>"Sort By Year",
     'total_ticket'=>'Total Ticket',
     'total_combo'=>'Total Combo',
+    'new_password'=>'New Password',
+    're_password'=>'RePassword',
+    'click_here_to_change_password'=>'Click here to change password',
     //Web
 ];

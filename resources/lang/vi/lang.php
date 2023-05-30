@@ -96,5 +96,8 @@ return [
     'sort_by_year'=>"Lọc Theo Năm",
     'total_ticket'=>'Tổng vé',
     'total_combo'=>'Tổng combo',
+    'new_password'=>'Mật khẩu mới',
+    're_password'=>'Nhập lại mật khẩu',
+    'click_here_to_change_password'=>'Click vào đây để thay đổi mật khẩu',
     //Web
 ];
