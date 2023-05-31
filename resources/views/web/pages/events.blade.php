@@ -12,7 +12,7 @@
                             aria-expanded="true"
                             data-bs-toggle="collapse"
                             data-bs-target="#tintuc" disabled>
-                        Tin tức
+                        @lang('lang.news')
                     </button>
                 </li>
                 <li class="vr mx-5"></li>
@@ -20,7 +20,7 @@
                     <button class="h5 nav-link link-secondary"
                             aria-expanded="false"
                             data-bs-toggle="collapse" data-bs-target="#sukien">
-                        Sự kiện
+                        @lang('lang.events')
                     </button>
                 </li>
 
@@ -59,7 +59,7 @@
                                     Lật Mặt 6: Tấm Vé Định Mệnh đã ra mắt tại
                                     phòng vé và tiếp tục tạo cơn địa chấn đáng chú ý vào dịp Lễ.
                             </div>
-                            <a href="#" class="btn btn-warning btn-sm position-absolute bottom-0 end-0">XEM THÊM</a>
+                            <a href="#" class="btn btn-warning btn-sm position-absolute bottom-0 end-0">@lang('lang.more')</a>
                         </div>
                         <!-- Post: end -->
                     @else
@@ -72,8 +72,7 @@
 
                                     </p>
                                 </a>
-                                <a href="#" class="btn btn-warning btn-sm position-absolute bottom-0 start-0">XEM
-                                    THÊM</a>
+                                <a href="#" class="btn btn-warning btn-sm position-absolute bottom-0 start-0">@lang('lang.more')</a>
                             </div>
                             <div class="flex-shrink-0 px-3">
                                 <a href="/movie/1">

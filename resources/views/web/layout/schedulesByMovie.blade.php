@@ -1,9 +1,9 @@
 <div class="mt-5">
-    <h4>Lịch chiếu phim</h4>
+    <h4>@lang('lang.movie_schedule')</h4>
     <div class="row row-cols-sm-2 row-cols-1">
         <div class="form-group col mt-4">
             <form id='select' class="select" method='get'>
-                <label for="select-sort" class="form-label">Rạp</label>
+                <label for="select-sort" class="form-label">@lang('lang.theater')</label>
                 <select name="select_item is-invalid" id="select-sort" class="form-select" tabindex="0">
                     <option value="1" selected>TP Hồ Chí Minh</option>
                     <option value="2">Hà Nội</option>
@@ -14,7 +14,7 @@
             </form>
         </div>
         <div class="form-group col mt-4">
-            <label class="form-label" for="datepicker">Ngày chiếu</label>
+            <label class="form-label" for="datepicker">@lang('lang.show_date')</label>
             <input type="date" id="datepicker" value="2023-05-07" class="form-control">
         </div>
     </div>

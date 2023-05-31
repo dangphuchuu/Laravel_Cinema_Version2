@@ -9,16 +9,16 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
             <ul class="navbar-nav text-uppercase mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link @yield('movies')" href="/movies" role="button">Phim</a>
+                    <a class="nav-link @yield('movies')" href="/movies" role="button">@lang('lang.movies')</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link @yield('schedules')" href="/schedules">Lịch chiếu phim</a>
+                    <a class="nav-link @yield('schedules')" href="/schedules">@lang('lang.movie_schedule')</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link @yield('events')" href="/events">Tin tức/ Sự kiện</a>
+                    <a class="nav-link @yield('events')" href="/events">@lang('lang.news_events')</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link @yield('support')" href="#">Hỗ trợ</a>
+                    <a class="nav-link @yield('support')" href="#">@lang('lang.support')</a>
                 </li>
 
             </ul>
@@ -30,14 +30,14 @@
                         <span class="d-sm-inline d-none">{{ Auth::user()->fullName }}</span>
                     </a>
                     <ul class="dropdown-menu shadow" style="background-color: #2e292e">
-                        <li><a class="dropdown-item link-light" href="#">Profile</a></li>
-                        <li><a class="dropdown-item link-light" href="/signOut">Sign Out</a></li>
+                        <li><a class="dropdown-item link-light" href="#">@lang('lang.profile')</a></li>
+                        <li><a class="dropdown-item link-light" href="/signOut">@lang('lang.signout')</a></li>
                     </ul>
                 </div>
             @else
                 <div class="nav-item mx-2 float-end">
                     <a class="nav-link link-warning text-decoration-underline" href="#loginModal" data-bs-toggle="modal" data-bs-target="#loginModal">
-                        sign in
+                        @lang('lang.signin')
                     </a>
                 </div>
             @endif
@@ -48,19 +48,19 @@
     <div class=" mx-2 dropdown float-end">
         <button class="btn btn-link text-decoration-none link-light" href="#"
                 data-bs-toggle="dropdown" aria-expanded="false">
-            Ngôn ngữ: <img class="rounded ms-1" style="max-width: 30px" src="images/language/vietnam.png" alt="vietnamese">
+            @lang('lang.lang'): <img class="rounded ms-1" style="max-width: 30px" src="images/language/vietnam.png" alt="vietnamese">
         </button>
         <ul class="dropdown-menu shadow dropdown-menu-end" style="background-color: #f5f5f5">
             <li>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="lang/en">
                     <img class="rounded me-1" style="max-width: 30px" src="images/language/united-states.png" alt="engligh">
-                    Tiếng Anh
+                    @lang('lang.en')
                 </a>
             </li>
             <li>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="lang/vi">
                     <img class="rounded me-1" style="max-width: 30px" src="images/language/vietnam.png" alt="vietnamese">
-                    Tiếng Việt
+                    @lang('lang.vi')
                 </a>
             </li>
         </ul>

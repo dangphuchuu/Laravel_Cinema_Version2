@@ -43,13 +43,13 @@
                        aria-expanded="true"
                        data-bs-toggle="collapse"
                        data-bs-target="#phimmoi">
-                        Phim Mới
+                        @lang('lang.new_film')
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="h5 nav-link link-secondary" href="#vebantruoc" aria-controls="vebantruoc"
                        aria-expanded="false"
-                       data-bs-toggle="collapse" data-bs-target="#vebantruoc">Vé bán trước</a>
+                       data-bs-toggle="collapse" data-bs-target="#vebantruoc">@lang('lang.pre_sale')</a>
                 </li>
             </ul>
 
@@ -156,11 +156,11 @@
             </div>
 
             <div class="row m-2 mb-5 justify-content-end">
-                <a class="btn btn-outline-warning w-auto">XEM THÊM ></a>
+                <a class="btn btn-outline-warning w-auto">@lang('lang.more') ></a>
             </div>
 
             <div class="mt-5">
-                <h5 class="page-heading">Tin tức mới nhất</h5>
+                <h5 class="page-heading">@lang('lang.latest_news')</h5>
 
                 <div class="row mt-2 g-2 row-cols-1 row-cols-sm-2 row-cols-md-3 justify-content-start">
                     {{--  Post item  --}}
@@ -250,7 +250,7 @@
                     {{--  Post item: end  --}}
                 </div>
                 <div class="row m-2 mb-5 justify-content-end">
-                    <a class="btn btn-outline-warning w-auto">XEM THÊM ></a>
+                    <a class="btn btn-outline-warning w-auto">@lang('lang.more') ></a>
                 </div>
             </div>
 

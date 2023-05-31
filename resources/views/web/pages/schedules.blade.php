@@ -14,14 +14,14 @@
                             aria-expanded="true"
                             data-bs-toggle="collapse"
                             data-bs-target="#lichtheophim" disabled>
-                        Lịch chiếu theo phim
+                        @lang('lang.movie_showtime')
                     </button>
                 </li>
                 <li class="vr mx-5"></li>
                 <li class="nav-item">
                     <button class="h5 nav-link link-secondary"
                             aria-expanded="false"
-                            data-bs-toggle="collapse" data-bs-target="#lichtheorap">Lịch chiếu theo rạp
+                            data-bs-toggle="collapse" data-bs-target="#lichtheorap">@lang('lang.theater_showtime')
                     </button>
                 </li>
             </ul>
