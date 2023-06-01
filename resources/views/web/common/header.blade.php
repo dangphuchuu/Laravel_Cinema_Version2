@@ -53,7 +53,7 @@
         <ul class="dropdown-menu shadow dropdown-menu-end" style="background-color: #f5f5f5">
             <li>
                 <a class="dropdown-item" href="#">
-                    <img class="rounded me-1" style="max-width: 30px" src="images/language/united-states.png" alt="engligh">
+                    <img class="rounded me-1" style="max-width: 30px" src="images/language/united-states.png" alt="english">
                     Tiếng Anh
                 </a>
             </li>

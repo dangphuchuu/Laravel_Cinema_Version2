@@ -10,6 +10,9 @@
         Admin Cinema
     </title>
     <base href="{{asset('')}}">
+    {{--Img--}}
+    <link rel="apple-touch-icon" sizes="76x76" href="admin_assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="admin_assets/img/favicon.png">
 
     {{--Select2--}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
@@ -24,17 +27,20 @@
     <link href="admin_assets/css/nucleo-svg.css" rel="stylesheet"/>
     <link href="admin_assets/css/nucleo-svg.css" rel="stylesheet"/>
     <!-- Argon dashboard CSS Files -->
-    <link id="pagestyle" href="admin_assets//css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
-
-    {{--Img--}}
-    <link rel="apple-touch-icon" sizes="76x76" href="admin_assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="admin_assets/img/favicon.png">
+    <link id="pagestyle" href="admin_assets/css/argon-dashboard.css" rel="stylesheet"/>
+    <style>
+        .dropdown .dropdown-menu.show:before {
+            top: -11px !important;
+            position: absolute !important;
+        }
+        @yield('css')
+    </style>
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
 <div class="min-height-300 bg-primary position-absolute w-100"></div>
 @include('admin.layout.sidebar')
-<main class="main-content position-relative border-radius-lg ">
+<main class="main-content position-relative border-radius-lg">
     <!-- Navbar -->
     @include('admin.layout.nav')
     <!-- End Navbar -->
@@ -47,32 +53,19 @@
 <!--   Core JS Files   -->
 <script src="admin_assets/js/core/popper.min.js"></script>
 <script src="admin_assets/js/core/bootstrap.min.js"></script>
-
 <script src="admin_assets/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="admin_assets/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="admin_assets/js/plugins/chartjs.min.js"></script>
-<script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-        var options = {
-            damping: '0.5'
-        }
-        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-</script>
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="./assets/js/argon-dashboard.min.js?v=2.0.4"></script>
-
+<script src="admin_assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 {{-- Jquery --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
-
 {{-- Select2 --}}
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.full.js"></script>
-
 {{-- CKeditor --}}
 <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
 <script>
@@ -82,7 +75,8 @@
             console.log(editor);
         })
         .catch(error => {
-            console.error(error);
+            if (!error)
+                console.error(error);
         });
 </script>
 <script>
@@ -92,7 +86,8 @@
             console.log(editor);
         })
         .catch(error => {
-            console.error(error);
+            if (!error)
+                console.error(error);
         });
 </script>
 

@@ -30,15 +30,19 @@ DB::table('theaters')->insert([
 DB::table('roomTypes')->insert([
     [
         'name' => '2D',
+        'surcharge' => 20000,
         'status' => true,
     ], [
         'name' => '3D',
+        'surcharge' => 40000,
         'status' => true,
     ], [
         'name' => '4D',
+        'surcharge' => 60000,
         'status' => true,
     ], [
         'name' => 'IMAX',
+        'surcharge' => 100000,
         'status' => true,
     ]
 ]);
@@ -107,17 +111,17 @@ DB::table('rooms')->insert([
 DB::table('seatTypes')->insert([
     [
         'name' => 'standard',
-        'price' => 120000,
+        'surcharge' => 0,
         'color' => '#FFF0C7',
     ],
     [
         'name' => 'vip',
-        'price' => 150000,
+        'surcharge' => 20000,
         'color' => '#FFC8CB',
     ],
     [
         'name' => 'couple',
-        'price' => 250000,
+        'surcharge' => 30000,
         'color' => '#FF62B0',
     ]
 ]);

@@ -8,6 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="admin/room/create" method="post">
+                @csrf
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-3">

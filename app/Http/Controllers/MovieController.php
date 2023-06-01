@@ -12,10 +12,12 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
-    function __construct(){
+    function __construct()
+    {
         $cloud_name = cloud_name();
-        view()->share('cloud_name',$cloud_name);
+        view()->share('cloud_name', $cloud_name);
     }
+
     public function movie()
     {
         $movies = Movie::orderBy('id', 'DESC')->Paginate(5);
@@ -87,7 +89,7 @@ class MovieController extends Controller
             'rating' => $rating]);
     }
 
-    public function postEdit(Request $request,$id)
+    public function postEdit(Request $request, $id)
     {
 
         $movie = Movie::find($id);
@@ -101,32 +103,31 @@ class MovieController extends Controller
             $request['image'] = $cloud;
             $movie['image'] = $request['image'];
         }
-            $movie['name'] = $request['name'];
-            $movie['showTime'] = $request['showTime'];
-            $movie['releaseDate'] = $request['releaseDate'];
-            $movie['endDate'] = $request['endDate'];
-            $movie['national'] = $request['national'];
-            $movie['description'] = $request['description'];
-            $movie['trailer'] = $request['trailer'];
-            $movie['rating_id'] = $request['rating'];
+        $movie['name'] = $request['name'];
+        $movie['showTime'] = $request['showTime'];
+        $movie['releaseDate'] = $request['releaseDate'];
+        $movie['endDate'] = $request['endDate'];
+        $movie['national'] = $request['national'];
+        $movie['description'] = $request['description'];
+        $movie['trailer'] = $request['trailer'];
+        $movie['rating_id'] = $request['rating'];
 
-            $movie->update();
+        $movie->update();
 
-            $casts = Cast::find($request->casts);
-            $movie->casts()->detach();
-            $movie->casts()->attach($casts);
+        $casts = Cast::find($request->casts);
+        $movie->casts()->detach();
+        $movie->casts()->attach($casts);
 
-            $directors = Director::find($request->directors);
-            $movie->directors()->detach();
-            $movie->directors()->attach($directors);
+        $directors = Director::find($request->directors);
+        $movie->directors()->detach();
+        $movie->directors()->attach($directors);
 
-            $movieGenres = MovieGenres::find($request->movieGenres);
-            $movie->movieGenres()->detach();
-            $movie->movieGenres()->attach($movieGenres);
+        $movieGenres = MovieGenres::find($request->movieGenres);
+        $movie->movieGenres()->detach();
+        $movie->movieGenres()->attach($movieGenres);
 
 
-
-        return redirect('admin/movie')->with('success',"Updated Sucessfully!");
+        return redirect('admin/movie')->with('success', "Updated Sucessfully!");
     }
 
     public function delete($id)
@@ -136,7 +137,9 @@ class MovieController extends Controller
         $movie->delete();
         return response()->json(['success' => 'Delete Successfully']);
     }
-    public function status(Request $request){
+
+    public function status(Request $request)
+    {
         $movie = Movie::find($request->movie_id);
         $movie['status'] = $request->active;
         $movie->save();

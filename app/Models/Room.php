@@ -25,4 +25,13 @@ class Room extends Model
     {
         return $this->hasMany(Seat::class, 'room_id', 'id');
     }
+
+    public function rows()
+    {
+        $rows = $this->seats()->select('row', 'mb')->groupBy('row');
+        foreach ($rows as $row) {
+            $row = Seat::class->where('room_id', $this->id)->where('row', $row);
+        }
+        return $rows;
+    }
 }

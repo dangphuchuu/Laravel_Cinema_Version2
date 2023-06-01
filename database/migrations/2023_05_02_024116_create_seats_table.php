@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create('seatTypes', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name');
-            $table->integer('price');
+            $table->integer('surcharge')->default(0);
             $table->string('color');
             $table->timestamps();
         });
@@ -29,7 +29,7 @@ return new class extends Migration {
             $table->bigInteger('seatType_id')->unsigned();
             $table->bigInteger('room_id')->unsigned();
             $table->foreign('room_id')->references('id')->on('rooms');
-            $table->foreign('seatType_id')->references('id')->on('seatTypes');
+            $table->foreign('seatType_id')->references('id')->on('seattypes');
             $table->string('status');
             $table->timestamps();
         });
