@@ -97,9 +97,7 @@
         @include('admin.theater.create')
         @foreach($theaters as $theater)
             @include('admin.theater.edit')
-            @foreach($theater->rooms as $room)
-                @include('admin.room.edit')
-            @endforeach
+
             @include('admin.room.create')
         @endforeach
     @else
