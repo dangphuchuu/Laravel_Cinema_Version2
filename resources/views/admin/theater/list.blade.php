@@ -97,9 +97,6 @@
         @include('admin.theater.create')
         @foreach($theaters as $theater)
             @include('admin.theater.edit')
-            @foreach($theater->rooms as $room)
-                @include('admin.room.edit')
-            @endforeach
             @include('admin.room.create')
         @endforeach
     @else
@@ -145,83 +142,6 @@
 
         editTheater = (theater_id, city) => {
             $('#city_theater_' + theater_id + ' option[value="' + city + '"]').prop("selected", true);
-        }
-
-        editSeat = (seat_id, row, col) => {
-            seatType = $('input[name=color]:checked#ColorRadio_' + seat_id).val();
-            ms = $('input[name=ms]#seat_ms_' + seat_id).val();
-            me = $('input[name=me]#seat_me_' + seat_id).val();
-
-            console.log(seatType + ' - ' + ms + ' + ' + me);
-
-            if (seatType) {
-                @foreach($seatTypes as $seatType)
-                if (seatType == {{$seatType->id}}) {
-                    color = '{{$seatType->color}}';
-                }
-                @endforeach
-                $('#Seat_' + row + col).css('background-color', color);
-            }
-
-            seat_empty = '<div class="d-inline-block align-middle disabled seat_empty"\
-                                style="width: 30px; height: 30px; margin: 2px 0;"></div>'
-
-            for (i = 1; i <= ms; i++) {
-                $('#Seat_' + row + col).before(seat_empty);
-            }
-            for (i = 1; i <= me; i++) {
-                $('#Seat_' + row + col).after(seat_empty);
-            }
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: "/admin/seat/edit",
-                type: 'GET',
-                data: {
-                    'seat_id': seat_id,
-                    'seatType': seatType,
-                    'ms': ms,
-                    'me': me,
-                },
-
-            });
-        }
-
-        editRow = (room_id, row) => {
-
-            seatType = $('input[name=color]:checked#ColorRadio_' + room_id + '_' + row).val();
-            mb = $('input[name=mb]#row_mb_' + room_id + '_' + row).val();
-
-            console.log(seatType + ' - ' + mb);
-
-            @foreach($seatTypes as $seatType)
-            if (seatType == {{$seatType->id}}) {
-                color = '{{$seatType->color}}';
-            }
-            @endforeach
-
-            if (seatType) $('#Row_' + row + ' .seat_enable').css('background-color', color);
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: "/admin/seat/row",
-                type: 'GET',
-                data: {
-                    'room': room_id,
-                    'row': row,
-                    'seatType': seatType,
-                    'mb': mb,
-                },
-
-            });
         }
     </script>
 

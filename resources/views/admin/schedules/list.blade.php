@@ -27,14 +27,14 @@
                                 <table class="table align-items-center mb-0 overflow-y-auto">
                                     <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Room</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Time</th>
+                                        <th class="text-uppercase text-secondary font-weight-bolder opacity-7">Room</th>
+                                        <th class="text-uppercase text-secondary font-weight-bolder opacity-7 ps-2">Time</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td>
-
+                                            
                                         </td>
                                     </tr>
                                     </tbody>
