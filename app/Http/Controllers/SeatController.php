@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use App\Models\Seat;
+use App\Models\SeatType;
 use Illuminate\Http\Request;
 
 class SeatController extends Controller
 {
+    public function seats($id)
+    {
+        $room = Room::find($id);
+        $seatTypes = SeatType::all();
+        return view('admin.seat.list', [
+            'room' => $room,
+            'seatTypes' => $seatTypes
+        ]);
+    }
+
     public function postCreate(Request $request)
     {
         $seat = new Seat([
@@ -19,5 +31,31 @@ class SeatController extends Controller
 
         $seat->save();
         return redirect('/admin/theater');
+    }
+
+    public function postEdit(Request $request)
+    {
+        $seat = Seat::find($request->seat);
+
+        $seat->seatType_id = $request->seatType;
+
+
+        $seat->ms = $request->ms;
+
+        $seat->me = $request->me;
+
+        $seat->save();
+
+        return redirect('admin/seat/' . $request->room);
+    }
+
+    public function postEditRow(Request $request)
+    {
+        Seat::where('room_id', $request->room)->where('row', $request->row)->update([
+            'seatType_id' => $request->seatType,
+            'mb' => $request->mb
+        ]);
+
+        return redirect('admin/seat/' . $request->room);
     }
 }

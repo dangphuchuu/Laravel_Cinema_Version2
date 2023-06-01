@@ -1,4 +1,5 @@
 @extends('admin.layout.index')
+
 @section('content')
     @can('theater')
         <div class="container-fluid py-4">
@@ -69,7 +70,8 @@
                                                 @endif
                                             </td>
                                             <td class="align-middle">
-                                                <button class="btn" onclick="editTheater({{ $theater->id }}, '{{ $theater->city }}')"
+                                                <button class="btn btn-icon btn-warning"
+                                                        onclick="editTheater({{ $theater->id }}, '{{ $theater->city }}')"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#TheaterEditModal{{ $theater->id }}">
                                                     <i class="fa-solid fa-pen-to-square fa-lg"></i>
@@ -77,10 +79,7 @@
 
                                             </td>
                                             <td class="align-middle">
-                                                <a href="javascript:;"
-                                                   class="text-secondary font-weight-bold text-xs"
-                                                   data-toggle="tooltip"
-                                                   data-original-title="Edit user">
+                                                <a href="javascript:;" class="btn btn-icon btn-danger">
                                                     <i class="fa-solid fa-trash-can fa-lg"></i>
                                                 </a>
                                             </td>
@@ -141,105 +140,91 @@
     <script>
         $(document).ready(function () {
             $('#city').select2();
-
+            $('#city_create').select2();
         })
 
         editTheater = (theater_id, city) => {
             $('#city_theater_' + theater_id + ' option[value="' + city + '"]').prop("selected", true);
         }
+
+        editSeat = (seat_id, row, col) => {
+            seatType = $('input[name=color]:checked#ColorRadio_' + seat_id).val();
+            ms = $('input[name=ms]#seat_ms_' + seat_id).val();
+            me = $('input[name=me]#seat_me_' + seat_id).val();
+
+            console.log(seatType + ' - ' + ms + ' + ' + me);
+
+            if (seatType) {
+                @foreach($seatTypes as $seatType)
+                if (seatType == {{$seatType->id}}) {
+                    color = '{{$seatType->color}}';
+                }
+                @endforeach
+                $('#Seat_' + row + col).css('background-color', color);
+            }
+
+            seat_empty = '<div class="d-inline-block align-middle disabled seat_empty"\
+                                style="width: 30px; height: 30px; margin: 2px 0;"></div>'
+
+            for (i = 1; i <= ms; i++) {
+                $('#Seat_' + row + col).before(seat_empty);
+            }
+            for (i = 1; i <= me; i++) {
+                $('#Seat_' + row + col).after(seat_empty);
+            }
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "/admin/seat/edit",
+                type: 'GET',
+                data: {
+                    'seat_id': seat_id,
+                    'seatType': seatType,
+                    'ms': ms,
+                    'me': me,
+                },
+
+            });
+        }
+
+        editRow = (room_id, row) => {
+
+            seatType = $('input[name=color]:checked#ColorRadio_' + room_id + '_' + row).val();
+            mb = $('input[name=mb]#row_mb_' + room_id + '_' + row).val();
+
+            console.log(seatType + ' - ' + mb);
+
+            @foreach($seatTypes as $seatType)
+            if (seatType == {{$seatType->id}}) {
+                color = '{{$seatType->color}}';
+            }
+            @endforeach
+
+            if (seatType) $('#Row_' + row + ' .seat_enable').css('background-color', color);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "/admin/seat/row",
+                type: 'GET',
+                data: {
+                    'room': room_id,
+                    'row': row,
+                    'seatType': seatType,
+                    'mb': mb,
+                },
+
+            });
+        }
     </script>
-    {{--    <script>--}}
-    {{--        $(document).ready(() => {--}}
-    {{--            var row = "";--}}
-    {{--            var value = 0;--}}
-    {{--            var bgColor = "";--}}
-    {{--            $.ajaxSetup({--}}
-    {{--                headers: {--}}
-    {{--                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-    {{--                }--}}
-    {{--            });--}}
-    {{--            $(".flex-fill .seat_row_btn").on("click", function () {--}}
-    {{--                row = $(this).text();--}}
-    {{--            });--}}
-    {{--            $(".seat_type_radio").on("click", function () {--}}
-    {{--                value = $(this).val();--}}
-    {{--                bgColor = $(".seat_color_" + value).css("background-color").toString();--}}
-    {{--            });--}}
-    {{--            $(".seat_color_submit").on("click", function () {--}}
-    {{--                $(".seat_input_row_" + row).attr("value", value);--}}
-    {{--                $(".seat_at_row_" + row).css("background-color", bgColor);--}}
-    {{--            })--}}
 
-    {{--            var finalCol = {--}}
-    {{--                @forEach($final_col as $key => $value)--}}
-    {{--                    {{$key}} : {{ $value }},--}}
-    {{--                @endforeach--}}
-    {{--            };--}}
-    {{--            var finalRow = {{ $final_row }}--}}
-    {{--            $(".seat_col_add_btn").on("click", function () {--}}
-    {{--                row = $(this).text().trim();--}}
-    {{--                room = $('.seat_room').val();--}}
-    {{--                finalCol[row] += 1;--}}
-    {{--                $("#seat_form_" + room).ajaxSubmit({url: 'admin/seat/create', type: 'post'})--}}
-    {{--                $seatHtml = '<div class="d-block border border-1 border-dark text-center m-1 seat_at_row_'--}}
-    {{--                    + row + '" style="background-color:#fff0c7; width: 30px; height: 30px; font-size: 10px; line-height: 30px">'--}}
-    {{--                    + row + finalCol[row]--}}
-    {{--                    + '<input type="number" class="d-none seat_input_row_' + row + '" name="col"\--}}
-    {{--                    value="' + finalCol[row] + '" aria-label="">\--}}
-    {{--                    <input type="hidden" name="room" value="' + room + '">\--}}
-    {{--                    <input type="hidden" name="row" value="' + row + '></div>';--}}
-
-    {{--                $(".seats_row_" + row).append($seatHtml);--}}
-    {{--            });--}}
-
-    {{--            $(".seat_row_add_btn").on("click", function () {--}}
-    {{--                finalRow += 1;--}}
-    {{--                $seatHtml = '<div class="flex-fill d-flex">\--}}
-    {{--                                <button type="button"\--}}
-    {{--                                    class="flex-shrink-0 btn rounded-0 fw-bold text-center border border-1 border-dark m-1 p-1 seat_row_btn"\--}}
-    {{--                                    style="width: 30px; height: 30px; font-size: 10px"\--}}
-    {{--                                    data-bs-toggle="offcanvas"\--}}
-    {{--                                    data-bs-target="#EditSeatRow" aria-controls="EditSeatRow">' + String.fromCharCode(finalRow) + '</button>\--}}
-    {{--                                <div class="offcanvas offcanvas-start" tabindex="-1" id="EditSeatRow" aria-labelledby="EditSeatRowLabel">\--}}
-    {{--                                    <div class="offcanvas-header">\--}}
-    {{--                                        <h5 class="offcanvas-title" id="EditSeatRowLabel">Edit Seat Row</h5>\--}}
-    {{--                                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>\--}}
-    {{--                                    </div>\--}}
-    {{--                                     <div class="offcanvas-body">\--}}
-    {{--                                         @foreach($seatTypes as $seatType)--}}
-    {{--                    <div class="form-check">\--}}
-    {{--                        <input class="form-check-input seat_type_radio" type="radio" name="seatColorRadio"\--}}
-    {{--                               id="{{ $seatType->name }}" value="{{ $seatType->id }}">\--}}
-    {{--                                                <label class="form-check-label flex-fill d-flex border-0 ps-1 my-2" for="{{ $seatType->name }}">\--}}
-    {{--                                                <span class="fw-bold d-block text-center me-1 seat_color_{{ $seatType->id }}"\--}}
-    {{--                                                    style="width: 20px; height: 20px; background-color: {{ $seatType->color }};"></span>\--}}
-    {{--                                                <span style="line-height: 20px">{{ $seatType->name }} - {{ $seatType->price }}</span>\--}}
-    {{--                                                </label>\--}}
-    {{--                                         </div>\--}}
-    {{--                                        @endforeach--}}
-    {{--                    <button type="button" class="btn btn-primary seat_color_btn mt-4 seat_color_submit"\--}}
-    {{--                            data-bs-dismiss="offcanvas">Confirm\--}}
-    {{--                    </button>\--}}
-    {{--                </div>\--}}
-    {{--            </div>\--}}
-    {{--            <div class="flex-grow-1 d-flex">\--}}
-    {{--                <div class="flex-shrink-0"></div>\--}}
-    {{--                <div class="flex-grow-1 d-flex justify-content-center seats_row_' + String.fromCharCode(finalRow) + '">\--}}
-    {{--                                    </div>\--}}
-    {{--                                    <div class="flex-shrink-0">\--}}
-    {{--                                        <button type="submit"\--}}
-    {{--                                                class="btn rounded-0 fw-bold border border-1 border-dark m-1 p-1 seat_col_add_btn"\--}}
-    {{--                                                style="width: 30px; height: 30px; font-size: 10px">\--}}
-    {{--                                            <p class=" visually-hidden">' + String.fromCharCode(finalRow) + '</p>\--}}
-    {{--                                            <i class="fa-solid fa-plus"></i>\--}}
-    {{--                                        </button>\--}}
-    {{--                                    </div>\--}}
-    {{--                                </div>\--}}
-    {{--                            </div>';--}}
-    {{--                $(".seats").append($seatHtml);--}}
-    {{--            });--}}
-    {{--        });--}}
-    {{--    </script>--}}
 @endsection
 
 

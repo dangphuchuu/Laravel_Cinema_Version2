@@ -28,7 +28,7 @@ class Room extends Model
 
     public function rows()
     {
-        $rows = $this->seats()->select('row', 'mb')->groupBy('row');
+        $rows = $this->seats()->select('row', 'mb', 'col')->groupBy('row');
         foreach ($rows as $row) {
             $row = Seat::class->where('room_id', $this->id)->where('row', $row);
         }

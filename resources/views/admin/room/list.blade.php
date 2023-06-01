@@ -15,7 +15,13 @@
     </tr>
     </thead>
     <tbody>
-
+    <tr>
+        <td colspan="5">
+            <button class="btn w-100" data-bs-toggle="modal" data-bs-target="#RoomCreateModal_Theater_{{ $theater->id }}">
+                <i class="fa-light fa-circle-plus pe-1"></i>@lang('lang.add') @lang('lang.room')
+            </button>
+        </td>
+    </tr>
     @foreach($theater->rooms as $room)
         <tr>
             <td class="align-middle text-center">
@@ -35,27 +41,17 @@
                 @endif
             </td>
             <td class="align-middle">
-                <button class="btn" data-bs-toggle="modal" data-bs-target="#RoomEditModal{{ $room->id }}">
+                <a class="btn btn-icon btn-warning" href="admin/seat/{{ $room->id }}">
                     <i class="fa-solid fa-pen-to-square fa-lg"></i>
-                </button>
+                </a>
 
             </td>
             <td class="align-middle">
-                <a href="javascript:;"
-                   class="text-secondary font-weight-bold text-xs"
-                   data-toggle="tooltip"
-                   data-original-title="Edit user">
+                <a href="javascript:;" class="btn btn-icon btn-danger">
                     <i class="fa-solid fa-trash-can fa-lg"></i>
                 </a>
             </td>
         </tr>
     @endforeach
-    <tr>
-        <td colspan="5">
-            <button class="btn w-100" data-bs-toggle="modal" data-bs-target="#RoomCreateModal_Theater_{{ $theater->id }}">
-                <i class="fa-light fa-circle-plus pe-1"></i>@lang('lang.add') @lang('lang.room')
-            </button>
-        </td>
-    </tr>
     </tbody>
 </table>

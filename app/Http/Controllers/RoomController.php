@@ -32,7 +32,7 @@ class RoomController extends Controller
                     'col' => $j,
                     'room_id' => $room->id,
                 ]);
-                if ($j <= 4 && $roomType->name == '2D') {
+                if ($i <= 68 && $roomType->name == '2D') {
                     $seat->seatType_id = 1;
                 } else {
                     $seat->seatType_id = 2;

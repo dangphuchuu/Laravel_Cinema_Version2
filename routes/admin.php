@@ -11,6 +11,7 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieGenresController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\TheaterController;
 use App\Http\Controllers\TicketController;
@@ -58,13 +59,15 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     Route::prefix('room')->group(function () {
         Route::get('/', [RoomController::class, 'room']);
         Route::post('/create', [RoomController::class, 'postCreate']);
-        Route::get('/edit', [RoomController::class, 'postEdit']);
+        Route::post('/edit', [RoomController::class, 'postEdit']);
     });
 
     //TODO Room
     Route::prefix('seat')->group(function () {
+        Route::get('/{id}', [SeatController::class, 'seats']);
         Route::post('/create', [SeatController::class, 'postCreate']);
-        Route::get('/edit', [SeatController::class, 'postEdit']);
+        Route::post('/edit', [SeatController::class, 'postEdit']);
+        Route::post('/row', [SeatController::class, 'postEditRow']);
     });
 
     //TODO Theater
@@ -77,9 +80,9 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
 
     //TODO Schedule
     Route::prefix('schedule')->group(function () {
-        Route::get('/', [AdminController::class, 'schedule']);
-        Route::post('/create', [AdminController::class, 'postCreate']);
-        Route::post('/edit', [AdminController::class, 'postEdit']);
+        Route::get('/', [SchedulesController::class, 'schedule']);
+        Route::post('/create', [SchedulesController::class, 'postCreate']);
+        Route::post('/edit', [SchedulesController::class, 'postEdit']);
     });
 
     //TODO Events

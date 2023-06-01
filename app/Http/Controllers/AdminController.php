@@ -18,23 +18,6 @@ class AdminController extends Controller
         return view('admin.home.list');
     }
 
-    //Schedule Movie
-    public function schedule()
-    {
-        return view('admin.schedules.list');
-    }
-
-    public function create_schedule()
-    {
-        return view('admin.schedules.create');
-    }
-
-    public function edit_schedule()
-    {
-        return view('admin.schedules.edit');
-    }
-
-
     //User
     public function user()
     {
@@ -93,10 +76,9 @@ class AdminController extends Controller
     public function delete($id)
     {
         $user = User::find($id);
-        if($user->hasRole('admin')){
+        if ($user->hasRole('admin')) {
             return response()->json(['error' => "Can't Delete Admin Account !"]);
-        }
-        else{
+        } else {
             User::destroy($id);
             return response()->json(['success' => 'Delete Successfully']);
         }
@@ -111,7 +93,7 @@ class AdminController extends Controller
         } else {
             return redirect('admin/sign_in');
         }
-        return view('admin.profile',['user'=>$user])->with('roles','permissions');
+        return view('admin.profile', ['user' => $user])->with('roles', 'permissions');
     }
 
     //Sign_in
@@ -144,14 +126,15 @@ class AdminController extends Controller
         Auth::logout();
         return redirect('admin/sign_in');
     }
-    public function status(Request $request){
+
+    public function status(Request $request)
+    {
         $user = User::find($request->user_id);
-        if($user->hasRole('admin')){
+        if ($user->hasRole('admin')) {
             return response()->json(['error' => "Can't change Admin Status!"]);
+        } else {
+            $user['status'] = $request->active;
+            $user->save();
         }
-       else{
-           $user['status'] = $request->active;
-           $user->save();
-       }
     }
 }

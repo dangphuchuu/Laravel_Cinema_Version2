@@ -30,7 +30,7 @@ return new class extends Migration {
             $table->bigInteger('room_id')->unsigned();
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->foreign('seatType_id')->references('id')->on('seattypes');
-            $table->string('status');
+            $table->string('status')->default(true);
             $table->timestamps();
         });
     }

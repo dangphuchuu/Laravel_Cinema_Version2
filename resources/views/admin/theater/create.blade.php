@@ -91,7 +91,6 @@
                                     <option value="Hà Nội">Hà Nội</option>
                                     <option value="Hồ Chí Minh" selected>Hồ Chí Minh</option>
                                 </select>
-                                <script>$('#city_create').select2();</script>
                             </div>
                         </div>
                         <div class="col-6">
