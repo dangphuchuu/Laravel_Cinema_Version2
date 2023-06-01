@@ -4,8 +4,8 @@
         {{--  Breadcrumb  --}}
         <nav aria-label="breadcrumb mt-5">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#" class="link link-dark text-decoration-none">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="#" class="link link-dark text-decoration-none">Phim đang chiếu</a></li>
+                <li class="breadcrumb-item"><a href="#" class="link link-dark text-decoration-none">@lang('lang.home')</a></li>
+                <li class="breadcrumb-item"><a href="#" class="link link-dark text-decoration-none">@lang('lang.movie_is_playing')</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{!! $movie['name'] !!}</li>
             </ol>
         </nav>
@@ -26,7 +26,7 @@
                         @endif
                     </div>
                     <div class="card-body border border-4 border-warning border-top-0 d-flex align-items-center">
-                        <strong class="card-text p-2">Đánh giá: </strong>
+                        <strong class="card-text p-2">@lang('lang.evaluate'): </strong>
                         <div id='score' class="score"></div>
                     </div>
                 </div>
@@ -34,29 +34,28 @@
                 <div class="col-sm-6 col-lg-9">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex align-items-center text-danger">{!! $movie['showTime'] !!} min</li> {{--movie running time--}}
-                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">Quốc gia: </strong>{!! $movie['national'] !!}
+                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">@lang('lang.national'): </strong>{!! $movie['national'] !!}
                         </li>
-                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">Ngày khởi
-                                chiếu: </strong>{!! $movie['releaseDate'] !!}
+                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">@lang('lang.release_date'): </strong>{!! $movie['releaseDate'] !!}
                         </li>
-                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">Thể loại: </strong>
+                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">@lang('lang.genre'): </strong>
                             @foreach($movie['movieGenres'] as $value)
                                 <a class="link link-dark ps-1 text-decoration-none" href="{!! $value['id'] !!}">{!! $value['name'] !!}</a>,
                             @endforeach
                         </li>
                         <li class="list-group-item d-flex align-items-center">
-                            <strong class="pe-1">Đạo diễn: </strong>
+                            <strong class="pe-1">@lang('lang.directors'): </strong>
                             @foreach($movie['directors'] as $directors)
                                 {!! $directors['name'] !!}
                             @endforeach
                         </li>
                         <li class="list-group-item d-flex align-items-center text-truncate">
-                            <strong class="pe-1">Diễn viên: </strong>
+                            <strong class="pe-1">@lang('lang.casts'): </strong>
                             @foreach($movie['casts'] as $casts)
                                 {!! $casts['name'] !!},
                             @endforeach
                         </li>
-                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">Rated: </strong><img
+                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">@lang('lang.rated'): </strong><img
                                 class="img-fluid rounded-1 border-2"
                                 @if($movie['rating']['name'] == 'C13')
                                     src="images/rated/C13.png"
@@ -78,7 +77,7 @@
             <div class="row container">
                 <div class="accordion-item">
                     <div class="accordion-header">
-                        <h4 class="mt-4">Nội dung phim</h4>
+                        <h4 class="mt-4">@lang('lang.content')</h4>
                     </div>
                     <div class="accordion-body">
                         {!! $movie['description'] !!}

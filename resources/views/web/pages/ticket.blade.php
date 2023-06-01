@@ -4,11 +4,11 @@
         {{--  Breadcrumb  --}}
         <nav aria-label="breadcrumb mt-5">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#" class="link link-dark">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="#" class="link link-dark">Phim đang chiếu</a></li>
+                <li class="breadcrumb-item"><a href="#" class="link link-dark">@lang('lang.home')</a></li>
+                <li class="breadcrumb-item"><a href="#" class="link link-dark">@lang('lang.movie_is_playing')</a></li>
                 <li class="breadcrumb-item"><a href="#" class="link link-dark"> MẶT 6: TẤM VÉ ĐỊNH MỆNH</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    <a href="#" class="link link-secondary disabled text-decoration-none">Mua vé</a>
+                    <a href="#" class="link link-secondary disabled text-decoration-none">@lang('lang.ticket')</a>
                 </li>
             </ol>
         </nav>
@@ -20,13 +20,13 @@
                    aria-controls="seat"
                    aria-expanded="true"
                    data-bs-toggle="collapse"
-                   data-bs-target="#Seats">1. chọn ghế</a>
+                   data-bs-target="#Seats">1. @lang('lang.choose_seat')</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled text-secondary" href="#Combos">2. Chọn Combo</a>
+                <a class="nav-link disabled text-secondary" href="#Combos">2. @lang('lang.choose_combo')</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled text-secondary" href="#Payment">3. Thanh toán</a>
+                <a class="nav-link disabled text-secondary" href="#Payment">3. @lang('lang.payment')</a>
             </li>
         </ul>
         <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="10" aria-valuemin="0"
@@ -36,7 +36,7 @@
 
 
         <div class="mt-5">
-            <h4>Thông tin vé</h4>
+            <h4>@lang('lang.ticket_information')</h4>
             <div class="card mb-3 bg-dark text-light px-0">
                 <div class="row g-0">
                     <div class="col-lg-3 col-sm-4 col-12 d-flex justify-content-center">
@@ -49,16 +49,16 @@
                             <h5 class="card-title">LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH</h5>
                             <ul class="list-group">
                                 <li class="list-group-item bg-transparent text-light border-0">
-                                    Suất chiếu: <strong class="ps-2">07/05/2023 19:00</strong>
+                                    @lang('lang.showtime_web'): <strong class="ps-2">07/05/2023 19:00</strong>
                                 </li> {{--movie running time--}}
                                 <li class="list-group-item bg-transparent text-light border-0">
-                                    Rạp: <strong class="ps-2">HuuMinh Cinema 1</strong>
+                                    @lang('lang.theater'): <strong class="ps-2">HuuMinh Cinema 1</strong>
                                 </li>
                                 <li class="list-group-item bg-transparent text-light border-0">
-                                    Phòng: <strong class="ps-2">Room 1</strong>
+                                    @lang('lang.room'): <strong class="ps-2">Room 1</strong>
                                 </li>
                                 <li class="list-group-item bg-transparent text-light border-0">
-                                    Độ tuổi phù hợp: <strong class="ps-2"><span
+                                    @lang('lang.rated'): <strong class="ps-2"><span
                                             class="badge bg-warning">C16</span></strong>
                                 </li>
                             </ul>
@@ -70,11 +70,11 @@
                                     <b>0 đ</b>
                                 </li>
                                 <li class="list-group-item bg-transparent d-flex text-light justify-content-between  border-0">
-                                    <span><i class="fa-solid fa-seat-airline text-uppercase"></i>&numsp;Ghế:</span>
+                                    <span><i class="fa-solid fa-seat-airline text-uppercase"></i>&numsp;@lang('lang.seat'):</span>
                                     <b>G9</b>
                                 </li>
                                 <li class="list-group-item bg-transparent d-flex text-light justify-content-between border-0">
-                                    <span><i class="fa-solid fa-equals"></i>&numsp;Tổng thanh toán:</span>
+                                    <span><i class="fa-solid fa-equals"></i>&numsp;@lang('lang.total_price'):</span>
                                     <b>0 đ</b>
                                 </li>
                             </ul>
@@ -87,12 +87,12 @@
 
         <div id="mainTicket">
             <div id="Seats" class="mt-5 collapse show" data-bs-parent="#mainTicket">
-                <h4>Chọn ghế</h4>
+                <h4>@lang('lang.choose_seat')</h4>
 
                 <div class="container flex-nowrap overflow-auto">
                     <div class="d-inline-flex mt-5 clearfix">
                         <div class="d-flex flex-fill">
-                            <div class="flex-shrink-1 fw-bold border-0 me-2">Giá vé:</div>
+                            <div class="flex-shrink-1 fw-bold border-0 me-2">@lang('lang.ticket_price'):</div>
                             <div class="flex-fill d-flex border-0 me-4">
                                     <span class="fw-bold d-block text-center me-1" style="width: 20px; height: 20px; background-color: #FFF0C7;"></span>
                                     <span style="line-height: 20px">70,000 đ</span>
@@ -112,7 +112,7 @@
                                  style="width: 25px; height: 25px"></div>
                         </div>
                         <div class="w-100 d-flex">
-                                <div class="border-bottom border-2 border-dark text-center pb-1 mb-5 mx-auto" style="max-width: 520px"><span class="fs-5">Màn hình</span></div>
+                                <div class="border-bottom border-2 border-dark text-center pb-1 mb-5 mx-auto" style="max-width: 520px"><span class="fs-5">@lang('lang.screen')</span></div>
 {{--                                <div class="d-flex"><div class="bg-dark w-100 mb-5" style="height: 2px; max-width: 520px"></div></div>--}}
                         </div>
                     </div>
@@ -185,13 +185,13 @@
                             aria-expanded="true"
                             data-bs-toggle="collapse"
                             data-bs-target="#Combos">
-                        Tiếp theo <i class="fa-solid fa-angle-right"></i>
+                        @lang('lang.next') <i class="fa-solid fa-angle-right"></i>
                     </button>
                 </div>
             </div>
 
             <div id="Combos" class="mt-5 collapse" data-bs-parent="#mainTicket">
-                <h4>Chọn Combo</h4>
+                <h4>@lang('lang.choose_combo')</h4>
 
                 <div class="row g-2 mt-2 row-cols-2" data-bs-parent="#mainContent">
                     @for($i = 0; $i < 4; $i++)
@@ -237,7 +237,7 @@
                             aria-expanded="true"
                             data-bs-toggle="collapse"
                             data-bs-target="#Seats"
-                    ><i class="fa-solid fa-angle-left"></i>Trở lại
+                    ><i class="fa-solid fa-angle-left"></i> @lang('lang.previous')
                     </button>
 
                     <button class="btn btn-warning mx-2  text-decoration-underline text-center"
@@ -246,24 +246,24 @@
                             aria-expanded="true"
                             data-bs-toggle="collapse"
                             data-bs-target="#Payment"
-                    >Tiếp theo <i class="fa-solid fa-angle-right"></i></button>
+                    >@lang('lang.next') <i class="fa-solid fa-angle-right"></i></button>
                 </div>
             </div>
 
             <div id="Payment" class="mt-5 collapse" data-bs-parent="#mainTicket">
                 <div>
-                    <h4>Mã khuyến mãi</h4>
+                    <h4>@lang('lang.discount')</h4>
                     <div class="row row-cols-1 row-cols-md-2"
                          data-bs-parent="#mainContent">
                         <div class="input-group">
                             <input type="text" name="discount" class="form-control border-dark" id="discount"
                                    aria-label="">
-                            <button class="btn btn-danger">Áp dụng</button>
+                            <button class="btn btn-danger">@lang('lang.apply')</button>
                         </div>
                     </div>
                 </div>
 
-                <h4 class="mt-4">Phương thức thanh toán</h4>
+                <h4 class="mt-4">@lang('lang.payment')</h4>
                 <div class="bg-dark-subtle p-5">
                     <div class="row row-cols-1" data-bs-parent="#mainContent">
                         <div class="col container">
@@ -272,7 +272,7 @@
                                 <label class="form-check-label" for="atm">
                                         <span class="badge"><img
                                                 src="https://www.cgv.vn/media/catalog/product/placeholder/default/atm_icon.png"
-                                                style="max-height: 25px"></span> Thẻ ngân hàng
+                                                style="max-height: 25px"></span> @lang('lang.bank_card')
                                 </label>
                             </div>
                         </div>
@@ -282,7 +282,7 @@
 
             <div class="d-flex justify-content-center mt-4">
                 <button class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
-                    Thanh toán <i class="fa-solid fa-angle-right"></i>
+                    @lang('lang.submit') <i class="fa-solid fa-angle-right"></i>
                 </button>
             </div>
         </div>

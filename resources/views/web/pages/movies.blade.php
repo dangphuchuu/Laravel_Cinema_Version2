@@ -12,7 +12,7 @@
                             aria-expanded="true"
                             data-bs-toggle="collapse"
                             data-bs-target="#phimdangchieu" disabled>
-                        Phim đang chiếu
+                        @lang('lang.movie_is_playing')
                     </button>
                 </li>
                 <li class="vr mx-5"></li>
@@ -20,7 +20,7 @@
                     <button class="h5 nav-link link-secondary"
                             aria-expanded="false"
                             data-bs-toggle="collapse" data-bs-target="#phimsapchieu">
-                        Phim sắp chiếu
+                        @lang('lang.movie_upcoming')
                     </button>
                 </li>
 
@@ -29,13 +29,13 @@
                     <button class="h5 nav-link link-secondary"
                             aria-expanded="false"
                             data-bs-toggle="collapse" data-bs-target="#vebantruoc">
-                        Vé bán trước
+                        @lang('lang.pre_sale')
                     </button>
                 </li>
 
                 <button class="btn" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                    <i class="fa-solid fa-filter"></i> Bộ lọc
+                    <i class="fa-solid fa-filter"></i> @lang('lang.sort_by')
                 </button>
             </ul>
 
@@ -43,14 +43,14 @@
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
                  aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasRightLabel">Bộ lọc</h5>
+                    <h5 class="offcanvas-title" id="offcanvasRightLabel">@lang('lang.sort_by')</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
                     <form action="/movies/search" method="get">
                         @csrf
                         <div class="form-group m-2 mb-3">
-                            <label for="cast" class="form-label">Casts</label>
+                            <label for="cast" class="form-label">@lang('lang.casts')</label>
                             <select id="cast" class="form-control cast-input" name="casts[]" multiple>
                                 @foreach($casts as $cast)
                                     <option value="{{ $cast->id }}">{{ $cast->name }}</option>
@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="form-group m-2 mb-3">
-                            <label for="director" class="form-control-label">Director</label>
+                            <label for="director" class="form-control-label">@lang('lang.directors')</label>
                             <select id="director" class="form-control director-input" name="directors[]" multiple>
                                 @foreach($directors as $director)
                                     <option value="{{ $director->id }}">{{ $director->name }}</option>
@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="m-2 form-group mb-3">
-                            <label class="form-label" for="movieGenres">Thể loại</label>
+                            <label class="form-label" for="movieGenres">@lang('lang.genre')</label>
                             <select id="movieGenres" class="form-control director-input" name="movieGenres[]" multiple>
                                 @foreach($movieGenres as $movieGenre)
                                     <option value="{{ $movieGenre->id }}">{{ $movieGenre->name }}</option>
@@ -77,9 +77,9 @@
                         </div>
 
                         <div class="m-2 form-group mb-3">
-                            <label class="form-label" for="rating">Độ tuổi</label>
+                            <label class="form-label" for="rating">@lang('lang.rated')</label>
                             <select id="rating" class="form-select" name="rating">
-                                <option value="" selected>Tất cả</option>
+                                <option value="" selected>@lang('lang.all')</option>
                                 @foreach($rating as $value)
                                     <option value="{{ $value->id }}"
                                             title="{{ $value->description }}">
@@ -89,7 +89,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary m-2 mt-4 w-100">Áp dụng</button>
+                        <button type="submit" class="btn btn-primary m-2 mt-4 w-100">@lang('lang.submit')</button>
                     </form>
                 </div>
             </div>

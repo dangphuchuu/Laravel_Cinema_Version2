@@ -13,7 +13,7 @@
             {{--            </label>--}}
             <input type="text" class="form-control" placeholder="Search..."
                    aria-label="tim kiem">
-            <button class="btn btn-danger" type="button">Tìm kiếm
+            <button class="btn btn-danger" type="button">@lang('lang.search')
             </button>
         </div>
     </div>
