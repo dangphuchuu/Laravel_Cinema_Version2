@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="movie_genre" tabindex="-1" aria-labelledby="movie_title" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

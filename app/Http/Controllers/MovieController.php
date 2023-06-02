@@ -28,7 +28,7 @@ class MovieController extends Controller
     {
         $casts = Cast::all();
         $directors = Director::all();
-        $movieGenres = MovieGenres::all();
+        $movieGenres = MovieGenres::get()->where('status',1);
         $rating = Rating::all();
         return view('admin.movie.create', [
             'movieGenres' => $movieGenres,

@@ -25,7 +25,6 @@
     <!-- Nucleo Icons -->
     <link href="admin_assets/css/nucleo-icons.css" rel="stylesheet"/>
     <link href="admin_assets/css/nucleo-svg.css" rel="stylesheet"/>
-    <link href="admin_assets/css/nucleo-svg.css" rel="stylesheet"/>
     <!-- Argon dashboard CSS Files -->
     <link id="pagestyle" href="admin_assets/css/argon-dashboard.css" rel="stylesheet"/>
     <style>

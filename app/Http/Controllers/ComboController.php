@@ -80,4 +80,11 @@ class ComboController extends Controller
         $combo->delete();
         return response()->json(['success' => 'Delete Successfully']);
     }
+    public function status(Request $request)
+    {
+        $combo = Combo::find($request->combo_id);
+        $combo['status'] = $request->active;
+        $combo->save();
+        return response();
+    }
 }

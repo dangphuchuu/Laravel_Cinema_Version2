@@ -45,13 +45,13 @@
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary font-weight-bold">{!! number_format($value['price']) !!}</span>
                                             </td>
-                                            <td class="align-middle text-center text-sm">
+                                            <td id="status{!! $value['id'] !!}" class="align-middle text-center text-sm ">
                                                 @if($value['status'] == 1)
-                                                    <a href="#">
+                                                    <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},0)">
                                                         <span class="badge badge-sm bg-gradient-success">Online</span>
                                                     </a>
                                                 @else
-                                                    <a href="#">
+                                                    <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},1)">
                                                         <span class="badge badge-sm bg-gradient-secondary">Offline</span>
                                                     </a>
                                                 @endif
@@ -167,5 +167,40 @@
                             </div>');
 
         });
+    </script>
+    <script>
+        function changestatus(combo_id,active){
+            if(active === 1){
+                $("#status" + combo_id).html(' <a href="javascript:void(0)"  class="btn_active" onclick="changestatus('+ combo_id +',0)">\
+                    <span class="badge badge-sm bg-gradient-success">Online</span>\
+            </a>')
+            }else{
+                $("#status" + combo_id).html(' <a  href="javascript:void(0)" class="btn_active"  onclick="changestatus('+ combo_id +',1)">\
+                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>\
+            </a>')
+            }
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "/admin/combo/status",
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    'active': active,
+                    'combo_id': combo_id
+                },
+                success: function (data) {
+                    if (data['success']) {
+                        // alert(data.success);
+                    } else if (data['error']) {
+                        alert(data.error);
+                    }
+                }
+            });
+        }
+
     </script>
 @endsection
