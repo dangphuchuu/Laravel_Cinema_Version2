@@ -1,15 +1,15 @@
 @extends('admin.layout.index')
 @section('content')
-    @can('movie_genre')
+    @can('director')
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>@lang('lang.movie_genre')</h6>
+                            <h6>@lang('lang.discount')</h6>
                         </div>
                         @if(count($errors)>0)
-                            <div class="alert alert-danger">
+                            <div class="alert alert-warning">
                                 @foreach($errors->all() as $arr)
                                     {{$arr}}<br>
                                 @endforeach
@@ -22,33 +22,33 @@
                         @endif
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
-                                <button style="float:right;padding-right:30px;"
-                                        class="me-5  btn btn-primary float-right mb-3" data-bs-toggle="modal"
-                                        data-bs-target="#movie_genre">
-                                    @lang('lang.create')
-                                </button>
-                                <table class="table align-items-center mb-0">
+                                <a style="float:right;padding-right:30px;" class="text-light">
+                                    <button class=" btn btn-primary float-right mb-3" data-bs-toggle="modal" data-bs-target="#discount">@lang('lang.create')
+                                    </button>
+                                </a>
+                                <table class="table align-items-center mb-0 ">
                                     <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.genre')</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"></th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.status')</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"></th>
-                                        <th class="text-secondary opacity-7"></th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.code')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.percent')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.quantity')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.status')</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($movieGenres as $value)
+                                    @foreach($discount as $value)
                                         <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">{!! $value['name'] !!}</h6>
-                                                        <!-- <p class="text-xs text-secondary mb-0">john@creative-tim.com</p> -->
-                                                    </div>
-                                                </div>
+                                            <td class="align-middle text-center">
+                                                <h6 class="mb-0 text-sm ">{!! $value['code'] !!}</h6>
                                             </td>
-                                            <td></td>
+                                            <td class="align-middle text-center">
+                                                <h6 class="mb-0 text-sm ">{!! $value['percent'] !!} %</h6>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <h6 class="mb-0 text-sm ">{!! $value['quantity'] !!}</h6>
+                                            </td>
                                             <td id="status{!! $value['id'] !!}" class="align-middle text-center text-sm ">
                                                 @if($value['status'] == 1)
                                                     <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},0)">
@@ -61,27 +61,27 @@
                                                 @endif
                                             </td>
                                             <td class="align-middle">
-                                                <a href="#editModal" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                                   data-bs-target="#editModal{!! $value['id'] !!}" data-bs-toggle="modal">
+                                                <a href="#editDiscount" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                                                   data-original-title="Edit discount" data-bs-target="#editDiscount{!! $value['id'] !!}"
+                                                   data-bs-toggle="modal">
                                                     <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                                 </a>
                                             </td>
-
                                             <td class="align-middle">
-                                                <a href="javascript:void(0)" data-url="{{ url('admin/movie_genres/delete', $value['id'] ) }}"
-                                                   class="text-secondary font-weight-bold text-xs delete-genres" data-toggle="tooltip">
+                                                <a href="javascript:void(0)" data-url="{{ url('admin/discount/delete', $value['id'] ) }}"
+                                                   class="text-secondary font-weight-bold text-xs delete-discount" data-toggle="tooltip">
                                                     <i class="fa-solid fa-trash-can fa-lg"></i>
                                                 </a>
                                             </td>
                                         </tr>
-                                        @include('admin.movie_genres.edit')
+                                        @include('admin.discount.edit')
                                     @endforeach
-                                    @include('admin.movie_genres.create')
+                                    @include('admin.discount.create')
                                     </tbody>
                                 </table>
                             </div>
                             <div class="d-flex justify-content-center mt-3">
-                                {!! $movieGenres->links() !!}
+                                {!! $discount->links() !!}
                             </div>
                         </div>
                     </div>
@@ -100,10 +100,10 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $('.delete-genres').on('click', function () {
+            $('.delete-discount').on('click', function () {
                 var userURL = $(this).data('url');
                 var trObj = $(this);
-                if (confirm("Are you sure you want to remove it?") == true) {
+                if (confirm("Are you sure you want to remove it?") === true) {
                     $.ajax({
                         url: userURL,
                         type: 'DELETE',
@@ -123,13 +123,13 @@
         });
     </script>
     <script>
-        function changestatus(genre_id,active){
+        function changestatus(discount_id,active){
             if(active === 1){
-                $("#status" + genre_id).html(' <a href="javascript:void(0)"  class="btn_active" onclick="changestatus('+ genre_id +',0)">\
+                $("#status" + discount_id).html(' <a href="javascript:void(0)"  class="btn_active" onclick="changestatus('+ discount_id +',0)">\
                     <span class="badge badge-sm bg-gradient-success">Online</span>\
             </a>')
             }else{
-                $("#status" + genre_id).html(' <a  href="javascript:void(0)" class="btn_active"  onclick="changestatus('+ genre_id +',1)">\
+                $("#status" + discount_id).html(' <a  href="javascript:void(0)" class="btn_active"  onclick="changestatus('+ discount_id +',1)">\
                     <span class="badge badge-sm bg-gradient-secondary">Offline</span>\
             </a>')
             }
@@ -139,12 +139,12 @@
                 }
             });
             $.ajax({
-                url: "/admin/movie_genres/status",
+                url: "/admin/discount/status",
                 type: 'GET',
                 dataType: 'json',
                 data: {
                     'active': active,
-                    'genre_id': genre_id
+                    'discount_id': discount_id
                 },
                 success: function (data) {
                     if (data['success']) {

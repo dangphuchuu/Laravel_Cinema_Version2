@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use App\Models\Room;
 use App\Models\RoomType;
 use App\Models\Seat;
@@ -42,5 +43,11 @@ class RoomController extends Controller
         }
 
         return redirect('admin/theater')->with('success', 'Add new room at ' . $theater->name . ' successfully!');
+    }
+    public function status(Request $request){
+        $room = Room::find($request->room_id);
+        $room['status'] = $request->active;
+        $room->save();
+        return response();
     }
 }

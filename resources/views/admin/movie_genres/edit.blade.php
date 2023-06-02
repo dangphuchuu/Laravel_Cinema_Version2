@@ -13,7 +13,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="name" class="form-control-label">@lang('lang.genre')</label>
-                                    <input class="form-control" id="name" type="text" value="{!! $value['name'] !!}" name="name" placeholder="@lang('lang.type') @lang('lang.genre')">
+                                    <input class="form-control" id="name" type="text" value="{!! $value['name'] !!}" name="name">
                                 </div>
                             </div>
                         </div>

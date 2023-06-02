@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Models\Seat;
 use App\Models\SeatType;
+use App\Models\Theater;
 use Illuminate\Http\Request;
 
 class SeatController extends Controller
@@ -51,11 +52,27 @@ class SeatController extends Controller
 
     public function postEditRow(Request $request)
     {
-        Seat::where('room_id', $request->room)->where('row', $request->row)->update([
-            'seatType_id' => $request->seatType,
-            'mb' => $request->mb
-        ]);
-
+        if($request->seatType!=null)
+        {
+            Seat::where('room_id', $request->room)->where('row', $request->row)->update([
+                'seatType_id' => $request->seatType,
+                'mb' => $request->mb
+            ]);
+        }else{
+            Seat::where('room_id', $request->room)->where('row', $request->row)->update([
+                'mb' => $request->mb
+            ]);
+        }
         return redirect('admin/seat/' . $request->room);
+    }
+    public function delete($id){
+        $room = Room::find($id);
+        if($room['status'] == 0){
+            Room::destroy($id);
+            return response()->json(['success' => 'Delete Successfully']);
+        }
+        else{
+            return response()->json(['error' => 'Please change status to offline']);
+        }
     }
 }

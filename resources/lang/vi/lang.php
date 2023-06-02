@@ -133,4 +133,11 @@ return [
     'discount' => 'Mã khuyến mãi',
     'apply' => 'Áp dụng',
     'bank_card' => 'Thẻ ngân hàng',
+    'below_align'=>'Căn dưới',
+    'left_align'=>'Căn trái',
+    'right_align'=>'Căn phải',
+    'row_number'=>'Số cột',
+    'col_number'=>'Số dòng',
+    'code'=>'Mã',
+    'percent'=>'Phần trăm',
 ];
