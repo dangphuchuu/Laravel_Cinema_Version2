@@ -95,7 +95,22 @@ class AdminController extends Controller
         }
         return view('admin.profile', ['user' => $user])->with('roles', 'permissions');
     }
-
+    public function Postprofile(Request $request){
+        $user = User::find(Auth::user()->id);
+        if ($request['checkPassword'] == 'on') {
+            $request->validate([
+                'password' => 'required',
+                'repassword' => 'required|same:password'
+            ], [
+                'password.required' => 'Type new password',
+                'repassword.required' => 'Type passsword again',
+                'repassword.same' => "Password again isn't correct"
+            ]);
+            $request['password'] = bcrypt($request['password']);
+        }
+        $user->update($request->all());
+        return redirect('admin/sign_out')->with('success', 'Update Successfully');
+    }
     //Sign_in
     public function sign_in()
     {
