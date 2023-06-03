@@ -15,6 +15,7 @@ class SchedulesController extends Controller
     //Schedule Movie
     public function schedule(Request $request)
     {
+
         $schedules = Schedule::all();
         $theaters = Theater::all();
         $movies = Movie::all();
@@ -38,9 +39,20 @@ class SchedulesController extends Controller
         ]);
     }
 
-    public function postCreate()
+    public function postCreate(Request $request)
     {
-        return view('admin.schedules.create');
+        $movie = Movie::find($request->movie);
+        $schedule = new Schedule([
+            'room_id' => $request->room,
+            'movie_id' => $request->movie,
+            'audio_id' => $request->audio,
+            'subtitle_id' => $request->subtitle,
+            'date' => $request->date,
+            'startTime' => $request->startTime,
+            'endTime' => date('H:i', strtotime($request->startTime) + ($movie->showTime * 60)),
+        ]);
+        $schedule->save();
+        return redirect('admin/schedule?theater=' . $request->theater . '&date=' . $request->date);
     }
 
     public function postEdit()

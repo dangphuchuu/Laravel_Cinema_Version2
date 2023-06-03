@@ -13,8 +13,10 @@ class Schedule extends Model
         'room_id',
         'movie_id',
         'audio_id',
-        'sub_id',
-        'time_id',
+        'subtitle_id',
+        'date',
+        'startTime',
+        'endTime',
         'early',
         'status',
     ];
