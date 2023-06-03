@@ -102,7 +102,8 @@
                                                         @foreach($room->schedules as $schedule)
                                                             <tr>
                                                                 <td>
-                                                                    {{ $schedule->startTime }}
+                                                                    {{ date('H:i', strtotime($schedule->startTime)) }}
+                                                                    - {{ date('H:i', strtotime($schedule->endTime)) }}
                                                                 </td>
                                                                 <td class="text-start">
                                                                     {{ $schedule->movie->name }}
