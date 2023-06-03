@@ -25,10 +25,9 @@ class SchedulesController extends Controller
             $date_cur = $request->date;
             $theater_cur = Theater::find($request->theater);
         } else {
-            $date_cur = Carbon::today()->format('y-d-m');
+            $date_cur = Carbon::today()->format('y-m-d');
             $theater_cur = Theater::find(1);
         }
-
         return view('admin.schedules.list', [
             'theaters' => $theaters,
             'date_cur' => $date_cur,
