@@ -28,11 +28,11 @@
             @endforeach
             <label class="text-sm">
                     @if($seat['status'] ==1)
-                        <a href="admin/seat/on/{!! $seat['id'] !!}">
+                        <a href="admin/seat/on/{!! $seat['id'] !!},{!! $room['id'] !!}">
                             <span class="badge badge-sm bg-gradient-success">Online</span>
                         </a>
                     @else
-                    <a href="admin/seat/off/{!! $seat['id'] !!}">
+                    <a href="admin/seat/off/{!! $seat['id'] !!},{!! $room['id'] !!}">
                                 <span class="badge badge-sm bg-gradient-secondary">Offline</span>
                         </a>
                     @endif
