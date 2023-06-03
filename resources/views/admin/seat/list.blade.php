@@ -31,7 +31,11 @@
                                                     <div class="d-inline-block cursor-pointer align-middle py-1 px-0 seat_enable"
                                                          id="Seat_{{ $seat->row.$seat->col}}"
                                                          style="
+                                                         @if($seat['status'] == 1)
                                                 background-color: {{ $seat->seatType->color }};
+                                                @else
+                                                 background-color: #999;
+                                                @endif
                                                 width: 30px;
                                                 height: 30px;
                                                 line-height: 22px;
@@ -77,3 +81,4 @@
                 <h1 align="center">Permissions Deny</h1>
     @endcan
 @endsection
+

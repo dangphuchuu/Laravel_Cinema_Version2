@@ -21,9 +21,22 @@
                     <span class="fw-bold d-block text-center me-1"
                           style="width: 20px; height: 20px; background-color: {{ $seatType->color }};"></span>
                         <span style="line-height: 20px">{{ $seatType->name }} - {{ $seatType->surcharge }}</span>
+
                     </label>
+
                 </div>
             @endforeach
+            <label  id="status{!! $seat['id'] !!}" class="text-sm">
+                    @if($seat['status'] ==1)
+                        <a href="javascript:void(0)" class="btn_active"  onclick="seatstatus({!! $seat['id'] !!},0)">
+                            <span class="badge badge-sm bg-gradient-success">Online</span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0)" class="btn_active"  onclick="seatstatus({!! $seat['id'] !!},1)">
+                                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                        </a>
+                    @endif
+            </label>
             <div class="form-group">
                 <label for="seat_ms_{{ $seat->id }}">@lang('lang.left_align')</label>
                 <input class="form-control" type="number" name="ms" id="seat_ms_{{ $seat->id }}">
@@ -41,3 +54,39 @@
         </form>
     </div>
 </div>
+@section('scripts')
+    <script>
+        function seatstatus(seat_id,active){
+            if(active === 1){
+                $("#status" + seat_id).html(' <a href="javascript:void(0)"  class="btn_active" onclick="seatstatus('+ seat_id +',0)">\
+                <span class="badge badge-sm bg-gradient-success">Online</span>\
+            </a>')
+            }else{
+                $("#status" + seat_id).html(' <a  href="javascript:void(0)" class="btn_active"  onclick="seatstatus('+ seat_id +',1)">\
+                <span class="badge badge-sm bg-gradient-secondary">Offline</span>\
+            </a>')
+            }
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "/admin/seat/status",
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    'active': active,
+                    'seat_id': seat_id
+                },
+                success: function (data) {
+                    if (data['success']) {
+                        // alert(data.success);
+                    } else if (data['error']) {
+                        alert(data.error);
+                    }
+                }
+            });
+        }
+    </script>
+@endsection

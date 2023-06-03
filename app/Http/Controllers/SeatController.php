@@ -75,4 +75,11 @@ class SeatController extends Controller
             return response()->json(['error' => 'Please change status to offline']);
         }
     }
+    public function status(Request $request)
+    {
+        $seat = Seat::find($request->seat_id);
+        $seat['status'] = $request->active;
+        $seat->save();
+        return response();
+    }
 }
