@@ -13,15 +13,18 @@
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/admin/schedules/create" method="post">
+            <form action="/admin/schedule/create" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-6">
-                            <div class="form-group position-relative">
-                                <label>Time</label>
-                                <input class="form-control" id="time" type="time" name="name" min="8:00" max="22:00" aria-label="">
-                                <span class="validity"></span>
+                            <div class="form-group">
+                                <label>Start Time</label>
+                                <div class="d-flex position-relative">
+                                    <input class="form-control" id="time" type="time" name="startTime" min="{{ $room->endTimeCurrent }}" max="22:00"
+                                           aria-label="">
+                                    <span class="input-group-text"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-6">
@@ -47,13 +50,14 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Subtitle</label>
-                                <select class="form-select" id="sub" name="location" aria-label="subtitle">
+                                <select class="form-select" name="subtitle" aria-label="subtitle">
                                     @foreach($subtitles as $sub)
                                         <option value="{{ $sub->id }}">{{ $sub->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+                        <input type="hidden" name="theater" value="{{ $theater_cur->id }}">
                         <input type="hidden" name="room" value="{{ $room->id }}">
                         <input type="hidden" name="date" value="{{ $date_cur }}">
                     </div>

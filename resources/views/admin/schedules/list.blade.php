@@ -59,7 +59,7 @@
                                         <col span="1" style="width: 30%;">
                                         <col span="1" style="width: 30%;">
                                     </colgroup>
-                                    <thead>
+                                    <thead class="table-primary">
                                     <tr>
                                         <th class="text-uppercase font-weight-bolder">#</th>
                                         <th class="text-uppercase font-weight-bolder">Room</th>
@@ -71,22 +71,22 @@
                                     @isset($theater_cur)
                                         @foreach($theater_cur->rooms as $room)
                                             <tr>
-                                                <td class="p-3">
+                                                <td>
                                                     {{ $room->id }}
                                                 </td>
-                                                <td class="ps-2 table-responsive">
+                                                <td>
                                                     {{ $room->name }}
                                                 </td>
                                                 <td>
                                                     {{ $room->roomType->name }}
                                                 </td>
                                                 <td>
-                                                    {{ count($room->seats) }}
+                                                    {{ $room->seats->count() }}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="4">
-                                                    <table class="table align-items-center">
+                                                    <table class="table table-bordered align-items-center">
                                                         <colgroup>
                                                             <col span="1" style="width: 20%;">
                                                             <col span="1" style="width: 80%;">
@@ -95,20 +95,31 @@
                                                         <tr>
                                                             <th class="text-uppercase fw-bold">Time</th>
                                                             <th class="text-uppercase fw-bold text-start">Movie</th>
+                                                            <th class="text-uppercase fw-bold">Status</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @for($i = 0; $i < 8; $i++)
+                                                        @foreach($room->schedules as $schedule)
                                                             <tr>
                                                                 <td>
-                                                                    0{{ $i }} : 00
+                                                                    {{ $schedule->startTime }}
                                                                 </td>
                                                                 <td class="text-start">
-                                                                    An item
+                                                                    {{ $schedule->movie->name }}
+                                                                </td>
+                                                                <td>
+                                                                    @if($schedule->status == 1)
+                                                                        <a href="javascript:void(0)" class="btn_active">
+                                                                            <span class="badge badge-sm bg-gradient-success">Online</span>
+                                                                        </a>
+                                                                    @else
+                                                                        <a href="javascript:void(0)" class="btn_active">
+                                                                            <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                                                        </a>
+                                                                    @endif
                                                                 </td>
                                                             </tr>
-
-                                                        @endfor
+                                                        @endforeach
                                                         <tr>
                                                             <td>
                                                                 <button class="btn btn-info" data-bs-toggle="modal"

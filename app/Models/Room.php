@@ -28,10 +28,16 @@ class Room extends Model
 
     public function rows()
     {
-        $rows = $this->seats()->select('row', 'mb', 'col')->groupBy('row');
-        foreach ($rows as $row) {
-            $row = Seat::class->where('room_id', $this->id)->where('row', $row);
-        }
-        return $rows;
+        return $this->seats()->select('row', 'mb', 'col')->groupBy('row');
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class, 'room_id', 'id');
+    }
+
+    public function endTimeCurrent()
+    {
+        return $this->schedules()->select('endTime')->latest('endTime')->limit(1);
     }
 }

@@ -23,7 +23,8 @@ return new class extends Migration {
             $table->foreign('audio_id')->references('id')->on('audios');
             $table->foreign('subtitle_id')->references('id')->on('subtitles');
             $table->date("date");
-            $table->time('time');
+            $table->time('startTime');
+            $table->time('endTime');
             $table->boolean('early')->default(false);
             $table->boolean('status')->default(false);
             $table->timestamps();
