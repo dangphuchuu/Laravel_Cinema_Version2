@@ -99,7 +99,7 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @foreach($room->schedules as $schedule)
+                                                        @foreach($room->schedulesByDate(date('Y-d-m', strtotime($date_cur))) as $schedule)
                                                             <tr>
                                                                 <td>
                                                                     {{ date('H:i', strtotime($schedule->startTime)) }}

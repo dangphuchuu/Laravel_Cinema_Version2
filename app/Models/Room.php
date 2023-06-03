@@ -36,9 +36,14 @@ class Room extends Model
         return $this->hasMany(Schedule::class, 'room_id', 'id');
     }
 
+    public function schedulesbyDate($date)
+    {
+        return $this->schedules()->where('date', $date)->get();
+    }
+
     public function latestSchedule()
     {
 
-        return $this->schedules()->latest('endTime')->limit(1);;
+        return $this->schedules()->latest('endTime')->limit(1);
     }
 }
