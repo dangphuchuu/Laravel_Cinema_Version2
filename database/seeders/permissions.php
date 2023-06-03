@@ -41,3 +41,5 @@ Permission::create(['name' => 'cast']);
 //TODO: Statistical
 Permission::create(['name' => 'statistical']);
 
+//TODO: Discount
+Permission::create(['name' => 'discount']);

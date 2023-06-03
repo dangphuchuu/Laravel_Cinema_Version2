@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MovieGenres;
 use App\Models\RoomType;
 use App\Models\SeatType;
 use App\Models\Theater;
@@ -47,5 +48,22 @@ class TheaterController extends Controller
         $theaters['status'] = $request->active;
         $theaters->save();
         return response();
+    }
+    public function delete($id){
+        $theaters = Theater::find($id);
+        $check = count($theaters->rooms);
+        if($theaters['status'] ==0 ){
+            if($check ==0){
+                Theater::destroy($id);
+                return response()->json(['success' => 'Delete Successfully']);
+            }
+            else{
+                return response()->json(['error' => "Can't delete because Theater exist Room" ]);
+            }
+        }
+        else{
+            return response()->json(['error' => "Please change status to offline" ]);
+        }
+
     }
 }

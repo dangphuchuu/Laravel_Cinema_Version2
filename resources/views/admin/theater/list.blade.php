@@ -70,16 +70,17 @@
                                                 @endif
                                             </td>
                                             <td class="align-middle">
-                                                <button class="btn btn-icon btn-warning"
+                                                <a href="#TheaterEditModal" class="text-secondary font-weight-bold text-xs"
                                                         onclick="editTheater({{ $theater->id }}, '{{ $theater->city }}')"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#TheaterEditModal{{ $theater->id }}">
                                                     <i class="fa-solid fa-pen-to-square fa-lg"></i>
-                                                </button>
+                                                </a>
 
                                             </td>
                                             <td class="align-middle">
-                                                <a href="javascript:;" class="btn btn-icon btn-danger">
+                                                <a href="javascript:void(0)" data-url="{{ url('admin/theater/delete', $theater['id'] ) }}"
+                                                   class="text-secondary font-weight-bold text-xs delete-theater" data-toggle="tooltip">
                                                     <i class="fa-solid fa-trash-can fa-lg"></i>
                                                 </a>
                                             </td>
@@ -135,6 +136,36 @@
 
     </script>
     <script>
+        function roomstatus(room_id, active) {
+            if (active === 1) {
+                $("#room_status" + room_id).html(' <a href="javascript:void(0)"  class="btn_active" onclick="roomstatus(' + room_id + ',0)">\
+                    <span class="badge badge-sm bg-gradient-success">Online</span>\
+                    </a>'
+                );
+            } else {
+                $("#room_status" + room_id).html(' <a  href="javascript:void(0)" class="btn_active"  onclick="roomstatus(' + room_id + ',1)">\
+                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>\
+                    </a>'
+                );
+            }
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "/admin/room/status",
+                type: 'GET',
+                data: {
+                    'active': active,
+                    'room_id': room_id
+                },
+
+            });
+        }
+
+    </script>
+    <script>
         $(document).ready(function () {
             $('#city').select2();
             $('#city_create').select2();
@@ -144,7 +175,64 @@
             $('#city_theater_' + theater_id + ' option[value="' + city + '"]').prop("selected", true);
         }
     </script>
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('.delete-theater').on('click', function () {
+                var userURL = $(this).data('url');
+                var trObj = $(this);
+                if (confirm("Are you sure you want to remove it?") == true) {
+                    $.ajax({
+                        url: userURL,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data['success']) {
+                                // alert(data.success);
+                                trObj.parents("tr").remove();
+                            } else if (data['error']) {
+                                alert(data.error);
+                            }
+                        }
+                    });
+                }
 
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('.delete-room').on('click', function () {
+                var userURL = $(this).data('url');
+                var trObj = $(this);
+                if (confirm("Are you sure you want to remove it?") == true) {
+                    $.ajax({
+                        url: userURL,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data['success']) {
+                                // alert(data.success);
+                                trObj.parents("tr").remove();
+                            } else if (data['error']) {
+                                alert(data.error);
+                            }
+                        }
+                    });
+                }
+
+            });
+        });
+    </script>
 @endsection
 
 

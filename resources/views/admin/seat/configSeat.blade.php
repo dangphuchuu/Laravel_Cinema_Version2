@@ -11,7 +11,11 @@
             @foreach($seatTypes as $seatType)
                 <div class="form-check">
                     <input class="form-check-input seat_type_radio" type="radio" name="seatType"
-                           id="ColorRadio_{{ $seatType->id }}_{{ $seat->id }}" value="{{ $seatType->id }}">
+                           id="ColorRadio_{{ $seatType->id }}_{{ $seat->id }}" value="{{ $seatType->id }}"
+                           @if($seat->seatType_id==$seatType->id)
+                               checked
+                           @endif
+                    >
                     <label class="form-check-label flex-fill d-flex border-0 ps-1 my-2"
                            for="ColorRadio_{{ $seatType->id }}_{{ $seat->id }}">
                     <span class="fw-bold d-block text-center me-1"
@@ -21,11 +25,11 @@
                 </div>
             @endforeach
             <div class="form-group">
-                <label for="seat_ms_{{ $seat->id }}">căn trái</label>
+                <label for="seat_ms_{{ $seat->id }}">@lang('lang.left_align')</label>
                 <input class="form-control" type="number" name="ms" id="seat_ms_{{ $seat->id }}">
             </div>
             <div class="form-group">
-                <label for="seat_me_{{ $seat->id }}">căn phải</label>
+                <label for="seat_me_{{ $seat->id }}">@lang('lang.right_align')</label>
                 <input class="form-control" type="number" name="me" id="seat_me_{{ $seat->id }}">
             </div>
             <input type="hidden" name="room" value="{{ $room->id }}">

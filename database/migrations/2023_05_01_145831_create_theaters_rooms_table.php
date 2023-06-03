@@ -25,7 +25,6 @@ return new class extends Migration {
             $table->id()->autoIncrement();
             $table->string('name', 255);
             $table->integer('surcharge')->default(0);
-            $table->boolean('status')->default(false);
             $table->timestamps();
         });
         Schema::create('rooms', function (Blueprint $table) {

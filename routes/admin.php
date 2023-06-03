@@ -5,6 +5,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CastController;
 use App\Http\Controllers\ComboController;
 use App\Http\Controllers\DirectorController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\MovieController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\SeatController;
+use App\Http\Controllers\StatisticalController;
 use App\Http\Controllers\TheaterController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +62,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/', [RoomController::class, 'room']);
         Route::post('/create', [RoomController::class, 'postCreate']);
         Route::post('/edit', [RoomController::class, 'postEdit']);
+        Route::get('/status', [RoomController::class, 'status']);
     });
 
     //TODO Room
@@ -68,6 +71,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/create', [SeatController::class, 'postCreate']);
         Route::post('/edit', [SeatController::class, 'postEdit']);
         Route::post('/row', [SeatController::class, 'postEditRow']);
+        Route::delete('/delete/{id}', [SeatController::class, 'delete']);
     });
 
     //TODO Theater
@@ -76,6 +80,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/create', [TheaterController::class, 'postCreate']);
         Route::get('/edit', [TheaterController::class, 'edit_cinema']);
         Route::get('/status', [TheaterController::class, 'status']);
+        Route::delete('/delete/{id}', [TheaterController::class, 'delete']);
     });
 
     //TODO Schedule
@@ -93,7 +98,14 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::delete('/delete/{id}', [EventController::class, 'delete']);
         Route::get('/status', [EventController::class, 'status']);
     });
-
+    //TODO Discount
+    Route::prefix('discount')->group(function () {
+        Route::get('/', [DiscountController::class, 'discount']);
+        Route::post('/create', [DiscountController::class, 'postCreate']);
+        Route::post('/edit/{id}', [DiscountController::class, 'postEdit']);
+        Route::get('/status', [DiscountController::class, 'status']);
+        Route::delete('/delete/{id}', [DiscountController::class, 'delete']);
+    });
     //TODO Book_Ticket
     Route::prefix('ticket')->group(function () {
         Route::get('/', [TicketController::class, 'ticket']);
@@ -152,6 +164,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/create', [ComboController::class, 'postCreate']);
         Route::post('/edit/{id}', [ComboController::class, 'postEdit']);
         Route::post('/detail/{id}', [ComboController::class, 'detail']);
+        Route::get('/status', [ComboController::class, 'status']);
         Route::delete('/delete/{id}', [ComboController::class, 'delete']);
     });
     //TODO News
@@ -164,6 +177,6 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     });
     //TODO statistical
     Route::prefix('statistical')->group(function () {
-        Route::get('/', [AdminController::class, 'statistical']);
+        Route::get('/', [StatisticalController::class, 'statistical']);
     });
 });

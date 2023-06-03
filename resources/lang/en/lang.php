@@ -133,6 +133,12 @@ return [
     'discount' => 'Discount',
     'apply' => 'Apply',
     'bank_card' => 'Bank Card',
-
+    'below_align'=>'Below align',
+    'left_align'=>'Left align',
+    'right_align'=>'Right align',
+    'row_number'=>'Row number',
+    'col_number'=>'Col number',
+    'code'=>'Code',
+    'percent'=>'Percent',
 
 ];

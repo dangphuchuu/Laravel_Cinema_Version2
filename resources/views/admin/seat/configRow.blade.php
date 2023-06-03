@@ -21,7 +21,7 @@
                 </div>
             @endforeach
             <div class="form-group">
-                <label for="row_mb_{{ $room->id }}_{{ $row->row }}">căn dưới</label>
+                <label for="row_mb_{{ $room->id }}_{{ $row->row }}">@lang('lang.below_align')</label>
                 <input class="form-control" type="number" name="mb" id="row_mb_{{ $room->id }}_{{ $row->row }}">
             </div>
             <input type="hidden" name="room" value="{{ $room->id }}">

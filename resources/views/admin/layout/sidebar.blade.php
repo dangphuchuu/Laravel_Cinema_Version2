@@ -70,7 +70,17 @@
                     </a>
                 </li>
             @endcan
-            @can('food_combo')
+            @can('discount')
+                <li class="nav-item">
+                    <a class="nav-link " href="./admin/discount">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-sharp fa-solid fa-badge-percent text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">@lang('lang.discount')</span>
+                    </a>
+                </li>
+            @endcan
+            @can('food')
                 <li class="nav-item">
                     <a class="nav-link " href="./admin/food">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">

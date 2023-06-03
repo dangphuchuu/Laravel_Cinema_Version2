@@ -49,7 +49,7 @@
                                                 @endif
                                                 @if($loop->last)
                                                     <div class="d-inline-block border cursor-pointer align-middle py-1 px-0"
-                                                         style="width: 30px; height: 30px; margin: 2px 0;"
+                                                         style=" width: 30px; height: 30px; margin: 2px -30px 2px 0;"
                                                          data-bs-toggle="offcanvas" data-bs-target="#EditRow_{{ $room->id }}_{{ $row->row }}">
                                                         <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                                     </div>

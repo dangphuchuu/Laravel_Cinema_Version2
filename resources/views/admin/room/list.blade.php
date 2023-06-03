@@ -30,14 +30,15 @@
             <td class="align-middle text-center">
                 <h6 class="mb-0 text-sm ">{{ $room->roomType->name }}</h6>
             </td>
-            <td class="align-middle text-center text-sm">
+            <td id="room_status{!! $room['id'] !!}" class="align-middle text-center text-sm">
                 @if($room->status == 1)
-                    <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#RoomsModal">
+                    <a href="javascript:void(0)" class="btn_active" onclick="roomstatus({!! $room['id'] !!},0)">
                         <span class="badge badge-sm bg-gradient-success">Online</span>
-                    </button>
+                    </a>
                 @else
-                    <span
-                        class="badge badge-sm bg-gradient-secondary">Offline</span>
+                    <a href="javascript:void(0)" class="btn_active" onclick="roomstatus({!! $room['id'] !!},1)">
+                        <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                    </a>
                 @endif
             </td>
             <td class="align-middle">
@@ -47,7 +48,8 @@
 
             </td>
             <td class="align-middle">
-                <a href="javascript:;" class="btn btn-icon btn-danger">
+                <a href="javascript:void(0)" class="btn btn-icon btn-danger delete-room"
+                   data-url="{{ url('admin/seat/delete', $room['id'] ) }}" data-toggle="tooltip">
                     <i class="fa-solid fa-trash-can fa-lg"></i>
                 </a>
             </td>

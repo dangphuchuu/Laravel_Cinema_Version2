@@ -28,7 +28,7 @@ return new class extends Migration {
             $table->integer('mb')->default(0);
             $table->bigInteger('seatType_id')->unsigned();
             $table->bigInteger('room_id')->unsigned();
-            $table->foreign('room_id')->references('id')->on('rooms');
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->foreign('seatType_id')->references('id')->on('seattypes');
             $table->string('status')->default(true);
             $table->timestamps();
