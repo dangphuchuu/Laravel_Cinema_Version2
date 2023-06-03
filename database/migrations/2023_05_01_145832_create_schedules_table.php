@@ -3,11 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use \App\Models\Room;
-use \App\Models\Movie;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -25,7 +22,8 @@ return new class extends Migration
             $table->foreign("movie_id")->references("id")->on("movies");
             $table->foreign('audio_id')->references('id')->on('audios');
             $table->foreign('sub_id')->references('id')->on('subs');
-            $table->date("time");
+            $table->date("date");
+            $table->time('time');
             $table->boolean('early')->default(false);
             $table->boolean('status')->default(false);
             $table->timestamps();

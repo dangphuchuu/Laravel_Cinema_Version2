@@ -14,9 +14,6 @@
     <link rel="apple-touch-icon" sizes="76x76" href="admin_assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="admin_assets/img/favicon.png">
 
-    {{--Select2--}}
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
-
     <!--     Fonts and icons     -->
     {{--Google api--}}
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
@@ -28,6 +25,12 @@
     <link href="admin_assets/css/nucleo-svg.css" rel="stylesheet"/>
     <!-- Argon dashboard CSS Files -->
     <link id="pagestyle" href="admin_assets/css/argon-dashboard.css" rel="stylesheet"/>
+
+    {{--Select2--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css"
+          integrity="sha512-aD9ophpFQ61nFZP6hXYu4Q/b/USW7rpLCQLX6Bi0WJHXNO7Js/fUENpBQf/+P4NtpzNX0jSgR5zVvPOJp+W2Kg==" crossorigin="anonymous"
+          referrerpolicy="no-referrer"/>
+
     <style>
         .dropdown .dropdown-menu.show:before {
             top: -11px !important;
@@ -53,7 +56,7 @@
 <!--   Core JS Files   -->
 <script src="admin_assets/js/core/popper.min.js"></script>
 <script src="admin_assets/js/core/bootstrap.min.js"></script>
-<script src="admin_assets/js/plugins/perfect-scrollbar.min.js"></script>
+{{--<script src="admin_assets/js/plugins/perfect-scrollbar.min.js"></script>--}}
 <script src="admin_assets/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="admin_assets/js/plugins/chartjs.min.js"></script>
 <!-- Github buttons -->
@@ -65,9 +68,16 @@
         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
 {{-- Select2 --}}
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.full.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"
+        integrity="sha512-4MvcHwcbqXKUHB6Lx3Zb5CEAVoE9u84qN+ZSMM6s7z8IeJriExrV3ND5zRze9mxNlABJ6k864P/Vl8m0Sd3DtQ==" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
 {{-- CKeditor --}}
 <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
+
+{{-- Perfect  Scrollbar--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"
+        integrity="sha512-X41/A5OSxoi5uqtS6Krhqz8QyyD8E/ZbN7B4IaBSgqPLRbWVuXJXr9UwOujstj71SoVxh5vxgy7kmtd17xrJRw==" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'))

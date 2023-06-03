@@ -304,8 +304,8 @@
                                     @include('admin.movie.modal_movie_genres')
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="director">@lang('lang.directors')</label>
-                                            <select id="director" class="form-control director-input" name="directors[]" multiple>
+                                            <label for="directors">@lang('lang.directors')</label>
+                                            <select id="directors" class="form-control director-input" name="directors[]" multiple>
                                                 @foreach($directors as $director)
                                                     <option value="{{ $director->id }}">{!! $director->name !!}</option>
                                                 @endforeach
@@ -334,12 +334,22 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group file-uploader">
-                                                <label for="movieImage">@lang('lang.image')</label>
-                                                <input id="movieImage" type="file" name="Image" class="form-control image-movie">
-                                                <img style="width: 300px" src="" class="img_movie d-none" alt="user1">
-                                            </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="casts">@lang('lang.casts')</label>
+                                            <select id="casts" class="form-select cast-input" name="casts[]" multiple>
+                                                @foreach($casts as $cart)
+                                                    <option value="{{ $cart->id }}">{{ $cart->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group file-uploader">
+                                            <label for="movieImage">@lang('lang.image')</label>
+                                            <input id="movieImage" type="file" name="Image" class="form-control image-movie">
+                                            <img style="width: 300px" src="" class="img_movie d-none" alt="user1">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -347,24 +357,16 @@
                                             <label for="trailer">Trailer</label>
                                             <input id="trailer" name="trailer" class="form-control" type="text" value="" placeholder="Trailer">
                                         </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="cast">@lang('lang.casts')</label>
-                                                <select id="cast" class="form-control cast-input" name="casts[]" multiple>
-                                                    @foreach($casts as $cart)
-                                                        <option value="{{ $cart->id }}">{{ $cart->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="editor">@lang('lang.description')</label>
-                                                <textarea class="form-control" name="description" id="editor"
-                                                          placeholder="description"></textarea>
-                                            </div>
+
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="editor">@lang('lang.description')</label>
+                                            <textarea class="form-control" name="description" id="editor" placeholder="description"></textarea>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </form>
@@ -386,41 +388,6 @@
 
             $('#national').select2();
         });
-    </script>
-    <script>
-        /*function matchStart(params, data) {
-            // If there are no search terms, return all of the data
-            if ($.trim(params.term) === '') {
-                return data;
-            }
-
-            // Skip if there is no 'children' property
-            if (typeof data.children === 'undefined') {
-                return null;
-            }
-
-            // `data.children` contains the actual options that we are matching against
-            var filteredChildren = [];
-            $.each(data.children, function (idx, child) {
-                if (child.text.toUpperCase().indexOf(params.term.toUpperCase()) == 0) {
-                    filteredChildren.push(child);
-                }
-            });
-
-            // If we matched any of the timezone group's children, then set the matched children on the group
-            // and return the group object
-            if (filteredChildren.length) {
-                var modifiedData = $.extend({}, data, true);
-                modifiedData.children = filteredChildren;
-
-                // You can return modified objects from here
-                // This includes matching the `children` how you want in nested data sets
-                return modifiedData;
-            }
-
-            // Return `null` if the term should not be displayed
-            return null;
-        }*/
     </script>
     <script>
         function readURL(input) {

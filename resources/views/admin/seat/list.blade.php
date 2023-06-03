@@ -12,7 +12,7 @@
                             <div class="d-block overflow-x-auto text-center">
                                 <div class="w-100 mt-2 my-auto mb-4 text-center justify-content-center">
                                     @lang('lang.screen')
-                                    <div class="bg-dark w-100 mx-auto" style="height: 2px; max-width: 540px"></div>
+                                    <div class="row bg-dark w-100 mx-auto" style="height: 2px; max-width: 540px"></div>
 
                                     <div class="row d-block m-2" style="margin: 2px">
                                         <div class="d-inline-block align-middle my-0 mx-1 py-1 px-0 disabled"
