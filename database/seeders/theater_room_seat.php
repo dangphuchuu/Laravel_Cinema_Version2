@@ -150,7 +150,32 @@ DB::table('seatTypes')->insert([
             }
         }
     }
+function seat_type2(){
+    $room = Room::find(2);
+    for ($i = 65; $i <= (65 + 8); $i++) {
+        for ($j = 1; $j <= 15; $j++) {
+            $seat = new Seat([
+                'row' => chr($i),
+                'col' => $j,
+                'room_id' => $room->id,
+            ]);
+            if($j == 3){
+                $seat->me = 2;
+            }
+            if(15 -2 == $j){
+                $seat->ms =2;
+            }
+            if ($i <= 68 && $room->roomType_id == 1) {
+                $seat->seatType_id = 1;
+            } else {
+                $seat->seatType_id = 2;
+            }
+            $seat->save();
+        }
+    }
+}
     seat_type();
+    seat_type2();
 
 
 

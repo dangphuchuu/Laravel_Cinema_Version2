@@ -42,13 +42,13 @@
                 @endif
             </td>
             <td class="align-middle">
-                <a class="btn btn-icon btn-warning" href="admin/seat/{{ $room->id }}">
+                <a class="text-secondary font-weight-bold text-xs" href="admin/seat/{{ $room->id }}">
                     <i class="fa-solid fa-pen-to-square fa-lg"></i>
                 </a>
 
             </td>
             <td class="align-middle">
-                <a href="javascript:void(0)" class="btn btn-icon btn-danger delete-room"
+                <a href="javascript:void(0)" class="text-secondary font-weight-bold text-xs delete-room"
                    data-url="{{ url('admin/seat/delete', $room['id'] ) }}" data-toggle="tooltip">
                     <i class="fa-solid fa-trash-can fa-lg"></i>
                 </a>

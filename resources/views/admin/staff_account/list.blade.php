@@ -85,7 +85,7 @@
                                                 <td id="status{!! $value['id'] !!}" class="align-middle text-center text-sm ">
                                                     @if($value['status'] == 1)
                                                         <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},0)">
-                                                            <span class="badge badge-sm bg-gradient-success">Online</span>
+                                                            <span class="badge badge-sm bg-gradient-success" artisan serv>Online</span>
                                                         </a>
                                                     @else
                                                         <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},1)">
