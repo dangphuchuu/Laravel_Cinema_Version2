@@ -65,12 +65,13 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/status', [RoomController::class, 'status']);
     });
 
-    //TODO Room
+    //TODO Seat
     Route::prefix('seat')->group(function () {
         Route::get('/{id}', [SeatController::class, 'seats']);
         Route::post('/create', [SeatController::class, 'postCreate']);
         Route::post('/edit', [SeatController::class, 'postEdit']);
         Route::post('/row', [SeatController::class, 'postEditRow']);
+        Route::get('/status', [SeatController::class, 'status']);
         Route::delete('/delete/{id}', [SeatController::class, 'delete']);
     });
 
