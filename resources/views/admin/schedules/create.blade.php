@@ -21,7 +21,13 @@
                             <div class="form-group">
                                 <label>Start Time</label>
                                 <div class="d-flex position-relative">
-                                    <input class="form-control" id="time" type="time" name="startTime" min="{{ $room->endTimeCurrent }}" max="22:00"
+                                    @foreach ($room->latestSchedule as $latest)
+                                            <?php $endTimeLatest = date('H:i', strtotime($latest->endTime) + 600) ?>
+                                    @endforeach
+                                    <input class="form-control" id="time" type="time" name="startTime"
+                                           min="{{ $endTimeLatest  }}"
+                                           max="22:00"
+                                           value="{{ $endTimeLatest  }}"
                                            aria-label="">
                                     <span class="input-group-text"></span>
                                 </div>
