@@ -26,13 +26,13 @@
 
                 </div>
             @endforeach
-            <label  id="status{!! $seat['id'] !!}" class="text-sm">
+            <label class="text-sm">
                     @if($seat['status'] ==1)
-                        <a href="javascript:void(0)" class="btn_active"  onclick="seatstatus({!! $seat['id'] !!},0)">
+                        <a href="admin/seat/on/{!! $seat['id'] !!}">
                             <span class="badge badge-sm bg-gradient-success">Online</span>
                         </a>
                     @else
-                        <a href="javascript:void(0)" class="btn_active"  onclick="seatstatus({!! $seat['id'] !!},1)">
+                    <a href="admin/seat/off/{!! $seat['id'] !!}">
                                 <span class="badge badge-sm bg-gradient-secondary">Offline</span>
                         </a>
                     @endif
