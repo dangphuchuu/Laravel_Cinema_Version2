@@ -18,14 +18,13 @@
     {{--Google api--}}
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
     {{--Font Awesome--}}
-    <link href="\web_assets\fonts\fontawesome\css\all.css" rel="stylesheet"/>
+    <link href="web_assets/fonts/fontawesome/css/all.css" rel="stylesheet"/>
     <!-- Nucleo Icons -->
     <link href="admin_assets/css/nucleo-icons.css" rel="stylesheet"/>
     <link href="admin_assets/css/nucleo-svg.css" rel="stylesheet"/>
     <link href="admin_assets/css/nucleo-svg.css" rel="stylesheet"/>
     <!-- Argon dashboard CSS Files -->
-    <link id="pagestyle" href="admin_assets/css/argon-dashboard.css" rel="stylesheet"/>
-
+    <link id="pagestyle" href="admin_assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
     {{--Select2--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css"
           integrity="sha512-aD9ophpFQ61nFZP6hXYu4Q/b/USW7rpLCQLX6Bi0WJHXNO7Js/fUENpBQf/+P4NtpzNX0jSgR5zVvPOJp+W2Kg==" crossorigin="anonymous"
@@ -73,7 +72,6 @@
         referrerpolicy="no-referrer"></script>
 {{-- CKeditor --}}
 <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
-
 {{-- Perfect  Scrollbar--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"
         integrity="sha512-X41/A5OSxoi5uqtS6Krhqz8QyyD8E/ZbN7B4IaBSgqPLRbWVuXJXr9UwOujstj71SoVxh5vxgy7kmtd17xrJRw==" crossorigin="anonymous"

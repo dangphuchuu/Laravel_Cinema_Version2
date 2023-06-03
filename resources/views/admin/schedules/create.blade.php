@@ -1,62 +1,114 @@
-@extends('admin.layout.index')
-@section('content')
-<div class="container-fluid py-4">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header pb-0">
-                    <div class="d-flex align-items-center">
-                        <p class="mb-0">Schedule Movies</p>
-                        <button class="btn btn-primary btn-sm ms-auto">Submit</button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p class="text-uppercase text-sm">Create</p>
+<!-- Modal -->
+<div class="modal fade modal-lg" id="CreateScheduleModal_{{ $room->id }}" tabindex="-1" aria-labelledby="CreateScheduleLabel_{{ $room->id }}"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="CreateScheduleLabel_{{ $room->id }}">Create Theater</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/theater/create" method="post">
+                @csrf
+                <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Cinema </label>
-                                <input class="form-control" type="text" value="" placeholder="Cinema's Name">
+                                <label for="name" class="form-label">Theater name</label>
+                                <input class="form-control" id="name" type="text" name="name" placeholder="type name...">
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Room's Name</label>
-                                <input class="form-control" type="text" value="" placeholder="Room's Name">
+                                <label for="address" class="form-label">Theater address</label>
+                                <input class="form-control" id="address" type="text" name="address" placeholder="type address...">
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Format</label>
-                                <input class="form-control" type="text" value="" placeholder="format">
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Movie</label>
-                                <input class="form-control" type="text" value="" placeholder="Movie's Name">
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Time</label>
-                                <input class="form-control" type="date" value="">
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Language</label>
-                                <select name="cat_id" class="form-control form-control-primary">
-                                    <option value="">Lồng tiếng</option>
-                                    <option value="">Phụ đề việt</option>
-                                    <option value="">Phụ đề anh</option>
+                                <label for="city_create" class="form-label">Theater city</label>
+                                <select id="city_create" class="form-select" name="city">
+                                    <option value="An Giang">An Giang</option>
+                                    <option value="Bắc Giang">Bắc Giang</option>
+                                    <option value="Bắc Kạn">Bắc Kạn</option>
+                                    <option value="Bạc Liêu">Bạc Liêu</option>
+                                    <option value="Bắc Ninh">Bắc Ninh</option>
+                                    <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
+                                    <option value="Bến Tre">Bến Tre</option>
+                                    <option value="Bình Định">Bình Định</option>
+                                    <option value="Bình Dương">Bình Dương</option>
+                                    <option value="Bình Phước">Bình Phước</option>
+                                    <option value="Bình Thuận">Bình Thuận</option>
+                                    <option value="Cà Mau">Cà Mau</option>
+                                    <option value="Cao Bằng">Cao Bằng</option>
+                                    <option value="Đắc Lắk">Đắc Lắk</option>
+                                    <option value="Đắc Nông">Đắc Nông</option>
+                                    <option value="Điện Biên">Điện Biên</option>
+                                    <option value="Đồng Nai">Đồng Nai</option>
+                                    <option value="Đồng Tháp">Đồng Tháp</option>
+                                    <option value="Gia Lai">Gia Lai</option>
+                                    <option value="Hà Giang">Hà Giang</option>
+                                    <option value="Hải Dương">Hải Dương</option>
+                                    <option value="Hà Nam">Hà Nam</option>
+                                    <option value="Hà Tây">Hà Tây</option>
+                                    <option value="Hà Tỉnh">Hà Tỉnh</option>
+                                    <option value="Hậu Giang">Hậu Giang</option>
+                                    <option value="Hòa Bình">Hòa Bình</option>
+                                    <option value="Hưng Yên">Hưng Yên</option>
+                                    <option value="Khánh Hòa">Khánh Hòa</option>
+                                    <option value="Kiên Giang">Kiên Giang</option>
+                                    <option value="Kon Tum">Kon Tum</option>
+                                    <option value="Lai Châu">Lai Châu</option>
+                                    <option value="Lâm Đồng">Lâm Đồng</option>
+                                    <option value="Lạng Sơn">Lạng Sơn</option>
+                                    <option value="Lào Cai">Lào Cai</option>
+                                    <option value="Long An">Long An</option>
+                                    <option value="Nam Định">Nam Định</option>
+                                    <option value="Nghệ An">Nghệ An</option>
+                                    <option value="Ninh Bình">Ninh Bình</option>
+                                    <option value="Ninh Thuận">Ninh Thuận</option>
+                                    <option value="Phú Thọ">Phú Thọ</option>
+                                    <option value="Phú Yên">Phú Yên</option>
+                                    <option value="Quảng Bình">Quảng Bình</option>
+                                    <option value="Quảng Nam">Quảng Nam</option>
+                                    <option value="Quảng Ngãi">Quảng Ngãi</option>
+                                    <option value="Quảng Ninh">Quảng Ninh</option>
+                                    <option value="Quảng Trị">Quảng Trị</option>
+                                    <option value="Sóc Trăng">Sóc Trăng</option>
+                                    <option value="Sơn La">Sơn La</option>
+                                    <option value="Tây Ninh">Tây Ninh</option>
+                                    <option value="Thái Bình">Thái Bình</option>
+                                    <option value="Thái Nguyên">Thái Nguyên</option>
+                                    <option value="Thanh Hóa">Thanh Hóa</option>
+                                    <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+                                    <option value="Tiền Giang">Tiền Giang</option>
+                                    <option value="Trà Vinh">Trà Vinh</option>
+                                    <option value="Tuyên Quang">Tuyên Quang</option>
+                                    <option value="Vĩnh Long">Vĩnh Long</option>
+                                    <option value="Vĩnh Phúc">Vĩnh Phúc</option>
+                                    <option value="Yên Bái">Yên Bái</option>
+                                    <option value="Cần Thơ">Cần Thơ</option>
+                                    <option value="Đà Nẵng">Đà Nẵng</option>
+                                    <option value="Hải Phòng">Hải Phòng</option>
+                                    <option value="Hà Nội">Hà Nội</option>
+                                    <option value="Hồ Chí Minh" selected>Hồ Chí Minh</option>
                                 </select>
                             </div>
                         </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="location" class="form-control-label">Theater location</label>
+                                <input class="form-control" id="location" type="text" name="location"
+                                       placeholder="type location...">
+                            </div>
+                        </div>
                     </div>
+
                 </div>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-@endsection

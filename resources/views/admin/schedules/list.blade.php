@@ -35,12 +35,19 @@
                                 </div>
                             </form>
                             <div class="table-responsive m-2">
-                                <table class="table table-bordered align-items-center mb-0">
+                                <table class="table table-bordered table-striped align-items-center text-center">
+                                    <colgroup>
+                                        <col span="1" style="width: 10%;">
+                                        <col span="1" style="width: 30%;">
+                                        <col span="1" style="width: 30%;">
+                                        <col span="1" style="width: 30%;">
+                                    </colgroup>
                                     <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary font-weight-bolder opacity-7 pe-2">Room</th>
-                                        <th class="text-uppercase text-secondary font-weight-bolder opacity-7 ps-2">Time</th>
-                                        <th></th>
+                                        <th class="text-uppercase font-weight-bolder">#</th>
+                                        <th class="text-uppercase font-weight-bolder">Room</th>
+                                        <th class="text-uppercase font-weight-bolder">Room Type</th>
+                                        <th class="text-uppercase font-weight-bolder">Seats</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -48,26 +55,54 @@
                                         @foreach($theater_cur->rooms as $room)
                                             <tr>
                                                 <td class="p-3">
+                                                    {{ $room->id }}
+                                                </td>
+                                                <td class="ps-2 table-responsive">
                                                     {{ $room->name }}
                                                 </td>
-                                                <td class="font-weight-bolder ps-2  w-100 overflow-x-auto">
-                                                    <div class="d-flex align-items-stretch">
-                                                        @for($i = 0; $i < 8; $i++)
-                                                            <div class="card m-1" style="width: 200px">
-                                                                <div class="card-header border-bottom">
-                                                                    0{{ $i }} : 00
-                                                                </div>
-                                                                <ul class="list-group list-group-flush">
-                                                                    <li class="list-group-item">An item</li>
-                                                                </ul>
-                                                            </div>
-                                                        @endfor
-                                                    </div>
+                                                <td>
+                                                    {{ $room->roomType->name }}
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn">
-                                                        thêm lịch
-                                                    </button>
+                                                    {{ count($room->seats) }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <table class="table align-items-center">
+                                                        <colgroup>
+                                                            <col span="1" style="width: 20%;">
+                                                            <col span="1" style="width: 80%;">
+                                                        </colgroup>
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="text-uppercase fw-bold">Time</th>
+                                                            <th class="text-uppercase fw-bold text-start">Movie</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @for($i = 0; $i < 8; $i++)
+                                                            <tr>
+                                                                <td>
+                                                                    0{{ $i }} : 00
+                                                                </td>
+                                                                <td class="text-start">
+                                                                    An item
+                                                                </td>
+                                                            </tr>
+
+                                                        @endfor
+                                                        <tr>
+                                                            <td>
+                                                                <button class="btn btn-info" data-bs-toggle="modal"
+                                                                        data-bs-target="#CreateScheduleModal_{{ $room->id }}"><i
+                                                                        class="fa-regular
+                                                                fa-circle-plus"></i> THÊM
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -80,6 +115,9 @@
                 </div>
             </div>
         </div>
+        @foreach($theater_cur->rooms as $room)
+            @required('admin.schedules.create')
+        @endforeach
     @else
         <h1 align="center">Permissions Deny</h1>
     @endcan
