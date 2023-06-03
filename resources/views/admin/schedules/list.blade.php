@@ -1,4 +1,21 @@
 @extends('admin.layout.index')
+@section('css')
+    #time + span {
+    padding-right: 30px;
+    }
+
+    #time:invalid + span::after {
+    position: absolute;
+    content: "✖";
+    padding-left: 5px;
+    }
+
+    #time:valid + span::after {
+    position: absolute;
+    content: "✓";
+    padding-left: 5px;
+    }
+@endsection
 @section('content')
     @can('schedule_movie')
         <div class="container-fluid py-4">
@@ -116,7 +133,7 @@
             </div>
         </div>
         @foreach($theater_cur->rooms as $room)
-            @required('admin.schedules.create')
+            @include('admin.schedules.create')
         @endforeach
     @else
         <h1 align="center">Permissions Deny</h1>

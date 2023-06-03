@@ -82,13 +82,13 @@ return new class extends Migration {
 
         Schema::create('audios', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('audio', 255);
+            $table->string('name', 255);
             $table->timestamps();
         });
 
-        Schema::create('subs', function (Blueprint $table) {
+        Schema::create('subtitles', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('sub', 255);
+            $table->string('name', 255);
             $table->timestamps();
         });
     }
@@ -106,6 +106,6 @@ return new class extends Migration {
         Schema::dropIfExists('directors');
         Schema::dropIfExists('casts');
         Schema::dropIfExists('audios');
-        Schema::dropIfExists('subs');
+        Schema::dropIfExists('subtitles');
     }
 };

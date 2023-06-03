@@ -17,11 +17,11 @@ return new class extends Migration {
             $table->bigInteger('room_id')->unsigned();
             $table->bigInteger('movie_id')->unsigned();
             $table->bigInteger('audio_id')->unsigned();
-            $table->bigInteger('sub_id')->unsigned();
+            $table->bigInteger('subtitle_id')->unsigned();
             $table->foreign("room_id")->references("id")->on("rooms");
             $table->foreign("movie_id")->references("id")->on("movies");
             $table->foreign('audio_id')->references('id')->on('audios');
-            $table->foreign('sub_id')->references('id')->on('subs');
+            $table->foreign('subtitle_id')->references('id')->on('subtitles');
             $table->date("date");
             $table->time('time');
             $table->boolean('early')->default(false);

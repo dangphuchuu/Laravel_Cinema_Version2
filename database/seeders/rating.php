@@ -22,29 +22,29 @@ DB::table('rating')->insert([
 ]);
 
 DB::table('audios')->insert([[
-    'audio' => 'Việt'
+    'name' => 'Việt'
 ], [
-    'audio' => 'Anh'
+    'name' => 'Anh'
 ], [
-    'audio' => 'Trung Quốc'
+    'name' => 'Trung Quốc'
 ], [
-    'audio' => 'Ấn Độ'
+    'name' => 'Ấn Độ'
 ], [
-    'audio' => 'Nga'
+    'name' => 'Nga'
 ], [
-    'audio' => 'Nhật'
+    'name' => 'Nhật'
 ], [
-    'audio' => 'Hàn Quốc'
+    'name' => 'Hàn Quốc'
 ], [
-    'audio' => 'Pháp'
+    'name' => 'Pháp'
 ], [
-    'audio' => 'Lồng tiếng'
+    'name' => 'Lồng tiếng'
 ]]);
 
-DB::table('subs')->insert([
+DB::table('subtitles')->insert([
     [
-        'sub' => 'Việt'
+        'name' => 'Việt'
     ], [
-        'sub' => 'Anh'
+        'name' => 'Anh'
     ],
 ]);

@@ -26,16 +26,16 @@ class Schedule extends Model
 
     public function movie()
     {
-        return $this->belongsTo(Movie::class, 'room_id', 'id');
+        return $this->belongsTo(Movie::class, 'movie_id', 'id');
     }
 
     public function audio()
     {
-        return $this->belongsTo(Audio::class, 'room_id', 'id');
+        return $this->belongsTo(Audio::class, 'audio_id', 'id');
     }
 
-    public function sub()
+    public function subtitle()
     {
-        return $this->belongsTo(Sub::class, 'room_id', 'id');
+        return $this->belongsTo(Subtitle::class, 'sub_id', 'id');
     }
 }
