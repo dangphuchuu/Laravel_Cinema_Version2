@@ -31,7 +31,7 @@
                                     <div class="col-5">
                                         <div class="input-group">
                                             <span class="input-group-text bg-gray-200">Theater</span>
-                                            <select id="theater" class="form-control ps-2" name="theater" aria-label="">
+                                            <select id="theater" class="form-select ps-2" name="theater" aria-label="">
                                                 @foreach($theaters as $theater)
                                                     <option value="{{ $theater->id }}" @if($theater == $theater_cur) selected @endif>
                                                         {{ $theater->name }}
