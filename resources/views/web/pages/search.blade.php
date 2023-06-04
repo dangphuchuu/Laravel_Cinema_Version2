@@ -16,11 +16,11 @@
                                     <div class="flex-shrink-0">
                                         <a href="/movie/{{ $item->id }}">
                                             @if(strstr($item->image,"https") === "")
-                                                <img class="img-fluid rounded-start"
+                                                <img class="img-fluid rounded-start" style="max-width: 300px"
                                                      src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $item->image }}.jpg"
                                                      alt="">
                                             @else
-                                                <img class="img-fluid rounded-start" src="{{ $item->image }}" alt="">
+                                                <img class="img-fluid rounded-start" style="max-width: 300px" src="{{ $item->image }}" alt="">
                                             @endif
                                         </a>
                                     </div>
@@ -76,11 +76,11 @@
                                 <div class="flex-shrink-0">
                                     <a href="/movie/1">
                                         @if(strstr($item->image,"https") === "")
-                                            <img class="img-fluid rounded-start"
+                                            <img class="img-fluid rounded-start" style="max-width: 300px"
                                                  src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $item->image }}.jpg"
                                                  alt="">
                                         @else
-                                            <img class="img-fluid rounded-start" src="{{ $item->image }}" alt="">
+                                            <img class="img-fluid rounded-start" style="max-width: 300px" src="{{ $item->image }}" alt="">
                                         @endif
                                     </a>
                                 </div>

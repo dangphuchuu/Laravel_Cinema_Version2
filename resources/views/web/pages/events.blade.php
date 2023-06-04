@@ -28,11 +28,11 @@
                                 <div class="flex-shrink-0">
                                     <a href="/movie/1">
                                         @if(strstr($post->image,"https") === "")
-                                            <img class="img-fluid rounded-start"
+                                            <img class="img-fluid rounded-start" style="max-width: 300px"
                                                  src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $post->image }}.jpg"
                                                  alt="">
                                         @else
-                                            <img class="img-fluid rounded-start" src="{{ $post->image }}" alt="">
+                                            <img class="img-fluid rounded-start" style="max-width: 300px" src="{{ $post->image }}" alt="">
                                         @endif
                                     </a>
                                 </div>
@@ -72,9 +72,13 @@
                                 </div>
                                 <div class="flex-shrink-0">
                                     <a href="/movie/1">
-                                        <img
-                                            src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/t/h/the_accursed.c_n_th_nh_n_t_c_i_m_-_payoff_poster_-_kc_12.05.2023_1_.jpg"
-                                            class="img-fluid rounded-start" alt="...">
+                                        @if(strstr($post->image,"https") === "")
+                                            <img class="img-fluid rounded-start" style="max-width: 300px"
+                                                 src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $post->image }}.jpg"
+                                                 alt="">
+                                        @else
+                                            <img class="img-fluid rounded-start" style="max-width: 300px" src="{{ $post->image }}" alt="">
+                                        @endif
                                     </a>
                                 </div>
                             </div>
