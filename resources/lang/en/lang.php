@@ -100,6 +100,9 @@ return [
     'new_password' => 'New Password',
     're_password' => 'RePassword',
     'click_here_to_change_password' => 'Click here to change password',
+    'add_schedule'=>'Add schedule',
+    'edit_schedule'=>'Edit schedule',
+    'audio'=>'Audio',
     //Web
     'movie_schedule' => 'Movie Schedule',
     'news_events' => 'News/Events',

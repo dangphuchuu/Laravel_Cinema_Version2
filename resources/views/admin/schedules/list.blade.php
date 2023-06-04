@@ -30,7 +30,7 @@
                                 <div class="row container">
                                     <div class="col-5">
                                         <div class="input-group">
-                                            <span class="input-group-text bg-gray-200">Theater</span>
+                                            <span class="input-group-text bg-gray-200"> @lang('lang.theater')</span>
                                             <select id="theater" class="form-select ps-2" name="theater" aria-label="">
                                                 @foreach($theaters as $theater)
                                                     <option value="{{ $theater->id }}" @if($theater == $theater_cur) selected @endif>
@@ -42,12 +42,12 @@
                                     </div>
                                     <div class="col-5">
                                         <div class="input-group">
-                                            <span class="input-group-text bg-gray-200">Date</span>
+                                            <span class="input-group-text bg-gray-200"> @lang('lang.show_date')</span>
                                             <input class="form-control ps-2" type="date" name="date" value="{{ date("Y-m-d") }}" aria-label="">
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                        <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>
                                     </div>
                                 </div>
                             </form>
@@ -61,10 +61,10 @@
                                     </colgroup>
                                     <thead class="table-primary">
                                     <tr>
-                                        <th class="text-uppercase font-weight-bolder">#</th>
-                                        <th class="text-uppercase font-weight-bolder">Room</th>
-                                        <th class="text-uppercase font-weight-bolder">Room Type</th>
-                                        <th class="text-uppercase font-weight-bolder">Seats</th>
+                                        <th class="text-uppercase font-weight-bolder">Id</th>
+                                        <th class="text-uppercase font-weight-bolder"> @lang('lang.room')</th>
+                                        <th class="text-uppercase font-weight-bolder"> @lang('lang.room_type')</th>
+                                        <th class="text-uppercase font-weight-bolder"> @lang('lang.seat')</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -153,7 +153,7 @@
                                                                 <button class="btn btn-info" data-bs-toggle="modal"
                                                                         data-bs-target="#CreateScheduleModal_{{ $room->id }}"><i
                                                                         class="fa-regular
-                                                                fa-circle-plus"></i> THÊM
+                                                                fa-circle-plus"></i>  @lang('lang.add')
                                                                 </button>
                                                             </td>
                                                         </tr>
