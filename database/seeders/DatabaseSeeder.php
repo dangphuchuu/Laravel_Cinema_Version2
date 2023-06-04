@@ -72,5 +72,8 @@ class DatabaseSeeder extends Seeder
 
         //TODO: Film Upcomming
         require 'banner.php';
+
+        //TODO: Film Event
+        require 'event.php';
     }
 }
