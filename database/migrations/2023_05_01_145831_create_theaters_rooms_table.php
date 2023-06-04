@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('name', 255);
             $table->string('address', 255);
             $table->string('city', 255);
-            $table->text('location');
+            $table->text('location')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
         });
