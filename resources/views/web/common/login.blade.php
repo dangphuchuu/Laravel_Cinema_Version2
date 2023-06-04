@@ -10,10 +10,11 @@
                 <form method='post' action="/signIn">
                     @csrf
                     <div class="mb-3">
-                        <input class="form-control" type="email" placeholder="Email..." name="email">
+                        <input class="form-control" type="email" placeholder="Email..." name="email" aria-label="email"
+                               autocomplete="email">
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="password" placeholder="Password..." name="password">
+                        <input class="form-control" type="password" placeholder="Password..." name="password" aria-label="">
                     </div>
                     <div class="form-check mb-4">
                         <input class="form-check-input" type="checkbox" value="" id="rememberme">
@@ -25,7 +26,8 @@
                     <div class="modal-footer justify-content-center text-center">
                         <button type='submit' class="btn btn-warning text-uppercase">@lang('lang.signin')</button>
                         <p class="text-dark w-100">@lang('lang.have_account')?
-                            <a class="link link-warning" data-bs-target="#registerModal" data-bs-toggle="modal" href="#registerModal">@lang('lang.signup')
+                            <a class="link link-warning" data-bs-target="#registerModal" data-bs-toggle="modal"
+                               href="#registerModal">@lang('lang.signup')
                             </a>
                         </p>
                         <a href="#" class="link link-secondary col-12 mt-4">@lang('lang.forget_password')?</a>
@@ -48,16 +50,17 @@
                 <form method='post' action="/signUp">
                     @csrf
                     <div class="mb-3">
-                        <input class="form-control" type="text" placeholder="Nhập họ tên..." name="fullName">
+                        <input class="form-control" type="text" placeholder="Nhập họ tên..." name="fullName" aria-label="">
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="email" placeholder="Nhập Email..." name="email">
+                        <input class="form-control" type="email" placeholder="Nhập Email..." name="email" aria-label="email"
+                               autocomplete="email">
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="password" placeholder="Nhập mật khẩu..." name="password">
+                        <input class="form-control" type="password" placeholder="Nhập mật khẩu..." name="password" aria-label="">
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="password" placeholder="Nhập lại mật khẩu..." name="repassword">
+                        <input class="form-control" type="password" placeholder="Nhập lại mật khẩu..." name="repassword" aria-label="">
                     </div>
                     <div class="modal-footer justify-content-center text-center">
                         <button type='submit' class="btn btn-warning text-uppercase">Đăng ký</button>

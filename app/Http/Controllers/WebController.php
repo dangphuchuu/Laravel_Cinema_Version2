@@ -7,11 +7,13 @@ use App\Models\Cast;
 use App\Models\Director;
 use App\Models\Movie;
 use App\Models\MovieGenres;
+use App\Models\Post;
 use App\Models\Rating;
 use App\Models\Theater;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +27,7 @@ class WebController extends Controller
 
     public function home()
     {
-        $banners = Banner::get()->where('status',1);
+        $banners = Banner::get()->where('status', 1);
         $movies = Movie::get()->where('status', 1)->take(6);
         return view('web.pages.home', ['movies' => $movies, 'banners' => $banners]);
     }
@@ -154,9 +156,48 @@ class WebController extends Controller
 
     }
 
+    public function search(Request $request)
+    {
+        $request->validate(
+            [
+                'word' => 'required|min:3',
+            ],
+            [
+                'word.required' => 'Please enter your word!',
+            ]
+        );
+        $result = new Collection();
+        $movies = Movie::select('movies.*')
+            ->join('movieGenres_movies', 'movies.id', '=', 'movieGenres_movies.movie_id')
+            ->join('movie_genres', 'movieGenres_movies.movieGenre_id', '=', 'movie_genres.id')
+            ->join('casts_movies', 'movies.id', '=', 'casts_movies.movie_id')
+            ->join('directors_movies', 'movies.id', '=', 'directors_movies.movie_id')
+            ->join('casts', 'casts_movies.cast_id', '=', 'casts.id')
+            ->join('directors', 'directors_movies.director_id', '=', 'directors.id')
+            ->where('movie_genres.name', 'like', '%' . $request->word . '%')
+            ->orWhere('movies.name', 'like', '%' . $request->word . '%')
+            ->orWhere('casts.name', 'like', '%' . $request->word . '%')
+            ->orWhere('directors.name', 'like', '%' . $request->word . '%')->groupBy('movies.name')->get();
+
+        $posts = Post::where('title', 'like', '%' . $request->word . '%')->get();
+
+        foreach ($movies as $movie) {
+            $movie->setAttribute('type', 'movie');
+            $result->push($movie);
+        }
+        foreach ($posts as $post) {
+            $post->setAttribute('type', 'post');
+            $result->push($post);
+        }
+        return view('web.pages.search', ['result' => $result]);
+    }
+
     public function events()
     {
-        return view('web.pages.events');
+        $posts = Post::all();
+        return view('web.pages.events', [
+            'posts' => $posts
+        ]);
     }
 
     public function signIn(Request $request)

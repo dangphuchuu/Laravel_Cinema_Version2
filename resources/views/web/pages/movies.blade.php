@@ -47,7 +47,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <form action="/movies/search" method="get">
+                    <form action="/movies/filter" method="get">
                         @csrf
                         <div class="form-group m-2 mb-3">
                             <label for="cast" class="form-label">@lang('lang.casts')</label>
@@ -117,12 +117,30 @@
                                             <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
                                                 <h5 class="card-title">{{ $movie->name }}</h5>
                                                 <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
-                                                <p class="card-text">
+                                                <p class="card-text">Thể loại:
                                                     @foreach($movie->movieGenres as $genre)
                                                         @if ($loop->first)
                                                             <a class="link link-dark" href="#">{{ $genre->name }}</a>
                                                         @else
                                                             | <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                        @endif
+                                                    @endforeach
+                                                </p>
+                                                <p class="card-text">Đạo diễn:
+                                                    @foreach($movie->directors as $director)
+                                                        @if ($loop->first)
+                                                            <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                        @else
+                                                            , <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                        @endif
+                                                    @endforeach
+                                                </p>
+                                                <p class="card-text">Diễn viên:
+                                                    @foreach($movie->casts as $cast)
+                                                        @if ($loop->first)
+                                                            <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
+                                                        @else
+                                                            , <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
                                                         @endif
                                                     @endforeach
                                                 </p>
@@ -164,12 +182,30 @@
                                             <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
                                                 <h5 class="card-title">{{ $movie->name }}</h5>
                                                 <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
-                                                <p class="card-text">
+                                                <p class="card-text">Thể loại:
                                                     @foreach($movie->movieGenres as $genre)
                                                         @if ($loop->first)
                                                             <a class="link link-dark" href="#">{{ $genre->name }}</a>
                                                         @else
                                                             | <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                        @endif
+                                                    @endforeach
+                                                </p>
+                                                <p class="card-text">Đạo diễn:
+                                                    @foreach($movie->directors as $director)
+                                                        @if ($loop->first)
+                                                            <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                        @else
+                                                            , <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                        @endif
+                                                    @endforeach
+                                                </p>
+                                                <p class="card-text">Diễn viên:
+                                                    @foreach($movie->casts as $cast)
+                                                        @if ($loop->first)
+                                                            <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
+                                                        @else
+                                                            , <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
                                                         @endif
                                                     @endforeach
                                                 </p>
@@ -211,12 +247,30 @@
                                             <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
                                                 <h5 class="card-title">{{ $movie->name }}</h5>
                                                 <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
-                                                <p class="card-text">
+                                                <p class="card-text">Thể loại:
                                                     @foreach($movie->movieGenres as $genre)
                                                         @if ($loop->first)
                                                             <a class="link link-dark" href="#">{{ $genre->name }}</a>
                                                         @else
                                                             | <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                        @endif
+                                                    @endforeach
+                                                </p>
+                                                <p class="card-text">Đạo diễn:
+                                                    @foreach($movie->directors as $director)
+                                                        @if ($loop->first)
+                                                            <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                        @else
+                                                            , <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                        @endif
+                                                    @endforeach
+                                                </p>
+                                                <p class="card-text text-truncate">Diễn viên:
+                                                    @foreach($movie->casts as $cast)
+                                                        @if ($loop->first)
+                                                            <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
+                                                        @else
+                                                            , <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
                                                         @endif
                                                     @endforeach
                                                 </p>

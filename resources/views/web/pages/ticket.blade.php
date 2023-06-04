@@ -58,8 +58,9 @@
                                     @lang('lang.room'): <strong class="ps-2">Room 1</strong>
                                 </li>
                                 <li class="list-group-item bg-transparent text-light border-0">
-                                    @lang('lang.rated'): <strong class="ps-2"><span
-                                            class="badge bg-warning">C16</span></strong>
+                                    @lang('lang.rated'): <strong class="ps-2">
+                                        <span class="badge bg-warning">C16</span>
+                                    </strong>
                                 </li>
                             </ul>
                         </div>
@@ -94,8 +95,8 @@
                         <div class="d-flex flex-fill">
                             <div class="flex-shrink-1 fw-bold border-0 me-2">@lang('lang.ticket_price'):</div>
                             <div class="flex-fill d-flex border-0 me-4">
-                                    <span class="fw-bold d-block text-center me-1" style="width: 20px; height: 20px; background-color: #FFF0C7;"></span>
-                                    <span style="line-height: 20px">70,000 đ</span>
+                                <span class="fw-bold d-block text-center me-1" style="width: 20px; height: 20px; background-color: #FFF0C7;"></span>
+                                <span style="line-height: 20px">70,000 đ</span>
                             </div>
                             <div class="flex-fill d-flex border-0 me-4">
                                 <span class="fw-bold d-block text-center me-1" style="width: 20px; height: 20px; background-color: #FFC8CB;"></span>
@@ -112,8 +113,9 @@
                                  style="width: 25px; height: 25px"></div>
                         </div>
                         <div class="w-100 d-flex">
-                                <div class="border-bottom border-2 border-dark text-center pb-1 mb-5 mx-auto" style="max-width: 520px"><span class="fs-5">@lang('lang.screen')</span></div>
-{{--                                <div class="d-flex"><div class="bg-dark w-100 mb-5" style="height: 2px; max-width: 520px"></div></div>--}}
+                            <div class="border-bottom border-2 border-dark text-center pb-1 mb-5 mx-auto" style="max-width: 520px"><span
+                                    class="fs-5">@lang('lang.screen')</span></div>
+                            {{--                                <div class="d-flex"><div class="bg-dark w-100 mb-5" style="height: 2px; max-width: 520px"></div></div>--}}
                         </div>
                     </div>
 
@@ -280,12 +282,12 @@
                 </div>
 
 
-            <div class="d-flex justify-content-center mt-4">
-                <button class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
-                    @lang('lang.submit') <i class="fa-solid fa-angle-right"></i>
-                </button>
+                <div class="d-flex justify-content-center mt-4">
+                    <button class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
+                        @lang('lang.submit') <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                </div>
             </div>
-        </div>
         </div>
     </section>
 @endsection
