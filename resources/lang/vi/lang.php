@@ -140,4 +140,5 @@ return [
     'col_number'=>'Số dòng',
     'code'=>'Mã',
     'percent'=>'Phần trăm',
+    'early_screening'=>'Suất chiếu sớm',
 ];

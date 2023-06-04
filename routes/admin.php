@@ -74,7 +74,6 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/on/{id},{room_id}', [SeatController::class, 'on']);
         Route::get('/off/{id},{room_id}', [SeatController::class, 'off']);
         Route::post('/row', [SeatController::class, 'postEditRow']);
-        Route::get('/status', [SeatController::class, 'status']);
         Route::delete('/delete/{id}', [SeatController::class, 'delete']);
     });
 
@@ -92,6 +91,9 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/', [SchedulesController::class, 'schedule']);
         Route::post('/create', [SchedulesController::class, 'postCreate']);
         Route::post('/edit', [SchedulesController::class, 'postEdit']);
+        Route::get('/status', [SchedulesController::class, 'status']);
+        Route::get('/early_status', [SchedulesController::class, 'early_status']);
+        Route::delete('/delete/{id}', [SchedulesController::class, 'delete']);
     });
 
     //TODO Events

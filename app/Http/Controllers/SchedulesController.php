@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Audio;
 use App\Models\Movie;
+use App\Models\MovieGenres;
 use App\Models\Schedule;
 use App\Models\Subtitle;
 use App\Models\Theater;
@@ -58,5 +59,28 @@ class SchedulesController extends Controller
     public function postEdit()
     {
         return view('admin.schedules.edit');
+    }
+    public function status(Request $request){
+        $schedule = Schedule::find($request->schedule_id);
+        $schedule['status'] = $request->active;
+        $schedule->save();
+        return response();
+    }
+    public function early_status(Request $request){
+        $schedule = Schedule::find($request->early_id);
+        $schedule['early'] = $request->active;
+        $schedule->save();
+        return response();
+    }
+    public function delete($id){
+        $schedule = Schedule::find($id);
+        if($schedule['status'] ==0 ){
+            Schedule::destroy($id);
+            return response()->json(['success' => 'Delete Successfully']);
+        }
+        else{
+            return response()->json(['error' => "Please change status to offline" ]);
+        }
+
     }
 }

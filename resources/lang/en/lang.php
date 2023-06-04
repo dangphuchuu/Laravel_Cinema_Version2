@@ -140,5 +140,6 @@ return [
     'col_number' => 'Col number',
     'code' => 'Code',
     'percent' => 'Percent',
+    'early_screening'=>'Early Screening'
 
 ];
