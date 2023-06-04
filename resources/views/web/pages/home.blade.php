@@ -133,7 +133,7 @@
                                             <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
                                                 <h5 class="card-title">{{ $movie->name }}</h5>
                                                 <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
-                                                <p class="card-text">
+                                                <p class="card-text">Thể loại:
                                                     @foreach($movie->movieGenres as $genre)
                                                         @if ($loop->first)
                                                             <a class="link link-dark" href="#">{{ $genre->name }}</a>
@@ -142,7 +142,29 @@
                                                         @endif
                                                     @endforeach
                                                 </p>
-                                                <p class="card-text">Rated: <b class="text-danger">{{ $movie->rating->name }}</b>
+                                                <p class="card-text">Đạo diễn:
+                                                    @foreach($movie->directors as $director)
+                                                        @if ($loop->first)
+                                                            <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                        @else
+                                                            , <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                        @endif
+                                                    @endforeach
+                                                </p>
+                                                <p class="card-text"
+                                                   style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1;
+                                                        -webkit-box-orient: vertical">
+                                                    Diễn viên:
+                                                    @foreach($movie->casts as $cast)
+                                                        @if ($loop->first)
+                                                            {{ $cast->name }}
+                                                        @else
+                                                            , {{ $cast->name }}
+                                                        @endif
+                                                    @endforeach
+                                                </p>
+                                                <p class="card-text">Rated:
+                                                    <span class="badge bg-warning">{{ $movie->rating->name }}</span>
                                                     - {{ $movie->rating->description }}</p>
                                             </a>
                                         </div>

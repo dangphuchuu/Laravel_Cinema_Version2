@@ -10,17 +10,17 @@
     <meta content="telephone=no" name="format-detection">
 
     <base href="{{asset('')}}">
+
+    <!-- Bootstrap CSS -->
+    <link href="/web_assets/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
     <!-- Fonts -->
     <!-- Font awesome - icon font -->
-    <link href="\web_assets\fonts\fontawesome\css\all.css" rel="stylesheet"/>
+    <link href="/web_assets/fonts/fontawesome/css/all.css" rel="stylesheet"/>
 
     {{-- select2 --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
 
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     @yield('css')
 </head>
 
@@ -59,21 +59,24 @@
 @include('web.common.login')
 
 <!-- JavaScript -->
+
+<!-- Bootstrap JS -->
+<script src="web_assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
-{{-- select2 --}}
+<!-- select2 -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-@yield('js')
+
+
 <script>
     $(document).ready(function () {
         $('.js-example-basic-multiple').select2();
     });
 </script>
+@yield('js')
 </body>
 
 </html>
