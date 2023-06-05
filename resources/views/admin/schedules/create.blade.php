@@ -24,10 +24,14 @@
                                     @foreach ($room->latestSchedule as $latest)
                                             <?php $endTimeLatest = date('H:i', strtotime($latest->endTime) + 600) ?>
                                     @endforeach
-                                    <input class="form-control" type="time" name="startTime"
-                                           min="@if($room->schedules->count() != 0) {{ $endTimeLatest  }} @else 08:00 @endif"
+                                    <input class="form-control" id="time" type="time" name="startTime"
+                                           @if($room->schedules->count() == 0)
+                                               min="08:00"
+                                           @else
+                                               min="{{$endTimeLatest}}"
+                                           @endif
                                            max="22:00"
-                                           value="@if($room->schedules->count() != 0) {{ $endTimeLatest  }} @else {{ date("H:i") }} @endif"
+                                           value="@if($room->schedules->count() == 0) {{ date("H:i") }} @else {{ $endTimeLatest  }}  @endif"
                                            aria-label="time">
                                     <span class="input-group-text"></span>
                                 </div>
