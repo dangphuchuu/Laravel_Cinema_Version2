@@ -45,8 +45,28 @@ class WebController extends Controller
         return view('web.pages.ticket');
     }
 
-    public function schedules()
+    public function schedules(Request $request)
     {
+        $cities = [];
+        $theaters = Theater::where('status', 1)->get();
+        foreach ($theaters as $theater) {
+            if (array_search($theater->city, $cities)) {
+                continue;
+            } else {
+                array_push($cities, $theater->city);
+            }
+        }
+        if (isset($request->city)) {
+            $city_cur = $request->city;
+        } else {
+            $city_cur = $cities[0];
+        }
+        if (isset($request->date)) {
+            $date_cur = $request->date;
+        } else {
+            $date_cur = date('Y-m-d');
+        }
+        $theaters = Theater::where('status', 1)->where('city', $city_cur)->get();
         $roomTypes = RoomType::all();
         $movies = Movie::whereDate('releaseDate', '<=', Carbon::today()->format('Y-m-d'))
             ->where('endDate', '>=', Carbon::today()->format('Y-m-d'))
@@ -60,25 +80,13 @@ class WebController extends Controller
             ->orderBy('roomTypes.name', 'asc')->get();
 //        dd($schedules);
 
-        $cities = [];
-        $theaters = Theater::where('status', 1)->get();
-        foreach ($theaters as $theater) {
-            if (array_search($theater->city, $cities)) {
-                continue;
-            } else {
-                array_push($cities, $theater->city);
-            }
-        }
-        if (isset($request->theater) && isset($request->date)) {
-            $date_cur = $request->date;
-        } else {
-            $date_cur = date('Y-m-d');
-        }
+
         return view('web.pages.schedules', [
             'movies' => $movies,
             'theaters' => $theaters,
             'cities' => $cities,
             'date_cur' => $date_cur,
+            'city_cur' => $city_cur,
             'roomTypes' => $roomTypes
         ]);
     }

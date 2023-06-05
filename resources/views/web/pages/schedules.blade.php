@@ -103,7 +103,7 @@
                 <div id="collapseMovieParent">
                     @foreach($movies as $movie)
                         <!-- Movie -->
-                        <div class="collapse collapse-horizontal multi-collapse_Movie_{{ $movie->id }}" id="movieChoice_{{ $movie->id }}"
+                        <div class="collapse multi-collapse_Movie_{{ $movie->id }}" id="movieChoice_{{ $movie->id }}"
                              data-bs-parent="#collapseMovieParent">
                             <div class="d-flex flex-column flex-sm-row align-items-center" style="background: #f5f5f5">
                                 <div class="flex-shrink-0 justify-content-center">
@@ -163,14 +163,14 @@
                                     <label for="select-sort" class="form-label">@lang('lang.city')</label>
                                     <select name="select_item is-invalid" id="select-sort" class="form-select" name="theater">
                                         @foreach($cities as $city)
-                                            <option value="{{ $city }}">{{ $city }}</option>
+                                            <option value="{{ $city }}" @if($city == $city_cur) selected @endif>{{ $city }}</option>
                                         @endforeach
                                     </select>
                                 </form>
                             </div>
                             <div class="form-group col mt-4">
                                 <label class="form-label" for="datepicker">@lang('lang.show_date')</label>
-                                <input type="date" id="datepicker" value="{{date('Y-d-m')}}" class="form-control">
+                                <input type="date" id="datepicker" value="{{ $date_cur }}" class="form-control">
                             </div>
                         </div>
                     </div>
