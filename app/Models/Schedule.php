@@ -40,4 +40,12 @@ class Schedule extends Model
     {
         return $this->belongsTo(Subtitle::class, 'sub_id', 'id');
     }
+
+    public function theaters()
+    {
+        $theates = Schedule::select('theaters.name')
+            ->join('theaters', 'rooms.theater_id', '=', 'theaters.id')
+            ->groupBy('theaters.name')->get();
+        return $theates;
+    }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Audio;
 use App\Models\Movie;
-use App\Models\MovieGenres;
 use App\Models\Schedule;
 use App\Models\Subtitle;
 use App\Models\Theater;
@@ -19,16 +18,16 @@ class SchedulesController extends Controller
 
         $schedules = Schedule::all();
         $theaters = Theater::all();
-        $movies = Movie::all();
         $audios = Audio::all();
         $subtitles = Subtitle::all();
         if (isset($request->theater) && isset($request->date)) {
             $date_cur = $request->date;
             $theater_cur = Theater::find($request->theater);
         } else {
-            $date_cur = Carbon::today()->format('y-m-d');
+            $date_cur = Carbon::today()->format('Y-m-d');
             $theater_cur = Theater::find(1);
         }
+        $movies = Movie::whereDate('endDate', '>=', $date_cur)->get();
         return view('admin.schedules.list', [
             'theaters' => $theaters,
             'date_cur' => $date_cur,
@@ -36,13 +35,24 @@ class SchedulesController extends Controller
             'schedules' => $schedules,
             'movies' => $movies,
             'audios' => $audios,
-            'subtitles' => $subtitles
+            'subtitles' => $subtitles,
+            'endTimeLatest' => '',
         ]);
     }
 
     public function postCreate(Request $request)
     {
+//        (round($n)%$x === 0) ? round($n) : round(($n+$x/2)/$x)*$x;
         $movie = Movie::find($request->movie);
+        $endTimeTemp = strtotime($request->startTime) + ($movie->showTime * 60);
+        $endTimeHour = date('H', $endTimeTemp);
+        $endTimeMinutes = date('i', $endTimeTemp);
+        $endTimeMinutesRounded = (int)((round($endTimeMinutes) % 5 === 0) ? round($endTimeMinutes) : round(($endTimeMinutes + 5 / 2) / 5) * 5);
+        if ($endTimeMinutesRounded == 60) {
+            $endTimeHour++;
+            $endTimeMinutesRounded = 0;
+        }
+        $endTime = $endTimeHour . ':' . $endTimeMinutesRounded;
         $schedule = new Schedule([
             'room_id' => $request->room,
             'movie_id' => $request->movie,
@@ -50,7 +60,7 @@ class SchedulesController extends Controller
             'subtitle_id' => $request->subtitle,
             'date' => $request->date,
             'startTime' => $request->startTime,
-            'endTime' => date('H:i', strtotime($request->startTime) + ($movie->showTime * 60)),
+            'endTime' => $endTime,
         ]);
         $schedule->save();
         return redirect('admin/schedule?theater=' . $request->theater . '&date=' . $request->date);
@@ -60,27 +70,41 @@ class SchedulesController extends Controller
     {
         return view('admin.schedules.edit');
     }
-    public function status(Request $request){
+
+    public function status(Request $request)
+    {
         $schedule = Schedule::find($request->schedule_id);
         $schedule['status'] = $request->active;
         $schedule->save();
         return response();
     }
-    public function early_status(Request $request){
+
+    public function early_status(Request $request)
+    {
         $schedule = Schedule::find($request->early_id);
         $schedule['early'] = $request->active;
         $schedule->save();
         return response();
     }
-    public function delete($id){
+
+    public function delete($id, Request $request)
+    {
         $schedule = Schedule::find($id);
-        if($schedule['status'] ==0 ){
+        if ($schedule['status'] == 0) {
             Schedule::destroy($id);
-            return response()->json(['success' => 'Delete Successfully']);
-        }
-        else{
-            return response()->json(['error' => "Please change status to offline" ]);
+            return redirect('admin/schedule?theater=' . $request->theater . '&date=' . $request->date)->with('success', 'Delete Successfully');
+        } else {
+            return redirect('admin/schedule?theater=' . $request->theater . '&date=' . $request->date)->with('error', "Please change status to offline");
         }
 
+    }
+
+    public function deleteAll(Request $request)
+    {
+
+        Schedule::where('room_id', $request->room)->where('date', $request->date)->delete();
+
+        return redirect('admin/schedule?theater=' . $request->theater . '&room=' . $request->room . '&date=' . $request->date)
+            ->with('success', 'Deleted all schedules successfully!');
     }
 }
