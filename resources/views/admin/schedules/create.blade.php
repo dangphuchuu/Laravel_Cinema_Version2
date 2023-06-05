@@ -9,7 +9,7 @@
                     <div class="vr mx-2"></div>
                     {{ $room->name }}
                     <div class="vr mx-2"></div>
-                    ADD MORE SCHEDULE
+                    @lang('lang.add_schedule')
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label>Start Time</label>
+                                <label> @lang('lang.time')</label>
                                 <div class="d-flex position-relative">
                                     @foreach ($room->latestSchedule as $latest)
                                             <?php $endTimeLatest = date('H:i', strtotime($latest->endTime) + 600) ?>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="form-label">Movie</label>
+                                <label class="form-label"> @lang('lang.movies')</label>
                                 <select class="form-select" id="address" name="movie" aria-label="">
                                     @foreach($movies as $movie)
                                         <option value="{{ $movie->id }}">{{ $movie->name }}</option>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label>Audio</label>
+                                <label> @lang('lang.audio')</label>
                                 <select id="city_create" class="form-select" name="audio" aria-label="audio">
                                     @foreach($audios as $audio)
                                         <option value="{{ $audio->id }}">{{ $audio->name }}</option>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label>Subtitle</label>
+                                <label> @lang('lang.subtitle')</label>
                                 <select class="form-select" name="subtitle" aria-label="subtitle">
                                     @foreach($subtitles as $sub)
                                         <option value="{{ $sub->id }}">{{ $sub->name }}</option>
@@ -74,8 +74,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> @lang('lang.close')</button>
+                    <button type="submit" class="btn btn-primary"> @lang('lang.save')</button>
                 </div>
             </form>
         </div>

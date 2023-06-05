@@ -100,6 +100,9 @@ return [
     'new_password' => 'Mật khẩu mới',
     're_password' => 'Nhập lại mật khẩu',
     'click_here_to_change_password' => 'Click vào đây để thay đổi mật khẩu',
+    'add_schedule'=>'Thêm lịch chiếu',
+    'edit_schedule'=>'Sửa lịch chiêếu',
+    'audio'=>'Âm thanh',
     //Web
     'movie_schedule' => 'Lịch Chiếu Phim',
     'news_events' => 'Tin Tức/Sự Kiện',
@@ -140,4 +143,6 @@ return [
     'col_number'=>'Số dòng',
     'code'=>'Mã',
     'percent'=>'Phần trăm',
+    'early_screening'=>'Suất chiếu sớm',
+
 ];
