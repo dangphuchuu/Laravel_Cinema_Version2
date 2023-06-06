@@ -148,17 +148,20 @@
                                                                 </td>
                                                             </tr>
                                                         @endforeach
-                                                        <tr>
-                                                            <td>
-                                                                <button class="btn btn-info" data-bs-toggle="modal"
-                                                                        data-bs-target="#CreateScheduleModal_{{ $room->id }}"><i
-                                                                        class="fa-regular
-                                                                fa-circle-plus"></i>  @lang('lang.add')
-                                                                </button>
-                                                            </td>
-                                                        </tr>
+
                                                         </tbody>
+
                                                     </table>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <button class="btn btn-info" data-bs-toggle="modal"
+                                                            data-bs-target="#CreateScheduleModal_{{ $room->id }}"><i
+                                                            class="fa-regular
+                                                                fa-circle-plus"></i>  @lang('lang.add')
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
