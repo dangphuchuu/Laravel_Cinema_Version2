@@ -164,8 +164,16 @@
                                                     @endforeach
                                                 </p>
                                                 <p class="card-text">Rated:
-                                                    <span class="badge bg-warning">{{ $movie->rating->name }}</span>
-                                                    - {{ $movie->rating->description }}</p>
+                                                    <span class="badge @if($movie->rating->name == 'C18') bg-danger
+                                                                        @elseif($movie->rating->name == 'C16') bg-warning
+                                                                        @elseif($movie->rating->name == 'P') bg-success
+                                                                        @elseif($movie->rating->name == 'P') bg-primary
+                                                                        @else bg-info
+                                                                        @endif me-1"
+                                                    >
+                                                        {{ $movie->rating->name }}
+                                                    </span> - {{ $movie->rating->description }}
+                                                </p>
                                             </a>
                                         </div>
                                     </div>

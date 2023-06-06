@@ -19,67 +19,11 @@
                 </li>
                 <li class="vr mx-5"></li>
                 <li class="nav-item">
-                    <button class="h5 nav-link link-secondary"
-                            aria-expanded="false"
-                            data-bs-toggle="collapse" data-bs-target="#lichtheorap">@lang('lang.theater_showtime')
-                    </button>
+                    <a class="h5 nav-link link-secondary" href="/schedulesbyTheater">
+                        @lang('lang.theater_showtime')
+                    </a>
                 </li>
             </ul>
-
-            <div id="lichtheorap" class="collapse" data-bs-parent="#schedules">
-                <div class="d-flex flex-row mt-4">
-                    @foreach($cities as $city)
-                        <div class="flex-city p-2 m-1 border-0">
-                            <button class="btn @if($loop->first) btn-warning @else btn-secondary @endif p-3" aria-expanded="true"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#{{$city}}" @if($loop->first) disabled @endif>{{$city}}
-                            </button>
-                        </div>
-                    @endforeach
-                </div>
-                <div id="theater">
-                    @foreach($cities as $city)
-                        <div id="{{$city}}" data-bs-parent="#theater"
-                             class="row g-4 mt-2 row-cols-1 row-cols-sm-2 row-cols-md-4 @if($loop->first) show @endif collapse">
-                            @foreach($theaters as $theater)
-                                @if($city == $theater->city)
-                                    <!-- Theater -->
-                                    <div class="col">
-                                        <div class="card px-0 overflow-hidden theater_item"
-                                             style="background: #f5f5f5">
-                                            <button class="btn rounded-0 border-0 btn_theater @if($loop->first) btn-warning @endif"
-                                                    aria-expanded="true"
-                                                    data-bs-toggle="collapse" data-bs-target="#schedulesByTheater"
-                                                    @if($loop->first) disabled @endif>
-                                                <div class="card-body">
-                                                    <a href="/schedules/#"
-                                                       class="link link-dark text-decoration-none text-center">
-                                                        <h5 class="card-title fs-4">{{ $theater->name }}</h5>
-                                                        <p class="card-text fs-6 text-secondary">
-                                                            <i class="fa-solid fa-location-dot"></i>
-                                                            {{ $theater->address }}
-                                                        </p>
-                                                    </a>
-                                                </div>
-                                            </button>
-
-                                            <div class="card-footer">
-                                                <a href="{{ $theater->location }}"
-                                                   class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ
-                                                    <i class="fa-solid fa-map-location-dot"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Theater: end -->
-                                @endif
-                            @endforeach
-                        </div>
-                    @endforeach
-                </div>
-
-                @include('web.layout.schedulesByTheater')
-            </div>
 
             <div id="lichtheophim" class="collapse show" data-bs-parent="#schedules">
                 {{-- Carousel Movies --}}
@@ -157,22 +101,32 @@
                     @endforeach
 
                     <div class="mt-2">
-                        <div class="row row-cols-sm-2 row-cols-1">
-                            <div class="form-group col mt-4">
-                                <form method='get'>
-                                    <label for="select-sort" class="form-label">@lang('lang.city')</label>
-                                    <select name="select_item is-invalid" id="select-sort" class="form-select" name="theater">
-                                        @foreach($cities as $city)
-                                            <option value="{{ $city }}" @if($city == $city_cur) selected @endif>{{ $city }}</option>
-                                        @endforeach
-                                    </select>
-                                </form>
+                        <form action="/schedulesByMovie" method="get">
+                            @csrf
+                            <div class="row container">
+                                <div class="col-5">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-gray-200"> @lang('lang.city')</span>
+                                        <select id="theater" class="form-select ps-2" name="city" aria-label="">
+                                            @foreach($cities as $city)
+                                                <option value="{{ $city }}" @if($city == $city_cur) selected @endif>
+                                                    {{ $city }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-gray-200"> @lang('lang.show_date')</span>
+                                        <input class="form-control ps-2" type="date" name="date" value="{{ $date_cur }}" aria-label="">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>
+                                </div>
                             </div>
-                            <div class="form-group col mt-4">
-                                <label class="form-label" for="datepicker">@lang('lang.show_date')</label>
-                                <input type="date" id="datepicker" value="{{ $date_cur }}" class="form-control">
-                            </div>
-                        </div>
+                        </form>
                     </div>
                     @foreach($movies as $movie)
                         @if($movie->schedules->count() > 0)
@@ -202,8 +156,6 @@
                 $(".theater_item ").find(".btn_theater").removeClass("btn-warning").prop('disabled', false);
                 $(this).addClass("btn-warning").prop('disabled', true);
             });
-
-
         })
     </script>
 @endsection

@@ -49,8 +49,12 @@ class Movie extends Model
         return $this->hasMany(Schedule::class, 'movie_id', 'id');
     }
 
-    public function schedulesByDate($date)
+    public function schedulesByDateAndTheater($date, $theater)
     {
-        return $this->schedules()->where('date', $date)->get();
+        return $this->schedules()->select('schedules.*', 'theaters.id as theater')
+            ->join('rooms', 'rooms.id', '=', 'schedules.room_id')
+            ->join('theaters', 'theaters.id', '=', 'rooms.theater_id')
+            ->where('date', $date)
+            ->where('theaters.id', $theater)->get();
     }
 }

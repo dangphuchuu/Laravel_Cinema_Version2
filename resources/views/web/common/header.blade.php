@@ -12,7 +12,7 @@
                     <a class="nav-link @yield('movies')" href="/movies" role="button">@lang('lang.movies')</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link @yield('schedules')" href="/schedules">@lang('lang.movie_schedule')</a>
+                    <a class="nav-link @yield('schedules')" href="/schedulesByMovie">@lang('lang.movie_schedule')</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link @yield('events')" href="/events">@lang('lang.news_events')</a>
