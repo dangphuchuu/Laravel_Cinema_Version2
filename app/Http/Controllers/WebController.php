@@ -73,7 +73,6 @@ class WebController extends Controller
 
     public function ticket($schedule_id)
     {
-
         $seatTypes = SeatType::all();
         $schedule = Schedule::find($schedule_id);
         if (strtotime($schedule->startTime) < strtotime('17:00')) {

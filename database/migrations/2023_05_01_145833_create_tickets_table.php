@@ -3,11 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use \App\Models\Schedule;
-use \App\Models\User;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -21,7 +18,10 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('schedule_id')->references('id')->on('schedules');
             $table->foreign('user_id')->references("id")->on('users');
+            $table->string('seatRow');
+            $table->integer('seatCol');
             $table->text('qrcode');
+            $table->boolean('holdState')->default(0);
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

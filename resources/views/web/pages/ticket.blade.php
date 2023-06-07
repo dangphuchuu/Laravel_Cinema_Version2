@@ -6,7 +6,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#" class="link link-dark">@lang('lang.home')</a></li>
                 <li class="breadcrumb-item"><a href="#" class="link link-dark">@lang('lang.movie_is_playing')</a></li>
-                <li class="breadcrumb-item"><a href="#" class="link link-dark"> MẶT 6: TẤM VÉ ĐỊNH MỆNH</a></li>
+                <li class="breadcrumb-item"><a href="/movie/{{ $movie->id }}" class="link link-dark">{{ $movie->name }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
                     <a href="#" class="link link-secondary disabled text-decoration-none">@lang('lang.ticket')</a>
                 </li>
@@ -37,7 +37,7 @@
 
         <div class="mt-5">
             <h4>@lang('lang.ticket_information')</h4>
-            <div class="card mb-3 bg-dark text-light px-0">
+            <div id="ticket_info" class="card mb-3 bg-dark text-light px-0 position-relative">
                 <div class="row g-0">
                     <div class="col-lg-3 col-sm-4 col-12 d-flex justify-content-center">
                         @if(strstr($movie->image,"https") == "")
@@ -96,8 +96,10 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
         <div id="mainTicket">
             <div id="Seats" class="collapse show" data-bs-parent="#mainTicket">
                 <h4 class="mt-5">@lang('lang.choose_seat')</h4>
@@ -109,6 +111,7 @@
                                     <h6>{{$room->name}}</h6>
                                 </div>
                                 <div class="card-body px-0 pt-0 pb-2">
+                                    {{--Giá vé--}}
                                     <div class="d-flex container my-3 justify-content-center">
                                         <ul class="list-group list-group-horizontal">
                                             <li class="list-group-item border-0">
@@ -155,17 +158,19 @@
                                             </li>
                                         </ul>
                                     </div>
+
                                     <div class="d-block overflow-x-auto text-center">
                                         <div class="w-100 mt-2 my-auto mb-4 text-center justify-content-center">
+                                            {{--Màn hình--}}
                                             @lang('lang.screen')
                                             <div class="row bg-dark w-100 mx-auto" style="height: 2px; max-width: 540px"></div>
-
                                             <div class="row d-block m-2" style="margin: 2px">
                                                 <div class="d-inline-block align-middle my-0 mx-1 py-1 px-0 disabled"
                                                      style="width: 30px; height: 30px; line-height: 22px; font-size: 10px">
-
                                                 </div>
                                             </div>
+
+                                            {{--Ghế--}}
                                             @foreach($room->rows as $row)
                                                 <div class="row d-block" id="Row_{{ $row->row }}" style="margin: 2px">
                                                     @foreach($room->seats as $seat)
@@ -174,28 +179,24 @@
                                                                 <div class="d-inline-block align-middle disabled seat_empty"
                                                                      style="width: 30px; height: 30px; margin: 2px 0;"></div>
                                                             @endfor
-                                                            <div class="d-inline-block align-middle py-1 px-0 seat_enable"
-                                                                 id="Seat_{{ $seat->row.$seat->col}}"
-                                                                 style="
-                                                         @if($seat['status'] == 1)
-                                                background-color: {{ $seat->seatType->color }};
-                                                @else
-                                                 background-color: #999;
-                                                @endif
-                                                cursor: pointer;
-                                                width: 30px;
-                                                height: 30px;
-                                                line-height: 22px;
-                                                font-size: 10px;
-                                                margin: 2px 0;
-                                             ">
-                                                                {{ $seat->row.$seat->col }}
-                                                            </div>
+                                                            @if($seat->status == 1)
+                                                                <div class="d-inline-block align-middle py-1 px-0 seat_enable"
+                                                                     id="Seat_{{ $seat->row.$seat->col}}"
+                                                                     style="background-color: {{ $seat->seatType->color }}; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px; margin: 2px 0;
+                                                             "
+                                                                     onclick="seatChoiced('{{$seat->row}}', {{$seat->col}})">
+                                                                    {{ $seat->row.$seat->col }}
+                                                                </div>
+                                                            @else
+                                                                <div class="d-inline-block align-middle py-1 px-0 text-dark disabled"
+                                                                     style="background-color: #cccccc; width: 30px; height: 30px; line-height: 22px; font-size: 10px; margin: 2px 0;">
+                                                                    X
+                                                                </div>
+                                                            @endif
                                                             @for($n = 0; $n < $seat->me; $n++)
                                                                 <div class="d-inline-block align-middle disabled seat_empty"
                                                                      style="width: 30px; height: 30px; margin: 2px 0;"></div>
                                                             @endfor
-                                                            @include('admin.seat.configSeat')
                                                         @endif
                                                     @endforeach
                                                     @for($m = 0; $m < $row->mb; $m++)
@@ -219,6 +220,7 @@
                 <div class="d-flex justify-content-start w-50 ms-2 mt-4 float-end">
                     <button class="btn btn-warning text-decoration-underline text-center"
                             href="#Combos"
+                            onclick="seatChoicedNext()"
                             aria-controls="Combos"
                             aria-expanded="true"
                             data-bs-toggle="collapse"
@@ -239,7 +241,7 @@
                                  style="background: #f5f5f5">
                                 <div class="row g-0">
                                     <div class="col-lg-4 col-12">
-                                        <a href="/movie/1">
+                                        <a href="#!">
                                             <img
                                                 src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/190x260/2e2b8cd282892c71872b9e67d2cb5039/t/h/the_accursed.c_n_th_nh_n_t_c_i_m_-_payoff_poster_-_kc_12.05.2023_1_.jpg"
                                                 class="img-fluid w-100"
@@ -253,12 +255,12 @@
                                             <p class="card-text">Giá: <span class="fw-bold">259,000 đ</span></p>
                                         </div>
                                         <div class="card-body">
-                                            <button class="btn"><i class="fa-solid fa-circle-minus"></i></button>
-                                            <label>
-                                                <input type="number" class="form-control" value="0" readonly
-                                                       style="max-width: 80px">
-                                            </label>
-                                            <button class="btn"><i class="fa-solid fa-circle-plus"></i></button>
+                                            <div class="input-group">
+                                                <button class="btn"><i class="fa-solid fa-circle-minus"></i></button>
+                                                <input type="number" class="form-control" name="combo" value="0" readonly
+                                                       style="max-width: 80px" aria-label="">
+                                                <button class="btn"><i class="fa-solid fa-circle-plus"></i></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -329,8 +331,52 @@
 @endsection
 @section('js')
     <script>
-        seatChoiced = (row, col) => {
-            
+        $(document).ready(function () {
+            $i = 1;
+
+            seatChoiced = (row, col) => {
+                if ($i > 8) {
+                    $('.seat_enable').addClass('disabled');
+                    alert('chọn tối đa 8 ghế');
+                    return;
+                }
+                $('#Seat_' + row + col).replaceWith(`<div class="d-inline-block align-middle py-1 px-0 seat_enable"
+            id="Seat_${row + col}"
+            style="background-color: #dc3545; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px;
+            margin: 2px 0;"><i class="fa-solid text-light fa-check"></i>
+            </div>`)
+                $i++;
+            }
+
+        })
+    </script>
+    <script>
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+                timer--;
+                if (timer == 0) {
+                    alert('đã quá thời hạn thanh toán');
+                    window.location.replace('/');
+                }
+            }, 1000);
         }
+
+        seatChoicedNext = () => {
+            $('#ticket_info').append(`<div id="timer"
+                     class="d-block position-absolute end-0 top-0 bg-light text-dark text-center fs-2 m-3"
+                     style="width: 200px; height: 100px; line-height:100px">
+                </div>`)
+            var fiveMinutes = 3,
+                display = document.querySelector('#timer');
+            startTimer(fiveMinutes, display);
+        };
     </script>
 @endsection
