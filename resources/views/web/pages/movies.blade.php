@@ -96,7 +96,7 @@
 
             <div id="phimsapchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse" data-bs-parent="#Movies">
                 @foreach($movies as $movie)
-                    @if(!($movie->preSale) && ($movie->releaseDate > date("Y-m-d")))
+                    @if($movie->releaseDate > date("Y-m-d"))
                         <!-- Movie -->
                         <div class="card-col">
                             <article class="card px-0 overflow-hidden" style="background: #f5f5f5">
@@ -145,8 +145,16 @@
                                                     @endforeach
                                                 </p>
                                                 <p class="card-text">Rated:
-                                                    <b class="text-danger">{{ $movie->rating->name }}</b>
-                                                    - {{ $movie->rating->description }}</p>
+                                                    <span class="badge @if($movie->rating->name == 'C18') bg-danger
+                                                                        @elseif($movie->rating->name == 'C16') bg-warning
+                                                                        @elseif($movie->rating->name == 'P') bg-success
+                                                                        @elseif($movie->rating->name == 'P') bg-primary
+                                                                        @else bg-info
+                                                                        @endif me-1"
+                                                    >
+                                                        {{ $movie->rating->name }}
+                                                    </span> - {{ $movie->rating->description }}
+                                                </p>
                                             </a>
                                         </div>
                                     </div>
@@ -160,7 +168,7 @@
 
             <div id="phimdangchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse show" data-bs-parent="#Movies">
                 @foreach($movies as $movie)
-                    @if(!($movie->preSale) && ($movie->releaseDate <= date("Y-m-d")))
+                    @if($movie->releaseDate <= date("Y-m-d"))
                         {{--                        {{  dd($movie->releaseDate >= date("YYYY-mm-dd"))}}--}}
                         <!-- Movie -->
                         <div class="card-col">
@@ -210,8 +218,15 @@
                                                     @endforeach
                                                 </p>
                                                 <p class="card-text">Rated:
-                                                    <b class="text-danger">{{ $movie->rating->name }}</b>
-                                                    - {{ $movie->rating->description }}
+                                                    <span class="badge @if($movie->rating->name == 'C18') bg-danger
+                                                                        @elseif($movie->rating->name == 'C16') bg-warning
+                                                                        @elseif($movie->rating->name == 'P') bg-success
+                                                                        @elseif($movie->rating->name == 'P') bg-primary
+                                                                        @else bg-info
+                                                                        @endif me-1"
+                                                    >
+                                                        {{ $movie->rating->name }}
+                                                    </span> - {{ $movie->rating->description }}
                                                 </p>
                                             </a>
                                         </div>
@@ -226,66 +241,71 @@
 
             <div id="vebantruoc" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse" data-bs-parent="#Movies">
                 @foreach($movies as $movie)
-                    @if($movie->preSale)
-                        <!-- Movie -->
-                        <div class="card-col">
-                            <article class="card px-0 overflow-hidden" style="background: #f5f5f5">
-                                <div class="row g-0">
-                                    <div class="col-lg-4 col-12">
-                                        <a href="/movie/{{ $movie->id }}">
-                                            @if(strstr($movie->image,"https") === "")
-                                                <img class="img-fluid rounded w-100"
-                                                     src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg"
-                                                     alt="">
-                                            @else
-                                                <img class="img-fluid rounded w-100" src="{{ $movie->image }}" alt="">
-                                            @endif
+                    <!-- Movie -->
+                    <div class="card-col">
+                        <article class="card px-0 overflow-hidden" style="background: #f5f5f5">
+                            <div class="row g-0">
+                                <div class="col-lg-4 col-12">
+                                    <a href="/movie/{{ $movie->id }}">
+                                        @if(strstr($movie->image,"https") === "")
+                                            <img class="img-fluid rounded w-100"
+                                                 src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg"
+                                                 alt="">
+                                        @else
+                                            <img class="img-fluid rounded w-100" src="{{ $movie->image }}" alt="">
+                                        @endif
+                                    </a>
+                                </div>
+                                <div class="col-lg-8 col-12">
+                                    <div class="card-body">
+                                        <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
+                                            <h5 class="card-title">{{ $movie->name }}</h5>
+                                            <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
+                                            <p class="card-text">Thể loại:
+                                                @foreach($movie->movieGenres as $genre)
+                                                    @if ($loop->first)
+                                                        <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                    @else
+                                                        | <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                    @endif
+                                                @endforeach
+                                            </p>
+                                            <p class="card-text">Đạo diễn:
+                                                @foreach($movie->directors as $director)
+                                                    @if ($loop->first)
+                                                        <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                    @else
+                                                        , <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                    @endif
+                                                @endforeach
+                                            </p>
+                                            <p class="card-text text-truncate">Diễn viên:
+                                                @foreach($movie->casts as $cast)
+                                                    @if ($loop->first)
+                                                        <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
+                                                    @else
+                                                        , <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
+                                                    @endif
+                                                @endforeach
+                                            </p>
+                                            <p class="card-text">Rated:
+                                                <span class="badge @if($movie->rating->name == 'C18') bg-danger
+                                                                        @elseif($movie->rating->name == 'C16') bg-warning
+                                                                        @elseif($movie->rating->name == 'P') bg-success
+                                                                        @elseif($movie->rating->name == 'P') bg-primary
+                                                                        @else bg-info
+                                                                        @endif me-1"
+                                                >
+                                                        {{ $movie->rating->name }}
+                                                    </span> - {{ $movie->rating->description }}
+                                            </p>
                                         </a>
                                     </div>
-                                    <div class="col-lg-8 col-12">
-                                        <div class="card-body">
-                                            <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
-                                                <h5 class="card-title">{{ $movie->name }}</h5>
-                                                <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
-                                                <p class="card-text">Thể loại:
-                                                    @foreach($movie->movieGenres as $genre)
-                                                        @if ($loop->first)
-                                                            <a class="link link-dark" href="#">{{ $genre->name }}</a>
-                                                        @else
-                                                            | <a class="link link-dark" href="#">{{ $genre->name }}</a>
-                                                        @endif
-                                                    @endforeach
-                                                </p>
-                                                <p class="card-text">Đạo diễn:
-                                                    @foreach($movie->directors as $director)
-                                                        @if ($loop->first)
-                                                            <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
-                                                        @else
-                                                            , <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
-                                                        @endif
-                                                    @endforeach
-                                                </p>
-                                                <p class="card-text text-truncate">Diễn viên:
-                                                    @foreach($movie->casts as $cast)
-                                                        @if ($loop->first)
-                                                            <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
-                                                        @else
-                                                            , <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
-                                                        @endif
-                                                    @endforeach
-                                                </p>
-                                                <p class="card-text">Rated: <b class="text-danger">C16</b> - PHIM ĐƯỢC PHỔ
-                                                    BIẾN ĐẾN
-                                                    NGƯỜI XEM TỪ ĐỦ 16 TUỔI
-                                                    TRỞ LÊN (16+)</p>
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
-                            </article>
-                        </div>
-                        <!-- Movie: end -->
-                    @endif
+                            </div>
+                        </article>
+                    </div>
+                    <!-- Movie: end -->
                 @endforeach
             </div>
         </div>

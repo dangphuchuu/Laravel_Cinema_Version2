@@ -34,10 +34,39 @@ class WebController extends Controller
         return view('web.pages.home', ['movies' => $movies, 'banners' => $banners]);
     }
 
-    public function movieDetail($id)
+    public function movieDetail($id, Request $request)
     {
         $movie = Movie::find($id);
-        return view('web.pages.movieDetail', ['movie' => $movie]);
+        $roomTypes = RoomType::all();
+        $cities = [];
+        $theaters = Theater::where('status', 1)->get();
+        foreach ($theaters as $theater) {
+            if (array_search($theater->city, $cities)) {
+                continue;
+            } else {
+                array_push($cities, $theater->city);
+            }
+        }
+        if (isset($request->city)) {
+            $city_cur = $request->city;
+        } else {
+            $city_cur = $cities[0];
+        }
+        if (isset($request->date)) {
+            $date_cur = $request->date;
+        } else {
+            $date_cur = date('Y-m-d');
+        }
+        $theaters_city = Theater::where('status', 1)->where('city', $city_cur)->get();
+        return view('web.pages.movieDetail', [
+            'movie' => $movie,
+            'theater_city' => $theaters_city,
+            'date_cur' => $date_cur,
+            'cities' => $cities,
+            'city_cur' => $city_cur,
+            'roomTypes' => $roomTypes,
+            'theaters_city' => $theaters_city,
+        ]);
     }
 
     public function ticket()
@@ -45,7 +74,7 @@ class WebController extends Controller
         return view('web.pages.ticket');
     }
 
-    public function schedules(Request $request)
+    public function schedulesByMovie(Request $request)
     {
         $cities = [];
         $theaters = Theater::where('status', 1)->get();
@@ -66,7 +95,7 @@ class WebController extends Controller
         } else {
             $date_cur = date('Y-m-d');
         }
-        $theaters = Theater::where('status', 1)->where('city', $city_cur)->get();
+        $theaters_city = Theater::where('status', 1)->where('city', $city_cur)->get();
         $roomTypes = RoomType::all();
         $movies = Movie::whereDate('releaseDate', '<=', Carbon::today()->format('Y-m-d'))
             ->where('endDate', '>=', Carbon::today()->format('Y-m-d'))
@@ -78,16 +107,54 @@ class WebController extends Controller
             ->join('roomTypes', 'rooms.roomType_id', '=', 'roomTypes.id')
             ->orderBy('theaters.name', 'asc')
             ->orderBy('roomTypes.name', 'asc')->get();
-//        dd($schedules);
 
 
-        return view('web.pages.schedules', [
+        return view('web.pages.schedulesMovie', [
             'movies' => $movies,
             'theaters' => $theaters,
             'cities' => $cities,
             'date_cur' => $date_cur,
             'city_cur' => $city_cur,
-            'roomTypes' => $roomTypes
+            'roomTypes' => $roomTypes,
+            'theaters_city' => $theaters_city,
+        ]);
+    }
+
+    public function schedulesbyTheater(Request $request)
+    {
+        $cities = [];
+        $theaters = Theater::where('status', 1)->get();
+        foreach ($theaters as $theater) {
+            if (array_search($theater->city, $cities)) {
+                continue;
+            } else {
+                array_push($cities, $theater->city);
+            }
+        }
+        if (isset($request->date)) {
+            $date_cur = $request->date;
+        } else {
+            $date_cur = date('Y-m-d');
+        }
+        $roomTypes = RoomType::all();
+        $movies = Movie::whereDate('releaseDate', '<=', Carbon::today()->format('Y-m-d'))
+            ->where('endDate', '>=', Carbon::today()->format('Y-m-d'))
+            ->where('status', 1)->get();
+
+        $schedules = Schedule::select('schedules.*', 'theaters.name as theater', 'roomTypes.name as roomType')
+            ->join('rooms', 'schedules.room_id', '=', 'rooms.id')
+            ->join('theaters', 'rooms.theater_id', '=', 'theaters.id')
+            ->join('roomTypes', 'rooms.roomType_id', '=', 'roomTypes.id')
+            ->orderBy('theaters.name', 'asc')
+            ->orderBy('roomTypes.name', 'asc')->get();
+
+
+        return view('web.pages.schedulesTheater', [
+            'movies' => $movies,
+            'theaters' => $theaters,
+            'cities' => $cities,
+            'date_cur' => $date_cur,
+            'roomTypes' => $roomTypes,
         ]);
     }
 

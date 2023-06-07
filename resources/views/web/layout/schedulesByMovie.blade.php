@@ -3,7 +3,7 @@
     <div class="mt-2">
         <h4>@lang('lang.movie_schedule')</h4>
         <div class="d-flex flex-column mt-2 mb-5">
-            @foreach($theaters as $theater)
+            @foreach($theaters_city as $theater)
                 @if($theater->schedulesByDateAndMovie($date_cur, $movie->id)->count() > 0)
                     <div class="p-2 d-flex flex-row m-1 align-items-center" style="background: #f5f5f5">
                         <div class="flex-shrink-1 p-3">

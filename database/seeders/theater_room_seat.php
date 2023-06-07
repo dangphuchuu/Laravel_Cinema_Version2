@@ -1,10 +1,7 @@
 <?php
 
 use App\Models\Room;
-use App\Models\RoomType;
 use App\Models\Seat;
-use App\Models\Theater;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 //TODO: theater
@@ -35,7 +32,7 @@ DB::table('theaters')->insert([
 DB::table('roomTypes')->insert([
     [
         'name' => '2D',
-        'surcharge' => 20000,
+        'surcharge' => 0,
     ], [
         'name' => '3D',
         'surcharge' => 40000,
@@ -126,32 +123,9 @@ DB::table('seatTypes')->insert([
         'color' => '#FF62B0',
     ]
 ]);
-    function seat_type(){
-        $room = Room::find(1);
-        for ($i = 65; $i <= (65 + 8); $i++) {
-            for ($j = 1; $j <= 15; $j++) {
-                $seat = new Seat([
-                    'row' => chr($i),
-                    'col' => $j,
-                    'room_id' => $room->id,
-                ]);
-                if($j == 3){
-                    $seat->me = 2;
-                }
-                if(15 -2 == $j){
-                    $seat->ms =2;
-                }
-                if ($i <= 68 && $room->roomType_id == 1) {
-                    $seat->seatType_id = 1;
-                } else {
-                    $seat->seatType_id = 2;
-                }
-                $seat->save();
-            }
-        }
-    }
-function seat_type2(){
-    $room = Room::find(2);
+function seat_type()
+{
+    $room = Room::find(1);
     for ($i = 65; $i <= (65 + 8); $i++) {
         for ($j = 1; $j <= 15; $j++) {
             $seat = new Seat([
@@ -159,11 +133,11 @@ function seat_type2(){
                 'col' => $j,
                 'room_id' => $room->id,
             ]);
-            if($j == 3){
+            if ($j == 3) {
                 $seat->me = 2;
             }
-            if(15 -2 == $j){
-                $seat->ms =2;
+            if (15 - 2 == $j) {
+                $seat->ms = 2;
             }
             if ($i <= 68 && $room->roomType_id == 1) {
                 $seat->seatType_id = 1;
@@ -174,8 +148,35 @@ function seat_type2(){
         }
     }
 }
-    seat_type();
-    seat_type2();
+
+function seat_type2()
+{
+    $room = Room::find(2);
+    for ($i = 65; $i <= (65 + 8); $i++) {
+        for ($j = 1; $j <= 15; $j++) {
+            $seat = new Seat([
+                'row' => chr($i),
+                'col' => $j,
+                'room_id' => $room->id,
+            ]);
+            if ($j == 3) {
+                $seat->me = 2;
+            }
+            if (15 - 2 == $j) {
+                $seat->ms = 2;
+            }
+            if ($i <= 68 && $room->roomType_id == 1) {
+                $seat->seatType_id = 1;
+            } else {
+                $seat->seatType_id = 2;
+            }
+            $seat->save();
+        }
+    }
+}
+
+seat_type();
+seat_type2();
 
 
 

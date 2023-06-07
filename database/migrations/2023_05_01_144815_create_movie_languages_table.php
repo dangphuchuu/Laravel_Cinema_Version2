@@ -51,7 +51,6 @@ return new class extends Migration {
             $table->text('trailer')->nullable();
             $table->bigInteger('rating_id')->unsigned();
             $table->foreign('rating_id')->references('id')->on('rating');
-            $table->boolean('preSale')->default(false);
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

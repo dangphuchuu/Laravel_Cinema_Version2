@@ -18,8 +18,8 @@
                 <div class="col-sm-6 col-lg-3">
                     <div class="card border border-4 border-warning rounded-0">
                         @if(strstr($movie['image'],"https") == "")
-                        <img class="card-img-top rounded-0" alt='...'
-                             src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $movie['image'] !!}.jpg">
+                            <img class="card-img-top rounded-0" alt='...'
+                                 src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $movie['image'] !!}.jpg">
                         @else
                             <img class="card-img-top rounded-0" alt='...'
                                  src="{!! $movie['image'] !!}">
@@ -33,43 +33,53 @@
 
                 <div class="col-sm-6 col-lg-9">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex align-items-center text-danger">{!! $movie['showTime'] !!} min</li> {{--movie running time--}}
-                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">@lang('lang.national'): </strong>{!! $movie['national'] !!}
+                        <li class="list-group-item d-flex align-items-center text-danger">{{ $movie->showTime }} @lang('lang.minutes')
+                        </li> {{--movie running time--}}
+                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">@lang('lang.national')
+                                : </strong>{!! $movie['national'] !!}
                         </li>
-                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">@lang('lang.release_date'): </strong>{!! $movie['releaseDate'] !!}
+                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">@lang('lang.release_date')
+                                : </strong>{!! $movie['releaseDate'] !!}
                         </li>
                         <li class="list-group-item d-flex align-items-center"><strong class="pe-1">@lang('lang.genre'): </strong>
-                            @foreach($movie['movieGenres'] as $value)
-                                <a class="link link-dark ps-1 text-decoration-none" href="{!! $value['id'] !!}">{!! $value['name'] !!}</a>,
+                            @foreach($movie->movieGenres as $genre)
+                                @if ($loop->first)
+                                    {{ $genre->name }}
+                                @else
+                                    , {{ $genre->name }}
+                                @endif
                             @endforeach
                         </li>
                         <li class="list-group-item d-flex align-items-center">
                             <strong class="pe-1">@lang('lang.directors'): </strong>
-                            @foreach($movie['directors'] as $directors)
-                                {!! $directors['name'] !!}
+                            @foreach($movie->directors as $director)
+                                @if ($loop->first)
+                                    {{ $director->name }}
+                                @else
+                                    , {{ $director->name }}
+                                @endif
                             @endforeach
                         </li>
                         <li class="list-group-item d-flex align-items-center text-truncate">
                             <strong class="pe-1">@lang('lang.casts'): </strong>
-                            @foreach($movie['casts'] as $casts)
-                                {!! $casts['name'] !!},
+                            @foreach($movie->casts as $cast)
+                                @if ($loop->first)
+                                    {{ $cast->name }}
+                                @else
+                                    , {{ $cast->name }}
+                                @endif
                             @endforeach
                         </li>
-                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">@lang('lang.rated'): </strong><img
-                                class="img-fluid rounded-1 border-2"
-                                @if($movie['rating']['name'] == 'C13')
-                                    src="images/rated/C13.png"
-                                @elseif($movie['rating']['name'] == 'C16')
-                                    src="images/rated/C13.png"
-                                @elseif($movie['rating']['name'] == 'C18')
-                                    src="images/rated/C18.png"
-                                @elseif($movie['rating']['name'] == 'P')
-                                    src="images/rated/P.png"
-                                @else
-                                    src="images/rated/C13.png"
-                                @endif
-                                alt="..."
-                                style="max-width: 50px"></li>
+                        <li class="list-group-item d-flex align-items-center"><strong class="pe-1">@lang('lang.rated'): </strong>
+                            <span class="badge @if($movie->rating->name == 'C18') bg-danger
+                            @elseif($movie->rating->name == 'C16') bg-warning
+                            @elseif($movie->rating->name == 'P') bg-success
+                            @elseif($movie->rating->name == 'P') bg-primary
+                            @else bg-info
+                            @endif me-1">
+                                {{ $movie->rating->name }}
+                            </span> - {{ $movie->rating->description }}
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -97,7 +107,35 @@
             </div>
         </div>
 
-        @include('web.layout.schedulesByMovie')
+        <form action="/movie/{{$movie->id}}" method="get">
+            @csrf
+            <div class="row container mt-5">
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text bg-gray-200"> @lang('lang.show_date')</span>
+                        <select class="form-select ps-2" name="city" aria-label="">
+                            @foreach($cities as $city)
+                                <option id="{{str_replace(' ', '', $city)}}" value="{{$city}}" @if($city_cur == $city) selected @endif>
+                                    {{$city}}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="input-group">
+                        <span class="input-group-text bg-gray-200"> @lang('lang.show_date')</span>
+                        <input class="form-control ps-2" type="date" name="date" value="{{ $date_cur }}" aria-label="">
+                    </div>
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>
+                </div>
+            </div>
+        </form>
+        @include('web.layout.movieDetailSchedules')
 
     </section>
+@endsection
+@section('js')
 @endsection

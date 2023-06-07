@@ -11,6 +11,7 @@ use App\Http\Controllers\FoodController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieGenresController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PriceController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\SeatController;
@@ -158,6 +159,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/edit/{id}', [DirectorController::class, 'postEdit']);
         Route::delete('/delete/{id}', [DirectorController::class, 'delete']);
     });
+
     //TODO Cast
     Route::prefix('cast')->group(function () {
         Route::get('/', [CastController::class, 'cast']);
@@ -165,6 +167,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/edit/{id}', [CastController::class, 'postEdit']);
         Route::delete('/delete/{id}', [CastController::class, 'delete']);
     });
+
     //TODO Combo
     Route::prefix('combo')->group(function () {
         Route::get('/', [ComboController::class, 'combo']);
@@ -174,6 +177,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/status', [ComboController::class, 'status']);
         Route::delete('/delete/{id}', [ComboController::class, 'delete']);
     });
+
     //TODO News
     Route::prefix('news')->group(function () {
         Route::get('/', [NewsController::class, 'news']);
@@ -182,6 +186,13 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::delete('/delete/{id}', [NewsController::class, 'delete']);
         Route::get('/status', [NewsController::class, 'status']);
     });
+
+    //TODO Prices
+    Route::prefix('prices')->group(function () {
+        Route::get('/', [PriceController::class, 'price']);
+        Route::post('/edit', [PriceController::class, 'edit']);
+    });
+
     //TODO statistical
     Route::prefix('statistical')->group(function () {
         Route::get('/', [StatisticalController::class, 'statistical']);
