@@ -82,7 +82,7 @@ return [
     'phone' => 'Số điện thoại',
     'created_at' => 'Ngày tạo',
     'updated_at' => 'Ngày cập nhật',
-    'staff_account' => 'Tài khoản người dùng',
+    'staff_account' => 'Tài khoản nhân viên',
     'role' => 'Vai trò',
     'permissions' => 'Quyền truy cập',
     'password' => 'Mật khẩu',
