@@ -30,6 +30,7 @@ class RoomType extends Model
             ->where('date', $date)
             ->where('rooms.roomType_id', $this->id)
             ->where('theaters.id', $theater)
-            ->where('schedules.movie_id', $movie)->get();
+            ->where('schedules.movie_id', $movie)
+            ->where('schedules.status',1)->get();
     }
 }

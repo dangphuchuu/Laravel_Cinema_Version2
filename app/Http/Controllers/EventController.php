@@ -89,6 +89,6 @@ class EventController extends Controller
         $event = Post::find($request->event_id);
         $event['status'] = $request->active;
         $event->save();
-        return response();
+        return response('success',200);
     }
 }

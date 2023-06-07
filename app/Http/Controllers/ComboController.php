@@ -85,6 +85,6 @@ class ComboController extends Controller
         $combo = Combo::find($request->combo_id);
         $combo['status'] = $request->active;
         $combo->save();
-        return response();
+        return response('success',200);
     }
 }
