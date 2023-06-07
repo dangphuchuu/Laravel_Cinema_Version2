@@ -143,6 +143,6 @@ class MovieController extends Controller
         $movie = Movie::find($request->movie_id);
         $movie['status'] = $request->active;
         $movie->save();
-        return response();
+        return response('success',200);
     }
 }

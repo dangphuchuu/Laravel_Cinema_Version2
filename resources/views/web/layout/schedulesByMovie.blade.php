@@ -29,6 +29,7 @@
                                     </div>
                                 @endif
                             @endforeach
+
                         </div>
                         {{-- a Theater schedule: end --}}
                     </div>

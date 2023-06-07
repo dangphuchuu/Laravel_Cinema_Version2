@@ -47,7 +47,7 @@ class TheaterController extends Controller
         $theaters = Theater::find($request->theater_id);
         $theaters['status'] = $request->active;
         $theaters->save();
-        return response();
+        return response('success',200);
     }
     public function delete($id){
         $theaters = Theater::find($id);

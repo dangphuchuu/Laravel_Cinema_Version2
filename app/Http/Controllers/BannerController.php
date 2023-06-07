@@ -70,6 +70,6 @@ class BannerController extends Controller
         $banners = Banner::find($request->banner_id);
         $banners['status'] = $request->active;
         $banners->save();
-        return response();
+        return response('success',200);
     }
 }

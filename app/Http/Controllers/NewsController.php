@@ -88,6 +88,6 @@ class NewsController extends Controller
         $news = News::find($request->news_id);
         $news['status'] = $request->active;
         $news->save();
-        return response();
+        return response('success',200);
     }
 }

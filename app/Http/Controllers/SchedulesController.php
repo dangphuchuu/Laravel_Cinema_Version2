@@ -76,7 +76,7 @@ class SchedulesController extends Controller
         $schedule = Schedule::find($request->schedule_id);
         $schedule['status'] = $request->active;
         $schedule->save();
-        return response();
+        return response('success',200);
     }
 
     public function early_status(Request $request)
@@ -84,7 +84,7 @@ class SchedulesController extends Controller
         $schedule = Schedule::find($request->early_id);
         $schedule['early'] = $request->active;
         $schedule->save();
-        return response();
+        return response('success',200);
     }
 
     public function delete($id, Request $request)

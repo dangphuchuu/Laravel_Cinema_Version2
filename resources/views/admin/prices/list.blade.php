@@ -7,7 +7,7 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Quản lý giá vé</h6>
+                        <h6>@lang('lang.manage_ticket_price')</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2 mt-5">
                         <div class="table-responsive ">
@@ -18,18 +18,18 @@
                                     <tr>
                                         <th class="text-uppercase font-weight-bolder"></th>
                                         <th class="text-uppercase font-weight-bolder"></th>
-                                        <th class="text-uppercase font-weight-bolder">Học sinh, sinh viên</th>
-                                        <th class="text-uppercase font-weight-bolder">Ngưới lớn</th>
-                                        <th class="text-uppercase font-weight-bolder">Người cao tuổi, trẻ em</th>
-                                        <th class="text-uppercase font-weight-bolder">Thành viên, vé trực tuyến</th>
+                                        <th class="text-uppercase font-weight-bolder">@lang('lang.student')</th>
+                                        <th class="text-uppercase font-weight-bolder">@lang('lang.adult')</th>
+                                        <th class="text-uppercase font-weight-bolder">@lang('lang.old_child')</th>
+                                        <th class="text-uppercase font-weight-bolder">@lang('lang.member_online')</th>
                                     </tr>
                                     </thead>
                                     <tbody class="table-light">
                                     <tr>
                                         <th rowspan="2">
-                                            T2, T3, T4, T5
+                                            @lang('lang.monday'),@lang('lang.tuesday'),@lang('lang.wednesday'),@lang('lang.thursday')
                                         </th>
-                                        <td>Trước 17h</td>
+                                        <td>@lang('lang.before') 17h</td>
                                         <td>
                                             <div class="input-group">
                                                 <input type="number" class="form-control" name="hssv2345t17" value="{{ $hssv2345t17 }}"
@@ -58,7 +58,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Sau 17h</td>
+                                        <td>@lang('lang.after') 17h</td>
                                         <td>
                                             <div class="input-group">
                                                 <input type="number" class="form-control" name="hssv2345s17" value="{{ $hssv2345s17 }}"
@@ -89,9 +89,9 @@
                                     </tr>
                                     <tr>
                                         <th rowspan="2">
-                                            T6, T7, CN
+                                            @lang('lang.friday'),   @lang('lang.saturday'),   @lang('lang.sunday')
                                         </th>
-                                        <td>Trước 17h</td>
+                                        <td>@lang('lang.before') 17h</td>
                                         <td>
                                             <div class="input-group">
                                                 <input type="number" class="form-control" name="hssv67cnt17" value="{{ $hssv67cnt17 }}"
@@ -122,7 +122,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Sau 17h</td>
+                                        <td>@lang('lang.after') 17h</td>
                                         <td>
                                             <div class="input-group">
                                                 <input type="number" class="form-control" name="hssv67cns17" value="{{ $hssv67cns17 }}"
@@ -155,7 +155,7 @@
                                     <thead class="table-primary">
                                     <tr>
                                         <th class="text-uppercase font-weight-bolder" colspan="6">
-                                            phụ thu
+                                            @lang('lang.surcharge')
                                         </th>
                                     </tr>
                                     </thead>
@@ -195,7 +195,7 @@
 
                                     <tr>
                                         <td colspan="6">
-                                            <button type="submit" class="btn btn-primary float-end m-2">Lưu</button>
+                                            <button type="submit" class="btn btn-primary float-end m-2">@lang('lang.save')</button>
                                         </td>
                                     </tr>
                                     </tfoot>

@@ -83,6 +83,6 @@ class FoodController extends Controller
         $food = Food::find($request->food_id);
         $food['status'] = $request->active;
         $food->save();
-        return response();
+        return response('success',200);
     }
 }

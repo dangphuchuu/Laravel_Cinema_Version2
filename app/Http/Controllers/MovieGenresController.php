@@ -55,6 +55,6 @@ class MovieGenresController extends Controller
         $movie_genres = MovieGenres::find($request->genre_id);
         $movie_genres['status'] = $request->active;
         $movie_genres->save();
-        return response();
+        return response('success',200);
     }
 }

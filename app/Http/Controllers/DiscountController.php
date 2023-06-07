@@ -53,6 +53,6 @@ class DiscountController extends Controller
         $discount = Discount::find($request->discount_id);
         $discount['status'] = $request->active;
         $discount->save();
-        return response();
+        return response('success',200);
     }
 }
