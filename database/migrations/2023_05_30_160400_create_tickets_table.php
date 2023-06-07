@@ -27,6 +27,7 @@ return new class extends Migration {
         Schema::create('ticketSeats', function (Blueprint $table) {
             $table->string('row');
             $table->integer('col');
+            $table->integer('price')->default(0);
             $table->bigInteger('ticket_id')->unsigned();
             $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
             $table->timestamps();

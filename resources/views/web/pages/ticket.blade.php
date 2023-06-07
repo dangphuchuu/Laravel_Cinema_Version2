@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="d-flex text-light p-2">
                                     <span class="flex-shrink-0"><i class="fa-solid fa-equals"></i>&numsp;@lang('lang.total_price'):</span>
-                                    <div class="flex-grow-1 text-end">0 đ</div>
+                                    <div class="flex-grow-1 text-end"><span id="ticketSeat_totalPrice"></span> đ</div>
                                 </div>
                             </div>
                         </div>
@@ -188,8 +188,9 @@
                                                                      id="Seat_{{ $seat->row.$seat->col}}"
                                                                      choiced="0"
                                                                      style="background-color: {{ $seat->seatType->color }}; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px; margin: 2px 0;"
-                                                                     onclick="seatChoiced('{{$seat->row}}', {{$seat->col}})">
-                                                                    {{ $seat->row.$seat->col }}
+                                                                     onclick="seatChoiced('{{$seat->row}}', {{$seat->col}},
+                                                                     {{$seat->seatType->surcharge + $room->roomType->surcharge + $price}})">
+                                                                    {{$seat->row.$seat->col }}
                                                                 </div>
                                                             @else
                                                                 <div class="d-inline-block align-middle py-1 px-0 text-dark disabled"
@@ -277,6 +278,7 @@
                 <div class="d-flex justify-content-center mt-4">
                     <button class="btn btn-warning mx-2 text-decoration-underline text-center"
                             href="#Seats"
+                            onclick="comboBack()"
                             aria-controls="Seats"
                             aria-expanded="true"
                             data-bs-toggle="collapse"
@@ -295,17 +297,17 @@
             </div>
 
             <div id="Payment" class="mt-5 collapse" data-bs-parent="#mainTicket">
-                <div>
-                    <h4>@lang('lang.discount')</h4>
-                    <div class="row row-cols-1 row-cols-md-2"
-                         data-bs-parent="#mainContent">
-                        <div class="input-group">
-                            <input type="text" name="discount" class="form-control border-dark" id="discount"
-                                   aria-label="">
-                            <button class="btn btn-danger">@lang('lang.apply')</button>
-                        </div>
-                    </div>
-                </div>
+                {{--                <div>--}}
+                {{--                    <h4>@lang('lang.discount')</h4>--}}
+                {{--                    <div class="row row-cols-1 row-cols-md-2"--}}
+                {{--                         data-bs-parent="#mainContent">--}}
+                {{--                        <div class="input-group">--}}
+                {{--                            <input type="text" name="discount" class="form-control border-dark" id="discount"--}}
+                {{--                                   aria-label="">--}}
+                {{--                            <button class="btn btn-danger">@lang('lang.apply')</button>--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
 
                 <h4 class="mt-4">@lang('lang.payment')</h4>
                 <div class="bg-dark-subtle p-5">
@@ -314,9 +316,10 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="atm" id="atm">
                                 <label class="form-check-label" for="atm">
-                                        <span class="badge"><img
-                                                src="https://www.cgv.vn/media/catalog/product/placeholder/default/atm_icon.png"
-                                                style="max-height: 25px"></span> @lang('lang.bank_card')
+                                        <span class="badge">
+                                            <img src="https://www.cgv.vn/media/catalog/product/placeholder/default/atm_icon.png"
+                                                 style="max-height: 25px" alt="...">
+                                        </span> @lang('lang.bank_card')
                                 </label>
                             </div>
                         </div>
@@ -337,39 +340,47 @@
     <script>
         $(document).ready(function () {
             $i = 1;
-            $arr = [];
-            $ticket_seats = {};
-            $ticket_id = '';
-            var $countdown;
-            seatChoiced = (row, col) => {
+            let $arrSeatHtml = [];
+            let $ticket_seats = {};
+            let $ticket_id = '';
+            let $countdown = {
+                interval: null
+            };
+            let $sumSeats = 0;
+            seatChoiced = (row, col, price) => {
                 var choiced = $('#Seat_' + row + col).attr('choiced');
                 if (choiced == 1) {
                     $i--;
-                    $('#Seat_' + row + col).replaceWith($arr[row + col]);
+                    $('#Seat_' + row + col).replaceWith($arrSeatHtml[row + col]);
                     $(`#ticketSeat_${row + col}`).remove();
+                    $sumSeats -= price;
+                    $('#ticketSeat_totalPrice').text($sumSeats);
                     delete $ticket_seats[row + col];
                 } else {
+                    // Gới hạn chọn ghế
                     if ($i > 8) {
                         $('.seat_enable').addClass('disabled');
                         alert('chọn tối đa 8 ghế');
                         return;
                     }
-                    $arr[row + col] = $('#Seat_' + row + col).clone();
+                    $arrSeatHtml[row + col] = $('#Seat_' + row + col).clone();
                     $('#Seat_' + row + col).replaceWith(`<div class="d-inline-block align-middle py-1 px-0 seat_enable"
-                        id="Seat_${row + col}" choiced="1" onclick="seatChoiced('${row}', ${col})"
+                        id="Seat_${row + col}" choiced="1" onclick="seatChoiced('${row}', ${col}, ${price})"
                         style="background-color: #dc3545; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px;
                         margin: 2px 0;"><i class="fa-solid text-light fa-check"></i>
                         </div>`)
                     $('#ticket_seats').append(`<p id="ticketSeat_${row + col}">${row + col}, </p>`);
-                    $ticket_seats[row + col] = [row, col];
+                    $ticket_seats[row + col] = [row, col, price];
+                    $sumSeats += price;
+                    $('#ticketSeat_totalPrice').text($sumSeats);
                     $i++;
                 }
 
             }
 
-            function startTimer(duration, display,) {
+            function startTimer(duration, display, countdown) {
                 var timer = duration, minutes, seconds;
-                $countdown = setInterval(function () {
+                countdown.interval = setInterval(function () {
                     minutes = parseInt(timer / 60, 10);
                     seconds = parseInt(timer % 60, 10);
 
@@ -401,8 +412,8 @@
             }
 
             comboBack = () => {
-                clearInterval($countdown);
-                $('#ticket_info').remove();
+                $('#timer').remove();
+                clearInterval($countdown.interval);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -421,13 +432,14 @@
             }
 
             seatChoicedNext = () => {
+                $('#timer').remove();
                 $('#ticket_info').append(`<div id="timer"
                      class="d-block position-absolute end-0 top-0 bg-light text-dark text-center fs-2 m-3"
                      style="width: 200px; height: 100px; line-height:100px">
                 </div>`)
                 var fiveMinutes = 60 * 5,
                     display = document.querySelector('#timer');
-                startTimer(fiveMinutes, display);
+                startTimer(fiveMinutes, display, $countdown);
 
                 // $arr = [];
                 // $ticket_seats.forEach($seat => {
@@ -453,7 +465,23 @@
                 });
             };
 
-            Window.addEventListener();
+            window.addEventListener('beforeunload', () => {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "/tickets/delete",
+                    type: 'DELETE',
+                    dataType: 'json',
+                    data: {
+                        'ticket_id': $ticket_id,
+                    },
+                    success: function (data) {
+                    }
+                });
+            });
 
             @foreach($room->seats as $seat)
             @if($seat->status == 1)
