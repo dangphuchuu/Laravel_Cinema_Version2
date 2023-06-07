@@ -25,7 +25,7 @@ class UserMiddleware
             // `getTeamIdFromToken()` example of custom method for getting the set team_id
             setPermissionsTeamId(auth('api')->user()->getTeamIdFromToken());
         }*/ else {
-            return redirect('admin/sign_in');
+            return redirect('/');
         }
         return $next($request);
     }

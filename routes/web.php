@@ -18,15 +18,19 @@ use Illuminate\Support\Facades\Route;
 require 'admin.php';
 
 // Web Route
+
 Route::get('/', [WebController::class, 'home']);
 Route::get('/movie/{id}', [WebController::class, 'movieDetail']);
-Route::get('/tickets/{schedule_id}/', [WebController::class, 'ticket']);
-Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
-Route::get('/schedulesbyTheater', [WebController::class, 'schedulesbyTheater']);
-Route::get('/events', [WebController::class, 'events']);
-Route::get('/movies', [WebController::class, 'movies']);
-Route::get('/movies/filter', [WebController::class, 'movieSearch']);
 Route::post('/signIn', [WebController::class, 'signIn']);
 Route::post('/signUp', [WebController::class, 'signUp']);
 Route::get('/signOut', [WebController::class, 'signOut']);
 Route::get('/search', [WebController::class, 'search']);
+
+Route::prefix('/')->middleware('user')->group(function () {
+    Route::get('/tickets/{schedule_id}/', [WebController::class, 'ticket']);
+    Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
+    Route::get('/schedulesbyTheater', [WebController::class, 'schedulesbyTheater']);
+    Route::get('/events', [WebController::class, 'events']);
+    Route::get('/movies', [WebController::class, 'movies']);
+    Route::get('/movies/filter', [WebController::class, 'movieSearch']);
+});
