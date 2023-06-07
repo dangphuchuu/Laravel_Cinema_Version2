@@ -110,16 +110,20 @@ class WebController extends Controller
             'status' => true
         ]);
         $ticket->save();
+
         foreach ($request->ticketSeats as $seat) {
-            $seats = TicketSeat::select('ticketseats.row as row', 'ticketseats.col as col')
+            $seatdbs = TicketSeat::select('ticketseats.row', 'ticketseats.col')
                 ->join('tickets', 'tickets.id', '=', 'ticketseats.ticket_id')
                 ->where('tickets.schedule_id', $request->schedule)
                 ->get();
-
-            foreach ($seats as $seatdb) {
-                if ($seat->row == $)
+            foreach ($seatdbs as $seatdb) {
+                if ($seat[0] == $seatdb->row && $seat[1] == $seatdb->col) {
+                    return response('', 401);
+                }
             }
+        }
 
+        foreach ($request->ticketSeats as $seat) {
             $ticketSeat = new TicketSeat([
                 'row' => $seat[0],
                 'col' => $seat[1],
@@ -135,6 +139,14 @@ class WebController extends Controller
     {
         Ticket::destroy($request->ticket_id);
         return response();
+    }
+
+    public function ticketPayment(Request $request)
+    {
+        $ticket = Ticket::find($request->ticket_id);
+        $ticket->holdState = false;
+
+        return response('', 200);
     }
 
     public function schedulesByMovie(Request $request)
