@@ -174,6 +174,7 @@
                                                         </tr>
                                                         </tbody>
                                                     </table>
+
                                                 </td>
                                             </tr>
                                         @endforeach
