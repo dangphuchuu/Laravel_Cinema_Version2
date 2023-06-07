@@ -453,6 +453,8 @@
                 });
             };
 
+            Window.addEventListener();
+
             @foreach($room->seats as $seat)
             @if($seat->status == 1)
             @foreach($tickets as $ticket)
