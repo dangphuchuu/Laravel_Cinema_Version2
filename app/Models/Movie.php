@@ -43,4 +43,14 @@ class Movie extends Model
     {
         return $this->belongsTo(Rating::class, 'rating_id', 'id');
     }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class, 'movie_id', 'id');
+    }
+
+    public function schedulesByDate($date)
+    {
+        return $this->schedules()->where('date', $date)->get();
+    }
 }

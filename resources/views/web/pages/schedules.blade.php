@@ -56,7 +56,8 @@
                                                        class="link link-dark text-decoration-none text-center">
                                                         <h5 class="card-title fs-4">{{ $theater->name }}</h5>
                                                         <p class="card-text fs-6 text-secondary">
-                                                            <i class="fa-solid fa-location-dot"></i> {{ $theater->address }}
+                                                            <i class="fa-solid fa-location-dot"></i>
+                                                            {{ $theater->address }}
                                                         </p>
                                                     </a>
                                                 </div>
@@ -64,8 +65,9 @@
 
                                             <div class="card-footer">
                                                 <a href="{{ $theater->location }}"
-                                                   class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ <i
-                                                        class="fa-solid fa-map-location-dot"></i></a>
+                                                   class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ
+                                                    <i class="fa-solid fa-map-location-dot"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -84,7 +86,10 @@
                 <div class="d-flex container flex-row flex-nowrap overflow-auto mb-4 carousel_movie">
                     @foreach($movies as $movie)
                             <?php $film[$movie->id] = $movie ?>
-                        <button onclick="movie({{ $movie->id }})" class="btn btn-block border-0 p-2">
+                        <button data-bs-toggle="collapse"
+                                data-bs-target=".multi-collapse_Movie_{{ $movie->id }}"
+                                aria-controls="#movieChoice_{{$movie->id}} #movieSchedules_{{$movie->id}}"
+                                class="btn btn-block border-0 p-2">
                             @if(strstr($movie->image,"https") === "")
                                 <img class="rounded d-block" style="width: 200px; height: 300px" alt="..."
                                      src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg">
@@ -95,34 +100,86 @@
                     @endforeach
                 </div>
 
-                <!-- Movie -->
-                <div class="d-flex flex-column flex-sm-row align-items-center" id="movieChoice" style="background: #f5f5f5">
-                    <div class="flex-shrink-0 justify-content-center">
-                        <a href="/movie/1">
-                            @if(strstr($film->image,"https") === "")
-                                <img class="img-fluid" style="max-height: 361px; max-width: 241px" alt="..."
-                                     src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg">
-                            @else
-                                <img class="img-fluid" style="max-height: 361px; max-width: 241px" alt="..." src="{{ $movie->image }}">
-                            @endif
-                        </a>
-                    </div>
-                    <div class="flex-grow-1 ms-3 mt-3 mt-sm-0">
-                        <h5 class="fw-bold text-center text-sm-start">{{ $movie->name }}}</h5>
-                        <p class="card-text text-danger text-center text-sm-start">{{ $film->showTime }}</p>
-                        <p class="card-text text-center text-sm-start">
-                            @foreach($film->movieGenres as $genre)
-                                <a class="link link-dark" href="#!2">{{ $genre->name }}</a> |
-                            @endforeach
-                        </p>
-                        <p class="card-text">Rated:
-                            <b class="text-danger">{{ $film->rating->name }}</b>
-                            - {{ $film->rating->description }}</p>
-                    </div>
-                </div>
-                <!-- Movie: end -->
+                <div id="collapseMovieParent">
+                    @foreach($movies as $movie)
+                        <!-- Movie -->
+                        <div class="collapse multi-collapse_Movie_{{ $movie->id }}" id="movieChoice_{{ $movie->id }}"
+                             data-bs-parent="#collapseMovieParent">
+                            <div class="d-flex flex-column flex-sm-row align-items-center" style="background: #f5f5f5">
+                                <div class="flex-shrink-0 justify-content-center">
+                                    <a href="/movie/{{ $movie->id }}">
+                                        @if(strstr($movie->image,"https") === "")
+                                            <img class="img-fluid" style="max-height: 361px; max-width: 241px" alt="..."
+                                                 src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg">
+                                        @else
+                                            <img class="img-fluid" style="max-height: 361px; max-width: 241px" alt="..." src="{{ $movie->image }}">
+                                        @endif
+                                    </a>
+                                </div>
+                                <div class="flex-grow-1 ms-3 mt-3 mt-sm-0">
+                                    <h5 class="card-title">{{ $movie->name }}</h5>
+                                    <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
+                                    <p class="card-text">Thể loại:
+                                        @foreach($movie->movieGenres as $genre)
+                                            @if ($loop->first)
+                                                <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                            @else
+                                                | <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                            @endif
+                                        @endforeach
+                                    </p>
+                                    <p class="card-text">Đạo diễn:
+                                        @foreach($movie->directors as $director)
+                                            @if ($loop->first)
+                                                <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                            @else
+                                                , <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                            @endif
+                                        @endforeach
+                                    </p>
+                                    <p class="card-text">Diễn viên:
+                                        @foreach($movie->casts as $cast)
+                                            @if ($loop->first)
+                                                <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
+                                            @else
+                                                , <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
+                                            @endif
+                                        @endforeach
+                                    </p>
+                                    <p class="card-text">Rated:
+                                        <b class="text-danger">{{ $movie->rating->name }}</b>
+                                        - {{ $movie->rating->description }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Movie: end -->
+                    @endforeach
 
-                @include('web.layout.schedulesByMovie')
+                    <div class="mt-2">
+                        <div class="row row-cols-sm-2 row-cols-1">
+                            <div class="form-group col mt-4">
+                                <form method='get'>
+                                    <label for="select-sort" class="form-label">@lang('lang.city')</label>
+                                    <select name="select_item is-invalid" id="select-sort" class="form-select" name="theater">
+                                        @foreach($cities as $city)
+                                            <option value="{{ $city }}" @if($city == $city_cur) selected @endif>{{ $city }}</option>
+                                        @endforeach
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="form-group col mt-4">
+                                <label class="form-label" for="datepicker">@lang('lang.show_date')</label>
+                                <input type="date" id="datepicker" value="{{ $date_cur }}" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    @foreach($movies as $movie)
+                        @if($movie->schedules->count() > 0)
+                            @include('web.layout.schedulesByMovie')
+                        @endif
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>
@@ -148,43 +205,5 @@
 
 
         })
-
-        function movie(id) {
-            @foreach($movies as $movie)
-                movie_id = {{$movie->id}};
-            if (id == movie_id) {
-                    <?php $film = $movie ?>
-                var divMovieChoice = '' +
-                    '<div class="d-flex flex-column flex-sm-row align-items-center" id="movieChoice" style="background: #f5f5f5">\
-                    <div class="flex-shrink-0 justify-content-center">\
-                <a href="/movie/1">\
-                    @if(strstr($film->image,"https") === "")
-                        <img class="img-fluid" style="max-height: 361px; max-width: 241px" alt="..."\
-                    src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg">\
-                    @else
-                        <img class="img-fluid" style="max-height: 361px; max-width: 241px" alt="..." src="{{ $movie->image }}">\
-                    @endif
-                        </a>\
-                </div>\
-                    <div class="flex-grow-1 ms-3 mt-3 mt-sm-0">\
-                        <h5 class="fw-bold text-center text-sm-start">{{ $film->name }}</h5>\
-                    <p class="card-text text-danger text-center text-sm-start">{{ $film->showTime }}</p>\
-                    <p class="card-text text-center text-sm-start">\
-                        @foreach($film->movieGenres as $genre)
-                        <a class="link link-dark" href="#!2">{{ $genre->name }}</a> |\
-                        @endforeach
-                        </p>\
-                        <p class="card-text">Rated:\
-                            <b class="text-danger">{{ $film->rating->name }}</b>\
-                        - {{ $film->rating->description }}</p>\
-                </div>\
-            </div>';
-
-                $('#movieChoice').replaceWith(divMovieChoice);
-                return;
-            }
-
-            @endforeach
-        }
     </script>
 @endsection

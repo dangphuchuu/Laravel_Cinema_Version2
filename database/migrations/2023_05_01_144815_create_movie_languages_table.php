@@ -102,6 +102,8 @@ return new class extends Migration {
     {
         Schema::dropIfExists('movieGenres_movies');
         Schema::dropIfExists('movie_genres');
+        Schema::dropIfExists('casts_movies');
+        Schema::dropIfExists('directors_movies');
         Schema::dropIfExists('movies');
         Schema::dropIfExists('directors');
         Schema::dropIfExists('casts');

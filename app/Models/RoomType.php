@@ -21,4 +21,15 @@ class RoomType extends Model
     {
         return $this->hasMany(Room::class, 'roomType_id', 'id');
     }
+
+    public function schedulesByDateAndTheaterAndMovie($date, $theater, $movie)
+    {
+        return $this->rooms()->select('schedules.*')
+            ->join('schedules', 'schedules.room_id', '=', 'rooms.id')
+            ->join('theaters', 'theaters.id', '=', 'rooms.theater_id')
+            ->where('date', $date)
+            ->where('rooms.roomType_id', $this->id)
+            ->where('theaters.id', $theater)
+            ->where('schedules.movie_id', $movie)->get();
+    }
 }

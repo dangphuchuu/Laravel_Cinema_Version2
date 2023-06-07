@@ -94,6 +94,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/status', [SchedulesController::class, 'status']);
         Route::get('/early_status', [SchedulesController::class, 'early_status']);
         Route::delete('/delete/{id}', [SchedulesController::class, 'delete']);
+        Route::get('/deleteall', [SchedulesController::class, 'deleteAll']);
     });
 
     //TODO Events

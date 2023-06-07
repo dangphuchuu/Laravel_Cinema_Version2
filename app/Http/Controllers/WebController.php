@@ -9,6 +9,8 @@ use App\Models\Movie;
 use App\Models\MovieGenres;
 use App\Models\Post;
 use App\Models\Rating;
+use App\Models\RoomType;
+use App\Models\Schedule;
 use App\Models\Theater;
 use App\Models\User;
 use Carbon\Carbon;
@@ -43,16 +45,10 @@ class WebController extends Controller
         return view('web.pages.ticket');
     }
 
-    public function schedules()
+    public function schedules(Request $request)
     {
-        $movies = Movie::whereDate('releaseDate', '<=', Carbon::today()->toDateString())->get();
-        $theaters = Theater::all();
-        $film = new Movie();
-        foreach ($movies as $movie) {
-            $film = $movie;
-            break;
-        }
         $cities = [];
+        $theaters = Theater::where('status', 1)->get();
         foreach ($theaters as $theater) {
             if (array_search($theater->city, $cities)) {
                 continue;
@@ -60,11 +56,38 @@ class WebController extends Controller
                 array_push($cities, $theater->city);
             }
         }
+        if (isset($request->city)) {
+            $city_cur = $request->city;
+        } else {
+            $city_cur = $cities[0];
+        }
+        if (isset($request->date)) {
+            $date_cur = $request->date;
+        } else {
+            $date_cur = date('Y-m-d');
+        }
+        $theaters = Theater::where('status', 1)->where('city', $city_cur)->get();
+        $roomTypes = RoomType::all();
+        $movies = Movie::whereDate('releaseDate', '<=', Carbon::today()->format('Y-m-d'))
+            ->where('endDate', '>=', Carbon::today()->format('Y-m-d'))
+            ->where('status', 1)->get();
+
+        $schedules = Schedule::select('schedules.*', 'theaters.name as theater', 'roomTypes.name as roomType')
+            ->join('rooms', 'schedules.room_id', '=', 'rooms.id')
+            ->join('theaters', 'rooms.theater_id', '=', 'theaters.id')
+            ->join('roomTypes', 'rooms.roomType_id', '=', 'roomTypes.id')
+            ->orderBy('theaters.name', 'asc')
+            ->orderBy('roomTypes.name', 'asc')->get();
+//        dd($schedules);
+
+
         return view('web.pages.schedules', [
             'movies' => $movies,
-            'film' => $film,
             'theaters' => $theaters,
-            'cities' => $cities
+            'cities' => $cities,
+            'date_cur' => $date_cur,
+            'city_cur' => $city_cur,
+            'roomTypes' => $roomTypes
         ]);
     }
 

@@ -1,3 +1,9 @@
+@foreach ($room->latestScheduleByDate(date('Y-m-d', strtotime($date_cur))) as $latest)
+        <?php
+        $endTime = strtotime($latest->endTime);
+        $endTimeLatest = date('H:i', $endTime + 600);
+        ?>
+@endforeach
 <!-- Modal -->
 <div class="modal fade modal-lg" id="CreateScheduleModal_{{ $room->id }}" tabindex="-1" aria-labelledby="CreateScheduleLabel_{{ $room->id }}"
      aria-hidden="true">
@@ -21,13 +27,23 @@
                             <div class="form-group">
                                 <label> @lang('lang.time')</label>
                                 <div class="d-flex position-relative">
-                                    @foreach ($room->latestSchedule as $latest)
-                                            <?php $endTimeLatest = date('H:i', strtotime($latest->endTime) + 600) ?>
-                                    @endforeach
-                                    <input class="form-control" type="time" name="startTime"
-                                           min="@if($room->schedules->count() != 0) {{ $endTimeLatest  }} @else 08:00 @endif"
+
+                                    <input class="form-control" id="time" type="time" name="startTime"
+                                           @if($room->schedulesByDate(date('Y-m-d', strtotime($date_cur)))->count() == 0)
+                                               min="08:00"
+                                           @else
+                                               @if($endTime > strtotime('22:00'))
+                                                   min="22:00"
+                                           @else
+                                               min="{{$endTimeLatest}}"
+                                           @endif
+                                           @endif
                                            max="22:00"
-                                           value="@if($room->schedules->count() != 0) {{ $endTimeLatest  }} @else {{ date("H:i") }} @endif"
+                                           @if($room->schedulesByDate(date('Y-m-d', strtotime($date_cur)))->count() == 0)
+                                               value="08:00"
+                                           @else
+                                               value="{{$endTimeLatest}}"
+                                           @endif
                                            aria-label="time">
                                     <span class="input-group-text"></span>
                                 </div>
@@ -45,7 +61,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label> @lang('lang.audio')</label>
+                                <label>@lang('lang.audio')</label>
                                 <select id="city_create" class="form-select" name="audio" aria-label="audio">
                                     @foreach($audios as $audio)
                                         <option value="{{ $audio->id }}">{{ $audio->name }}</option>
@@ -71,7 +87,13 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> @lang('lang.close')</button>
-                    <button type="submit" class="btn btn-primary"> @lang('lang.save')</button>
+                    <button type="submit" class="btn btn-primary"
+                            @if(isset($endTime))
+                                @if($endTime> strtotime('22:00'))
+                                    disabled
+                        @endif
+                        @endif
+                    >@lang('lang.save')</button>
                 </div>
             </form>
         </div>
