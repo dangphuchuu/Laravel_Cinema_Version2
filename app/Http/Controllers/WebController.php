@@ -8,9 +8,11 @@ use App\Models\Director;
 use App\Models\Movie;
 use App\Models\MovieGenres;
 use App\Models\Post;
+use App\Models\Price;
 use App\Models\Rating;
 use App\Models\RoomType;
 use App\Models\Schedule;
+use App\Models\SeatType;
 use App\Models\Theater;
 use App\Models\User;
 use Carbon\Carbon;
@@ -69,9 +71,31 @@ class WebController extends Controller
         ]);
     }
 
-    public function ticket()
+    public function ticket($schedule_id)
     {
-        return view('web.pages.ticket');
+
+        $seatTypes = SeatType::all();
+        $schedule = Schedule::find($schedule_id);
+        if (strtotime($schedule->startTime) < strtotime('17:00')) {
+            $price = Price::where('generation', 'vtt')
+                ->where('day', 'like', '%' . date('l', strtotime($schedule->date)) . '%')
+                ->where('after', '08:00')->get()->first()->price;
+        } else {
+            $price = Price::where('generation', 'vtt')
+                ->where('day', 'like', '%' . date('l', strtotime($schedule->date)) . '%')
+                ->where('after', '17:00')->get()->first()->price;
+        }
+        $roomSurcharge = $schedule->room->roomType->surcharge;
+        $room = $schedule->room;
+        $movie = $schedule->movie;
+        return view('web.pages.ticket', [
+            'schedule' => $schedule,
+            'room' => $room,
+            'seatTypes' => $seatTypes,
+            'roomSurcharge' => $roomSurcharge,
+            'price' => $price,
+            'movie' => $movie,
+        ]);
     }
 
     public function schedulesByMovie(Request $request)

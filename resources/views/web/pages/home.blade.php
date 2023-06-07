@@ -145,9 +145,9 @@
                                                 <p class="card-text">Đạo diễn:
                                                     @foreach($movie->directors as $director)
                                                         @if ($loop->first)
-                                                            <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                            {{ $director->name }}
                                                         @else
-                                                            , <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                            , {{ $director->name }}
                                                         @endif
                                                     @endforeach
                                                 </p>
@@ -163,7 +163,7 @@
                                                         @endif
                                                     @endforeach
                                                 </p>
-                                                <p class="card-text">Rated:
+                                                <p class="card-text">@lang('lang.rated'):
                                                     <span class="badge @if($movie->rating->name == 'C18') bg-danger
                                                                         @elseif($movie->rating->name == 'C16') bg-warning
                                                                         @elseif($movie->rating->name == 'P') bg-success

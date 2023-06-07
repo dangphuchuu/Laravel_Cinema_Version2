@@ -17,7 +17,7 @@
                                         <div class="fw-bold">{{ $roomType->name }}</div>
                                         <div class="d-flex flex-wrap overflow-wrapper">
                                             @foreach($roomType->schedulesByDateAndTheaterAndMovie($date_cur, $theater->id, $movie->id) as $schedule)
-                                                <a href="/tickets/1"
+                                                <a href="/tickets/{{$schedule->id}}"
                                                    class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                                    style="border-width: 2px; border-style: solid dashed; min-width: 85px">
                                                     <p class="btn btn-warning rounded-0 m-0 border border-light border-1">

@@ -112,7 +112,7 @@
             <div class="row container mt-5">
                 <div class="col-5">
                     <div class="input-group">
-                        <span class="input-group-text bg-gray-200"> @lang('lang.show_date')</span>
+                        <span class="input-group-text bg-gray-200"> @lang('lang.city')</span>
                         <select class="form-select ps-2" name="city" aria-label="">
                             @foreach($cities as $city)
                                 <option id="{{str_replace(' ', '', $city)}}" value="{{$city}}" @if($city_cur == $city) selected @endif>

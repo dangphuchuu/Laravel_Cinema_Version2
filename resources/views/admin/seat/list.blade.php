@@ -77,8 +77,9 @@
                     </div>
                 </div>
             </div>
-            @else
-                <h1 align="center">Permissions Deny</h1>
+        </div>
+    @else
+        <h1 align="center">Permissions Deny</h1>
     @endcan
 @endsection
 {{--@section('scripts')--}}

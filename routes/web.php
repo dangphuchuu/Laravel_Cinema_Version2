@@ -20,7 +20,7 @@ require 'admin.php';
 // Web Route
 Route::get('/', [WebController::class, 'home']);
 Route::get('/movie/{id}', [WebController::class, 'movieDetail']);
-Route::get('/tickets/{movie_id}/', [WebController::class, 'ticket']);
+Route::get('/tickets/{schedule_id}/', [WebController::class, 'ticket']);
 Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
 Route::get('/schedulesbyTheater', [WebController::class, 'schedulesbyTheater']);
 Route::get('/events', [WebController::class, 'events']);

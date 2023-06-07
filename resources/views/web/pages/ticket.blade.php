@@ -40,26 +40,40 @@
             <div class="card mb-3 bg-dark text-light px-0">
                 <div class="row g-0">
                     <div class="col-lg-3 col-sm-4 col-12 d-flex justify-content-center">
-                        <img
-                            src="https://ocwckgy6c1obj.vcdn.cloud/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/l/m/lm6_2x3_layout.jpg"
-                            class="img p-3 w-100 w-sm-auto" alt="..." style="max-height: 361px; max-width: 241px">
+                        @if(strstr($movie->image,"https") == "")
+                            <img class="img p-3 w-100 w-sm-auto" alt="..." style="max-height: 361px; max-width: 241px"
+                                 src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $movie['image'] !!}.jpg">
+                        @else
+                            <img class="img p-3 w-100 w-sm-auto" alt="..." style="max-height: 361px; max-width: 241px"
+                                 src="{{ $movie->image }}">
+                        @endif
                     </div>
                     <div class="col-lg-9 col-sm-8 col-12">
                         <div class="card-body">
-                            <h5 class="card-title">LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH</h5>
+                            <h5 class="card-title">{{ $movie->name }}</h5>
                             <ul class="list-group">
                                 <li class="list-group-item bg-transparent text-light border-0">
-                                    @lang('lang.showtime_web'): <strong class="ps-2">07/05/2023 19:00</strong>
-                                </li> {{--movie running time--}}
-                                <li class="list-group-item bg-transparent text-light border-0">
-                                    @lang('lang.theater'): <strong class="ps-2">HuuMinh Cinema 1</strong>
+                                    @lang('lang.showtime_web'):
+                                    <strong class="ps-2">
+                                        {{ date('d/m/Y', strtotime($schedule->date)).' '.date('H:i', strtotime($schedule->startTime)) }}
+                                    </strong>
                                 </li>
                                 <li class="list-group-item bg-transparent text-light border-0">
-                                    @lang('lang.room'): <strong class="ps-2">Room 1</strong>
+                                    @lang('lang.theater'): <strong class="ps-2">{{ $room->theater->name }}</strong>
+                                </li>
+                                <li class="list-group-item bg-transparent text-light border-0">
+                                    @lang('lang.room'): <strong class="ps-2">{{ $room->name }}</strong>
                                 </li>
                                 <li class="list-group-item bg-transparent text-light border-0">
                                     @lang('lang.rated'): <strong class="ps-2">
-                                        <span class="badge bg-warning">C16</span>
+                                        <span class="badge @if($movie->rating->name == 'C18') bg-danger
+                                                            @elseif($movie->rating->name == 'C16') bg-warning
+                                                            @elseif($movie->rating->name == 'P') bg-success
+                                                            @elseif($movie->rating->name == 'P') bg-primary
+                                                            @else bg-info
+                                                            @endif me-1">
+                                            {{ $movie->rating->name }}
+                                        </span> - {{ $movie->rating->description }}
                                     </strong>
                                 </li>
                             </ul>
@@ -83,98 +97,120 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
         <div id="mainTicket">
-            <div id="Seats" class="mt-5 collapse show" data-bs-parent="#mainTicket">
-                <h4>@lang('lang.choose_seat')</h4>
-
-                <div class="container flex-nowrap overflow-auto">
-                    <div class="d-inline-flex mt-5 clearfix">
-                        <div class="d-flex flex-fill">
-                            <div class="flex-shrink-1 fw-bold border-0 me-2">@lang('lang.ticket_price'):</div>
-                            <div class="flex-fill d-flex border-0 me-4">
-                                <span class="fw-bold d-block text-center me-1" style="width: 20px; height: 20px; background-color: #FFF0C7;"></span>
-                                <span style="line-height: 20px">70,000 đ</span>
-                            </div>
-                            <div class="flex-fill d-flex border-0 me-4">
-                                <span class="fw-bold d-block text-center me-1" style="width: 20px; height: 20px; background-color: #FFC8CB;"></span>
-                                <span style="line-height: 20px">120,000 đ</span>
-                            </div>
-                        </div>
-                        <div class="vr mx-5"></div>
-                        <div class="d-flex flex-fill"></div>
-                    </div>
-
-                    <div class="d-flex mt-4">
-                        <div class="flex-shrink-1">
-                            <div class="m-1 border border-0 align-middle border-dark text-center"
-                                 style="width: 25px; height: 25px"></div>
-                        </div>
-                        <div class="w-100 d-flex">
-                            <div class="border-bottom border-2 border-dark text-center pb-1 mb-5 mx-auto" style="max-width: 520px"><span
-                                    class="fs-5">@lang('lang.screen')</span></div>
-                            {{--                                <div class="d-flex"><div class="bg-dark w-100 mb-5" style="height: 2px; max-width: 520px"></div></div>--}}
-                        </div>
-                    </div>
-
-                    @for($i = 65; $i < 79; $i++)
-                        @if($i != 0)
-                            <div class="d-flex">
-                                <div class="flex-shrink-1">
-                                    <div class="d-none d-sm-block m-1">
-                                            <span
-                                                class="link link-dark text-decoration-none fw-bold d-block text-center border border-1 border-dark"
-                                                style="width: 25px; height: 25px; font-size: 10px; line-height: 25px">
-                                                {{ chr($i) }}
-                                            </span>
-                                    </div>
+            <div id="Seats" class="collapse show" data-bs-parent="#mainTicket">
+                <h4 class="mt-5">@lang('lang.choose_seat')</h4>
+                <div class="container-fluid py-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card mb-4">
+                                <div class="card-header pb-0">
+                                    <h6>{{$room->name}}</h6>
                                 </div>
-                                <div class="w-100">
-                                    <div class="d-flex">
-                                        <div class="w-100"></div>
-                                        @for($j = 0; $j <= 12; $j++)
-                                            @if($j != 0)
-                                                <div class="m-1 flex-shrink-1">
-                                                    <input type="checkbox"
-                                                           class="btn-check"
-                                                           name="seat_{{$i.$j}}"
-                                                           id="seat_{{$i.$j}}"
-                                                           autocomplete="off"
-                                                           style="width: 25px; height: 25px">
-                                                    <label class="btn rounded-0 text-center p-0"
-                                                           for="seat_{{$i.$j}}"
-                                                           style="background-color: #FFF0C7; font-size: 10px; width: 25px; height: 25px; line-height: 25px">
-                                                        {{ chr($i).$j }}
-                                                    </label>
+                                <div class="card-body px-0 pt-0 pb-2">
+                                    <div class="d-flex container my-3 justify-content-center">
+                                        <ul class="list-group list-group-horizontal">
+                                            <li class="list-group-item border-0">
+                                                <strong>@lang('lang.ticket_price'):</strong>
+                                            </li>
+                                            @foreach($seatTypes as $seatType)
+                                                <li class="list-group-item border-0">
+                                                    <div class="d-flex">
+                                                        <div class="d-inline-block me-2"
+                                                             style="width: 24px; height: 24px; background-color: {{ $seatType->color }}">
+
+                                                        </div>
+                                                        {{ $seatType->surcharge+$price+$room->roomType->surcharge }} đ
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                        <div class="vr"></div>
+                                        <ul class="list-group list-group-horizontal">
+                                            <li class="list-group-item border-0">
+                                                <div class="d-flex">
+                                                    <div class="d-inline-block me-2"
+                                                         style="width: 24px; height: 24px; background-color: #2e292e">
+                                                    </div>
+                                                    Ghế đang chọn
                                                 </div>
-                                            @endif
-                                        @endfor
-                                        <div class="w-100"></div>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                <div class="d-flex">
+                                                    <div class="d-inline-block me-2"
+                                                         style="width: 24px; height: 24px; background-color: #c3c3c3">
+                                                    </div>
+                                                    Ghế đã bán
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                <div class="d-flex">
+                                                    <div class="d-inline-block me-2 text-center text-dark"
+                                                         style="width: 24px; height: 24px; background-color: #cccccc">
+                                                        X
+                                                    </div>
+                                                    Ghế bảo trì
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="d-block overflow-x-auto text-center">
+                                        <div class="w-100 mt-2 my-auto mb-4 text-center justify-content-center">
+                                            @lang('lang.screen')
+                                            <div class="row bg-dark w-100 mx-auto" style="height: 2px; max-width: 540px"></div>
+
+                                            <div class="row d-block m-2" style="margin: 2px">
+                                                <div class="d-inline-block align-middle my-0 mx-1 py-1 px-0 disabled"
+                                                     style="width: 30px; height: 30px; line-height: 22px; font-size: 10px">
+
+                                                </div>
+                                            </div>
+                                            @foreach($room->rows as $row)
+                                                <div class="row d-block" id="Row_{{ $row->row }}" style="margin: 2px">
+                                                    @foreach($room->seats as $seat)
+                                                        @if($seat->row == $row->row)
+                                                            @for($m = 0; $m < $seat->ms; $m++)
+                                                                <div class="d-inline-block align-middle disabled seat_empty"
+                                                                     style="width: 30px; height: 30px; margin: 2px 0;"></div>
+                                                            @endfor
+                                                            <div class="d-inline-block align-middle py-1 px-0 seat_enable"
+                                                                 id="Seat_{{ $seat->row.$seat->col}}"
+                                                                 style="
+                                                         @if($seat['status'] == 1)
+                                                background-color: {{ $seat->seatType->color }};
+                                                @else
+                                                 background-color: #999;
+                                                @endif
+                                                cursor: pointer;
+                                                width: 30px;
+                                                height: 30px;
+                                                line-height: 22px;
+                                                font-size: 10px;
+                                                margin: 2px 0;
+                                             ">
+                                                                {{ $seat->row.$seat->col }}
+                                                            </div>
+                                                            @for($n = 0; $n < $seat->me; $n++)
+                                                                <div class="d-inline-block align-middle disabled seat_empty"
+                                                                     style="width: 30px; height: 30px; margin: 2px 0;"></div>
+                                                            @endfor
+                                                            @include('admin.seat.configSeat')
+                                                        @endif
+                                                    @endforeach
+                                                    @for($m = 0; $m < $row->mb; $m++)
+                                                        <div class="row d-block" style="margin: 2px">
+                                                            <div class="d-inline-block align-middle disabled seat_empty"
+                                                                 style="width: 30px; height: 30px; margin: 2px 0;"></div>
+                                                        </div>
+                                                    @endfor
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endif
-                    @endfor
-                    <div class="d-flex mt-5">
-                        <div class="flex-shrink-1">
-                            <div class="d-none d-sm-block m-1">
-                                    <span class="fw-bold d-block"
-                                          style="width: 25px; height: 25px; font-size: 10px; line-height: 25px"></span>
-                            </div>
-                        </div>
-                        <div class="w-100">
-                            <div class="d-flex justify-content-center">
-                                @for($j = 0; $j <= 12; $j++)
-                                    @if($j != 0)
-                                        <div class="m-1">
-                                            <div class="d-none d-sm-block border border-1 border-dark text-center"
-                                                 style="width: 25px; height: 25px">{{ $j }}
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endfor
+                                <div class="card-footer">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -290,4 +326,11 @@
             </div>
         </div>
     </section>
+@endsection
+@section('js')
+    <script>
+        seatChoiced = (row, col) => {
+            
+        }
+    </script>
 @endsection

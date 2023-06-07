@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id()->autoIncrement();
             $table->integer('price')->default(0);
             $table->string('day');
-            $table->time('after')->nullable(true);
+            $table->time('after')->default('08:00');
             $table->string('generation');
             $table->timestamps();
         });

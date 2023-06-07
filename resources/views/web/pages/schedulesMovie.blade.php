@@ -2,7 +2,12 @@
 @section('schedules')
     active
 @endsection
-
+@section('css')
+    .movie_img:hover {
+    width: 300px;
+    height: 400px;
+    }
+@endsection
 @section('content')
     <section class="container-lg clearfix">
         <!-- Main content -->
@@ -27,18 +32,18 @@
 
             <div id="lichtheophim" class="collapse show" data-bs-parent="#schedules">
                 {{-- Carousel Movies --}}
-                <div class="d-flex container flex-row flex-nowrap overflow-auto mb-4 carousel_movie">
+                <div class="d-flex container flex-row flex-nowrap overflow-x-auto mb-4 carousel_movie">
                     @foreach($movies as $movie)
                             <?php $film[$movie->id] = $movie ?>
                         <button data-bs-toggle="collapse"
                                 data-bs-target=".multi-collapse_Movie_{{ $movie->id }}"
                                 aria-controls="#movieChoice_{{$movie->id}} #movieSchedules_{{$movie->id}}"
-                                class="btn btn-block border-0 p-2">
+                                class="btn btn-block border-0 p-2 movie_btn">
                             @if(strstr($movie->image,"https") === "")
-                                <img class="rounded d-block" style="width: 200px; height: 300px" alt="..."
-                                     src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg">
+                                <img class="rounded d-block movie_img icon-link-hover" style="width: 200px; height: 300px" alt="..."
+                                     src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $movie->image }}.jpg">
                             @else
-                                <img class="rounded d-block" style="width: 200px; height: 300px" alt="..." src="{{ $movie->image }}">
+                                <img class="rounded d-block movie_img" style="width: 200px; height: 300px" alt="..." src="{{ $movie->image }}">
                             @endif
                         </button>
                     @endforeach
@@ -75,24 +80,31 @@
                                     <p class="card-text">Đạo diễn:
                                         @foreach($movie->directors as $director)
                                             @if ($loop->first)
-                                                <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                {{ $director->name }}
                                             @else
-                                                , <a class="link link-dark text-decoration-none" href="#">{{ $director->name }}</a>
+                                                , {{ $director->name }}
                                             @endif
                                         @endforeach
                                     </p>
                                     <p class="card-text">Diễn viên:
                                         @foreach($movie->casts as $cast)
                                             @if ($loop->first)
-                                                <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
+                                                {{ $cast->name }}
                                             @else
-                                                , <a class="link link-dark text-decoration-none" href="#">{{ $cast->name }}</a>
+                                                , {{ $cast->name }}
                                             @endif
                                         @endforeach
                                     </p>
-                                    <p class="card-text">Rated:
-                                        <b class="text-danger">{{ $movie->rating->name }}</b>
-                                        - {{ $movie->rating->description }}
+                                    <p class="card-text">@lang('lang.rated'):
+                                        <span class="badge @if($movie->rating->name == 'C18') bg-danger
+                                                            @elseif($movie->rating->name == 'C16') bg-warning
+                                                            @elseif($movie->rating->name == 'P') bg-success
+                                                            @elseif($movie->rating->name == 'P') bg-primary
+                                                            @else bg-info
+                                                            @endif me-1"
+                                        >
+                                            {{ $movie->rating->name }}
+                                        </span> - {{ $movie->rating->description }}
                                     </p>
                                 </div>
                             </div>

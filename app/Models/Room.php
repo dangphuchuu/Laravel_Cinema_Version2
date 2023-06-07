@@ -16,6 +16,11 @@ class Room extends Model
         'status'
     ];
 
+    public function theater()
+    {
+        return $this->belongsTo(Theater::class, 'theater_id', 'id');
+    }
+
     public function roomType()
     {
         return $this->belongsTo(RoomType::class, 'roomType_id', 'id');
