@@ -79,20 +79,23 @@
                             </ul>
                         </div>
                         <div class="card-footer" style="background: #2e292e;">
-                            <ul class="list-group">
-                                <li class="list-group-item bg-transparent d-flex text-light justify-content-between  border-0">
-                                    <span><i class="fa-solid fa-popcorn"></i>&numsp;Combo:</span>
-                                    <b>0 đ</b>
-                                </li>
-                                <li class="list-group-item bg-transparent d-flex text-light justify-content-between  border-0">
-                                    <span><i class="fa-solid fa-seat-airline text-uppercase"></i>&numsp;@lang('lang.seat'):</span>
-                                    <b>G9</b>
-                                </li>
-                                <li class="list-group-item bg-transparent d-flex text-light justify-content-between border-0">
-                                    <span><i class="fa-solid fa-equals"></i>&numsp;@lang('lang.total_price'):</span>
-                                    <b>0 đ</b>
-                                </li>
-                            </ul>
+                            <div class="d-flex flex-column">
+                                <div class="d-flex text-light p-2">
+                                    <span class="flex-shrink-0"><i class="fa-solid fa-popcorn"></i>&numsp;Combo:</span>
+                                    <div class="flex-grow-1 text-end">0 đ</div>
+                                </div>
+                                <div class="d-flex text-light p-2">
+                                    <span class="flex-shrink-0">
+                                        <i class="fa-solid fa-seat-airline text-uppercase"></i>&numsp;@lang('lang.seat'):
+                                    </span>
+                                    <div id="ticket_seats" class="flex-grow-1 justify-content-end d-flex">
+                                    </div>
+                                </div>
+                                <div class="d-flex text-light p-2">
+                                    <span class="flex-shrink-0"><i class="fa-solid fa-equals"></i>&numsp;@lang('lang.total_price'):</span>
+                                    <div class="flex-grow-1 text-end">0 đ</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -133,8 +136,9 @@
                                         <ul class="list-group list-group-horizontal">
                                             <li class="list-group-item border-0">
                                                 <div class="d-flex">
-                                                    <div class="d-inline-block me-2"
-                                                         style="width: 24px; height: 24px; background-color: #2e292e">
+                                                    <div class="d-inline-block me-2 text-center"
+                                                         style="width: 24px; height: 24px; background-color: #dc3545">
+                                                        <i class="fa-solid text-light fa-check"></i>
                                                     </div>
                                                     Ghế đang chọn
                                                 </div>
@@ -182,8 +186,8 @@
                                                             @if($seat->status == 1)
                                                                 <div class="d-inline-block align-middle py-1 px-0 seat_enable"
                                                                      id="Seat_{{ $seat->row.$seat->col}}"
-                                                                     style="background-color: {{ $seat->seatType->color }}; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px; margin: 2px 0;
-                                                             "
+                                                                     choiced="0"
+                                                                     style="background-color: {{ $seat->seatType->color }}; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px; margin: 2px 0;"
                                                                      onclick="seatChoiced('{{$seat->row}}', {{$seat->col}})">
                                                                     {{ $seat->row.$seat->col }}
                                                                 </div>
@@ -333,50 +337,138 @@
     <script>
         $(document).ready(function () {
             $i = 1;
-
+            $arr = [];
+            $ticket_seats = {};
+            $ticket_id = '';
+            var $countdown;
             seatChoiced = (row, col) => {
-                if ($i > 8) {
-                    $('.seat_enable').addClass('disabled');
-                    alert('chọn tối đa 8 ghế');
-                    return;
+                var choiced = $('#Seat_' + row + col).attr('choiced');
+                if (choiced == 1) {
+                    $i--;
+                    $('#Seat_' + row + col).replaceWith($arr[row + col]);
+                    $(`#ticketSeat_${row + col}`).remove();
+                    delete $ticket_seats[row + col];
+                } else {
+                    if ($i > 8) {
+                        $('.seat_enable').addClass('disabled');
+                        alert('chọn tối đa 8 ghế');
+                        return;
+                    }
+                    $arr[row + col] = $('#Seat_' + row + col).clone();
+                    $('#Seat_' + row + col).replaceWith(`<div class="d-inline-block align-middle py-1 px-0 seat_enable"
+                        id="Seat_${row + col}" choiced="1" onclick="seatChoiced('${row}', ${col})"
+                        style="background-color: #dc3545; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px;
+                        margin: 2px 0;"><i class="fa-solid text-light fa-check"></i>
+                        </div>`)
+                    $('#ticket_seats').append(`<p id="ticketSeat_${row + col}">${row + col}, </p>`);
+                    $ticket_seats[row + col] = [row, col];
+                    $i++;
                 }
-                $('#Seat_' + row + col).replaceWith(`<div class="d-inline-block align-middle py-1 px-0 seat_enable"
-            id="Seat_${row + col}"
-            style="background-color: #dc3545; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px;
-            margin: 2px 0;"><i class="fa-solid text-light fa-check"></i>
-            </div>`)
-                $i++;
+
             }
 
-        })
-    </script>
-    <script>
-        function startTimer(duration, display) {
-            var timer = duration, minutes, seconds;
-            setInterval(function () {
-                minutes = parseInt(timer / 60, 10);
-                seconds = parseInt(timer % 60, 10);
+            function startTimer(duration, display,) {
+                var timer = duration, minutes, seconds;
+                $countdown = setInterval(function () {
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
 
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                display.textContent = minutes + ":" + seconds;
-                timer--;
-                if (timer == 0) {
-                    alert('đã quá thời hạn thanh toán');
-                    window.location.replace('/');
-                }
-            }, 1000);
-        }
+                    display.textContent = minutes + ":" + seconds;
+                    timer--;
+                    if (timer === -2) {
+                        alert('đã quá thời hạn thanh toán');
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: "/tickets/delete",
+                            type: 'DELETE',
+                            dataType: 'json',
+                            data: {
+                                'ticket_id': $ticket_id,
+                            },
+                            success: function (data) {
+                            }
+                        });
+                        window.location.replace('/');
+                    }
+                }, 1000);
+            }
 
-        seatChoicedNext = () => {
-            $('#ticket_info').append(`<div id="timer"
+            comboBack = () => {
+                clearInterval($countdown);
+                $('#ticket_info').remove();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "/tickets/delete",
+                    type: 'DELETE',
+                    dataType: 'json',
+                    data: {
+                        'ticket_id': $ticket_id,
+                    },
+                    success: function (data) {
+                    }
+                });
+            }
+
+            seatChoicedNext = () => {
+                $('#ticket_info').append(`<div id="timer"
                      class="d-block position-absolute end-0 top-0 bg-light text-dark text-center fs-2 m-3"
                      style="width: 200px; height: 100px; line-height:100px">
                 </div>`)
-            var fiveMinutes = 3,
-                display = document.querySelector('#timer');
-            startTimer(fiveMinutes, display);
-        };
+                var fiveMinutes = 60 * 5,
+                    display = document.querySelector('#timer');
+                startTimer(fiveMinutes, display);
+
+                // $arr = [];
+                // $ticket_seats.forEach($seat => {
+                //     $arr.push($seat);
+                // })
+                // console.log($ticket_seats);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "/tickets/create",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'ticketSeats': $ticket_seats,
+                        'schedule': {{$schedule->id}},
+                    },
+                    success: function (data) {
+                        $ticket_id = data.ticket_id;
+                    }
+                });
+            };
+
+            @foreach($room->seats as $seat)
+            @if($seat->status == 1)
+            @foreach($tickets as $ticket)
+            @foreach($ticket->ticketSeats as $ticketSeat)
+            @if($seat->row == $ticketSeat->row && $seat->col == $ticketSeat->col)
+            $('#Seat_{{$seat->row.$seat->col}}').replaceWith(`<div class="d-inline-block align-middle py-1 px-0 text-dark disabled"
+                                     style="background-color: #c3c3c3; width: 30px; height: 30px; line-height: 22px; font-size: 10px; margin: 2px 0;">
+                                {{ $seat->row.$seat->col }}
+            </div>`)
+            @endif
+            @endforeach
+            @endforeach
+            @endif
+            @endforeach
+        })
+
+
     </script>
 @endsection

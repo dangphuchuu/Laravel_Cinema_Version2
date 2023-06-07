@@ -3,10 +3,6 @@
     active
 @endsection
 @section('css')
-    .movie_img:hover {
-    width: 300px;
-    height: 400px;
-    }
 @endsection
 @section('content')
     <section class="container-lg clearfix">

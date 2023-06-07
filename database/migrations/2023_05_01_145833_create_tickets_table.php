@@ -16,13 +16,19 @@ return new class extends Migration {
             $table->id()->autoIncrement();
             $table->bigInteger('schedule_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
+            $table->text('qrcode')->nullable(true);
+            $table->boolean('holdState')->default(false);
+            $table->boolean('status')->default(false);
             $table->foreign('schedule_id')->references('id')->on('schedules');
             $table->foreign('user_id')->references("id")->on('users');
-            $table->string('seatRow');
-            $table->integer('seatCol');
-            $table->text('qrcode');
-            $table->boolean('holdState')->default(0);
-            $table->boolean('status')->default(false);
+            $table->timestamps();
+        });
+
+        Schema::create('ticketSeats', function (Blueprint $table) {
+            $table->string('row');
+            $table->integer('col');
+            $table->bigInteger('ticket_id')->unsigned();
+            $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -35,5 +41,6 @@ return new class extends Migration {
     public function down()
     {
         Schema::dropIfExists('tickets');
+        Schema::dropIfExists('ticketSeats');
     }
 };

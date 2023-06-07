@@ -14,6 +14,8 @@ use App\Models\RoomType;
 use App\Models\Schedule;
 use App\Models\SeatType;
 use App\Models\Theater;
+use App\Models\Ticket;
+use App\Models\TicketSeat;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -74,6 +76,7 @@ class WebController extends Controller
     public function ticket($schedule_id)
     {
         $seatTypes = SeatType::all();
+        $tickets = Ticket::where('schedule_id', $schedule_id)->get();
         $schedule = Schedule::find($schedule_id);
         if (strtotime($schedule->startTime) < strtotime('17:00')) {
             $price = Price::where('generation', 'vtt')
@@ -94,7 +97,34 @@ class WebController extends Controller
             'roomSurcharge' => $roomSurcharge,
             'price' => $price,
             'movie' => $movie,
+            'tickets' => $tickets,
         ]);
+    }
+
+    public function ticketPostCreate(Request $request)
+    {
+        $ticket = new Ticket([
+            'schedule_id' => $request->schedule,
+            'user_id' => 2,
+            'holdState' => true,
+            'status' => true
+        ]);
+        $ticket->save();
+        foreach ($request->ticketSeats as $seat) {
+            $ticketSeat = new TicketSeat([
+                'row' => $seat[0],
+                'col' => $seat[1],
+                'ticket_id' => $ticket->id,
+            ]);
+            $ticketSeat->save();
+        }
+        return response()->json(['ticket_id' => $ticket->id]);
+    }
+
+    public function ticketDelete(Request $request)
+    {
+        Ticket::destroy($request->ticket_id);
+        return response('', 200);
     }
 
     public function schedulesByMovie(Request $request)

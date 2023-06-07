@@ -21,6 +21,8 @@ require 'admin.php';
 Route::get('/', [WebController::class, 'home']);
 Route::get('/movie/{id}', [WebController::class, 'movieDetail']);
 Route::get('/tickets/{schedule_id}/', [WebController::class, 'ticket']);
+Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
+Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);
 Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
 Route::get('/schedulesbyTheater', [WebController::class, 'schedulesbyTheater']);
 Route::get('/events', [WebController::class, 'events']);
