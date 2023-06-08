@@ -127,7 +127,8 @@
                                 <div class="col-5">
                                     <div class="input-group">
                                         <span class="input-group-text bg-gray-200"> @lang('lang.show_date')</span>
-                                        <input class="form-control ps-2" type="date" name="date" value="{{ $date_cur }}" aria-label="">
+                                        <input class="form-control ps-2" type="date" min="{{ date('Y-m-d') }}" name="date" value="{{ $date_cur }}"
+                                               aria-label="">
                                     </div>
                                 </div>
                                 <div class="col-2">
