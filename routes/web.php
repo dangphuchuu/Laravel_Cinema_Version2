@@ -22,6 +22,10 @@ require 'admin.php';
 Route::get('/', [WebController::class, 'home']);
 Route::get('/movie/{id}', [WebController::class, 'movieDetail']);
 Route::get('/tickets/{schedule_id}/', [WebController::class, 'ticket']);
+Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
+Route::get('/movies/filter', [WebController::class, 'movieSearch']);
+Route::get('/events', [WebController::class, 'events']);
+Route::get('/movies', [WebController::class, 'movies']);
 Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
 Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);
 Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
@@ -36,9 +40,8 @@ Route::get('/search', [WebController::class, 'search']);
 
 Route::prefix('/')->middleware('user')->group(function () {
     Route::get('/tickets/{schedule_id}/', [WebController::class, 'ticket']);
-    Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
     Route::get('/schedulesbyTheater', [WebController::class, 'schedulesbyTheater']);
-    Route::get('/events', [WebController::class, 'events']);
-    Route::get('/movies', [WebController::class, 'movies']);
-    Route::get('/movies/filter', [WebController::class, 'movieSearch']);
+
+
+
 });

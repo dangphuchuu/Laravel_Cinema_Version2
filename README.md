@@ -22,13 +22,13 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 ## Install Laravel
-
 -   Step 1 : git clone https://github.com/dangphuchuu/Laravel_Cinema
 -   Step 2 : composer install
 -   Step 3 : php artisan key:generate
 -   Step 4 : create database with name cinema and setting in .env
 -   Step 5 : composer require spatie/laravel-permission
 -   Step 6 : composer require cloudinary-labs/cloudinary-laravel
+-   Step 6.1: 
 -   Step 7 : php artisan vendor:publish --provider="CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider" --tag="cloudinary-laravel-config"
 -   Step 8 : php artisan migrate:fresh --seed
 -   Step 9 : composer  dumpautoload

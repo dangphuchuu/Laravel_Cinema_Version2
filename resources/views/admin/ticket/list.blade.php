@@ -48,11 +48,11 @@
                                         <td class="align-middle text-center">
                                             <span class="text-secondary font-weight-bold">23/04/18</span>
                                         </td>
+
                                         <td class="align-middle text-center">
-                                            <img style="width: 100px"
-                                                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
-                                                 alt="user1">
+
                                         </td>
+
                                         <td class="align-middle text-center text-sm">
                                             <span class="badge badge-sm bg-gradient-success">Online</span>
                                         </td>

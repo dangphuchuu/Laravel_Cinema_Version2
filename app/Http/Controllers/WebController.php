@@ -116,9 +116,9 @@ class WebController extends Controller
                 ->where('tickets.schedule_id', $request->schedule)
                 ->get();
 
-            foreach ($seats as $seatdb) {
-                if ($seat->row == $)
-            }
+//            foreach ($seats as $seatdb) {
+//                if ($seat->row == $)
+//            }
 
             $ticketSeat = new TicketSeat([
                 'row' => $seat[0],
