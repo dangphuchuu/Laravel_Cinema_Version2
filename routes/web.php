@@ -41,8 +41,4 @@ Route::get('/search', [WebController::class, 'search']);
 
 Route::prefix('/')->middleware('user')->group(function () {
     Route::get('/tickets/{schedule_id}/', [WebController::class, 'ticket']);
-    Route::get('/schedulesbyTheater', [WebController::class, 'schedulesbyTheater']);
-
-
-
 });

@@ -103,14 +103,6 @@ class WebController extends Controller
 
     public function ticketPostCreate(Request $request)
     {
-        $ticket = new Ticket([
-            'schedule_id' => $request->schedule,
-            'user_id' => 2,
-            'holdState' => true,
-            'status' => true
-        ]);
-        $ticket->save();
-
         foreach ($request->ticketSeats as $seat) {
             $seatdbs = TicketSeat::select('ticketseats.row', 'ticketseats.col')
                 ->join('tickets', 'tickets.id', '=', 'ticketseats.ticket_id')
@@ -122,6 +114,13 @@ class WebController extends Controller
                 }
             }
         }
+        $ticket = new Ticket([
+            'schedule_id' => $request->schedule,
+            'user_id' => Auth::user()->id,
+            'holdState' => true,
+            'status' => true
+        ]);
+        $ticket->save();
         foreach ($request->ticketSeats as $seat) {
             $ticketSeat = new TicketSeat([
                 'row' => $seat[0],

@@ -460,7 +460,7 @@
                     },
                     statusCode: {
                         401: function () {
-                            alert("Seat was booked!!!");
+                            alert("Ghế đã đc đặt!!!");
                             window.location.reload();
                         }
                     }
@@ -506,7 +506,7 @@
                     statusCode: {
                         200: function () {
                             $holdState = true;
-                            alert("Booking ticket successfully!!!");
+                            alert("Đặt vé thành công!!!");
                             window.location.replace('/');
                         }
                     }
