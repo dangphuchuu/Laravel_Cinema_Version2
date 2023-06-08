@@ -328,8 +328,8 @@
 
 
                 <div class="d-flex justify-content-center mt-4">
-                    <button class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
-                        @lang('lang.submit') <i class="fa-solid fa-angle-right"></i>
+                    <button onclick="payment()" class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
+                        Đặt vé <i class="fa-solid fa-angle-right"></i>
                     </button>
                 </div>
             </div>
@@ -342,11 +342,12 @@
             $i = 1;
             let $arrSeatHtml = [];
             let $ticket_seats = {};
-            let $ticket_id = '';
+            let $ticket_id = -1;
             let $countdown = {
                 interval: null
             };
             let $sumSeats = 0;
+            let $holdState = false;
             seatChoiced = (row, col, price) => {
                 var choiced = $('#Seat_' + row + col).attr('choiced');
                 if (choiced == 1) {
@@ -441,11 +442,6 @@
                     display = document.querySelector('#timer');
                 startTimer(fiveMinutes, display, $countdown);
 
-                // $arr = [];
-                // $ticket_seats.forEach($seat => {
-                //     $arr.push($seat);
-                // })
-                // console.log($ticket_seats);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -461,27 +457,61 @@
                     },
                     success: function (data) {
                         $ticket_id = data.ticket_id;
+                    },
+                    statusCode: {
+                        401: function () {
+                            alert("Seat was booked!!!");
+                            window.location.reload();
+                        }
                     }
+
                 });
             };
 
             window.addEventListener('beforeunload', () => {
+                if (!$holdState) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/tickets/delete",
+                        type: 'DELETE',
+                        dataType: 'json',
+                        data: {
+                            'ticket_id': $ticket_id,
+                        },
+                        success: function (data) {
+                        }
+                    });
+                }
+            });
+
+            payment = () => {
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
                 $.ajax({
-                    url: "/tickets/delete",
-                    type: 'DELETE',
+                    url: "/tickets/payment",
+                    type: 'POST',
                     dataType: 'json',
                     data: {
                         'ticket_id': $ticket_id,
                     },
                     success: function (data) {
+                    },
+                    statusCode: {
+                        200: function () {
+                            $holdState = true;
+                            alert("Booking ticket successfully!!!");
+                            window.location.replace('/');
+                        }
                     }
                 });
-            });
+            }
 
             @foreach($room->seats as $seat)
             @if($seat->status == 1)
