@@ -28,7 +28,8 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 -   Step 4 : create database with name cinema and setting in .env
 -   Step 5 : composer require spatie/laravel-permission
 -   Step 6 : composer require cloudinary-labs/cloudinary-laravel
--   Step 6.1: 
+-   Step 6.1: composer require milon/barcode
+-   Step 6.2: composer update
 -   Step 7 : php artisan vendor:publish --provider="CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider" --tag="cloudinary-laravel-config"
 -   Step 8 : php artisan migrate:fresh --seed
 -   Step 9 : composer  dumpautoload

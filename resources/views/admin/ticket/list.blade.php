@@ -50,7 +50,7 @@
                                         </td>
 
                                         <td class="align-middle text-center">
-
+                                            <div>{!! DNS1D::getBarcodeHTML($phone, 'CODABAR') !!}</div>
                                         </td>
 
                                         <td class="align-middle text-center text-sm">
