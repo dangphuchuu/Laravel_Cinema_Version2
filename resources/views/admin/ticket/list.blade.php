@@ -20,7 +20,7 @@
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.rated')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.time')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.date')</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.qrcode')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.barcode')</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.status')</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                     </tr>
@@ -50,7 +50,7 @@
                                         </td>
 
                                         <td class="align-middle text-center">
-                                            <div>{!! DNS1D::getBarcodeHTML($phone, 'CODABAR') !!}</div>
+                                          {!! DNS1D::getBarcodeHTML($phone, 'C128') !!}
                                         </td>
 
                                         <td class="align-middle text-center text-sm">

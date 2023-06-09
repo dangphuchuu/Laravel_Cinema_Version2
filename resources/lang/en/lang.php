@@ -119,6 +119,7 @@ return [
     'sunday'=>'Sunday',
     'before'=>'Before',
     'after'=>'After',
+    'barcode'=>'Barcode',
     //Web
     'movie_schedule' => 'Movie Schedule',
     'news_events' => 'News/Events',

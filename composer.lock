@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "096574a930a0276fecfa9d0140bb7b17",
+    "content-hash": "2042d267c14775b1596adb20abab82a2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2196,20 +2196,20 @@
         },
         {
             "name": "milon/barcode",
-            "version": "9.0.1",
+            "version": "10.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/milon/barcode.git",
-                "reference": "a35005eb88d08807058dec0c4cba150ec6b432b8"
+                "reference": "42bb0a40a06de6e11ee4743a31aa8f7500b3a65a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/milon/barcode/zipball/a35005eb88d08807058dec0c4cba150ec6b432b8",
-                "reference": "a35005eb88d08807058dec0c4cba150ec6b432b8",
+                "url": "https://api.github.com/repos/milon/barcode/zipball/42bb0a40a06de6e11ee4743a31aa8f7500b3a65a",
+                "reference": "42bb0a40a06de6e11ee4743a31aa8f7500b3a65a",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^7.0|^8.0|^9.0",
+                "illuminate/support": "^7.0|^8.0|^9.0|^10.0",
                 "php": "^7.3 | ^8.0"
             },
             "type": "library",
@@ -2254,7 +2254,7 @@
             ],
             "support": {
                 "issues": "https://github.com/milon/barcode/issues",
-                "source": "https://github.com/milon/barcode/tree/9.0.1"
+                "source": "https://github.com/milon/barcode/tree/10.0.0"
             },
             "funding": [
                 {
@@ -2266,7 +2266,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-06-28T11:18:28+00:00"
+            "time": "2023-01-31T09:47:59+00:00"
         },
         {
             "name": "monolog/monolog",

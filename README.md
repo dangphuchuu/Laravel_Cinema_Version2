@@ -39,6 +39,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 -   https://github.com/cloudinary-devs/cloudinary-laravel#installation
 -   create database and model: "php artisan make:model Example -m"
 -   create Controller: "php artisan make:controller ExampleController"
+-   rollback database and seed: "php artisan migrate:fresh --seed"
 -   rollback database: "php artisan migrate:rollback"
 -   run database: "php artisan migrate"
 -   run seed: "php artisan db:seed"
