@@ -173,7 +173,6 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/', [ComboController::class, 'combo']);
         Route::post('/create', [ComboController::class, 'postCreate']);
         Route::post('/edit/{id}', [ComboController::class, 'postEdit']);
-        Route::post('/detail/{id}', [ComboController::class, 'detail']);
         Route::get('/status', [ComboController::class, 'status']);
         Route::delete('/delete/{id}', [ComboController::class, 'delete']);
     });

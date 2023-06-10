@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Combo extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'image',
@@ -15,4 +16,8 @@ class Combo extends Model
         'status'
     ];
 
+    public function foods()
+    {
+        return $this->belongsToMany(Food::class, 'combo_details', 'combo_id', 'food_id')->withPivot('quantity');
+    }
 }

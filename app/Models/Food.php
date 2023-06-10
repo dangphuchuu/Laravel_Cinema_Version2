@@ -16,4 +16,9 @@ class Food extends Model
         'price',
         'status'
     ];
+
+    public function combos()
+    {
+        return $this->belongsToMany(Combo::class, 'combo_details', 'food_id', 'combo_id');
+    }
 }
