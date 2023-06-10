@@ -120,6 +120,7 @@ return [
     'before'=>'Trước',
     'after'=>'Sau',
     'barcode'=>'Mã vạch',
+    'book_ticket'=>'Đặt vé',
     //Web
     'movie_schedule' => 'Lịch Chiếu Phim',
     'news_events' => 'Tin Tức/Sự Kiện',

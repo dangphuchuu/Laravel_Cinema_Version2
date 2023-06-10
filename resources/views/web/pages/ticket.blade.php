@@ -317,9 +317,9 @@
                                 <input class="form-check-input" type="radio" name="atm" id="atm">
                                 <label class="form-check-label" for="atm">
                                         <span class="badge">
-                                            <img src="https://www.cgv.vn/media/catalog/product/placeholder/default/atm_icon.png"
+                                            <img src="https://play-lh.googleusercontent.com/o-_z132f10zwrco4NXk4sFqmGylqXBjfcwR8-wK0lO1Wk4gzRXi4IZJdhwVlEAtpyQ"
                                                  style="max-height: 25px" alt="...">
-                                        </span> @lang('lang.bank_card')
+                                        </span> VNPAY
                                 </label>
                             </div>
                         </div>
@@ -328,9 +328,12 @@
 
 
                 <div class="d-flex justify-content-center mt-4">
-                    <button onclick="payment()" class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
-                        Đặt vé <i class="fa-solid fa-angle-right"></i>
+                    <form action="/vnpay" method="POST">
+                        @csrf
+                    <button name="redirect" type="submit" class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
+                        @lang('lang.book_ticket') <i class="fa-solid fa-angle-right"></i>
                     </button>
+                    </form>
                 </div>
             </div>
         </div>
