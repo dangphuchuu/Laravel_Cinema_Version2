@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,4 +42,5 @@ Route::get('/search', [WebController::class, 'search']);
 
 Route::prefix('/')->middleware('user')->group(function () {
     Route::get('/tickets/{schedule_id}/', [WebController::class, 'ticket']);
+    Route::post('/vnpay',[PaymentController::class,'vnpay']);
 });

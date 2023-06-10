@@ -317,9 +317,10 @@
                                         <input class="form-check-input" type="radio" name="atm" id="atm">
                                         <label class="form-check-label" for="atm">
                                         <span class="badge">
-                                            <img src="https://www.cgv.vn/media/catalog/product/placeholder/default/atm_icon.png"
-                                                 style="max-height: 25px" alt="...">
-                                        </span> @lang('lang.bank_card')
+                                            <img
+                                                src="https://play-lh.googleusercontent.com/o-_z132f10zwrco4NXk4sFqmGylqXBjfcwR8-wK0lO1Wk4gzRXi4IZJdhwVlEAtpyQ"
+                                                style="max-height: 25px" alt="...">
+                                        </span> VNPAY
                                         </label>
                                     </div>
                                 </div>

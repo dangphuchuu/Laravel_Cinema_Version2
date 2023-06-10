@@ -120,6 +120,7 @@ return [
     'before'=>'Before',
     'after'=>'After',
     'barcode'=>'Barcode',
+    'book_ticket'=>'Book',
     //Web
     'movie_schedule' => 'Movie Schedule',
     'news_events' => 'News/Events',
