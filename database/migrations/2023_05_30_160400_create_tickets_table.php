@@ -32,6 +32,16 @@ return new class extends Migration {
             $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('ticketCombos', function (Blueprint $table) {
+            $table->string('comboName');
+            $table->integer('comboPrice')->default(0);
+            $table->string('comboDetails');
+            $table->integer('quantity')->default(0);
+            $table->bigInteger('ticket_id')->unsigned();
+            $table->foreign('ticket_id')->references('id')->on('tickets');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -43,5 +53,6 @@ return new class extends Migration {
     {
         Schema::dropIfExists('tickets');
         Schema::dropIfExists('ticketSeats');
+        Schema::dropIfExists('ticketCombos');
     }
 };

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Cast;
+use App\Models\Combo;
 use App\Models\Director;
 use App\Models\Movie;
 use App\Models\MovieGenres;
@@ -15,6 +16,7 @@ use App\Models\Schedule;
 use App\Models\SeatType;
 use App\Models\Theater;
 use App\Models\Ticket;
+use App\Models\TicketCombo;
 use App\Models\TicketSeat;
 use App\Models\User;
 use Carbon\Carbon;
@@ -76,6 +78,7 @@ class WebController extends Controller
     public function ticket($schedule_id)
     {
         $seatTypes = SeatType::all();
+        $combos = Combo::where('status', 1)->get();
         $tickets = Ticket::where('schedule_id', $schedule_id)->get();
         $schedule = Schedule::find($schedule_id);
         if (strtotime($schedule->startTime) < strtotime('17:00')) {
@@ -98,6 +101,7 @@ class WebController extends Controller
             'price' => $price,
             'movie' => $movie,
             'tickets' => $tickets,
+            'combos' => $combos,
         ]);
     }
 
@@ -136,7 +140,31 @@ class WebController extends Controller
     public function ticketDelete(Request $request)
     {
         Ticket::destroy($request->ticket_id);
-        return response();
+        return response('delete success', 200);
+    }
+
+    public function ticketComboCreate(Request $request)
+    {
+        $ticket = Ticket::find($request->ticket_id);
+        foreach ($request->ticketCombos as $ticketCombo) {
+            $combo = Combo::find($ticketCombo[0]);
+            $details = '';
+            foreach ($combo->foods as $food) {
+                $details .= $food->pivot->quantity . ' ' . $food->name . ' + ';
+            }
+            $details = substr($details, 0, -3);
+            $newTkCb = new TicketCombo([
+                'comboName' => $combo->name,
+                'comboPrice' => $combo->price,
+                'comboDetails' => $details,
+                'quantity' => $ticketCombo[1],
+                'ticket_id' => $ticket->id
+            ]);
+
+            $newTkCb->save();
+            unset($newTkCb);
+        }
+        return response('add combo success', 200);
     }
 
     public function ticketPayment(Request $request)

@@ -27,14 +27,6 @@
                             <div class="form-group">
                                 <label> @lang('lang.time')</label>
                                 <div class="d-flex position-relative">
-                                    <div class="input-group log-event" id="datetimepicker1" data-td-target-input="nearest"
-                                         data-td-target-toggle="nearest">
-                                        <input id="datetimepicker1Input" type="text" class="form-control" data-td-target="#datetimepicker1"/>
-                                        <span class="input-group-text" data-td-target="#datetimepicker1" data-td-toggle="datetimepicker">
-                                            <i class="fas fa-calendar"></i>
-                                     </span>
-                                    </div>
-
                                     <input class="form-control" id="time" type="time" name="startTime"
                                            @if($room->schedulesByDate(date('Y-m-d', strtotime($date_cur)))->count() == 0)
                                                min="08:00"
