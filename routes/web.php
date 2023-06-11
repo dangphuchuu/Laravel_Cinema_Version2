@@ -30,6 +30,7 @@ Route::get('/movies', [WebController::class, 'movies']);
 Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
 Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);
 Route::post('/tickets/combo/create', [WebController::class, 'ticketComboCreate']);
+Route::delete('/tickets/combo/delete', [WebController::class, 'ticketComboDelete']);
 Route::post('/tickets/payment', [WebController::class, 'ticketPayment']);
 Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
 Route::get('/schedulesbyTheater', [WebController::class, 'schedulesbyTheater']);

@@ -39,7 +39,7 @@ return new class extends Migration {
             $table->string('comboDetails');
             $table->integer('quantity')->default(0);
             $table->bigInteger('ticket_id')->unsigned();
-            $table->foreign('ticket_id')->references('id')->on('tickets');
+            $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
             $table->timestamps();
         });
     }

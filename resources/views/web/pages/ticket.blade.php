@@ -64,14 +64,13 @@
                         <div class="d-flex flex-column">
                             <div class="d-flex text-light p-2">
                                 <span class="flex-shrink-0"><i class="fa-solid fa-popcorn"></i>&numsp;Combo:</span>
-                                <div class="flex-grow-1 text-end">0 đ</div>
+                                <div id="ticket_combos" class="flex-grow-1 text-end d-flex flex-column"></div>
                             </div>
                             <div class="d-flex text-light p-2">
                                     <span class="flex-shrink-0">
                                         <i class="fa-solid fa-seat-airline text-uppercase"></i>&numsp;@lang('lang.seat'):
                                     </span>
-                                <div id="ticket_seats" class="flex-grow-1 justify-content-end d-flex">
-                                </div>
+                                <div id="ticket_seats" class="flex-grow-1 justify-content-end d-flex"></div>
                             </div>
                             <div class="d-flex text-light p-2">
                                 <span class="flex-shrink-0"><i class="fa-solid fa-equals"></i>&numsp;@lang('lang.total_price'):</span>
@@ -228,10 +227,7 @@
                         </div>
 
                         <div class="d-flex justify-content-start w-50 ms-2 mt-4 float-end">
-                            <button class="btn btn-warning text-decoration-underline text-center"
-                                    href="#Combos"
-                                    onclick="seatChoicedNext()"
-                                    aria-controls="Combos"
+                            <button class="btn btn-warning text-decoration-underline text-center btn_next"
                                     aria-expanded="true"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#Combos">
@@ -275,14 +271,15 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="input-group">
-                                                        <button class="btn minus_combo" onclick="minusCombo({{$combo->id}}, {{$combo->price}})">
+                                                        <button class="btn minus_combo"
+                                                                onclick="minusCombo({{$combo->id}}, {{$combo->price}}, '{{ $combo->name }}')">
                                                             <i class="fa-solid fa-circle-minus"></i>
                                                         </button>
                                                         <input type="number" class="form-control input_combo" name="combo[{{$combo->id}}]" value="0"
                                                                readonly
                                                                style="max-width: 80px" aria-label="">
                                                         <button class="btn plus_combo"
-                                                                onclick="plusCombo({{$combo->id}}, {{$combo->price}})">
+                                                                onclick="plusCombo({{$combo->id}}, {{$combo->price}}, '{{ $combo->name }}')">
                                                             <i class="fa-solid fa-circle-plus"></i>
                                                         </button>
                                                     </div>
@@ -296,17 +293,15 @@
                         </div>
 
                         <div class="d-flex justify-content-center mt-4">
-                            <button class="btn btn-warning mx-2 text-decoration-underline text-center"
-                                    href="#Seats"
+                            <button class="btn btn-warning mx-2 text-decoration-underline text-center btn_back"
                                     onclick="comboBack()"
-                                    aria-controls="Seats"
                                     aria-expanded="true"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#Seats"
                             ><i class="fa-solid fa-angle-left"></i> @lang('lang.previous')
                             </button>
 
-                            <button class="btn btn-warning mx-2  text-decoration-underline text-center"
+                            <button class="btn btn-warning mx-2  text-decoration-underline text-center btn_next"
                                     onclick="comboNext()"
                                     aria-controls="Payment"
                                     aria-expanded="true"
@@ -350,6 +345,13 @@
 
 
                         <div class="d-flex justify-content-center mt-4">
+                            <button class="btn btn-warning mx-2 text-decoration-underline text-center"
+                                    onclick="paymentBack()"
+                                    aria-expanded="true"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#Combos">
+                                <i class="fa-solid fa-angle-left"></i> @lang('lang.previous')
+                            </button>
                             <button onclick="payment()" class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
                                 Đặt vé <i class="fa-solid fa-angle-right"></i>
                             </button>
@@ -363,8 +365,10 @@
 @section('js')
     <script>
         $(document).ready(() => {
-            $i = 1;
+            $i = 0;
+            $iCombo = 0;
             let $arrSeatHtml = [];
+            let $arrComboHtml = [];
             let $ticket_seats = {};
             let $ticket_combos = {};
             let $ticket_id = -1;
@@ -373,37 +377,6 @@
             };
             let $sum = 0;
             let $holdState = false;
-
-            seatChoiced = (row, col, price) => {
-                var choiced = $('#Seat_' + row + col).attr('choiced');
-                if (choiced == 1) {
-                    $i--;
-                    $('#Seat_' + row + col).replaceWith($arrSeatHtml[row + col]);
-                    $(`#ticketSeat_${row + col}`).remove();
-                    $sum -= price;
-                    $('#ticketSeat_totalPrice').text($sum.toLocaleString('vi-VN'));
-                    delete $ticket_seats[row + col];
-                } else {
-                    // Gới hạn chọn ghế
-                    if ($i > 8) {
-                        $('.seat_enable').addClass('disabled');
-                        alert('chọn tối đa 8 ghế');
-                        return;
-                    }
-                    $arrSeatHtml[row + col] = $('#Seat_' + row + col).clone();
-                    $('#Seat_' + row + col).replaceWith(`<div class="d-inline-block mx-1 align-middle py-1 px-0 seat_enable"
-                        id="Seat_${row + col}" choiced="1" onclick="seatChoiced('${row}', ${col}, ${price})"
-                        style="background-color: #dc3545; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px;
-                        margin: 2px 0;"><i class="fa-solid text-light fa-check"></i>
-                        </div>`)
-                    $('#ticket_seats').append(`<p id="ticketSeat_${row + col}">${row + col}, </p>`);
-                    $ticket_seats[row + col] = [row, col, price];
-                    $sum += price;
-                    $('#ticketSeat_totalPrice').text($sum.toLocaleString('vi-VN'));
-                    $i++;
-                }
-
-            }
 
             startTimer = (duration, display, countdown) => {
                 var timer = duration, minutes, seconds;
@@ -435,6 +408,78 @@
                     }
                 }, 1000);
             }
+
+            seatChoiced = (row, col, price) => {
+                var choiced = $('#Seat_' + row + col).attr('choiced');
+                if (choiced == 1) {
+                    $i--;
+                    $('#Seat_' + row + col).replaceWith($arrSeatHtml[row + col]);
+                    $(`#ticketSeat_${row + col}`).remove();
+                    $sum -= price;
+                    $('#ticketSeat_totalPrice').text($sum.toLocaleString('vi-VN'));
+                    delete $ticket_seats[row + col];
+                } else {
+                    // Gới hạn chọn ghế
+                    if ($i >= 8) {
+                        $('.seat_enable').addClass('disabled');
+                        alert('chọn tối đa 8 ghế');
+                        return;
+                    }
+                    $arrSeatHtml[row + col] = $('#Seat_' + row + col).clone();
+                    $('#Seat_' + row + col).replaceWith(`<div class="d-inline-block mx-1 align-middle py-1 px-0 seat_enable"
+                        id="Seat_${row + col}" choiced="1" onclick="seatChoiced('${row}', ${col}, ${price})"
+                        style="background-color: #dc3545; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px;
+                        margin: 2px 0;"><i class="fa-solid text-light fa-check"></i>
+                        </div>`)
+                    $('#ticket_seats').append(`<p id="ticketSeat_${row + col}">${row + col}, </p>`);
+                    $ticket_seats[row + col] = [row, col, price];
+                    $sum += price;
+                    $('#ticketSeat_totalPrice').text($sum.toLocaleString('vi-VN'));
+                    $i++;
+                }
+
+            }
+
+            $('#Seats').on('click', '.btn_next', (e) => {
+                if ($i !== 0) {
+                    $('#timer').remove();
+                    $('#ticket_info').append(`<div class="card-footer" style="background: #2e292e;"><div id="timer"
+                     class="d-block bg-light text-dark text-center fs-2 m-3"
+                     style="width: 200px; height: 100px; line-height:100px">
+                </div></div>`)
+                    var fiveMinutes = 60 * 5,
+                        display = document.querySelector('#timer');
+                    startTimer(fiveMinutes, display, $countdown);
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/tickets/create",
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            'ticketSeats': $ticket_seats,
+                            'schedule': {{$schedule->id}},
+                        },
+                        statusCode: {
+                            200: function (data) {
+                                $ticket_id = data.ticket_id;
+                            },
+                            401: function () {
+                                alert("Ghế đã đc đặt!!!");
+                                window.location.reload();
+                            }
+                        }
+
+                    });
+                } else {
+                    window.location.reload();
+                    alert('Bạn chưa chọn ghế!!!');
+                }
+            })
 
             comboBack = () => {
                 $('#timer').remove();
@@ -475,58 +520,42 @@
                 });
             }
 
-            plusCombo = (id, price) => {
+            plusCombo = (id, price, comboName) => {
+                $iCombo++;
+                if ($iCombo > $i) {
+                    alert('Đã đạt giới hạn mua combo!!!')
+                    return;
+                }
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
                 $inputCombo.val(parseInt($inputCombo.val()) + 1);
+                if (parseInt($inputCombo.val()) === 1)
+                    $('#ticket_combos').append(`<p id="ticketCombo_${id}">${comboName} x ${parseInt($inputCombo.val())}</p>`);
+                else
+                    $(`#ticketCombo_${id}`).replaceWith(`<p id="ticketCombo_${id}">${comboName} x ${parseInt($inputCombo.val())}</p>`);
                 $sum += price;
                 $('#ticketSeat_totalPrice').text($sum.toLocaleString('vi-VN'));
                 $ticket_combos[id] = [id, parseInt($inputCombo.val())];
             }
 
-            minusCombo = (id, price) => {
+            minusCombo = (id, price, comboName) => {
+                if ($iCombo !== 0) {
+                    $iCombo--;
+                }
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
                 $inputCombo.val(parseInt($inputCombo.val()) - 1);
+                if (parseInt($inputCombo.val()) === 0) {
+                    $(`#ticketCombo_${id}`).remove();
+                } else {
+                    $(`#ticketCombo_${id}`).replaceWith(`<p id="ticketCombo_${id}">${comboName} x ${parseInt($inputCombo.val())}</p>`);
+                }
                 $sum -= price;
                 $('#ticketSeat_totalPrice').text($sum.toLocaleString('vi-VN'));
-                if (parseInt($inputCombo.val()) === 0) delete $ticket_combos[id];
-                else $ticket_combos[id] = [id, parseInt($inputCombo.val())];
+                if (parseInt($inputCombo.val()) === 0) {
+                    delete $ticket_combos[id];
+                } else {
+                    $ticket_combos[id] = [id, parseInt($inputCombo.val())];
+                }
             }
-
-            seatChoicedNext = () => {
-                $('#timer').remove();
-                $('#ticket_info').append(`<div class="card-footer" style="background: #2e292e;"><div id="timer"
-                     class="d-block bg-light text-dark text-center fs-2 m-3"
-                     style="width: 200px; height: 100px; line-height:100px">
-                </div></div>`)
-                var fiveMinutes = 60 * 5,
-                    display = document.querySelector('#timer');
-                startTimer(fiveMinutes, display, $countdown);
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: "/tickets/create",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        'ticketSeats': $ticket_seats,
-                        'schedule': {{$schedule->id}},
-                    },
-                    statusCode: {
-                        200: function (data) {
-                            $ticket_id = data.ticket_id;
-                        },
-                        401: function () {
-                            alert("Ghế đã đc đặt!!!");
-                            window.location.reload();
-                        }
-                    }
-
-                });
-            };
 
             window.addEventListener('beforeunload', () => {
                 if (!$holdState) {
@@ -566,6 +595,21 @@
                             window.location.replace('/');
                         }
                     }
+                });
+            }
+
+            paymentBack = () => {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "/tickets/combo/delete",
+                    type: 'DELETE',
+                    data: {
+                        'ticket_id': $ticket_id,
+                    },
                 });
             }
 

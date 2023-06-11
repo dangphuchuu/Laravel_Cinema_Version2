@@ -167,6 +167,12 @@ class WebController extends Controller
         return response('add combo success', 200);
     }
 
+    public function ticketComboDelete(Request $request)
+    {
+        TicketCombo::where('ticket_id', $request->ticket_id)->delete();
+        return response('delete combos success', 200);
+    }
+
     public function ticketPayment(Request $request)
     {
         $ticket = Ticket::find($request->ticket_id);
