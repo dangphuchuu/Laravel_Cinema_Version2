@@ -16,9 +16,9 @@ return new class extends Migration {
             $table->id()->autoIncrement();
             $table->bigInteger('schedule_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
-            $table->text('barcode')->nullable(true);
             $table->boolean('holdState')->default(false);
             $table->boolean('status')->default(false);
+            $table->bigInteger('code')->unique();
             $table->foreign('schedule_id')->references('id')->on('schedules');
             $table->foreign('user_id')->references("id")->on('users');
             $table->timestamps();

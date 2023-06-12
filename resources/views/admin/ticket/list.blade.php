@@ -26,48 +26,54 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($ticket as $value)
                                     <tr>
                                         <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">Transformer</h6>
+                                            <h6 class="mb-0 text-sm ">{!! $value['schedule']['movie']['name'] !!}</h6>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">3D</h6>
+                                            <h6 class="mb-0 text-sm ">{!! $value['schedule']['room']['roomType']['name'] !!}</h6>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">phòng 11</h6>
+                                            <h6 class="mb-0 text-sm ">{!! $value['schedule']['room']['name'] !!}</h6>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">F-5</span>
+                                            <span class="text-secondary font-weight-bold">
+                                                @foreach($value['ticketSeats'] as $seat)
+                                                    @if($loop->first)
+                                                {!! $seat['row']."-".$seat['col'] !!}
+                                                    @else
+                                                        , {!! $seat['row']."-".$seat['col'] !!}
+                                                    @endif
+                                                @endforeach
+                                            </span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">18+</span>
+                                            <span class="text-secondary font-weight-bold">{!! $value['schedule']['movie']['rating']['name'] !!}</span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">12:00:00</span>
+                                            <span class="text-secondary font-weight-bold">{!! $value['schedule']['startTime'] !!}</span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">23/04/18</span>
+                                            <span class="text-secondary font-weight-bold">{!! $value['schedule']['date'] !!}</span>
                                         </td>
-
                                         <td class="align-middle text-center">
-                                          {!! DNS1D::getBarcodeHTML($phone, 'C128') !!}
+                                            <button href="#barcode" class="btn btn-link text-danger "
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#barcode{!! $value['id'] !!}"><i style="color:grey" class="fa-sharp fa-regular fa-eye"></i>
+                                            </button>
                                         </td>
-
                                         <td class="align-middle text-center text-sm">
                                             <span class="badge badge-sm bg-gradient-success">Online</span>
                                         </td>
-                                        <td class="align-middle">
-                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                               data-original-title="Edit user">
-                                                Delete
-                                            </a>
-                                        </td>
                                     </tr>
+                                        @include('admin.ticket.barcode')
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
                             <div class="d-flex justify-content-center mt-3">
-                                {{--                                {!! $users->links() !!}--}}
+                                {!! $ticket->links() !!}
                             </div>
                         </div>
                     </div>

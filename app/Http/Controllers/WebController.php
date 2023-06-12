@@ -24,6 +24,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class WebController extends Controller
 {
@@ -122,7 +123,8 @@ class WebController extends Controller
             'schedule_id' => $request->schedule,
             'user_id' => Auth::user()->id,
             'holdState' => true,
-            'status' => true
+            'status' => true,
+            'code'=>rand(10000000,9999999999)
         ]);
         $ticket->save();
         foreach ($request->ticketSeats as $seat) {
