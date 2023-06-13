@@ -9,11 +9,17 @@
                     <div class="card-body">
                         <div class="row ">
                             <div class="col-md-12">
-                                    <div class="form-group d-flex justify-content-center text-center">
-                                            <label class="form-control-label" for="">
-                                                {!! DNS1D::getBarcodeHTML($value['code'], 'C128') !!}
-                                                <span>{!! $value['code'] !!}</span>
-                                            </label>
+                                    <div class="flex-column d-flex justify-content-center text-center">
+                                        @php
+                                            $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
+                                        @endphp
+                                        {{--{!! DNS1D::getBarcodeHTML($value['code'], 'C128') !!}--}}
+                                        <div>
+                                            <img src="data:image/png;base64,{!! base64_encode($generatorPNG->getBarcode($value['code'],$generatorPNG::TYPE_CODE_128)) !!}" />
+                                        </div>
+                                        <div>
+                                            {!! $value['code'] !!}
+                                        </div>
                                     </div>
                                 </div>
                         </div>

@@ -24,6 +24,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class WebController extends Controller
@@ -124,7 +125,7 @@ class WebController extends Controller
             'user_id' => Auth::user()->id,
             'holdState' => true,
             'status' => true,
-            'code'=>rand(10000000,9999999999)
+            'code' => rand(10000000, 9999999999)
         ]);
         $ticket->save();
         foreach ($request->ticketSeats as $seat) {
@@ -136,7 +137,18 @@ class WebController extends Controller
             ]);
             $ticketSeat->save();
         }
+        $name = Auth::user()->fullName;
+        $email_cus = Auth::user()['email'];
+        Mail::send('web.pages.check_mail', [
+            'name' => $name,
+            'ticket'=>$ticket,
+            'email_cus'=>$email_cus
+        ], function ($email) use ($name,$email_cus) {
+            $email->subject('Vé xem phim tại HM Cinema');
+            $email->to('phuchuu0120@gmail.com', $name);
+        });
         return response()->json(['ticket_id' => $ticket->id]);
+
     }
 
     public function ticketDelete(Request $request)
