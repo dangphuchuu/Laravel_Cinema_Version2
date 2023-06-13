@@ -15,6 +15,7 @@ class Ticket extends Model
         'qrcode',
         'holdState',
         'status',
+        'code'
     ];
 
     public function ticketSeats()
@@ -26,4 +27,9 @@ class Ticket extends Model
     {
         return $this->hasMany(TicketCombo::class, 'ticket_id', 'id');
     }
+    public function schedule()
+    {
+        return $this->hasOne(Schedule::class,'id','schedule_id');
+    }
+
 }

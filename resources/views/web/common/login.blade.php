@@ -43,29 +43,29 @@
     <div class="modal-dialog container">
         <div class="modal-content">
             <div class="modal-header text-uppercase">
-                <h5 class="modal-title" id="registerModalLabel">Đăng ký</h5>
+                <h5 class="modal-title" id="registerModalLabel">@lang('lang.signup')</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body my-4">
                 <form method='post' action="/signUp">
                     @csrf
                     <div class="mb-3">
-                        <input class="form-control" type="text" placeholder="Nhập họ tên..." name="fullName" aria-label="">
+                        <input class="form-control" type="text" placeholder="@lang('lang.type') @lang('lang.fullname')" name="fullName" aria-label="">
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="email" placeholder="Nhập Email..." name="email" aria-label="email"
+                        <input class="form-control" type="email" placeholder="@lang('lang.type') Email..." name="email" aria-label="email"
                                autocomplete="email">
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="password" placeholder="Nhập mật khẩu..." name="password" aria-label="">
+                        <input class="form-control" type="password" placeholder="@lang('lang.type') @lang('lang.password')..." name="password" aria-label="">
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="password" placeholder="Nhập lại mật khẩu..." name="repassword" aria-label="">
+                        <input class="form-control" type="password" placeholder="@lang('lang.re_password')..." name="repassword" aria-label="">
                     </div>
                     <div class="modal-footer justify-content-center text-center">
-                        <button type='submit' class="btn btn-warning text-uppercase">Đăng ký</button>
-                        <p class="text-dark w-100">Chưa có tài khoản?
-                            <a class="link link-warning" data-bs-target="#loginModal" data-bs-toggle="modal" href="#loginModal">Đăng nhập
+                        <button type='submit' class="btn btn-warning text-uppercase">@lang('lang.signup')</button>
+                        <p class="text-dark w-100">@lang('lang.have_account')?
+                            <a class="link link-warning" data-bs-target="#loginModal" data-bs-toggle="modal" href="#loginModal">@lang('lang.signin')
                             </a>
                         </p>
                     </div>

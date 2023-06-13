@@ -29,7 +29,8 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 -   Step 5 : composer require spatie/laravel-permission
 -   Step 6 : composer require cloudinary-labs/cloudinary-laravel
 -   Step 6.1: composer require milon/barcode
--   Step 6.2: composer update
+-   Step 6.2: composer require picqer/php-barcode-generator
+-   Step 6.3: composer update
 -   Step 7 : php artisan vendor:publish --provider="CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider" --tag="cloudinary-laravel-config"
 -   Step 8 : php artisan migrate:fresh --seed
 -   Step 9 : composer  dumpautoload
