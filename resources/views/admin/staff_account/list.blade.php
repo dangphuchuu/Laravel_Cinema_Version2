@@ -79,7 +79,7 @@
                                                     <button href="#permission" class="btn btn-link text-danger "
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#permission{!! $value['id'] !!}">
-                                                        @lang('lang.permissions') &nbsp<i style="color:white" class="fa-solid fa-pen-to-square fa-lg"></i>
+                                                        @lang('lang.permissions') &nbsp<i style="color:red" class="fa-solid fa-pen-to-square fa-lg"></i>
                                                     </button>
                                                 </td>
                                                 <td id="status{!! $value['id'] !!}" class="align-middle text-center text-sm ">

@@ -3,7 +3,7 @@
     <section class="container">
         <div class="row">
             <div class="col-sm-4 col-xl-2">
-                <h5>HuuMinh Cinema</h5>
+                <h5>HMCinema</h5>
                 <ul class="list-unstyled text-small">
                     <li><a class="link-secondary" href="#">Giới thiệu</a></li>
                     <li><a class="link-secondary" href="movie-list-left.html">Phim</a></li>
@@ -30,8 +30,7 @@
             <div class="col-sm-12 col-xl-6">
                 <h5>Kết nối</h5>
                 <div class="row">
-                    <p class="fs-4 col-sm-12 col-xl-6">HuuMinh Cinema</p>
-
+                    <p class="fs-4 col-sm-12 col-xl-6">HMCinema</p>
                     <div class="social col-sm-12 col-xl-6">
                         <a class="link link-dark text-decoration-none rounded-circle fs-4" href='#'><i class="fa-brands fa-facebook"></i></a>
                         <a class="link link-dark text-decoration-none rounded-circle fs-4" href='#'><i class="fa-brands fa-twitter"></i></a>
