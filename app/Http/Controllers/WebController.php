@@ -282,7 +282,7 @@ class WebController extends Controller
         ]);
     }
 
-    public function movieSearch(Request $request)
+    public function movieFilter(Request $request)
     {
         $casts = Cast::all();
         $directors = Director::all();

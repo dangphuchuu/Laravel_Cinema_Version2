@@ -74,7 +74,7 @@
                             </div>
                             <div class="d-flex text-light p-2">
                                 <span class="flex-shrink-0"><i class="fa-solid fa-equals"></i>&numsp;@lang('lang.total_price'):</span>
-                                <div class="flex-grow-1 text-end"><span id="ticketSeat_totalPrice"></span> đ</div>
+                                <div class="flex-grow-1 text-end .ticketTotal"><span id="ticketSeat_totalPrice"></span> đ</div>
                             </div>
                         </div>
                     </div>
@@ -326,36 +326,41 @@
                         {{--                </div>--}}
 
                         <h4 class="mt-4">@lang('lang.payment')</h4>
-                        <div class="bg-dark-subtle p-5">
-                            <div class="row row-cols-1" data-bs-parent="#mainContent">
-                                <div class="col container">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="atm" id="atm">
-                                        <label class="form-check-label" for="atm">
-                                        <span class="badge">
-                                            <img
-                                                src="https://play-lh.googleusercontent.com/o-_z132f10zwrco4NXk4sFqmGylqXBjfcwR8-wK0lO1Wk4gzRXi4IZJdhwVlEAtpyQ"
-                                                style="max-height: 25px" alt="...">
-                                        </span> VNPAY
-                                        </label>
+                        <form action="/tickets/payment" method="post">
+                            @csrf
+                            <div class="bg-dark-subtle p-5">
+                                <div class="row row-cols-1" data-bs-parent="#mainContent">
+                                    <div class="col container">
+                                        <div class="form-check">
+                                            <input type="radio" id="bankCode" name="bankCode" value="VNPAYQR">
+                                            <label for="bankCode">Thanh toán bằng ứng dụng hỗ trợ VNPAYQR</label><br>
+
+                                            <input type="radio" id="bankCode" name="bankCode" value="VNBANK">
+                                            <label for="bankCode">Thanh toán qua thẻ ATM/Tài khoản nội địa</label><br>
+
+                                            <input type="radio" id="bankCode" name="bankCode" value="INTCARD">
+                                            <label for="bankCode">Thanh toán qua thẻ quốc tế</label><br>
+                                        </div>
+                                        <input type="hidden" id="amount" name="amount" value="20000">
+                                        <input type="hidden" id="language" name="language" value="@lang('lang.language')">
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
 
-                        <div class="d-flex justify-content-center mt-4">
-                            <button class="btn btn-warning mx-2 text-decoration-underline text-center"
-                                    onclick="paymentBack()"
-                                    aria-expanded="true"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#Combos">
-                                <i class="fa-solid fa-angle-left"></i> @lang('lang.previous')
-                            </button>
-                            <button onclick="payment()" class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
-                                Đặt vé <i class="fa-solid fa-angle-right"></i>
-                            </button>
-                        </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                <button class="btn btn-warning mx-2 text-decoration-underline text-center"
+                                        onclick="paymentBack()"
+                                        aria-expanded="true"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#Combos">
+                                    <i class="fa-solid fa-angle-left"></i> @lang('lang.previous')
+                                </button>
+                                <button type="submit" class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
+                                    Đặt vé <i class="fa-solid fa-angle-right"></i>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -368,7 +373,6 @@
             $i = 0;
             $iCombo = 0;
             let $arrSeatHtml = [];
-            let $arrComboHtml = [];
             let $ticket_seats = {};
             let $ticket_combos = {};
             let $ticket_id = -1;
@@ -499,6 +503,7 @@
             }
 
             comboNext = () => {
+                $('#amount').val($sum);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -516,7 +521,6 @@
                         200: function (data) {
                         }
                     }
-
                 });
             }
 
