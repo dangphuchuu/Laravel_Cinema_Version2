@@ -343,6 +343,8 @@
                                         </div>
                                         <input type="hidden" id="amount" name="amount" value="20000">
                                         <input type="hidden" id="language" name="language" value="@lang('lang.language')">
+                                        <input type="hidden" id="timePayment" name="time" value="">
+                                        <input type="hidden" id="ticket_id" name="ticket_id" value="">
                                     </div>
                                 </div>
                             </div>
@@ -392,6 +394,7 @@
                     seconds = seconds < 10 ? "0" + seconds : seconds;
 
                     display.textContent = minutes + ":" + seconds;
+                    $('#timePayment').val(minutes);
                     timer--;
                     if (timer === -2) {
                         alert('đã quá thời hạn thanh toán');
@@ -451,7 +454,7 @@
                      class="d-block bg-light text-dark text-center fs-2 m-3"
                      style="width: 200px; height: 100px; line-height:100px">
                 </div></div>`)
-                    var fiveMinutes = 60 * 5,
+                    var fiveMinutes = 60 * 10,
                         display = document.querySelector('#timer');
                     startTimer(fiveMinutes, display, $countdown);
 
@@ -504,6 +507,7 @@
 
             comboNext = () => {
                 $('#amount').val($sum);
+                $('#ticket_id').val($ticket_id);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

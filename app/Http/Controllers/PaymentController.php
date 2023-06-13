@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
     public function create(Request $request)
     {
+        $ticket = Ticket::find($request->ticket_id);
         $vnp_TmnCode = "6JQZ09G6"; //Mã định danh merchant kết nối (Terminal Id)
         $vnp_HashSecret = "QCTWPIWUGYNUJNXJAJMQKHUBCXZMDZXU"; //Secret key
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
@@ -17,9 +19,9 @@ class PaymentController extends Controller
         //Config input format
         //Expire
         $startTime = date("YmdHis");
-        $expire = date('YmdHis', strtotime('+15 minutes', strtotime($startTime)));
+        $expire = date('YmdHis', strtotime('+' . $request->time . 'minutes', strtotime($startTime)));
 
-        $vnp_TxnRef = date('YmdHis') . rand(1, 10000); //Mã giao dịch thanh toán tham chiếu của merchant
+        $vnp_TxnRef = date('YmdHis') . rand(1, 100000); //Mã giao dịch thanh toán tham chiếu của merchant
         $vnp_Amount = $request->amount; // Số tiền thanh toán
         $vnp_Locale = $request->language; //Ngôn ngữ chuyển hướng thanh toán
         $vnp_BankCode = $request->bankCode; //Mã phương thức thanh toán
@@ -70,6 +72,20 @@ class PaymentController extends Controller
 
     public function handleResult(Request $request)
     {
+//        array:12 [▼ // app\Http\Controllers\PaymentController.php:73
+//              "vnp_Amount" => "7500000"
+//              "vnp_BankCode" => "NCB"
+//              "vnp_BankTranNo" => "VNP14038134"
+//              "vnp_CardType" => "ATM"
+//              "vnp_OrderInfo" => "Thanh toan GD:2023061321355094087"
+//              "vnp_PayDate" => "20230613213610"
+//              "vnp_ResponseCode" => "00"
+//              "vnp_TmnCode" => "6JQZ09G6"
+//              "vnp_TransactionNo" => "14038134"
+//              "vnp_TransactionStatus" => "00"
+//              "vnp_TxnRef" => "2023061321355094087"
+//              "vnp_SecureHash" => "b1a4601eb9be6f7ed795efc2e86e24f036af8b4cf3f9dbb5df6e0caf3d382181d51e1a9ebda0fb8d19ed6c89eba78f8b95ba55af25d0ec18b1b16ceff1100de0"
+//          ]
         dd($request->all());
         return redirect('/');
     }

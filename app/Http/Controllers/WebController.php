@@ -208,13 +208,6 @@ class WebController extends Controller
             ->where('endDate', '>=', Carbon::today()->format('Y-m-d'))
             ->where('status', 1)->get();
 
-        $schedules = Schedule::select('schedules.*', 'theaters.name as theater', 'roomTypes.name as roomType')
-            ->join('rooms', 'schedules.room_id', '=', 'rooms.id')
-            ->join('theaters', 'rooms.theater_id', '=', 'theaters.id')
-            ->join('roomTypes', 'rooms.roomType_id', '=', 'roomTypes.id')
-            ->orderBy('theaters.name', 'asc')
-            ->orderBy('roomTypes.name', 'asc')->get();
-
 
         return view('web.pages.schedulesMovie', [
             'movies' => $movies,
@@ -247,14 +240,6 @@ class WebController extends Controller
         $movies = Movie::whereDate('releaseDate', '<=', Carbon::today()->format('Y-m-d'))
             ->where('endDate', '>=', Carbon::today()->format('Y-m-d'))
             ->where('status', 1)->get();
-
-        $schedules = Schedule::select('schedules.*', 'theaters.name as theater', 'roomTypes.name as roomType')
-            ->join('rooms', 'schedules.room_id', '=', 'rooms.id')
-            ->join('theaters', 'rooms.theater_id', '=', 'theaters.id')
-            ->join('roomTypes', 'rooms.roomType_id', '=', 'roomTypes.id')
-            ->orderBy('theaters.name', 'asc')
-            ->orderBy('roomTypes.name', 'asc')->get();
-
 
         return view('web.pages.schedulesTheater', [
             'movies' => $movies,
