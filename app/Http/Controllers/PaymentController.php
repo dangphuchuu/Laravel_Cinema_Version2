@@ -21,7 +21,7 @@ class PaymentController extends Controller
         $startTime = date("YmdHis");
         $expire = date('YmdHis', strtotime('+' . $request->time . 'minutes', strtotime($startTime)));
 
-        $vnp_TxnRef = date('YmdHis') . rand(1, 100000); //Mã giao dịch thanh toán tham chiếu của merchant
+        $vnp_TxnRef = $ticket->code; //Mã giao dịch thanh toán tham chiếu của merchant
         $vnp_Amount = $request->amount; // Số tiền thanh toán
         $vnp_Locale = $request->language; //Ngôn ngữ chuyển hướng thanh toán
         $vnp_BankCode = $request->bankCode; //Mã phương thức thanh toán
@@ -86,7 +86,12 @@ class PaymentController extends Controller
 //              "vnp_TxnRef" => "2023061321355094087"
 //              "vnp_SecureHash" => "b1a4601eb9be6f7ed795efc2e86e24f036af8b4cf3f9dbb5df6e0caf3d382181d51e1a9ebda0fb8d19ed6c89eba78f8b95ba55af25d0ec18b1b16ceff1100de0"
 //          ]
-        dd($request->all());
-        return redirect('/');
+//        dd($request->all());
+        $ticket = Ticket::where('code', $request->vnp_TxnRef)->get()->first();
+        if ($request->vnp_ResponseCode !== '00') {
+            Ticket::where('code', $request->vnp_TxnRef)->delete();
+        } else {
+            return redirect()->action([WebController::class, 'ticketCompleted'], $ticket->id);
+        }
     }
 }

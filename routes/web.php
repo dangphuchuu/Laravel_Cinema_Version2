@@ -20,8 +20,11 @@ require 'admin.php';
 
 // Web Route
 
+Route::get('/tickets/completed/{id}', [WebController::class, 'ticketCompleted']);
+
 Route::get('/tickets/payment/result', [PaymentController::class, 'handleResult']);
-Route::post('/tickets/payment', [PaymentController::class, 'create']);
+Route::post('/tickets/payment/create', [PaymentController::class, 'create']);
+Route::post('/tickets/payment', [WebController::class, 'ticketPayment']);
 
 Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
 Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);

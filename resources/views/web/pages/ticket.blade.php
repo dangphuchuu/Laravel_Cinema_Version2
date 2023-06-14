@@ -326,19 +326,19 @@
                         {{--                </div>--}}
 
                         <h4 class="mt-4">@lang('lang.payment')</h4>
-                        <form action="/tickets/payment" method="post">
+                        <form id="paymentForm" action="/tickets/payment/create" method="post">
                             @csrf
                             <div class="bg-dark-subtle p-5">
                                 <div class="row row-cols-1" data-bs-parent="#mainContent">
                                     <div class="col container">
-                                        <div class="form-check">
-                                            <input type="radio" id="bankCode" name="bankCode" value="VNPAYQR">
+                                        <div class="form-check" id="bankCode">
+                                            <input type="radio" name="bankCode" value="VNPAYQR" aria-label="">
                                             <label for="bankCode">Thanh toán bằng ứng dụng hỗ trợ VNPAYQR</label><br>
 
-                                            <input type="radio" id="bankCode" name="bankCode" value="VNBANK">
+                                            <input type="radio" name="bankCode" value="VNBANK" aria-label="">
                                             <label for="bankCode">Thanh toán qua thẻ ATM/Tài khoản nội địa</label><br>
 
-                                            <input type="radio" id="bankCode" name="bankCode" value="INTCARD">
+                                            <input type="radio" name="bankCode" value="INTCARD" aria-label="">
                                             <label for="bankCode">Thanh toán qua thẻ quốc tế</label><br>
                                         </div>
                                         <input type="hidden" id="amount" name="amount" value="20000">
@@ -358,7 +358,7 @@
                                         data-bs-target="#Combos">
                                     <i class="fa-solid fa-angle-left"></i> @lang('lang.previous')
                                 </button>
-                                <button type="submit" class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
+                                <button id="checkout" type="button" class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
                                     Đặt vé <i class="fa-solid fa-angle-right"></i>
                                 </button>
                             </div>
@@ -508,24 +508,27 @@
             comboNext = () => {
                 $('#amount').val($sum);
                 $('#ticket_id').val($ticket_id);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: "/tickets/combo/create",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        'ticket_id': $ticket_id,
-                        'ticketCombos': $ticket_combos,
-                    },
-                    statusCode: {
-                        200: function (data) {
+                $check = jQuery.isEmptyObject($ticket_combos);
+                if (!$check) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
-                    }
-                });
+                    });
+                    $.ajax({
+                        url: "/tickets/combo/create",
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            'ticket_id': $ticket_id,
+                            'ticketCombos': $ticket_combos,
+                        },
+                        statusCode: {
+                            200: function (data) {
+                            }
+                        }
+                    });
+                }
             }
 
             plusCombo = (id, price, comboName) => {
@@ -583,7 +586,7 @@
                 }
             });
 
-            payment = () => {
+            $('#checkout').on('click', () => {
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -597,14 +600,14 @@
                         'ticket_id': $ticket_id,
                     },
                     statusCode: {
-                        200: function () {
+                        200: () => {
                             $holdState = true;
-                            alert("Đặt vé thành công!!!");
-                            window.location.replace('/');
+                            $("#paymentForm").trigger("submit");
                         }
                     }
                 });
-            }
+            })
+
 
             paymentBack = () => {
                 $.ajaxSetup({

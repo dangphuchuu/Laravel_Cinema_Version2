@@ -24,8 +24,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 
 class WebController extends Controller
 {
@@ -137,16 +135,7 @@ class WebController extends Controller
             ]);
             $ticketSeat->save();
         }
-        $name = Auth::user()->fullName;
-        $email_cus = Auth::user()['email'];
-        Mail::send('web.pages.check_mail', [
-            'name' => $name,
-            'ticket'=>$ticket,
-            'email_cus'=>$email_cus
-        ], function ($email) use ($name,$email_cus) {
-            $email->subject('Vé xem phim tại HM Cinema');
-            $email->to('phuchuu0120@gmail.com', $name);
-        });
+
         return response()->json(['ticket_id' => $ticket->id]);
 
     }
@@ -192,7 +181,24 @@ class WebController extends Controller
         $ticket = Ticket::find($request->ticket_id);
         $ticket->holdState = false;
 
-        return response('', 200);
+        return response('holdState is false', 200);
+    }
+
+    public function ticketCompleted($id)
+    {
+        $ticket = Ticket::find($id);
+        dd($ticket);
+        $name = Auth::user()->fullName;
+        $email_cus = Auth::user()['email'];
+        Mail::send('web.pages.check_mail', [
+            'name' => $name,
+            'ticket' => $ticket,
+            'email_cus' => $email_cus
+        ], function ($email) use ($name, $email_cus) {
+            $email->subject('Vé xem phim tại HM Cinema');
+            $email->to('tqminh.0907@gmail.com', $name);
+        });
+        return redirect('/');
     }
 
     public function schedulesByMovie(Request $request)
