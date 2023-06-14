@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
@@ -72,7 +74,7 @@ class PaymentController extends Controller
 
     public function handleResult(Request $request)
     {
-//        array:12 [▼ // app\Http\Controllers\PaymentController.php:73
+//        array:12 [▼
 //              "vnp_Amount" => "7500000"
 //              "vnp_BankCode" => "NCB"
 //              "vnp_BankTranNo" => "VNP14038134"
@@ -85,13 +87,27 @@ class PaymentController extends Controller
 //              "vnp_TransactionStatus" => "00"
 //              "vnp_TxnRef" => "2023061321355094087"
 //              "vnp_SecureHash" => "b1a4601eb9be6f7ed795efc2e86e24f036af8b4cf3f9dbb5df6e0caf3d382181d51e1a9ebda0fb8d19ed6c89eba78f8b95ba55af25d0ec18b1b16ceff1100de0"
-//          ]
+//         ]
 //        dd($request->all());
         $ticket = Ticket::where('code', $request->vnp_TxnRef)->get()->first();
-        if ($request->vnp_ResponseCode !== '00') {
-            Ticket::where('code', $request->vnp_TxnRef)->delete();
-        } else {
-            return redirect()->action([WebController::class, 'ticketCompleted'], $ticket->id);
+        switch ($request->vnp_ResponseCode) {
+            case '00':
+                $ticket->hasPaid = true;
+                $ticket->save();
+                $name = Auth::user()->fullName;
+                $email_cus = Auth::user()['email'];
+                Mail::send('web.pages.check_mail', [
+                    'name' => $name,
+                    'ticket' => $ticket,
+                    'email_cus' => $email_cus
+                ], function ($email) use ($name, $email_cus) {
+                    $email->subject('Vé xem phim tại HM Cinema');
+                    $email->to('tqminh.0907@gmail.com', $name);
+                });
+                return redirect()->action([WebController::class, 'ticketCompleted'], $ticket->id);
+            default:
+                Ticket::where('code', $request->vnp_TxnRef)->delete();
+                return redirect('/');
         }
     }
 }

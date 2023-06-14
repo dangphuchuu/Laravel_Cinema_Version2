@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->boolean('holdState')->default(false);
             $table->boolean('status')->default(false);
             $table->bigInteger('code')->unique();
+            $table->boolean('hasPaid')->default(false);
             $table->foreign('schedule_id')->references('id')->on('schedules');
             $table->foreign('user_id')->references("id")->on('users');
             $table->timestamps();

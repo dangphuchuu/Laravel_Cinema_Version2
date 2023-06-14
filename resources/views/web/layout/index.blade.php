@@ -30,12 +30,11 @@
 
 <body>
 <div class="wrapper">
-
     {{-- Header --}}
     @include('web.common.header')
 
     {{-- Search  --}}
-    @include('web.common.search')
+    {{--    @include('web.common.search')--}}
 
     {{-- Warning  --}}
     @if(count($errors) > 0)

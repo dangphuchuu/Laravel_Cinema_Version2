@@ -77,6 +77,7 @@ class WebController extends Controller
 
     public function ticket($schedule_id)
     {
+        Ticket::where('hasPaid', false)->delete();
         $seatTypes = SeatType::all();
         $combos = Combo::where('status', 1)->get();
         $tickets = Ticket::where('schedule_id', $schedule_id)->get();
@@ -187,18 +188,11 @@ class WebController extends Controller
     public function ticketCompleted($id)
     {
         $ticket = Ticket::find($id);
-        dd($ticket);
-        $name = Auth::user()->fullName;
-        $email_cus = Auth::user()['email'];
-        Mail::send('web.pages.check_mail', [
-            'name' => $name,
+//        dd($ticket);
+
+        return view('web.pages.ticketPaid', [
             'ticket' => $ticket,
-            'email_cus' => $email_cus
-        ], function ($email) use ($name, $email_cus) {
-            $email->subject('Vé xem phim tại HM Cinema');
-            $email->to('tqminh.0907@gmail.com', $name);
-        });
-        return redirect('/');
+        ]);
     }
 
     public function schedulesByMovie(Request $request)
