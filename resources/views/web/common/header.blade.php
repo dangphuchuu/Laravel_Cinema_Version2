@@ -30,7 +30,7 @@
                         <span class="d-sm-inline d-none">{{ Auth::user()->fullName }}</span>
                     </a>
                     <ul class="dropdown-menu shadow" style="background-color: #2e292e">
-                        <li><a class="dropdown-item link-light" href="#">@lang('lang.profile')</a></li>
+                        <li><a class="dropdown-item link-light" href="/profile">@lang('lang.profile')</a></li>
                         <li><a class="dropdown-item link-light" href="/signOut">@lang('lang.signout')</a></li>
                     </ul>
                 </div>

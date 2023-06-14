@@ -11,7 +11,7 @@
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
                                 <a href="admin/movie/create" style="float:right;padding-right:30px;">
-                                    <button class=" btn btn-primary float-right mb-3">@lang('lang.create')</button>
+                                    <button class=" btn btn-danger float-right mb-3">@lang('lang.create')</button>
                                 </a>
                                 <table class="table align-items-center mb-0 ">
                                     <thead>

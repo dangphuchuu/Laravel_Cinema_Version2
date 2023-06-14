@@ -394,7 +394,7 @@
                     seconds = seconds < 10 ? "0" + seconds : seconds;
 
                     display.textContent = minutes + ":" + seconds;
-                    $('#timePayment').val(minutes);
+                    $('#timePayment').val(1);
                     timer--;
                     if (timer === -2) {
                         alert('đã quá thời hạn thanh toán');
@@ -476,7 +476,7 @@
                                 $ticket_id = data.ticket_id;
                             },
                             401: function () {
-                                alert("Ghế đã đc đặt!!!");
+                                alert("Ghế đã được đặt!!!");
                                 window.location.reload();
                             }
                         }

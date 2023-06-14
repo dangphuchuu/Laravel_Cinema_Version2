@@ -54,4 +54,6 @@ Route::get('/', [WebController::class, 'home']);
 Route::prefix('/')->middleware('user')->group(function () {
     Route::get('/tickets/{schedule_id}/', [WebController::class, 'ticket']);
     Route::post('/vnpay', [PaymentController::class, 'vnpay']);
+    Route::get('/profile',[WebController::class,'profile']);
+    Route::post('/editProfile',[WebController::class,'editProfile']);
 });
