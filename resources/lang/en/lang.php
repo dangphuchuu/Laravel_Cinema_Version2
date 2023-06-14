@@ -164,4 +164,12 @@ return [
     'early_screening' => 'Early Screening',
     'minutes' => 'minutes',
     'language' => 'en',
+    'account_setting'=>"Account Settings",
+    'membership_card'=>'Membership card',
+    'cancel'=>'Cancel',
+    'update'=>'Update',
+    'card_level'=>'Card level',
+    'total_spending'=>'Total Spending',
+    'point'=>'Point',
+
 ];

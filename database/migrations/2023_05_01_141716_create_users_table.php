@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('email', 255)->unique();
             $table->string('phone', 10)->unique()->nullable();
             $table->boolean('status')->default(true);
+            $table->bigInteger('code')->unique();
+            $table->bigInteger('point');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

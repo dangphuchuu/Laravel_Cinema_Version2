@@ -163,5 +163,13 @@ return [
     'percent' => 'Phần trăm',
     'early_screening' => 'Suất chiếu sớm',
     'minutes' => 'phút',
-    'language' => 'vn'
+    'language' => 'vn',
+    'account_setting'=>'Chỉnh sửa tài khoản',
+    'membership_card'=>'Thẻ thành viên',
+    'cancel'=>'Hủy bỏ',
+    'update'=>'Cập nhật',
+    'card_level'=>'Cấp độ thẻ',
+    'total_spending'=>'Tổng chi tiêu',
+    'point'=>'Điểm',
+
 ];
