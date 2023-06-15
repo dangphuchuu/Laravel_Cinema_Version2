@@ -669,8 +669,7 @@
 
             }
 
-            window.onbeforeunload = confirmExit;
-            function confirmExit() {
+            window.addEventListener('beforeunload', () => {
                 if (!$holdState) {
                     $.ajaxSetup({
                         headers: {
@@ -686,7 +685,7 @@
                         },
                     });
                 }
-            }
+            })
 
 
             @foreach($room->seats as $seat)
