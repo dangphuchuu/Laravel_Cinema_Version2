@@ -22,7 +22,7 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 ## Install Laravel
--   Step 1 : git clone https://github.com/dangphuchuu/Laravel_Cinema
+-   Step 1 : git clone https://github.com/HUUMINHD18/Laravel_Cinema
 -   Step 2 : composer install
 -   Step 3 : php artisan key:generate
 -   Step 4 : create database with name cinema and setting in .env
