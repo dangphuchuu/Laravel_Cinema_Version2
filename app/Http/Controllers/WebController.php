@@ -432,18 +432,29 @@ class WebController extends Controller
         $request->validate([
             'fullName' => 'required|min:1',
             'email' => 'required|unique:users',
+            'phone'=>'required|unique:users',
             'password' => 'required',
             'repassword' => 'required|same:password',
         ], [
             'fullName.required' => 'fullName is required',
             'email.required' => 'Email is required',
             'email.unique' => 'Email already exists',
+            'phone.required' => 'Phone is required',
+            'phone.unique' => 'Phone already exists',
             'password.required' => 'Password is required',
             'repassword.required' => 'Password is required',
             'repassword.same' => "Password doesn't match",
         ]);
         $request['password'] = bcrypt($request['password']);
-        $user = User::create($request->all());
+        $user = new User([
+            'fullName'=>$request['fullName'],
+            'password'=>$request['password'],
+            'email'=>$request['email'],
+            'phone'=>$request['phone'],
+            'code'=>rand(10000000000, 9999999999999999),
+            'point'=>0
+        ]);
+        $user->save();
         $user->syncRoles('user');
         return redirect('/')->with('success', 'Sign Up Successfully!');
     }

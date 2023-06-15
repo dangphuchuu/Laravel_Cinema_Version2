@@ -51,16 +51,17 @@
 
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary font-weight-bold">{{ $movie->showTime }} phút</span>
+                                                <span class="text-secondary font-weight-bold">{{ $movie->showTime }} @lang('lang.minutes')</span>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <h6 class="mb-0 text-sm ">{{ $movie->national }}</h6>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary font-weight-bold">{{ $movie->releaseDate }}</span>
+
+                                                <span class="text-secondary font-weight-bold">{!! date("d-m-Y", strtotime($movie->releaseDate )) !!}</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary font-weight-bold">{{ $movie->endDate }}</span>
+                                                <span class="text-secondary font-weight-bold">{!! date("d-m-Y", strtotime($movie->endDate)) !!}</span>
                                             </td>
                                             <td id="status{!! $movie['id'] !!}" class="align-middle text-center text-sm">
                                                 @if($movie['status'] == 1)

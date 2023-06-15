@@ -43,3 +43,6 @@ Permission::create(['name' => 'statistical']);
 
 //TODO: Discount
 Permission::create(['name' => 'discount']);
+
+//TODO: Price
+Permission::create(['name' => 'price']);

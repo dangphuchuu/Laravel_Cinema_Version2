@@ -55,7 +55,7 @@
                                             <span class="text-secondary font-weight-bold">{!! $value['schedule']['startTime'] !!}</span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">{!! $value['schedule']['date'] !!}</span>
+                                            <span class="text-secondary font-weight-bold">{!! date("d-m-Y", strtotime($value['schedule']['date'])) !!}</span>
                                         </td>
                                         <td class="align-middle text-center">
                                             <button href="#barcode" class="btn btn-link text-danger "

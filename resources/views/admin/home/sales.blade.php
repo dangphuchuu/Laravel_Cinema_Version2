@@ -32,7 +32,7 @@
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold">@lang('lang.today_ticket')</p>
                             <h5 class="font-weight-bolder">
-                                2,300
+                                {!! count($ticket) !!}
                             </h5>
                             <p class="mb-0">
                                 <span class="text-success text-sm font-weight-bolder">+3%</span>
@@ -57,7 +57,7 @@
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold">@lang('lang.new_clients')</p>
                             <h5 class="font-weight-bolder">
-                                +3,462
+                                {!! count($user) !!}
                             </h5>
                             <p class="mb-0">
                                 <span class="text-danger text-sm font-weight-bolder">-2%</span>

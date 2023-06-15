@@ -18,6 +18,7 @@
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Email</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.phone')</th>
                                         @role('admin')
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.barcode')</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.status')</th>
                                         @endrole
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.created_at')</th>
@@ -42,6 +43,12 @@
                                                         <span class="text-secondary font-weight-bold">{!! $value['phone'] !!}</span>
                                                     </td>
                                                     @role('admin')
+                                                    <td class="align-middle text-center">
+                                                        <button href="#barcode" class="btn btn-link text-danger "
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#barcode{!! $value['id'] !!}"><i style="color:grey" class="fa-sharp fa-regular fa-eye"></i>
+                                                        </button>
+                                                    </td>
                                                     <td id="status{!! $value['id'] !!}" class="align-middle text-center text-sm ">
                                                         @if($value['status'] == 1)
                                                             <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},0)">
@@ -63,6 +70,7 @@
                                                             class="text-secondary font-weight-bold">{!! date("d-m-Y H:m:s", strtotime($value['updated_at'])) !!}</span>
                                                     </td>
                                                 </tr>
+                                                @include('admin.ticket.barcode')
                                             @endif
                                         @endforeach
                                     @endforeach
