@@ -1,4 +1,23 @@
 @extends('web.layout.index')
+@section('css')
+    .vnpay-red {
+    color: #e50019;
+    font-weight: 700;
+    }
+    .vnpay-blue {
+    color: #004a9c;
+    font-weight: 700;
+    }
+    .vnpay-logo>sup {
+    line-height: 1;
+    font-size: 60%;
+    top: -1em;
+    }
+    .vnpay-red {
+    color: #e50019;
+    font-weight: 700;
+    }
+@endsection
 @section('content')
     <section class="container-fluid clearfix row">
         {{--  Breadcrumb  --}}
@@ -326,20 +345,33 @@
                         {{--                </div>--}}
 
                         <h4 class="mt-4">@lang('lang.payment')</h4>
-                        <form id="paymentForm" action="/payment/Create" method="post">
+                        <form id="paymentForm" action="/payment/create" method="post">
                             @csrf
                             <div class="bg-dark-subtle p-5">
                                 <div class="row row-cols-1" data-bs-parent="#mainContent">
                                     <div class="col container">
-                                        <div class="form-check" id="bankCode">
-                                            <input type="radio" name="bankCode" value="VNPAYQR" aria-label="">
-                                            <label for="bankCode">Thanh toán bằng ứng dụng hỗ trợ VNPAYQR</label><br>
+                                        <div class="form-check bg-light pe-4" id="bankCode">
+                                            <input id="bankCode1" class="btn-check" type="radio" name="bankCode" value="VNPAYQR" aria-label="">
+                                            <label for="bankCode1"
+                                                   class="fw-semibold btn btn-outline-primary h3 p-3 my-2 w-100 text-start text-dark">
+                                                Thanh toán bằng ứng dụng hỗ trợ
+                                                <span class="vnpay-logo">
+                                                    <span class="vnpay-red">VN</span><span class="vnpay-blue">PAY</span><sup class="vnpay-red">QR</sup>
+                                                </span>
+                                                <img src="/paymentv2/images/icons/mics/64x64-vnpay-qr.svg" alt="">
+                                            </label>
 
-                                            <input type="radio" name="bankCode" value="VNBANK" aria-label="">
-                                            <label for="bankCode">Thanh toán qua thẻ ATM/Tài khoản nội địa</label><br>
+                                            <input id="bankCode2" class="btn-check" type="radio" name="bankCode" value="VNBANK" aria-label="">
+                                            <label for="bankCode2"
+                                                   class="fw-semibold btn btn-outline-primary h3 p-3 my-2 w-100 text-start text-dark">
+                                                Thanh toán qua thẻ ATM/Tài khoản nội địa
+                                            </label>
 
-                                            <input type="radio" name="bankCode" value="INTCARD" aria-label="">
-                                            <label for="bankCode">Thanh toán qua thẻ quốc tế</label><br>
+                                            <input id="bankCode3" class="btn-check" type="radio" name="bankCode" value="INTCARD" aria-label="">
+                                            <label for="bankCode3"
+                                                   class="fw-semibold btn btn-outline-primary h3 p-3 my-2 w-100 text-start text-dark">
+                                                Thanh toán qua thẻ quốc tế
+                                            </label>
                                         </div>
                                         <input type="hidden" id="amount" name="amount" value="20000">
                                         <input type="hidden" id="language" name="language" value="@lang('lang.language')">
@@ -358,7 +390,8 @@
                                         data-bs-target="#Combos">
                                     <i class="fa-solid fa-angle-left"></i> @lang('lang.previous')
                                 </button>
-                                <button id="checkout" class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
+                                <button type="button" onclick="paymentNext()" class="btn btn-warning mx-2 text-decoration-underline text-uppercase
+                                text-center">
                                     Đặt vé <i class="fa-solid fa-angle-right"></i>
                                 </button>
                             </div>
@@ -568,45 +601,31 @@
                 }
             }
 
-            window.addEventListener('beforeunload', () => {
-                if (!$holdState) {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-                    $.ajax({
-                        url: "/tickets/delete",
-                        type: 'DELETE',
-                        dataType: 'json',
-                        data: {
-                            'ticket_id': $ticket_id,
-                        },
-                    });
-                }
-            });
-
-            $('#checkout').on('click', () => {
+            paymentNext = () => {
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
                 $.ajax({
-                    url: "/tickets/payment",
+                    url: "/payment",
                     type: 'POST',
                     dataType: 'json',
                     data: {
                         'ticket_id': $ticket_id,
+                        'totalPrice': $sum,
                     },
                     statusCode: {
                         200: () => {
                             $holdState = true;
-                            $("#paymentForm").trigger("submit");
+                            if ($ticket_id !== -1) {
+                                $("#paymentForm").trigger("submit");
+                            }
                         }
                     }
                 });
-            })
+            }
+
 
 
             paymentBack = () => {
@@ -618,6 +637,48 @@
                 $.ajax({
                     url: "/tickets/combo/delete",
                     type: 'DELETE',
+                    data: {
+                        'ticket_id': $ticket_id,
+                    },
+                });
+            }
+
+            if (window.history && window.history.pushState) {
+
+                window.history.pushState('forward', null, './tickets/' + {{$schedule->id}});
+
+                $(window).on('popstate', function() {
+                    $leavePage = confirm('Back button was pressed.'); //here you know that the back button is pressed
+                    if ($leavePage) {
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: "/tickets/delete",
+                            type: 'DELETE',
+                            dataType: 'json',
+                            data: {
+                                'ticket_id': $ticket_id,
+                            },
+                        });
+                        window.location.replace('/movie/'+ {{$schedule->movie->id}});
+                    }
+                });
+
+            }
+
+            if (window.closed) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "/tickets/delete",
+                    type: 'DELETE',
+                    dataType: 'json',
                     data: {
                         'ticket_id': $ticket_id,
                     },

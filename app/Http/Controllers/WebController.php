@@ -79,6 +79,7 @@ class WebController extends Controller
     public function ticket($schedule_id)
     {
         Ticket::where('hasPaid', false)->delete();
+        Ticket::where('holdState', true)->where('schedule_id', $schedule_id)->where('user_id', Auth::user()->id)->delete();
         $seatTypes = SeatType::all();
         $combos = Combo::where('status', 1)->get();
         $tickets = Ticket::where('schedule_id', $schedule_id)->get();
@@ -182,8 +183,10 @@ class WebController extends Controller
     {
         $ticket = Ticket::find($request->ticket_id);
         $ticket->holdState = false;
+        $ticket->totalPrice = $request->totalPrice;
+        $ticket->save();
 
-        return response('holdState is false', 200);
+        return response('', 200);
     }
 
     public function ticketCompleted($id)

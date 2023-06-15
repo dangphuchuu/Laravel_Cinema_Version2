@@ -24,7 +24,7 @@ class PaymentController extends Controller
         $expire = date('YmdHis', strtotime('+' . $request->time . 'minutes', strtotime($startTime)));
 
         $vnp_TxnRef = $ticket->code; //Mã giao dịch thanh toán tham chiếu của merchant
-        $vnp_Amount = $request->amount; // Số tiền thanh toán
+        $vnp_Amount = $ticket->totalPrice; // Số tiền thanh toán
         $vnp_Locale = $request->language; //Ngôn ngữ chuyển hướng thanh toán
         $vnp_BankCode = $request->bankCode; //Mã phương thức thanh toán
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR']; //IP Khách hàng thanh toán

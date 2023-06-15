@@ -21,11 +21,11 @@ require 'admin.php';
 // Web Route
 
 Route::get('/payment/result', [PaymentController::class, 'handleResult']);
-Route::post('/payment/Create', [PaymentController::class, 'create']);
+Route::post('/payment/create', [PaymentController::class, 'create']);
+Route::post('/payment', [WebController::class, 'ticketPayment']);
 
 Route::post('/tickets/combo/create', [WebController::class, 'ticketComboCreate']);
 Route::delete('/tickets/combo/delete', [WebController::class, 'ticketComboDelete']);
-Route::post('/tickets/payment', [WebController::class, 'ticketPayment']);
 Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
 Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);
 
