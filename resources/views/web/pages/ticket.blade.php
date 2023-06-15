@@ -647,9 +647,7 @@
 
                 window.history.pushState('forward', null, './tickets/' + {{$schedule->id}});
 
-                $(window).on('popstate', function() {
-                    $leavePage = confirm('Back button was pressed.'); //here you know that the back button is pressed
-                    if ($leavePage) {
+                $(window).on('popstate', function() { //here you know that the back button is pressed
                         $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -664,7 +662,6 @@
                             },
                         });
                         window.location.replace('/movie/'+ {{$schedule->movie->id}});
-                    }
                 });
 
             }
