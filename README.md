@@ -26,17 +26,10 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 -   Step 2 : composer install
 -   Step 3 : php artisan key:generate
 -   Step 4 : create database with name cinema and setting in .env
--   Step 5 : composer require spatie/laravel-permission
--   Step 6 : composer require cloudinary-labs/cloudinary-laravel
--   Step 6.1: composer require milon/barcode
--   Step 6.2: composer require picqer/php-barcode-generator
--   Step 6.3: composer update
--   Step 7 : php artisan vendor:publish --provider="CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider" --tag="cloudinary-laravel-config"
--   Step 8 : php artisan migrate:fresh --seed
--   Step 9 : composer  dumpautoload
--   Step 10: php artisan serve
-## Command Line
+-   Step 5 : php artisan migrate:fresh --seed
+-   Step 6: php artisan serve
 
+## Command Line
 -   https://github.com/cloudinary-devs/cloudinary-laravel#installation
 -   create database and model: "php artisan make:model Example -m"
 -   create Controller: "php artisan make:controller ExampleController"
@@ -44,3 +37,10 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 -   rollback database: "php artisan migrate:rollback"
 -   run database: "php artisan migrate"
 -   run seed: "php artisan db:seed"
+-   composer require spatie/laravel-permission
+-   composer require cloudinary-labs/cloudinary-laravel
+-   composer require milon/barcode
+-   composer require picqer/php-barcode-generator
+-   composer update
+-   php artisan vendor:publish --provider="CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider" --tag="cloudinary-laravel-config"
+-   composer dumpautoload
