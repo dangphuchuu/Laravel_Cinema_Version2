@@ -20,7 +20,7 @@
                 </li>
                 <li class="vr mx-5"></li>
                 <li class="nav-item">
-                    <a class="h5 nav-link link-secondary" href="/schedulesbyTheater">
+                    <a class="h5 nav-link link-secondary" href="/schedulesByTheater">
                         @lang('lang.theater_showtime')
                     </a>
                 </li>

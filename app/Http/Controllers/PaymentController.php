@@ -15,7 +15,7 @@ class PaymentController extends Controller
         $vnp_TmnCode = "6JQZ09G6"; //Mã định danh merchant kết nối (Terminal Id)
         $vnp_HashSecret = "QCTWPIWUGYNUJNXJAJMQKHUBCXZMDZXU"; //Secret key
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = $request->getSchemeAndHttpHost() . "/tickets/payment/result";
+        $vnp_Returnurl = $request->getSchemeAndHttpHost() . "/payment/result";
         $vnp_apiUrl = "http://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
         $apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
         //Config input format
@@ -88,7 +88,6 @@ class PaymentController extends Controller
 //              "vnp_TxnRef" => "2023061321355094087"
 //              "vnp_SecureHash" => "b1a4601eb9be6f7ed795efc2e86e24f036af8b4cf3f9dbb5df6e0caf3d382181d51e1a9ebda0fb8d19ed6c89eba78f8b95ba55af25d0ec18b1b16ceff1100de0"
 //         ]
-//        dd($request->all());
         $ticket = Ticket::where('code', $request->vnp_TxnRef)->get()->first();
         switch ($request->vnp_ResponseCode) {
             case '00':
