@@ -671,19 +671,21 @@
 
             window.onbeforeunload = confirmExit;
             function confirmExit() {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: "/tickets/delete",
-                    type: 'DELETE',
-                    dataType: 'json',
-                    data: {
-                        'ticket_id': $ticket_id,
-                    },
-                });
+                if (!$holdState) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/tickets/delete",
+                        type: 'DELETE',
+                        dataType: 'json',
+                        data: {
+                            'ticket_id': $ticket_id,
+                        },
+                    });
+                }
             }
 
 
