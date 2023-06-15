@@ -394,7 +394,7 @@
                     seconds = seconds < 10 ? "0" + seconds : seconds;
 
                     display.textContent = minutes + ":" + seconds;
-                    $('#timePayment').val(1);
+                    $('#timePayment').val(minutes);
                     timer--;
                     if (timer === -2) {
                         alert('đã quá thời hạn thanh toán');

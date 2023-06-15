@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('ticketSeats', function (Blueprint $table) {
+        Schema::create('ticketseats', function (Blueprint $table) {
             $table->string('row');
             $table->integer('col');
             $table->integer('price')->default(0);
@@ -34,7 +34,7 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('ticketCombos', function (Blueprint $table) {
+        Schema::create('ticketcombos', function (Blueprint $table) {
             $table->string('comboName');
             $table->integer('comboPrice')->default(0);
             $table->string('comboDetails');
