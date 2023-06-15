@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->boolean('status')->default(false);
             $table->timestamps();
         });
-        Schema::create('roomTypes', function (Blueprint $table) {
+        Schema::create('roomtypes', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name', 255);
             $table->integer('surcharge')->default(0);
@@ -32,7 +32,7 @@ return new class extends Migration {
             $table->string('name', 255);
             $table->bigInteger('roomType_id')->unsigned();
             $table->bigInteger('theater_id')->unsigned();
-            $table->foreign('roomType_id')->references('id')->on('roomTypes');
+            $table->foreign('roomType_id')->references('id')->on('roomtypes');
             $table->foreign('theater_id')->references('id')->on('theaters');
             $table->boolean('status')->default(false);
             $table->timestamps();

@@ -55,7 +55,7 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('movieGenres_movies', function (Blueprint $table) {
+        Schema::create('moviegenres_movies', function (Blueprint $table) {
             $table->bigInteger('movie_id')->unsigned();
             $table->bigInteger('movieGenre_id')->unsigned();
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');

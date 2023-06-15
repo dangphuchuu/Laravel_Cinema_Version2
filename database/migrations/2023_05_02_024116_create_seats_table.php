@@ -12,13 +12,14 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('seatTypes', function (Blueprint $table) {
+        Schema::create('seattypes', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name');
             $table->integer('surcharge')->default(0);
             $table->string('color');
             $table->timestamps();
         });
+
         Schema::create('seats', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('row', 255);
@@ -43,7 +44,7 @@ return new class extends Migration {
     public function down()
     {
         Schema::dropIfExists('seats');
-        Schema::dropIfExists('seatTypes');
+        Schema::dropIfExists('seattypes');
 
     }
 };
