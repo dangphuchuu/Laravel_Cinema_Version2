@@ -326,7 +326,7 @@
                         {{--                </div>--}}
 
                         <h4 class="mt-4">@lang('lang.payment')</h4>
-                        <form id="paymentForm" action="/tickets/payment/create" method="post">
+                        <form id="paymentForm" action="/payment/Create" method="post">
                             @csrf
                             <div class="bg-dark-subtle p-5">
                                 <div class="row row-cols-1" data-bs-parent="#mainContent">
@@ -351,14 +351,14 @@
 
 
                             <div class="d-flex justify-content-center mt-4">
-                                <button class="btn btn-warning mx-2 text-decoration-underline text-center"
+                                <button type="button" class="btn btn-warning mx-2 text-decoration-underline text-center"
                                         onclick="paymentBack()"
                                         aria-expanded="true"
                                         data-bs-toggle="collapse"
                                         data-bs-target="#Combos">
                                     <i class="fa-solid fa-angle-left"></i> @lang('lang.previous')
                                 </button>
-                                <button id="checkout" type="button" class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
+                                <button id="checkout" class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
                                     Đặt vé <i class="fa-solid fa-angle-right"></i>
                                 </button>
                             </div>

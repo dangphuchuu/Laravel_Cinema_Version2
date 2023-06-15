@@ -20,17 +20,14 @@ require 'admin.php';
 
 // Web Route
 
+Route::get('/payment/result', [PaymentController::class, 'handleResult']);
+Route::post('/payment/Create', [PaymentController::class, 'create']);
 
-
-Route::get('/tickets/payment/result', [PaymentController::class, 'handleResult']);
-Route::post('/tickets/payment/create', [PaymentController::class, 'create']);
-Route::post('/tickets/payment', [WebController::class, 'ticketPayment']);
-
-Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
-Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);
 Route::post('/tickets/combo/create', [WebController::class, 'ticketComboCreate']);
 Route::delete('/tickets/combo/delete', [WebController::class, 'ticketComboDelete']);
-Route::get('/tickets/{schedule_id}/', [WebController::class, 'ticket']);
+Route::post('/tickets/payment', [WebController::class, 'ticketPayment']);
+Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
+Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);
 
 
 Route::post('/signIn', [WebController::class, 'signIn']);
@@ -44,7 +41,7 @@ Route::get('/movie/{id}', [WebController::class, 'movieDetail']);
 Route::get('/movies', [WebController::class, 'movies']);
 
 Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
-Route::get('/schedulesbyTheater', [WebController::class, 'schedulesbyTheater']);
+Route::get('/schedulesByTheater', [WebController::class, 'schedulesByTheater']);
 Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
 
 Route::get('/events', [WebController::class, 'events']);
@@ -52,8 +49,7 @@ Route::get('/events', [WebController::class, 'events']);
 Route::get('/', [WebController::class, 'home']);
 
 Route::prefix('/')->middleware('user')->group(function () {
-    Route::get('/tickets/{schedule_id}/', [WebController::class, 'ticket']);
-    Route::post('/vnpay', [PaymentController::class, 'vnpay']);
+    Route::get('/tickets/{schedule_id}', [WebController::class, 'ticket']);
     Route::get('/profile',[WebController::class,'profile']);
     Route::post('/editProfile',[WebController::class,'editProfile']);
     Route::post('/changePassword',[WebController::class,'changePassword']);

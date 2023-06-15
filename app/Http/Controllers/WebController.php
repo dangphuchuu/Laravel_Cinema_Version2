@@ -242,7 +242,7 @@ class WebController extends Controller
         ]);
     }
 
-    public function schedulesbyTheater(Request $request)
+    public function schedulesByTheater(Request $request)
     {
         $cities = [];
         $theaters = Theater::where('status', 1)->get();
