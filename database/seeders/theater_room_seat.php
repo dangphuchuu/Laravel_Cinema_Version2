@@ -29,7 +29,7 @@ DB::table('theaters')->insert([
 
 
 //TODO: room_types
-DB::table('roomTypes')->insert([
+DB::table('roomtypes')->insert([
     [
         'name' => '2D',
         'surcharge' => 0,
@@ -106,7 +106,7 @@ DB::table('rooms')->insert([
 ]);
 
 //TODO: seat_types
-DB::table('seatTypes')->insert([
+DB::table('seattypes')->insert([
     [
         'name' => 'standard',
         'surcharge' => 0,
