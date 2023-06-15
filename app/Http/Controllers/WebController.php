@@ -24,6 +24,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class WebController extends Controller
 {
@@ -398,6 +399,7 @@ class WebController extends Controller
 
     public function signIn(Request $request)
     {
+
         $request->validate(
             [
                 'email' => 'required',
@@ -409,9 +411,9 @@ class WebController extends Controller
             ]
         );
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
-            return redirect('/');
+            return redirect('/')->with('success','Welcome back '.Auth::user()->fullName);
         } else {
-            return redirect('/');
+            return redirect('/')->with('warning','Wrong username or password!');
         }
     }
 
@@ -439,7 +441,7 @@ class WebController extends Controller
     public function signOut()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect('/')->with('success','Sign out successfully');
     }
     public function profile(){
         if (Auth::check()) {
@@ -461,18 +463,28 @@ class WebController extends Controller
         }
         $user->email = $request->email;
         $user->phone = $request->phone;
-//        if ($request['checkPassword'] == 'on') {
-//            $request->validate([
-//                'password' => 'required',
-//                'repassword' => 'required|same:password'
-//            ], [
-//                'password.required' => 'Type new password',
-//                'repassword.required' => 'Type passsword again',
-//                'repassword.same' => "Password again isn't correct"
-//            ]);
-//            $request['password'] = bcrypt($request['password']);
-//        }
         $user->save();
         return redirect('/profile')->with('success','Update profile successfully!');
+    }
+    public function changePassword(Request $request){
+        $user = User::find(Auth::user()->id);
+        if(Hash::check($request['oldpassword'], $user->password)){
+            $request->validate([
+                'password' => 'required',
+                'repassword' => 'required|same:password'
+            ],[
+                'password.required' => 'Please type new password',
+                'repassword.required' => 'Please type passsword again',
+                'repassword.same' => "Password again isn't correct"
+            ]);
+            if($request['password'] == $request['oldpassword']){
+                return redirect('/profile')->with('danger',"The new password is the same as the old password");
+            }
+            $user['password'] = bcrypt($request['password']);
+            $user->save();
+        }else{
+            return redirect('/profile')->with('danger',"Old password isn't correct");
+        }
+        return redirect('/signOut')->with('success','Update password successfully!');
     }
 }

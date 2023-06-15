@@ -4,9 +4,6 @@ use Illuminate\Support\Facades\DB;
 
 DB::table('banners')->insert([
     [
-        'image' => 'https://e1.pxfuel.com/desktop-wallpaper/426/919/desktop-wallpaper-25-best-and-beautiful-indian-movie-poster-design-ideas-south-indian-movies-banner.jpg',
-        'status' => 1,
-    ], [
         'name' => 'https://www.heyuguys.com/images/2012/11/Gangster-Squad-Banner.jpg',
         'status' => 1,
     ], [

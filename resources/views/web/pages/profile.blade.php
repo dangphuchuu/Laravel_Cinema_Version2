@@ -8,7 +8,7 @@
     @endphp
     <section class="py-0 my-0">
         <div class="container">
-            <h1 class="mb-5">@lang('lang.account_setting')</h1>
+            <h1 class="mb-5"></h1>
             <div class="bg-white shadow rounded-lg d-block d-sm-flex">
                 <div class="profile-tab-nav border-right">
                     <div class="p-4">
@@ -19,35 +19,26 @@
                            aria-expanded="true"
                            aria-controls="account">
                             <i class="fa fa-home text-center mr-1"></i>
-                            Account
+                            @lang('lang.account')
                         </a>
                         <a class="nav-link" id="password-tab" href="#password" data-bs-toggle="collapse" data-bs-target="#password"
                            aria-expanded="false">
                             <i class="fa fa-key text-center mr-1"></i>
-                            Password
-                        </a>
-                        <a class="nav-link" id="security-tab" href="#security" data-bs-toggle="collapse" data-bs-target="#security"
-                           aria-expanded="false">
-                            <i class="fa fa-user text-center mr-1"></i>
-                            Security
-                        </a>
-                        <a class="nav-link" id="application-tab" href="#application" data-bs-toggle="collapse" data-bs-target="#application"
-                           aria-expanded="false">
-                            <i class="fa fa-tv text-center mr-1"></i>
-                            Application
+                            @lang('lang.password')
                         </a>
                         <a class="nav-link" id="notification-tab" href="#notification" data-bs-toggle="collapse" data-bs-target="#notification"
                            aria-expanded="false">
                             <i class="fa fa-bell text-center mr-1"></i>
-                            Notification
+                            @lang('lang.notification')
                         </a>
                     </div>
                 </div>
                 <div class="tab-content p-4 p-md-5">
+
                     <div id="mainContent">
+                        <form action="/editProfile" method="POST">
+                            @csrf
                         <div class="collapse show" id="account" data-bs-parent="#mainContent">
-                            <form action="/editProfile" method="POST">
-                                @csrf
                                 <div aria-labelledby="account-tab">
                                     <h4 class="text-center">@lang('lang.membership_card')</h4>
                                     <div class="text-center">
@@ -68,12 +59,12 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="text" class="form-control" name="email" value="{!! $user['email'] !!}" aria-label="">
+                                                <input type="text" class="form-control" name="email" value="{!! $user['email'] !!}" aria-label="" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Phone number</label>
+                                                <label>@lang('lang.phone')</label>
                                                 <input type="text" class="form-control" name="phone" value="{!! $user['phone'] !!}" aria-label="">
                                             </div>
                                         </div>
@@ -100,99 +91,41 @@
                                         <button class="btn btn-primary" type="submit">@lang('lang.update')</button>
                                     </div>
                                 </div>
-                            </form>
                         </div>
+                        </form>
+                        <form action="/changePassword" method="POST">
+                            @csrf
                         <div class="collapse" id="password" data-bs-parent="#mainContent">
                             <div aria-labelledby="password-tab">
-                                <h3 class="mb-4">Password Settings</h3>
+                                <h3 class="mb-4"></h3>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Old password</label>
-                                            <input type="password" class="form-control">
+                                            <label>@lang('lang.old_password')</label>
+                                            <input type="password" name="oldpassword" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>New password</label>
-                                            <input type="password" class="form-control">
+                                            <label>@lang('lang.new_password')</label>
+                                            <input type="password" name="password" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Confirm new password</label>
-                                            <input type="password" class="form-control">
+                                            <label>@lang('lang.cofirm_new_password')</label>
+                                            <input type="password" name="repassword" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="btn btn-primary">Update</button>
-                                    <button class="btn btn-light">Cancel</button>
+                                    <button class="btn btn-primary" type="submit">@lang('lang.update')</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="collapse" id="security" data-bs-parent="#mainContent">
-                            <div aria-labelledby="security-tab">
-                                <h3 class="mb-4">Security Settings</h3>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Login</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Two-factor auth</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="recovery">
-                                                <label class="form-check-label" for="recovery">
-                                                    Recovery
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary">Update</button>
-                                    <button class="btn btn-light">Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="collapse" id="application" data-bs-parent="#mainContent">
-                            <div aria-labelledby="application-tab">
-                                <h3 class="mb-4">Application Settings</h3>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="app-check">
-                                                <label class="form-check-label" for="app-check">
-                                                    App check
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                                                <label class="form-check-label" for="defaultCheck2">
-                                                    Lorem ipsum dolor sit.
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary">Update</button>
-                                    <button class="btn btn-light">Cancel</button>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                         <div class="collapse" id="notification" data-bs-parent="#mainContent">
                             <div aria-labelledby="notification-tab">
                                 <h3 class="mb-4">Notification Settings</h3>
@@ -228,7 +161,9 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
+
             </div>
         </div>
     </section>

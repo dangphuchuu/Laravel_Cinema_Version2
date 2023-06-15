@@ -171,5 +171,10 @@ return [
     'card_level'=>'Cấp độ thẻ',
     'total_spending'=>'Tổng chi tiêu',
     'point'=>'Điểm',
+    'new_password'=>'Mật khẩu mới',
+    'old_password'=>'Mật khẩu cũ',
+    'cofirm_new_password'=>'Xác nhận mật khẩu mới',
+    'account'=>'Tài khoản',
+    'notification'=>'Thông báo',
 
 ];

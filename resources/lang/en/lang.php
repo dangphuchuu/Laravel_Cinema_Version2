@@ -171,5 +171,11 @@ return [
     'card_level'=>'Card level',
     'total_spending'=>'Total Spending',
     'point'=>'Point',
+    'new_password'=>'New password',
+    'old_password'=>'Old password',
+    'cofirm_new_password'=>'Confirm new password',
+    'account'=>'Account',
+    'notification'=>'Notification',
+
 
 ];

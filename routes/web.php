@@ -20,7 +20,7 @@ require 'admin.php';
 
 // Web Route
 
-Route::get('/tickets/completed/{id}', [WebController::class, 'ticketCompleted']);
+
 
 Route::get('/tickets/payment/result', [PaymentController::class, 'handleResult']);
 Route::post('/tickets/payment/create', [PaymentController::class, 'create']);
@@ -56,4 +56,6 @@ Route::prefix('/')->middleware('user')->group(function () {
     Route::post('/vnpay', [PaymentController::class, 'vnpay']);
     Route::get('/profile',[WebController::class,'profile']);
     Route::post('/editProfile',[WebController::class,'editProfile']);
+    Route::post('/changePassword',[WebController::class,'changePassword']);
+    Route::get('/tickets/completed/{id}', [WebController::class, 'ticketCompleted']);
 });
