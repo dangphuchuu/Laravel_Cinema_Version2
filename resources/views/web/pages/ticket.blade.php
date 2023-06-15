@@ -669,7 +669,8 @@
 
             }
 
-            if (window.closed) {
+            window.onbeforeunload = confirmExit;
+            function confirmExit() {
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
