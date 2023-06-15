@@ -188,6 +188,13 @@ class WebController extends Controller
     public function ticketCompleted($id)
     {
         $ticket = Ticket::find($id);
+        if ($ticket) {
+            if (Auth::user()->id !== $ticket->user_id) {
+                return redirect('/');
+            }
+        } else {
+            return redirect('/');
+        }
 //        dd($ticket);
 
         return view('web.pages.ticketPaid', [
@@ -441,23 +448,27 @@ class WebController extends Controller
         Auth::logout();
         return redirect('/');
     }
-    public function profile(){
+
+    public function profile()
+    {
         if (Auth::check()) {
             $user = Auth::user();
         } else {
             return redirect('/');
         }
-        return view('web.pages.profile',['user'=>$user]);
+        return view('web.pages.profile', ['user' => $user]);
     }
-    public function editProfile(Request $request){
+
+    public function editProfile(Request $request)
+    {
         $user = User::find(Auth::user()->id);
-        $email = User::where('email',$request->email)->get()->first();
-        $phone = User::where('phone',$request->phone)->get()->first();
-        if($email && $user->email!=$email->email){
-            return redirect('/profile')->with('warning','This email is already exists');
+        $email = User::where('email', $request->email)->get()->first();
+        $phone = User::where('phone', $request->phone)->get()->first();
+        if ($email && $user->email != $email->email) {
+            return redirect('/profile')->with('warning', 'This email is already exists');
         }
-        if($phone && $user->phone!=$phone->phone){
-            return redirect('/profile')->with('warning','This phone number is already exists');
+        if ($phone && $user->phone != $phone->phone) {
+            return redirect('/profile')->with('warning', 'This phone number is already exists');
         }
         $user->email = $request->email;
         $user->phone = $request->phone;
@@ -473,6 +484,6 @@ class WebController extends Controller
 //            $request['password'] = bcrypt($request['password']);
 //        }
         $user->save();
-        return redirect('/profile')->with('success','Update profile successfully!');
+        return redirect('/profile')->with('success', 'Update profile successfully!');
     }
 }
