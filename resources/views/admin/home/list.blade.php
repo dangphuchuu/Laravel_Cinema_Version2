@@ -7,7 +7,7 @@
     <!-- Sales By movie -->
     @include('admin.home.revenue')
 @endsection
-@section('js')
+@section('scripts')
     <script>
         var ctx1 = document.getElementById("chart-line").getContext("2d");
 

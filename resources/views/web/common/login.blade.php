@@ -57,6 +57,9 @@
                                autocomplete="email">
                     </div>
                     <div class="mb-3">
+                        <input class="form-control" type="number" placeholder="@lang('lang.type') @lang('lang.phone')..." name="phone" aria-label="">
+                    </div>
+                    <div class="mb-3">
                         <input class="form-control" type="password" placeholder="@lang('lang.type') @lang('lang.password')..." name="password" aria-label="">
                     </div>
                     <div class="mb-3">

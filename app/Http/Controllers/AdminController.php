@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
@@ -15,7 +18,9 @@ class AdminController extends Controller
 
     public function home()
     {
-        return view('admin.home.list');
+        $ticket = Ticket::whereDate('created_at', Carbon::today())->get();;
+        $user = User::role('user')->get();
+        return view('admin.home.list',['user'=>$user,'ticket'=>$ticket]);
     }
 
     //User
@@ -50,7 +55,15 @@ class AdminController extends Controller
             'phone.unique' => 'Phone already exists'
         ]);
         $request['password'] = bcrypt($request['password']);
-        $staff = User::create($request->all());
+        $staff = new User([
+            'fullName'=>$request['fullName'],
+            'password'=>$request['password'],
+            'email'=>$request['email'],
+            'phone'=>$request['phone'],
+            'code'=>rand(10000000000, 9999999999999999),
+            'point'=>0,
+        ]);
+        $staff->save();
         $staff->syncRoles('staff');
         return redirect('/admin/staff')->with('success', 'Create Account Successfully!');
     }

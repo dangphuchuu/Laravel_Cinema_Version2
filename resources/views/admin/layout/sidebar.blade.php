@@ -40,7 +40,7 @@
                     </a>
                 </li>
             @endcan
-            {{--thieu can--}}
+            @can('price')
             <li class="nav-item">
                 <a class="nav-link " href="./admin/prices">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -49,6 +49,7 @@
                     <span class="nav-link-text ms-1">@lang('lang.prices_ticket')</span>
                 </a>
             </li>
+            @endcan
             @can('schedule_movie')
                 <li class="nav-item">
                     <a class="nav-link " href="./admin/schedule">
