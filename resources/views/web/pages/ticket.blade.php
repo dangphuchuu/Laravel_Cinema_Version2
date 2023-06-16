@@ -149,7 +149,6 @@
                                                             <div class="d-flex">
                                                                 <div class="d-inline-block me-2"
                                                                      style="width: 24px; height: 24px; background-color: {{ $seatType->color }}">
-
                                                                 </div>
                                                                 {{ $seatType->surcharge+$price+$room->roomType->surcharge }} đ
                                                             </div>
@@ -205,25 +204,26 @@
                                                                 @if($seat->row == $row->row)
                                                                     @for($m = 0; $m < $seat->ms; $m++)
                                                                         <div class="d-inline-block align-middle disabled seat_empty"
-                                                                             style="width: 30px; height: 30px; margin: 2px 0;"></div>
+                                                                             style="width: 30px; height: 30px; margin: 2px 0;" choice="1"></div>
                                                                     @endfor
                                                                     @if($seat->status == 1)
                                                                         <div class="d-inline-block mx-1 align-middle py-1 px-0 seat_enable"
                                                                              id="Seat_{{ $seat->row.$seat->col}}"
-                                                                             choiced="0"
+                                                                             choice="0"
                                                                              style="background-color: {{ $seat->seatType->color }}; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px; margin: 2px 0;"
-                                                                             onclick="seatChoiced('{{$seat->row}}', {{$seat->col}},{{$seat->seatType->surcharge + $room->roomType->surcharge + $price}})">
+                                                                             onclick="seatChoice('{{$seat->row}}', {{$seat->col}},{{$seat->seatType->surcharge + $room->roomType->surcharge + $price}})">
                                                                             {{$seat->row.$seat->col }}
                                                                         </div>
                                                                     @else
                                                                         <div class="d-inline-block align-middle py-1 px-0 text-dark disabled"
-                                                                             style="background-color: #cccccc; width: 30px; height: 30px; line-height: 22px; font-size: 10px; margin: 2px 0;">
+                                                                             style="background-color: #cccccc; width: 30px; height: 30px;
+                                                                             line-height: 22px; font-size: 10px; margin: 2px 0;" choice="1">
                                                                             X
                                                                         </div>
                                                                     @endif
                                                                     @for($n = 0; $n < $seat->me; $n++)
                                                                         <div class="d-inline-block align-middle disabled seat_empty"
-                                                                             style="width: 30px; height: 30px; margin: 2px 0;"></div>
+                                                                             style="width: 30px; height: 30px; margin: 2px 0;" choice="1"></div>
                                                                     @endfor
                                                                 @endif
                                                             @endforeach
@@ -246,12 +246,15 @@
                         </div>
 
                         <div class="d-flex justify-content-start w-50 ms-2 mt-4 float-end">
-                            <button class="btn btn-warning text-decoration-underline text-center btn_next"
-                                    aria-expanded="true"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#Combos">
+                            <button class="btn btn-warning text-decoration-underline text-center btn_next">
                                 @lang('lang.next') <i class="fa-solid fa-angle-right"></i>
                             </button>
+                            <button
+                                id="seatChoiceNext"
+                                aria-expanded="false"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#Combos"
+                                    class="d-none"></button>
                         </div>
                     </div>
 
@@ -312,9 +315,9 @@
                         </div>
 
                         <div class="d-flex justify-content-center mt-4">
-                            <button class="btn btn-warning mx-2 text-decoration-underline text-center btn_back"
+                            <button id="comboBack" class="btn btn-warning mx-2 text-decoration-underline text-center btn_back"
                                     onclick="comboBack()"
-                                    aria-expanded="true"
+                                    aria-expanded="false"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#Seats"
                             ><i class="fa-solid fa-angle-left"></i> @lang('lang.previous')
@@ -323,7 +326,7 @@
                             <button class="btn btn-warning mx-2  text-decoration-underline text-center btn_next"
                                     onclick="comboNext()"
                                     aria-controls="Payment"
-                                    aria-expanded="true"
+                                    aria-expanded="false"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#Payment"
                             >@lang('lang.next') <i class="fa-solid fa-angle-right"></i></button>
@@ -449,38 +452,62 @@
                 }, 1000);
             }
 
-            seatChoiced = (row, col, price) => {
-                var choiced = $('#Seat_' + row + col).attr('choiced');
-                if (choiced == 1) {
+            seatChoice = (row, col, price) => {
+                var $seatCurrent = $('#Seats').find('#Seat_' + row + col);
+                var choice = parseInt($seatCurrent.attr('choice'));
+                if (choice === 1) {
                     $i--;
-                    $('#Seat_' + row + col).replaceWith($arrSeatHtml[row + col]);
+                    $seatCurrent.replaceWith($arrSeatHtml[row + col]);
                     $(`#ticketSeat_${row + col}`).remove();
                     $sum -= price;
                     $('#ticketSeat_totalPrice').text($sum.toLocaleString('vi-VN'));
                     delete $ticket_seats[row + col];
                 } else {
+                    $i++;
                     // Gới hạn chọn ghế
                     if ($i >= 8) {
-                        $('.seat_enable').addClass('disabled');
                         alert('chọn tối đa 8 ghế');
                         return;
                     }
-                    $arrSeatHtml[row + col] = $('#Seat_' + row + col).clone();
-                    $('#Seat_' + row + col).replaceWith(`<div class="d-inline-block mx-1 align-middle py-1 px-0 seat_enable"
-                        id="Seat_${row + col}" choiced="1" onclick="seatChoiced('${row}', ${col}, ${price})"
+
+                    $arrSeatHtml[row + col] = $seatCurrent.clone();
+                    $seatCurrent.replaceWith(`<div class="d-inline-block mx-1 align-middle py-1 px-0 seat_enable"
+                        id="Seat_${row + col}" choice="1" onclick="seatChoice('${row}', ${col}, ${price})"
                         style="background-color: #dc3545; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px;
                         margin: 2px 0;"><i class="fa-solid text-light fa-check"></i>
                         </div>`)
+
                     $('#ticket_seats').append(`<p id="ticketSeat_${row + col}">${row + col}, </p>`);
                     $ticket_seats[row + col] = [row, col, price];
                     $sum += price;
                     $('#ticketSeat_totalPrice').text($sum.toLocaleString('vi-VN'));
-                    $i++;
-                }
 
+                }
+            }
+
+            checkSeats = () => {
+                $Seats = $('#Seats');
+                @foreach($room->seats as $seat)
+                    @if($seat->status == 1)
+                        row = '{{ $seat->row }}';
+                        col = {{ $seat->col }};
+                        seatCur = parseInt($Seats.find('#Seat_' + row + col).attr('choice'));
+                        seatLeft = parseInt($Seats.find('#Seat_' + row + (col - 1)).attr('choice'));
+                        seatRight = parseInt($Seats.find('#Seat_' + row + (col + 1)).attr('choice'));
+                        if (seatCur === 1 && seatLeft === 0 && seatRight === 0) {
+                            return false;
+                        }
+                    @endif
+                @endforeach
+                return true;
             }
 
             $('#Seats').on('click', '.btn_next', (e) => {
+                if (!checkSeats()) {
+                    alert('Không để 2 ghế trống kế bên');
+                    return;
+                }
+                $('#seatChoiceNext').click();
                 if ($i !== 0) {
                     $('#timer').remove();
                     $('#ticket_info').append(`<div class="card-footer" style="background: #2e292e;"><div id="timer"
@@ -690,7 +717,7 @@
             @foreach($tickets as $ticket)
             @foreach($ticket->ticketSeats as $ticketSeat)
             @if($seat->row == $ticketSeat->row && $seat->col == $ticketSeat->col)
-            $('#Seat_{{$seat->row.$seat->col}}').replaceWith(`<div class="d-inline-block mx-1 align-middle py-1 px-0  text-dark disabled"
+            $('#Seat_{{$seat->row.$seat->col}}').replaceWith(`<div class="d-inline-block mx-1 align-middle py-1 px-0  text-dark disabled" choice="1"
                                      style="background-color: #c3c3c3; width: 30px; height: 30px; line-height: 22px; font-size: 10px; margin: 2px 0;">
                                 {{ $seat->row.$seat->col }}
             </div>`)
