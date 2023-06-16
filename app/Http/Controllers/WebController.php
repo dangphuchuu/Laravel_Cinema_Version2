@@ -13,6 +13,7 @@ use App\Models\Price;
 use App\Models\Rating;
 use App\Models\RoomType;
 use App\Models\Schedule;
+use App\Models\Seat;
 use App\Models\SeatType;
 use App\Models\Theater;
 use App\Models\Ticket;
