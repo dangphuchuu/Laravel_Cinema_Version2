@@ -468,11 +468,16 @@ class WebController extends Controller
     public function profile()
     {
         if (Auth::check()) {
-            $user = Auth::user();
+           $user = Auth::user();
         } else {
             return redirect('/');
         }
-        return view('web.pages.profile', ['user' => $user]);
+        $sum = 0 ;
+        foreach($user['ticket'] as $ticket)
+        {
+            $sum+= $ticket['totalPrice'];
+        }
+        return view('web.pages.profile', ['user' => $user,'sum'=>$sum]);
     }
 
     public function editProfile(Request $request)

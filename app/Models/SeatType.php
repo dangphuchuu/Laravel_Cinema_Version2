@@ -13,8 +13,7 @@ class SeatType extends Model
 
     protected $fillable = [
         'name',
-        'price',
-        'surchange',
+        'surcharge',
         'color',
     ];
 }

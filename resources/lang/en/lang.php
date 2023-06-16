@@ -176,6 +176,8 @@ return [
     'cofirm_new_password'=>'Confirm new password',
     'account'=>'Account',
     'notification'=>'Notification',
-
+    'to'=>'To',
+    'download'=>'Download',
+    'transaction_history'=>'Transaction history'
 
 ];

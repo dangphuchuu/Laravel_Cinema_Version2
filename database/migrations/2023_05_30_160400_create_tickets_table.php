@@ -32,6 +32,7 @@ return new class extends Migration {
             $table->integer('price')->default(0);
             $table->bigInteger('ticket_id')->unsigned();
             $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
+            $table->String('seatType');
             $table->timestamps();
         });
 
