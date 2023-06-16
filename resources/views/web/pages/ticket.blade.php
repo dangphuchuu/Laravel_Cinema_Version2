@@ -513,7 +513,7 @@
                     $('#ticket_info').append(`<div class="card-footer" style="background: #2e292e;"><div id="timer"
                      class="d-block bg-light text-dark text-center fs-2 m-3"
                      style="width: 200px; height: 100px; line-height:100px">
-                </div></div>`)
+                       </div></div>`)
                     var fiveMinutes = 60 * 10,
                         display = document.querySelector('#timer');
                     startTimer(fiveMinutes, display, $countdown);
@@ -530,6 +530,9 @@
                         data: {
                             'ticketSeats': $ticket_seats,
                             'schedule': {{$schedule->id}},
+                        },
+                        success: (data) => {
+                            console.log(data.ticket_id);
                         },
                         statusCode: {
                             200: function (data) {
