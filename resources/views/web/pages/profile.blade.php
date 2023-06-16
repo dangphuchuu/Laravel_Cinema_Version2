@@ -130,10 +130,13 @@
                                 <h3 class="mb-4 text-center">@lang('lang.transaction_history')</h3>
                                 <div class="container ">
                                     @foreach( $user['ticket'] as $value)
-                                    <p style="margin-top: 10px!important;">Mã đặt vé : {!! $value['code'] !!} <span>(Trạng thái: @if($value['status'] ==1)
-                                                Đã hoàn tất
+                                    <p style="margin-top: 10px!important;">@lang('lang.ticket_code'): {!! $value['code'] !!} <span>(@lang('lang.status'):
+                                            @if($value['holdState'] == 0 && $value['status'] ==1)
+                                                @lang('lang.ticket_success')
+                                            @elseif($value['holdState'] == 1 && $value['status'] ==1)
+                                                @lang('lang.ticket_unSuccess')
                                             @else
-                                        Chưa hoàn tất
+                                                @lang('lang.ticket_error_booking')
                                         @endif )</span> </p>
                                     <div class="float-start" >
                                         @if(strstr($value['schedule']['movie']['image'],"https") == "")
@@ -144,9 +147,8 @@
                                                  src="{!! $value['schedule']['movie']['image'] !!}">
                                         @endif
                                     </div>
-                                    <div style="margin-left: 25%;">
+                                    <div style="margin-left: 30%;">
                                         <p>{!! $value['schedule']['movie']['name'] !!}</p>
-
                                         <p class="badge
                                             @if($value['schedule']['movie']['rating']['name'] == 'C18') bg-danger
                                             @elseif($value['schedule']['movie']['rating']['name'] == 'C16') bg-warning
@@ -155,7 +157,7 @@
                                             @else bg-info
                                             @endif me-1"> {!! $value['schedule']['movie']['rating']['name'] !!} </p>
                                         <p>{!! date("d/m/Y",strtotime($value['schedule']['date'] )) !!}</p>
-                                        <p>From {!! date("H:i A",strtotime($value['schedule']['startTime'] )) !!} ~ To {!! date("H:i A",strtotime($value['schedule']['endTime'] )) !!}</p>
+                                        <p>@lang('lang.from') {!! date("H:i A",strtotime($value['schedule']['startTime'] )) !!} ~ @lang('lang.to') {!! date("H:i A",strtotime($value['schedule']['endTime'] )) !!}</p>
                                         <p>{!! $value['schedule']['room']['theater']['name'] !!}</p>
                                         <p>{!! $value['schedule']['room']['name'] !!}
                                             (
@@ -168,7 +170,8 @@
                                             @endforeach
                                         )</p>
                                         <p>{!! number_format($value['totalPrice'],0,",",".") !!}</p>
-                                        <button href="#profileModal" data-toggle="tooltip"  data-bs-target="#profileModal{!! $user['id'] !!}" data-bs-toggle="modal" class="btn btn-warning">Xem</button>
+                                        <button href="#profileModal" data-toggle="tooltip"  data-bs-target="#profileModal{!! $user['id'] !!}" data-bs-toggle="modal" class="btn btn-warning">@lang('lang.detail')</button>
+                                        <a href="/tickets/completed/{!! $value['id'] !!}" class="btn btn-warning"><i class="fa-solid fa-ticket"></i></a>
                                         @include('web.pages.profile_modal')
                                     </div>
                                     @endforeach
