@@ -40,7 +40,7 @@
                                         </td>
                                         <td class="align-middle text-center">
                                            <p> {!! $value['schedule']['room']['roomType']['name'] !!}</p>
-                                           <p>Vip</p>
+{{--                                            <p>{!! $value['schedule']['room']['seats']['seatType']['name'] !!}</p>--}}
                                         </td>
                                         <td class="align-middle text-center">
                                             <p>{!! number_format($value['totalPrice'],0,",",".") !!}</p>

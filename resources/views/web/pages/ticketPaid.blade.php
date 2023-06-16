@@ -138,8 +138,8 @@
             color: #d83565;
         }
 
-        .show-name h1 {
-            font-size: 48px;
+        .show-name h6 {
+            font-size: 30px;
             font-weight: 700;
             letter-spacing: 0.1em;
             color: #4a437e;
@@ -201,7 +201,7 @@
             align-items: center;
         }
 
-        .right .show-name h1 {
+        .right .show-name h6 {
             font-size: 18px;
         }
 
@@ -235,8 +235,8 @@
                 <span>{!! date('Y', strtotime($ticket->schedule->date)) !!}</span>
             </p>
             <div class="show-name">
-                <h1>{!! $ticket['schedule']['movie']['name']  !!}</h1>
-                <h2>{!! $ticket['schedule']['room']['name'] !!}</h2>
+                <h6>{!! $ticket['schedule']['movie']['name']  !!}</h6>
+                <h5>{!! $ticket['schedule']['room']['name'] !!}</h5>
             </div>
             <div class="time">
                  <p> <span>@lang('lang.showtime_web')</span> {!! date('H:i A', strtotime($ticket->schedule->startTime)) !!} <span>@lang('lang.to')</span> {!! date('H:i a', strtotime($ticket->schedule->endTime)) !!}</p>
@@ -267,7 +267,7 @@
             @php
                 $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
             @endphp
-                <img  style="margin-right: 20px;height: auto;width: 250px;"src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode($ticket->code,$generatorPNG::TYPE_CODE_128)) }}" alt="QR code"/>
+                <img  style="margin-right: 10px;height: auto;width: 220px;"src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode($ticket->code,$generatorPNG::TYPE_CODE_128)) }}" alt="QR code"/>
             </div>
             <p class="ticket-number" style="height: auto;margin-top: -35px;width: auto;margin-left: 80px;">
                 {!! $ticket->code !!}

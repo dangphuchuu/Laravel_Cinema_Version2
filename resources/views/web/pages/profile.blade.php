@@ -130,7 +130,11 @@
                                 <h3 class="mb-4 text-center">@lang('lang.transaction_history')</h3>
                                 <div class="container ">
                                     @foreach( $user['ticket'] as $value)
-                                    <p>Mã đặt vé : {!! $value['code'] !!} <span>(Trạng thái: đã hoàn tất)</span> </p>
+                                    <p style="margin-top: 10px!important;">Mã đặt vé : {!! $value['code'] !!} <span>(Trạng thái: @if($value['status'] ==1)
+                                                Đã hoàn tất
+                                            @else
+                                        Chưa hoàn tất
+                                        @endif )</span> </p>
                                     <div class="float-start" >
                                         @if(strstr($value['schedule']['movie']['image'],"https") == "")
                                             <img style="width: auto;height: 320px;"
@@ -152,18 +156,17 @@
                                             @endif me-1"> {!! $value['schedule']['movie']['rating']['name'] !!} </p>
                                         <p>{!! date("d/m/Y",strtotime($value['schedule']['date'] )) !!}</p>
                                         <p>From {!! date("H:i A",strtotime($value['schedule']['startTime'] )) !!} ~ To {!! date("H:i A",strtotime($value['schedule']['endTime'] )) !!}</p>
-                                        <p>rạp chiếu</p>
+                                        <p>{!! $value['schedule']['room']['theater']['name'] !!}</p>
                                         <p>{!! $value['schedule']['room']['name'] !!}
-                                            @foreach($user['ticket'] as $ticket)
-                                                @foreach($ticket['ticketSeats'] as $seat)
+                                            (
+                                            @foreach($value['ticketSeats'] as $seat)
                                                 @if ($loop->first)
-                                                    ({{ $seat->row.$seat->col }}
+                                                    {{ $seat->row.$seat->col }}
                                                 @else
-                                                    ,{{ $seat->row.$seat->col }})
+                                                    ,{{ $seat->row.$seat->col }}
                                                 @endif
-                                                    @endforeach
-                                            @endforeach</p>
-
+                                            @endforeach
+                                        )</p>
                                         <p>{!! number_format($value['totalPrice'],0,",",".") !!}</p>
                                         <button href="#profileModal" data-toggle="tooltip"  data-bs-target="#profileModal{!! $user['id'] !!}" data-bs-toggle="modal" class="btn btn-warning">Xem</button>
                                         @include('web.pages.profile_modal')

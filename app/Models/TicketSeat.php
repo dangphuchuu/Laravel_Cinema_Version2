@@ -16,6 +16,7 @@ class TicketSeat extends Model
         'col',
         'price',
         'ticket_id',
+        'seatType'
     ];
 
     public function ticket()
