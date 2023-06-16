@@ -136,7 +136,7 @@ class WebController extends Controller
                 'price' => $seat[2],
                 'ticket_id' => $ticket->id,
             ]);
-            $seatType = SeatType::where('row', $seat[0])->where('col', $seat[0])->where('room_id', $ticket->schedule->room_id)->get()->first();
+            $seatType = SeatType::where('row', $seat[0])->where('col', $seat[0])->where('room_id', $ticket->schedule->room->room_id)->get()->first();
             $ticketSeat->seatType = $seatType->name;
             $ticketSeat->save();
         }

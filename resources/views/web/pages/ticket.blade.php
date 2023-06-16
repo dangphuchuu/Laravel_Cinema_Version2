@@ -393,8 +393,8 @@
                                         data-bs-target="#Combos">
                                     <i class="fa-solid fa-angle-left"></i> @lang('lang.previous')
                                 </button>
-                                <button type="button" onclick="paymentNext()" class="btn btn-warning mx-2 text-decoration-underline text-uppercase
-                                text-center">
+                                <button type="button" onclick="paymentNext()"
+                                        class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
                                     Đặt vé <i class="fa-solid fa-angle-right"></i>
                                 </button>
                             </div>
