@@ -13,7 +13,7 @@
                                 <table class="table align-items-center mb-0 ">
                                     <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Id</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.code')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.fullname')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Email</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.phone')</th>
@@ -21,6 +21,7 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.barcode')</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.status')</th>
                                         @endrole
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.point')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.created_at')</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.updated_at')</th>
                                     </tr>
@@ -31,7 +32,7 @@
                                             @if($role['name'] == 'user')
                                                 <tr>
                                                     <td class="align-middle text-center">
-                                                        <h6 class="mb-0 text-sm ">{!! $value['id'] !!}</h6>
+                                                        <h6 class="mb-0 text-sm ">{!! $value['code'] !!}</h6>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <h6 class="mb-0 text-sm ">{!! $value['fullName'] !!}</h6>
@@ -61,6 +62,9 @@
                                                         @endif
                                                     </td>
                                                     @endrole
+                                                    <td class="align-middle text-center">
+                                                        <span class="text-secondary font-weight-bold">{!! $value['point'] !!}</span>
+                                                    </td>
                                                     <td class="align-middle text-center">
                                                         <span
                                                             class="text-secondary font-weight-bold">{!! date("d-m-Y H:m:s", strtotime($value['created_at'])) !!}</span>

@@ -101,8 +101,21 @@ class PaymentController extends Controller
                     'email_cus' => $email_cus
                 ], function ($email) use ($name, $email_cus) {
                     $email->subject('Vé xem phim tại HM Cinema');
-                    $email->to('tqminh.0907@gmail.com', $name);
+                    $email->to($email_cus, $name);
                 });
+                $user = Auth::user();
+                $money_payment = 0 ;
+                foreach($user['ticket'] as $ticket)
+                {
+                    $money_payment+= $ticket['totalPrice'];
+                }
+                if($money_payment < 4000000){
+                    $point = ($ticket['totalPrice'])*5/100;
+                }else{
+                    $point = ($ticket['totalPrice'])*10/100;
+                }
+                $user->point += $point;
+                $user->save();
                 return redirect()->action([WebController::class, 'ticketCompleted'], $ticket->id);
             default:
                 Ticket::where('code', $request->vnp_TxnRef)->delete();

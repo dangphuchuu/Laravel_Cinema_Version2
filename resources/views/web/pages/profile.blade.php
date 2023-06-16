@@ -80,7 +80,7 @@
                                                 <tbody>
                                                 <tr>
                                                     <td class="text-center">Member</td>
-                                                    <td class="text-center">{!! number_format(250000,0,",",".") !!} VNĐ</td>
+                                                    <td class="text-center">{!! number_format($sum,0,",",".") !!} VNĐ</td>
                                                     <td class="text-center">{!! number_format($user['point'],0,",",".") !!} P</td>
                                                 </tr>
                                                 </tbody>

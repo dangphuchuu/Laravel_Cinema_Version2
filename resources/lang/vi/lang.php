@@ -176,5 +176,6 @@ return [
     'cofirm_new_password'=>'Xác nhận mật khẩu mới',
     'account'=>'Tài khoản',
     'notification'=>'Thông báo',
-
+    'to'=>'đến',
+    'download'=>'Tải về',
 ];
