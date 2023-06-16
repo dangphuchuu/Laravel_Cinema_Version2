@@ -178,5 +178,6 @@ return [
     'notification'=>'Notification',
     'to'=>'To',
     'download'=>'Download',
+    'transaction_history'=>'Transaction history'
 
 ];

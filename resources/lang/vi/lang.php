@@ -178,4 +178,6 @@ return [
     'notification'=>'Thông báo',
     'to'=>'đến',
     'download'=>'Tải về',
+    'transaction_history'=>'Lịch sử giao dịch',
+
 ];

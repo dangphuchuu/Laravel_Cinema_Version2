@@ -28,13 +28,12 @@
                         </a>
                         <a class="nav-link" id="notification-tab" href="#notification" data-bs-toggle="collapse" data-bs-target="#notification"
                            aria-expanded="false">
-                            <i class="fa fa-bell text-center mr-1"></i>
-                            @lang('lang.notification')
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            @lang('lang.transaction_history')
                         </a>
                     </div>
                 </div>
                 <div class="tab-content p-4 p-md-5">
-
                     <div id="mainContent">
                         <form action="/editProfile" method="POST">
                             @csrf
@@ -128,35 +127,48 @@
                         </form>
                         <div class="collapse" id="notification" data-bs-parent="#mainContent">
                             <div aria-labelledby="notification-tab">
-                                <h3 class="mb-4">Notification Settings</h3>
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="notification1">
-                                        <label class="form-check-label" for="notification1">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum accusantium accusamus, neque cupiditate
-                                            quis
-                                        </label>
+                                <h3 class="mb-4 text-center">@lang('lang.transaction_history')</h3>
+                                <div class="container ">
+                                    @foreach( $user['ticket'] as $value)
+                                    <p>Mã đặt vé : {!! $value['code'] !!} <span>(Trạng thái: đã hoàn tất)</span> </p>
+                                    <div class="float-start" >
+                                        @if(strstr($value['schedule']['movie']['image'],"https") == "")
+                                            <img style="width: auto;height: 320px;"
+                                                 src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg">
+                                        @else
+                                            <img style="width: auto;height: 320px;"
+                                                 src="{!! $value['schedule']['movie']['image'] !!}">
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="notification2">
-                                        <label class="form-check-label" for="notification2">
-                                            hic nesciunt repellat perferendis voluptatum totam porro eligendi.
-                                        </label>
+                                    <div style="margin-left: 25%;">
+                                        <p>{!! $value['schedule']['movie']['name'] !!}</p>
+
+                                        <p class="badge
+                                            @if($value['schedule']['movie']['rating']['name'] == 'C18') bg-danger
+                                            @elseif($value['schedule']['movie']['rating']['name'] == 'C16') bg-warning
+                                            @elseif($value['schedule']['movie']['rating']['name'] == 'P') bg-success
+                                            @elseif($value['schedule']['movie']['rating']['name'] == 'K') bg-primary
+                                            @else bg-info
+                                            @endif me-1"> {!! $value['schedule']['movie']['rating']['name'] !!} </p>
+                                        <p>{!! date("d/m/Y",strtotime($value['schedule']['date'] )) !!}</p>
+                                        <p>From {!! date("H:i A",strtotime($value['schedule']['startTime'] )) !!} ~ To {!! date("H:i A",strtotime($value['schedule']['endTime'] )) !!}</p>
+                                        <p>rạp chiếu</p>
+                                        <p>{!! $value['schedule']['room']['name'] !!}
+                                            @foreach($user['ticket'] as $ticket)
+                                                @foreach($ticket['ticketSeats'] as $seat)
+                                                @if ($loop->first)
+                                                    ({{ $seat->row.$seat->col }}
+                                                @else
+                                                    ,{{ $seat->row.$seat->col }})
+                                                @endif
+                                                    @endforeach
+                                            @endforeach</p>
+
+                                        <p>{!! number_format($value['totalPrice'],0,",",".") !!}</p>
+                                        <button href="#profileModal" data-toggle="tooltip"  data-bs-target="#profileModal{!! $user['id'] !!}" data-bs-toggle="modal" class="btn btn-warning">Xem</button>
+                                        @include('web.pages.profile_modal')
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="notification3">
-                                        <label class="form-check-label" for="notification3">
-                                            commodi fugiat molestiae tempora corporis. Sed dignissimos suscipit
-                                        </label>
-                                    </div>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary">Update</button>
-                                    <button class="btn btn-light">Cancel</button>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

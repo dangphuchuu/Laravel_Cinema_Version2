@@ -12,10 +12,11 @@ class Ticket extends Model
     protected $fillable = [
         'schedule_id',
         'user_id',
-        'qrcode',
         'holdState',
         'status',
-        'code'
+        'code',
+        'hasPaid',
+        'totalPrice'
     ];
 
     public function ticketSeats()
