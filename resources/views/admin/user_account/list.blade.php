@@ -63,7 +63,8 @@
                                                     </td>
                                                     @endrole
                                                     <td class="align-middle text-center">
-                                                        <span class="text-secondary font-weight-bold">{!! $value['point'] !!}</span>
+                                                   
+                                                        <span class="text-secondary font-weight-bold">{!! number_format($value['point'],0,",",".") !!} Point</span>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <span
