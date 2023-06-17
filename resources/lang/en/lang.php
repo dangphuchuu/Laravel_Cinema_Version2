@@ -178,6 +178,17 @@ return [
     'notification'=>'Notification',
     'to'=>'To',
     'download'=>'Download',
-    'transaction_history'=>'Transaction history'
+    'transaction_history'=>'Transaction history',
+    'ticket_code'=>'Ticket code',
+    'ticket_success'=>'Success',
+    'ticket_unSuccess'=>'Unsucess',
+    'ticket_error_booking'=>'Error',
+    'print_bill'=>'Print bill',
+    'payment_methods'=>'Payment methods',
+    'purchase_date'=>'Purchase date',
+    'refund_ticket'=>'Refund ticket',
+    'vnpay_wallet'=>'VNPAY wallet',
+    'from'=>'From',
+
 
 ];
