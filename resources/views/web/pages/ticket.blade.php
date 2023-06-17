@@ -203,11 +203,11 @@
                                                             @foreach($room->seats as $seat)
                                                                 @if($seat->row == $row->row)
                                                                     @for($m = 0; $m < $seat->ms; $m++)
-                                                                        <div class="d-inline-block align-middle disabled seat_empty"
-                                                                             style="width: 30px; height: 30px; margin: 2px 0;" choice="1"></div>
+                                                                        <div class="seat d-inline-block align-middle disabled seat_empty"
+                                                                             style="width: 30px; height: 30px; margin: 2px 0;" choice="empty"></div>
                                                                     @endfor
                                                                     @if($seat->status == 1)
-                                                                        <div class="d-inline-block mx-1 align-middle py-1 px-0 seat_enable"
+                                                                        <div class="seat d-inline-block mx-1 align-middle py-1 px-0 seat_enable"
                                                                              id="Seat_{{ $seat->row.$seat->col}}"
                                                                              choice="0"
                                                                              style="background-color: {{ $seat->seatType->color }}; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px; margin: 2px 0;"
@@ -215,15 +215,15 @@
                                                                             {{$seat->row.$seat->col }}
                                                                         </div>
                                                                     @else
-                                                                        <div class="d-inline-block align-middle py-1 px-0 text-dark disabled"
+                                                                        <div class="seat d-inline-block align-middle py-1 px-0 text-dark disabled"
                                                                              style="background-color: #cccccc; width: 30px; height: 30px;
                                                                              line-height: 22px; font-size: 10px; margin: 2px 0;" choice="1">
                                                                             X
                                                                         </div>
                                                                     @endif
                                                                     @for($n = 0; $n < $seat->me; $n++)
-                                                                        <div class="d-inline-block align-middle disabled seat_empty"
-                                                                             style="width: 30px; height: 30px; margin: 2px 0;" choice="1"></div>
+                                                                        <div class="seat d-inline-block align-middle disabled seat_empty"
+                                                                             style="width: 30px; height: 30px; margin: 2px 0;" choice="empty"></div>
                                                                     @endfor
                                                                 @endif
                                                             @endforeach
@@ -471,7 +471,7 @@
                     }
 
                     $arrSeatHtml[row + col] = $seatCurrent.clone();
-                    $seatCurrent.replaceWith(`<div class="d-inline-block mx-1 align-middle py-1 px-0 seat_enable"
+                    $seatCurrent.replaceWith(`<div class="seat d-inline-block mx-1 align-middle py-1 px-0 seat_enable"
                         id="Seat_${row + col}" choice="1" onclick="seatChoice('${row}', ${col}, ${price})"
                         style="background-color: #dc3545; cursor: pointer; width: 30px; height: 30px; line-height: 22px; font-size: 10px;
                         margin: 2px 0;"><i class="fa-solid text-light fa-check"></i>
@@ -485,26 +485,47 @@
                 }
             }
 
+
+
             checkSeats = () => {
-                $Seats = $('#Seats');
-                @foreach($room->seats as $seat)
-                    @if($seat->status == 1)
-                        row = '{{ $seat->row }}';
-                        col = {{ $seat->col }};
-                        seatCur = parseInt($Seats.find('#Seat_' + row + col).attr('choice'));
-                        seatLeft = parseInt($Seats.find('#Seat_' + row + (col - 1)).attr('choice'));
-                        seatRight = parseInt($Seats.find('#Seat_' + row + (col + 1)).attr('choice'));
-                        if (seatCur === 1 && seatLeft === 0 && seatRight === 0) {
+                $seats = $('#Seats').find('.seat');
+                for (let i = 0; i < $seats.length; i++) {
+                    if ($seats[i].getAttribute('choice') === '1') {
+                        seatLeft1 = $seats[i-1].getAttribute('choice');
+                        seatRight1 = $seats[i+1].getAttribute('choice');
+                        seatLeft2 = $seats[i-2].getAttribute('choice');
+                        seatRight2 = $seats[i+2].getAttribute('choice');
+                        if ($i >= 2) {
+                            if(seatLeft1 === '0' && seatRight1 === '0') {
+                                alert('Không để 2 ghế trống kế bên');
+                                return false;
+                            }
+                            if (seatLeft2 === 'empty' && seatLeft1 === '0' && seatRight1 === '1' && seatRight2 === '0') {
+                                return true;
+                            }
+                        } else {
+                            if((seatLeft2 === false && seatLeft1 === '0') || (seatRight2 === false && seatRight1 === '0')) {
+                                alert('Không để trống ghế ngoài cùng');
+                                return false;
+                            }
+                        }
+                        console.log(seatLeft2 + ' ' + seatLeft1 + ' <> ' + seatRight1 + ' ' + seatRight2);
+                        if ((seatLeft2 === '1' && seatLeft1 === '0') || (seatRight2 === '1' && seatRight1 === '0')) {
+                            alert('Không để 2 ghế trống kế bên');
                             return false;
                         }
-                    @endif
-                @endforeach
+                        if((seatLeft2 === 'empty' && seatLeft1 === '0') || (seatRight2 === 'empty' && seatRight1 === '0')) {
+                            alert('Không để 2 ghế ngoài cùng');
+                            return false;
+                        }
+                    }
+                }
                 return true;
             }
 
             $('#Seats').on('click', '.btn_next', (e) => {
+
                 if (!checkSeats()) {
-                    alert('Không để 2 ghế trống kế bên');
                     return;
                 }
                 $('#seatChoiceNext').click();
@@ -530,9 +551,6 @@
                         data: {
                             'ticketSeats': $ticket_seats,
                             'schedule': {{$schedule->id}},
-                        },
-                        success: (data) => {
-                            console.log(data.ticket_id);
                         },
                         statusCode: {
                             200: function (data) {
