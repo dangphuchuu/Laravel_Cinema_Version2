@@ -79,7 +79,7 @@ class WebController extends Controller
 
     public function ticket($schedule_id)
     {
-        $ticketsPaids = Ticket::where('hasPaid', false)->where('schedule_id', $schedule_id)->get();
+        $ticketsPaids = Ticket::where('holdState', false)->where('hasPaid', false)->where('schedule_id', $schedule_id)->delete();
         $ticketsHolds = Ticket::where('holdState', true)->where('schedule_id', $schedule_id)->get();
 
         foreach ($ticketsHolds as $ticketsHold) {
@@ -89,14 +89,6 @@ class WebController extends Controller
                 $ticketsHold->delete();
             }
 
-        }
-
-        foreach ($ticketsPaids as $ticketsPaid) {
-            $time = strtotime(date('Y-m-d H:i:s')) - strtotime($ticketsPaid->created_at);
-
-            if ($time > (9*60)) {
-                $ticketsPaid->delete();
-            }
         }
 
         $seatTypes = SeatType::all();
