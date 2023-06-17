@@ -79,8 +79,26 @@ class WebController extends Controller
 
     public function ticket($schedule_id)
     {
-        Ticket::where('hasPaid', false)->delete();
-        Ticket::where('holdState', true)->where('schedule_id', $schedule_id)->where('user_id', Auth::user()->id)->delete();
+        $ticketsPaids = Ticket::where('hasPaid', false)->where('schedule_id', $schedule_id)->get();
+        $ticketsHolds = Ticket::where('holdState', true)->where('schedule_id', $schedule_id)->get();
+
+        foreach ($ticketsHolds as $ticketsHold) {
+            $time = strtotime(date('Y-m-d H:i:s')) - strtotime($ticketsHold->created_at);
+
+            if ($time > (9*60)) {
+                $ticketsHold->delete();
+            }
+
+        }
+
+        foreach ($ticketsPaids as $ticketsPaid) {
+            $time = strtotime(date('Y-m-d H:i:s')) - strtotime($ticketsPaid->created_at);
+
+            if ($time > (9*60)) {
+                $ticketsPaid->delete();
+            }
+        }
+
         $seatTypes = SeatType::all();
         $combos = Combo::where('status', 1)->get();
         $tickets = Ticket::where('schedule_id', $schedule_id)->get();

@@ -497,7 +497,7 @@
                         seatRight2 = $seats[i+2].getAttribute('choice');
                         if ($i >= 2) {
                             if(seatLeft1 === '0' && seatRight1 === '0') {
-                                alert('Không để 2 ghế trống kế bên');
+                                alert('Không để cách 1 ghế trống kế bên');
                                 return false;
                             }
                             if (seatLeft2 === 'empty' && seatLeft1 === '0' && seatRight1 === '1' && seatRight2 === '0') {
@@ -509,13 +509,13 @@
                                 return false;
                             }
                         }
-                        console.log(seatLeft2 + ' ' + seatLeft1 + ' <> ' + seatRight1 + ' ' + seatRight2);
+                        // console.log(seatLeft2 + ' ' + seatLeft1 + ' <> ' + seatRight1 + ' ' + seatRight2);
                         if ((seatLeft2 === '1' && seatLeft1 === '0') || (seatRight2 === '1' && seatRight1 === '0')) {
-                            alert('Không để 2 ghế trống kế bên');
+                            alert('Không để ghế trống kế bên');
                             return false;
                         }
                         if((seatLeft2 === 'empty' && seatLeft1 === '0') || (seatRight2 === 'empty' && seatRight1 === '0')) {
-                            alert('Không để 2 ghế ngoài cùng');
+                            alert('Không để ghế ngoài cùng');
                             return false;
                         }
                     }
@@ -738,9 +738,9 @@
             @foreach($tickets as $ticket)
             @foreach($ticket->ticketSeats as $ticketSeat)
             @if($seat->row == $ticketSeat->row && $seat->col == $ticketSeat->col)
-            $('#Seat_{{$seat->row.$seat->col}}').replaceWith(`<div class="d-inline-block mx-1 align-middle py-1 px-0  text-dark disabled" choice="1"
-                                     style="background-color: #c3c3c3; width: 30px; height: 30px; line-height: 22px; font-size: 10px; margin: 2px 0;">
-                                {{ $seat->row.$seat->col }}
+            $('#Seats').find('#Seat_{{$seat->row.$seat->col}}').replaceWith(`<div class="d-inline-block mx-1 align-middle py-1 px-0  text-dark
+            disabled" choice="1" style="background-color: #c3c3c3; width: 30px; height: 30px; line-height: 22px; font-size: 10px; margin: 2px 0;">
+                                {{ $seat->row.$seat->col }} 
             </div>`)
             @endif
             @endforeach
