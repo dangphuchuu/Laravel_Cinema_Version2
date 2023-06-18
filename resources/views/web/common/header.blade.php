@@ -18,7 +18,7 @@
                     <a class="nav-link @yield('events')" href="/events">@lang('lang.news_events')</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link @yield('support')" href="#">@lang('lang.support')</a>
+                    <a class="nav-link @yield('support')" href="/contact">@lang('lang.support')</a>
                 </li>
 
             </ul>

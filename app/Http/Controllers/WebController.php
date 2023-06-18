@@ -288,14 +288,13 @@ class WebController extends Controller
         ]);
     }
 
-    public function movies(Request $request)
+    public function movies()
     {
         $casts = Cast::all();
         $directors = Director::all();
         $movies = Movie::all()->where('status', 1);
         $movieGenres = MovieGenres::all();
         $rating = Rating::all();
-
         return view('web.pages.movies', [
             'movies' => $movies,
             'movieGenres' => $movieGenres,
@@ -529,5 +528,11 @@ class WebController extends Controller
             return redirect('/profile')->with('danger',"Old password isn't correct");
         }
         return redirect('/signOut')->with('success','Update password successfully!');
+    }
+    public function forgot_password(){
+
+    }
+    public function contact(){
+        return view('web.pages.contact');
     }
 }
