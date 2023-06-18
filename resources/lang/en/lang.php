@@ -189,6 +189,8 @@ return [
     'refund_ticket'=>'Refund ticket',
     'vnpay_wallet'=>'VNPAY wallet',
     'from'=>'From',
+    'customer'=>'Customer',
+    'print'=>'Print'
 
 
 ];

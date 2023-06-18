@@ -14,9 +14,11 @@ class DiscountController extends Controller
     }
     public function postCreate(Request $request){
         $request->validate([
+            'name'=>'required',
             'code' => 'required|unique:discounts',
             'percent'=>'numeric|min:0|max:100'
         ], [
+            'name.required'=>'Please enter name',
             'code.required' => "Please enter code",
             'code.unique' => 'Code exists',
             'percent.max'=>"Maximum discount code is 100",

@@ -189,4 +189,6 @@ return [
     'refund_ticket'=>'Yêu cầu hoàn vé',
     'vnpay_wallet'=>'Ví VNPAY',
     'from'=>'Từ',
+    'customer'=>'Khách hàng',
+    'print'=>'In',
 ];

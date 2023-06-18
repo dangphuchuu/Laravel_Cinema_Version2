@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <base href="{{asset('')}}">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
 
@@ -224,9 +226,8 @@
         }
     </style>
 </head>
-<body>
-
-<div class="ticket">
+<body id="photo">
+<div class="ticket" >
     <div class="left">
         <div class="ticket-info">
             <p class="date">
@@ -276,19 +277,57 @@
         </div>
     </div>
 </div>
-<div style="display: flex; justify-content: center; letter-spacing: 20px;">
-<div style="display: inline-block;">
-    <button type="button" class="btn btn-outline-light border-2 fw-bold">@lang('lang.previous')</button>
-    <button id="btn_download" type="button" class="btn btn-outline-light border-2 fw-bold">@lang('lang.download')</button>
-</div>
-</div>
 </body>
+<div style="display: flex; justify-content: center; letter-spacing: 20px;">
+    <div style="display: flex;">
+        <form action="/">
+            <button  type="submit" class="btn btn-outline-light border-2 fw-bold">@lang('lang.previous')</button>&nbsp
+        </form>
+        <div style="display: inline-block" >
+            <button id="download" class="btn btn-outline-light border-2 fw-bold">@lang('lang.download')</button>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.esm.js" integrity="sha512-oa6kn7l/guSfv94d8YmJLcn/s3Km4mm/t4RqFqyorSMXkKlg6pFM6HmLXsJvOP/Cl/dv/N5xW7zuaA+paSc55Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.js" integrity="sha512-sn/GHTj+FCxK5wam7k9w4gPPm6zss4Zwl/X9wgrvGMFbnedR8lTUSLdsolDRBRzsX6N+YgG6OWyvn9qaFVXH9w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous"></script>
 </html>
-@section('js')
-    <script>
-        var c = document.getElementById('the_canvas_element_id');
-        $('#btn_download').on('click', () => {
-            window.open('', document.getElementById('the_canvas_element_id').toDataURL());
-        })
-    </script>
-@endsection
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $("#download").click(function(){
+            screenshot();
+        });
+    });
+
+    function screenshot(){
+        html2canvas(document.getElementById("photo")).then(function(canvas){
+            downloadImage(canvas.toDataURL(),"TicketInfo.png");
+        });
+    }
+
+    function downloadImage(uri, filename){
+        var link = document.createElement('a');
+        if(typeof link.download !== 'string'){
+            window.open(uri);
+        }
+        else{
+            link.href = uri;
+            link.download = filename;
+            accountForFirefox(clickLink, link);
+        }
+    }
+
+    function clickLink(link){
+        link.click();
+    }
+
+    function accountForFirefox(click){
+        var link = arguments[1];
+        document.body.appendChild(link);
+        click(link);
+        document.body.removeChild(link);
+    }
+</script>

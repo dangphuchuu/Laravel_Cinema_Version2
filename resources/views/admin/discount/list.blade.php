@@ -29,6 +29,7 @@
                                 <table class="table align-items-center mb-0 ">
                                     <thead>
                                     <tr>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.name')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.code')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.percent')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.quantity')</th>
@@ -40,6 +41,9 @@
                                     <tbody>
                                     @foreach($discount as $value)
                                         <tr>
+                                            <td class="align-middle text-center">
+                                                <h6 class="mb-0 text-sm ">{!! $value['name'] !!}</h6>
+                                            </td>
                                             <td class="align-middle text-center">
                                                 <h6 class="mb-0 text-sm ">{!! $value['code'] !!}</h6>
                                             </td>
