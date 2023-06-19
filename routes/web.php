@@ -4,22 +4,8 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 // Admin Route
 require 'admin.php';
-
-
 
 // Web Route
 Route::get('/payment/result', [PaymentController::class, 'handleResult']);
@@ -51,10 +37,11 @@ Route::get('/events', [WebController::class, 'events']);
 Route::get('/staff', [StaffController::class, 'index']);
 Route::get('/', [WebController::class, 'home']);
 
-
-Route::get('/forgot_password',[WebController::class,'forgot_password']);
 Route::post('/forgot_password',[WebController::class,'forgot_password']);
+Route::get('/update-password',[WebController::class,'update_password']);
+Route::post('/update-password',[WebController::class,'Post_update_password']);
 Route::get('/contact',[WebController::class,'contact']);
+
 Route::prefix('/')->middleware('user')->group(function () {
     Route::get('/tickets/{schedule_id}', [WebController::class, 'ticket']);
     Route::get('/profile',[WebController::class,'profile']);

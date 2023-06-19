@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class WebController extends Controller
 {
@@ -530,18 +531,68 @@ class WebController extends Controller
         }
         return redirect('/signOut')->with('success','Update password successfully!');
     }
-    public function forgot_password(){
-        $name = Auth::user()->fullName;
-        $email_cus = Auth::user()['email'];
-        $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
-        dd($now);
-        Mail::send('web.pages.check_mail', [
-            'name' => $name,
-            'email_cus' => $email_cus
-        ], function ($email) use ($name, $email_cus) {
-            $email->subject('Lấy lại mật khẩu HMCinema');
-            $email->to($email_cus, $name);
-        });
+    public function forgot_password(Request $request){
+        $data = $request['email'];
+
+        $user_email = User::where('email','=',$data)->first();
+
+        if($user_email){
+            $count = $user_email->count();
+            if($count == 0){
+                return redirect()->back()->with('warning','Email not found in system');
+            }
+            else{
+                $token = Str::random(20);
+                $user = User::find($user_email->id);
+                $user->remember_token = $token;
+                $user->save();
+
+                //send mail
+                $to_email = $data;
+                $name = $user->fullName;
+                $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
+
+                $link_reset_password = url('/update-password?email='.$to_email.'&token='.$token);
+                Mail::send('web.pages.reset_password_mail', [
+                'name' => $name,
+                'to_email' => $to_email,
+                'now'=>$now,
+                'link_reset_password'=>$link_reset_password,
+            ], function ($email) use ($name,  $to_email,$now) {
+                $email->subject('Xác nhận cập nhật lại mật khẩu ngày: '.$now);
+                $email->to($to_email, $name);
+            });
+            }
+            return redirect()->back()->with('success','Please check your email to reset password !');
+        }else{
+            return redirect()->back()->with('warning','Email not found in system');
+        }
+
+    }
+    public function update_password(){
+        return view('web.pages.update_password');
+    }
+    public function Post_update_password(Request $request){
+        $token = Str::random();
+        $user = User::where('email','=',$request['email'])->where('remember_token','=',$request['token'])->first();
+        $count = $user->count();
+        if($count >0){
+            $reset = User::find($user->id);
+            $request->validate([
+                'password' => 'required',
+                'repassword' => 'required|same:password'
+            ],[
+                'password.required' => 'Please type new password',
+                'repassword.required' => 'Please type passsword again',
+                'repassword.same' => "Password again isn't correct"
+            ]);
+            $reset['password'] = bcrypt($request['password']);
+            $reset['remember_token'] = $token;
+            $reset->save();
+            return redirect('/')->with('success','Change password successfully');
+        }else{
+            return redirect('/')->with('warning','Please re-enter because the link is out of time');
+        }
     }
     public function contact(){
         return view('web.pages.contact');
