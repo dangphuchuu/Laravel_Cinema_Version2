@@ -12,7 +12,7 @@
     <base href="{{asset('')}}">
     {{--Img--}}
     <link rel="apple-touch-icon" sizes="76x76" href="admin_assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="admin_assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="images/favicon/theater_favicon.png">
 
     <!--     Fonts and icons     -->
     {{--Google api--}}

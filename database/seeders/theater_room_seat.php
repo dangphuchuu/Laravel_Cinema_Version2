@@ -225,20 +225,165 @@ function imax()
 {
     $room = Room::find(5);
     for ($i = 65; $i <= (65 + 15); $i++) {
-        for ($j = 1; $j <= 37; $j++) {
+        for ($j = 1; $j <= 38; $j++) {
+            //Limit seat on row
+            if($i == 65){
+                if($j>20)
+                {
+                    continue;
+                }
+            }//row A 20 seat
+            if($i == 66){
+                if($j>24)
+                {
+                    continue;
+                }
+            }//row B 24 seat
+            if($i == 67){
+                if($j>28)
+                {
+                    continue;
+                }
+            }//row C 28 seat
+            if($i == 68){
+                if($j>32)
+                {
+                    continue;
+                }
+            }//row D 32 seat
+            if($i == 69){
+                if($j>34)
+                {
+                    continue;
+                }
+            }//row E 34 seat
+            if($i == 70){
+                if($j>34)
+                {
+                    continue;
+                }
+            }//row F 34 seat
+            if($i == 80){
+                if($j>36)
+                {
+                    continue;
+                }
+            }//row F 34 seat
+            //create Seat
             $seat = new Seat([
                 'row' => chr($i),
                 'col' => $j,
                 'room_id' => $room->id,
             ]);
-//            if($i == 65)
-//            {
-//                if ($j == 2 || $j==35) {
-//                    $seat->me = 2;
-//                }
-//            }
 
+            //set spacing for seat
+            //A
+            if($i == 65)
+            {
+                if ($j == 2 || $j==18) {
+                    $seat->me = 1;
+                }
+            }
+            //B
+            if($i == 66)
+            {
+                if ($j == 4 || $j==20) {
+                    $seat->me = 1;
+                }
+            }
+            //C
+            if($i == 67)
+            {
+                if ($j == 6 || $j==22) {
+                    $seat->me = 1;
+                }
+            }
+            //D
+            if($i == 68)
+            {
+                if ($j == 8 || $j==24) {
+                    $seat->me = 1;
+                }
+            }
+            //E
+            if($i == 69)
+            {
+                if ($j == 9 || $j==25) {
+                    $seat->me = 1;
+                }
+            }
+            //F
+            if($i == 70)
+            {
+                if ($j == 9 || $j==25) {
+                    $seat->me = 1;
 
+                }
+                $seat->mb = 1;
+            }
+            //G
+            if($i == 71)
+            {
+                if ($j == 11 || $j==27) {
+                    $seat->me = 1;
+                }
+            }
+            //H
+            if($i == 72)
+            {
+                if ($j == 11 || $j==27) {
+                    $seat->me = 1;
+                }
+            }
+            //I
+            if($i == 73)
+            {
+                if ($j == 11 || $j==27) {
+                    $seat->me = 1;
+                }
+            }
+            //J
+            if($i == 74)
+            {
+                if ($j == 11 || $j==27) {
+                    $seat->me = 1;
+                }
+            }
+            //K
+            if($i == 75)
+            {
+                if ($j == 11 || $j==27) {
+                    $seat->me = 1;
+                }
+            }
+            //L
+            if($i == 76)
+            {
+                if ($j == 11 || $j==27) {
+                    $seat->me = 1;
+                }
+            }
+            //M
+            if($i == 77)
+            {
+                if ($j == 11 || $j==27) {
+                    $seat->me = 1;
+                }
+            }
+            //N
+            if($i == 78)
+            {
+                if ($j == 11 || $j==27) {
+                    $seat->me = 1;
+                }
+            }
+            //O
+            if($i == 79)
+            {
+                if ($j == 11 || $j==27) {
+                    $seat->me = 1;
+                }
+            }
             if ($i <= 68 && $room->roomType_id == 1) {
                 $seat->seatType_id = 2;
             } else {

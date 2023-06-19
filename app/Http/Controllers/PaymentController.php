@@ -95,7 +95,7 @@ class PaymentController extends Controller
                 $ticket->save();
                 $name = Auth::user()->fullName;
                 $email_cus = Auth::user()['email'];
-                Mail::send('web.pages.check_mail', [
+                Mail::send('web.pages.ticket_mail', [
                     'name' => $name,
                     'ticket' => $ticket,
                     'email_cus' => $email_cus

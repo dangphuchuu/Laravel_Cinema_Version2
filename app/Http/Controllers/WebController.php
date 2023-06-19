@@ -26,6 +26,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class WebController extends Controller
 {
@@ -530,7 +531,17 @@ class WebController extends Controller
         return redirect('/signOut')->with('success','Update password successfully!');
     }
     public function forgot_password(){
-
+        $name = Auth::user()->fullName;
+        $email_cus = Auth::user()['email'];
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
+        dd($now);
+        Mail::send('web.pages.check_mail', [
+            'name' => $name,
+            'email_cus' => $email_cus
+        ], function ($email) use ($name, $email_cus) {
+            $email->subject('Lấy lại mật khẩu HMCinema');
+            $email->to($email_cus, $name);
+        });
     }
     public function contact(){
         return view('web.pages.contact');
