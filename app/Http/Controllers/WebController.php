@@ -473,7 +473,7 @@ class WebController extends Controller
         $user->syncRoles('user');
         $to_email = $request['email'];
         $link_verify = url('/verify-email?email='.$to_email.'&token='.$token);
-        Mail::send('web.pages.verify_account', [
+        Mail::send('web.pages.verify_account_mail', [
             'to_email' => $to_email,
             'link_verify'=>$link_verify,
         ], function ($email) use ($to_email) {
