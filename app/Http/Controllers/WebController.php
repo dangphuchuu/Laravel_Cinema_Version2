@@ -459,6 +459,7 @@ class WebController extends Controller
             'repassword.required' => 'Password is required',
             'repassword.same' => "Password doesn't match",
         ]);
+        $token = Str::random(20);
         $request['password'] = bcrypt($request['password']);
         $user = new User([
             'fullName'=>$request['fullName'],
@@ -466,17 +467,26 @@ class WebController extends Controller
             'email'=>$request['email'],
             'phone'=>$request['phone'],
             'code'=>rand(10000000000, 9999999999999999),
-            'point'=>0
+            'point'=>0,
         ]);
         $user->save();
         $user->syncRoles('user');
-        return redirect('/')->with('success', 'Sign Up Successfully!');
+        $to_email = $request['email'];
+        $link_verify = url('/verify-email?email='.$to_email.'&token='.$token);
+        Mail::send('web.pages.verify_account', [
+            'to_email' => $to_email,
+            'link_verify'=>$link_verify,
+        ], function ($email) use ($to_email) {
+            $email->subject('Kích hoạt tài khoản: '.$to_email);
+            $email->to($to_email);
+        });
+        return redirect('/')->with('success', 'Đăng ký thành công,vui lòng kiểm tra email để kích hoạt tài khoản !');
     }
 
     public function signOut()
     {
         Auth::logout();
-        return redirect('/')->with('success','Sign out successfully');
+        return redirect('/')->with('success','Đăng xuất thành công');
     }
 
     public function profile()
@@ -573,7 +583,7 @@ class WebController extends Controller
         return view('web.pages.update_password');
     }
     public function Post_update_password(Request $request){
-        $token = Str::random();
+        $token = Str::random(20);
         $user = User::where('email','=',$request['email'])->where('remember_token','=',$request['token'])->first();
         $count = $user->count();
         if($count >0){
@@ -589,9 +599,25 @@ class WebController extends Controller
             $reset['password'] = bcrypt($request['password']);
             $reset['remember_token'] = $token;
             $reset->save();
-            return redirect('/')->with('success','Change password successfully');
+            return redirect('/')->with('success','Thay đổi mật khẩu thành công');
         }else{
-            return redirect('/')->with('warning','Please re-enter because the link is out of time');
+            return redirect('/')->with('warning','Vui lòng nhập lại vì đường dẫn hết thời gian sử dụng');
+        }
+    }
+    public function verify_email(){
+        $token = Str::random(20);
+        $email = $_GET['email'];
+        $user = User::where('email','=',$email)->first();
+        $count = $user->count();
+        if($count>0){
+            $verify = User::find($user->id);
+            $verify['email_verified'] = 1;
+            $verify['remember_token'] = $token;
+            $verify->save();
+            return redirect('/')->with('success','Kích hoạt tài khoản thành công');
+        }
+        else{
+            return redirect('/')->with('warning','Vui lòng nhập lại vì đường dẫn hết thời gian sử dụng');
         }
     }
     public function contact(){

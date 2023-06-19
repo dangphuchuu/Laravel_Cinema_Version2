@@ -40,6 +40,7 @@ Route::get('/', [WebController::class, 'home']);
 Route::post('/forgot_password',[WebController::class,'forgot_password']);
 Route::get('/update-password',[WebController::class,'update_password']);
 Route::post('/update-password',[WebController::class,'Post_update_password']);
+Route::get('/verify-email',[WebController::class,'verify_email']);
 Route::get('/contact',[WebController::class,'contact']);
 
 Route::prefix('/')->middleware('user')->group(function () {

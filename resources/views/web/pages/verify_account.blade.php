@@ -8,6 +8,6 @@
     <title>Reset Password</title>
 </head>
 <body>
-    <p>Click vào đây {!! $link_reset_password !!} để reset mật khẩu</p>
+<p>Click vào đây {!! $link_verify !!} để xác thực tài khoản</p>
 </body>
 </html>
