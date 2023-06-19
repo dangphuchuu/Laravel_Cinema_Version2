@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Cookie;
 class WebController extends Controller
 {
     function __construct()
@@ -423,7 +423,6 @@ class WebController extends Controller
 
     public function signIn(Request $request)
     {
-
         $request->validate(
             [
                 'email' => 'required',
@@ -435,6 +434,14 @@ class WebController extends Controller
             ]
         );
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+            if($request->has('rememberme')){
+                Cookie::queue('user_email',$request->email,1440);
+                Cookie::queue('password_email',$request->password,1440);
+            }
+//            else{
+//                Cookie::forget('user_email');
+//                Cookie::forget('password_email');
+//            }
             return redirect('/')->with('success','Welcome back '.Auth::user()->fullName);
         } else {
             return redirect('/')->with('warning','Wrong username or password!');
