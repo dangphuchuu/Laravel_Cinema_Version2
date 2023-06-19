@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +19,9 @@ use Illuminate\Support\Facades\Route;
 // Admin Route
 require 'admin.php';
 
-// Web Route
 
+
+// Web Route
 Route::get('/payment/result', [PaymentController::class, 'handleResult']);
 Route::post('/payment/create', [PaymentController::class, 'create']);
 Route::post('/payment', [WebController::class, 'ticketPayment']);
@@ -46,7 +48,10 @@ Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
 
 Route::get('/events', [WebController::class, 'events']);
 
+Route::get('/staff', [StaffController::class, 'index']);
 Route::get('/', [WebController::class, 'home']);
+
+
 Route::get('/forgot_password',[WebController::class,'forgot_password']);
 Route::get('/contact',[WebController::class,'contact']);
 Route::prefix('/')->middleware('user')->group(function () {

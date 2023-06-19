@@ -12,42 +12,12 @@
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
 
-
-        .rotateimg270 {
-            -webkit-transform:rotate(270deg);
-            -moz-transform: rotate(270deg);
-            -ms-transform: rotate(270deg);
-            -o-transform: rotate(270deg);
-            transform: rotate(270deg);
-        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        .btn {
-            display: inline-block;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #212529;
-            text-align: center;
-            text-decoration: none;
-            vertical-align: middle;
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-            background-color: transparent;
-            border: 1px solid transparent;
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            border-radius: 0.25rem;
-            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-        }
-        .btn-outline-light {
-            color: #f8f9fa;
-            border-color: #f8f9fa;
-        }
+
         body,
         html {
             height: 100vh;
@@ -59,11 +29,18 @@
             letter-spacing: 0.1em;
         }
 
+        .bg_shadow {
+            width: 550px;
+            height: 250px;
+            margin: auto;
+            display: flex;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+
         .ticket {
             margin: auto;
             display: flex;
             background: white;
-            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
         }
 
         .left {
@@ -80,7 +57,6 @@
             text-align: center;
             justify-content: space-around;
             writing-mode: vertical-rl;
-            transform: rotate(-180deg);
         }
 
         .admit-one span:nth-child(2) {
@@ -166,7 +142,6 @@
             font-size: 16px;
         }
 
-
         .location {
             display: flex;
             justify-content: space-around;
@@ -224,10 +199,44 @@
         .fw-bold {
             font-weight: 700!important;
         }
+
+        .rotate180 {
+            transform: rotate(-180deg);
+        }
+
+        .rotate270 {
+            transform: rotate(270deg);
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            background-color: transparent;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            border-radius: 0.25rem;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+
+        .btn-outline-light {
+            color: #f8f9fa;
+            border-color: #f8f9fa;
+        }
     </style>
 </head>
-<body id="photo">
-<div class="ticket" >
+<body>
+<div class="bg_shadow">
+<div id="photo" class="ticket" >
     <div class="left">
         <div class="ticket-info">
             <p class="date">
@@ -257,27 +266,27 @@
         </div>
     </div>
     <div class="right">
-        <p class="admit-one">
+        <p class="admit-one  rotate180">
             <span>HMCinema</span>
             <span>HMCinema</span>
             <span>HMCinema</span>
         </p>
         <div class="right-info-container">
-            <div class="rotateimg270">
-            <div class="barcode ">
-            @php
-                $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
-            @endphp
-                <img  style="margin-right: 10px;height: auto;width: 220px;"src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode($ticket->code,$generatorPNG::TYPE_CODE_128)) }}" alt="QR code"/>
-            </div>
-            <p class="ticket-number" style="height: auto;margin-top: -35px;width: auto;margin-left: 80px;">
-                {!! $ticket->code !!}
-            </p>
+            <div class="rotate270">
+                <div class="barcode ">
+                    @php
+                        $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
+                    @endphp
+                    <img  style="margin-right: 10px;height: auto;width: 220px;"src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode($ticket->code,$generatorPNG::TYPE_CODE_128)) }}" alt="QR code"/>
+                </div>
+                <p class="ticket-number" style="height: auto;margin-top: -35px;width: auto;margin-left: 80px;">
+                    {!! $ticket->code !!}
+                </p>
             </div>
         </div>
     </div>
 </div>
-</body>
+</div>
 <div style="display: flex; justify-content: center; letter-spacing: 20px;">
     <div style="display: flex;">
         <form action="/">
@@ -288,17 +297,20 @@
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.esm.js" integrity="sha512-oa6kn7l/guSfv94d8YmJLcn/s3Km4mm/t4RqFqyorSMXkKlg6pFM6HmLXsJvOP/Cl/dv/N5xW7zuaA+paSc55Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.js" integrity="sha512-sn/GHTj+FCxK5wam7k9w4gPPm6zss4Zwl/X9wgrvGMFbnedR8lTUSLdsolDRBRzsX6N+YgG6OWyvn9qaFVXH9w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
-</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.js" integrity="sha512-sn/GHTj+FCxK5wam7k9w4gPPm6zss4Zwl/X9wgrvGMFbnedR8lTUSLdsolDRBRzsX6N+YgG6OWyvn9qaFVXH9w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script type="text/javascript">
 
     $(document).ready(function(){
-        $("#download").click(function(){
-            screenshot();
+        $("#download").on('click', () => {
+            ticket = document.getElementById('photo');
+            html2canvas(ticket).then((canvas) => {
+                downloadImage(canvas.toDataURL(),"TicketInfo.png");
+            });
         });
     });
 
@@ -326,8 +338,9 @@
 
     function accountForFirefox(click){
         var link = arguments[1];
-        document.body.appendChild(link);
         click(link);
-        document.body.removeChild(link);
     }
 </script>
+</body>
+</html>
+
