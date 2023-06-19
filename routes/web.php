@@ -47,7 +47,7 @@ Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
 Route::get('/events', [WebController::class, 'events']);
 
 Route::get('/', [WebController::class, 'home']);
-Route::get('/forgot_password',[WebController::class,'forgot_password']);
+Route::post('/forgot_password',[WebController::class,'forgot_password']);
 Route::get('/contact',[WebController::class,'contact']);
 Route::prefix('/')->middleware('user')->group(function () {
     Route::get('/tickets/{schedule_id}', [WebController::class, 'ticket']);
