@@ -216,8 +216,6 @@ class WebController extends Controller
         } else {
             return redirect('/');
         }
-//        dd($ticket);
-
         return view('web.pages.ticketPaid', [
             'ticket' => $ticket,
         ]);
@@ -650,8 +648,7 @@ class WebController extends Controller
         $img = base64ToImage($imgbase64, 'img.png');
         $name = Auth::user()->fullName;
 
-        $cloud_name = cloud_name();
-//        $email_cus = Auth::user()->email;
+        $email_cus = Auth::user()->email;
 
         $cloud = Cloudinary::upload($img, [
             'folder' => 'ticket_user',
@@ -660,12 +657,12 @@ class WebController extends Controller
 
         Mail::send('web.pages.ticket_mail', [
             'name' => $name,
-            'image'=> $cloud,
-            'cloud_name' => $cloud_name,
-        ], function ($email) use ($name, $cloud) {
+            'cloud' => $cloud,
+        ], function ($email) use ($name, $email_cus) {
             $email->subject('Vé xem phim tại HM Cinema');
-            $email->to('tqminh.0907@gmail.com', $name);
+            $email->to($email_cus, $name);
         });
+
         return response();
     }
     public function refund_ticket(Request $request){

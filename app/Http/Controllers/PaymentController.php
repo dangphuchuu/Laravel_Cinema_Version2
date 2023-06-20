@@ -103,16 +103,16 @@ class PaymentController extends Controller
             case '00':
                 $ticket->hasPaid = true;
                 $ticket->save();
-                $name = Auth::user()->fullName;
-                $email_cus = Auth::user()['email'];
-                Mail::send('web.pages.ticket_mail', [
-                    'name' => $name,
-                    'ticket' => $ticket,
-                    'email_cus' => $email_cus
-                ], function ($email) use ($name, $email_cus) {
-                    $email->subject('Vé xem phim tại HM Cinema');
-                    $email->to($email_cus, $name);
-                });
+//                $name = Auth::user()->fullName;
+//                $email_cus = Auth::user()['email'];
+//                Mail::send('web.pages.ticket_mail', [
+//                    'name' => $name,
+//                    'ticket' => $ticket,
+//                    'email_cus' => $email_cus
+//                ], function ($email) use ($name, $email_cus) {
+//                    $email->subject('Vé xem phim tại HM Cinema');
+//                    $email->to($email_cus, $name);
+//                });
                 $user = Auth::user();
                 $money_payment = 0 ;
                 foreach($user['ticket'] as $ticket)
