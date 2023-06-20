@@ -22,6 +22,8 @@ return new class extends Migration
             $table->boolean('status')->default(true);
             $table->bigInteger('code')->unique();
             $table->bigInteger('point');
+            $table->bigInteger('theater_id')->unsigned()->nullable(true);
+            $table->foreign('theater_id')->references('id')->on('theaters');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

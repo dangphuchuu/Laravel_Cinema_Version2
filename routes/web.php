@@ -16,10 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('lang/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'vi'])) {
+        abort('404');
+    }
+    session()->put('locale', $locale);
+    return redirect()->back();
+});
+
 // Admin Route
 require 'admin.php';
 
-
+//Staff Route
 
 // Web Route
 Route::get('/payment/result', [PaymentController::class, 'handleResult']);
@@ -42,13 +50,11 @@ Route::get('/search', [WebController::class, 'search']);
 Route::get('/movie/{id}', [WebController::class, 'movieDetail']);
 Route::get('/movies', [WebController::class, 'movies']);
 
-Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
 Route::get('/schedulesByTheater', [WebController::class, 'schedulesByTheater']);
 Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
 
 Route::get('/events', [WebController::class, 'events']);
 
-Route::get('/staff', [StaffController::class, 'index']);
 Route::get('/', [WebController::class, 'home']);
 
 

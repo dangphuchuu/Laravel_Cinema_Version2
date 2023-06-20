@@ -11,23 +11,16 @@ use App\Http\Controllers\FoodController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieGenresController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\SeatController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StatisticalController;
 use App\Http\Controllers\TheaterController;
 use App\Http\Controllers\TicketController;
-use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
-
-Route::get('lang/{locale}', function ($locale) {
-    if (!in_array($locale, ['en', 'vi'])) {
-        abort('404');
-    }
-    session()->put('locale', $locale);
-    return redirect()->back();
-});
 
 Route::prefix('admin')->group(function () {
     //TODO Sign-in admin
@@ -37,7 +30,13 @@ Route::prefix('admin')->group(function () {
     Route::get('/profile', [AdminController::class, 'profile']);
     Route::post('/postprofile', [AdminController::class, 'Postprofile']);
 });
+
 Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function () {
+    Route::post('/buyTicket/money', [PaymentController::class, 'handleResult']);
+    Route::post('/buyTicket/scanBC', [StaffController::class, 'scanBarcode']);
+    Route::get('/buyTicket/{schedule_id}', [StaffController::class, 'ticket']);
+    Route::get('/buyTicket', [StaffController::class, 'buyTicket']);
+
     Route::get('/', [AdminController::class, 'home']);
 
     //TODO Movie Genres

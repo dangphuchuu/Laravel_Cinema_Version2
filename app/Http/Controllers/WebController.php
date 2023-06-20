@@ -80,7 +80,7 @@ class WebController extends Controller
 
     public function ticket($schedule_id)
     {
-        $ticketsPaids = Ticket::where('holdState', false)->where('hasPaid', false)->where('schedule_id', $schedule_id)->delete();
+        Ticket::where('holdState', false)->where('hasPaid', false)->where('schedule_id', $schedule_id)->delete();
         $ticketsHolds = Ticket::where('holdState', true)->where('schedule_id', $schedule_id)->get();
 
         foreach ($ticketsHolds as $ticketsHold) {
@@ -108,6 +108,7 @@ class WebController extends Controller
         $roomSurcharge = $schedule->room->roomType->surcharge;
         $room = $schedule->room;
         $movie = $schedule->movie;
+
         return view('web.pages.ticket', [
             'schedule' => $schedule,
             'room' => $room,

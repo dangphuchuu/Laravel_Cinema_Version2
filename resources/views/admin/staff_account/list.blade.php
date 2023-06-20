@@ -57,8 +57,8 @@
                                 </thead>
                                 <tbody>
                                 @foreach($staff as $value)
-                                    @foreach($value['roles'] as $role)
-                                        @if($role['name'] == 'admin' || $role['name'] == 'staff')
+{{--                                    @foreach($value['roles'] as $role)--}}
+                                        @if($value->getRoleNames()->first() == 'admin' || $value->getRoleNames()->first() == 'staff')
                                             <tr>
                                                 <td class="align-middle text-center">
                                                     <h6 class="mb-0 text-sm ">{!! $value['fullName'] !!}</h6>
@@ -73,7 +73,7 @@
                                                 </td>
                                                 <td class="align-middle text-center">
                                                         <span
-                                                            class="text-secondary font-weight-bold"> {!! $role['name'] !!}</span>
+                                                            class="text-secondary font-weight-bold"> {!! $value->getRoleNames()->first() !!}</span>
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <button href="#permission" class="btn btn-link text-danger "
@@ -84,11 +84,11 @@
                                                 </td>
                                                 <td id="status{!! $value['id'] !!}" class="align-middle text-center text-sm ">
                                                     @if($value['status'] == 1)
-                                                        <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},0)">
-                                                            <span class="badge badge-sm bg-gradient-success" artisan serv>Online</span>
+                                                        <a href="javascript:void(0)" class="btn_active" onclick="changestatus({!! $value['id'] !!},0)">
+                                                            <span class="badge badge-sm bg-gradient-success">Online</span>
                                                         </a>
                                                     @else
-                                                        <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},1)">
+                                                        <a href="javascript:void(0)" class="btn_active" onclick="changestatus({!! $value['id'] !!},1)">
                                                             <span class="badge badge-sm bg-gradient-secondary">Offline</span>
                                                         </a>
                                                     @endif
@@ -106,7 +106,7 @@
                                             </tr>
                                             @include('admin.staff_account.permisson')
                                         @endif
-                                    @endforeach
+{{--                                    @endforeach--}}
                                 @endforeach
                                 @include('admin.staff_account.create')
                                 </tbody>

@@ -12,26 +12,40 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">@lang('lang.fullname')</label>
-                                    <input class="form-control" type="text" value="" name="fullName" placeholder="@lang('lang.type') @lang('lang.fullname')">
+                                    <label>@lang('lang.fullname')</label>
+                                    <input aria-label="" id="fn" class="form-control" type="text" value="" name="fullName"
+                                           placeholder="@lang('lang.type') @lang('lang.fullname')">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Email</label>
-                                    <input class="form-control" type="email" value="" name="email" placeholder="@lang('lang.type') Email">
+                                    <label>Email</label>
+                                    <input aria-label="" id="e" class="form-control" type="email" value="" name="email"
+                                           placeholder="@lang('lang.type') Email">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">@lang('lang.phone')</label>
-                                    <input class="form-control" type="text" value="" name="phone" placeholder="@lang('lang.type') @lang('lang.phone')">
+                                    <label>@lang('lang.phone')</label>
+                                    <input aria-label="" id="p" class="form-control" type="text" value="" name="phone"
+                                           placeholder="@lang('lang.type') @lang('lang.phone')">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">@lang('lang.password')</label>
-                                    <input class="form-control" type="password" value="" name="password" placeholder="@lang('lang.type') @lang('lang.password')">
+                                    <label>@lang('lang.password')</label>
+                                    <input aria-label="" id="rp" class="form-control" type="password" value="" name="password"
+                                           placeholder="@lang('lang.type') @lang('lang.password')">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>theater</label>
+                                    <select id="t" aria-label="" class="form-control" name="theater_id">
+                                        @foreach($theaters as $theater)
+                                            <option value="{{$theater->id}}">{{$theater->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
