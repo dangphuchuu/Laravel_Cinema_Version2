@@ -633,10 +633,25 @@ class WebController extends Controller
         return view('web.pages.contact');
     }
     public function ticketPaid_image(Request $request){
+
+        function base64ToImage($base64_string, $output_file)
+        {
+            $file = fopen($output_file, "wb");
+
+//        $data = explode(',', $base64_string);
+
+            fwrite($file, base64_decode($base64_string));
+            fclose($file);
+
+            return $output_file;
+        }
+
+            $imgbase64 = substr($request->image, 22);
+
+        $img = base64ToImage($imgbase64, 'img.jpg');
+
         $name = Auth::user()->fullName;
-        $file = $request->file('image');
-        $img = $request['image'] = $file;
-        Cloudinary::upload($img->getRealPath(), [
+        Cloudinary::upload($img, [
             'folder' => 'ticket_user',
             'format' => 'png',
         ])->getPublicId();
@@ -648,6 +663,6 @@ class WebController extends Controller
 //            $email->subject('Vé xem phim tại HM Cinema');
 //            $email->to('phuchuu0120@gmail.com', $name);
 //        });
-        return response();
+        return response()->json(['image' => $img]);
     }
 }

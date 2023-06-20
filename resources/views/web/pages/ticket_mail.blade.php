@@ -31,7 +31,7 @@
 {{--                                                @php--}}
 {{--                                                    $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();--}}
 {{--                                                @endphp--}}
-                                                <img src="data:image/png;base64,{!! base64_encode($generatorPNG->getBarcode($ticket['code'],$generatorPNG::TYPE_CODE_128)) !!}" />
+{{--                                                <img src="data:image/png;base64,{!! base64_encode($generatorPNG->getBarcode($ticket['code'],$generatorPNG::TYPE_CODE_128)) !!}" />--}}
 {{--                                                <span>{!! $ticket['code'] !!}</span>--}}
                                             </td>
 {{--                                        </tr>--}}
