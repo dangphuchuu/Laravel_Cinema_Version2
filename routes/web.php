@@ -43,10 +43,12 @@ Route::post('/update-password',[WebController::class,'Post_update_password']);
 Route::get('/verify-email',[WebController::class,'verify_email']);
 Route::get('/contact',[WebController::class,'contact']);
 
+
 Route::prefix('/')->middleware('user')->group(function () {
     Route::get('/tickets/{schedule_id}', [WebController::class, 'ticket']);
     Route::get('/profile',[WebController::class,'profile']);
     Route::post('/editProfile',[WebController::class,'editProfile']);
     Route::post('/changePassword',[WebController::class,'changePassword']);
     Route::get('/tickets/completed/{id}', [WebController::class, 'ticketCompleted']);
+    Route::post('/ticketPaid/image',[WebController::class,'ticketPaid_image']);
 });

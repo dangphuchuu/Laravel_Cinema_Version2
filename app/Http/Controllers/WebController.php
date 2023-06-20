@@ -21,6 +21,7 @@ use App\Models\TicketCombo;
 use App\Models\TicketSeat;
 use App\Models\User;
 use Carbon\Carbon;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -435,8 +436,8 @@ class WebController extends Controller
         );
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
             if($request->has('rememberme')){
-                Cookie::queue('user_email',$request->email,1440);
-                Cookie::queue('password_email',$request->password,1440);
+                Cookie::queue(Cookie::make('user_email',$request->email,10080));//10080 = 7 days,Thời gian lưu cookie
+                Cookie::queue(Cookie::make('password_email',$request->password,10080));
             }
 //            else{
 //                Cookie::forget('user_email');
@@ -629,5 +630,23 @@ class WebController extends Controller
     }
     public function contact(){
         return view('web.pages.contact');
+    }
+    public function ticketPaid_image(Request $request){
+        $name = Auth::user()->fullName;
+        $file = $request->file('image');
+        $img = $request['image'] = $file;
+        Cloudinary::upload($img->getRealPath(), [
+            'folder' => 'ticket_user',
+            'format' => 'png',
+        ])->getPublicId();
+
+//        Mail::send('web.pages.ticket_mail', [
+//            'name' => $name,
+//            'image'=> $cloud
+//        ], function ($email) use ($name,$cloud) {
+//            $email->subject('Vé xem phim tại HM Cinema');
+//            $email->to('phuchuu0120@gmail.com', $name);
+//        });
+        return response();
     }
 }

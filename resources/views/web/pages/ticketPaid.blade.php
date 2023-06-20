@@ -305,6 +305,26 @@
 
 <script type="text/javascript">
 
+    window.onload = ()=>{
+        ticket = document.getElementById('photo');
+        html2canvas(ticket).then((canvas) => {
+            var image = canvas.toDataURL('image/png');
+           // var image = document.write('<img src="'+can+'"/>');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: '/ticketPaid/image',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'image' : image
+                }
+            });
+        });
+    }
     $(document).ready(function(){
         $("#download").on('click', () => {
             ticket = document.getElementById('photo');
@@ -313,12 +333,6 @@
             });
         });
     });
-
-    function screenshot(){
-        html2canvas(document.getElementById("photo")).then(function(canvas){
-            downloadImage(canvas.toDataURL(),"TicketInfo.png");
-        });
-    }
 
     function downloadImage(uri, filename){
         var link = document.createElement('a');
@@ -340,6 +354,7 @@
         var link = arguments[1];
         click(link);
     }
+
 </script>
 </body>
 </html>
