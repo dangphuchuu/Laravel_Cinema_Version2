@@ -1,1 +1,0 @@
-@extends('staff.layout.index')

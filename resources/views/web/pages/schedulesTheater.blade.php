@@ -74,7 +74,7 @@
                         </div>
                     @endforeach
 
-                    <form action="/schedulesbyTheater" method="get">
+                    <form action="/schedulesByTheater" method="get">
                         @csrf
                         <div class="row container mt-5">
                             <div class="col-10">

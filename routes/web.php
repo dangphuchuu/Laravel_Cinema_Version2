@@ -1,9 +1,28 @@
 <?php
 
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\StaffController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('lang/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'vi'])) {
+        abort('404');
+    }
+    session()->put('locale', $locale);
+    return redirect()->back();
+});
+
 // Admin Route
 require 'admin.php';
 
@@ -28,13 +47,11 @@ Route::get('/search', [WebController::class, 'search']);
 Route::get('/movie/{id}', [WebController::class, 'movieDetail']);
 Route::get('/movies', [WebController::class, 'movies']);
 
-Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
 Route::get('/schedulesByTheater', [WebController::class, 'schedulesByTheater']);
 Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
 
 Route::get('/events', [WebController::class, 'events']);
 
-Route::get('/staff', [StaffController::class, 'index']);
 Route::get('/', [WebController::class, 'home']);
 
 Route::post('/forgot_password',[WebController::class,'forgot_password']);

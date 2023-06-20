@@ -28,6 +28,7 @@ class User extends Authenticatable
         'status',
         'code',
         'point',
+        'theater_id',
         'email_verified',
         'remember_token'
     ];
@@ -42,6 +43,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
     /**
      * The attributes that should be cast.
      *
@@ -53,5 +55,13 @@ class User extends Authenticatable
     public function ticket()
     {
         return $this->hasMany(Ticket::class, 'user_id', 'id');
+    }
+
+//    public function role() {
+//        return $this->belongsToMany(Role::class, 'model_has_roles', 'model_id', 'role_id');
+//    }
+
+    public function theater() {
+        return $this->belongsTo(Theater::class, 'theater_id', 'id');
     }
 }

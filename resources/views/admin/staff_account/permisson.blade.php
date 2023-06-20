@@ -18,14 +18,14 @@
                                     <div class="form-group">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="{!! $permiss['name'] !!}"
-                                                   id="{!! $permiss['id'] !!}"
+                                                   id="{!! $value['id'].$permiss['id'] !!}"
                                                    name="permission[]"
                                                    @foreach($user_permission as $up)
                                                        @if($up['id'] == $permiss['id'])
                                                            checked
                                                 @endif
                                                 @endforeach >
-                                            <label class="text-nowrap form-check-label" for="{!! $permiss['id'] !!}">
+                                            <label class="text-nowrap form-check-label" for="{!! $value['id'].$permiss['id'] !!}">
                                                 {!! $permiss['name'] !!}
                                             </label>
                                         </div>

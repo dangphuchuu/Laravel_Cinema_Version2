@@ -32,6 +32,7 @@ Permission::create(['name' => 'staff']);
 
 //TODO: Banners
 Permission::create(['name' => 'banners']);
+
 //TODO: Directors
 Permission::create(['name' => 'director']);
 
@@ -46,3 +47,9 @@ Permission::create(['name' => 'discount']);
 
 //TODO: Price
 Permission::create(['name' => 'price']);
+
+//TODO: buyTicket
+Permission::create(['name' => 'buyTicket']);
+
+//TODO: buyCombo
+Permission::create(['name' => 'buyCombo']);

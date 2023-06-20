@@ -79,15 +79,25 @@ class PaymentController extends Controller
 //              "vnp_BankCode" => "NCB"
 //              "vnp_BankTranNo" => "VNP14038134"
 //              "vnp_CardType" => "ATM"
-//              "vnp_OrderInfo" => "Thanh toan GD:2023061321355094087"
+//              "vnp_OrderInfo" => "Thanh toan GD:21355094087"
 //              "vnp_PayDate" => "20230613213610"
 //              "vnp_ResponseCode" => "00"
 //              "vnp_TmnCode" => "6JQZ09G6"
 //              "vnp_TransactionNo" => "14038134"
 //              "vnp_TransactionStatus" => "00"
-//              "vnp_TxnRef" => "2023061321355094087"
+//              "vnp_TxnRef" => "21355094087"
 //              "vnp_SecureHash" => "b1a4601eb9be6f7ed795efc2e86e24f036af8b4cf3f9dbb5df6e0caf3d382181d51e1a9ebda0fb8d19ed6c89eba78f8b95ba55af25d0ec18b1b16ceff1100de0"
 //         ]
+
+        if ($request->vnp_BankCode === 'MONEY') {
+            $request->vnp_Amount = $request->total;
+            $request->vnp_ResponseCode = '00';
+            $tickeById = Ticket::find($request->ticket_id);
+            $request->vnp_TxnRef = $tickeById->code;
+        } else {
+
+        }
+
         $ticket = Ticket::where('code', $request->vnp_TxnRef)->get()->first();
         switch ($request->vnp_ResponseCode) {
             case '00':
@@ -107,7 +117,7 @@ class PaymentController extends Controller
                 $money_payment = 0 ;
                 foreach($user['ticket'] as $ticket)
                 {
-                    $money_payment+= $ticket['totalPrice'];
+                    $money_payment += $ticket['totalPrice'];
                 }
                 if($money_payment < 4000000){
                     $point = ($ticket['totalPrice'])*5/100;

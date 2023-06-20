@@ -1,11 +1,15 @@
 @extends('admin.layout.index')
 @section('content')
+    @role('admin')
+    <div class="container-fluid py-4">
     <!-- Sales -->
     @include('admin.home.sales')
     <!-- Chart -->
     @include('admin.home.chart')
     <!-- Sales By movie -->
     @include('admin.home.revenue')
+    </div>
+    @endrole
 @endsection
 @section('scripts')
     <script>

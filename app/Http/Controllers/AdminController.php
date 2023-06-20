@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Theater;
 use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,8 +20,9 @@ class AdminController extends Controller
 
     public function home()
     {
-        $ticket = Ticket::whereDate('created_at', Carbon::today())->get();;
+        $ticket = Ticket::whereDate('created_at', Carbon::today())->get();
         $user = User::role('user')->get();
+
         return view('admin.home.list',['user'=>$user,'ticket'=>$ticket]);
     }
 
@@ -36,8 +38,13 @@ class AdminController extends Controller
     {
         $staff = User::orderBy('id', 'DESC')->with('roles', 'permissions')->Paginate(20);
         $permission = Permission::orderBy('id', 'asc')->get();
+        $theaters = Theater::all();
 
-        return view('admin.staff_account.list', ['staff' => $staff, 'permission' => $permission]);
+        return view('admin.staff_account.list', [
+            'staff' => $staff,
+            'permission' => $permission,
+            'theaters' => $theaters
+        ]);
     }
 
     public function postCreate(Request $request)
@@ -66,6 +73,10 @@ class AdminController extends Controller
             'email_verified'=>true,
             'remember_token'=>Str::random(20),
         ]);
+//        dd($staff);
+
+        $staff->theater_id = $request->theater_id;
+
         $staff->save();
         $staff->syncRoles('staff');
         return redirect('/admin/staff')->with('success', 'Create Account Successfully!');
