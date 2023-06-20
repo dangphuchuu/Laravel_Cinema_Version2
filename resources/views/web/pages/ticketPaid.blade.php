@@ -303,54 +303,42 @@
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script type="text/javascript">
-
-    window.onload = ()=>{
-        ticket = document.getElementById('photo');
-        html2canvas(ticket).then((canvas) => {
-            // var link = document.createElement('a');
-            // if(typeof link.download !== 'string'){
-            image = canvas.toDataURL('image/JPG', 1.0);
-            console.log(image);
-                // window.open(canvas.toBase64Image);
-            // }
-            // else{
-            //     link.href = canvas.toDataURL();
-            //     link.download = 'TicketInfo.png';
-            //     // var link = arguments[1];
-            //     console.log(link);
-            // }
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: '/ticketPaid/image',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    'image' : image
-                },
-                statusCode: {
-                    200: (data) => {
-                        console.log(data.image);
-                    },
-                    500: (data) => {
-                        console.log(data.image);
+<script>
+    $(document).ready(() => {
+        window.onload = (e) => {
+            ticket = document.getElementById('photo');
+            html2canvas(ticket).then((canvas) => {
+                image = canvas.toDataURL('image/PNG', 1.0);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
-                }
+                });
+                $.ajax({
+                    url: '/ticketPaid/image',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'image' : image
+                    },
+                    statusCode: {
+                        200: (data) => {
+                        },
+                        500: (data) => {
+                        }
+                    }
+                });
             });
-        });
-    }
-    $(document).ready(function(){
+        }
+
         $("#download").on('click', () => {
             ticket = document.getElementById('photo');
             html2canvas(ticket).then((canvas) => {
-                downloadImage(canvas.toDataURL(),"TicketInfo.png");
+                downloadImage(canvas.toDataURL('image/PNG', 1.0),"TicketInfo.png");
             });
         });
-    });
+    })
+
 
     function downloadImage(uri, filename){
         var link = document.createElement('a');
