@@ -632,13 +632,12 @@ class WebController extends Controller
     public function contact(){
         return view('web.pages.contact');
     }
-    public function ticketPaid_image(Request $request){
+    public function ticketPaid_image(Request $request) {
 
-        function base64ToImage($base64_string, $output_file)
-        {
+        function base64ToImage($base64_string, $output_file) {
             $file = fopen($output_file, "wb");
 
-//        $data = explode(',', $base64_string);
+//            $data = explode(',', $base64_string);
 
             fwrite($file, base64_decode($base64_string));
             fclose($file);
@@ -646,12 +645,14 @@ class WebController extends Controller
             return $output_file;
         }
 
-            $imgbase64 = substr($request->image, 22);
+        $imgbase64 = substr($request->image, 22);
 
-        $img = base64ToImage($imgbase64, 'img.jpg');
-        $cloud_name = cloud_name();
+        $img = base64ToImage($imgbase64, 'img.png');
         $name = Auth::user()->fullName;
-        $email_cus = Auth::user()->email;
+
+        $cloud_name = cloud_name();
+//        $email_cus = Auth::user()->email;
+
         $cloud = Cloudinary::upload($img, [
             'folder' => 'ticket_user',
             'format' => 'png',
@@ -660,10 +661,10 @@ class WebController extends Controller
         Mail::send('web.pages.ticket_mail', [
             'name' => $name,
             'image'=> $cloud,
-            'cloud_name'=> $cloud_name
-        ], function ($email) use ($name,$email_cus) {
+            'cloud_name' => $cloud_name,
+        ], function ($email) use ($name, $cloud) {
             $email->subject('Vé xem phim tại HM Cinema');
-            $email->to('phuchuu0120@gmail.com', $name);
+            $email->to('tqminh.0907@gmail.com', $name);
         });
         return response();
     }
