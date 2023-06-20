@@ -29,6 +29,8 @@ class User extends Authenticatable
         'code',
         'point',
         'theater_id',
+        'email_verified',
+        'remember_token'
     ];
 
     /**

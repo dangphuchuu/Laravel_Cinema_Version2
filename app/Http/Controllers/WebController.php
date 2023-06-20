@@ -27,7 +27,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cookie;
 class WebController extends Controller
 {
     function __construct()
@@ -423,7 +424,6 @@ class WebController extends Controller
 
     public function signIn(Request $request)
     {
-
         $request->validate(
             [
                 'email' => 'required',
@@ -435,6 +435,14 @@ class WebController extends Controller
             ]
         );
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+            if($request->has('rememberme')){
+                Cookie::queue('user_email',$request->email,1440);
+                Cookie::queue('password_email',$request->password,1440);
+            }
+//            else{
+//                Cookie::forget('user_email');
+//                Cookie::forget('password_email');
+//            }
             return redirect('/')->with('success','Welcome back '.Auth::user()->fullName);
         } else {
             return redirect('/')->with('warning','Wrong username or password!');
@@ -459,6 +467,7 @@ class WebController extends Controller
             'repassword.required' => 'Password is required',
             'repassword.same' => "Password doesn't match",
         ]);
+        $token = Str::random(20);
         $request['password'] = bcrypt($request['password']);
         $user = new User([
             'fullName'=>$request['fullName'],
@@ -466,17 +475,26 @@ class WebController extends Controller
             'email'=>$request['email'],
             'phone'=>$request['phone'],
             'code'=>rand(10000000000, 9999999999999999),
-            'point'=>0
+            'point'=>0,
         ]);
         $user->save();
         $user->syncRoles('user');
-        return redirect('/')->with('success', 'Sign Up Successfully!');
+        $to_email = $request['email'];
+        $link_verify = url('/verify-email?email='.$to_email.'&token='.$token);
+        Mail::send('web.pages.verify_account_mail', [
+            'to_email' => $to_email,
+            'link_verify'=>$link_verify,
+        ], function ($email) use ($to_email) {
+            $email->subject('Kích hoạt tài khoản: '.$to_email);
+            $email->to($to_email);
+        });
+        return redirect('/')->with('success', 'Đăng ký thành công,vui lòng kiểm tra email để kích hoạt tài khoản !');
     }
 
     public function signOut()
     {
         Auth::logout();
-        return redirect('/')->with('success','Sign out successfully');
+        return redirect('/')->with('success','Đăng xuất thành công');
     }
 
     public function profile()
@@ -531,18 +549,84 @@ class WebController extends Controller
         }
         return redirect('/signOut')->with('success','Update password successfully!');
     }
-    public function forgot_password(){
-        $name = Auth::user()->fullName;
-        $email_cus = Auth::user()['email'];
-        $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
-        dd($now);
-        Mail::send('web.pages.check_mail', [
-            'name' => $name,
-            'email_cus' => $email_cus
-        ], function ($email) use ($name, $email_cus) {
-            $email->subject('Lấy lại mật khẩu HMCinema');
-            $email->to($email_cus, $name);
-        });
+    public function forgot_password(Request $request){
+        $data = $request['email'];
+
+        $user_email = User::where('email','=',$data)->first();
+
+        if($user_email){
+            $count = $user_email->count();
+            if($count == 0){
+                return redirect()->back()->with('warning','Email not found in system');
+            }
+            else{
+                $token = Str::random(20);
+                $user = User::find($user_email->id);
+                $user->remember_token = $token;
+                $user->save();
+
+                //send mail
+                $to_email = $data;
+                $name = $user->fullName;
+                $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
+
+                $link_reset_password = url('/update-password?email='.$to_email.'&token='.$token);
+                Mail::send('web.pages.reset_password_mail', [
+                'name' => $name,
+                'to_email' => $to_email,
+                'now'=>$now,
+                'link_reset_password'=>$link_reset_password,
+            ], function ($email) use ($name,  $to_email,$now) {
+                $email->subject('Xác nhận cập nhật lại mật khẩu ngày: '.$now);
+                $email->to($to_email, $name);
+            });
+            }
+            return redirect()->back()->with('success','Please check your email to reset password !');
+        }else{
+            return redirect()->back()->with('warning','Email not found in system');
+        }
+
+    }
+    public function update_password(){
+        return view('web.pages.update_password');
+    }
+    public function Post_update_password(Request $request){
+        $token = Str::random(20);
+        $user = User::where('email','=',$request['email'])->where('remember_token','=',$request['token'])->first();
+        $count = $user->count();
+        if($count >0){
+            $reset = User::find($user->id);
+            $request->validate([
+                'password' => 'required',
+                'repassword' => 'required|same:password'
+            ],[
+                'password.required' => 'Please type new password',
+                'repassword.required' => 'Please type passsword again',
+                'repassword.same' => "Password again isn't correct"
+            ]);
+            $reset['password'] = bcrypt($request['password']);
+            $reset['remember_token'] = $token;
+            $reset->save();
+            return redirect('/')->with('success','Thay đổi mật khẩu thành công');
+        }else{
+            return redirect('/')->with('warning','Vui lòng nhập lại vì đường dẫn hết thời gian sử dụng');
+        }
+    }
+    public function verify_email(){
+        $token = Str::random(20);
+        $email = $_GET['email'];
+        $user = User::where('email','=',$email)->first();
+        $count = $user->count();
+        if($count>0){
+            $verify = User::find($user->id);
+            $verify['email_verified'] = 1;
+            $verify['remember_token'] = $token;
+            $verify->save();
+            return redirect('/')->with('success','Kích hoạt tài khoản thành công');
+        }
+        else{
+            return redirect('/')->with('warning','Vui lòng nhập lại vì đường dẫn hết thời gian sử dụng');
+        }
     }
     public function contact(){
         return view('web.pages.contact');

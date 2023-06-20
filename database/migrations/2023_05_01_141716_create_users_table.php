@@ -25,6 +25,7 @@ return new class extends Migration
             $table->bigInteger('theater_id')->unsigned()->nullable(true);
             $table->foreign('theater_id')->references('id')->on('theaters');
             $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('email_verified')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

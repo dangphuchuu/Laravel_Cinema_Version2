@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Cookie; @endphp
 <!-- Login -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog container">
@@ -10,14 +11,26 @@
                 <form method='post' action="/signIn">
                     @csrf
                     <div class="mb-3">
-                        <input class="form-control" type="email" placeholder="Email..." name="email" aria-label="email"
+                        <input class="form-control" type="email" placeholder="Email..."
+                               @if(Cookie::has('user_email'))
+                                   value="{!! Cookie::get('user_email') !!}"
+                               @endif
+                               name="email" aria-label="email"
                                autocomplete="email">
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="password" placeholder="Password..." name="password" aria-label="">
+                        <input class="form-control" type="password" placeholder="Password..."
+                               @if(Cookie::has('password_email'))
+                                   value="{!! Cookie::get('password_email') !!}"
+                               @endif
+                               name="password" aria-label="password">
                     </div>
                     <div class="form-check mb-4">
-                        <input class="form-check-input" type="checkbox" value="" id="rememberme">
+                        <input class="form-check-input" type="checkbox"
+                               @if(Cookie::has('user_email'))
+                                   checked
+                               @endif
+                               id="rememberme" name="rememberme">
                         <label class="form-check-label" for="rememberme">
                             @lang('lang.remember_password')
                         </label>

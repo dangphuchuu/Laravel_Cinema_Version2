@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -69,6 +70,8 @@ class AdminController extends Controller
             'phone'=>$request['phone'],
             'code'=>rand(10000000000, 9999999999999999),
             'point'=>0,
+            'email_verified'=>true,
+            'remember_token'=>Str::random(20),
         ]);
 //        dd($staff);
 
