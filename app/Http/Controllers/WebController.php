@@ -667,4 +667,25 @@ class WebController extends Controller
         });
         return response();
     }
+    public function refund_ticket(Request $request){
+        $ticket = Ticket::find($request->ticket_id);
+        $user = User::find($ticket['user_id']);
+        $money_payment = 0 ;
+        foreach($user['ticket'] as $ticket)
+        {
+            $money_payment += $ticket['totalPrice'];
+        }
+        if ($money_payment< 4000000)
+        {
+            $user['point'] = $user['point'] -($ticket['totalPrice']*5/100) +  $ticket['totalPrice'] ;
+            $user->save();
+        }
+        else
+        {
+            $user['point'] = $user['point'] -($ticket['totalPrice']*10/100) +  $ticket['totalPrice'] ;
+            $user->save();
+        }
+        $ticket->delete();
+        return response()->json(['success'=>'Gửi yêu cầu thành công,vé sẽ được hoàn vào điểm thưởng vui lòng kiểm tra điểm thưởng trong profile !']);
+    }
 }

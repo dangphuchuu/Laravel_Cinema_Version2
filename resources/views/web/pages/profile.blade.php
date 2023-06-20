@@ -164,7 +164,7 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                         )
                                     </p>
                                     <p>{!! number_format($value['totalPrice'],0,",",".") !!}</p>
-                                    <button href="#profileModal" data-toggle="tooltip" data-bs-target="#profileModal{!! $user['id'] !!}" data-bs-toggle="modal" class="btn btn-warning">@lang('lang.detail')</button>
+                                    <button href="#profileModal" data-toggle="tooltip" data-bs-target="#profileModal{!! $value['id'] !!}" data-bs-toggle="modal" class="btn btn-warning">@lang('lang.detail')</button>
                                     <a href="/tickets/completed/{!! $value['id'] !!}" class="btn btn-warning"><i class="fa-solid fa-ticket"></i></a>
                                     @include('web.pages.profile_modal')
                                 </div>
@@ -224,5 +224,35 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
         click(link);
         document.body.removeChild(link);
     }
+</script>
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.refund-ticket').on('click', function () {
+            var ticket_id = $(this).data("id");
+            if (confirm("Bạn có chắc chắn muốn hoàn vé ?") === true) {
+                $.ajax({
+                    url: '/refund-ticket',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'ticket_id': ticket_id,
+                    },
+                    success: function (data) {
+                        if (data['success']) {
+                            alert(data.success);
+                            window.location.reload();
+                        } else if (data['error']) {
+                            alert(data.error);
+                        }
+                    }
+                });
+            }
+        });
+    });
 </script>
 @endsection

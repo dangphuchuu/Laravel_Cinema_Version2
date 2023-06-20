@@ -59,7 +59,7 @@ Route::get('/update-password',[WebController::class,'update_password']);
 Route::post('/update-password',[WebController::class,'Post_update_password']);
 Route::get('/verify-email',[WebController::class,'verify_email']);
 Route::get('/contact',[WebController::class,'contact']);
-
+Route::post('/refund-ticket',[WebController::class,'refund_ticket']);
 
 Route::prefix('/')->middleware('user')->group(function () {
     Route::get('/tickets/{schedule_id}', [WebController::class, 'ticket']);
@@ -68,4 +68,5 @@ Route::prefix('/')->middleware('user')->group(function () {
     Route::post('/changePassword',[WebController::class,'changePassword']);
     Route::get('/tickets/completed/{id}', [WebController::class, 'ticketCompleted']);
     Route::post('/ticketPaid/image',[WebController::class,'ticketPaid_image']);
+
 });

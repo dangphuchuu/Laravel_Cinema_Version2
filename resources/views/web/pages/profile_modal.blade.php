@@ -1,4 +1,4 @@
- <div  class="modal fade  modal-lg" id="profileModal{!! $user['id'] !!}" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+ <div  class="modal fade  modal-lg" id="profileModal{!! $value['id'] !!}" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -56,7 +56,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <a href="#refundTicket" data-toggle="tooltip" data-bs-target="#refundTicket{!! $value['id'] !!}" data-bs-toggle="modal" class="text-uppercase text-center link link-dark text-decoration-none text-xl text-dark refund-ticket">@lang('lang.refund_ticket')</a>
+                            <a href="#refundTicket" data-toggle="tooltip" data-bs-target="#refundTicket{!! $value['id'] !!}" data-bs-toggle="modal" class="text-uppercase text-center link link-dark text-decoration-none text-xl text-dark ">@lang('lang.refund_ticket')</a>
                         </div>
                     </div>
                 </div>
@@ -65,24 +65,4 @@
     </div>
  @include('web.pages.bill_modal')
  @include('web.pages.refund_ticket_modal')
-{{--@section('js')--}}
-{{--    <script>--}}
-{{--        $('.refund-ticket').on('click', function () {--}}
-{{--            if (confirm("Bạn có chắc muốn hoàn vé ?") === true) {--}}
-{{--                $.ajax({--}}
-{{--                    url: '/refund-ticket',--}}
-{{--                    type: 'DELETE',--}}
-{{--                    dataType: 'json',--}}
-{{--                    success: function (data) {--}}
-{{--                        if (data['success']) {--}}
-{{--                            alert(data.success);--}}
-{{--                        } else if (data['error']) {--}}
-{{--                            alert(data.error);--}}
-{{--                        }--}}
-{{--                    }--}}
-{{--                });--}}
-{{--            }--}}
 
-{{--        });--}}
-{{--    </script>--}}
-{{--@endsection--}}
