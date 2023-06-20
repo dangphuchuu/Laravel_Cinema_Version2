@@ -190,7 +190,13 @@ return [
     'vnpay_wallet'=>'VNPAY wallet',
     'from'=>'From',
     'customer'=>'Customer',
-    'print'=>'Print'
-
+    'print'=>'Print',
+    'send_request'=>'Send request',
+    'terms_conditions'=>'Terms and conditions',
+    'conditions_1'=>'You can request a refund 60 minutes be fore the show time.',
+    'conditions_2'=>'Transactions using promotions will not be refunded.',
+    'conditions_3'=>'Transactions using reward points, vouchers, gift cards, will be refunded accordingly.',
+    'conditions_4'=>'Ticket refunds are not supported for transactions that have already been printed at the theater.',
+    'conditions_5'=>'The amount paid will be refunded in proportion to the number of points.'
 
 ];
