@@ -633,21 +633,38 @@ class WebController extends Controller
         return view('web.pages.contact');
     }
     public function ticketPaid_image(Request $request){
+
+        function base64ToImage($base64_string, $output_file)
+        {
+            $file = fopen($output_file, "wb");
+
+//        $data = explode(',', $base64_string);
+
+            fwrite($file, base64_decode($base64_string));
+            fclose($file);
+
+            return $output_file;
+        }
+
+            $imgbase64 = substr($request->image, 22);
+
+        $img = base64ToImage($imgbase64, 'img.jpg');
+        $cloud_name = cloud_name();
         $name = Auth::user()->fullName;
-        $file = $request->file('image');
-        $img = $request['image'] = $file;
-        Cloudinary::upload($img->getRealPath(), [
+        $email_cus = Auth::user()->email;
+        $cloud = Cloudinary::upload($img, [
             'folder' => 'ticket_user',
             'format' => 'png',
         ])->getPublicId();
 
-//        Mail::send('web.pages.ticket_mail', [
-//            'name' => $name,
-//            'image'=> $cloud
-//        ], function ($email) use ($name,$cloud) {
-//            $email->subject('Vé xem phim tại HM Cinema');
-//            $email->to('phuchuu0120@gmail.com', $name);
-//        });
+        Mail::send('web.pages.ticket_mail', [
+            'name' => $name,
+            'image'=> $cloud,
+            'cloud_name'=> $cloud_name
+        ], function ($email) use ($name,$email_cus) {
+            $email->subject('Vé xem phim tại HM Cinema');
+            $email->to('phuchuu0120@gmail.com', $name);
+        });
         return response();
     }
 }

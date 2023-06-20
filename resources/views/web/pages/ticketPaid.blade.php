@@ -301,15 +301,25 @@
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.js" integrity="sha512-sn/GHTj+FCxK5wam7k9w4gPPm6zss4Zwl/X9wgrvGMFbnedR8lTUSLdsolDRBRzsX6N+YgG6OWyvn9qaFVXH9w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript">
 
     window.onload = ()=>{
         ticket = document.getElementById('photo');
         html2canvas(ticket).then((canvas) => {
-            var image = canvas.toDataURL('image/png');
-           // var image = document.write('<img src="'+can+'"/>');
+            // var link = document.createElement('a');
+            // if(typeof link.download !== 'string'){
+            image = canvas.toDataURL('image/JPG', 1.0);
+            console.log(image);
+                // window.open(canvas.toBase64Image);
+            // }
+            // else{
+            //     link.href = canvas.toDataURL();
+            //     link.download = 'TicketInfo.png';
+            //     // var link = arguments[1];
+            //     console.log(link);
+            // }
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -321,6 +331,14 @@
                 dataType: 'json',
                 data: {
                     'image' : image
+                },
+                statusCode: {
+                    200: (data) => {
+                        console.log(data.image);
+                    },
+                    500: (data) => {
+                        console.log(data.image);
+                    }
                 }
             });
         });
