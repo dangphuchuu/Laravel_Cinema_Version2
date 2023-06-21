@@ -150,7 +150,7 @@
                                                                 <div class="d-inline-block me-2"
                                                                      style="width: 24px; height: 24px; background-color: {{ $seatType->color }}">
                                                                 </div>
-                                                                {{ $seatType->surcharge+$price+$room->roomType->surcharge }} đ
+                                                                {{  number_format($seatType->surcharge+$price+$room->roomType->surcharge,0,",",".") }} đ
                                                             </div>
                                                         </li>
                                                     @endforeach

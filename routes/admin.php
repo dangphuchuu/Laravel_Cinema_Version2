@@ -27,8 +27,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/sign_in', [AdminController::class, 'sign_in']);
     Route::post('/sign_in', [AdminController::class, 'Post_sign_in']);
     Route::get('/sign_out', [AdminController::class, 'sign_out']);
-    Route::get('/profile', [AdminController::class, 'profile']);
-    Route::post('/postprofile', [AdminController::class, 'Postprofile']);
+
 });
 
 Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function () {
@@ -51,6 +50,15 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/', [StaffController::class, 'buyTicket']);
     });
 
+    Route::get('/profile', [AdminController::class, 'profile']);
+    Route::post('/postprofile', [AdminController::class, 'Postprofile']);
+    Route::post('/buyTicket/money', [PaymentController::class, 'handleResult']);
+    Route::post('/buyTicket/scanBC', [StaffController::class, 'scanBarcode']);
+    Route::get('/buyTicket/{schedule_id}', [StaffController::class, 'ticket']);
+    Route::get('/buyTicket', [StaffController::class, 'buyTicket']);
+
+    Route::get('/', [AdminController::class, 'home']);
+    Route::get('/feedback', [AdminController::class, 'feedback']);
     //TODO Movie Genres
     Route::prefix('movie_genres')->group(function () {
         Route::get('/', [MovieGenresController::class, 'movie_genres']);

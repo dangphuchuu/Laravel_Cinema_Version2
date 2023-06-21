@@ -6,8 +6,10 @@ use App\Models\Banner;
 use App\Models\Cast;
 use App\Models\Combo;
 use App\Models\Director;
+use App\Models\Feedback;
 use App\Models\Movie;
 use App\Models\MovieGenres;
+use App\Models\News;
 use App\Models\Post;
 use App\Models\Price;
 use App\Models\Rating;
@@ -40,6 +42,7 @@ class WebController extends Controller
 
     public function home()
     {
+        $news = News::orderBy('id', 'DESC')->where('status',1)->take(3)->get();
         $banners = Banner::get()->where('status', 1);
         $movies = Movie::get()->where('status', 1)->where('endDate', '>', date('Y-m-d'))->take(6);
         return view('web.pages.home', ['movies' => $movies, 'banners' => $banners]);
@@ -420,7 +423,11 @@ class WebController extends Controller
             'posts' => $posts
         ]);
     }
-
+    public function news()
+    {
+        $news = News::all();
+        return view('web.pages.news',['news'=>$news]);
+    }
     public function signIn(Request $request)
     {
         $request->validate(
@@ -516,13 +523,10 @@ class WebController extends Controller
         $user = User::find(Auth::user()->id);
         $email = User::where('email', $request->email)->get()->first();
         $phone = User::where('phone', $request->phone)->get()->first();
-        if ($email && $user->email != $email->email) {
-            return redirect('/profile')->with('warning', 'This email is already exists');
-        }
         if ($phone && $user->phone != $phone->phone) {
             return redirect('/profile')->with('warning', 'This phone number is already exists');
         }
-        $user->email = $request->email;
+        $user->fullName = $request->fullName;
         $user->phone = $request->phone;
         $user->save();
         return redirect('/profile')->with('success', 'Update profile successfully!');
@@ -628,7 +632,8 @@ class WebController extends Controller
         }
     }
     public function contact(){
-        return view('web.pages.contact');
+        $user = User::find(Auth::user()->id);
+        return view('web.pages.contact',['user'=>$user]);
     }
     public function ticketPaid_image(Request $request) {
 
@@ -664,5 +669,44 @@ class WebController extends Controller
         });
 
         return response();
+    }
+    public function refund_ticket(Request $request){
+        $ticket = Ticket::find($request->ticket_id);
+        $user = User::find($ticket['user_id']);
+        $money_payment = 0 ;
+        foreach($user['ticket'] as $ticket)
+        {
+            $money_payment += $ticket['totalPrice'];
+        }
+        if ($money_payment< 4000000)
+        {
+            $user['point'] = $user['point'] -($ticket['totalPrice']*5/100) +  $ticket['totalPrice'] ;
+            $user->save();
+        }
+        else
+        {
+            $user['point'] = $user['point'] -($ticket['totalPrice']*10/100) +  $ticket['totalPrice'] ;
+            $user->save();
+        }
+        $ticket->delete();
+        return response()->json(['success'=>'Gửi yêu cầu thành công,vé sẽ được hoàn vào điểm thưởng vui lòng kiểm tra điểm thưởng trong profile !']);
+    }
+    public function events_detail($id){
+        $post = Post::find($id);
+        $post_all = Post::where('status',1)->where('id',"!=",$id)->take(4)->get();
+        return view('web.pages.events_detail',['post'=>$post,'post_all'=>$post_all]);
+    }
+    public function news_detail($id){
+        $news = News::find($id);
+        $news_all = News::where('status',1)->where('id',"!=",$id)->take(4)->get();
+        return view('web.pages.news_detail',['news'=>$news,'news_all'=>$news_all]);
+    }
+    public function feedback(Request $request){
+        $feedback = new Feedback([
+            'user_id' => $request->user_id,
+            'message'=>  $request->message
+        ]);
+        $feedback->save();
+        return response()->json(['success'=>'Thông tin của bạn đã được gửi thành công. HMCinema xin cảm ơn ý kiến của bạn về hệ thống !']);
     }
 }

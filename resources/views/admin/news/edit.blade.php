@@ -21,8 +21,16 @@
                                 <div class="form-group file-uploader">
                                     <label for="example-text-input" class="form-control-label">@lang('lang.image')</label>
                                     <input type='file' name='Image' class="form-control image-news">
-                                    <img style="width: 300px" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
-                                         class="img_news" alt="user1">
+                                    @if(strstr($value['image'],"https") == "")
+                                        <img style="width: 300px"
+                                             src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
+                                             class="img_news"
+                                             alt="user1">
+                                    @else
+                                        <img style="width: 300px"
+                                             src="{!! $value['image'] !!}"
+                                             class="img_news"alt="user1">
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-12">

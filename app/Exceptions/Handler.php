@@ -39,13 +39,10 @@ class Handler extends ExceptionHandler
             //
         });
     }
-
     public function render($request, Exception|Throwable $e)
     {
-        if($this->isHttpException($e))
-        {
-            switch ($e->getStatusCode())
-                {
+        if($this->isHttpException($e)) {
+            switch ($e->getStatusCode()) {
                 // not found
                 case 403:
                 case 404:

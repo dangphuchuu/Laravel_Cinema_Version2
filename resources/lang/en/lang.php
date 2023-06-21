@@ -197,6 +197,13 @@ return [
     'conditions_2'=>'Transactions using promotions will not be refunded.',
     'conditions_3'=>'Transactions using reward points, vouchers, gift cards, will be refunded accordingly.',
     'conditions_4'=>'Ticket refunds are not supported for transactions that have already been printed at the theater.',
-    'conditions_5'=>'The amount paid will be refunded in proportion to the number of points.'
-
+    'conditions_5'=>'The amount paid will be refunded in proportion to the number of points.',
+    'other_news'=>'Other news',
+    'other_events'=>'Other events',
+    'show'=>'Show',
+    'contact'=>'Contact',
+    'sell_ticket'=>'Sell ticket',
+    'sell_combo'=>'Sell combo',
+    'feedback'=>'Feedback',
+    'message'=>'Message'
 ];

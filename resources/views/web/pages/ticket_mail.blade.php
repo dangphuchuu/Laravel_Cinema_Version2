@@ -4,3 +4,4 @@
 <div>
     <img src="https://res.cloudinary.com/{{ cloud_name() }}/image/upload/{{ $cloud }}.png" alt="">
 </div>
+

@@ -182,9 +182,9 @@
                 <li class="nav-item">
                     <a class="nav-link @yield('active')" href="./admin/buyTicket">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-regular fa-money-bill-trend-up text-info text-sm opacity-10"></i>
+                            <i class="fa-sharp fa-light fa-ticket-simple text-success text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Bán vé</span>
+                        <span class="nav-link-text ms-1">@lang('lang.sell_ticket')</span>
                     </a>
                 </li>
             @endcan
@@ -192,9 +192,19 @@
                 <li class="nav-item">
                     <a class="nav-link @yield('active')" href="./admin/scanTicket">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-regular fa-money-bill-trend-up text-info text-sm opacity-10"></i>
+                            <i class="fa-solid fa-burger-soda text-danger text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Bán Combo</span>
+                        <span class="nav-link-text ms-1">@lang('lang.sell_combo')</span>
+                    </a>
+                </li>
+            @endcan
+            @can('feedback')
+                <li class="nav-item">
+                    <a class="nav-link @yield('active')" href="./admin/feedback">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-regular fa-comment-lines text-warning text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">@lang('lang.feedback')/@lang('lang.contact')</span>
                     </a>
                 </li>
             @endcan

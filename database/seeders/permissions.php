@@ -53,3 +53,6 @@ Permission::create(['name' => 'buyTicket']);
 
 //TODO: buyCombo
 Permission::create(['name' => 'buyCombo']);
+
+//TODO: feedback
+Permission::create(['name' => 'feedback']);
