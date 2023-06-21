@@ -212,9 +212,9 @@
                 <li class="nav-item">
                     <a class="nav-link @yield('active')" href="./admin/scanTicket">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-regular fa-money-bill-trend-up text-info text-sm opacity-10"></i>
+                            <i class="fa-solid fa-barcode-scan text-success text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">scan vé</span>
+                        <span class="nav-link-text ms-1">@lang('lang.scan_ticket')</span>
                     </a>
                 </li>
             @endcan
@@ -222,9 +222,9 @@
                 <li class="nav-item">
                     <a class="nav-link @yield('active')" href="./admin/scanCombo">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-regular fa-money-bill-trend-up text-info text-sm opacity-10"></i>
+                            <i class="fa-sharp fa-regular fa-scanner-gun text-info text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">scan combo</span>
+                        <span class="nav-link-text ms-1">@lang('lang.scan_combo')</span>
                     </a>
                 </li>
             @endcan
