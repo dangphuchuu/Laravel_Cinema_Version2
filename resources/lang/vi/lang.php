@@ -206,5 +206,8 @@ return [
     'sell_combo'=>'Bán combo',
     'feedback'=>'Phản hồi',
     'send'=>'Gửi',
-    'message'=>'Lời nhắn'
+    'message'=>'Lời nhắn',
+    'scan_ticket'=>'Quét vé',
+    'scan_combo'=>'Quét combo',
+    'barcode_scanner'=>'Quét Mã Vạch'
 ];

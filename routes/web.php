@@ -58,7 +58,7 @@ Route::post('/forgot_password',[WebController::class,'forgot_password']);
 Route::get('/update-password',[WebController::class,'update_password']);
 Route::post('/update-password',[WebController::class,'Post_update_password']);
 Route::get('/verify-email',[WebController::class,'verify_email']);
-Route::get('/contact',[WebController::class,'contact']);
+
 Route::get('/events-detail/{id}',[WebController::class,'events_detail']);
 Route::get('/news-detail/{id}',[WebController::class,'news_detail']);
 
@@ -71,4 +71,5 @@ Route::prefix('/')->middleware('user')->group(function () {
     Route::post('/ticketPaid/image',[WebController::class,'ticketPaid_image']);
     Route::post('/refund-ticket',[WebController::class,'refund_ticket']);
     Route::post('/feedback',[WebController::class,'feedback']);
+    Route::get('/contact',[WebController::class,'contact']);
 });

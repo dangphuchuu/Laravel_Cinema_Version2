@@ -3,13 +3,13 @@
     <div class="container-fluid py-4">
         <div class="card">
             <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                scan ticket
+               @lang('lang.scan_ticket')
             </div>
 
             <div class="card-body pt-2">
                 <div class="col">
                     <div class="content-container">
-                        <div class="btn barcode-scanner-button">Barcode Scanner</div>
+                        <div class="btn barcode-scanner-button">@lang('lang.barcode_scanner')</div>
                         <div class="d-none">
                             <div class="btn document-scanner-button">Document Scanner</div>
                             <div class="btn mrz-scanner-button">MRZ Scanner</div>
@@ -24,7 +24,7 @@
                         <nav class="navbar navbar-dark">
                             <div class="navbar-brand mb-0 h3">
                                 <span class="back-button">&#8249;</span>
-                                Barcode Scanner
+                                @lang('lang.barcode_scanner')
                             </div>
                             <div class="spacer"></div>
                             <div class="camera-button-container h3">
@@ -161,17 +161,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ticket_id" class="form-control-label">Mã vé</label>
+                        <label for="ticket_id" class="form-control-label">@lang('lang.ticket_code')</label>
                         <input id="ticket_id" class="form-control" name="userCode" type="number" value="" readonly>
                     </div>
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <td>Rạp</td>
-                            <td>Phòng</td>
-                            <td>Phim</td>
-                            <td>Suất chiếu</td>
-                            <td>trạng thái</td>
+                            <td>@lang('lang.theater')</td>
+                            <td>@lang('lang.room')</td>
+                            <td>@lang('lang.movies')</td>
+                            <td>@lang('lang.showtime_web')</td>
+                            <td>@lang('lang.status')</td>
                         </tr>
                         </thead>
                         <tbody>

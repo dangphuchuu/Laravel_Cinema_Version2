@@ -205,5 +205,8 @@ return [
     'sell_ticket'=>'Sell ticket',
     'sell_combo'=>'Sell combo',
     'feedback'=>'Feedback',
-    'message'=>'Message'
+    'message'=>'Message',
+    'scan_ticket'=>'Scan ticket',
+    'scan_combo'=>'Scan combo',
+    'barcode_scanner'=>'Barcode Scanner'
 ];

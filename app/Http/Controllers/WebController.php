@@ -45,7 +45,7 @@ class WebController extends Controller
         $news = News::orderBy('id', 'DESC')->where('status',1)->take(3)->get();
         $banners = Banner::get()->where('status', 1);
         $movies = Movie::get()->where('status', 1)->where('endDate', '>', date('Y-m-d'))->take(6);
-        return view('web.pages.home', ['movies' => $movies, 'banners' => $banners]);
+        return view('web.pages.home', ['movies' => $movies, 'banners' => $banners,'news'=>$news]);
     }
 
     public function movieDetail($id, Request $request)
