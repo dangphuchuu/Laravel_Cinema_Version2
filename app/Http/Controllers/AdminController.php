@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feedback;
 use App\Models\Theater;
 use App\Models\Ticket;
 use App\Models\User;
@@ -178,5 +179,9 @@ class AdminController extends Controller
             $user['status'] = $request->active;
             $user->save();
         }
+    }
+    public function feedback(){
+        $feed = Feedback::orderBy('id','DESC')->Paginate(15);
+        return view('admin.feedback.list',['feed'=>$feed]);
     }
 }

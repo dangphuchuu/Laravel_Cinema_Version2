@@ -199,39 +199,67 @@
             width: 0;
         }
     </style>
-    <form class="form justify-content-center">
-
+    <div class="form justify-content-center">
         <div class="flex">
             <label>
-                <input required="" placeholder="" type="text" class="input">
-                <span>first name</span>
+                <input required name="fullName"  value="{!! $user['fullName'] !!}" type="text" class="input">
+                <span>@lang('lang.fullname')</span>
             </label>
 
             <label>
-                <input required="" placeholder="" type="text" class="input">
-                <span>last name</span>
+                <input required name="email" value="{!! $user['email'] !!}" type="email" class="input">
+                <span>email</span>
             </label>
         </div>
 
         <label>
-            <input required="" placeholder="" type="email" class="input">
-            <span>email</span>
-        </label>
-
-        <label>
-            <input required="" type="tel" placeholder="" class="input">
-            <span>contact number</span>
+            <input required name="phone"  value="{!! $user['phone'] !!}" type="tel" class="input">
+            <span>@lang('lang.phone')</span>
         </label>
         <label>
-            <textarea required="" rows="3" placeholder="" class="input01"></textarea>
-            <span>message</span>
+            <textarea required name="message" rows="3"  class="input01 message_feedback"></textarea>
+            <span>@lang('lang.message')</span>
         </label>
 
-        <button class="fancy" href="#">
+        <a class="fancy feedback" href="javascript:void(0)" data-id="{!! $user['id'] !!}">
             <span class="top-key"></span>
-            <span class="text">submit</span>
+            <span class="text ">@lang('lang.send')</span>
             <span class="bottom-key-1"></span>
             <span class="bottom-key-2"></span>
-        </button>
-    </form>
+        </a>
+    </div>
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('.feedback').on('click', function () {
+                var user_id = $(this).data("id");
+                var message =  $('.message_feedback').val();
+                if (confirm("Thông tin của bạn sẽ được ghi nhận vào hệ thống, bạn có chắc muốn gửi ?") === true) {
+                    $.ajax({
+                        url: '/feedback',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            'user_id': user_id,
+                            'message': message,
+                        },
+                        success: function (data) {
+                            if (data['success']) {
+                                alert(data.success);
+                                window.location.href ="/";
+                            } else if (data['error']) {
+                                alert(data.error);
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection

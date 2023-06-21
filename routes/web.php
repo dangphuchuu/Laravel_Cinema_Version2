@@ -70,4 +70,5 @@ Route::prefix('/')->middleware('user')->group(function () {
     Route::get('/tickets/completed/{id}', [WebController::class, 'ticketCompleted']);
     Route::post('/ticketPaid/image',[WebController::class,'ticketPaid_image']);
     Route::post('/refund-ticket',[WebController::class,'refund_ticket']);
+    Route::post('/feedback',[WebController::class,'feedback']);
 });

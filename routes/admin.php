@@ -38,7 +38,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     Route::get('/buyTicket', [StaffController::class, 'buyTicket']);
 
     Route::get('/', [AdminController::class, 'home']);
-
+    Route::get('/feedback', [AdminController::class, 'feedback']);
     //TODO Movie Genres
     Route::prefix('movie_genres')->group(function () {
         Route::get('/', [MovieGenresController::class, 'movie_genres']);

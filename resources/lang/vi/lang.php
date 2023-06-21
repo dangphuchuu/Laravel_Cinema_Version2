@@ -201,4 +201,10 @@ return [
     'other_news'=>'Tin tức khác',
     'other_events'=>'Sự kiện khác',
     'show'=>'Hiển thị',
+    'contact'=>'Liên hệ',
+    'sell_ticket'=>'Bán vé',
+    'sell_combo'=>'Bán combo',
+    'feedback'=>'Phản hồi',
+    'send'=>'Gửi',
+    'message'=>'Lời nhắn'
 ];

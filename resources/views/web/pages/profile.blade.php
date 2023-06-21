@@ -46,19 +46,19 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>@lang('lang.fullname')</label>
-                                            <input type="text" class="form-control" name="fullName" value="{!! $user['fullName'] !!}" aria-label="">
+                                            <input type="text" class="form-control" name="fullName" required value="{!! $user['fullName'] !!}" aria-label="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="text" class="form-control" name="email" value="{!! $user['email'] !!}" aria-label="" disabled>
+                                            <input type="text" class="form-control" name="email" value="{!! $user['email'] !!}" aria-label="" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>@lang('lang.phone')</label>
-                                            <input type="text" class="form-control" name="phone" value="{!! $user['phone'] !!}" aria-label="">
+                                            <input type="text" class="form-control" name="phone" required value="{!! $user['phone'] !!}" aria-label="">
                                         </div>
                                     </div>
                                     <div class="col-md-12">

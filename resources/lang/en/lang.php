@@ -201,5 +201,9 @@ return [
     'other_news'=>'Other news',
     'other_events'=>'Other events',
     'show'=>'Show',
-
+    'contact'=>'Contact',
+    'sell_ticket'=>'Sell ticket',
+    'sell_combo'=>'Sell combo',
+    'feedback'=>'Feedback',
+    'message'=>'Message'
 ];

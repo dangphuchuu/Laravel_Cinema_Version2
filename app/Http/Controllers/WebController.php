@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Cast;
 use App\Models\Combo;
 use App\Models\Director;
+use App\Models\Feedback;
 use App\Models\Movie;
 use App\Models\MovieGenres;
 use App\Models\News;
@@ -522,7 +523,6 @@ class WebController extends Controller
         $user = User::find(Auth::user()->id);
         $email = User::where('email', $request->email)->get()->first();
         $phone = User::where('phone', $request->phone)->get()->first();
-
         if ($phone && $user->phone != $phone->phone) {
             return redirect('/profile')->with('warning', 'This phone number is already exists');
         }
@@ -632,7 +632,8 @@ class WebController extends Controller
         }
     }
     public function contact(){
-        return view('web.pages.contact');
+        $user = User::find(Auth::user()->id);
+        return view('web.pages.contact',['user'=>$user]);
     }
     public function ticketPaid_image(Request $request) {
 
@@ -699,5 +700,13 @@ class WebController extends Controller
         $news = News::find($id);
         $news_all = News::where('status',1)->where('id',"!=",$id)->take(4)->get();
         return view('web.pages.news_detail',['news'=>$news,'news_all'=>$news_all]);
+    }
+    public function feedback(Request $request){
+        $feedback = new Feedback([
+            'user_id' => $request->user_id,
+            'message'=>  $request->message
+        ]);
+        $feedback->save();
+        return response()->json(['success'=>'Thông tin của bạn đã được gửi thành công. HMCinema xin cảm ơn ý kiến của bạn về hệ thống !']);
     }
 }
