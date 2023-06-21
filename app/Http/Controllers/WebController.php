@@ -516,13 +516,11 @@ class WebController extends Controller
         $user = User::find(Auth::user()->id);
         $email = User::where('email', $request->email)->get()->first();
         $phone = User::where('phone', $request->phone)->get()->first();
-        if ($email && $user->email != $email->email) {
-            return redirect('/profile')->with('warning', 'This email is already exists');
-        }
+
         if ($phone && $user->phone != $phone->phone) {
             return redirect('/profile')->with('warning', 'This phone number is already exists');
         }
-        $user->email = $request->email;
+        $user->fullName = $request->fullName;
         $user->phone = $request->phone;
         $user->save();
         return redirect('/profile')->with('success', 'Update profile successfully!');
