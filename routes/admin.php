@@ -31,6 +31,25 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function () {
+
+    Route::get('/', [AdminController::class, 'home']);
+
+    // scan ticket
+    Route::prefix('scanTicket')->group(function () {
+        Route::post('/handle', [StaffController::class, 'handleScanTicket']);
+        Route::get('/', [StaffController::class, 'scanTicket']);
+    });
+
+    //TODO Buy ticket
+    Route::prefix('buyTicket')->group(function () {
+        Route::post('/handleResult', [StaffController::class, 'handleResult']);
+        Route::post('/createPayment', [StaffController::class, 'createPayment']);
+        Route::post('/ticketPayment', [StaffController::class, 'ticketPayment']);
+        Route::post('/scanBC', [StaffController::class, 'scanBarcode']);
+        Route::get('/{schedule_id}', [StaffController::class, 'ticket']);
+        Route::get('/', [StaffController::class, 'buyTicket']);
+    });
+
     Route::get('/profile', [AdminController::class, 'profile']);
     Route::post('/postprofile', [AdminController::class, 'Postprofile']);
     Route::post('/buyTicket/money', [PaymentController::class, 'handleResult']);

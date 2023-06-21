@@ -190,7 +190,7 @@
             @endcan
             @can('buyCombo')
                 <li class="nav-item">
-                    <a class="nav-link @yield('active')" href="./admin/buyTicket">
+                    <a class="nav-link @yield('active')" href="./admin/scanTicket">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="fa-solid fa-burger-soda text-danger text-sm opacity-10"></i>
                         </div>
@@ -205,6 +205,26 @@
                             <i class="fa-regular fa-comment-lines text-warning text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">@lang('lang.feedback')/@lang('lang.contact')</span>
+                    </a>
+                </li>
+            @endcan
+            @can('buyTicket')
+                <li class="nav-item">
+                    <a class="nav-link @yield('active')" href="./admin/scanTicket">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-regular fa-money-bill-trend-up text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">scan vé</span>
+                    </a>
+                </li>
+            @endcan
+            @can('buyCombo')
+                <li class="nav-item">
+                    <a class="nav-link @yield('active')" href="./admin/scanCombo">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-regular fa-money-bill-trend-up text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">scan combo</span>
                     </a>
                 </li>
             @endcan

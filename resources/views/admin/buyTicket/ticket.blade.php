@@ -342,10 +342,182 @@
                                 {{--                </div>--}}
 
                                 <h4 class="mt-4">@lang('lang.payment')</h4>
-                                <form id="paymentForm" action="/payment/create" method="post">
+                                <form id="paymentForm" action="admin/buyTicket/createPayment" method="post">
                                     @csrf
                                     <div class="bg-dark-subtle p-5">
                                         <div class="row row-cols-1" data-bs-parent="#mainContent">
+                                            <div class="col">
+                                                <div class="content-container">
+                                                    <div class="btn barcode-scanner-button">Barcode Scanner</div>
+                                                    <div class="d-none">
+                                                        <div class="btn document-scanner-button">Document Scanner</div>
+                                                        <div class="btn mrz-scanner-button">MRZ Scanner</div>
+                                                        <div class="btn text-data-scanner-button"> Text Data Scanner </div>
+                                                        <div class="btn" id="pick-document-button">Pick Document Image</div>
+                                                        <div class="btn" id="pick-barcode-button">Pick Barcode Image</div>
+                                                        <div class="btn scanner-results-button">Document Results</div>
+                                                        <div class="btn license-info-button">License Info</div>
+                                                    </div>
+                                                </div>
+                                                <div class="controller barcode-scanner-controller">
+                                                    <nav class="navbar navbar-dark">
+                                                        <div class="navbar-brand mb-0 h3">
+                                                            <span class="back-button">&#8249;</span>
+                                                            Barcode Scanner
+                                                        </div>
+                                                        <div class="spacer"></div>
+                                                        <div class="camera-button-container h3">
+                                                            <span class="camera-swap-button">&#8645;</span>
+                                                            <span class="camera-switch-button">&#8646;</span>
+                                                        </div>
+                                                    </nav>
+                                                    <div id="barcode-scanner-container" class="view-controller-container">
+                                                        <div class="web-sdk-progress-bar"></div>
+                                                    </div>
+                                                    <div class="action-bar">
+                                                        <div class="barcode-result-container"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="d-none">
+                                                    <div class="controller scanbot-camera-controller">
+                                                        <nav class="navbar navbar-dark">
+                                                            <div class="navbar-brand mb-0 h3">
+                                                                <span class="back-button">&#8249;</span>
+                                                                Document Scanner
+                                                            </div>
+                                                            <div class="spacer"></div>
+                                                            <div class="camera-button-container h3">
+                                                                <span class="camera-swap-button">&#8645;</span>
+                                                                <span class="camera-switch-button">&#8646;</span>
+                                                            </div>
+                                                        </nav>
+                                                        <div id="scanbot-camera-container" class="view-controller-container">
+                                                            <div class="web-sdk-progress-bar"></div>
+                                                        </div>
+                                                        <div class="action-bar">
+                                                            <div class="action-bar-button page-count-indicator">0 PAGES</div>
+                                                            <div class="align-right-button">
+                                                                <button class="action-bar-button detection-done-button">DONE</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="controller mrz-scanner-controller">
+                                                        <nav class="navbar navbar-dark">
+                                                            <div class="navbar-brand mb-0 h3">
+                                                                <span class="back-button">&#8249;</span>
+                                                                MRZ Scanner
+                                                            </div>
+                                                            <div class="spacer"></div>
+                                                            <div class="camera-button-container h3">
+                                                                <span class="camera-swap-button">&#8645;</span>
+                                                                <span class="camera-switch-button">&#8646;</span>
+                                                            </div>
+                                                        </nav>
+                                                        <div id="mrz-scanner-container" class="view-controller-container">
+                                                            <div class="web-sdk-progress-bar"></div>
+                                                        </div>
+                                                        <div class="action-bar"></div>
+                                                    </div>
+
+                                                    <div class="controller text-data-scanner-controller">
+                                                        <nav class="navbar navbar-dark">
+                                                            <div class="navbar-brand mb-0 h3">
+                                                                <span class="back-button">&#8249;</span>
+                                                                Text Data Scanner
+                                                            </div>
+                                                            <div class="spacer"></div>
+                                                            <div class="camera-button-container h3">
+                                                                <span class="camera-swap-button">&#8645;</span>
+                                                                <span class="camera-switch-button">&#8646;</span>
+                                                            </div>
+                                                        </nav>
+                                                        <div id="text-data-scanner-container" class="view-controller-container">
+                                                            <div class="web-sdk-progress-bar"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="controller cropping-controller">
+                                                        <nav class="navbar navbar-dark">
+                                                            <div class="navbar-brand mb-0 h3">
+                                                                <span class="back-button">&#8249;</span>Cropping View
+                                                            </div>
+                                                        </nav>
+                                                        <div id="cropping-view-container" class="view-controller-container"></div>
+                                                        <div class="action-bar cropping-view-action-bar">
+                                                            <button class="action-bar-button detect-button">DETECT</button>
+                                                            <button class="action-bar-button rotate-button">ROTATE</button>
+                                                            <div class="align-right-button">
+                                                                <button class="action-bar-button apply-button">APPLY</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="controller detection-results-controller">
+                                                        <nav class="navbar navbar-dark">
+                                                            <div class="navbar-brand mb-0 h3">
+                                                                <span class="back-button">&#8249;</span>Detection Results
+                                                            </div>
+                                                        </nav>
+                                                        <div class="view-controller-container detection-results-container"></div>
+                                                        <div class="action-bar detection-results-action-bar">
+                                                            <button class="action-bar-button pdf-button">SAVE PDF</button>
+                                                            <button class="action-bar-button tiff-button">SAVE TIFF</button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="controller detection-result-controller">
+                                                        <nav class="navbar navbar-dark">
+                                                            <div class="navbar-brand mb-0 h3">
+                                                                <span class="back-button">&#8249;</span>Detection Result
+                                                            </div>
+                                                        </nav>
+                                                        <div class="view-controller-container detection-result-container"></div>
+                                                        <div class="action-bar detection-result-action-bar">
+                                                            <button class="action-bar-button crop-button">CROP</button>
+                                                            <div class="filter-selector-container">
+                                                                <div class="filter-selector-label">FILTER</div>
+                                                                <select class="action-bar-filter-select">
+                                                                    <option>none</option>
+                                                                    <option>color</option>
+                                                                    <option>gray</option>
+                                                                    <option>binarized</option>
+                                                                    <option>otsuBinarization</option>
+                                                                    <option>pureBinarized</option>
+                                                                    <option>lowLightBinarization</option>
+                                                                    <option>lowLightBinarization2</option>
+                                                                    <option>deepBinarization</option>
+                                                                    <option>colorDocument</option>
+                                                                    <option>blackAndWhite</option>
+                                                                    <option>edgeHighlight</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="align-right-button">
+                                                                <button class="action-bar-button delete-button">DELETE</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="userId" class="form-control-label">Mã khách hàng</label>
+                                                    <input id="userId" class="form-control" name="userCode" type="number" value="">
+                                                </div>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <td>Tên</td>
+                                                        <td>điểm</td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td id="username"></td>
+                                                        <td id="userPoint"></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                             <div class="col">
                                                 <div class="bg-light p-4" id="bankCode">
                                                     <div class="form-check mb-3">
@@ -360,26 +532,27 @@
                                                         </label>
                                                     </div>
 
-                                                    <div class="form-check mb-3">
-                                                        <input id="bankCode2" class="btn-check" type="radio" name="bankCode" value="VNBANK" aria-label="">
-                                                        <label for="bankCode2"
-                                                               class="custom-control-label btn btn-outline-primary fw-semibold fs-4 w-100
-                                                               text-start text-dark">
-                                                            Thanh toán qua thẻ ATM/Tài khoản nội địa
-                                                        </label>
-                                                    </div>
+{{--                                                    <div class="form-check mb-3">--}}
+{{--                                                        <input id="bankCode2" class="btn-check" type="radio" name="bankCode" value="VNBANK" aria-label="">--}}
+{{--                                                        <label for="bankCode2"--}}
+{{--                                                               class="custom-control-label btn btn-outline-primary fw-semibold fs-4 w-100--}}
+{{--                                                               text-start text-dark">--}}
+{{--                                                            Thanh toán qua thẻ ATM/Tài khoản nội địa--}}
+{{--                                                        </label>--}}
+{{--                                                    </div>--}}
+
+{{--                                                    <div class="form-check mb-3">--}}
+{{--                                                        <input id="bankCode3" class="btn-check" type="radio" name="bankCode" value="INTCARD" aria-label="">--}}
+{{--                                                        <label for="bankCode3"--}}
+{{--                                                               class="custom-control-label btn btn-outline-primary fw-semibold fs-4 w-100--}}
+{{--                                                               text-start text-dark">--}}
+{{--                                                            Thanh toán qua thẻ quốc tế--}}
+{{--                                                        </label>--}}
+{{--                                                    </div>--}}
 
                                                     <div class="form-check mb-3">
-                                                        <input id="bankCode3" class="btn-check" type="radio" name="bankCode" value="INTCARD" aria-label="">
-                                                        <label for="bankCode3"
-                                                               class="custom-control-label btn btn-outline-primary fw-semibold fs-4 w-100
-                                                               text-start text-dark">
-                                                            Thanh toán qua thẻ quốc tế
-                                                        </label>
-                                                    </div>
-
-                                                    <div class="form-check mb-3">
-                                                        <input id="bankCode4" class="btn-check" type="radio" name="bankCode" value="MONEY" aria-label="">
+                                                        <input id="bankCode4" class="btn-check" type="radio" name="bankCode" value="MONEY"
+                                                               aria-label="" checked>
                                                         <label for="bankCode4"
                                                                class="custom-control-label btn btn-outline-primary fw-semibold fs-4 w-100
                                                                text-start text-dark">
@@ -387,10 +560,11 @@
                                                         </label>
                                                     </div>
                                                 </div>
-                                                <input type="hidden" id="amount" name="amount" value="20000">
+                                                <input type="hidden" id="amount" name="amount">
                                                 <input type="hidden" id="language" name="language" value="@lang('lang.language')">
                                                 <input type="hidden" id="timePayment" name="time" value="">
                                                 <input type="hidden" id="ticket_id" name="ticket_id" value="">
+                                                <input type="hidden" name="userCode" id="userCode">
                                             </div>
 
                                         </div>
@@ -435,197 +609,28 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/admin/buyTicket/money" method="post">
+                <form action="/admin/buyTicket/handleResult" method="post">
                     @csrf
                 <div class="modal-body">
-                    <div class="content-container">
-                        <div class="btn barcode-scanner-button">Barcode Scanner</div>
-                        <div class="d-none">
-                            <div class="btn document-scanner-button">Document Scanner</div>
-                            <div class="btn mrz-scanner-button">MRZ Scanner</div>
-                            <div class="btn text-data-scanner-button"> Text Data Scanner </div>
-                            <div class="btn" id="pick-document-button">Pick Document Image</div>
-                            <div class="btn" id="pick-barcode-button">Pick Barcode Image</div>
-                            <div class="btn scanner-results-button">Document Results</div>
-                            <div class="btn license-info-button">License Info</div>
-                        </div>
-                    </div>
-                    <div class="controller barcode-scanner-controller">
-                        <nav class="navbar navbar-dark">
-                            <div class="navbar-brand mb-0 h3">
-                                <span class="back-button">&#8249;</span>
-                                Barcode Scanner
-                            </div>
-                            <div class="spacer"></div>
-                            <div class="camera-button-container h3">
-                                <span class="camera-swap-button">&#8645;</span>
-                                <span class="camera-switch-button">&#8646;</span>
-                            </div>
-                        </nav>
-                        <div id="barcode-scanner-container" class="view-controller-container">
-                            <div class="web-sdk-progress-bar"></div>
-                        </div>
-                        <div class="action-bar">
-                            <div class="barcode-result-container"></div>
-                        </div>
-                    </div>
-                    <div class="d-none">
-                        <div class="controller scanbot-camera-controller">
-                            <nav class="navbar navbar-dark">
-                                <div class="navbar-brand mb-0 h3">
-                                    <span class="back-button">&#8249;</span>
-                                    Document Scanner
-                                </div>
-                                <div class="spacer"></div>
-                                <div class="camera-button-container h3">
-                                    <span class="camera-swap-button">&#8645;</span>
-                                    <span class="camera-switch-button">&#8646;</span>
-                                </div>
-                            </nav>
-                            <div id="scanbot-camera-container" class="view-controller-container">
-                                <div class="web-sdk-progress-bar"></div>
-                            </div>
-                            <div class="action-bar">
-                                <div class="action-bar-button page-count-indicator">0 PAGES</div>
-                                <div class="align-right-button">
-                                    <button class="action-bar-button detection-done-button">DONE</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="controller mrz-scanner-controller">
-                            <nav class="navbar navbar-dark">
-                                <div class="navbar-brand mb-0 h3">
-                                    <span class="back-button">&#8249;</span>
-                                    MRZ Scanner
-                                </div>
-                                <div class="spacer"></div>
-                                <div class="camera-button-container h3">
-                                    <span class="camera-swap-button">&#8645;</span>
-                                    <span class="camera-switch-button">&#8646;</span>
-                                </div>
-                            </nav>
-                            <div id="mrz-scanner-container" class="view-controller-container">
-                                <div class="web-sdk-progress-bar"></div>
-                            </div>
-                            <div class="action-bar"></div>
-                        </div>
-
-                        <div class="controller text-data-scanner-controller">
-                            <nav class="navbar navbar-dark">
-                                <div class="navbar-brand mb-0 h3">
-                                    <span class="back-button">&#8249;</span>
-                                    Text Data Scanner
-                                </div>
-                                <div class="spacer"></div>
-                                <div class="camera-button-container h3">
-                                    <span class="camera-swap-button">&#8645;</span>
-                                    <span class="camera-switch-button">&#8646;</span>
-                                </div>
-                            </nav>
-                            <div id="text-data-scanner-container" class="view-controller-container">
-                                <div class="web-sdk-progress-bar"></div>
-                            </div>
-                        </div>
-
-                        <div class="controller cropping-controller">
-                            <nav class="navbar navbar-dark">
-                                <div class="navbar-brand mb-0 h3">
-                                    <span class="back-button">&#8249;</span>Cropping View
-                                </div>
-                            </nav>
-                            <div id="cropping-view-container" class="view-controller-container"></div>
-                            <div class="action-bar cropping-view-action-bar">
-                                <button class="action-bar-button detect-button">DETECT</button>
-                                <button class="action-bar-button rotate-button">ROTATE</button>
-                                <div class="align-right-button">
-                                    <button class="action-bar-button apply-button">APPLY</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="controller detection-results-controller">
-                            <nav class="navbar navbar-dark">
-                                <div class="navbar-brand mb-0 h3">
-                                    <span class="back-button">&#8249;</span>Detection Results
-                                </div>
-                            </nav>
-                            <div class="view-controller-container detection-results-container"></div>
-                            <div class="action-bar detection-results-action-bar">
-                                <button class="action-bar-button pdf-button">SAVE PDF</button>
-                                <button class="action-bar-button tiff-button">SAVE TIFF</button>
-                            </div>
-                        </div>
-
-                        <div class="controller detection-result-controller">
-                            <nav class="navbar navbar-dark">
-                                <div class="navbar-brand mb-0 h3">
-                                    <span class="back-button">&#8249;</span>Detection Result
-                                </div>
-                            </nav>
-                            <div class="view-controller-container detection-result-container"></div>
-                            <div class="action-bar detection-result-action-bar">
-                                <button class="action-bar-button crop-button">CROP</button>
-                                <div class="filter-selector-container">
-                                    <div class="filter-selector-label">FILTER</div>
-                                    <select class="action-bar-filter-select">
-                                        <option>none</option>
-                                        <option>color</option>
-                                        <option>gray</option>
-                                        <option>binarized</option>
-                                        <option>otsuBinarization</option>
-                                        <option>pureBinarized</option>
-                                        <option>lowLightBinarization</option>
-                                        <option>lowLightBinarization2</option>
-                                        <option>deepBinarization</option>
-                                        <option>colorDocument</option>
-                                        <option>blackAndWhite</option>
-                                        <option>edgeHighlight</option>
-                                    </select>
-                                </div>
-                                <div class="align-right-button">
-                                    <button class="action-bar-button delete-button">DELETE</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="userId" class="form-control-label">Mã khách hàng</label>
-                        <input id="userId" class="form-control" type="number" value="0">
-                    </div>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <td>Tên</td>
-                                <td>điểm</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="username"></td>
-                                <td id="userPoint"></td>
-                            </tr>
-                        </tbody>
-                    </table>
                     <div class="form-group">
                         <label for="total" class="form-control-label">Tổng tiền vé</label>
-                        <input id="total" class="form-control" type="number" value="0">
+                        <input id="total" class="form-control" name="total" type="number" value="">
                     </div>
                     <div class="form-group">
                         <label for="point" class="form-control-label">Điểm khách hàng</label>
-                        <input id="point" class="form-control" type="number" value="0">
+                        <input id="point" class="form-control" min="20000" name="point" type="number" placeholder="0">
                     </div>
                     <div class="form-group">
                         <label for="moneyIn" class="form-control-label">Khách đưa</label>
-                        <input id="moneyIn" class="form-control" type="number" value="0">
+                        <input id="moneyIn" class="form-control" type="number" placeholder="0">
                     </div>
                     <div class="form-group">
                         <label for="moneyOut" class="form-control-label">Trả khách</label>
-                        <input id="moneyOut" class="form-control" type="number" value="0">
+                        <input id="moneyOut" class="form-control" type="number"  placeholder="0" readonly>
                     </div>
                     <input type="hidden" name="vnp_BankCode" value="MONEY">
-                    <input type="hidden" name="ticket_id" value="" id="ticketMoney">
+                    <input type="hidden" name="ticket_id" id="ticketMoney">
+                    <input type="hidden" name="userCode" id="userCode2">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
@@ -885,12 +890,13 @@
                     }
                 });
                 $.ajax({
-                    url: "/payment",
+                    url: "/admin/buyTicket/ticketPayment",
                     type: 'POST',
                     dataType: 'json',
                     data: {
                         'ticket_id': $ticket_id,
                         'totalPrice': $sum,
+                        'userCode': $('#userId').val(),
                     },
                     statusCode: {
                         200: () => {
@@ -905,6 +911,12 @@
                             } else {
                                 $('#ticketMoney').val($ticket_id);
                                 $('#btn_money').click();
+                                if ($('#username').text() === '') {
+                                    $('#point').attr('readonly', true);
+                                } else {
+                                    $('#point').attr('readonly', false);
+                                }
+                                $('#point').attr('max', $sum * 90 / 100);
                                 $('#total').val($sum);
                             }
                         }
@@ -985,6 +997,8 @@
                         200: (data) => {
                             $('#username').text(data.username);
                             $('#userPoint').text(data.userPoint);
+                            $('#userCode').val($('#userId').val());
+                            $('#userCode2').val($('#userId').val());
                         },
                         500: () => {
                             $('#username').text('');
@@ -995,9 +1009,24 @@
                 });
             })
 
-            $('#moneyIn').bind('keyup mouseup', (e) => {
-                $moneyout = parseInt($('#moneyIn').val()) - $sum - parseInt($('#point').val());
-                $('#moneyOut').val($moneyout);
+            $('#moneyIn').bind('keyup', (e) => {
+                if ($('#point').val() === '') {
+                    $moneyOut = parseInt($('#moneyIn').val()) - $sum;
+                } else {
+                    $moneyOut = parseInt($('#moneyIn').val()) - $sum + parseInt($('#point').val());
+                }
+                $('#moneyOut').val($moneyOut);
+            })
+
+            $('#point').bind('keyup', (e) => {
+                if ($('#moneyIn').val() !== '') {
+                    $moneyOut = $('#moneyIn').val() - $sum + parseInt($('#point').val());
+                    $('#moneyOut').val($moneyOut);
+                }
+                if ($('#point').val() === '') {
+                    $moneyOut = parseInt($('#moneyIn').val()) - $sum;
+                    $('#moneyOut').val($moneyOut);
+                }
             })
 
             @foreach($room->seats as $seat)
@@ -1015,5 +1044,26 @@
             @endif
             @endforeach
         })
+    </script>
+
+    <script>
+        async function onBarcodesDetected(e) {
+            let text = "";
+            e.barcodes.forEach((barcode) => {
+                if (barcode.parsedText) {
+                    text += JSON.stringify(barcode.parsedText);
+                } else {
+                    $('#userId').val(barcode.text);
+                    text += " " + barcode.text + " (" + barcode.format + "),";
+                }
+            });
+
+            let result;
+            if (e.barcodes[0].barcodeImage) {
+                result = await scanbotSDK.toDataUrl(e.barcodes[0].barcodeImage);
+            }
+
+            Toastify({ text: text.slice(0, -1), duration: 3000, avatar: result }).showToast();
+        }
     </script>
 @endsection

@@ -14,12 +14,13 @@ return new class extends Migration {
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->bigInteger('schedule_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('schedule_id')->unsigned()->nullable(true);
+            $table->bigInteger('user_id')->unsigned()->nullable(true);
             $table->boolean('holdState')->default(false);
             $table->boolean('status')->default(false);
             $table->bigInteger('code')->unique();
             $table->boolean('hasPaid')->default(false);
+            $table->boolean('receivedCombo')->default(false);
             $table->bigInteger('totalPrice')->default(0);
             $table->foreign('schedule_id')->references('id')->on('schedules');
             $table->foreign('user_id')->references("id")->on('users');
