@@ -456,25 +456,6 @@ async function onCameraSwitch(scanner) {
     }
 }
 
-async function onBarcodesDetected(e) {
-    let text = "";
-    e.barcodes.forEach((barcode) => {
-        if (barcode.parsedText) {
-            text += JSON.stringify(barcode.parsedText);
-        } else {
-            $('#userId').val(barcode.text);
-            text += " " + barcode.text + " (" + barcode.format + "),";
-        }
-    });
-
-    let result;
-    if (e.barcodes[0].barcodeImage) {
-        result = await scanbotSDK.toDataUrl(e.barcodes[0].barcodeImage);
-    }
-
-    Toastify({ text: text.slice(0, -1), duration: 3000, avatar: result }).showToast();
-}
-
 async function onMrzDetected(mrz) {
     mrzScanner.pauseDetection();
 

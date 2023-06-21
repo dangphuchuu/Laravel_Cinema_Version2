@@ -89,30 +89,12 @@ class PaymentController extends Controller
 //              "vnp_SecureHash" => "b1a4601eb9be6f7ed795efc2e86e24f036af8b4cf3f9dbb5df6e0caf3d382181d51e1a9ebda0fb8d19ed6c89eba78f8b95ba55af25d0ec18b1b16ceff1100de0"
 //         ]
 
-        if ($request->vnp_BankCode === 'MONEY') {
-            $request->vnp_Amount = $request->total;
-            $request->vnp_ResponseCode = '00';
-            $tickeById = Ticket::find($request->ticket_id);
-            $request->vnp_TxnRef = $tickeById->code;
-        } else {
-
-        }
-
         $ticket = Ticket::where('code', $request->vnp_TxnRef)->get()->first();
+
         switch ($request->vnp_ResponseCode) {
             case '00':
                 $ticket->hasPaid = true;
                 $ticket->save();
-//                $name = Auth::user()->fullName;
-//                $email_cus = Auth::user()['email'];
-//                Mail::send('web.pages.ticket_mail', [
-//                    'name' => $name,
-//                    'ticket' => $ticket,
-//                    'email_cus' => $email_cus
-//                ], function ($email) use ($name, $email_cus) {
-//                    $email->subject('Vé xem phim tại HM Cinema');
-//                    $email->to($email_cus, $name);
-//                });
                 $user = Auth::user();
                 $money_payment = 0 ;
                 foreach($user['ticket'] as $ticket)

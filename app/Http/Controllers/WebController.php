@@ -41,7 +41,7 @@ class WebController extends Controller
     public function home()
     {
         $banners = Banner::get()->where('status', 1);
-        $movies = Movie::get()->where('status', 1)->take(6);
+        $movies = Movie::get()->where('status', 1)->where('endDate', '>', date('Y-m-d'))->take(6);
         return view('web.pages.home', ['movies' => $movies, 'banners' => $banners]);
     }
 
