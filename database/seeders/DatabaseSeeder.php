@@ -76,6 +76,9 @@ class DatabaseSeeder extends Seeder
         //TODO: Film Event
         require 'event.php';
 
+        //TODO: Film News
+        require 'news.php';
+
         //TODO: Prices
         require 'prices.php';
 

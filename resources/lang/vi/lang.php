@@ -197,5 +197,8 @@ return [
     'conditions_2'=>'Giao dịch có sử dụng khuyến mãi sẽ không được hoàn vé.',
     'conditions_3'=>'Giao dịch có sử dụng điểm thưởng, voucher, thẻ quà tặng, sẽ được hoàn lại tương ứng.',
     'conditions_4'=>'Không hỗ trợ hoàn vé đối với các giao dịch đã được in vé tại rạp.',
-    'conditions_5'=>'Số tiền đã thanh toán sẽ được hoàn lại tương ứng vào số điểm'
+    'conditions_5'=>'Số tiền đã thanh toán sẽ được hoàn lại tương ứng vào số điểm',
+    'other_news'=>'Tin tức khác',
+    'other_events'=>'Sự kiện khác',
+    'show'=>'Hiển thị',
 ];

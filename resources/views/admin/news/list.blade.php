@@ -31,12 +31,17 @@
                                     @foreach($news as $value)
                                         <tr>
                                             <td class="align-middle text-center">
-                                                <h6 class="mb-0 text-sm ">{!! $value['title'] !!}</h6>
+                                                <h6 class="mb-0 text-sm " style="width:200px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical">{!! $value['title'] !!}</h6>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <img style="width: 300px"
-                                                     src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
-                                                     alt="user1">
+                                                @if(strstr($value['image'],"https") == "")
+                                                    <img style="width: 300px"
+                                                         src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
+                                                         alt="user1">
+                                                @else
+                                                    <img style="width: 300px"
+                                                         src="{!! $value['image'] !!}" alt="user1">
+                                                @endif
                                             </td>
                                             <td class="align-middle text-center text-sm ">
                                             <span class="mb-0 text-sm "

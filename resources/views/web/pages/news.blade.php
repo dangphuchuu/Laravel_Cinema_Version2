@@ -12,44 +12,44 @@
                        href="#tintuc"
                        role="button"
                        data-bs-target="#tintuc" disabled>
-                        @lang('lang.events')
+                        @lang('lang.news')
                     </a>
                 </li>
             </ul>
 
             <div id="tintuc" class="d-flex flex-column" data-bs-parent="#Events">
                 <?php $i = 1 ?>
-                @foreach($posts as $post)
+                @foreach($news as $value)
                         <?php $i++ ?>
                     @if($i % 2 == 0)
                         <!-- Post -->
                         <div class="card text-bg-light mb-3">
                             <div class="d-flex">
                                 <div class="flex-shrink-0">
-                                    <a href="/events-detail/{!! $post['id'] !!}">
-                                        @if(strstr($post->image,"https") === "")
+                                    <a href="/events-detail/{!! $value['id'] !!}">
+                                        @if(strstr($value->image,"https") === "")
                                             <img class="img-fluid rounded-start" style="max-width: 300px"
-                                                 src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $post->image }}.jpg"
+                                                 src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $value->image }}.jpg"
                                                  alt="">
                                         @else
-                                            <img class="img-fluid rounded-start" style="max-width: 300px" src="{{ $post->image }}" alt="">
+                                            <img class="img-fluid rounded-start" style="max-width: 300px" src="{{ $value->image }}" alt="">
                                         @endif
                                     </a>
                                 </div>
                                 <div class="flex-grow-1">
                                     <div class="card-body h-75">
-                                        <h5 class="card-title">{{ $post->title }}</h5>
+                                        <h5 class="card-title">{{ $value->title }}</h5>
                                         <p class="card-text"
                                            style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;
                                            -webkit-box-orient: vertical">
-                                            {{ $post->content }}
+                                            {{ $value->content }}
                                         </p>
                                         <p class="card-text">
-                                            <small class="text-body-secondary">{{ date('d-m-Y H:i', strtotime($post->created_at)) }}</small>
+                                            <small class="text-body-secondary">{{ date('d-m-Y H:i', strtotime($value->created_at)) }}</small>
                                         </p>
                                     </div>
                                     <div class="card-footer h-25">
-                                        <a href="/events-detail/{!! $post['id'] !!}" class="btn btn-primary float-end">@lang('lang.show')</a>
+                                        <a href="/events-detail/{!! $value['id'] !!}" class="btn btn-primary float-end">XEM</a>
                                     </div>
                                 </div>
                             </div>
@@ -61,23 +61,23 @@
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <div class="card-body h-75">
-                                        <h5 class="card-title">{{ $post->title }}</h5>
+                                        <h5 class="card-title">{{ $value->title }}</h5>
                                         <p class="card-text"  style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;
-                                           -webkit-box-orient: vertical">{{ $post->content }}</p>
-                                        <p class="card-text"><small class="text-body-secondary">{{ date('d-m-Y H:i', strtotime($post->created_at)) }}</small></p>
+                                           -webkit-box-orient: vertical">{{ $value->content }}</p>
+                                        <p class="card-text"><small class="text-body-secondary">{{ date('d-m-Y H:i', strtotime($value->created_at)) }}</small></p>
                                     </div>
                                     <div class="card-footer h-25">
-                                        <a href="/events-detail/{!! $post['id'] !!}" class="btn btn-primary float-start">XEM</a>
+                                        <a href="/events-detail/{!! $value['id'] !!}" class="btn btn-primary float-start">@lang('lang.show')</a>
                                     </div>
                                 </div>
                                 <div class="flex-shrink-0">
-                                    <a href="/events-detail/{!! $post['id'] !!}">
-                                        @if(strstr($post->image,"https") === "")
+                                    <a href="/events-detail/{!! $value['id'] !!}">
+                                        @if(strstr($value->image,"https") === "")
                                             <img class="img-fluid rounded-start" style="max-width: 300px"
-                                                 src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $post->image }}.jpg"
+                                                 src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $value->image }}.jpg"
                                                  alt="">
                                         @else
-                                            <img class="img-fluid rounded-start" style="max-width: 300px" src="{{ $post->image }}" alt="">
+                                            <img class="img-fluid rounded-start" style="max-width: 300px" src="{{ $value->image }}" alt="">
                                         @endif
                                     </a>
                                 </div>

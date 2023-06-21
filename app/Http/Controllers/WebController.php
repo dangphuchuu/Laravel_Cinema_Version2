@@ -8,6 +8,7 @@ use App\Models\Combo;
 use App\Models\Director;
 use App\Models\Movie;
 use App\Models\MovieGenres;
+use App\Models\News;
 use App\Models\Post;
 use App\Models\Price;
 use App\Models\Rating;
@@ -40,9 +41,10 @@ class WebController extends Controller
 
     public function home()
     {
+        $news = News::orderBy('id', 'DESC')->where('status',1)->take(3)->get();
         $banners = Banner::get()->where('status', 1);
         $movies = Movie::get()->where('status', 1)->take(6);
-        return view('web.pages.home', ['movies' => $movies, 'banners' => $banners]);
+        return view('web.pages.home', ['movies' => $movies, 'banners' => $banners,'news'=>$news]);
     }
 
     public function movieDetail($id, Request $request)
@@ -420,7 +422,11 @@ class WebController extends Controller
             'posts' => $posts
         ]);
     }
-
+    public function news()
+    {
+        $news = News::all();
+        return view('web.pages.news',['news'=>$news]);
+    }
     public function signIn(Request $request)
     {
         $request->validate(
@@ -683,5 +689,15 @@ class WebController extends Controller
         }
         $ticket->delete();
         return response()->json(['success'=>'Gửi yêu cầu thành công,vé sẽ được hoàn vào điểm thưởng vui lòng kiểm tra điểm thưởng trong profile !']);
+    }
+    public function events_detail($id){
+        $post = Post::find($id);
+        $post_all = Post::where('status',1)->where('id',"!=",$id)->take(4)->get();
+        return view('web.pages.events_detail',['post'=>$post,'post_all'=>$post_all]);
+    }
+    public function news_detail($id){
+        $news = News::find($id);
+        $news_all = News::where('status',1)->where('id',"!=",$id)->take(4)->get();
+        return view('web.pages.news_detail',['news'=>$news,'news_all'=>$news_all]);
     }
 }
