@@ -674,6 +674,17 @@ class WebController extends Controller
         $ticket = Ticket::find($request->ticket_id);
         $user = User::find($ticket['user_id']);
         $money_payment = 0 ;
+        if($ticket['schedule']['date'] == date("Y-m-d" ))
+        {
+            if(strtotime($ticket['schedule']['startTime'])-3600 <= strtotime(date("H:i:s"))){
+
+                return response()->json(['error'=>'Đã quá thời gian hoàn vé mong quý khách thông cảm !']);
+            }
+        }
+        if($ticket['schedule']['date'] < date("Y-m-d" ))
+        {
+            return response()->json(['error'=>'Đã quá thời gian hoàn vé mong quý khách thông cảm !']);
+        }
         foreach($user['ticket'] as $ticket)
         {
             $money_payment += $ticket['totalPrice'];
