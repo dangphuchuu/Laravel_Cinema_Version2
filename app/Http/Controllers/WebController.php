@@ -432,26 +432,24 @@ class WebController extends Controller
     {
         $request->validate(
             [
-                'email' => 'required',
+                'username' => 'required',
                 'password' => 'required'
             ],
             [
-                'email.required' => 'Please enter your email!',
-                'password.required' => 'Please enter your password!'
+                'username.required' => 'Vui lòng nhập email hoặc số điện thoại!',
+                'password.required' => 'Vui lòng nhập mật khẩu!'
             ]
         );
-        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+        $email = Auth::attempt(['email' => $request['username'], 'password' => $request['password']]);
+        $phone = Auth::attempt(['phone' => $request['username'], 'password' => $request['password']]);
+        if ($email || $phone) {
             if($request->has('rememberme')){
-                Cookie::queue(Cookie::make('user_email',$request->email,10080));//10080 = 7 days,Thời gian lưu cookie
+                Cookie::queue(Cookie::make('username',$request->username,10080));//10080 = 7 days,Thời gian lưu cookie
                 Cookie::queue(Cookie::make('password_email',$request->password,10080));
             }
-//            else{
-//                Cookie::forget('user_email');
-//                Cookie::forget('password_email');
-//            }
-            return redirect('/')->with('success','Welcome back '.Auth::user()->fullName);
+            return redirect('/')->with('success','Chào mừng bạn '.Auth::user()->fullName.' !');
         } else {
-            return redirect('/')->with('warning','Wrong username or password!');
+            return redirect('/')->with('warning','Sai tài khoản hoặc mật khẩu');
         }
     }
 
@@ -459,42 +457,49 @@ class WebController extends Controller
     {
         $request->validate([
             'fullName' => 'required|min:1',
-            'email' => 'required|unique:users',
-            'phone'=>'required|unique:users',
+            'email' => 'nullable|required_without:phone|max:255|unique:users',
+            'phone' => 'nullable|required_without:email|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:12|unique:users',
             'password' => 'required',
             'repassword' => 'required|same:password',
         ], [
-            'fullName.required' => 'fullName is required',
-            'email.required' => 'Email is required',
-            'email.unique' => 'Email already exists',
-            'phone.required' => 'Phone is required',
-            'phone.unique' => 'Phone already exists',
-            'password.required' => 'Password is required',
-            'repassword.required' => 'Password is required',
-            'repassword.same' => "Password doesn't match",
+            'fullName.required' => 'Vui lòng nhập họ tên',
+            'email.required_without' => 'Vui lòng nhập mail hoặc số điện thoại ',
+            'email.unique' => 'Email đã tồn tại ',
+            'phone.min'=>'Vui lòng nhập tối thiểu 10 số',
+            'phone.max'=>'Chỉ được nhập tối đa 12 số',
+            'phone.required_without' => 'Vui lòng nhập mail hoặc số điện thoại',
+            'phone.unique' => 'Số điện thoại đã tồn tại',
+            'password.required' => 'Vui lòng nhập mật khẩu',
+            'repassword.required' => 'Vui lòng nhập lại mật khẩu',
+            'repassword.same' => "Mật khẩu nhập lại không trùng khớp",
         ]);
-        $token = Str::random(20);
-        $request['password'] = bcrypt($request['password']);
         $user = new User([
             'fullName'=>$request['fullName'],
-            'password'=>$request['password'],
+            'password'=>bcrypt($request['password']),
             'email'=>$request['email'],
-            'phone'=>$request['phone'],
-            'code'=>rand(10000000000, 9999999999999999),
+            'phone'=>format_phone_number($request['phone']),
+            'code'=>rand(1000000000000000, 9999999999999999),
             'point'=>0,
         ]);
         $user->save();
         $user->syncRoles('user');
+        $token = Str::random(20);
         $to_email = $request['email'];
         $link_verify = url('/verify-email?email='.$to_email.'&token='.$token);
-        Mail::send('web.pages.verify_account_mail', [
-            'to_email' => $to_email,
-            'link_verify'=>$link_verify,
-        ], function ($email) use ($to_email) {
-            $email->subject('Kích hoạt tài khoản: '.$to_email);
-            $email->to($to_email);
-        });
-        return redirect('/')->with('success', 'Đăng ký thành công,vui lòng kiểm tra email để kích hoạt tài khoản !');
+        if(isset($request->email)){
+            Mail::send('web.pages.verify_account_mail', [
+                'to_email' => $to_email,
+                'link_verify'=>$link_verify,
+            ], function ($email) use ($to_email) {
+                $email->subject('Kích hoạt tài khoản: '.$to_email);
+                $email->to($to_email);
+            });
+            return redirect('/')->with('success', 'Đăng ký thành công,vui lòng kiểm tra email để kích hoạt tài khoản !');
+        }else{
+            return redirect('/')->with('success', 'Đăng ký thành công tài khoản !');
+        }
+
+
     }
 
     public function signOut()

@@ -33,7 +33,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/function/cloud_name.php"
+            "app/function/cloud_name.php",
+            "app/Helper/GlobalFunction.php"
         ]
     },
     "autoload-dev": {

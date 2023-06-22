@@ -11,15 +11,15 @@
                 <form method='post' action="/signIn">
                     @csrf
                     <div class="mb-3">
-                        <input class="form-control" type="email" placeholder="Email..."
-                               @if(Cookie::has('user_email'))
-                                   value="{!! Cookie::get('user_email') !!}"
+                        <input class="form-control" type="text" placeholder="@lang('lang.type') email hoặc @lang('lang.phone')"
+                               @if(Cookie::has('username'))
+                                   value="{!! Cookie::get('username') !!}"
                                @endif
-                               name="email" aria-label="email"
+                               name="username" aria-label="username"
                                autocomplete="email">
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="password" placeholder="Password..."
+                        <input class="form-control" type="password" placeholder="@lang('lang.password')..."
                                @if(Cookie::has('password_email'))
                                    value="{!! Cookie::get('password_email') !!}"
                                @endif
@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-check mb-4">
                         <input class="form-check-input" type="checkbox"
-                               @if(Cookie::has('user_email'))
+                               @if(Cookie::has('username'))
                                    checked
                                @endif
                                id="rememberme" name="rememberme">
