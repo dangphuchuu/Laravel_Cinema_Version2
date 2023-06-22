@@ -39,11 +39,11 @@
             </label>
             <div class="form-group">
                 <label for="seat_ms_{{ $seat->id }}">@lang('lang.left_align')</label>
-                <input class="form-control" type="number" name="ms" id="seat_ms_{{ $seat->id }}">
+                <input class="form-control" type="number" name="ms" id="seat_ms_{{ $seat->id }}" value="{{ $seat->ms }}">
             </div>
             <div class="form-group">
                 <label for="seat_me_{{ $seat->id }}">@lang('lang.right_align')</label>
-                <input class="form-control" type="number" name="me" id="seat_me_{{ $seat->id }}">
+                <input class="form-control" type="number" name="me" id="seat_me_{{ $seat->id }}" value="{{ $seat->me }}">
             </div>
             <input type="hidden" name="room" value="{{ $room->id }}">
             <input type="hidden" name="seat" value="{{ $seat->id }}">
