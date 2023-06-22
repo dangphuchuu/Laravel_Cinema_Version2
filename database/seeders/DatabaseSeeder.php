@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        //TODO: theater, room, seat
+        require 'theater_room_seat.php';
         //TODO: User
         require 'user.php';
 
@@ -55,8 +57,7 @@ class DatabaseSeeder extends Seeder
         //TODO: Rated
         require 'rating.php';
 
-        //TODO: theater, room, seat
-        require 'theater_room_seat.php';
+
 
         //TODO: Directors
         require 'director.php';
