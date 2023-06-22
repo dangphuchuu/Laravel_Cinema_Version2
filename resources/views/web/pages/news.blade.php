@@ -26,7 +26,7 @@
                         <div class="card text-bg-light mb-3">
                             <div class="d-flex">
                                 <div class="flex-shrink-0">
-                                    <a href="/events-detail/{!! $value['id'] !!}">
+                                    <a href="/news-detail/{!! $value['id'] !!}">
                                         @if(strstr($value->image,"https") === "")
                                             <img class="img-fluid rounded-start" style="max-width: 300px"
                                                  src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $value->image }}.jpg"
@@ -45,11 +45,11 @@
                                             {{ $value->content }}
                                         </p>
                                         <p class="card-text">
-                                            <small class="text-body-secondary">{{ date('d-m-Y H:i', strtotime($value->created_at)) }}</small>
+                                            <small class="text-body-secondary">{!! date('d F Y', strtotime($value['created_at'] )) !!}</small>
                                         </p>
                                     </div>
                                     <div class="card-footer h-25">
-                                        <a href="/events-detail/{!! $value['id'] !!}" class="btn btn-primary float-end">XEM</a>
+                                        <a href="/news-detail/{!! $value['id'] !!}" class="btn btn-primary float-end">@lang('lang.more')</a>
                                     </div>
                                 </div>
                             </div>
@@ -64,14 +64,14 @@
                                         <h5 class="card-title">{{ $value->title }}</h5>
                                         <p class="card-text"  style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;
                                            -webkit-box-orient: vertical">{{ $value->content }}</p>
-                                        <p class="card-text"><small class="text-body-secondary">{{ date('d-m-Y H:i', strtotime($value->created_at)) }}</small></p>
+                                        <p class="card-text"><small class="text-body-secondary">{!! date('d F Y', strtotime($value['created_at'] )) !!}</small></p>
                                     </div>
                                     <div class="card-footer h-25">
-                                        <a href="/events-detail/{!! $value['id'] !!}" class="btn btn-primary float-start">@lang('lang.show')</a>
+                                        <a href="/news-detail/{!! $value['id'] !!}" class="btn btn-primary float-start">@lang('lang.show')</a>
                                     </div>
                                 </div>
                                 <div class="flex-shrink-0">
-                                    <a href="/events-detail/{!! $value['id'] !!}">
+                                    <a href="/news-detail/{!! $value['id'] !!}">
                                         @if(strstr($value->image,"https") === "")
                                             <img class="img-fluid rounded-start" style="max-width: 300px"
                                                  src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $value->image }}.jpg"

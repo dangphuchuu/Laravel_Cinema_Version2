@@ -220,14 +220,9 @@
                                         <a href="#" class="link link-dark text-decoration-none">
                                             <h5 class="card-title"
                                                 style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical">
-                                                [Preview]
-                                                Guardians Of The Galaxy Vol.3 Lấy Lại Niềm Tin
-                                                Dành Cho Dòng Phim Siêu Anh Hùng</h5>
-                                            <p class="card-text text-truncate">Dù đã đến gần ngày công chiếu, đa
-                                                số
-                                                thông tin về nội dung phim vẫn chỉ gói gọn trong hai chữ “tin
-                                                đồn”.</p>
-                                            <p class="card-text"><small class="text-muted">22 October 2013</small></p>
+                                               {!! $value['title'] !!}</h5>
+                                            <p class="card-text text-truncate">{!! $value['content'] !!}</p>
+                                            <p class="card-text"><small class="text-muted">{!! date('d F Y', strtotime($value['created_at'] )) !!}</small></p>
                                         </a>
                                     </div>
                                 </div>
@@ -239,6 +234,9 @@
                 <div class="row m-2 mb-5 justify-content-end">
                     <a href="/news" class="btn btn-outline-warning w-auto">@lang('lang.more') ></a>
                 </div>
+                <div class="zalo-chat-widget" data-oaid="4011839899851309095" data-welcome-message="Rất vui khi được hỗ trợ bạn, vui lòng để lại lời nhắn HMCinema sẽ trả lời bạn trong giây lát !" data-autopopup="0" data-width="" data-height=""></div>
+
+
             </div>
 
         </div>
