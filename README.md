@@ -31,7 +31,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 -   Step 7: php artisan serve
 
 ## Command Line
--   https://github.com/cloudinary-devs/cloudinary-laravel#installation
+-  
 -   create database and model: "php artisan make:model Example -m"
 -   create Controller: "php artisan make:controller ExampleController"
 -   rollback database and seed: "php artisan migrate:fresh --seed"
@@ -45,3 +45,10 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 -   composer update
 -   php artisan vendor:publish --provider="CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider" --tag="cloudinary-laravel-config"
 -   composer dumpautoload
+## Documentation
+-   https://github.com/doo/scanbot-sdk-example-web/tree/master
+-   https://docs.scanbot.io/document-scanner-sdk/web/introduction/
+-   https://spatie.be/docs/laravel-permission/v5/introduction
+-   https://github.com/milon/barcode
+-   https://github.com/picqer/php-barcode-generator
+-    https://github.com/cloudinary-devs/cloudinary-laravel#installation
