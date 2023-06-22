@@ -229,21 +229,42 @@ class StaffController extends Controller
     }
 
     public function handleScanTicket(Request $request) {
+        $message = 'vé hợp lệ';
+        $check = true;
+
         $ticket = Ticket::where('code', 'LIKE', $request->code)->first();
         if (!$ticket) {
             return response('ticket not found', 500);
         }
-
-        if ($ticket->schedule->startTime )
         $ticket->status = false;
+        if ($ticket->schedule->date > date('Y-m-d')) {
+            $message = 'Chưa đến ngày chiếu phim';
+            $ticket->status = true;
+            $check = false;
+        }
+        if ($ticket->schedule->date < date('Y-m-d')) {
+            $message = 'suất chiếu đã kết thúc';
+            $ticket->status = false;
+            $check = false;
+        }
+        if ($ticket->schedule->date == date('Y-m-d')) {
+            if (strtotime($ticket->schedule->endTime) <= strtotime(date('H:i:s'))) {
+                $message = 'suất chiếu đã kết thúc';
+                $ticket->status = false;
+                $check = false;
+            }
+        }
 
         $ticket->save();
+
         return response()->json([
             'theater' => $ticket->schedule->room->theater->name,
             'room' => $ticket->schedule->room->name,
             'movie' => $ticket->schedule->movie->name,
             'date' => $ticket->schedule->date,
             'startTime' => $ticket->schedule->startTime,
+            'message' => $message,
+            'check' => $check,
         ]);
     }
 }

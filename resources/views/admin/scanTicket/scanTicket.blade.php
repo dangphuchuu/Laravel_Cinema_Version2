@@ -213,27 +213,31 @@
                         },
                         statusCode: {
                             200: (data) => {
-                                $('#theater').text(data.theater);
-                                $('#room').text(data.room);
-                                $('#movie').text(data.movie);
-                                $('#date').text(data.date);
-                                $('#startTime').text(data.startTime);
-                                $('#status').addClass('text-success').text('PASS')
+                                    $('#theater').text(data.theater);
+                                    $('#room').text(data.room);
+                                    $('#movie').text(data.movie);
+                                    $('#date').text(data.date);
+                                    $('#startTime').text(data.startTime);
+                                if (data.check) {
+                                    $('#status').addClass('text-success').text(data.message);
+                                } else {
+                                    $('#status').addClass('text-danger').text(data.message);
+                                }
                             },
                             500: (data) => {
                                 // alert('not found');
-                                // $('#theater').text('');
-                                // $('#room').text('');
-                                // $('#movie').text('');
-                                // $('#date').text('');
-                                // $('#startTime').text('');
-                                // $('#status').text('');
-                                $('#theater').text(data.theater);
-                                $('#room').text(data.room);
-                                $('#movie').text(data.movie);
-                                $('#date').text(data.date);
-                                $('#startTime').text(data.startTime);
-                                $('#status').addClass('text-success').text('PASS')
+                                $('#theater').text('');
+                                $('#room').text('');
+                                $('#movie').text('');
+                                $('#date').text('');
+                                $('#startTime').text('');
+                                $('#status').text('');
+                                // $('#theater').text(data.theater);
+                                // $('#room').text(data.room);
+                                // $('#movie').text(data.movie);
+                                // $('#date').text(data.date);
+                                // $('#startTime').text(data.startTime);
+                                // $('#status').addClass('text-success').text('PASS');
                             }
 
                         }
