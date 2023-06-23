@@ -17,14 +17,14 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string('fullName', 255);
             $table->string('password', 255);
-            $table->string('email', 255)->unique();
-            $table->string('phone', 10)->unique()->nullable();
+            $table->string('email', 255)->unique()->nullable();
+            $table->string('phone', 20)->unique()->nullable();
             $table->boolean('status')->default(true);
             $table->bigInteger('code')->unique();
             $table->bigInteger('point');
-            $table->bigInteger('theater_id')->unsigned()->nullable(true);
+            $table->bigInteger('theater_id')->unsigned()->nullable();
             $table->foreign('theater_id')->references('id')->on('theaters');
-            $table->timestamp('email_verified_at')->nullable();
+//            $table->timestamp('email_verified_at')->nullable();
             $table->boolean('email_verified')->default(false);
             $table->rememberToken();
             $table->timestamps();
