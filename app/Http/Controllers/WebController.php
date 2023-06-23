@@ -34,10 +34,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cookie;
 class WebController extends Controller
 {
-    function __construct()
+    public function __construct()
     {
-        $cloud_name = cloud_name();
-        view()->share('cloud_name', $cloud_name);
+        $cloud_name = env('CLOUD_NAME');
+        return view()->share('cloud_name', $cloud_name);
     }
 
     public function home()
@@ -190,6 +190,7 @@ class WebController extends Controller
             $newTkCb->save();
             unset($newTkCb);
         }
+
         return response('add combo success', 200);
     }
 

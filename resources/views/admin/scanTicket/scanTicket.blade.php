@@ -9,27 +9,18 @@
             <div class="card-body pt-2">
                 <div class="col">
                     <div class="content-container">
-                        <div class="btn barcode-scanner-button">@lang('lang.barcode_scanner')</div>
-                        <div class="d-none">
-                            <div class="btn document-scanner-button">Document Scanner</div>
-                            <div class="btn mrz-scanner-button">MRZ Scanner</div>
-                            <div class="btn text-data-scanner-button"> Text Data Scanner </div>
-                            <div class="btn" id="pick-document-button">Pick Document Image</div>
-                            <div class="btn" id="pick-barcode-button">Pick Barcode Image</div>
-                            <div class="btn scanner-results-button">Document Results</div>
-                            <div class="btn license-info-button">License Info</div>
-                        </div>
+                        <div id="barcode-scanner-button" class="btn">@lang('lang.barcode_scanner')</div>
                     </div>
-                    <div class="controller barcode-scanner-controller">
+                    <div id="barcode-scanner-controller" class="controller">
                         <nav class="navbar navbar-dark">
                             <div class="navbar-brand mb-0 h3">
-                                <span class="back-button">&#8249;</span>
+                                <span id="back-button">&#8249;</span>
                                 @lang('lang.barcode_scanner')
                             </div>
                             <div class="spacer"></div>
                             <div class="camera-button-container h3">
-                                <span class="camera-swap-button">&#8645;</span>
-                                <span class="camera-switch-button">&#8646;</span>
+                                <span id="camera-swap-button">&#8645;</span>
+                                <span id="camera-switch-button">&#8646;</span>
                             </div>
                         </nav>
                         <div id="barcode-scanner-container" class="view-controller-container">
@@ -37,126 +28,6 @@
                         </div>
                         <div class="action-bar">
                             <div class="barcode-result-container"></div>
-                        </div>
-                    </div>
-                    <div class="d-none">
-                        <div class="controller scanbot-camera-controller">
-                            <nav class="navbar navbar-dark">
-                                <div class="navbar-brand mb-0 h3">
-                                    <span class="back-button">&#8249;</span>
-                                    Document Scanner
-                                </div>
-                                <div class="spacer"></div>
-                                <div class="camera-button-container h3">
-                                    <span class="camera-swap-button">&#8645;</span>
-                                    <span class="camera-switch-button">&#8646;</span>
-                                </div>
-                            </nav>
-                            <div id="scanbot-camera-container" class="view-controller-container">
-                                <div class="web-sdk-progress-bar"></div>
-                            </div>
-                            <div class="action-bar">
-                                <div class="action-bar-button page-count-indicator">0 PAGES</div>
-                                <div class="align-right-button">
-                                    <button class="action-bar-button detection-done-button">DONE</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="controller mrz-scanner-controller">
-                            <nav class="navbar navbar-dark">
-                                <div class="navbar-brand mb-0 h3">
-                                    <span class="back-button">&#8249;</span>
-                                    MRZ Scanner
-                                </div>
-                                <div class="spacer"></div>
-                                <div class="camera-button-container h3">
-                                    <span class="camera-swap-button">&#8645;</span>
-                                    <span class="camera-switch-button">&#8646;</span>
-                                </div>
-                            </nav>
-                            <div id="mrz-scanner-container" class="view-controller-container">
-                                <div class="web-sdk-progress-bar"></div>
-                            </div>
-                            <div class="action-bar"></div>
-                        </div>
-
-                        <div class="controller text-data-scanner-controller">
-                            <nav class="navbar navbar-dark">
-                                <div class="navbar-brand mb-0 h3">
-                                    <span class="back-button">&#8249;</span>
-                                    Text Data Scanner
-                                </div>
-                                <div class="spacer"></div>
-                                <div class="camera-button-container h3">
-                                    <span class="camera-swap-button">&#8645;</span>
-                                    <span class="camera-switch-button">&#8646;</span>
-                                </div>
-                            </nav>
-                            <div id="text-data-scanner-container" class="view-controller-container">
-                                <div class="web-sdk-progress-bar"></div>
-                            </div>
-                        </div>
-
-                        <div class="controller cropping-controller">
-                            <nav class="navbar navbar-dark">
-                                <div class="navbar-brand mb-0 h3">
-                                    <span class="back-button">&#8249;</span>Cropping View
-                                </div>
-                            </nav>
-                            <div id="cropping-view-container" class="view-controller-container"></div>
-                            <div class="action-bar cropping-view-action-bar">
-                                <button class="action-bar-button detect-button">DETECT</button>
-                                <button class="action-bar-button rotate-button">ROTATE</button>
-                                <div class="align-right-button">
-                                    <button class="action-bar-button apply-button">APPLY</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="controller detection-results-controller">
-                            <nav class="navbar navbar-dark">
-                                <div class="navbar-brand mb-0 h3">
-                                    <span class="back-button">&#8249;</span>Detection Results
-                                </div>
-                            </nav>
-                            <div class="view-controller-container detection-results-container"></div>
-                            <div class="action-bar detection-results-action-bar">
-                                <button class="action-bar-button pdf-button">SAVE PDF</button>
-                                <button class="action-bar-button tiff-button">SAVE TIFF</button>
-                            </div>
-                        </div>
-
-                        <div class="controller detection-result-controller">
-                            <nav class="navbar navbar-dark">
-                                <div class="navbar-brand mb-0 h3">
-                                    <span class="back-button">&#8249;</span>Detection Result
-                                </div>
-                            </nav>
-                            <div class="view-controller-container detection-result-container"></div>
-                            <div class="action-bar detection-result-action-bar">
-                                <button class="action-bar-button crop-button">CROP</button>
-                                <div class="filter-selector-container">
-                                    <div class="filter-selector-label">FILTER</div>
-                                    <select class="action-bar-filter-select">
-                                        <option>none</option>
-                                        <option>color</option>
-                                        <option>gray</option>
-                                        <option>binarized</option>
-                                        <option>otsuBinarization</option>
-                                        <option>pureBinarized</option>
-                                        <option>lowLightBinarization</option>
-                                        <option>lowLightBinarization2</option>
-                                        <option>deepBinarization</option>
-                                        <option>colorDocument</option>
-                                        <option>blackAndWhite</option>
-                                        <option>edgeHighlight</option>
-                                    </select>
-                                </div>
-                                <div class="align-right-button">
-                                    <button class="action-bar-button delete-button">DELETE</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -192,13 +63,84 @@
 @endsection
 @section('scripts')
     <script>
+        let results = [];
+        let scanbotSDK, barcodeScanner;
+
+        class Config {
+            static license() {
+                return "";
+            }
+            static barcodeScannerContainerId() {
+                return "barcode-scanner-container";
+            }
+        }
+
+        window.onresize = () => {
+            this.resizeContent();
+        };
+
+        window.onload = async () => {
+            this.resizeContent();
+
+            scanbotSDK = await ScanbotSDK.initialize({ licenseKey: Config.license() });
+
+            $("#barcode-scanner-button").on('click', async (e) => {
+                $("#barcode-scanner-controller").addClass('d-block');
+
+                const barcodeFormats = [
+                    "QR_CODE",
+                ];
+
+                const config = {
+                    containerId: Config.barcodeScannerContainerId(),
+                    style: {
+                        window: {
+                            borderColor: "blue"
+                        },
+                        text: {
+                            color: "red",
+                            weight: 500
+                        }
+                    },
+                    onBarcodesDetected: onBarcodesDetected,
+                    returnBarcodeImage: true,
+                    onError: onScannerError,
+                    barcodeFormats: barcodeFormats,
+                    preferredCamera: 'camera2 0, facing back'
+                };
+
+                try {
+                    barcodeScanner = await scanbotSDK.createBarcodeScanner(config);
+                } catch (e) {
+                    console.log(e.name + ': ' + e.message);
+                    alert(e.name + ': ' + e.message);
+                    $("#barcode-scanner-controller").addClass("d-none");
+                }
+            });
+
+            $('#back-buttons').on('click', async (e) => {
+                const controller =
+                    e.target.parentElement.parentElement.parentElement.className;
+                document.getElementByClassName(controller).style.display = "none";
+                barcodeScanner.dispose();
+                barcodeScanner = undefined;
+            })
+
+            $("#camera-swap-button").on('click', async (e) => {
+                barcodeScanner.swapCameraFacing(true);
+            });
+
+            $("#camera-switch-button").on('click' ,async (e) => {
+                onCameraSwitch(barcodeScanner);
+            });
+        }
+
         async function onBarcodesDetected(e) {
             let text = "";
+            const $ticketElement = $('#ticket_id');
             e.barcodes.forEach((barcode) => {
                 if (barcode.parsedText) {
-                    text += JSON.stringify(barcode.parsedText);
-                } else {
-                    $('#ticket_id').val(barcode.text);
+                    $ticketElement.val(barcode.text);
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -209,15 +151,15 @@
                         type: 'POST',
                         dataType: 'json',
                         data: {
-                            'code': $('#ticket_id').val(),
+                            'code': $ticketElement.val(),
                         },
                         statusCode: {
                             200: (data) => {
-                                    $('#theater').text(data.theater);
-                                    $('#room').text(data.room);
-                                    $('#movie').text(data.movie);
-                                    $('#date').text(data.date);
-                                    $('#startTime').text(data.startTime);
+                                $('#theater').text(data.theater);
+                                $('#room').text(data.room);
+                                $('#movie').text(data.movie);
+                                $('#date').text(data.date);
+                                $('#startTime').text(data.startTime);
                                 if (data.check) {
                                     $('#status').addClass('text-success').text(data.message);
                                 } else {
@@ -242,6 +184,8 @@
 
                         }
                     });
+                    text += JSON.stringify(barcode.parsedText);
+                } else {
                     text += " " + barcode.text + " (" + barcode.format + "),";
                 }
             });
@@ -251,7 +195,44 @@
                 result = await scanbotSDK.toDataUrl(e.barcodes[0].barcodeImage);
             }
 
-            Toastify({ text: text.slice(0, -1), duration: 3000, avatar: result }).showToast();
+            // Toastify({ text: text.slice(0, -1), duration: 10000, avatar: result }).showToast();
         }
+
+        async function onCameraSwitch(scanner) {
+            const cameras = await scanner?.fetchAvailableCameras()
+            if (cameras) {
+                const currentCameraInfo = scanner?.getActiveCameraInfo();
+                if (currentCameraInfo) {
+                    const cameraIndex = cameras.findIndex((cameraInfo) => { return cameraInfo.deviceId == currentCameraInfo.deviceId });
+                    const newCameraIndex = (cameraIndex + 1) % (cameras.length);
+                    alert(`Current camera: ${currentCameraInfo.label}.\nSwitching to: ${cameras[newCameraIndex].label}`)
+                    scanner?.switchCamera(cameras[newCameraIndex].deviceId);
+                }
+            }
+        }
+
+        async function onScannerError(e) {
+            console.log("Error:", e);
+            alert(e.name + ': ' + e.message);
+        }
+
+        async function addAllPagesTo(generator) {
+            for (let i = 0; i < results.length; i++) {
+                const result = results[i];
+                await generator.addPage(Utils.imageToDisplay(result));
+            }
+        }
+
+        function resizeContent() {
+            const height = document.body.offsetHeight - (50 + 59);
+            const controllers = document.getElementsByClassName("controller");
+
+            for (let i = 0; i < controllers.length; i++) {
+                const controller = controllers[i];
+                controller.style.height = height;
+            }
+        }
+
+
     </script>
 @endsection

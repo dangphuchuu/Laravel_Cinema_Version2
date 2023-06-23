@@ -190,7 +190,7 @@
             @endcan
             @can('buyCombo')
                 <li class="nav-item">
-                    <a class="nav-link @yield('active')" href="./admin/scanTicket">
+                    <a class="nav-link @yield('active')" href="./admin/buyCombo">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="fa-solid fa-burger-soda text-danger text-sm opacity-10"></i>
                         </div>

@@ -8,11 +8,8 @@ window.onresize = () => {
 window.onload = async () => {
     this.resizeContent();
 
-    Utils.getElementByClassName("document-scanner-button").onclick = async (
-        e
-    ) => {
-        Utils.getElementByClassName("scanbot-camera-controller").style.display =
-            "block";
+    Utils.getElementByClassName("document-scanner-button").onclick = async (e) => {
+        Utils.getElementByClassName("scanbot-camera-controller").style.display = "block";
 
         const config = {
             containerId: Config.scannerContainerId(),
@@ -343,9 +340,7 @@ window.onload = async () => {
         ViewUtils.hideLoading();
     };
 
-    Utils.getElementByClassName("action-bar-filter-select").onchange = async (
-        e
-    ) => {
+    Utils.getElementByClassName("action-bar-filter-select").onchange = async (e) => {
         const index = Utils.getElementByClassName(
             "detection-result-image"
         ).getAttribute("index");

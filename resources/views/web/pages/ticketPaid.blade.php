@@ -39,6 +39,8 @@
 
         .ticket {
             margin: auto;
+            width: 550px;
+            height: 250px;
             display: flex;
             background: white;
         }
@@ -50,13 +52,16 @@
         .admit-one {
             position: absolute;
             color: darkgray;
-            height: 250px;
-            padding: 0 10px;
+            width: 250px;
+            left: -106px;
+            top: 106px;
+            padding: 10px 0;
             letter-spacing: 0.15em;
             display: flex;
             text-align: center;
             justify-content: space-around;
-            writing-mode: vertical-rl;
+            /*writing-mode: vertical-rl;*/
+            transform: rotate(-90deg);
         }
 
         .admit-one span:nth-child(2) {
@@ -74,6 +79,7 @@
         }
 
         .ticket-info {
+            width: 405px;
             padding: 10px 30px;
             display: flex;
             flex-direction: column;
@@ -110,17 +116,25 @@
         }
 
         .show-name {
-            font-size: 32px;
+            font-size: 24px;
             /*font-family: "Nanum Pen Script", cursive;*/
             font-family: "Roboto", cursive;
             color: #d83565;
+            padding: 4px;
         }
 
-        .show-name h6 {
-            font-size: 30px;
+        .show-name h1 {
+            font-size: 24px;
             font-weight: 700;
             letter-spacing: 0.1em;
             color: #4a437e;
+        }
+
+        .show-name h2 {
+            font-size: 18px;
+            font-weight: 700;
+            padding: 2px;
+            letter-spacing: 0.1em;
         }
 
         .time {
@@ -145,6 +159,7 @@
         .location {
             display: flex;
             justify-content: space-around;
+            font-weight: 900;
             align-items: center;
             width: 100%;
             padding-top: 8px;
@@ -156,8 +171,8 @@
         }
 
         .right {
-            width: 180px;
             border-left: 1px dashed #404040;
+            position: relative;
         }
 
         .right .admit-one {
@@ -171,10 +186,11 @@
 
         .right .right-info-container {
             height: 250px;
+            width: 145px;
             padding: 10px 10px 10px 35px;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
         }
 
@@ -187,10 +203,13 @@
         }
 
         .barcode img {
+            padding: 8px;
             height: 100%;
         }
 
         .right .ticket-number {
+            font-family: "Staatliches", cursive;
+            padding: 0 8px;
             color: gray;
         }
         .border-2 {
@@ -198,14 +217,6 @@
         }
         .fw-bold {
             font-weight: 700!important;
-        }
-
-        .rotate180 {
-            transform: rotate(-180deg);
-        }
-
-        .rotate270 {
-            transform: rotate(270deg);
         }
 
         .btn {
@@ -245,11 +256,14 @@
                 <span>{!! date('Y', strtotime($ticket->schedule->date)) !!}</span>
             </p>
             <div class="show-name">
-                <h6>{!! $ticket['schedule']['movie']['name']  !!}</h6>
-                <h5>{!! $ticket['schedule']['room']['name'] !!}</h5>
+                <h1>{!! $ticket['schedule']['movie']['name']  !!}</h1>
+                <h2>{!! $ticket['schedule']['room']['name'] !!}</h2>
             </div>
             <div class="time">
-                 <p> <span>@lang('lang.showtime_web')</span> {!! date('H:i A', strtotime($ticket->schedule->startTime)) !!} <span>@lang('lang.to')</span> {!! date('H:i a', strtotime($ticket->schedule->endTime)) !!}</p>
+                 <p>
+                     <span>@lang('lang.showtime_web')</span> {!! date('H:i A', strtotime($ticket->schedule->startTime)) !!}
+                     <span>@lang('lang.to')</span> {!! date('H:i A', strtotime($ticket->schedule->endTime)) !!}
+                 </p>
                 <p> <span>@lang('lang.seat')</span>
                     @foreach($ticket->ticketSeats as $seat)
                         @if ($loop->first)
@@ -266,23 +280,18 @@
         </div>
     </div>
     <div class="right">
-        <p class="admit-one  rotate180">
+        <p class="admit-one">
             <span>HMCinema</span>
             <span>HMCinema</span>
             <span>HMCinema</span>
         </p>
         <div class="right-info-container">
-            <div class="rotate270">
-                <div class="barcode ">
-                    @php
-                        $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
-                    @endphp
-                    <img  style="margin-right: 10px;height: auto;width: 220px;"src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode($ticket->code,$generatorPNG::TYPE_CODE_128)) }}" alt="QR code"/>
-                </div>
-                <p class="ticket-number" style="height: auto;margin-top: -35px;width: auto;margin-left: 80px;">
-                    {!! $ticket->code !!}
-                </p>
+            <div class="barcode">
+                <img alt="QR code" src="data:image/png;base64,{{ DNS2D::getBarcodePNG($ticket->code.'', 'QRCODE') }}"/>
             </div>
+            <p class="ticket-number" >
+                #{{ $ticket->code }}
+            </p>
         </div>
     </div>
 </div>

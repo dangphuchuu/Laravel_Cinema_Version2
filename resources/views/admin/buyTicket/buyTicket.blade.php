@@ -3,7 +3,7 @@
     <div class="container-fluid py-4">
         <div class="card">
             <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                bán vé
+                BÁN VÉ
             </div>
 
             <div class="card-body pt-2">
@@ -37,13 +37,13 @@
                                                     <div class="p-2 d-flex flex-row m-1 align-items-center rounded" style="background: #f5f5f5">
 
                                                         <div class="flex-shrink-0 p-2 border-end border-4 border-white">
+                                                            <h5>{{$movie->name}}</h5>
                                                             @if(strstr($movie->image,"https") === "")
                                                                 <img class="rounded d-block" style="width: 180px" alt="..."
                                                                      src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $movie->image }}.jpg">
                                                             @else
                                                                 <img class="rounded d-block" style="width: 180px" alt="..." src="{{ $movie->image }}">
                                                             @endif
-                                                                <h3>{{$movie->name}}</h3>
                                                         </div>
                                                         {{-- a Theater schedule --}}
                                                         <div class="flex-grow-1 border-start border-5 border-white p-2 ps-4">

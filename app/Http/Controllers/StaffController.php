@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Combo;
+use App\Models\Food;
 use App\Models\Movie;
 use App\Models\Price;
 use App\Models\RoomType;
@@ -10,6 +11,8 @@ use App\Models\Schedule;
 use App\Models\SeatType;
 use App\Models\Theater;
 use App\Models\Ticket;
+use App\Models\TicketCombo;
+use App\Models\TicketFood;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,6 +20,12 @@ use Illuminate\Support\Facades\Auth;
 
 class StaffController extends Controller
 {
+    public function __construct()
+    {
+        $cloud_name = env('CLOUD_NAME');
+        view()->share('cloud_name', $cloud_name);
+    }
+
     public function buyTicket(Request $request) {
         $theater = Auth::user()->theater;
         if (isset($request->date)) {
@@ -266,5 +275,56 @@ class StaffController extends Controller
             'message' => $message,
             'check' => $check,
         ]);
+    }
+
+    public function buyCombo(Request $request) {
+        $combos = Combo::where('status', 1)->get();
+        $foods = Food::where('status', 1)->get();
+        return view('admin.buyCombo.buyCombo', [
+            'combos' => $combos,
+            'foods' => $foods,
+        ]);
+    }
+
+    public function createTicketCombo(Request $request) {
+        $ticket = new Ticket([
+            'schedule_id' => null,
+            'user_id' => null,
+            'holdState' => false,
+            'status' => true,
+            'code' => rand(10000000, 9999999999)
+        ]);
+        $ticket->save();
+        foreach ($request->ticketCombos as $ticketCombo) {
+            $combo = Combo::find($ticketCombo[0]);
+            $details = '';
+            foreach ($combo->foods as $food) {
+                $details .= $food->pivot->quantity . ' ' . $food->name . ' + ';
+            }
+            $details = substr($details, 0, -3);
+            $newTkCb = new TicketCombo([
+                'comboName' => $combo->name,
+                'comboPrice' => $combo->price,
+                'comboDetails' => $details,
+                'quantity' => $ticketCombo[1],
+                'ticket_id' => $ticket->id
+            ]);
+
+            $newTkCb->save();
+            unset($newTkCb);
+        }
+        foreach ($request->ticketFoods as $ticketFood) {
+            $food = Food::find($ticketFood[0]);
+            $newTkF = new TicketFood([
+                'foodName' => $food->name,
+                'foodPrice' => $food->price,
+                'quantity' => $ticketFood[1],
+                'ticket_id' => $ticket->id,
+            ]);
+
+            $newTkF->save();
+            unset($newTkF);
+        }
+        return response()->json(['ticket_id' => $ticket->id]);
     }
 }

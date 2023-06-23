@@ -46,6 +46,15 @@ return new class extends Migration {
             $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('ticketfoods', function (Blueprint $table) {
+            $table->string('foodName');
+            $table->integer('foodPrice')->default(0);
+            $table->integer('quantity')->default(0);
+            $table->bigInteger('ticket_id')->unsigned();
+            $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -56,7 +65,8 @@ return new class extends Migration {
     public function down()
     {
         Schema::dropIfExists('tickets');
-        Schema::dropIfExists('ticketSeats');
-        Schema::dropIfExists('ticketCombos');
+        Schema::dropIfExists('ticketseats');
+        Schema::dropIfExists('ticketcombos');
+        Schema::dropIfExists('ticketfoods');
     }
 };

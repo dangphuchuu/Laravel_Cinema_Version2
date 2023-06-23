@@ -50,6 +50,11 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/', [StaffController::class, 'buyTicket']);
     });
 
+    Route::post('/ticketCombo/create', [StaffController::class, 'createTicketCombo']);
+    Route::prefix('buyCombo')->group(function () {
+        Route::get('/', [StaffController::class, 'buyCombo']);
+    });
+
     Route::get('/profile', [AdminController::class, 'profile']);
     Route::post('/postprofile', [AdminController::class, 'Postprofile']);
     Route::post('/buyTicket/money', [PaymentController::class, 'handleResult']);

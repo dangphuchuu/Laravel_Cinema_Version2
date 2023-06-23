@@ -140,13 +140,14 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
 
 {{-- ScanbotSDK --}}
-<script src="admin_assets/scanbotSDK/wasm/ScanbotSDK.min.js"></script>
+{{--<script src="admin_assets/scanbotSDK/wasm/ScanbotSDK.min.js"></script>--}}
+<script src="https://cdn.jsdelivr.net/npm/scanbot-web-sdk@latest/bundle/ScanbotSDK.min.js"></script>
 <!-- After, initialize the Scanbot SDK in your own script -->
 <script src="admin_assets/scanbotSDK/js/lib/toastify.js"></script>
-<script src="admin_assets/scanbotSDK/js/config.js"></script>
-<script src="admin_assets/scanbotSDK/js/utils.js"></script>
-<script src="admin_assets/scanbotSDK/js/view-utils.js"></script>
-<script src="admin_assets/scanbotSDK/main.js"></script>
+{{--<script src="admin_assets/scanbotSDK/js/config.js"></script>--}}
+{{--<script src="admin_assets/scanbotSDK/js/utils.js"></script>--}}
+{{--<script src="admin_assets/scanbotSDK/js/view-utils.js"></script>--}}
+{{--<script src="admin_assets/scanbotSDK/main.js"></script>--}}
 
 
 
