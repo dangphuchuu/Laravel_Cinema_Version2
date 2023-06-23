@@ -12,22 +12,22 @@
                     @csrf
                     <div class="mb-3">
                         <input class="form-control" type="text" placeholder="@lang('lang.type') email hoặc @lang('lang.phone')"
-                               @if(Cookie::has('username'))
-                                   value="{!! Cookie::get('username') !!}"
+                               @if(session()->has('username_web'))
+                                   value="{!!session()->get('username_web') !!}"
                                @endif
                                name="username" aria-label="username"
                                autocomplete="email">
                     </div>
                     <div class="mb-3">
                         <input class="form-control" type="password" placeholder="@lang('lang.password')..."
-                               @if(Cookie::has('password_email'))
-                                   value="{!! Cookie::get('password_email') !!}"
+                               @if(session()->has('password_web'))
+                                   value="{!!session()->get('password_web') !!}"
                                @endif
                                name="password" aria-label="password">
                     </div>
                     <div class="form-check mb-4">
                         <input class="form-check-input" type="checkbox"
-                               @if(Cookie::has('username'))
+                               @if(session()->has('username_web'))
                                    checked
                                @endif
                                id="rememberme" name="rememberme">

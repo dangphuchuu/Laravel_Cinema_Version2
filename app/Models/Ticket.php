@@ -16,6 +16,8 @@ class Ticket extends Model
         'status',
         'code',
         'hasPaid',
+        'receivedCombo',
+        'hasDiscount',
         'totalPrice'
     ];
 

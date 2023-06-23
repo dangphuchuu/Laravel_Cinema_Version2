@@ -31,7 +31,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Cookie;
 class WebController extends Controller
 {
     function __construct()
@@ -87,7 +86,6 @@ class WebController extends Controller
     {
         Ticket::where('holdState', false)->where('hasPaid', false)->where('schedule_id', $schedule_id)->delete();
         $ticketsHolds = Ticket::where('holdState', true)->where('schedule_id', $schedule_id)->get();
-
         foreach ($ticketsHolds as $ticketsHold) {
             $time = strtotime(date('Y-m-d H:i:s')) - strtotime($ticketsHold->created_at);
 
@@ -96,7 +94,6 @@ class WebController extends Controller
             }
 
         }
-
         $seatTypes = SeatType::all();
         $combos = Combo::where('status', 1)->get();
         $tickets = Ticket::where('schedule_id', $schedule_id)->get();
@@ -423,7 +420,7 @@ class WebController extends Controller
             'posts' => $posts
         ]);
     }
-    public function news()
+    public function news(Request $request)
     {
         $news = News::all();
         return view('web.pages.news',['news'=>$news]);
@@ -444,8 +441,11 @@ class WebController extends Controller
         $phone = Auth::attempt(['phone' => $request['username'], 'password' => $request['password']]);
         if ($email || $phone) {
             if($request->has('rememberme')){
-                Cookie::queue(Cookie::make('username',$request->username,10080));//10080 = 7 days,Thời gian lưu cookie
-                Cookie::queue(Cookie::make('password_email',$request->password,10080));
+                session(['username_web'=>$request->username]); // $request->session()->put('key','value');
+                session(['password_web'=>$request->password]);
+            }else{
+                session()->forget('username_web');
+                session()->forget('password_web');
             }
             return redirect('/')->with('success','Chào mừng bạn '.Auth::user()->fullName.' !');
         } else {
@@ -495,7 +495,7 @@ class WebController extends Controller
                 $email->subject('Kích hoạt tài khoản: '.$to_email);
                 $email->to($to_email);
             });
-            return redirect('/')->with('success', 'Đăng ký thành công,vui lòng kiểm tra email để kích hoạt tài khoản !');
+            return redirect('/')->with('success', 'Đăng ký thành công, vui lòng kiểm tra email để kích hoạt tài khoản !');
         }else{
             return redirect('/')->with('success', 'Đăng ký thành công tài khoản !');
         }
@@ -658,12 +658,18 @@ class WebController extends Controller
         $token = Str::random(20);
         $email = $_GET['email'];
         $user = User::where('email','=',$email)->first();
+
         if($user){
             $verify = User::find($user->id);
             $verify['email_verified'] = 1;
             $verify['remember_token'] = $token;
             $verify->save();
-            return redirect('/profile')->with('success','Kích hoạt email thành công');
+            if(Auth::check())
+            {
+                $name = Auth::user()->fullName;
+                return redirect('/profile')->with('success','Kích hoạt email cho tài khoản '.$name.' thành công !');
+            }
+            return redirect('/')->with('success','Kích hoạt email thành công');
         }
         else{
             return redirect('/')->with('warning','Vui thử lại vì đường dẫn hết thời gian sử dụng');
@@ -697,15 +703,16 @@ class WebController extends Controller
             'folder' => 'ticket_user',
             'format' => 'png',
         ])->getPublicId();
-
-        Mail::send('web.pages.ticket_mail', [
-            'name' => $name,
-            'cloud' => $cloud,
-        ], function ($email) use ($name, $email_cus) {
-            $email->subject('Vé xem phim tại HM Cinema');
-            $email->to($email_cus, $name);
-        });
-
+        if(isset(Auth::user()->email) && Auth::user()->email_verified == 1)
+        {
+            Mail::send('web.pages.ticket_mail', [
+                'name' => $name,
+                'cloud' => $cloud,
+            ], function ($email) use ($name, $email_cus) {
+                $email->subject('Vé xem phim tại HM Cinema');
+                $email->to($email_cus, $name);
+            });
+        }
         return response();
     }
     public function refund_ticket(Request $request){
