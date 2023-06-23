@@ -26,15 +26,15 @@ class CheckBanned
 
             return redirect()->back()->with('warning', 'Tài khoản của bạn đã bị khóa. Vui lòng liên hệ ban quản trị ! ');
         }
-        if (auth()->check() && (auth()->user()->email_verified == 0)) {
-            Auth::logout();
-
-            $request->session()->invalidate();
-
-            $request->session()->regenerateToken();
-
-            return redirect()->back()->with('warning', 'Tài khoản của bạn chưa kích hoạt.Vui lòng kích hoạt tài khoản ! ');
-        }
+//        if (auth()->check() && (auth()->user()->email_verified == 0)) {
+//            Auth::logout();
+//
+//            $request->session()->invalidate();
+//
+//            $request->session()->regenerateToken();
+//
+//            return redirect()->back()->with('warning', 'Tài khoản của bạn chưa kích hoạt.Vui lòng kích hoạt tài khoản ! ');
+//        }
         return $next($request);
     }
 }

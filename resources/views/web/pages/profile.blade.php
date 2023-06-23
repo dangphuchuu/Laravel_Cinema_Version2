@@ -52,13 +52,18 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="text" class="form-control" name="email" value="{!! $user['email'] !!}" aria-label="" readonly>
+                                            <input type="email" class="form-control" name="email" value="{!! $user['email'] !!}"  aria-label="">
+                                            <labeL class="text-danger">
+                                                @if(isset($user['email']) && $user['email_verified']== 0)
+                                                          Vui lòng kích hoạt mail đẻ nhận các ưu đãi từ HMCinema !
+                                                   @endif
+                                            </labeL>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>@lang('lang.phone')</label>
-                                            <input type="text" class="form-control" name="phone" required value="{!! $user['phone'] !!}" aria-label="">
+                                            <input type="text" class="form-control" name="phone"  value="{!! $user['phone'] !!}" aria-label="">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
