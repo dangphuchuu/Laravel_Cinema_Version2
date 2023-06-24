@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Auth; @endphp
 @extends('web.layout.index')
 @section('css')
     .vnpay-red {
@@ -335,21 +336,41 @@
 
                     {{--Thanh toán--}}
                     <div id="Payment" class="mt-5 collapse" data-bs-parent="#mainTicket">
-                        {{--                <div>--}}
-                        {{--                    <h4>@lang('lang.discount')</h4>--}}
-                        {{--                    <div class="row row-cols-1 row-cols-md-2"--}}
-                        {{--                         data-bs-parent="#mainContent">--}}
-                        {{--                        <div class="input-group">--}}
-                        {{--                            <input type="text" name="discount" class="form-control border-dark" id="discount"--}}
-                        {{--                                   aria-label="">--}}
-                        {{--                            <button class="btn btn-danger">@lang('lang.apply')</button>--}}
-                        {{--                        </div>--}}
-                        {{--                    </div>--}}
-                        {{--                </div>--}}
-
-                        <h4 class="mt-4">@lang('lang.payment')</h4>
                         <form id="paymentForm" action="/payment/create" method="post">
                             @csrf
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <td>Tên</td>
+                                    <td>điểm hiện có</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td id="username">{{ Auth::user()->fullName }}</td>
+                                    <td id="userPoint">{{ Auth::user()->point }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="input-group">
+                                <span class="input-group-text">Sử dụng điểm</span>
+                                <input id="point" class="form-control" min="20000" name="point" type="number" placeholder="0"
+                                       aria-label="">
+                            </div>
+{{--                                        <div>--}}
+{{--                                            <h4>@lang('lang.discount')</h4>--}}
+{{--                                            <div class="row row-cols-1 row-cols-md-2"--}}
+{{--                                                 data-bs-parent="#mainContent">--}}
+{{--                                                <div class="input-group">--}}
+{{--                                                    <input type="text" name="discount" class="form-control border-dark" id="discount"--}}
+{{--                                                           aria-label="">--}}
+{{--                                                    <button class="btn btn-danger">@lang('lang.apply')</button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+
+                            <h4 class="mt-4">@lang('lang.payment')</h4>
+
                             <div class="bg-dark-subtle p-5">
                                 <div class="row row-cols-1" data-bs-parent="#mainContent">
                                     <div class="col container">
@@ -589,6 +610,7 @@
             comboNext = () => {
                 $('#amount').val($sum);
                 $('#ticket_id').val($ticket_id);
+                $('#point').attr('max', $sum * 90 / 100);
                 $check = jQuery.isEmptyObject($ticket_combos);
                 if (!$check) {
                     $.ajaxSetup({
@@ -650,6 +672,10 @@
             }
 
             paymentNext = () => {
+                if (($('#point').val() % 1000) !== 0) {
+                    alert('điểm phải là bội số của 1000');
+                    return;
+                }
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -732,6 +758,11 @@
                 }
             })
 
+            $('#point').bind('keyup', (e) => {
+                $sum2 = $sum - $('#point').val()
+                $('#ticketSeat_totalPrice').text($sum2.toLocaleString('vi-VN'));
+                $('#amount').val($sum2);
+            })
 
             @foreach($room->seats as $seat)
             @if($seat->status == 1)

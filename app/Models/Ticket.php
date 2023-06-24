@@ -26,13 +26,17 @@ class Ticket extends Model
         return $this->hasMany(TicketSeat::class, 'ticket_id', 'id');
     }
 
-    public function ticketConbos()
+    public function ticketCombos()
     {
         return $this->hasMany(TicketCombo::class, 'ticket_id', 'id');
     }
     public function schedule()
     {
         return $this->hasOne(Schedule::class,'id','schedule_id');
+    }
+    public function ticketFoods()
+    {
+        return $this->hasMany(TicketFood::class, 'ticket_id', 'id');
     }
 
 }

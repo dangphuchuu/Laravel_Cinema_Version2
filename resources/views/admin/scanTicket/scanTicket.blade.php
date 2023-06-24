@@ -118,7 +118,7 @@
                 }
             });
 
-            $('#back-buttons').on('click', async (e) => {
+            $('#back-button').on('click', async (e) => {
                 const controller =
                     e.target.parentElement.parentElement.parentElement.className;
                 document.getElementByClassName(controller).style.display = "none";
@@ -139,7 +139,6 @@
             let text = "";
             const $ticketElement = $('#ticket_id');
             e.barcodes.forEach((barcode) => {
-                if (barcode.parsedText) {
                     $ticketElement.val(barcode.text);
                     $.ajaxSetup({
                         headers: {
@@ -167,27 +166,16 @@
                                 }
                             },
                             500: (data) => {
-                                // alert('not found');
                                 $('#theater').text('');
                                 $('#room').text('');
                                 $('#movie').text('');
                                 $('#date').text('');
                                 $('#startTime').text('');
                                 $('#status').text('');
-                                // $('#theater').text(data.theater);
-                                // $('#room').text(data.room);
-                                // $('#movie').text(data.movie);
-                                // $('#date').text(data.date);
-                                // $('#startTime').text(data.startTime);
-                                // $('#status').addClass('text-success').text('PASS');
                             }
 
                         }
                     });
-                    text += JSON.stringify(barcode.parsedText);
-                } else {
-                    text += " " + barcode.text + " (" + barcode.format + "),";
-                }
             });
 
             let result;

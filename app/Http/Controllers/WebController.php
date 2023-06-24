@@ -141,7 +141,7 @@ class WebController extends Controller
             'user_id' => Auth::user()->id,
             'holdState' => true,
             'status' => true,
-            'code' => rand(10000000, 9999999999)
+            'code' => rand(1000000000, 9999999999)
         ]);
         $ticket->save();
         foreach ($request->ticketSeats as $seat) {
@@ -295,7 +295,14 @@ class WebController extends Controller
     {
         $casts = Cast::all();
         $directors = Director::all();
-        $movies = Movie::all()->where('status', 1);
+        $movies = Movie::all()->where('status', 1)
+            ->where('releaseDate', '<=', date('Y-m-d'))
+            ->where('endDate', '>', date('Y-m-d'));
+        $moviesSoon = Movie::all()->where('status', 1)->where('releaseDate', '>', date('Y-m-d'));
+        $moviesEarly = Movie::join('schedules', 'movies.id', '=', 'schedules.movie_id')
+            ->select('movies.*')
+            ->where('movies.status', 1)
+            ->where('schedules.early', true)->get();
         $movieGenres = MovieGenres::all();
         $rating = Rating::all();
         return view('web.pages.movies', [
@@ -303,7 +310,9 @@ class WebController extends Controller
             'movieGenres' => $movieGenres,
             'rating' => $rating,
             'casts' => $casts,
-            'directors' => $directors
+            'directors' => $directors,
+            'moviesEarly' => $moviesEarly,
+            'moviesSoon' => $moviesSoon
         ]);
     }
 

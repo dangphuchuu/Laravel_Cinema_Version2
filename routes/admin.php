@@ -40,6 +40,12 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/', [StaffController::class, 'scanTicket']);
     });
 
+    // scan ticket
+    Route::prefix('scanCombo')->group(function () {
+        Route::post('/handle', [StaffController::class, 'handleScanCombo']);
+        Route::get('/', [StaffController::class, 'scanCombo']);
+    });
+
     //TODO Buy ticket
     Route::prefix('buyTicket')->group(function () {
         Route::post('/handleResult', [StaffController::class, 'handleResult']);

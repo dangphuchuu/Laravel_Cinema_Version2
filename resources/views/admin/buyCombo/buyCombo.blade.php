@@ -284,6 +284,7 @@
                         <input type="hidden" name="vnp_BankCode" value="MONEY">
                         <input type="hidden" name="ticket_id" id="ticketMoney">
                         <input type="hidden" name="userCode" id="userCode2">
+                        <input type="hidden" name="amount" id="amount">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
@@ -428,7 +429,6 @@
                         200: () => {
                             $holdState = true;
                             $bankCode = $(`input[name="bankCode"]:checked`).val();
-                            console.log($bankCode);
                             if ($bankCode !== 'MONEY') {
                                 if ($ticket_id !== -1) {
                                     $('#ticket_id').val($ticket_id);
@@ -437,12 +437,6 @@
                             } else {
                                 $('#ticketMoney').val($ticket_id);
                                 $('#btn_money').click();
-                                if ($('#username').text() === '') {
-                                    $('#point').attr('readonly', true);
-                                } else {
-                                    $('#point').attr('readonly', false);
-                                }
-                                $('#point').attr('max', $sum * 90 / 100);
                                 $('#total').val($sum);
                             }
                         }
