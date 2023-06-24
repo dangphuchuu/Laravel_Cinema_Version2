@@ -220,5 +220,8 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     //TODO statistical
     Route::prefix('statistical')->group(function () {
         Route::get('/', [StatisticalController::class, 'statistical']);
+        Route::get('/filter-by-date',[StatisticalController::class,'filter_by_date']);
+        Route::post('/statistical-filter',[StatisticalController::class,'statistical_filter']);
+
     });
 });

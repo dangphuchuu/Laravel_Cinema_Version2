@@ -18,7 +18,8 @@ class Ticket extends Model
         'hasPaid',
         'receivedCombo',
         'hasDiscount',
-        'totalPrice'
+        'totalPrice',
+        'created_at'
     ];
 
     public function ticketSeats()
