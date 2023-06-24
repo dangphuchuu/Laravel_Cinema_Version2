@@ -137,7 +137,7 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                         @lang('lang.ticket_unSuccess')
                                         @else
                                         @lang('lang.ticket_error_booking')
-                                        @endif )</span> </p>
+                                        @endif</span> </p>
                                 <div class="float-start">
                                     @if(strstr($value['schedule']['movie']['image'],"https") == "")
                                     <img style="width: auto;height: 320px;" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg">

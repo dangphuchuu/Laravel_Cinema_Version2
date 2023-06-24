@@ -95,8 +95,7 @@
             </div>
 
             <div id="phimsapchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse" data-bs-parent="#Movies">
-                @foreach($movies as $movie)
-                    @if($movie->releaseDate > date("Y-m-d"))
+                @foreach($moviesSoon as $movie)
                         <!-- Movie -->
                         <div class="card-col">
                             <article class="card px-0 overflow-hidden" style="background: #f5f5f5">
@@ -162,14 +161,11 @@
                             </article>
                         </div>
                         <!-- Movie: end -->
-                    @endif
                 @endforeach
             </div>
 
             <div id="phimdangchieu" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse show" data-bs-parent="#Movies">
                 @foreach($movies as $movie)
-                    @if($movie->releaseDate <= date("Y-m-d"))
-                        {{--                        {{  dd($movie->releaseDate >= date("YYYY-mm-dd"))}}--}}
                         <!-- Movie -->
                         <div class="card-col">
                             <article class="card px-0 overflow-hidden" style="background: #f5f5f5">
@@ -235,12 +231,11 @@
                             </article>
                         </div>
                         <!-- Movie: end -->
-                    @endif
                 @endforeach
             </div>
 
             <div id="vebantruoc" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse" data-bs-parent="#Movies">
-                @foreach($movies as $movie)
+                @foreach($moviesEarly as $movie)
                     <!-- Movie -->
                     <div class="card-col">
                         <article class="card px-0 overflow-hidden" style="background: #f5f5f5">

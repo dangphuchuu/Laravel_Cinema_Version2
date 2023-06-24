@@ -15,7 +15,7 @@ class PaymentController extends Controller
         $vnp_TmnCode = "6JQZ09G6"; //Mã định danh merchant kết nối (Terminal Id)
         $vnp_HashSecret = "QCTWPIWUGYNUJNXJAJMQKHUBCXZMDZXU"; //Secret key
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = $request->getSchemeAndHttpHost() . "/payment/result";
+        $vnp_Returnurl = $request->getSchemeAndHttpHost() . "/payment/result?point=" . $request->point;
         $vnp_apiUrl = "http://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
         $apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
         //Config input format
@@ -43,7 +43,7 @@ class PaymentController extends Controller
             "vnp_OrderType" => "other",
             "vnp_ReturnUrl" => $vnp_Returnurl,
             "vnp_TxnRef" => $vnp_TxnRef,
-            "vnp_ExpireDate" => $expire
+            "vnp_ExpireDate" => $expire,
         );
 
         if (isset($vnp_BankCode) && $vnp_BankCode != "") {
@@ -102,11 +102,15 @@ class PaymentController extends Controller
                     $money_payment += $ticket['totalPrice'];
                 }
                 if($money_payment < 4000000){
-                    $point = ($ticket['totalPrice'])*5/100;
+                    $point = ($ticket['totalPrice']) * 5 / 100;
                 }else{
-                    $point = ($ticket['totalPrice'])*10/100;
+                    $point = ($ticket['totalPrice']) * 10 / 100;
                 }
-                $user->point += $point;
+                if ($request->point === null) {
+                    $user->point += $point;
+                } else {
+                    $user->point -= $request->point;
+                }
                 $user->save();
                 return redirect()->action([WebController::class, 'ticketCompleted'], $ticket->id);
             default:

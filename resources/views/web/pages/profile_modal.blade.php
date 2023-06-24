@@ -9,11 +9,11 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="text-center">
-                                <img style="width: 300px"
-                                    src="data:image/png;base64,{!! base64_encode($generatorPNG->getBarcode($value['code'],$generatorPNG::TYPE_CODE_128)) !!}"/>
+                                <img style="width: 100px" alt="QR code" src="data:image/png;base64,{{ DNS2D::getBarcodePNG($value->code.'',
+                                'QRCODE') }}"/>
                             </div>
                             <div class="text-center">
-                                {!! $value['code'] !!}
+                                #{!! $value['code'] !!}
                             </div>
                             <p>@lang('lang.purchase_date') : {!! date("d/m/Y",strtotime($value['created_at']))!!}</p>
                             <span>@lang('lang.payment_methods'):@lang('lang.vnpay_wallet') </span>

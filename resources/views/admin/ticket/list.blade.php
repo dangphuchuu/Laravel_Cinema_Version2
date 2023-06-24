@@ -29,15 +29,22 @@
                                     @foreach($ticket as $value)
                                     <tr>
                                         <td class="align-middle text-center">
+                                            @isset($value['schedule'])
                                             <h6 class="mb-0 text-sm ">{!! $value['schedule']['movie']['name'] !!}</h6>
+                                            @endisset
                                         </td>
                                         <td class="align-middle text-center">
+                                            @isset($value['schedule'])
                                             <h6 class="mb-0 text-sm ">{!! $value['schedule']['room']['roomType']['name'] !!}</h6>
+                                            @endisset
                                         </td>
                                         <td class="align-middle text-center">
+                                            @isset($value['schedule'])
                                             <h6 class="mb-0 text-sm ">{!! $value['schedule']['room']['name'] !!}</h6>
+                                            @endisset
                                         </td>
                                         <td class="align-middle text-center">
+                                            @isset($value['ticketSeats'])
                                             <span class="text-secondary font-weight-bold">
                                                 @foreach($value['ticketSeats'] as $seat)
                                                     @if($loop->first)
@@ -47,15 +54,22 @@
                                                     @endif
                                                 @endforeach
                                             </span>
+                                            @endisset
                                         </td>
                                         <td class="align-middle text-center">
+                                            @isset($value['schedule'])
                                             <span class="text-secondary font-weight-bold">{!! $value['schedule']['movie']['rating']['name'] !!}</span>
+                                            @endisset
                                         </td>
                                         <td class="align-middle text-center">
+                                            @isset($value['schedule'])
                                             <span class="text-secondary font-weight-bold">{!! $value['schedule']['startTime'] !!}</span>
+                                            @endisset
                                         </td>
                                         <td class="align-middle text-center">
+                                            @isset($value['schedule'])
                                             <span class="text-secondary font-weight-bold">{!! date("d-m-Y", strtotime($value['schedule']['date'])) !!}</span>
+                                            @endisset
                                         </td>
                                         <td class="align-middle text-center">
                                             <button href="#barcode" class="btn btn-link text-danger "

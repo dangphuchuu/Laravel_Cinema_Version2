@@ -95,6 +95,7 @@ class StaffController extends Controller
         return response()->json([
             'username' => $user->fullName,
             'userPoint' => $user->point,
+            'userId' => $user->id,
         ]);
     }
 
@@ -198,7 +199,7 @@ class StaffController extends Controller
                     }
                     if($money_payment < 4000000){
                         $point = ($ticket['totalPrice'])*5/100;
-                    }else{
+                    } else {
                         $point = ($ticket['totalPrice'])*10/100;
                     }
                     if ($request->point === null) {
@@ -243,7 +244,8 @@ class StaffController extends Controller
 
         $ticket = Ticket::where('code', 'LIKE', $request->code)->first();
         if (!$ticket) {
-            return response('ticket not found', 500);
+            $message = 'không tìm thấy vé';
+            $check = false;
         }
         $ticket->status = false;
         if ($ticket->schedule->date > date('Y-m-d')) {
@@ -326,5 +328,67 @@ class StaffController extends Controller
             unset($newTkF);
         }
         return response()->json(['ticket_id' => $ticket->id]);
+    }
+
+    public function scanCombo() {
+        return view('admin.scanCombo.scanCombo');
+    }
+
+    public function handleScanCombo(Request $request) {
+        $message = 'vé hợp lệ';
+        $check = true;
+
+        $ticket = Ticket::where('code', $request->code)->first();
+        if (!$ticket) {
+            $message = 'không tìm thấy vé';
+            $check = false;
+        }
+
+        if ($ticket->receivedCombo) {
+            $message = 'Đã lấy đồ ăn';
+            $check = false;
+        } else {
+            $ticket->receivedCombo = true;
+            $check = true;
+        }
+
+
+        $htmlFoods = '';
+
+        foreach ($ticket->ticketCombos as $combo) {
+            $htmlFoods .=
+                '<tr>
+                    <td>'.$combo->comboName.'</td>
+                    <td>'.$combo->quantity.'</td>
+                    <td>'.$combo->comboDetails.'</td>
+                </tr>';
+        }
+
+        foreach ($ticket->ticketFoods as $food) {
+            $htmlFoods .=
+                '<tr>
+                    <td>'.$food->foodName.'</td>
+                    <td>'.$food->quantity.'</td>
+                    <td></td>
+                </tr>';
+        }
+
+
+        $ticket->save();
+
+        return response()->json([
+            'htmlFoods' => $htmlFoods,
+            'message' => $message,
+            'check' => $check,
+        ]);
+    }
+
+    public function ticketComboPayment(Request $request) {
+        $ticket = Ticket::find($request->ticket_id);
+        $ticket->holdState = false;
+        $ticket->totalPrice = $request->totalPrice;
+        $ticket->save();
+
+        return response('', 200);
     }
 }
