@@ -17,6 +17,7 @@
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.format')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.room')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.seat')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Combo</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.rated')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.time')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.date')</th>
@@ -55,6 +56,19 @@
                                                 @endforeach
                                             </span>
                                             @endisset
+                                        </td>
+                                        <td>
+                                            @if(isset($value->ticketCombos) || isset($value->ticketFoods))
+                                                <span class="text-secondary font-weight-bold">
+                                                    @foreach($value['ticketCombos'] as $combo)
+                                                            • {{ $combo->comboName.' x '. $combo->quantity }} <br>
+                                                    @endforeach
+                                                    @foreach($value['ticketFoods'] as $food)
+                                                            • {{ $food->foodName.' x '. $food->quantity }} <br>
+                                                    @endforeach
+                                                </span>
+
+                                            @endif
                                         </td>
                                         <td class="align-middle text-center">
                                             @isset($value['schedule'])
