@@ -743,6 +743,10 @@ class WebController extends Controller
         {
             return response()->json(['error'=>'Đã quá thời gian hoàn vé mong quý khách thông cảm !']);
         }
+        if($ticket['hasDiscount'] == 1)
+        {
+            return response()->json(['error'=>'Vé đã áp dụng mã khuyến mãi nên không thể hoàn lại. Mong quý khách thông cảm !']);
+        }
         foreach($user['ticket'] as $ticket)
         {
             $money_payment += $ticket['totalPrice'];
