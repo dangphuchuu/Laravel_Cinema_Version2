@@ -354,20 +354,20 @@
                             </table>
                             <div class="input-group">
                                 <span class="input-group-text">Sử dụng điểm</span>
-                                <input id="point" class="form-control" min="20000" name="point" type="number" placeholder="0"
+                                <input id="point" class="form-control" min="20000"  name="point" type="number" placeholder="0"
                                        aria-label="">
                             </div>
-{{--                                        <div>--}}
-{{--                                            <h4>@lang('lang.discount')</h4>--}}
-{{--                                            <div class="row row-cols-1 row-cols-md-2"--}}
-{{--                                                 data-bs-parent="#mainContent">--}}
-{{--                                                <div class="input-group">--}}
-{{--                                                    <input type="text" name="discount" class="form-control border-dark" id="discount"--}}
-{{--                                                           aria-label="">--}}
-{{--                                                    <button class="btn btn-danger">@lang('lang.apply')</button>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
+                            <div>
+                                <h4>@lang('lang.discount')</h4>
+                                <div class="row row-cols-1 row-cols-md-2"
+                                     data-bs-parent="#mainContent">
+                                    <div class="input-group">
+                                        <input type="text" name="discount" class="form-control border-dark" id="discount"
+                                               aria-label="">
+                                        <a id="btn_apply_discount" class="btn btn-danger">@lang('lang.apply')</a>
+                                    </div>
+                                </div>
+                            </div>
 
                             <h4 class="mt-4">@lang('lang.payment')</h4>
 
@@ -474,6 +474,7 @@
             }
 
             seatChoice = (row, col, price) => {
+                console.log($i);
                 var $seatCurrent = $('#Seats').find('#Seat_' + row + col);
                 var choice = parseInt($seatCurrent.attr('choice'));
                 if (choice === 1) {
@@ -486,7 +487,8 @@
                 } else {
                     $i++;
                     // Gới hạn chọn ghế
-                    if ($i >= 8) {
+                    if ($i > 8) {
+                        $i--;
                         alert('chọn tối đa 8 ghế');
                         return;
                     }
@@ -672,10 +674,10 @@
             }
 
             paymentNext = () => {
-                if (($('#point').val() % 1000) !== 0) {
-                    alert('điểm phải là bội số của 1000');
-                    return;
-                }
+                // if (($('#point').val() % 1000) !== 0) {
+                //     alert('điểm phải là bội số của 1000');
+                //     return;
+                // }
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -687,7 +689,7 @@
                     dataType: 'json',
                     data: {
                         'ticket_id': $ticket_id,
-                        'totalPrice': $sum,
+                        'totalPrice': $('#amount').val(),
                     },
                     statusCode: {
                         200: () => {
@@ -758,10 +760,38 @@
                 }
             })
 
-            $('#point').bind('keyup', (e) => {
-                $sum2 = $sum - $('#point').val()
-                $('#ticketSeat_totalPrice').text($sum2.toLocaleString('vi-VN'));
-                $('#amount').val($sum2);
+            // $('#point').bind('keyup', (e) => {
+            //     $sum2 = $sum - $('#point').val()
+            //     $('#ticketSeat_totalPrice').text($sum2.toLocaleString('vi-VN'));
+            //     $('#amount').val($sum2);
+            // })
+
+
+            $('#btn_apply_discount').click(function (){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var discount = $('#discount').val();
+                $.ajax({
+                    url: "/ticket_discount",
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        'discount': discount,
+                    },
+                    success: function (data) {
+                        if (data['success']) {
+                            alert(data.success);
+                            $sum_discount = ($sum*(100-data.percent))/100;
+                            $('#ticketSeat_totalPrice').text($sum_discount.toLocaleString('vi-VN'));
+                            $('#amount').val($sum_discount);
+                        } else if (data['error']) {
+                            alert(data.error);
+                        }
+                    }
+                });
             })
 
             @foreach($room->seats as $seat)

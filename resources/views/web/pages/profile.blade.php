@@ -130,13 +130,14 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                             <h3 class="mb-4 text-center">@lang('lang.transaction_history')</h3>
                             <div class="container ">
                                 @foreach( $user['ticket'] as $value)
-                                <p style="margin-top: 10px!important;">@lang('lang.ticket_code'): {!! $value['code'] !!} <span>(@lang('lang.status'):
+                                <p style="margin-top: 10px!important;">@lang('lang.ticket_code'): {!! $value['code'] !!} <span>
+                                        (@lang('lang.status'):
                                         @if($value['holdState'] == 0 && $value['status'] ==1)
-                                        @lang('lang.ticket_success')
+                                        @lang('lang.ticket_success'))
                                         @elseif($value['holdState'] == 1 && $value['status'] ==1)
-                                        @lang('lang.ticket_unSuccess')
+                                        @lang('lang.ticket_unSuccess'))
                                         @else
-                                        @lang('lang.ticket_error_booking')
+                                        @lang('lang.ticket_error_booking'))
                                         @endif</span> </p>
                                 <div class="float-start">
                                     @if(strstr($value['schedule']['movie']['image'],"https") == "")
@@ -169,8 +170,12 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                         )
                                     </p>
                                     <p>{!! number_format($value['totalPrice'],0,",",".") !!}</p>
+                                    @if($value['holdState'] == 0)
                                     <button href="#profileModal" data-toggle="tooltip" data-bs-target="#profileModal{!! $value['id'] !!}" data-bs-toggle="modal" class="btn btn-warning">@lang('lang.detail')</button>
                                     <a href="/tickets/completed/{!! $value['id'] !!}" class="btn btn-warning"><i class="fa-solid fa-ticket"></i></a>
+                                    @else
+                                        <button  class="btn btn-warning" disabled >X</button>
+                                    @endif
                                     @include('web.pages.profile_modal')
                                 </div>
                                 @endforeach

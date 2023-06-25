@@ -11,9 +11,9 @@
                             <div class="col-md-12">
                                     <div class="flex-column d-flex justify-content-center text-center">
                                         <div>
-                                            <img alt="QR code" src="data:image/png;base64,{{ DNS2D::getBarcodePNG($ticket->code.'', 'QRCODE') }}"/>
+                                            <img style="width: 200px" alt="QR code" src="data:image/png;base64,{{ DNS2D::getBarcodePNG($value->code.'', 'QRCODE') }}"/>
                                         </div>
-                                        <div>
+                                        <div class="mt-2">
                                             {!! $value['code'] !!}
                                         </div>
                                     </div>

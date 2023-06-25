@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Cast;
 use App\Models\Combo;
 use App\Models\Director;
+use App\Models\Discount;
 use App\Models\Feedback;
 use App\Models\Movie;
 use App\Models\MovieGenres;
@@ -41,6 +42,8 @@ class WebController extends Controller
 
     public function home()
     {
+//        $discount = Discount::all();
+//        dd($discount);
         $news = News::orderBy('id', 'DESC')->where('status',1)->take(3)->get();
         $banners = Banner::get()->where('status', 1);
         $movies = Movie::get()->where('status', 1)->where('endDate', '>', date('Y-m-d'))->take(6);
@@ -774,5 +777,19 @@ class WebController extends Controller
         ]);
         $feedback->save();
         return response()->json(['success'=>'Thông tin của bạn đã được gửi thành công. HMCinema xin cảm ơn ý kiến của bạn về hệ thống !']);
+    }
+    public function ticket_apply_discount(Request $request){
+        $code = $request->discount;
+        $discount = Discount::all()->where('status',1);
+        foreach($discount as $value){
+            if($value['code'] == $code)
+            {
+                return response()->json([
+                    'success'=>"Áp dụng mã thành công",
+                    'percent'=>$value['percent'],
+                ]);
+            }
+        }
+        return response()->json(['error'=>'Mã giảm giá không tồn tại !']);
     }
 }

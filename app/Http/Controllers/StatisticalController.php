@@ -13,11 +13,22 @@ class StatisticalController extends Controller
     }
     public function filter_by_date(Request $request){
         $start_time = $request->start_time;
+
         $end_time = $request->end_time;
+        $sum =0 ;
+
         if($start_time && $end_time){
-            $get = Ticket::whereBetween('created_at',[$start_time,$end_time])->get();
+            $get = Ticket::whereBetween('created_at',[$start_time,$end_time])->where('holdState',0)->get();
+            foreach($get as $value){
+                $sum+= $value['totalPrice'];
+            }
+
         }
-        return view('admin.statistical.list',['get'=>$get]);
+
+        return view('admin.statistical.list',[
+            'get'=>$get,
+            'sum'=>$sum
+        ]);
     }
     public function statistical_filter(Request $request){
         $data = $request->all();

@@ -23,8 +23,21 @@ class AdminController extends Controller
     {
         $ticket = Ticket::whereDate('created_at', Carbon::today())->get();
         $user = User::role('user')->get();
-
-        return view('admin.home.list',['user'=>$user,'ticket'=>$ticket]);
+        $ticket_sum = Ticket::all();
+        $sum =0 ;
+        $sum_today = 0;
+        foreach($ticket_sum as $value){
+            $sum+= $value['totalPrice'];
+        }
+        foreach($ticket as $today){
+            $sum_today += $today['totalPrice'];
+        }
+        return view('admin.home.list', [
+                'user'=>$user,
+                'ticket'=>$ticket,
+                'sum'=>$sum,
+                'sum_today'=>$sum_today,
+        ]);
     }
 
     //User

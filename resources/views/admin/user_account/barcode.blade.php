@@ -13,11 +13,10 @@
                                         @php
                                             $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                         @endphp
-                                        {{--{!! DNS1D::getBarcodeHTML($value['code'], 'C128') !!}--}}
-                                        <div>
+                                        <div class="text-center">
                                             <img src="data:image/png;base64,{!! base64_encode($generatorPNG->getBarcode($value['code'],$generatorPNG::TYPE_CODE_128)) !!}" />
                                         </div>
-                                        <div>
+                                        <div class="text-center mt-2">
                                             {!! $value['code'] !!}
                                         </div>
                                     </div>

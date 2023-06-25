@@ -72,4 +72,5 @@ Route::prefix('/')->middleware('user')->group(function () {
     Route::post('/refund-ticket',[WebController::class,'refund_ticket']);
     Route::post('/feedback',[WebController::class,'feedback']);
     Route::get('/contact',[WebController::class,'contact']);
+    Route::get('/ticket_discount',[WebController::class,'ticket_apply_discount']);
 });

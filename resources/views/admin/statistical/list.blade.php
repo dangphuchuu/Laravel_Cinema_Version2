@@ -59,39 +59,70 @@
                                 <table class="table align-items-center mb-0 ">
                                     <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.time')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.theater')</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.ticket')</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.total_ticket')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.quantity') @lang('lang.ticket')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Giá @lang('lang.ticket')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.quantity') Combo</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Combo</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.total_combo')</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.total_revenue')</th>
+                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.total_ticket')</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @if(isset($get))
+                                    @foreach($get as $value)
                                     <tr>
                                         <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">1/2023</h6>
+                                            <h6 class="mb-0 text-sm ">{!! $value['schedule']['room']['theater']['name'] !!}</h6>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">Rạp movie cinema quận 1</h6>
+                                            <h6 class="mb-0 text-sm ">{!! $value['ticketSeats']->count() !!}
+
+                                            </h6>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm ">10.000</h6>
+                                            <h6 class="mb-0 text-sm ">
+                                             105.000 Vnđ
+                                            </h6>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">1.200.000 Vnđ</span>
+                                            @foreach($value['ticketCombos'] as $combo)
+
+                                                <h6 class="mb-0 text-sm ">
+                                                    {!! ($combo['quantity']) !!}
+                                                </h6>
+
+                                            @endforeach
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">1000</span>
+                                            @foreach($value['ticketCombos'] as $combo)
+
+                                            <h6 class="mb-0 text-sm ">
+                                                {!! number_format($combo['quantity']*$combo['comboPrice'],0,",",".") !!} Vnđ
+                                            </h6>
+
+                                            @endforeach
                                         </td>
+
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">12.000.000 Vnđ</span>
+                                            <span class="text-secondary font-weight-bold">{!! number_format($value['totalPrice'],0,",",".") !!} Vnđ</span>
                                         </td>
+
+                                    </tr>
+                                    @endforeach
+                                    @endif
+                                    @if(isset($sum))
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-center text-lg font-weight-bolder opacity-7 ">@lang('lang.total_revenue')</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary font-weight-bold">1.212.000.000 Vnđ</span>
+                                            <span class="text-secondary text-lg font-weight-bold">{!! number_format($sum,0,",",".") !!} Vnđ</span>
                                         </td>
                                     </tr>
+                                    @endif
                                     </tbody>
                                 </table>
                             </div>

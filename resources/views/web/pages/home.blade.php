@@ -217,7 +217,7 @@
                                 </div>
                                 <div class="col-lg-8 col-12">
                                     <div class="card-body">
-                                        <a href="#" class="link link-dark text-decoration-none">
+                                        <a href="/news-detail/{!! $value['id'] !!}" class="link link-dark text-decoration-none">
                                             <h5 class="card-title"
                                                 style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical">
                                                {!! $value['title'] !!}</h5>

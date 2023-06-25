@@ -63,7 +63,7 @@
                                                     </td>
                                                     @endrole
                                                     <td class="align-middle text-center">
-                                                   
+
                                                         <span class="text-secondary font-weight-bold">{!! number_format($value['point'],0,",",".") !!} Point</span>
                                                     </td>
                                                     <td class="align-middle text-center">
@@ -75,7 +75,7 @@
                                                             class="text-secondary font-weight-bold">{!! date("d-m-Y H:m:s", strtotime($value['updated_at'])) !!}</span>
                                                     </td>
                                                 </tr>
-                                                @include('admin.ticket.barcode')
+                                                @include('admin.user_account.barcode')
                                             @endif
                                         @endforeach
                                     @endforeach
