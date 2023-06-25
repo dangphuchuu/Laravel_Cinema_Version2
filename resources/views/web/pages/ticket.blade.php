@@ -299,7 +299,7 @@
                                                             <i class="fa-solid fa-circle-minus"></i>
                                                         </button>
                                                         <input type="number" class="form-control input_combo" name="combo[{{$combo->id}}]" value="0"
-                                                               readonly
+                                                               readonly min="0" max="4"
                                                                style="max-width: 80px" aria-label="">
                                                         <button class="btn plus_combo"
                                                                 onclick="plusCombo({{$combo->id}}, {{$combo->price}}, '{{ $combo->name }}')">
@@ -338,7 +338,7 @@
                     <div id="Payment" class="mt-5 collapse" data-bs-parent="#mainTicket">
                         <form id="paymentForm" action="/payment/create" method="post">
                             @csrf
-                            <table class="table table-striped">
+                            {{--<table class="table table-striped">
                                 <thead>
                                 <tr>
                                     <td>Tên</td>
@@ -356,28 +356,38 @@
                                 <span class="input-group-text">Sử dụng điểm</span>
                                 <input id="point" class="form-control" min="20000"  name="point" type="number" placeholder="0"
                                        aria-label="">
-                            </div>
-                            <div>
-                                <h4>@lang('lang.discount')</h4>
-                                <div class="row row-cols-1 row-cols-md-2"
-                                     data-bs-parent="#mainContent">
-                                    <div class="input-group">
-                                        <input type="text" name="discount" class="form-control border-dark" id="discount"
-                                               aria-label="">
-                                        <a id="btn_apply_discount" class="btn btn-danger">@lang('lang.apply')</a>
+                            </div>--}}
+                            <h4 class="mt-4">@lang('lang.discount')</h4>
+                            <div class="bg-dark-subtle p-5">
+                                <div class="row row-cols-1">
+                                    <div class="form-check pe-4" id="bankCode">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control border-dark" id="discount"
+                                                   aria-label="" placeholder="nhập mã khuyến mãi...">
+                                            <a id="btn_apply_discount" class="btn btn-danger">@lang('lang.apply')</a>
+                                        </div>
                                     </div>
+                                    <table class="table table-bordered mt-2">
+                                        <tbody>
+                                            <tr id="disList">
+                                                <td id="disCode"></td>
+                                                <td id="disPercent"></td>
+                                                <td id="disStatus"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 
                             <h4 class="mt-4">@lang('lang.payment')</h4>
 
                             <div class="bg-dark-subtle p-5">
-                                <div class="row row-cols-1" data-bs-parent="#mainContent">
+                                <div class="row row-cols-1">
                                     <div class="col container">
-                                        <div class="form-check bg-light pe-4" id="bankCode">
+                                        <div class="form-check pe-4" id="bankCode">
                                             <input id="bankCode1" class="btn-check" type="radio" name="bankCode" value="VNPAYQR" aria-label="">
                                             <label for="bankCode1"
-                                                   class="fw-semibold btn btn-outline-primary h3 p-3 my-2 w-100 text-start text-dark">
+                                                   class="fw-semibold btn btn-light btn-outline-primary h3 p-3 my-2 w-100 text-start text-dark">
                                                 Thanh toán bằng ứng dụng hỗ trợ
                                                 <span class="vnpay-logo">
                                                     <span class="vnpay-red">VN</span><span class="vnpay-blue">PAY</span><sup class="vnpay-red">QR</sup>
@@ -387,13 +397,13 @@
 
                                             <input id="bankCode2" class="btn-check" type="radio" name="bankCode" value="VNBANK" aria-label="">
                                             <label for="bankCode2"
-                                                   class="fw-semibold btn btn-outline-primary h3 p-3 my-2 w-100 text-start text-dark">
+                                                   class="fw-semibold btn btn-light btn-outline-primary h3 p-3 my-2 w-100 text-start text-dark">
                                                 Thanh toán qua thẻ ATM/Tài khoản nội địa
                                             </label>
 
                                             <input id="bankCode3" class="btn-check" type="radio" name="bankCode" value="INTCARD" aria-label="">
                                             <label for="bankCode3"
-                                                   class="fw-semibold btn btn-outline-primary h3 p-3 my-2 w-100 text-start text-dark">
+                                                   class="fw-semibold btn btn-light btn-outline-primary h3 p-3 my-2 w-100 text-start text-dark">
                                                 Thanh toán qua thẻ quốc tế
                                             </label>
                                         </div>
@@ -401,6 +411,7 @@
                                         <input type="hidden" id="language" name="language" value="@lang('lang.language')">
                                         <input type="hidden" id="timePayment" name="time" value="">
                                         <input type="hidden" id="ticket_id" name="ticket_id" value="">
+                                        <input type="hidden" id="hasDiscount" name="hasDiscount" value="false">
                                     </div>
                                 </div>
                             </div>
@@ -638,10 +649,10 @@
 
             plusCombo = (id, price, comboName) => {
                 $iCombo++;
-                if ($iCombo > $i) {
-                    alert('Đã đạt giới hạn mua combo!!!')
-                    return;
-                }
+                // if ($iCombo > $i) {
+                //     alert('Đã đạt giới hạn mua combo!!!')
+                //     return;
+                // }
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
                 $inputCombo.val(parseInt($inputCombo.val()) + 1);
                 if (parseInt($inputCombo.val()) === 1)
@@ -783,15 +794,32 @@
                     },
                     success: function (data) {
                         if (data['success']) {
-                            alert(data.success);
+                            $('#disCode').text($('#discount').val());
+                            $('#disPercent').text(data.percent + '%');
+                            $('#disStatus').addClass('text-success').removeClass('text-danger').text('Áp dụng thành công');
+                            $html = `<td id="disCancel"><button type="button" id="disCancelBtn" class="btn btn-danger">Hủy áp dụng</button></td>`;
+                            $('#disList').append($html);
                             $sum_discount = ($sum*(100-data.percent))/100;
                             $('#ticketSeat_totalPrice').text($sum_discount.toLocaleString('vi-VN'));
                             $('#amount').val($sum_discount);
+                            $('#hasDiscount').val('true');
                         } else if (data['error']) {
-                            alert(data.error);
+                            $('#disCode').text($('#discount').val());
+                            $('#disPercent').text('');
+                            $('#disStatus').addClass('text-danger').removeClass('text-success').text('Mã không hợp lệ');
                         }
                     }
                 });
+            })
+
+            $('#disList').on('click', '#disCancelBtn', (e) => {
+                $('#disCode').text('');
+                $('#disPercent').text('');
+                $('#disStatus').removeClass('text-danger').text('');
+                $('#disList').find('#disCancel').remove();
+                $('#ticketSeat_totalPrice').text($sum.toLocaleString('vi-VN'));
+                $('#amount').val($sum);
+                $('#hasDiscount').val('false');
             })
 
             @foreach($room->seats as $seat)
