@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body my-4">
                 <form method='post' action="/signIn">
-                    @csrf
+{{--                    @csrf--}}
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="mb-3">
                         <input class="form-control" type="text" placeholder="@lang('lang.type') email hoặc @lang('lang.phone')"
