@@ -10,7 +10,7 @@
                                 {!! number_format($sum_today,0,",",".") !!} Vnđ
                             </h5>
                             <p class="mb-0">
-                                <span class="text-success text-sm font-weight-bolder">{!! $today_now !!}</span>
+                                <span class="text-success text-sm font-weight-bolder">{!! date("d-m-Y",strtotime($today_now)) !!}</span>
                             </p>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                                 {!! $seat !!}
                             </h5>
                             <p class="mb-0">
-                                <span class="text-success text-sm font-weight-bolder">{!! $today_now !!}</span>
+                                <span class="text-success text-sm font-weight-bolder">{!! date("d-m-Y",strtotime($today_now)) !!}</span>
                             </p>
                         </div>
                     </div>
@@ -82,7 +82,8 @@
                                 {!! number_format($sum,0,",",".") !!} Vnđ
                             </h5>
                             <p class="mb-0">
-                                <span class="text-info text-sm font-weight-bolder">{!! $start_of_month !!} | {!! $today_now !!}</span>
+                                <span class="text-info text-sm font-weight-bolder">{!! date("d-m-Y",strtotime($start_of_month)) !!}
+                                    | {!! date("d-m-Y",strtotime($today_now)) !!}</span>
                             </p>
                         </div>
                     </div>
