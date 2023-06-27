@@ -101,10 +101,12 @@ class SchedulesController extends Controller
 
     public function deleteAll(Request $request)
     {
-
-        Schedule::where('room_id', $request->room)->where('date', $request->date)->delete();
-
-        return redirect('admin/schedule?theater=' . $request->theater . '&room=' . $request->room . '&date=' . $request->date)
-            ->with('success', 'Deleted all schedules successfully!');
+//        Schedule::where('room_id', $request->room)->where('date', $request->date)->delete();
+//        return redirect('admin/schedule?theater=' . $request->theater . '&room=' . $request->room . '&date=' . $request->date)
+//            ->with('success', 'Deleted all schedules successfully!');
+        Schedule::where('room_id', $request->room_id)->where('date', $request->date)->delete();
+        return response()->json([
+            'success'=>'Xóa thành công'
+        ]);
     }
 }
