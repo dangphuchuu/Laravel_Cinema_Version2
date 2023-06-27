@@ -37,7 +37,7 @@ Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
 Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);
 
 
-Route::post('/signIn', [WebController::class, 'signIn']);
+Route::post('/signin', [WebController::class, 'signIn']);
 Route::post('/signUp', [WebController::class, 'signUp']);
 Route::get('/signOut', [WebController::class, 'signOut']);
 
