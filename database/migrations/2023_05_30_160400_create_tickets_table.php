@@ -65,9 +65,10 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('tickets');
         Schema::dropIfExists('ticketseats');
         Schema::dropIfExists('ticketcombos');
         Schema::dropIfExists('ticketfoods');
+        Schema::dropIfExists('tickets');
+
     }
 };

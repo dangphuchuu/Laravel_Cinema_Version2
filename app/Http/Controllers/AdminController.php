@@ -23,9 +23,9 @@ class AdminController extends Controller
     {
         $ticket = Ticket::whereDate('created_at', Carbon::today())->get();
 
-        $today_now = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
+        $today_now = Carbon::now('Asia/Ho_Chi_Minh');
 
-        $start_of_month = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth()->format('Y-m-d');
+        $start_of_month = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth();
 
         $total_sum_month = Ticket::whereBetween('created_at',[$start_of_month, $today_now])->where('holdState', 0)->orderBy('created_at','ASC')->get();
 
