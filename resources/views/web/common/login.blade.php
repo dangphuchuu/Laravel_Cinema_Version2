@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body my-4">
-                <form method='post' action="/signIn">
+                <form method='post' action="/signin">
 {{--                    @csrf--}}
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="mb-3">
