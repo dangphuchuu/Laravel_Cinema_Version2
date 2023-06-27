@@ -22,15 +22,18 @@ class AdminController extends Controller
     public function home(Request $request)
     {
         $ticket = Ticket::whereDate('created_at', Carbon::today())->get();
-        $today_now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
-        $start_of_month = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth()->format('d-m-Y');
-        $end_of_month = Carbon::now('Asia/Ho_Chi_Minh')->endOfMonth()->format('d-m-Y');
+
+        $today_now = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
+
+        $start_of_month = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth()->format('Y-m-d');
+
+        $total_sum_month = Ticket::whereBetween('created_at',[$start_of_month, $today_now])->where('holdState', 0)->orderBy('created_at','ASC')->get();
+
         $user = User::role('user')->get();
-        $ticket_sum = Ticket::all();
         $sum =0 ;
         $sum_today = 0;
         $seat = 0;
-        foreach($ticket_sum as $value){
+        foreach($total_sum_month as $value){
             $sum+= $value['totalPrice'];
         }
         foreach($ticket as $today){
@@ -46,7 +49,6 @@ class AdminController extends Controller
             'today_now'=>$today_now,
             'seat'=>$seat,
             'start_of_month'=>$start_of_month,
-            'end_of_month'=>$end_of_month,
         ]);
     }
     public function filter_by_date(Request $request){

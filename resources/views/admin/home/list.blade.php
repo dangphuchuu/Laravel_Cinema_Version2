@@ -7,7 +7,7 @@
     <!-- Chart -->
     @include('admin.home.chart')
     <!-- Sales By movie -->
-    @include('admin.home.revenue')
+{{--    @include('admin.home.revenue')--}}
     </div>
     @endcan
 @endsection
@@ -60,7 +60,6 @@
         });
         $('.statistical-filter').change(function (){
             var statistical_value = $(this).val();
-            console.log(statistical_value);
             if(statistical_value === "null"){
                 chart.setData([{date:null,total:null,seat_count:null}]);
                 return ;
@@ -77,7 +76,6 @@
                 data: {
                     'statistical_value' : statistical_value,
                 },
-
                 success:function (data)
                 {
                     if(data['success'])

@@ -58,7 +58,7 @@
                                 {!! count($user) !!}
                             </h5>
                             <p class="mb-0">
-                                <span class="text-danger text-sm font-weight-bolder">All Time</span>
+                                <span class="text-danger text-sm font-weight-bolder">&nbsp; </span>
                             </p>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                                 {!! number_format($sum,0,",",".") !!} Vnđ
                             </h5>
                             <p class="mb-0">
-                                <span class="text-info text-sm font-weight-bolder">{!! $start_of_month !!} | {!! $end_of_month !!}</span>
+                                <span class="text-info text-sm font-weight-bolder">{!! $start_of_month !!} | {!! $today_now !!}</span>
                             </p>
                         </div>
                     </div>
