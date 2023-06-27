@@ -18,7 +18,11 @@
         barColors: ['#819C79','#fc8710','#FF6541','#A4ADD3','#766B56'],
         parseTime: false,
         hideHover: 'auto',
-
+        data:[
+                {
+                    date:null,total:null,seat_count:null
+                }
+            ],
         xkey: 'date',
         ykeys: ['total','seat_count'],
         labels: ['total','seat_count']
@@ -56,14 +60,19 @@
         });
         $('.statistical-filter').change(function (){
             var statistical_value = $(this).val();
+            console.log(statistical_value);
+            if(statistical_value === "null"){
+                chart.setData([{date:null,total:null,seat_count:null}]);
+                return ;
+            }
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
             $.ajax({
-                url:"admin/statistical/statistical-filter",
-                method:"POST",
+                url:"admin/statistical-filter",
+                method:"GET",
                 datatype: "JSON",
                 data: {
                     'statistical_value' : statistical_value,
@@ -71,8 +80,13 @@
 
                 success:function (data)
                 {
-
-                    alert(data.success);
+                    if(data['success'])
+                    {
+                        chart.setData(data.chart_data);
+                    }
+                    else if(data['error']){
+                        alert(data.error);
+                    }
                 }
             });
         });

@@ -208,5 +208,8 @@ return [
     'message'=>'Message',
     'scan_ticket'=>'Scan ticket',
     'scan_combo'=>'Scan combo',
-    'barcode_scanner'=>'Barcode Scanner'
+    'barcode_scanner'=>'Barcode Scanner',
+    'sort_this_month'=>'Sort by this month',
+    'sort_last_month'=>'Sort by last month',
+    'sort_by_7days'=>'Sort by 7 days',
 ];

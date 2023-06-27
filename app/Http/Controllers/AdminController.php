@@ -50,7 +50,7 @@ class AdminController extends Controller
         ]);
     }
     public function filter_by_date(Request $request){
-        $start_time = Carbon::createFromFormat('Y-m-d', $request->from_date)->startOfDay();;
+        $start_time = Carbon::createFromFormat('Y-m-d', $request->from_date)->startOfDay();
         $end_time = Carbon::createFromFormat('Y-m-d', $request->to_date)->endOfDay(); // lấy ngày cuối cùng
 
         $get = Ticket::whereBetween('created_at',[$start_time, $end_time])->where('holdState', 0)->orderBy('created_at','ASC')->get();
@@ -93,6 +93,85 @@ class AdminController extends Controller
             'chart_data'=>$chart_data,
         ]);
     }
+
+    public function statistical_filter(Request $request){
+
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->endOfDay();
+        $week = Carbon::now('Asia/Ho_Chi_Minh')->subDays(7)->startOfDay()->toDateString();
+        $this_month = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth()->toDateString();
+        $start_last_month = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->startOfMonth()->toDateString();
+        $end_last_month = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->endOfMonth()->toDateString();
+        $year = Carbon::now('Asia/Ho_Chi_Minh')->subDays(365)->startOfYear()->toDateString();
+
+        if($request['statistical_value'] == 'week'){
+            $get= Ticket::whereBetween('created_at',[$week,$now])->where('holdState', 0)->orderBy('created_at','ASC')->get();
+            $value_first = $get->first();
+            $value_last = $get->last();
+            $date_current = date("d-m-Y",strtotime($value_first['created_at']));
+        }
+        if($request['statistical_value'] == 'year'){
+            $get= Ticket::whereBetween('created_at',[$year,$now])->where('holdState', 0)->orderBy('created_at','ASC')->get();
+            $value_first = $get->first();
+            $value_last = $get->last();
+            $date_current = date("m-Y",strtotime($value_first['created_at']));
+        }
+        if($request['statistical_value'] == 'this_month'){
+            $get= Ticket::whereBetween('created_at',[$this_month,$now])->where('holdState', 0)->orderBy('created_at','ASC')->get();
+            $value_first = $get->first();
+            $value_last = $get->last();
+            $date_current = date("d-m-Y",strtotime($value_first['created_at']));
+        }
+        if($request['statistical_value'] == 'last_month'){
+            $get= Ticket::whereBetween('created_at',[$start_last_month,$end_last_month])->where('holdState', 0)->orderBy('created_at','ASC')->get();
+            $value_first = $get->first();
+            $value_last = $get->last();
+            $date_current = date("d-m-Y",strtotime($value_first['created_at']));
+        }
+        function date_statistical($option,$date){
+            if($option == 'year')
+            {
+                return date("m-Y",strtotime($date));
+            }else{
+                return date("d-m-Y",strtotime($date));
+            }
+        }
+        $total = 0;
+        $seat_count = 0;
+        $chart_data = [];
+
+        foreach($get as $value){
+            if($date_current == date_statistical($request['statistical_value'],$value['created_at']))
+            {
+                $total += $value['totalPrice'];
+                $seat_count += $value['ticketSeats']->count();
+            }else{
+                $data = array(
+                    'date'=>  $date_current ,
+                    'total'=> $total,
+                    'seat_count'=> $seat_count
+                );
+                $date_current = date_statistical($request['statistical_value'],$value['created_at']);
+                $total = $value['totalPrice'];
+                $seat_count = $value['ticketSeats']->count();
+                array_push($chart_data,$data);
+            }
+            if($value_last->id == $value['id']){
+                $data = array(
+                    'date'=> date_statistical($request['statistical_value'],$value['created_at']),
+                    'total'=> $total,
+                    'seat_count'=> $seat_count
+                );
+                array_push($chart_data,$data);
+            }
+        }
+
+        return response()->json([
+            'success'=> 'Thành công',
+            'get'=>$get,
+            'chart_data'=>$chart_data,
+        ]);
+    }
+
     //User
     public function user()
     {

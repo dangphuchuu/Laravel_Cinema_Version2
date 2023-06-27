@@ -209,5 +209,8 @@ return [
     'message'=>'Lời nhắn',
     'scan_ticket'=>'Quét vé',
     'scan_combo'=>'Quét combo',
-    'barcode_scanner'=>'Quét Mã Vạch'
+    'barcode_scanner'=>'Quét Mã Vạch',
+    'sort_this_month'=>'Lọc tháng này',
+    'sort_last_month'=>'Lọc tháng trước',
+    'sort_by_7days'=>'Lọc theo 7 ngày',
 ];

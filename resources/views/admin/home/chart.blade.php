@@ -28,9 +28,10 @@
                         <label for="statistical" class="form-control-label">@lang('lang.type_of_time')</label>
                         <div class="form-group" style="text-align:center">
                             <select id="statistical" style="width: 70%" class="statistical-filter form-control">
-                                <option selected>Selected</option>
-                                <option value="week" >@lang('lang.sort_by_week')</option>
-                                <option value="month">@lang('lang.sort_by_month')</option>
+                                <option value="null" selected>Selected</option>
+                                <option value="week" >@lang('lang.sort_by_7days')</option>
+                                <option value="this_month">@lang('lang.sort_this_month')</option>
+                                <option value="last_month">@lang('lang.sort_last_month')</option>
                                 <option value="year">@lang('lang.sort_by_year')</option>
                             </select>
                         </div>
@@ -51,6 +52,6 @@
     </div>
 </div>
 <div class="col-lg-12 ">
-    <div id="admin_chart" style="height: 300px" ></div>
+    <div id="admin_chart" style="height: 300px; width: 100%" ></div>
 </div>
 
