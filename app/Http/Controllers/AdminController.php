@@ -19,27 +19,80 @@ class AdminController extends Controller
     {
     }
 
-    public function home()
+    public function home(Request $request)
     {
         $ticket = Ticket::whereDate('created_at', Carbon::today())->get();
+        $today_now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
+        $start_of_month = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth()->format('d-m-Y');
+        $end_of_month = Carbon::now('Asia/Ho_Chi_Minh')->endOfMonth()->format('d-m-Y');
         $user = User::role('user')->get();
         $ticket_sum = Ticket::all();
         $sum =0 ;
         $sum_today = 0;
+        $seat = 0;
         foreach($ticket_sum as $value){
             $sum+= $value['totalPrice'];
         }
         foreach($ticket as $today){
             $sum_today += $today['totalPrice'];
+            $seat += $today['ticketSeats']->count();
         }
+
         return view('admin.home.list', [
-                'user'=>$user,
-                'ticket'=>$ticket,
-                'sum'=>$sum,
-                'sum_today'=>$sum_today,
+            'user'=>$user,
+            'ticket'=>$ticket,
+            'sum'=>$sum,
+            'sum_today'=>$sum_today,
+            'today_now'=>$today_now,
+            'seat'=>$seat,
+            'start_of_month'=>$start_of_month,
+            'end_of_month'=>$end_of_month,
         ]);
     }
+    public function filter_by_date(Request $request){
+        $start_time = Carbon::createFromFormat('Y-m-d', $request->from_date)->startOfDay();;
+        $end_time = Carbon::createFromFormat('Y-m-d', $request->to_date)->endOfDay(); // lấy ngày cuối cùng
 
+        $get = Ticket::whereBetween('created_at',[$start_time, $end_time])->where('holdState', 0)->orderBy('created_at','ASC')->get();
+        $value_first = $get->first();
+        $value_last = $get->last();
+
+        $date_current = date("d-m-Y",strtotime($value_first['created_at']));
+
+        $total = 0;
+        $seat_count = 0;
+        $chart_data = [];
+
+        foreach($get as $value){
+            if($date_current == date("d-m-Y",strtotime($value['created_at'])))
+            {
+                $total += $value['totalPrice'];
+                $seat_count += $value['ticketSeats']->count();
+            }else{
+                $data = array(
+                    'date'=>  $date_current ,
+                    'total'=> $total,
+                    'seat_count'=> $seat_count
+                );
+                $date_current = date("d-m-Y",strtotime($value['created_at']));
+                $total = $value['totalPrice'];
+                $seat_count = $value['ticketSeats']->count();
+                array_push($chart_data,$data);
+            }
+            if($value_last->id == $value['id']){
+                $data = array(
+                    'date'=> date("d-m-Y",strtotime($value['created_at'])),
+                    'total'=> $total,
+                    'seat_count'=> $seat_count
+                );
+                array_push($chart_data,$data);
+            }
+        }
+        return response()->json([
+            'success'=>'Thành công',
+            'chart_data'=>$chart_data,
+        ]);
+    }
     //User
     public function user()
     {

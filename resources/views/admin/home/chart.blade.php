@@ -1,16 +1,56 @@
 <div class="row mt-4">
-    <div class="col-lg-12 mb-lg-0 mb-4">
-        <div class="card z-index-2 h-100">
-            <div class="card-header pb-0 pt-3 bg-transparent">
-                <h6 class="text-capitalize">@lang('lang.sale_overview')</h6>
-                <p class="text-sm mb-0">
-                </p>
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>@lang('lang.statistical')</h6>
             </div>
-            <div class="card-body p-3">
-                <div class="chart">
-                    <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+            <div class="card-body ms-8">
+                <div class="row">
+                        <div class="col-md-5">
+                            <label for="start_time" class="form-control-label">@lang('lang.start_time')</label>
+                            <div class="form-group" style="text-align:center">
+                                <input name="start_time" id="start_time" class="form-control" style="width:70%" type="date" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="end_time"  class="form-control-label">@lang('lang.end_time')</label>
+                            <div class="form-group" style="text-align:center">
+                                <input name="end_time" id="end_time" class="form-control"  style="width:70%" type="date" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <button  id="btn-statistical-filter" class="form-control">@lang('lang.submit')</button>
+                            </div>
+                        </div>
+
+                    <div class="col-md-6">
+                        <label for="statistical" class="form-control-label">@lang('lang.type_of_time')</label>
+                        <div class="form-group" style="text-align:center">
+                            <select id="statistical" style="width: 70%" class="statistical-filter form-control">
+                                <option selected>Selected</option>
+                                <option value="week" >@lang('lang.sort_by_week')</option>
+                                <option value="month">@lang('lang.sort_by_month')</option>
+                                <option value="year">@lang('lang.sort_by_year')</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="theater" class="form-control-label">@lang('lang.theater')</label>
+                        <div class="form-group" style="text-align:center">
+                            <select id="theater" style="width: 70%" class="statistical-theater form-control">
+                                <option value="volvo" selected>Movie Cinema quận 1</option>
+                                <option value="saab">Movie Cinema Nguyễn trãi</option>
+                                <option value="vw">Movie Cinema Quận 8</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div class="col-lg-12 ">
+    <div id="admin_chart" style="height: 300px" ></div>
+</div>
+

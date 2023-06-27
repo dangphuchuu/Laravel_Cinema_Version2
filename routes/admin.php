@@ -27,12 +27,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/sign_in', [AdminController::class, 'sign_in']);
     Route::post('/sign_in', [AdminController::class, 'Post_sign_in']);
     Route::get('/sign_out', [AdminController::class, 'sign_out']);
-
 });
 
 Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function () {
 
     Route::get('/', [AdminController::class, 'home']);
+    Route::get('/filter-by-date',[AdminController::class,'filter_by_date']);
 
     // scan ticket
     Route::prefix('scanTicket')->group(function () {
@@ -223,11 +223,4 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/edit', [PriceController::class, 'edit']);
     });
 
-    //TODO statistical
-    Route::prefix('statistical')->group(function () {
-        Route::get('/', [StatisticalController::class, 'statistical']);
-        Route::get('/filter-by-date',[StatisticalController::class,'filter_by_date']);
-        Route::post('/statistical-filter',[StatisticalController::class,'statistical_filter']);
-
-    });
 });

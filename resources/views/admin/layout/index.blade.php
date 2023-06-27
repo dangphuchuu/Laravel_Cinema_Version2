@@ -21,9 +21,9 @@
     <!-- Font awesome - icon font -->
     <link href="/web_assets/fonts/fontawesome/css/all.css" rel="stylesheet"/>
     <link href="admin_assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <!-- CSS Files -->
     <link id="pagestyle" href="admin_assets/css/argon-dashboard.css" rel="stylesheet" />
-
     {{--Select2--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css"
           integrity="sha512-aD9ophpFQ61nFZP6hXYu4Q/b/USW7rpLCQLX6Bi0WJHXNO7Js/fUENpBQf/+P4NtpzNX0jSgR5zVvPOJp+W2Kg==" crossorigin="anonymous"
@@ -110,16 +110,16 @@
         </div>
     </div>
 </div>
-
+<!--   Moris   -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 <!--   Core JS Files   -->
 <script src="admin_assets/js/core/popper.min.js"></script>
 <script src="admin_assets/js/core/bootstrap.min.js"></script>
 <script src="admin_assets/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="admin_assets/js/plugins/smooth-scrollbar.min.js"></script>
 
-<!-- Plugin for the charts, full documentation here: https://www.chartjs.org/ -->
-<script src="admin_assets/js/plugins/chartjs.min.js"></script>
-<script src="admin_assets/js/plugins/Chart.extension.js"></script>
 
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -160,7 +160,6 @@
         Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
 </script>
-
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'))

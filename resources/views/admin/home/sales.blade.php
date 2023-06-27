@@ -10,8 +10,7 @@
                                 {!! number_format($sum_today,0,",",".") !!} Vnđ
                             </h5>
                             <p class="mb-0">
-                                <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                @lang('lang.since_yesterday')
+                                <span class="text-success text-sm font-weight-bolder">{!! $today_now !!}</span>
                             </p>
                         </div>
                     </div>
@@ -32,11 +31,10 @@
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold">@lang('lang.today_ticket')</p>
                             <h5 class="font-weight-bolder">
-                                {!! count($ticket) !!}
+                                {!! $seat !!}
                             </h5>
                             <p class="mb-0">
-                                <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                @lang('lang.since_yesterday')
+                                <span class="text-success text-sm font-weight-bolder">{!! $today_now !!}</span>
                             </p>
                         </div>
                     </div>
@@ -60,8 +58,7 @@
                                 {!! count($user) !!}
                             </h5>
                             <p class="mb-0">
-                                <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                @lang('lang.since_lastweek')
+                                <span class="text-danger text-sm font-weight-bolder">All Time</span>
                             </p>
                         </div>
                     </div>
@@ -85,7 +82,7 @@
                                 {!! number_format($sum,0,",",".") !!} Vnđ
                             </h5>
                             <p class="mb-0">
-                                <span class="text-success text-sm font-weight-bolder">+5%</span>  @lang('lang.than_lastmonth')
+                                <span class="text-info text-sm font-weight-bolder">{!! $start_of_month !!} | {!! $end_of_month !!}</span>
                             </p>
                         </div>
                     </div>

@@ -22,10 +22,8 @@ class StatisticalController extends Controller
             foreach($get as $value){
                 $sum+= $value['totalPrice'];
             }
-
         }
-
-        return view('admin.statistical.list',[
+        return view('admin.home.list',[
             'get'=>$get,
             'sum'=>$sum
         ]);

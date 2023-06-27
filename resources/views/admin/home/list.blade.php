@@ -1,5 +1,6 @@
 @extends('admin.layout.index')
 @section('content')
+    @can('statistical')
     <div class="container-fluid py-4">
     <!-- Sales -->
     @include('admin.home.sales')
@@ -8,89 +9,73 @@
     <!-- Sales By movie -->
     @include('admin.home.revenue')
     </div>
+    @endcan
 @endsection
 @section('scripts')
-    <script>
-        var ctx1 = document.getElementById("chart-line").getContext("2d");
+<script type="text/javascript">
+    var chart =  new Morris.Bar({
+        element: 'admin_chart',
+        barColors: ['#819C79','#fc8710','#FF6541','#A4ADD3','#766B56'],
+        parseTime: false,
+        hideHover: 'auto',
 
-        var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+        xkey: 'date',
+        ykeys: ['total','seat_count'],
+        labels: ['total','seat_count']
+    });
 
-        gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-        gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-        gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-        new Chart(ctx1, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Mobile apps",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#5e72e4",
-                    backgroundColor: gradientStroke1,
-                    borderWidth: 3,
-                    fill: true,
-                    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                    maxBarThickness: 6
-
-                }],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
+    $(document).ready(function (){
+        $('#btn-statistical-filter').click(function (){
+            var from_date = $('#start_time').val();
+            var to_date = $('#end_time').val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:"admin/filter-by-date",
+                method:"GET",
+                datatype: "JSON",
+                data:{
+                    from_date:from_date,
+                    to_date:to_date
+                },
+                success:function (data)
+                {
+                    if(data['success'])
+                    {
+                        chart.setData(data.chart_data);
+                    }
+                    else if(data['error']){
+                        alert(data.error);
                     }
                 },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            padding: 10,
-                            color: '#fbfbfb',
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#ccc',
-                            padding: 20,
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                },
-            },
+
+            })
         });
-    </script>
+        $('.statistical-filter').change(function (){
+            var statistical_value = $(this).val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:"admin/statistical/statistical-filter",
+                method:"POST",
+                datatype: "JSON",
+                data: {
+                    'statistical_value' : statistical_value,
+                },
+
+                success:function (data)
+                {
+
+                    alert(data.success);
+                }
+            });
+        });
+    });
+</script>
 @endsection
