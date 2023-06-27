@@ -15,7 +15,7 @@
 <script type="text/javascript">
     var chart =  new Morris.Bar({
         element: 'admin_chart',
-        barColors: ['#819C79','#fc8710','#FF6541','#A4ADD3','#766B56'],
+        barColors: ['#09b1f3','#fc8710','#FF6541','#A4ADD3','#766B56'],
         parseTime: false,
         hideHover: 'auto',
         data:[
