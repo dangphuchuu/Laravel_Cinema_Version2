@@ -79,7 +79,7 @@ class SchedulesController extends Controller
                 }
                 $endTime = $endTimeHour . ':' . $endTimeMinutesRounded;
                 unset($schedule);
-                var_dump($startTime);
+//                print_r($startTime);
             } while ($endTime < '22:00');
         } else {
 
@@ -96,11 +96,6 @@ class SchedulesController extends Controller
         }
 
         return redirect('admin/schedule?theater=' . $request->theater . '&date=' . $request->date);
-    }
-
-    public function postEdit()
-    {
-        return view('admin.schedules.edit');
     }
 
     public function status(Request $request)
