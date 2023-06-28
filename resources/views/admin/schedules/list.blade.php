@@ -229,7 +229,7 @@
                                 'date':date
                             },
                             success: function(data) {
-                                if (data['success']) {
+                                if (data['success']) {php
                                     $("tr").removeClass("delete_schedule");
                                     window.location.reload();
                                 }
