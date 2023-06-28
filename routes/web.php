@@ -26,14 +26,13 @@ Route::get('lang/{locale}', function ($locale) {
 
 // Admin Route
 require 'admin.php';
-Route::get('/tickets/{schedule_id}', [WebController::class, 'ticket']);
+
 // Web Route
-Route::prefix('/')->middleware('user')->group(function() {
+Route::prefix('/')->middleware('user','role:user')->group(function() {
     Route::get('/payment/result', [PaymentController::class, 'handleResult']);
     Route::post('/payment/create', [PaymentController::class, 'create']);
     Route::post('/payment', [PaymentController::class, 'ticketPayment']);
-
-
+    Route::get('/tickets/{schedule_id}', [WebController::class, 'ticket']);
 
     Route::get('/ticket_discount',[WebController::class,'ticket_apply_discount']);
 
