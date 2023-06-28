@@ -36,19 +36,12 @@ class DatabaseSeeder extends Seeder
         //TODO: Set permissions for admin with id 1
         $user->givePermissionTo($permission);
 
-        //TODO: Set role for admin with id 2
-        $user = User::find(2);
-        $user->assignRole('admin');
-        //TODO: Set permissions for admin with id 2
-        $user->givePermissionTo($permission);
-
-
         //TODO: Set role for user
-        $user = User::find(3);
+        $user = User::find(2);
         $user->assignRole('user');
 
         //TODO: Set role for user
-        $user = User::find(4);
+        $user = User::find(3);
         $user->assignRole('user');
 
         //TODO: Movie Genre
