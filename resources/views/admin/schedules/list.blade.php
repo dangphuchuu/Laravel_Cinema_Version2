@@ -230,7 +230,7 @@
                             },
                             success: function(data) {
                                 if (data['success']) {
-                                    $("tr").removeClass("delete_schedule");
+                                    // $(".delete_schedule").remove();
                                     window.location.reload();
                                 }
                             }

@@ -79,6 +79,7 @@ class SchedulesController extends Controller
                 }
                 $endTime = $endTimeHour . ':' . $endTimeMinutesRounded;
                 unset($schedule);
+                var_dump($startTime);
             } while ($endTime < '22:00');
         } else {
 
