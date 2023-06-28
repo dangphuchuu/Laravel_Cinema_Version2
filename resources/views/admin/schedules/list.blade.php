@@ -43,7 +43,8 @@
                                     <div class="col-5">
                                         <div class="input-group">
                                             <span class="input-group-text bg-gray-200"> @lang('lang.show_date')</span>
-                                            <input class="form-control ps-2" type="date" name="date" value="{{ date("Y-m-d",strtotime($date_cur)) }}" aria-label="">
+                                            <input class="form-control ps-2" min="{{ date("Y-m-d") }}"
+                                                   type="date" name="date" value="{{ date("Y-m-d",strtotime($date_cur)) }}" aria-label="">
                                         </div>
                                     </div>
                                     <div class="col-2">
@@ -86,7 +87,7 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="4">
-                                                    <table class="table table-bordered align-items-center">
+                                                    <table id="room_{{$room->id}}" class="table table-bordered align-items-center">
                                                         <colgroup>
                                                             <col span="1" style="width: 20%;">
                                                             <col span="1" style="width: 80%;">
@@ -97,16 +98,6 @@
                                                             <th class="text-uppercase fw-bold text-start">@lang('lang.movies')</th>
                                                             <th class="text-uppercase fw-bold">@lang('lang.early_screening')</th>
                                                             <th class="text-uppercase fw-bold">@lang('lang.status')</th>
-                                                            <th class="text-uppercase fw-bold">
-                                                                <a href="javascript:void(0);"
-                                                                   data-date="{{$date_cur}}"
-                                                                   data-theater="{{$theater_cur->id}}"
-                                                                   data-room="{{$room->id}}"
-                                                                   data-url="{{ url('admin/schedule/deleteall') }}"
-                                                                   class="link link-dark  text-xs  text-decoration-none delete_all">
-                                                                    Delete all
-                                                                </a>
-                                                            </th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -121,16 +112,19 @@
                                                                 </td>
                                                                 <td id="early_status{!! $schedule['id'] !!}"
                                                                     class="align-middle text-center text-sm ">
-                                                                    @if($schedule->early == 1)
-                                                                        <a href="javascript:void(0)" class="btn_active"
-                                                                           onclick="changeearlystatus({!! $schedule['id'] !!},0)">
-                                                                            <span class="badge badge-sm bg-gradient-success">Online</span>
-                                                                        </a>
-                                                                    @else
-                                                                        <a href="javascript:void(0)" class="btn_active"
-                                                                           onclick="changeearlystatus({!! $schedule['id'] !!},1)">
-                                                                            <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                                                                        </a>
+                                                                    @if(date('Y-m-d', strtotime($schedule->date))
+                                                                            < date('Y-m-d', strtotime($schedule->movie->releaseDate)))
+                                                                        @if($schedule->early == 1)
+                                                                            <a href="javascript:void(0)" class="btn_early"
+                                                                               onclick="changeearlystatus({!! $schedule['id'] !!},0)">
+                                                                                <span class="badge badge-sm bg-gradient-success">Online</span>
+                                                                            </a>
+                                                                        @else
+                                                                            <a href="javascript:void(0)" class="btn_early"
+                                                                               onclick="changeearlystatus({!! $schedule['id'] !!},1)">
+                                                                                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                                                            </a>
+                                                                        @endif
                                                                     @endif
                                                                 </td>
                                                                 <td id="status{!! $schedule['id'] !!}" class="align-middle text-center text-sm ">
@@ -154,6 +148,21 @@
                                                                         data-bs-target="#CreateScheduleModal_{{ $room->id }}">
                                                                     <i class="fa-regular fa-circle-plus"></i> @lang('lang.add')
                                                                 </button>
+                                                            </td>
+                                                            <td colspan="3">
+                                                                <div class="d-flex justify-content-end">
+                                                                    <button class="btn btn-warning" onclick="changeAllStatus({{ $room->id }})">
+                                                                        <i class="fa-solid fa-repeat"></i> Thay đổi trạng thái tất cả
+                                                                    </button>
+                                                                    <a href="javascript:void(0);"
+                                                                       data-date="{{$date_cur}}"
+                                                                       data-theater="{{$theater_cur->id}}"
+                                                                       data-room="{{$room->id}}"
+                                                                       data-url="{{ url('admin/schedule/deleteall') }}"
+                                                                       class="btn btn-dark ms-3 delete_all">
+                                                                        <i class="fa-regular fa-trash"></i> Delete all
+                                                                    </a>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                         </tbody>
@@ -320,5 +329,13 @@
             });
         @endforeach
         @endisset
+    </script>
+    <script>
+        changeAllStatus = (room_id) => {
+            schedulesElements = $('#room_'+room_id).find('.btn_active');
+            schedulesElements.toArray().forEach(schedulesElement => {
+                schedulesElement.click();
+            });
+        }
     </script>
 @endsection

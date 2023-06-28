@@ -43,22 +43,20 @@ Route::prefix('/')->middleware('user','role:user')->group(function() {
     Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
     Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);
 
-    Route::post('/feedback',[WebController::class,'feedback']);
-    Route::get('/contact',[WebController::class,'contact']);
-
     Route::post('/refund-ticket',[WebController::class,'refund_ticket']);
     Route::post('/changePassword',[WebController::class,'changePassword']);
     Route::post('/editProfile',[WebController::class,'editProfile']);
     Route::get('/profile',[WebController::class,'profile']);
-
 
     Route::post('/forgot_password',[AuthController::class,'forgot_password']);
     Route::get('/update-password',[AuthController::class,'update_password']);
     Route::post('/update-password',[AuthController::class,'Post_update_password']);
     Route::get('/verify-email',[AuthController::class,'verify_email']);
 
-
 });
+
+Route::post('/feedback',[WebController::class,'feedback']);
+Route::get('/contact',[WebController::class,'contact']);
 
 Route::get('/signOut', [AuthController::class, 'signOut']);
 Route::get('/events-detail/{id}',[WebController::class,'events_detail']);

@@ -498,8 +498,7 @@ class WebController extends Controller
     }
 
     public function contact(){
-        $user = User::find(Auth::user()->id);
-        return view('web.pages.contact',['user'=>$user]);
+        return view('web.pages.contact');
     }
     public function ticketPaid_image(Request $request) {
 
@@ -585,11 +584,19 @@ class WebController extends Controller
     }
     public function feedback(Request $request){
         $feedback = new Feedback([
-            'user_id' => $request->user_id,
-            'message'=>  $request->message
+            'fullName' => $request->fullName,
+            'message' =>  $request->message
         ]);
+        if ($request->email) {
+            $feedback->email = $request->email;
+        }
+        if ($request-> phone) {
+            $feedback->phone = $request->phone;
+        }
         $feedback->save();
-        return response()->json(['success'=>'Thông tin của bạn đã được gửi thành công. HMCinema xin cảm ơn ý kiến của bạn về hệ thống !']);
+        return response()->json([
+                'success'=>'Thông tin của bạn đã được gửi thành công. HMCinema xin cảm ơn ý kiến của bạn về hệ thống !',
+            ]);
     }
     public function ticket_apply_discount(Request $request){
         $code = $request->discount;

@@ -51,7 +51,7 @@
                             <div class="form-check">
                                 <input id="remainingSchedules_{{$room->id}}" type="checkbox" class="form-check-input" name="remainingSchedules"
                                        aria-label="">
-                                <label class="custom-control-label">Tất cả suất chiếu trong ngày</label>
+                                <label class="custom-control-label">Tất cả suất chiếu còn lại trong ngày</label>
                             </div>
 
                         </div>

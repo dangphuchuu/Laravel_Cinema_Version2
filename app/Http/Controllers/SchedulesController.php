@@ -81,6 +81,17 @@ class SchedulesController extends Controller
                 unset($schedule);
 //                print_r($startTime);
             } while ($endTime < '22:00');
+            $schedule = new Schedule([
+                'room_id' => $request->room,
+                'movie_id' => $request->movie,
+                'audio_id' => $request->audio,
+                'subtitle_id' => $request->subtitle,
+                'date' => $request->date,
+                'startTime' => $startTime,
+                'endTime' => $endTime,
+            ]);
+            $schedule->save();
+            unset($schedule);
         } else {
 
             $schedule = new Schedule([

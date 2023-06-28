@@ -50,13 +50,13 @@
                                 @foreach($feed as $value)
                                         <tr>
                                             <td class="align-middle text-center">
-                                                <h6 class="mb-0 text-sm ">{!! $value['users']['fullName'] !!}</h6>
+                                                <h6 class="mb-0 text-sm ">{!! $value['fullName'] !!}</h6>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary font-weight-bold">{!! $value['users']['email'] !!}</span>
+                                                <span class="text-secondary font-weight-bold">{!! $value['email'] !!}</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary font-weight-bold">{!! $value['users']['phone'] !!}</span>
+                                                <span class="text-secondary font-weight-bold">{!! $value['phone'] !!}</span>
                                             </td>
                                             <td class="align-middle text-center">
 
