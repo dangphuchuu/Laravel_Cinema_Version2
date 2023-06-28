@@ -28,6 +28,11 @@ class AuthController extends Controller
         $phone = Auth::attempt(['phone' => $request['username'], 'password' => $request['password']]);
 
         if ($email || $phone) {
+            if(Auth::user()->hasRole('admin'))
+            {
+                Auth::logout();
+                return redirect('/')->with('warning','Tài khoản không hợp lệ !');
+            }
             if($request->has('rememberme')){
                 session(['username_web'=>$request->username]); // $request->session()->put('key','value');
                 session(['password_web'=>$request->password]);
@@ -35,7 +40,6 @@ class AuthController extends Controller
                 session()->forget('username_web');
                 session()->forget('password_web');
             }
-
             return redirect('/')->with('success','Chào mừng bạn '.Auth::user()->fullName.' !');
         } else {
             return redirect('/')->with('warning','Sai tài khoản hoặc mật khẩu');
