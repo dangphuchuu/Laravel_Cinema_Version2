@@ -13,17 +13,32 @@
                         <div class="flex-fill border-start border-5 border-white p-2 ps-4">
                             @foreach($roomTypes as $roomType)
                                 @if($roomType->schedulesByDateAndTheaterAndMovie($date_cur, $theater->id, $movie->id)->count() > 0)
+
                                     <div class="d-flex flex-column flex-nowrap overflow-auto mb-4">
                                         <div class="fw-bold">{{ $roomType->name }}</div>
                                         <div class="d-flex flex-wrap overflow-wrapper">
                                             @foreach($roomType->schedulesByDateAndTheaterAndMovie($date_cur, $theater->id, $movie->id) as $schedule)
-                                                <a href="/tickets/{{$schedule->id}}"
-                                                   class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
-                                                   style="border-width: 2px; border-style: solid dashed; min-width: 85px">
-                                                    <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
-                                                        {{ date('H:i', strtotime($schedule->startTime ))}}
-                                                    </p>
-                                                </a>
+                                                @if(date('Y-m-d H:i:s', strtotime('- 20 minutes', strtotime($schedule->startTime))) >=
+                                                date('Y-m-d H:i:s'))
+                                                    @if(Auth::check())
+                                                        <a href="/tickets/{{$schedule->id}}"
+                                                           class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                                           style="border-width: 2px; border-style: solid dashed; min-width: 85px">
+                                                            <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
+                                                                {{ date('H:i', strtotime($schedule->startTime ))}}
+                                                            </p>
+                                                        </a>
+                                                    @else
+                                                        <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#loginModal"
+                                                           style="border-width: 2px; border-style: solid dashed; min-width: 85px">
+                                                            <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
+                                                                {{ date('H:i', strtotime($schedule->startTime ))}}
+                                                            </p>
+                                                        </a>
+                                                    @endif
+                                                @endif
                                             @endforeach
                                         </div>
                                     </div>

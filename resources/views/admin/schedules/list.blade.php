@@ -292,4 +292,17 @@
             });
         }
     </script>
+    <script>
+        @isset($theater_cur)
+        @foreach($theater_cur->rooms as $room)
+            $('#remainingSchedules_{{$room->id}}').change((e) => {
+                if ($(e.target).is(':checked')) {
+                    $('#CreateScheduleModal_{{ $room->id }}').find('#time').attr('readonly', true);
+                } else {
+                    $('#CreateScheduleModal_{{ $room->id }}').find('#time').attr('readonly', false);
+                }
+            });
+        @endforeach
+        @endisset
+    </script>
 @endsection

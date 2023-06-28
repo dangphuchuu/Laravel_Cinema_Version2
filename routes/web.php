@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
@@ -27,24 +28,45 @@ Route::get('lang/{locale}', function ($locale) {
 require 'admin.php';
 
 // Web Route
-Route::get('/payment/result', [PaymentController::class, 'handleResult']);
-Route::post('/payment/create', [PaymentController::class, 'create']);
-Route::post('/payment', [WebController::class, 'ticketPayment']);
+Route::prefix('/')->middleware('user')->group(function() {
+    Route::get('/payment/result', [PaymentController::class, 'handleResult']);
+    Route::post('/payment/create', [PaymentController::class, 'create']);
+    Route::post('/payment', [PaymentController::class, 'ticketPayment']);
 
-Route::post('/tickets/combo/create', [WebController::class, 'ticketComboCreate']);
-Route::delete('/tickets/combo/delete', [WebController::class, 'ticketComboDelete']);
-Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
-Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);
+    Route::get('/tickets/{schedule_id}', [WebController::class, 'ticket']);
+
+    Route::get('/ticket_discount',[WebController::class,'ticket_apply_discount']);
+
+    Route::post('/ticketPaid/image',[WebController::class,'ticketPaid_image']);
+    Route::get('/tickets/completed/{id}', [WebController::class, 'ticketCompleted']);
+    Route::post('/tickets/combo/create', [WebController::class, 'ticketComboCreate']);
+    Route::delete('/tickets/combo/delete', [WebController::class, 'ticketComboDelete']);
+    Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
+    Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);
+
+    Route::post('/feedback',[WebController::class,'feedback']);
+    Route::get('/contact',[WebController::class,'contact']);
+
+    Route::post('/refund-ticket',[WebController::class,'refund_ticket']);
+    Route::post('/changePassword',[WebController::class,'changePassword']);
+    Route::post('/editProfile',[WebController::class,'editProfile']);
+    Route::get('/profile',[WebController::class,'profile']);
+
+    Route::get('/signOut', [AuthController::class, 'signOut']);
+    Route::post('/forgot_password',[AuthController::class,'forgot_password']);
+    Route::get('/update-password',[AuthController::class,'update_password']);
+    Route::post('/update-password',[AuthController::class,'Post_update_password']);
+    Route::get('/verify-email',[AuthController::class,'verify_email']);
+});
 
 
-Route::post('/signin', [WebController::class, 'signIn']);
-Route::post('/signUp', [WebController::class, 'signUp']);
-Route::get('/signOut', [WebController::class, 'signOut']);
+Route::get('/events-detail/{id}',[WebController::class,'events_detail']);
+Route::get('/news-detail/{id}',[WebController::class,'news_detail']);
 
-Route::get('/movies/filter', [WebController::class, 'movieFilter']);
 Route::get('/search', [WebController::class, 'search']);
 
 Route::get('/movie/{id}', [WebController::class, 'movieDetail']);
+Route::get('/movies/filter', [WebController::class, 'movieFilter']);
 Route::get('/movies', [WebController::class, 'movies']);
 
 Route::get('/schedulesByTheater', [WebController::class, 'schedulesByTheater']);
@@ -52,25 +74,9 @@ Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
 
 Route::get('/events', [WebController::class, 'events']);
 Route::get('/news', [WebController::class, 'news']);
+
+
+Route::post('/signUp', [AuthController::class, 'signUp']);
+Route::post('/signin', [AuthController::class, 'signIn']);
+
 Route::get('/', [WebController::class, 'home']);
-
-Route::post('/forgot_password',[WebController::class,'forgot_password']);
-Route::get('/update-password',[WebController::class,'update_password']);
-Route::post('/update-password',[WebController::class,'Post_update_password']);
-Route::get('/verify-email',[WebController::class,'verify_email']);
-
-Route::get('/events-detail/{id}',[WebController::class,'events_detail']);
-Route::get('/news-detail/{id}',[WebController::class,'news_detail']);
-
-Route::prefix('/')->middleware('user')->group(function () {
-    Route::get('/tickets/{schedule_id}', [WebController::class, 'ticket']);
-    Route::get('/profile',[WebController::class,'profile']);
-    Route::post('/editProfile',[WebController::class,'editProfile']);
-    Route::post('/changePassword',[WebController::class,'changePassword']);
-    Route::get('/tickets/completed/{id}', [WebController::class, 'ticketCompleted']);
-    Route::post('/ticketPaid/image',[WebController::class,'ticketPaid_image']);
-    Route::post('/refund-ticket',[WebController::class,'refund_ticket']);
-    Route::post('/feedback',[WebController::class,'feedback']);
-    Route::get('/contact',[WebController::class,'contact']);
-    Route::get('/ticket_discount',[WebController::class,'ticket_apply_discount']);
-});

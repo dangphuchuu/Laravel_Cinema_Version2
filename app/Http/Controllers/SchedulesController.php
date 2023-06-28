@@ -43,6 +43,7 @@ class SchedulesController extends Controller
     public function postCreate(Request $request)
     {
 //        (round($n)%$x === 0) ? round($n) : round(($n+$x/2)/$x)*$x;
+//        dd($request->all());
         $movie = Movie::find($request->movie);
         $endTimeTemp = strtotime($request->startTime) + ($movie->showTime * 60);
         $endTimeHour = date('H', $endTimeTemp);
@@ -52,17 +53,47 @@ class SchedulesController extends Controller
             $endTimeHour++;
             $endTimeMinutesRounded = 0;
         }
+        $startTime = $request->startTime;
         $endTime = $endTimeHour . ':' . $endTimeMinutesRounded;
-        $schedule = new Schedule([
-            'room_id' => $request->room,
-            'movie_id' => $request->movie,
-            'audio_id' => $request->audio,
-            'subtitle_id' => $request->subtitle,
-            'date' => $request->date,
-            'startTime' => $request->startTime,
-            'endTime' => $endTime,
-        ]);
-        $schedule->save();
+        if ($request->remainingSchedules) {
+            do {
+                $schedule = new Schedule([
+                    'room_id' => $request->room,
+                    'movie_id' => $request->movie,
+                    'audio_id' => $request->audio,
+                    'subtitle_id' => $request->subtitle,
+                    'date' => $request->date,
+                    'startTime' => $startTime,
+                    'endTime' => $endTime,
+                ]);
+                $schedule->save();
+                $startTime = date('H:i', strtotime('+ 10 minutes', strtotime($schedule->endTime )));
+//                dd($startTime);
+                $endTimeTemp = strtotime($startTime) + ($movie->showTime * 60);
+                $endTimeHour = date('H', $endTimeTemp);
+                $endTimeMinutes = date('i', $endTimeTemp);
+                $endTimeMinutesRounded = (int)((round($endTimeMinutes) % 5 === 0) ? round($endTimeMinutes) : round(($endTimeMinutes + 5 / 2) / 5) * 5);
+                if ($endTimeMinutesRounded == 60) {
+                    $endTimeHour++;
+                    $endTimeMinutesRounded = 0;
+                }
+                $endTime = $endTimeHour . ':' . $endTimeMinutesRounded;
+                unset($schedule);
+            } while ($endTime < '22:00');
+        } else {
+
+            $schedule = new Schedule([
+                'room_id' => $request->room,
+                'movie_id' => $request->movie,
+                'audio_id' => $request->audio,
+                'subtitle_id' => $request->subtitle,
+                'date' => $request->date,
+                'startTime' => $request->startTime,
+                'endTime' => $endTime,
+            ]);
+            $schedule->save();
+        }
+
         return redirect('admin/schedule?theater=' . $request->theater . '&date=' . $request->date);
     }
 

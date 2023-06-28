@@ -1,8 +1,8 @@
 @foreach ($room->latestScheduleByDate(date('Y-m-d', strtotime($date_cur))) as $latest)
-        <?php
+        @php
         $endTime = strtotime($latest->endTime);
         $endTimeLatest = date('H:i', $endTime + 600);
-        ?>
+        @endphp
 @endforeach
 <!-- Modal -->
 <div class="modal fade modal-lg" id="CreateScheduleModal_{{ $room->id }}" tabindex="-1" aria-labelledby="CreateScheduleLabel_{{ $room->id }}"
@@ -23,6 +23,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="row">
+
                         <div class="col-6">
                             <div class="form-group">
                                 <label> @lang('lang.time')</label>
@@ -47,6 +48,12 @@
                                     <span class="input-group-text"></span>
                                 </div>
                             </div>
+                            <div class="form-check">
+                                <input id="remainingSchedules_{{$room->id}}" type="checkbox" class="form-check-input" name="remainingSchedules"
+                                       aria-label="">
+                                <label class="custom-control-label">Tất cả suất chiếu trong ngày</label>
+                            </div>
+
                         </div>
                         <div class="col-6">
                             <div class="form-group">
@@ -97,4 +104,6 @@
             </form>
         </div>
     </div>
+
 </div>
+

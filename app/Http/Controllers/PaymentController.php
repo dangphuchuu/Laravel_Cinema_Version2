@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
+
+    public function ticketPayment(Request $request)
+    {
+        $ticket = Ticket::find($request->ticket_id);
+        $ticket->holdState = false;
+        $ticket->totalPrice = $request->totalPrice;
+        $ticket->save();
+
+        return response('', 200);
+    }
+
     public function create(Request $request)
     {
         $ticket = Ticket::find($request->ticket_id);
