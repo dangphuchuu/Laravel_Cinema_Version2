@@ -36,6 +36,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     // statistical
     Route::get('/filter-by-date',[AdminController::class,'filter_by_date']);
     Route::get('/statistical-filter',[AdminController::class,'statistical_filter']);
+    Route::get('/statistical-sortby',[AdminController::class,'statistical_sortby']);
 
     // scan ticket
     Route::prefix('scanTicket')->group(function () {

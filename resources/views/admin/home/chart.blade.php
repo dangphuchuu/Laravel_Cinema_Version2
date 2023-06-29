@@ -39,10 +39,11 @@
                     <div class="col-md-6">
                         <label for="theater" class="form-control-label">@lang('lang.theater')</label>
                         <div class="form-group" style="text-align:center">
-                            <select id="theater" style="width: 70%" class="statistical-theater form-control">
-                                <option value="volvo" selected>Movie Cinema quận 1</option>
-                                <option value="saab">Movie Cinema Nguyễn trãi</option>
-                                <option value="vw">Movie Cinema Quận 8</option>
+                            <select id="theater" style="width: 70%" class="statistical-sortby form-control">
+                                <option value="null" selected>Selected</option>
+                                <option value="ticket">Lọc theo vé</option>
+                                <option value="genre">Lọc theo thể loại</option>
+                                <option value="theater">Lọc theo rạp</option>
                             </select>
                         </div>
                     </div>

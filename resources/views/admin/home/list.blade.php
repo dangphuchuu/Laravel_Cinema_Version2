@@ -13,22 +13,23 @@
 @endsection
 @section('scripts')
 <script type="text/javascript">
-    var chart =  new Morris.Bar({
-        element: 'admin_chart',
-        barColors: ['#09b1f3','#fc8710','#FF6541','#A4ADD3','#766B56'],
-        parseTime: false,
-        hideHover: 'auto',
-        data:[
-                {
-                    date:null,total:null,seat_count:null
-                }
-            ],
-        xkey: 'date',
-        ykeys: ['total','seat_count'],
-        labels: ['total','seat_count']
-    });
 
     $(document).ready(function (){
+        var chart =  new Morris.Bar({
+            element: 'admin_chart',
+            barColors: ['#09b1f3','#fc8710','#FF6541','#A4ADD3','#766B56'],
+            parseTime: false,
+            hideHover: 'auto',
+            data:[
+                {
+                    date:null,total:null
+                }
+            ],
+            xkey: 'date',
+            ykeys: ['total'],
+            labels: ['total']
+        });
+        //btn-statistical-filter-from-to-date
         $('#btn-statistical-filter').click(function (){
             var from_date = $('#start_time').val();
             var to_date = $('#end_time').val();
@@ -47,6 +48,21 @@
                 },
                 success:function (data)
                 {
+                    $('#admin_chart').empty();
+                     chart =  new Morris.Bar({
+                        element: 'admin_chart',
+                        barColors: ['#09b1f3','#fc8710','#FF6541','#A4ADD3','#766B56'],
+                        parseTime: false,
+                        hideHover: 'auto',
+                        data:[
+                            {
+                                date:null,total:null
+                            }
+                        ],
+                        xkey: 'date',
+                        ykeys: ['total'],
+                        labels: ['total']
+                    });
                     if(data['success'])
                     {
                         chart.setData(data.chart_data);
@@ -58,6 +74,8 @@
 
             })
         });
+
+        //statistical-filter
         $('.statistical-filter').change(function (){
             var statistical_value = $(this).val();
             if(statistical_value === "null"){
@@ -69,6 +87,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
             $.ajax({
                 url:"admin/statistical-filter",
                 method:"GET",
@@ -78,6 +97,68 @@
                 },
                 success:function (data)
                 {
+                    $('#admin_chart').empty();
+                     chart =  new Morris.Bar({
+                        element: 'admin_chart',
+                        barColors: ['#09b1f3','#fc8710','#FF6541','#A4ADD3','#766B56'],
+                        parseTime: false,
+                        hideHover: 'auto',
+                        data:[
+                            {
+                                date:null,total:null,seat_count:null
+                            }
+                        ],
+                        xkey: 'date',
+                        ykeys: ['total','seat_count'],
+                        labels: ['total','seat_count']
+                    });
+                    if(data['success'])
+                    {
+                        chart.setData(data.chart_data);
+                    }
+                    else if(data['error']){
+                        alert(data.error);
+                    }
+                }
+            });
+        });
+
+        //statistical sortby
+        $('.statistical-sortby').change(function (){
+            var statistical_value = $(this).val();
+            if(statistical_value === "null"){
+                chart.setData([{date:null,seat_count:null}]);
+                return ;
+            }
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:"admin/statistical-sortby",
+                method:"GET",
+                datatype: "JSON",
+                data: {
+                    'statistical_value' : statistical_value,
+                },
+                success:function (data)
+                {
+                    $('#admin_chart').empty();
+                     chart =  new Morris.Bar({
+                        element: 'admin_chart',
+                        barColors: ['#fc8710','#FF6541','#A4ADD3','#766B56'],
+                        parseTime: false,
+                        hideHover: 'auto',
+                        data:[
+                            {
+                                date:null,seat_count:null
+                            }
+                        ],
+                        xkey: 'date',
+                        ykeys: ['seat_count'],
+                        labels: ['seat_count']
+                    });
                     if(data['success'])
                     {
                         chart.setData(data.chart_data);

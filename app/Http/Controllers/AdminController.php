@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Feedback;
 use App\Models\Theater;
 use App\Models\Ticket;
+use App\Models\TicketSeat;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -21,24 +22,24 @@ class AdminController extends Controller
 
     public function home(Request $request)
     {
-        $ticket = Ticket::whereDate('created_at', Carbon::today())->get();
-
-        $today_now = Carbon::now('Asia/Ho_Chi_Minh');
-
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->endOfDay();
+        $year = Carbon::now('Asia/Ho_Chi_Minh')->subDays(365)->startOfYear()->toDateString();
         $start_of_month = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth();
+        $total_year = Ticket::whereBetween('created_at',[$year, $now])->where('holdState', 0)->orderBy('created_at','ASC')->get();
 
-        $total_sum_month = Ticket::whereBetween('created_at',[$start_of_month, $today_now])->where('holdState', 0)->orderBy('created_at','ASC')->get();
-
+        $ticket = Ticket::whereDate('created_at', Carbon::today())->get();
+        $ticket_seat = TicketSeat::get()->whereBetween('created_at',[$year, $now])->count();
         $user = User::role('user')->get();
+
         $sum =0 ;
         $sum_today = 0;
-        $seat = 0;
-        foreach($total_sum_month as $value){
+        //total of month
+        foreach($total_year as $value){
             $sum+= $value['totalPrice'];
         }
+        //total today
         foreach($ticket as $today){
             $sum_today += $today['totalPrice'];
-            $seat += $today['ticketSeats']->count();
         }
 
         return view('admin.home.list', [
@@ -46,9 +47,10 @@ class AdminController extends Controller
             'ticket'=>$ticket,
             'sum'=>$sum,
             'sum_today'=>$sum_today,
-            'today_now'=>$today_now,
-            'seat'=>$seat,
+            'now'=>$now,
             'start_of_month'=>$start_of_month,
+            'ticket_seat'=>$ticket_seat,
+            'year'=>$year,
         ]);
     }
     public function filter_by_date(Request $request){
@@ -92,7 +94,7 @@ class AdminController extends Controller
         }
         return response()->json([
             'success'=>'Thành công',
-            'chart_data'=>$chart_data,
+            'chart_data'=>$chart_data
         ]);
     }
 
@@ -174,6 +176,49 @@ class AdminController extends Controller
         ]);
     }
 
+    public function statistical_sortby(Request $request){
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->endOfDay();
+        $year = Carbon::now('Asia/Ho_Chi_Minh')->subDays(365)->startOfYear()->toDateString();
+
+        $get= Ticket::whereBetween('created_at',[$year,$now])->where('holdState', 0)->orderBy('created_at','ASC')->get();
+        $value_first = $get->first();
+        $value_last = $get->last();
+        $date_current = date("m-Y",strtotime($value_first['created_at']));
+
+        $seat_count = 0;
+        $chart_data = [];
+        if($request['statistical_value'] == 'ticket')
+        {
+            foreach($get as $value){
+                if($date_current == date("m-Y",strtotime($value['created_at'])))
+                {
+                    $seat_count += $value['ticketSeats']->count();
+                }else{
+                    $data = array(
+                        'date'=>  $date_current ,
+                        'seat_count'=> $seat_count
+                    );
+                    $date_current = date("m-Y",strtotime($value['created_at']));
+                    $seat_count = $value['ticketSeats']->count();
+                    array_push($chart_data,$data);
+                }
+                if($value_last->id == $value['id']){
+                    $data = array(
+                        'date'=> date("m-Y",strtotime($value['created_at'])),
+                        'seat_count'=> $seat_count
+                    );
+                    array_push($chart_data,$data);
+                }
+            }
+        }
+//        if($request['statistical_value'] == 'genre'){
+//
+//        }
+        return response()->json([
+            'success'=> 'Thành công',
+            'chart_data'=>$chart_data,
+        ]);
+    }
     //User
     public function user()
     {

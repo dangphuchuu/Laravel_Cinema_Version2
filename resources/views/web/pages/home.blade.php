@@ -10,7 +10,7 @@
                     <div class="carousel-item @if($loop->first) active @endif">
                         @if(strstr($banner->image,"https") == "")
                             <img
-                                src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
+                                src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $banner['image'] !!}.jpg"
                                 class="d-block w-100" style="max-height: 600px; object-fit: contain; object-position: 50% 100%" alt="...">
                         @else
                             <img
