@@ -221,26 +221,7 @@ class WebController extends Controller
 
     public function schedulesByMovie(Request $request)
     {
-        $cities = [];
         $theaters = Theater::where('status', 1)->get();
-        foreach ($theaters as $theater) {
-            if (array_search($theater->city, $cities)) {
-                continue;
-            } else {
-                array_push($cities, $theater->city);
-            }
-        }
-        if (isset($request->city)) {
-            $city_cur = $request->city;
-        } else {
-            $city_cur = $cities[0];
-        }
-        if (isset($request->date)) {
-            $date_cur = $request->date;
-        } else {
-            $date_cur = date('Y-m-d');
-        }
-        $theaters_city = Theater::where('status', 1)->where('city', $city_cur)->get();
         $roomTypes = RoomType::all();
         $movies = Movie::whereDate('releaseDate', '<=', Carbon::today()->format('Y-m-d'))
             ->where('endDate', '>=', Carbon::today()->format('Y-m-d'))
@@ -250,11 +231,7 @@ class WebController extends Controller
         return view('web.pages.schedulesMovie', [
             'movies' => $movies,
             'theaters' => $theaters,
-            'cities' => $cities,
-            'date_cur' => $date_cur,
-            'city_cur' => $city_cur,
             'roomTypes' => $roomTypes,
-            'theaters_city' => $theaters_city,
         ]);
     }
 
@@ -299,7 +276,7 @@ class WebController extends Controller
         $moviesEarly = Movie::join('schedules', 'movies.id', '=', 'schedules.movie_id')
             ->select('movies.*')
             ->where('movies.status', 1)
-            ->where('schedules.early', true)->get();
+            ->where('schedules.early', true)->groupBy('movies.name')->get();
         $movieGenres = MovieGenres::all();
         $rating = Rating::all();
         return view('web.pages.movies', [

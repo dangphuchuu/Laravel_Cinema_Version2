@@ -1,10 +1,13 @@
-<div class="collapse collapse-horizontal multi-collapse_Movie_{{ $movie->id }}" id="movieSchedules_{{$movie->id}}"
+<div class="collapse multi-collapse_Movie_{{ $movie->id }}" id="movieSchedules_{{$movie->id}}"
      data-bs-parent="#collapseMovieParent">
     <div class="mt-2">
         <h4>@lang('lang.movie_schedule')</h4>
-        <div class="d-flex flex-column mt-2 mb-5">
-            @foreach($theaters_city as $theater)
-                @if($theater->schedulesByDateAndMovie($date_cur, $movie->id)->count() > 0)
+        <div class="d-flex flex-column mt-2 mb-5" id="schedulesMain_{{$movie->id}}">
+            @for($i = 0; $i <= 7; $i++)
+                <div class="collapse collapse-horizontal" id="schedule_{{$movie->id}}_date_{{$i}}"
+                     data-bs-parent="#schedulesMain_{{$movie->id}}">
+                @foreach($theaters as $theater)
+                @if($theater->schedulesByDateAndMovie(date('Y-m-d', strtotime('+ '.$i.' day', strtotime(today()))), $movie->id)->count() > 0)
                     <div class="p-2 d-flex flex-row m-1 align-items-center" style="background: #f5f5f5">
                         <div class="flex-shrink-1 p-3">
                             <h6 class="fw-bold">{{ $theater->name }}</h6>
@@ -12,12 +15,11 @@
                         {{-- a Theater schedule --}}
                         <div class="flex-fill border-start border-5 border-white p-2 ps-4">
                             @foreach($roomTypes as $roomType)
-                                @if($roomType->schedulesByDateAndTheaterAndMovie($date_cur, $theater->id, $movie->id)->count() > 0)
-
+                                @if($roomType->schedulesByDateAndTheaterAndMovie(date('Y-m-d', strtotime('+ '.$i.' day', strtotime(today()))), $theater->id, $movie->id)->count() > 0)
                                     <div class="d-flex flex-column flex-nowrap overflow-auto mb-4">
                                         <div class="fw-bold">{{ $roomType->name }}</div>
                                         <div class="d-flex flex-wrap overflow-wrapper">
-                                            @foreach($roomType->schedulesByDateAndTheaterAndMovie($date_cur, $theater->id, $movie->id) as $schedule)
+                                            @foreach($roomType->schedulesByDateAndTheaterAndMovie(date('Y-m-d', strtotime('+ '.$i.' day', strtotime(today()))), $theater->id, $movie->id) as $schedule)
                                                 @if(date('Y-m-d') == $schedule->date)
                                                     @if(date('H:i', strtotime('+ 20 minutes', strtotime($schedule->startTime))) >= date('H:i'))
                                                         @if(Auth::check())
@@ -71,6 +73,8 @@
                     </div>
                 @endif
             @endforeach
+                </div>
+            @endfor
         </div>
     </div>
 </div>

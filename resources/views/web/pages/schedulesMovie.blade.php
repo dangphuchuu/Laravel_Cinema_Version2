@@ -3,6 +3,26 @@
     active
 @endsection
 @section('css')
+    .swiper {
+    width: 100%;
+    height: auto;
+    }
+
+    .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
 @endsection
 @section('content')
     <section class="container-lg clearfix">
@@ -28,20 +48,23 @@
 
             <div id="lichtheophim" class="collapse show" data-bs-parent="#schedules">
                 {{-- Carousel Movies --}}
-                <div class="d-flex container flex-row flex-nowrap overflow-x-auto mb-4 carousel_movie">
+                <div class="owl-carousel">
                     @foreach($movies as $movie)
                             <?php $film[$movie->id] = $movie ?>
-                        <button data-bs-toggle="collapse"
-                                data-bs-target=".multi-collapse_Movie_{{ $movie->id }}"
-                                aria-controls="#movieChoice_{{$movie->id}} #movieSchedules_{{$movie->id}}"
-                                class="btn btn-block border-0 p-2 movie_btn">
-                            @if(strstr($movie->image,"https") === "")
-                                <img class="rounded d-block movie_img icon-link-hover" style="width: 200px; height: 300px" alt="..."
-                                     src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $movie->image }}.jpg">
-                            @else
-                                <img class="rounded d-block movie_img" style="width: 200px; height: 300px" alt="..." src="{{ $movie->image }}">
-                            @endif
-                        </button>
+                            <div class="item">
+                                <button data-bs-toggle="collapse"
+                                        data-bs-target=".multi-collapse_Movie_{{ $movie->id }}"
+                                        aria-expanded="false"
+                                        aria-controls="movieChoice_{{$movie->id}} movieSchedules_{{$movie->id}}"
+                                        class="btn btn-block border-0 p-2">
+                                    @if(strstr($movie->image,"https") === "")
+                                        <img class="rounded" style="width: 200px; height: 300px" alt="..."
+                                             src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $movie->image }}.jpg">
+                                    @else
+                                        <img class="rounded" style="width: 200px; height: 300px" alt="..." src="{{ $movie->image }}">
+                                    @endif
+                                </button>
+                            </div>
                     @endforeach
                 </div>
 
@@ -104,43 +127,27 @@
                                     </p>
                                 </div>
                             </div>
+                            <ul class="list-group list-group-horizontal flex-wrap">
+                                @for($i = 0; $i <= 7; $i++)
+                                    <li class="list-group-item border-0">
+                                        <button data-bs-toggle="collapse"
+                                                data-bs-target="#schedule_{{$movie->id}}_date_{{$i}}"
+                                                aria-expanded="false"
+                                                class="btn btn-block btn-outline-dark p-2 m-2">
+                                            {{ date('D d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
+                                        </button>
+                                    </li>
+                                @endfor
+                            </ul>
                         </div>
                         <!-- Movie: end -->
                     @endforeach
 
-                    <div class="mt-2">
-                        <form action="/schedulesByMovie" method="get">
-                            @csrf
-                            <div class="row container">
-                                <div class="col-5">
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-gray-200"> @lang('lang.city')</span>
-                                        <select id="theater" class="form-select ps-2" name="city" aria-label="">
-                                            @foreach($cities as $city)
-                                                <option value="{{ $city }}" @if($city == $city_cur) selected @endif>
-                                                    {{ $city }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-5">
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-gray-200"> @lang('lang.show_date')</span>
-                                        <input class="form-control ps-2" type="date" min="{{ date('Y-m-d') }}" name="date" value="{{ $date_cur }}"
-                                               aria-label="">
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+
                     @foreach($movies as $movie)
-                        @if($movie->schedules->count() > 0)
+{{--                        @if($movie->schedules->count() > 0)--}}
                             @include('web.layout.schedulesByMovie')
-                        @endif
+{{--                        @endif--}}
                     @endforeach
                 </div>
             </div>
@@ -164,6 +171,38 @@
             $(".theater_item .btn_theater").on("click", function () {
                 $(".theater_item ").find(".btn_theater").removeClass("btn-warning").prop('disabled', false);
                 $(this).addClass("btn-warning").prop('disabled', true);
+            });
+
+            var $owlMovies = $('.owl-carousel');
+            $owlMovies.owlCarousel({
+                loop:true,
+                nav:true,
+                margin:10,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:3
+                    },
+                    960:{
+                        items:4
+                    },
+                    1400:{
+                        items:6
+                    }
+                },
+                autoplay:true,
+                autoplayTimeout:2000,
+                autoplayHoverPause:true,
+            });
+            $owlMovies.on('mousewheel', '.owl-stage', function (e) {
+                if (e.deltaY>0) {
+                    owl.trigger('next.owl');
+                } else {
+                    owl.trigger('prev.owl');
+                }
+                e.preventDefault();
             });
         })
     </script>
