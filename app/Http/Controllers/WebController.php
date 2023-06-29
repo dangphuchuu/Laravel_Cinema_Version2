@@ -422,7 +422,8 @@ class WebController extends Controller
         {
             $sum+= $ticket['totalPrice'];
         }
-        return view('web.pages.profile', ['user' => $user,'sum'=>$sum]);
+        $sum_percent = ($sum*100)/4000000;
+        return view('web.pages.profile', ['user' => $user,'sum'=>$sum,'sum_percent'=>$sum_percent]);
     }
 
     public function editProfile(Request $request)

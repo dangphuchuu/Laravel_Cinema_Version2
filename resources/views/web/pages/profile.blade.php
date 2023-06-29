@@ -66,7 +66,37 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                             <input type="text" class="form-control" name="phone"  value="{!! $user['phone'] !!}" aria-label="">
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 ">
+                                          <div class="col text-end">
+                                              <img style="width: 40px" src="images/icon/vip.ico">
+                                          </div>
+                                        <div class="col">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
+                                                     role="progressbar"
+                                                     aria-valuenow="{!! $sum_percent !!}"
+                                                     aria-valuemin="0" aria-valuemax="100"
+                                                     style="width:
+                                                     @if($sum_percent <100)
+                                                     {!! $sum_percent !!}%
+                                                     @else
+                                                     100%
+                                                     @endif
+                                                     ">
+                                                    @if($sum_percent < 100)
+                                                        {!! $sum_percent !!}%
+                                                    @else
+                                                        100%
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="col-md-12 mt-4">
                                         <table class="table table-bordered ">
                                             <thead>
                                                 <tr>
