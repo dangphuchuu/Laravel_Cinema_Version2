@@ -134,7 +134,7 @@
                                                 data-bs-target="#schedule_{{$movie->id}}_date_{{$i}}"
                                                 aria-expanded="false"
                                                 class="btn btn-block btn-outline-dark p-2 m-2">
-                                            {{ date('D d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
+                                            {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
                                         </button>
                                     </li>
                                 @endfor

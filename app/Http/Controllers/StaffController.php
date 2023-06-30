@@ -243,6 +243,7 @@ class StaffController extends Controller
         $check = true;
 
         $ticket = Ticket::where('code', 'LIKE', $request->code)->first();
+        $ticket->status = false;
         if (!$ticket) {
             $message = 'không tìm thấy vé';
             $check = false;
