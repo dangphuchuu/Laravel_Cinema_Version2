@@ -482,7 +482,7 @@ class WebController extends Controller
     public function ticketPaid_image(Request $request) {
 
         function base64ToImage($base64_string, $output_file) {
-            $file = fopen($output_file, "wb");
+            $file = fopen($output_file, "w+");
 
 //            $data = explode(',', $base64_string);
 
