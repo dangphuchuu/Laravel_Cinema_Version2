@@ -316,7 +316,7 @@
     window.onload = () => {
         ticket = document.getElementById('photo');
         html2canvas(ticket).then((canvas) => {
-            image = canvas.toDataURL('image/PNG', 1.0);
+            image = canvas.toDataURL('image/PNG');
             @if(isset(Auth::user()->email))
                 $.ajaxSetup({
                     headers: {
@@ -325,7 +325,7 @@
                 });
                 $.ajax({
                     url: '/ticketPaid/image',
-                    type: 'GET',
+                    type: 'POST',
                     dataType: 'json',
                     data: {
                         'image' : image
