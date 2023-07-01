@@ -325,7 +325,7 @@
                 });
                 $.ajax({
                     url: '/ticketPaid/image',
-                    type: 'POST',
+                    type: 'GET',
                     dataType: 'json',
                     data: {
                         'image' : image

@@ -36,7 +36,6 @@ Route::prefix('/')->middleware('user','role:user')->group(function() {
 
     Route::get('/ticket_discount',[WebController::class,'ticket_apply_discount']);
 
-    Route::post('/ticketPaid/image',[WebController::class,'ticketPaid_image']);
     Route::get('/tickets/completed/{id}', [WebController::class, 'ticketCompleted']);
     Route::post('/tickets/combo/create', [WebController::class, 'ticketComboCreate']);
     Route::delete('/tickets/combo/delete', [WebController::class, 'ticketComboDelete']);
@@ -52,6 +51,7 @@ Route::prefix('/')->middleware('user','role:user')->group(function() {
     Route::get('/update-password',[AuthController::class,'update_password']);
     Route::post('/update-password',[AuthController::class,'Post_update_password']);
 });
+Route::get('/ticketPaid/image',[WebController::class,'ticketPaid_image']);
 Route::get('/verify-email',[AuthController::class,'verify_email']);
 
 Route::post('/feedback',[WebController::class,'feedback']);
