@@ -317,27 +317,27 @@
         ticket = document.getElementById('photo');
         html2canvas(ticket).then((canvas) => {
             image = canvas.toDataURL('image/PNG', 1.0);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            image = canvas.toDataURL('image/PNG', 1.0);
-            $.ajax({
-                url: '/ticketPaid/image',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    'image' : image
-                },
-                statusCode: {
-                    200: (data) => {
-                    },
-                    500: (data) => {
+            @if(isset(Auth::user()->email))
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
-                }
-            });
+                });
+                $.ajax({
+                    url: '/ticketPaid/image',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'image' : image
+                    },
+                    statusCode: {
+                        200: (data) => {
+                        },
+                        500: (data) => {
+                        }
+                    }
+                });
+            @endif
         });
     }
 

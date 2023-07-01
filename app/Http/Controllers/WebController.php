@@ -497,21 +497,22 @@ class WebController extends Controller
         $img = base64ToImage($imgbase64, 'img.png');
         $name = Auth::user()->fullName;
 
-        $email_cus = Auth::user()->email;
-
         $cloud = Cloudinary::upload($img, [
             'folder' => 'ticket_user',
             'format' => 'png',
         ])->getPublicId();
-        if(isset(Auth::user()->email) && Auth::user()->email_verified == 1)
+
+        $email_cur = Auth::user()->email;
+
+        if(Auth::user()->email_verified == 1)
         {
             Mail::send('web.pages.ticket_mail', [
                 'name' => $name,
                 'cloud' => $cloud,
                 'cloud_name' => cloud_name(),
-            ], function ($email) use ($email_cus) {
+            ], function ($email) use ($email_cur) {
                 $email->subject('Vé xem phim tại HM Cinema');
-                $email->to($email_cus);
+                $email->to($email_cur);
             });
         }
         return response();
