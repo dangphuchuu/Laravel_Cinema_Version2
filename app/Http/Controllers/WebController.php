@@ -520,7 +520,7 @@ class WebController extends Controller
                 $email->to($email_cur);
             });
 //        }
-        return response()->json(['img'=>$img]);
+        return response();
     }
     public function refund_ticket(Request $request){
         $ticket = Ticket::find($request->ticket_id);
