@@ -85,6 +85,7 @@ class WebController extends Controller
             'cities' => $cities,
             'city_cur' => $city_cur,
             'roomTypes' => $roomTypes,
+            'theaters' => $theaters,
             'theaters_city' => $theaters_city,
         ]);
     }

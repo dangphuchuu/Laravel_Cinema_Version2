@@ -51,9 +51,8 @@ Route::prefix('/')->middleware('user','role:user')->group(function() {
     Route::post('/forgot_password',[AuthController::class,'forgot_password']);
     Route::get('/update-password',[AuthController::class,'update_password']);
     Route::post('/update-password',[AuthController::class,'Post_update_password']);
-    Route::get('/verify-email',[AuthController::class,'verify_email']);
-
 });
+Route::get('/verify-email',[AuthController::class,'verify_email']);
 
 Route::post('/feedback',[WebController::class,'feedback']);
 Route::get('/contact',[WebController::class,'contact']);

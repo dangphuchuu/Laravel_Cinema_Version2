@@ -107,34 +107,41 @@
             </div>
         </div>
 
-        <form action="/movie/{{$movie->id}}" method="get">
+{{--        <form action="/movie/{{$movie->id}}" method="get">--}}
             @csrf
             <div class="row container mt-5">
-                <div class="col-5">
-                    <div class="input-group">
-                        <span class="input-group-text bg-gray-200"> @lang('lang.city')</span>
-                        <select class="form-select ps-2" name="city" aria-label="">
-                            @foreach($cities as $city)
-                                <option id="{{str_replace(' ', '', $city)}}" value="{{$city}}" @if($city_cur == $city) selected @endif>
-                                    {{$city}}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
+{{--                <div class="col-5">--}}
+{{--                    <div class="input-group">--}}
+{{--                        <span class="input-group-text bg-gray-200"> @lang('lang.city')</span>--}}
+{{--                        <select class="form-select ps-2" name="city" aria-label="">--}}
+{{--                            @foreach($cities as $city)--}}
+{{--                                <option id="{{str_replace(' ', '', $city)}}" value="{{$city}}" @if($city_cur == $city) selected @endif>--}}
+{{--                                    {{$city}}--}}
+{{--                                </option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+                <div class="col-12">
+                    <ul class="list-group list-group-horizontal flex-wrap">
+                        @for($i = 0; $i <= 7; $i++)
+                            <li class="list-group-item border-0">
+                                <button data-bs-toggle="collapse"
+                                        data-bs-target="#schedule_date_{{$i}}"
+                                        aria-expanded="false"
+                                        class="btn btn-block btn-outline-dark p-2 m-2">
+                                    {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
+                                </button>
+                            </li>
+                        @endfor
+                    </ul>
                 </div>
-                <div class="col-5">
-                    <div class="input-group">
-                        <span class="input-group-text bg-gray-200"> @lang('lang.show_date')</span>
-                        <input class="form-control ps-2" type="date" name="date" min="{{ date('Y-m-d') }}" value="{{ date("Y-m-d",strtotime
-                        ($date_cur)) }}"
-                               aria-label="">
-                    </div>
-                </div>
-                <div class="col-2">
-                    <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>
-                </div>
+{{--                <div class="col-2">--}}
+{{--                    <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>--}}
+{{--                </div>--}}
             </div>
-        </form>
+{{--        </form>--}}
+
         @include('web.layout.movieDetailSchedules')
 
     </section>

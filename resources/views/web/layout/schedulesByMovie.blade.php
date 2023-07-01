@@ -4,7 +4,7 @@
         <h4>@lang('lang.movie_schedule')</h4>
         <div class="d-flex flex-column mt-2 mb-5" id="schedulesMain_{{$movie->id}}">
             @for($i = 0; $i <= 7; $i++)
-                <div class="collapse collapse-horizontal" id="schedule_{{$movie->id}}_date_{{$i}}"
+                <div class="collapse collapse-horizontal @if($i == 0) show @endif" id="schedule_{{$movie->id}}_date_{{$i}}"
                      data-bs-parent="#schedulesMain_{{$movie->id}}">
                 @foreach($theaters as $theater)
                 @if($theater->schedulesByDateAndMovie(date('Y-m-d', strtotime('+ '.$i.' day', strtotime(today()))), $movie->id)->count() > 0)
@@ -67,7 +67,6 @@
                                     </div>
                                 @endif
                             @endforeach
-
                         </div>
                         {{-- a Theater schedule: end --}}
                     </div>
