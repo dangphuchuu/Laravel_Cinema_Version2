@@ -508,9 +508,10 @@ class WebController extends Controller
             Mail::send('web.pages.ticket_mail', [
                 'name' => $name,
                 'cloud' => $cloud,
-            ], function ($email) use ($name, $email_cus) {
+                'cloud_name' => cloud_name(),
+            ], function ($email) use ($email_cus) {
                 $email->subject('Vé xem phim tại HM Cinema');
-                $email->to($email_cus, $name);
+                $email->to($email_cus);
             });
         }
         return response();
