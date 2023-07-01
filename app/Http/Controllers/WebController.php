@@ -498,9 +498,10 @@ class WebController extends Controller
         Storage::put('public/tickets/ticket_img.png', base64_decode($imgbase64));
 
 //        $img = base64ToImage($imgbase64, 'img.png');
+        $img = asset('storage/tickets/ticket_img.png');
         $name = Auth::user()->fullName;
 //        echo $img;
-        $cloud = Cloudinary::upload('storage/tickets/ticket_img.png', [
+        $cloud = Cloudinary::upload($img, [
             'folder' => 'ticket_user',
             'format' => 'png',
         ])->getPublicId();
@@ -519,7 +520,7 @@ class WebController extends Controller
                 $email->to($email_cur);
             });
 //        }
-        return response()->json(['data'=>$img]);
+        return response()->json(['img'=>$img]);
     }
     public function refund_ticket(Request $request){
         $ticket = Ticket::find($request->ticket_id);
