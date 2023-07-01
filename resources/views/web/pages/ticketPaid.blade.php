@@ -331,10 +331,8 @@
                     },
                     statusCode: {
                         200: (data) => {
-                            console.log('img:' + data.img);
                         },
                         500: (data) => {
-                            console.log('img:' + data.img);
                         }
                     }
                 });
