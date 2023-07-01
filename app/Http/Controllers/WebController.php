@@ -505,7 +505,6 @@ class WebController extends Controller
             'folder' => 'ticket_user',
             'format' => 'png',
         ])->getPublicId();
-//        $cloud = '';
 
         $email_cur = Auth::user()->email;
 
