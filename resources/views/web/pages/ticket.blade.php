@@ -649,12 +649,13 @@
 
             plusCombo = (id, price, comboName) => {
                 $iCombo++;
-                // if ($iCombo > $i) {
-                //     alert('Đã đạt giới hạn mua combo!!!')
-                //     return;
-                // }
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
+                if ($inputCombo.val() === 4) {
+                    alert('Đã đạt giới hạn mua combo!!!')
+                    return;
+                }
                 $inputCombo.val(parseInt($inputCombo.val()) + 1);
+                $('#Combos').find('.minus_combo').attr('disabled', false)
                 if (parseInt($inputCombo.val()) === 1)
                     $('#ticket_combos').append(`<p id="ticketCombo_${id}">${comboName} x ${parseInt($inputCombo.val())}</p>`);
                 else
@@ -669,6 +670,10 @@
                     $iCombo--;
                 }
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
+                if ($inputCombo.val() === 0) {
+                    $('#Combos').find('.minus_combo').attr('disabled', true)
+                    return;
+                }
                 $inputCombo.val(parseInt($inputCombo.val()) - 1);
                 if (parseInt($inputCombo.val()) === 0) {
                     $(`#ticketCombo_${id}`).remove();
