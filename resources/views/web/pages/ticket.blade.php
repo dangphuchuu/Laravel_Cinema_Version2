@@ -294,7 +294,7 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="input-group">
-                                                        <button class="btn minus_combo"
+                                                        <button class="btn minus_combo disabled"
                                                                 onclick="minusCombo({{$combo->id}}, {{$combo->price}}, '{{ $combo->name }}')">
                                                             <i class="fa-solid fa-circle-minus"></i>
                                                         </button>
@@ -650,12 +650,12 @@
             plusCombo = (id, price, comboName) => {
                 $iCombo++;
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
-                if ($inputCombo.val() === 4) {
-                    alert('Đã đạt giới hạn mua combo!!!')
+                $inputCombo.val(parseInt($inputCombo.val()) + 1);
+                if ($inputCombo.val() === '4') {
+                    $inputCombo.parent().find('.plus_combo').addClass('disabled');
                     return;
                 }
-                $inputCombo.val(parseInt($inputCombo.val()) + 1);
-                $('#Combos').find('.minus_combo').attr('disabled', false)
+                $inputCombo.parent().find('.minus_combo').removeClass('disabled');
                 if (parseInt($inputCombo.val()) === 1)
                     $('#ticket_combos').append(`<p id="ticketCombo_${id}">${comboName} x ${parseInt($inputCombo.val())}</p>`);
                 else
@@ -670,11 +670,12 @@
                     $iCombo--;
                 }
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
-                if ($inputCombo.val() === 0) {
-                    $('#Combos').find('.minus_combo').attr('disabled', true)
+                $inputCombo.val(parseInt($inputCombo.val()) - 1);
+                $inputCombo.parent().find('.plus_combo').removeClass('disabled');
+                if ($inputCombo.val() === '0') {
+                    $inputCombo.parent().find('.minus_combo').addClass('disabled');
                     return;
                 }
-                $inputCombo.val(parseInt($inputCombo.val()) - 1);
                 if (parseInt($inputCombo.val()) === 0) {
                     $(`#ticketCombo_${id}`).remove();
                 } else {
