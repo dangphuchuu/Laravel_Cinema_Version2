@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 class WebController extends Controller
 {
@@ -481,31 +482,34 @@ class WebController extends Controller
     }
     public function ticketPaid_image(Request $request) {
 
-        function base64ToImage($base64_string, $output_file) {
-            $file = fopen($output_file, "w+");
-
-//            $data = explode(',', $base64_string);
-
-            fwrite($file, base64_decode($base64_string));
-            fclose($file);
-
-            return $output_file;
-        }
+//        function base64ToImage($base64_string, $output_file) {
+//            $file = fopen($output_file, "w+");
+//
+////            $data = explode(',', $base64_string);
+//
+//            fwrite($file, base64_decode($base64_string));
+//            fclose($file);
+//
+////            return $file;
+//            return $output_file;
+//        }
 
         $imgbase64 = substr($request->image, 22);
+        Storage::put('public/tickets/ticket_img.png', base64_decode($imgbase64));
 
-        $img = base64ToImage($imgbase64, 'img.png');
+//        $img = base64ToImage($imgbase64, 'img.png');
         $name = Auth::user()->fullName;
-
-        $cloud = Cloudinary::upload($img, [
+//        echo $img;
+        $cloud = Cloudinary::upload('storage/tickets/ticket_img.png', [
             'folder' => 'ticket_user',
             'format' => 'png',
         ])->getPublicId();
+//        $cloud = '';
 
         $email_cur = Auth::user()->email;
 
-        if(Auth::user()->email_verified == 1)
-        {
+//        if(isset(Auth::user()->email) && Auth::user()->email_verified == true)
+//        {
             Mail::send('web.pages.ticket_mail', [
                 'name' => $name,
                 'cloud' => $cloud,
@@ -514,8 +518,8 @@ class WebController extends Controller
                 $email->subject('Vé xem phim tại HM Cinema');
                 $email->to($email_cur);
             });
-        }
-        return response();
+//        }
+        return response()->json(['data'=>$img]);
     }
     public function refund_ticket(Request $request){
         $ticket = Ticket::find($request->ticket_id);

@@ -317,7 +317,6 @@
         ticket = document.getElementById('photo');
         html2canvas(ticket).then((canvas) => {
             image = canvas.toDataURL('image/PNG');
-            @if(isset(Auth::user()->email))
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -332,12 +331,13 @@
                     },
                     statusCode: {
                         200: (data) => {
+                            console.log(data.data);
                         },
                         500: (data) => {
+                            console.log(data.data);
                         }
                     }
                 });
-            @endif
         });
     }
 
