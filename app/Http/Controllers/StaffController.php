@@ -231,7 +231,7 @@ class StaffController extends Controller
         }
         $ticket->save();
 
-        return response('', 200);
+        return response();
     }
 
     public function scanTicket() {
