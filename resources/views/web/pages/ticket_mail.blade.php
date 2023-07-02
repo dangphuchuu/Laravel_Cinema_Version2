@@ -2,6 +2,6 @@
     <h2 style="text-align: center">Xin chào {{ $name }}</h2>
 </div>
 <div style="width: 600px; margin:0 auto">
-    <img src="https://res.cloudinary.com/{{ cloud_name() }}/image/upload/{{ $cloud }}.png" alt="">
+    <img src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $cloud }}.png" alt="">
 </div>
 
