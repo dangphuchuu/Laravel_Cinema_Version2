@@ -149,8 +149,12 @@ class AuthController extends Controller
                     $email->to($to_email, $name);
                 });
                 return redirect()->back()->with('success','Vui lòng kiểm tra email để reset mật khẩu !');
-            }else{
+            }
+            else if(isset($user_email['email']) && $user_email['email_verified'] == 0)
+            {
                 return redirect()->back()->with('warning','Email chưa được kích hoạt trong hệ thống nên không thể reset mật khẩu !');
+            }else{
+                return redirect()->back()->with('warning','Email không tồn tại trong hệ thống !');
             }
         }else{
             return redirect()->back()->with('warning','Email chưa được đăng ký trong hệ thống !');

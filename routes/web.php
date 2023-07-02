@@ -44,14 +44,19 @@ Route::prefix('/')->middleware('user','role:user')->group(function() {
     Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);
 
     Route::post('/refund-ticket',[WebController::class,'refund_ticket']);
-    Route::post('/changePassword',[WebController::class,'changePassword']);
     Route::post('/editProfile',[WebController::class,'editProfile']);
     Route::get('/profile',[WebController::class,'profile']);
 
-    Route::post('/forgot_password',[AuthController::class,'forgot_password']);
-    Route::get('/update-password',[AuthController::class,'update_password']);
-    Route::post('/update-password',[AuthController::class,'Post_update_password']);
+    Route::post('/changePassword',[AuthController::class,'changePassword']);
+
+
 });
+
+Route::get('/update-password',[AuthController::class,'update_password']);
+Route::post('/update-password',[AuthController::class,'Post_update_password']);
+Route::post('/forgot_password',[AuthController::class,'forgot_password']);
+
+
 
 Route::get('/verify-email',[AuthController::class,'verify_email']);
 
