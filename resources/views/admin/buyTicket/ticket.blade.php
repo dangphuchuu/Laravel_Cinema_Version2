@@ -287,14 +287,15 @@
                                                         </div>
                                                         <div class="card-body">
                                                             <div class="input-group">
-                                                                <button class="btn minus_combo"
+                                                                <button class="btn mb-0 minus_combo disabled" type="button"
                                                                         onclick="minusCombo({{$combo->id}}, {{$combo->price}}, '{{ $combo->name }}')">
                                                                     <i class="fa-solid fa-circle-minus"></i>
                                                                 </button>
-                                                                <input type="number" class="form-control input_combo" name="combo[{{$combo->id}}]" value="0"
-                                                                       readonly
+                                                                <input type="number" class="form-control input_combo"
+                                                                       name="combo[{{$combo->id}}]" value="0"
+                                                                       readonly min="0"
                                                                        style="max-width: 80px" aria-label="">
-                                                                <button class="btn plus_combo"
+                                                                <button class="btn mb-0 plus_combo" type="button"
                                                                         onclick="plusCombo({{$combo->id}}, {{$combo->price}}, '{{ $combo->name }}')">
                                                                     <i class="fa-solid fa-circle-plus"></i>
                                                                 </button>
@@ -556,10 +557,10 @@
                 } else {
                     $i++;
                     // Gới hạn chọn ghế
-                    if ($i >= 8) {
-                        alert('chọn tối đa 8 ghế');
-                        return;
-                    }
+                    // if ($i >= 8) {
+                    //     alert('chọn tối đa 8 ghế');
+                    //     return;
+                    // }
 
                     $arrSeatHtml[row + col] = $seatCurrent.clone();
                     $seatCurrent.replaceWith(`<div class="seat d-inline-block mx-1 align-middle py-1 px-0 seat_enable"
@@ -704,12 +705,13 @@
 
             plusCombo = (id, price, comboName) => {
                 $iCombo++;
-                if ($iCombo > $i) {
-                    alert('Đã đạt giới hạn mua combo!!!')
-                    return;
-                }
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
                 $inputCombo.val(parseInt($inputCombo.val()) + 1);
+                // if ($inputCombo.val() === '4') {
+                //     $inputCombo.parent().find('.plus_combo').addClass('disabled');
+                //     return;
+                // }
+                $inputCombo.parent().find('.minus_combo').removeClass('disabled');
                 if (parseInt($inputCombo.val()) === 1)
                     $('#ticket_combos').append(`<p id="ticketCombo_${id}">${comboName} x ${parseInt($inputCombo.val())}</p>`);
                 else
@@ -725,6 +727,11 @@
                 }
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
                 $inputCombo.val(parseInt($inputCombo.val()) - 1);
+                $inputCombo.parent().find('.plus_combo').removeClass('disabled');
+                if ($inputCombo.val() === '0') {
+                    $inputCombo.parent().find('.minus_combo').addClass('disabled');
+                    return;
+                }
                 if (parseInt($inputCombo.val()) === 0) {
                     $(`#ticketCombo_${id}`).remove();
                 } else {

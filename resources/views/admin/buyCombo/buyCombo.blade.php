@@ -108,7 +108,7 @@
                                                         </div>
                                                         <div class="card-body">
                                                             <div class="input-group">
-                                                                <button class="btn mb-0 minus_combo_{{$combo->id}} disabled"
+                                                                <button class="btn mb-0 minus_combo disabled"
                                                                         onclick="minusCombo({{$combo->id}}, {{$combo->price}}, '{{ $combo->name }}')">
                                                                     <i class="fa-solid fa-circle-minus"></i>
                                                                 </button>
@@ -116,7 +116,7 @@
                                                                        name="combo[{{$combo->id}}]" value="0"
                                                                        readonly min="0"
                                                                        style="max-width: 80px" aria-label="">
-                                                                <button class="btn mb-0 plus_combo_{{$combo->id}}"
+                                                                <button class="btn mb-0 plus_combo"
                                                                         onclick="plusCombo({{$combo->id}}, {{$combo->price}}, '{{ $combo->name }}')">
                                                                     <i class="fa-solid fa-circle-plus"></i>
                                                                 </button>
@@ -151,7 +151,7 @@
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="input-group">
-                                                                    <button class="btn mb-0 minus_food_{{$food->id}} disabled"
+                                                                    <button class="btn mb-0 minus_food disabled"
                                                                             onclick="minusFood({{$food->id}}, {{$food->price}}, '{{ $food->name }}')">
                                                                         <i class="fa-solid fa-circle-minus"></i>
                                                                     </button>
@@ -159,7 +159,7 @@
                                                                            name="food[{{$food->id}}]"
                                                                            value="0" readonly min="0"
                                                                            style="max-width: 80px" aria-label="">
-                                                                    <button class="btn mb-0 plus_food_{{$food->id}}"
+                                                                    <button class="btn mb-0 plus_food"
                                                                             onclick="plusFood({{$food->id}}, {{$food->price}}, '{{ $food->name }}')">
                                                                         <i class="fa-solid fa-circle-plus"></i>
                                                                     </button>
@@ -349,6 +349,7 @@
             plusFood = (id, price, foodName) => {
                 $inputFood = $('#Food_' + id).find('.input_food');
                 $inputFood.val(parseInt($inputFood.val()) + 1);
+                $inputFood.parent().find('.minus_food').removeClass('disabled');
                 if (parseInt($inputFood.val()) === 1) {
                     $('.minus_food_' + id).removeClass('disabled');
                     $('#ticket_combos').append(`<p id="ticketFood_${id}">${foodName} x ${parseInt($inputFood.val())}</p>`);
@@ -363,6 +364,10 @@
             minusFood = (id, price, foodName) => {
                 $inputFood = $('#Food_' + id).find('.input_food');
                 $inputFood.val(parseInt($inputFood.val()) - 1);
+                if ($inputFood.val() === '0') {
+                    $inputFood.parent().find('.minus_food').addClass('disabled');
+                    return;
+                }
                 if (parseInt($inputFood.val()) === 0) {
                     $('.minus_food_' + id).addClass('disabled');
                     $(`#ticketFood_${id}`).remove();
@@ -381,12 +386,15 @@
             plusCombo = (id, price, comboName) => {
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
                 $inputCombo.val(parseInt($inputCombo.val()) + 1);
-                if (parseInt($inputCombo.val()) === 1) {
-                    $('.minus_combo_' + id).removeClass('disabled');
+                // if ($inputCombo.val() === '4') {
+                //     $inputCombo.parent().find('.plus_combo').addClass('disabled');
+                //     return;
+                // }
+                $inputCombo.parent().find('.minus_combo').removeClass('disabled');
+                if (parseInt($inputCombo.val()) === 1)
                     $('#ticket_combos').append(`<p id="ticketCombo_${id}">${comboName} x ${parseInt($inputCombo.val())}</p>`);
-                } else {
+                else
                     $(`#ticketCombo_${id}`).replaceWith(`<p id="ticketCombo_${id}">${comboName} x ${parseInt($inputCombo.val())}</p>`);
-                }
                 $sum += price;
                 $('#ticketSeat_totalPrice').text($sum.toLocaleString('vi-VN'));
                 $ticket_combos[id] = [id, parseInt($inputCombo.val())];
@@ -395,8 +403,12 @@
             minusCombo = (id, price, comboName) => {
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
                 $inputCombo.val(parseInt($inputCombo.val()) - 1);
+                $inputCombo.parent().find('.plus_combo').removeClass('disabled');
+                if ($inputCombo.val() === '0') {
+                    $inputCombo.parent().find('.minus_combo').addClass('disabled');
+                    return;
+                }
                 if (parseInt($inputCombo.val()) === 0) {
-                    $('.minus_combo_' + id).addClass('disabled');
                     $(`#ticketCombo_${id}`).remove();
                 } else {
                     $(`#ticketCombo_${id}`).replaceWith(`<p id="ticketCombo_${id}">${comboName} x ${parseInt($inputCombo.val())}</p>`);
