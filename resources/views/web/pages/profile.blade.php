@@ -55,7 +55,7 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                             <input type="email" class="form-control" name="email" value="{!! $user['email'] !!}"  aria-label="">
                                             <labeL class="text-danger">
                                                 @if(isset($user['email']) && $user['email_verified']== 0)
-                                                          Vui lòng kích hoạt mail đẻ nhận các ưu đãi từ HMCinema !
+                                                          @lang('lang.active_email')
                                                    @endif
                                             </labeL>
                                         </div>
