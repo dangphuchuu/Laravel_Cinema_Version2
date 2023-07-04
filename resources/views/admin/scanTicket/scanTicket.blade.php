@@ -7,55 +7,56 @@
             </div>
 
             <div class="card-body pt-2">
-                <div class="col">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <td>@lang('lang.theater')</td>
-                            <td>@lang('lang.room')</td>
-                            <td>@lang('lang.movies')</td>
-                            <td>@lang('lang.showtime_web')</td>
-                            <td>@lang('lang.status')</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td id="theater"></td>
-                            <td id="room"></td>
-                            <td id="movie"></td>
-                            <td id="date"></td>
-                            <td id="startTime"></td>
-                            <td id="status"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="form-group">
-                        <label for="ticket_id" class="form-control-label">@lang('lang.ticket_code')</label>
-                        <input id="ticket_id" class="form-control" name="userCode" type="number" value="" readonly>
-                    </div>
-                    <div class="content-container">
-                        <div id="barcode-scanner-button" class="btn">@lang('lang.barcode_scanner')</div>
-                    </div>
-                    <div id="barcode-scanner-controller" class="controller">
-                        <nav class="navbar navbar-dark">
-                            <div class="navbar-brand mb-0 h3">
-                                <span id="back-button">&#8249;</span>
-                                @lang('lang.barcode_scanner')
-                            </div>
-                            <div class="spacer"></div>
-                            <div class="camera-button-container h3">
-                                <span id="camera-swap-button">&#8645;</span>
-                                <span id="camera-switch-button">&#8646;</span>
-                            </div>
-                        </nav>
-                        <div id="barcode-scanner-container" class="view-controller-container">
-                            <div class="web-sdk-progress-bar"></div>
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>@lang('lang.theater')</td>
+                        <td id="theater"></td>
+                    </tr>
+                    <tr>
+                        <td>@lang('lang.room')</td>
+                        <td id="room"></td>
+                    </tr>
+                    <tr>
+                        <td>@lang('lang.movies')</td>
+                        <td id="movie"></td>
+                    </tr>
+                    <tr>
+                        <td>@lang('lang.showtime_web')</td>
+                        <td id="date"></td>
+                        <td id="startTime"></td>
+                    </tr>
+                    <tr>
+                        <td>@lang('lang.status')</td>
+                        <td id="status"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    <label for="ticket_id" class="form-control-label">@lang('lang.ticket_code')</label>
+                    <input id="ticket_id" class="form-control" name="userCode" type="number" value="" readonly>
+                </div>
+                <div class="content-container">
+                    <div id="barcode-scanner-button" class="btn">@lang('lang.barcode_scanner')</div>
+                </div>
+                <div id="barcode-scanner-controller" class="controller">
+                    <nav class="navbar navbar-dark">
+                        <div class="navbar-brand mb-0 h3">
+                            <span id="back-button">&#8249;</span>
+                            @lang('lang.barcode_scanner')
                         </div>
-                        <div class="action-bar">
-                            <div class="barcode-result-container"></div>
+                        <div class="spacer"></div>
+                        <div class="camera-button-container h3">
+                            <span id="camera-swap-button">&#8645;</span>
+                            <span id="camera-switch-button">&#8646;</span>
                         </div>
+                    </nav>
+                    <div id="barcode-scanner-container" class="view-controller-container">
+                        <div class="web-sdk-progress-bar"></div>
                     </div>
-
+                    <div class="action-bar">
+                        <div class="barcode-result-container"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -171,7 +172,7 @@
                                 $('#movie').text('');
                                 $('#date').text('');
                                 $('#startTime').text('');
-                                $('#status').text('');
+                                $('#status').addClass('text-warning').text('Không tìm thấy vé!');
                             }
 
                         }
