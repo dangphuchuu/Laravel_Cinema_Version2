@@ -200,7 +200,8 @@
 
                                                     {{--Ghế--}}
                                                     @foreach($room->rows as $row)
-                                                        <div class="row d-flex flex-nowrap" id="Row_{{ $row->row }}" style="margin: 2px">
+                                                        <div class="row d-flex flex-nowrap justify-content-center" id="Row_{{ $row->row }}"
+                                                              style="@if($room->seats->count() > 300)width: 1500px;@endif margin: 2px" >
                                                             @foreach($room->seats as $seat)
                                                                 @if($seat->row == $row->row)
                                                                     @for($m = 0; $m < $seat->ms; $m++)
@@ -228,13 +229,13 @@
                                                                     @endfor
                                                                 @endif
                                                             @endforeach
+                                                        </div>
                                                             @for($m = 0; $m < $row->mb; $m++)
                                                                 <div class="row d-flex flex-nowrap" style="margin: 2px">
                                                                     <div class="d-inline-block align-middle disabled seat_empty"
                                                                          style="width: 30px; height: 30px; margin: 2px 0;"></div>
                                                                 </div>
                                                             @endfor
-                                                        </div>
                                                     @endforeach
                                                 </div>
                                             </div>

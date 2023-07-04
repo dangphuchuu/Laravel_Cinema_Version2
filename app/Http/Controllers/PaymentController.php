@@ -115,7 +115,7 @@ class PaymentController extends Controller
                 foreach($user['ticket'] as $ticket)
                 {
                     $money_payment += $ticket['totalPrice'];
-                }
+            }
                 if($money_payment < 4000000){
                     $point = ($ticket['totalPrice']) * 5 / 100;
                 }else{

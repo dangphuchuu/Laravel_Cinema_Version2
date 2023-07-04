@@ -4,7 +4,7 @@
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
-                    <div class="card mb-4">
+                    <div class="card mb-4" @if($room->seats->count() > 300) style="width: 1500px" @endif>
                         <div class="card-header pb-0">
                             <h6>{{$room->name}}</h6>
                         </div>
@@ -82,39 +82,5 @@
         <h1 align="center">Permissions Deny</h1>
     @endcan
 @endsection
-{{--@section('scripts')--}}
-{{--    <script>--}}
-{{--        function seatstatus(seat_id,active){--}}
-{{--            if(active === 1){--}}
-{{--                $("#status" + seat_id).html(' <a href="javascript:void(0)"  class="btn_active" onclick="seatstatus('+ seat_id +',0)">\--}}
-{{--    <span class="badge badge-sm bg-gradient-success">Online</span>\--}}
-{{--</a>')--}}
-{{--            }else{--}}
-{{--                $("#status" + seat_id).html(' <a  href="javascript:void(0)" class="btn_active"  onclick="seatstatus('+ seat_id +',1)">\--}}
-{{--    <span class="badge badge-sm bg-gradient-secondary">Offline</span>\--}}
-{{--</a>')--}}
-{{--            }--}}
-{{--            $.ajaxSetup({--}}
-{{--                headers: {--}}
-{{--                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--                }--}}
-{{--            });--}}
-{{--            $.ajax({--}}
-{{--                url: "/admin/seat/status",--}}
-{{--                type: 'GET',--}}
-{{--                dataType: 'json',--}}
-{{--                data: {--}}
-{{--                    'active': active,--}}
-{{--                    'seat_id': seat_id--}}
-{{--                },--}}
-{{--                success: function (data) {--}}
-{{--                    if (data['success']) {--}}
-{{--                        // alert(data.success);--}}
-{{--                    } else if (data['error']) {--}}
-{{--                        alert(data.error);--}}
-{{--                    }--}}
-{{--                }--}}
-{{--            });--}}
-{{--        }--}}
-{{--    </script>--}}
-{{--@endsection--}}
+@section('scripts')
+@endsection
