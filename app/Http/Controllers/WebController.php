@@ -481,27 +481,9 @@ class WebController extends Controller
         return view('web.pages.contact');
     }
     public function ticketPaid_image(Request $request) {
-
-        function base64ToImage($base64_string, $output_file) {
-            $file = fopen($output_file, "w+");
-
-//            $data = explode(',', $base64_string);
-
-            fwrite($file, base64_decode($base64_string));
-            fclose($file);
-
-//            return $file;
-            return $output_file;
-        }
-
-        $imgbase64 = substr($request->image, 22);
-//        Storage::put('public/tickets/ticket_img.png', base64_decode($imgbase64));
-
-        $img = base64ToImage($imgbase64, 'img.png');
-//        $img = asset('storage/tickets/ticket_img.png');
         $name = Auth::user()->fullName;
-//        echo $img;
-        $cloud = Cloudinary::upload($img, [
+        echo $request->image;
+        $cloud = Cloudinary::upload($request->image, [
             'folder' => 'ticket_user',
             'format' => 'png',
         ])->getPublicId();
