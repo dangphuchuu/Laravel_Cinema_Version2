@@ -8,6 +8,31 @@
 
             <div class="card-body pt-2">
                 <div class="col">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td>@lang('lang.theater')</td>
+                            <td>@lang('lang.room')</td>
+                            <td>@lang('lang.movies')</td>
+                            <td>@lang('lang.showtime_web')</td>
+                            <td>@lang('lang.status')</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td id="theater"></td>
+                            <td id="room"></td>
+                            <td id="movie"></td>
+                            <td id="date"></td>
+                            <td id="startTime"></td>
+                            <td id="status"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-group">
+                        <label for="ticket_id" class="form-control-label">@lang('lang.ticket_code')</label>
+                        <input id="ticket_id" class="form-control" name="userCode" type="number" value="" readonly>
+                    </div>
                     <div class="content-container">
                         <div id="barcode-scanner-button" class="btn">@lang('lang.barcode_scanner')</div>
                     </div>
@@ -31,31 +56,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="ticket_id" class="form-control-label">@lang('lang.ticket_code')</label>
-                        <input id="ticket_id" class="form-control" name="userCode" type="number" value="" readonly>
-                    </div>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <td>@lang('lang.theater')</td>
-                            <td>@lang('lang.room')</td>
-                            <td>@lang('lang.movies')</td>
-                            <td>@lang('lang.showtime_web')</td>
-                            <td>@lang('lang.status')</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td id="theater"></td>
-                            <td id="room"></td>
-                            <td id="movie"></td>
-                            <td id="date"></td>
-                            <td id="startTime"></td>
-                            <td id="status"></td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>

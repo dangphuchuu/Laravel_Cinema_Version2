@@ -40,7 +40,6 @@ Route::prefix('/')->middleware('user','role:user')->group(function() {
     Route::get('/tickets/completed/{id}', [WebController::class, 'ticketCompleted']);
     Route::post('/tickets/combo/create', [WebController::class, 'ticketComboCreate']);
     Route::delete('/tickets/combo/delete', [WebController::class, 'ticketComboDelete']);
-    Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
     Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);
 
     Route::post('/refund-ticket',[WebController::class,'refund_ticket']);
@@ -48,9 +47,9 @@ Route::prefix('/')->middleware('user','role:user')->group(function() {
     Route::get('/profile',[WebController::class,'profile']);
 
     Route::post('/changePassword',[AuthController::class,'changePassword']);
-
-
 });
+
+Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
 
 Route::get('/update-password',[AuthController::class,'update_password']);
 Route::post('/update-password',[AuthController::class,'Post_update_password']);

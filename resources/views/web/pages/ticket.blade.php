@@ -559,7 +559,6 @@
             }
 
             $('#Seats').on('click', '.btn_next', (e) => {
-
                 if (!checkSeats()) {
                     return;
                 }
