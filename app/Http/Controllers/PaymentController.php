@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Discount;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -123,7 +124,9 @@ class PaymentController extends Controller
                 if ($request->hasDiscount == 'false') {
                     $user->point += $point;
                 } else {
-
+                    $discount  = Discount::find($request->hasDiscount);
+                    $discount->quantity--;
+                    $discount->save();
                 }
 
                 $user->save();

@@ -584,16 +584,17 @@ class WebController extends Controller
             ]);
     }
     public function ticket_apply_discount(Request $request){
-        $code = $request->discount;
-        $discount = Discount::all()->where('status',1);
-        foreach($discount as $value){
-            if($value['code'] == $code)
-            {
-                return response()->json([
-                    'success'=>"Áp dụng mã thành công",
-                    'percent'=>$value['percent'],
-                ]);
+        $discount = Discount::where('code', $request->discount)->where('status',1)->get()->first();
+        if($discount)
+        {
+            if ($discount->quantity == 0) {
+                return response()->json(['error'=>'Mã giảm giá đã hết !']);
             }
+            return response()->json([
+                'success' => 'Áp dụng mã thành công',
+                'discount_id' => $discount->id,
+                'percent' => $discount->percent,
+            ]);
         }
         return response()->json(['error'=>'Mã giảm giá không tồn tại !']);
     }

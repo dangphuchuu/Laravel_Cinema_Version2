@@ -808,11 +808,12 @@
                             $sum_discount = ($sum*(100-data.percent))/100;
                             $('#ticketSeat_totalPrice').text($sum_discount.toLocaleString('vi-VN'));
                             $('#amount').val($sum_discount);
-                            $('#hasDiscount').val('true');
-                        } else if (data['error']) {
+                            $('#hasDiscount').val(data.discount_id);
+                        }
+                        if (data['error']) {
                             $('#disCode').text($('#discount').val());
                             $('#disPercent').text('');
-                            $('#disStatus').addClass('text-danger').removeClass('text-success').text('Mã không hợp lệ');
+                            $('#disStatus').addClass('text-danger').removeClass('text-success').text(data['error']);
                         }
                     }
                 });
