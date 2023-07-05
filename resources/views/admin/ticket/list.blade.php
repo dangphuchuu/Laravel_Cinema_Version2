@@ -100,7 +100,7 @@
                                             @endif
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            @if($value['status'] == 1)
+                                            @if($value['receivedCombo'] == 0)
                                                 <span class="badge badge-sm bg-gradient-primary">@lang('lang.not_scanned')</span>
                                             @else
                                                 <span class="badge badge-sm bg-gradient-secondary">@lang('lang.scanned')</span>
