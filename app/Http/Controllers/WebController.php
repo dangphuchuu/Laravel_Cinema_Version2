@@ -26,12 +26,11 @@ use App\Models\User;
 use Carbon\Carbon;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 class WebController extends Controller
 {
@@ -401,9 +400,32 @@ class WebController extends Controller
 
     public function events()
     {
+        $result = new Collection();
         $posts = Post::all();
+        $newss = News::all();
+        foreach ($posts as $post) {
+            $post->setAttribute('type', 'post');
+            $result->push($post);
+        }
+        foreach ($newss as $news) {
+            $news->setAttribute('type', 'news');
+            $result->push($news);
+        }
+        $resultSortByDesc = $result->sortByDesc('created_at');
+        $resultArr = array();
+        foreach ( $resultSortByDesc as $res) {
+            array_push($resultArr, $res);
+        }
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 5;
+//        dd($resultSort->toArray());
+        $currentResults = array_slice($resultArr, $perPage * ($currentPage - 1), $perPage);
+        $paginator =  new LengthAwarePaginator($currentResults, count($resultArr), $perPage, $currentPage, [
+            'path' => '/events'
+        ]);
+//        dd($resultSort);
         return view('web.pages.events', [
-            'posts' => $posts
+            'posts' => $paginator
         ]);
     }
     public function news(Request $request)

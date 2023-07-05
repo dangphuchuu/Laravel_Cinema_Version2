@@ -11,7 +11,7 @@ return [
     'movies' => 'Movies',
     'theater' => 'Theaters',
     'schedule' => 'Schedule',
-    'events' => 'Events',
+    'events' => 'News & Events',
     'ticket' => 'Ticket',
     'food' => 'Food',
     'combo' => 'Combo',

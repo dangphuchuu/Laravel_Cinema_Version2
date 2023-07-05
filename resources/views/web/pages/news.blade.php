@@ -23,7 +23,7 @@
                         <?php $i++ ?>
                     @if($i % 2 == 0)
                         <!-- Post -->
-                        <div class="card text-bg-light mb-3">
+                        <div class="card mb-3">
                             <div class="d-flex">
                                 <div class="flex-shrink-0">
                                     <a href="/news-detail/{!! $value['id'] !!}">
@@ -57,7 +57,7 @@
                         <!-- Post: end -->
                     @else
                         <!-- Post -->
-                        <div class="card text-bg-light mb-3">
+                        <div class="card mb-3">
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <div class="card-body h-75">
