@@ -13,7 +13,21 @@
 @endsection
 @section('scripts')
 <script type="text/javascript">
-
+  flatpickr(  $("#end_time"),{
+        maxDate: "today",
+        dateFormat: "Y-m-d ",
+      "locale": "@lang('lang.language')"
+    });
+  start_time = flatpickr(  $("#start_time"),{
+      maxDate: "today",
+      dateFormat: "Y-m-d ",
+      "locale": "@lang('lang.language')"
+  });
+  $('#end_time').on("change",function (){
+      start_time.set(
+          'maxDate',$('#end_time').val()
+      );
+  });
     $(document).ready(function (){
         var chart =  new Morris.Bar({
             element: 'admin_chart',

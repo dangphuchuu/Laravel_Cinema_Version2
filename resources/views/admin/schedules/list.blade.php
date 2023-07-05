@@ -43,12 +43,11 @@
                                     <div class="col-5">
                                         <div class="input-group">
                                             <span class="input-group-text bg-gray-200"> @lang('lang.show_date')</span>
-                                            <input class="form-control ps-2" min="{{ date("Y-m-d") }}"
-                                                   type="date" name="date" value="{{ date("Y-m-d",strtotime($date_cur)) }}" aria-label="">
+                                            <input name="date" id="date" min="{{ date("Y-m-d") }}" value="{{ date("Y-m-d",strtotime($date_cur)) }}"  class="form-control ps-2"  type="text" >
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>
+                                        <button type="submit" class="btn  bg-gradient-primary">@lang('lang.submit')</button>
                                     </div>
                                 </div>
                             </form>
@@ -184,6 +183,11 @@
 @endsection
 @section('scripts')
     <script>
+        flatpickr(  $("#date"),{
+            minDate: "today",
+            dateFormat: "Y-m-d ",
+            "locale": "@lang('lang.language')"
+        });
         // $(document).ready(function () {
         //     $.ajaxSetup({
         //         headers: {

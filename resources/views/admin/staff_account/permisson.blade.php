@@ -36,10 +36,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success m-b-0" onclick='selects()' value="Select All">@lang('lang.select_all')</button>
-                    <button type="button" class="btn btn-warning m-b-0" onclick='unselects()' value="Select All">@lang('lang.unselect_all')</button>
-                    <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">@lang('lang.close')</button>
-                    <button type="submit" class="btn btn-primary">@lang('lang.save')</button>
+                    <button type="button" class="btn bg-gradient-success m-b-0" onclick='selects()' value="Select All">@lang('lang.select_all')</button>
+                    <button type="button" class="btn bg-gradient-warning m-b-0" onclick='unselects()' value="Select All">@lang('lang.unselect_all')</button>
+                    <button type="button" class="btn bg-gradient-secondary ms-auto" data-bs-dismiss="modal">@lang('lang.close')</button>
+                    <button type="submit" class="btn bg-gradient-info">@lang('lang.save')</button>
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@
                             <div class="card-header pb-0">
                                 <div class="d-flex align-items-center">
                                     <p class="mb-0">@lang('lang.movies')</p>
-                                    <button type="submit" class="btn btn-primary btn-sm ms-auto">@lang('lang.submit')</button>
+                                    <button type="submit" class="btn bg-gradient-primary btn-sm ms-auto">@lang('lang.submit')</button>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -295,7 +295,7 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="movieGenres">@lang('lang.movie_genre')</label>
-                                            <button type="button" class="form-control btn btn-danger float-right mb-3" data-bs-toggle="modal"
+                                            <button type="button" class="form-control btn bg-gradient-danger float-right mb-3" data-bs-toggle="modal"
                                                     data-bs-target="#movie_genre">
                                                 @lang('lang.select')
                                             </button>
@@ -315,13 +315,13 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="releaseDate">@lang('lang.release_date')</label>
-                                            <input id="releaseDate" class="form-control" name="releaseDate" type="date" value="">
+                                            <input name="releaseDate"  id="releaseDate" class="form-control datepicker" placeholder="Please select date" type="text">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="endDate">@lang('lang.end_date')</label>
-                                            <input id="endDate" name="endDate" class="form-control" type="date" value="">
+                                            <input id="endDate" name="endDate" class="form-control datepicker" placeholder="Please select date" type="text">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
@@ -381,6 +381,14 @@
 @endsection
 @section('scripts')
     <script>
+        flatpickr(  $("#endDate"),{
+            dateFormat: "Y-m-d ",
+            "locale": "@lang('lang.language')"
+        });
+        flatpickr(  $("#releaseDate"),{
+            dateFormat: "Y-m-d ",
+            "locale": "@lang('lang.language')"
+        });
         $(document).ready(function () {
             $('#directors').select2();
 

@@ -150,6 +150,7 @@
 <script src="admin_assets/scanbotSDK/js/lib/toastify.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/vn.js"></script>
 
 <script src="admin_assets/scanbotSDK/js/lib/toastify.js"></script> +
 
