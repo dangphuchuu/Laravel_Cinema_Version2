@@ -23,8 +23,7 @@
                     </tr>
                     <tr>
                         <td>@lang('lang.showtime_web')</td>
-                        <td id="date"></td>
-                        <td id="startTime"></td>
+                        <td><span id="date"></span > | <span id="startTime"></span></td>
                     </tr>
                     <tr>
                         <td>@lang('lang.status')</td>
