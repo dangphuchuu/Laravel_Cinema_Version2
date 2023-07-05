@@ -8,7 +8,7 @@
         </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse w-auto h-100" id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse w-auto h-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             @can('movie_genre')
                 <li class="nav-item">
