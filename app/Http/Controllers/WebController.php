@@ -355,9 +355,22 @@ class WebController extends Controller
                 array_push($movies_id, $item->id);
             }
             $movies = Movie::find($movies_id);
-
+            $moviesShowing = $movies->filter(function ($movie) {
+                return ($movie->releaseDate <=  date('Y-m-d') && $movie->endDate >= date('Y-m-d'));
+            });
+            $moviesSoon = $movies->filter(function ($movie) {
+                return $movie->releaseDate >  date('Y-m-d');
+            });
+            $moviesEarly = $movies->filter(function($movie) {
+                foreach ($movie->schedules as $schedule) {
+                    return $schedule->early == true;
+                };
+            });
+//            dd($moviesSoon);
             return view('web.pages.movies', [
-                'movies' => $movies,
+                'movies' => $moviesShowing,
+                'moviesSoon' => $moviesSoon,
+                'moviesEarly' => $moviesEarly,
                 'movieGenres' => $movieGenres,
                 'rating' => $rating,
                 'casts' => $casts,
