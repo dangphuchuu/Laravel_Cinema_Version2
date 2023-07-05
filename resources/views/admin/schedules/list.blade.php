@@ -43,7 +43,8 @@
                                     <div class="col-5">
                                         <div class="input-group">
                                             <span class="input-group-text bg-gray-200"> @lang('lang.show_date')</span>
-                                            <input name="date" id="date" min="{{ date("Y-m-d") }}" value="{{ date("Y-m-d",strtotime($date_cur)) }}"  class="form-control ps-2"  type="text" >
+                                            <input name="date" id="date" value="{{ date("Y-m-d",strtotime($date_cur)) }}" aria-label=""
+                                                   class="form-control ps-2"  type="text" >
                                         </div>
                                     </div>
                                     <div class="col-2">
@@ -138,14 +139,15 @@
                                                         @endforeach
                                                         <tr>
                                                             <td>
-                                                                <button class="btn btn-info" data-bs-toggle="modal"
+                                                                <button class="btn btn-info btn_add" data-bs-toggle="modal"
                                                                         data-bs-target="#CreateScheduleModal_{{ $room->id }}">
                                                                     <i class="fa-regular fa-circle-plus"></i> @lang('lang.add')
                                                                 </button>
                                                             </td>
                                                             <td colspan="3">
                                                                 <div class="d-flex justify-content-end">
-                                                                    <button class="btn btn-warning" onclick="changeAllStatus({{ $room->id }})">
+                                                                    <button class="btn btn-warning btn_changeAllStatus" onclick="changeAllStatus({{
+                                                                    $room->id }})">
                                                                         <i class="fa-solid fa-repeat"></i> Thay đổi trạng thái tất cả
                                                                     </button>
                                                                     <a href="javascript:void(0);"
@@ -183,11 +185,7 @@
 @endsection
 @section('scripts')
     <script>
-        flatpickr(  $("#date"),{
-            minDate: "today",
-            dateFormat: "Y-m-d ",
-            "locale": "@lang('lang.language')"
-        });
+
         // $(document).ready(function () {
         //     $.ajaxSetup({
         //         headers: {
@@ -216,6 +214,19 @@
         //     });
         // });
         $(document).ready(function () {
+            flatpickr(  $("#date"),{
+                dateFormat: "Y-m-d ",
+                "locale": "@lang('lang.language')"
+            });
+
+            @if(date('Y-m-d') > $date_cur)
+                $('.btn-early').addClass('disabled');
+                $('.btn_active').addClass('disabled');
+                $('.btn_changeAllStatus').addClass('disabled');
+                $('.delete_all').addClass('disabled');
+                $('.btn_add').addClass('disabled');
+            @endif
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

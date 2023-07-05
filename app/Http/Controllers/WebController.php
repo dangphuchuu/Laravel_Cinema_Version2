@@ -283,6 +283,7 @@ class WebController extends Controller
         $moviesEarly = Movie::join('schedules', 'movies.id', '=', 'schedules.movie_id')
             ->select('movies.*')
             ->where('movies.status', 1)
+            ->where('movies.releaseDate', '>', date('Y-m-d'))
             ->where('schedules.early', true)->groupBy('movies.name')->get();
         $movieGenres = MovieGenres::all();
         $rating = Rating::all();
@@ -308,11 +309,10 @@ class WebController extends Controller
         if ($request->casts == null && $request->directors == null && $request->movieGenres == null && $request->rating == null) {
             return redirect('/movies');
         } else {
-
             $query = 'SELECT id FROM movies ';
             $join = '';
             $where = ' WHERE ';
-            $groupby = ' GROUP BY movies.id';
+            $groupBy = ' GROUP BY movies.id';
             $arr = [];
             if ($request->movieGenres) {
                 $i = 0;
@@ -348,13 +348,16 @@ class WebController extends Controller
 
             $query .= $join .= $where;
             $query = substr($query, 0, -5);
-            $query .= $groupby;
-            $moviesquery = DB::select($query, $arr);
+            $query .= $groupBy;
+            $moviesQuery = DB::select($query, $arr);
             $movies_id = [];
-            foreach ($moviesquery as $item) {
+            foreach ($moviesQuery as $item) {
                 array_push($movies_id, $item->id);
             }
             $movies = Movie::find($movies_id);
+            $movies = $movies->filter(function ($movie) {
+               return $movie->status == true;
+            });
             $moviesShowing = $movies->filter(function ($movie) {
                 return ($movie->releaseDate <=  date('Y-m-d') && $movie->endDate >= date('Y-m-d'));
             });
@@ -363,10 +366,12 @@ class WebController extends Controller
             });
             $moviesEarly = $movies->filter(function($movie) {
                 foreach ($movie->schedules as $schedule) {
-                    return $schedule->early == true;
+                    if ($schedule->early) {
+                        return $movie;
+                    }
                 };
             });
-//            dd($moviesSoon);
+//            dd($moviesEarly);
             return view('web.pages.movies', [
                 'movies' => $moviesShowing,
                 'moviesSoon' => $moviesSoon,
