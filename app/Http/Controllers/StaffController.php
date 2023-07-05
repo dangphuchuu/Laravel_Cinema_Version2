@@ -243,12 +243,23 @@ class StaffController extends Controller
         $check = true;
 
         $ticket = Ticket::where('code', 'LIKE', $request->code)->first();
-        $ticket->status = false;
+
         if (!$ticket) {
             $message = 'không tìm thấy vé';
             $check = false;
+            return response()->json([
+                'theater' => '',
+                'room' => '',
+                'movie' => '',
+                'date' => '',
+                'startTime' => '',
+                'message' => $message,
+                'check' => $check,
+            ]);
         }
+
         $ticket->status = false;
+
         if ($ticket->schedule->date > date('Y-m-d')) {
             $message = 'Chưa đến ngày chiếu phim';
             $ticket->status = true;
