@@ -31,7 +31,7 @@
                                     <tr>
                                         <td class="align-middle text-center">
                                             @isset($value['schedule'])
-                                            <h6 class="mb-0 text-sm ">{!! $value['schedule']['movie']['name'] !!}</h6>
+                                            <h6 class="mb-0 text-sm " style="width:200px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical">{!! $value['schedule']['movie']['name'] !!}</h6>
                                             @endisset
                                         </td>
                                         <td class="align-middle text-center">
@@ -46,7 +46,7 @@
                                         </td>
                                         <td class="align-middle text-center">
                                             @isset($value['ticketSeats'])
-                                            <span class="text-secondary font-weight-bold">
+                                            <span class="text-secondary font-weight-bold" style="width:200px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical">
                                                 @foreach($value['ticketSeats'] as $seat)
                                                     @if($loop->first)
                                                 {!! $seat['row']."-".$seat['col'] !!}
@@ -59,7 +59,7 @@
                                         </td>
                                         <td>
                                             @if(isset($value->ticketCombos) || isset($value->ticketFoods))
-                                                <span class="text-secondary font-weight-bold">
+                                                <span class="text-secondary font-weight-bold" >
                                                     @foreach($value['ticketCombos'] as $combo)
                                                             • {{ $combo->comboName.' x '. $combo->quantity }} <br>
                                                     @endforeach
