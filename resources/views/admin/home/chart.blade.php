@@ -15,7 +15,8 @@
                         <div class="col-md-5">
                             <label for="end_time"  class="form-control-label">@lang('lang.end_time')</label>
                             <div class="form-group" style="text-align:center">
-                                <input name="end_time" id="end_time" class="form-control"  style="width:70%" type="date" value="">
+                                <input name="end_time" id="end_time" class="form-control datepicker" placeholder="Please select date" type="text" onfocus="focused(this)" onfocusout="defocused(this)">
+
                             </div>
                         </div>
                         <div class="col-md-2">

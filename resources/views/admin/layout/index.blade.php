@@ -12,6 +12,7 @@
     <title>
         Admin Cinema
     </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -148,7 +149,7 @@
 {{--<script src="admin_assets/scanbotSDK/js/utils.js"></script>--}}
 {{--<script src="admin_assets/scanbotSDK/js/view-utils.js"></script>--}}
 {{--<script src="admin_assets/scanbotSDK/main.js"></script>--}}
-
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
 <script>
