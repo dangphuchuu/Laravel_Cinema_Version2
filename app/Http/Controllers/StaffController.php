@@ -215,7 +215,7 @@ class StaffController extends Controller
                 return redirect('admin/buyTicket')->with('success', 'thanh toán thành công !');
             default:
                 Ticket::where('code', $request->vnp_TxnRef)->delete();
-                return redirect('/admin/buyTicket')->with('warning', 'thanh toán thất bại');
+                return redirect('admin/buyTicket')->with('fail', 'thanh toán thất bại');
         }
     }
 
@@ -223,11 +223,11 @@ class StaffController extends Controller
         $ticket = Ticket::find($request->ticket_id);
         $ticket->holdState = false;
         $ticket->totalPrice = $request->totalPrice;
-        if ($request->userCode === null) {
-            $ticket->user_id = Auth::user()->id;
-        } else {
-            $user = User::where('code', $request->userCode)->get()->first();
+        $user = User::where('code', $request->userCode)->get()->first();
+        if ($user) {
             $ticket->user_id = $user->id;
+        } else {
+            $ticket->user_id = Auth::user()->id;
         }
         $ticket->save();
 

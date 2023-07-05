@@ -55,14 +55,12 @@
                             <div class="table-responsive m-2">
                                 <table class="table table-bordered table-striped align-items-center text-center">
                                     <colgroup>
-                                        <col span="1" style="width: 10%;">
-                                        <col span="1" style="width: 30%;">
+                                        <col span="1" style="width: 40%;">
                                         <col span="1" style="width: 30%;">
                                         <col span="1" style="width: 30%;">
                                     </colgroup>
                                     <thead class="table-primary">
                                     <tr>
-                                        <th class="text-uppercase font-weight-bolder">Id</th>
                                         <th class="text-uppercase font-weight-bolder"> @lang('lang.room')</th>
                                         <th class="text-uppercase font-weight-bolder"> @lang('lang.room_type')</th>
                                         <th class="text-uppercase font-weight-bolder"> @lang('lang.seat')</th>
@@ -72,9 +70,6 @@
                                     @isset($theater_cur)
                                         @foreach($theater_cur->rooms as $room)
                                             <tr>
-                                                <td>
-                                                    {{ $room->id }}
-                                                </td>
                                                 <td>
                                                     {{ $room->name }}
                                                 </td>
@@ -86,7 +81,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="4">
+                                                <td colspan="3">
                                                     <table id="room_{{$room->id}}" class="table table-bordered align-items-center">
                                                         <colgroup>
                                                             <col span="1" style="width: 20%;">

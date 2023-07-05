@@ -469,7 +469,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/admin/buyTicket/handleResult" method="post">
+                <form id="moneyPayment" action="/admin/buyTicket/handleResult" method="post">
                     @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -490,7 +490,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn bg-gradient-primary">Thanh toán</button>
+                    <button type="button" onclick="btnMoneyPayment()" class="btn bg-gradient-primary">Thanh toán</button>
                 </div>
                 </form>
             </div>
@@ -500,49 +500,15 @@
 @section('scripts')
     <script>
         $(document).ready(() => {
+
             $i = 0;
             $iCombo = 0;
             let $arrSeatHtml = [];
             let $ticket_seats = {};
             let $ticket_combos = {};
             let $ticket_id = -1;
-            let $countdown = {
-                interval: null
-            };
             let $sum = 0;
             let $holdState = false;
-
-            startTimer = (duration, display, countdown) => {
-                var timer = duration, minutes, seconds;
-                countdown.interval = setInterval(function () {
-                    minutes = parseInt(timer / 60, 10);
-                    seconds = parseInt(timer % 60, 10);
-
-                    minutes = minutes < 10 ? "0" + minutes : minutes;
-                    seconds = seconds < 10 ? "0" + seconds : seconds;
-
-                    display.textContent = minutes + ":" + seconds;
-                    $('#timePayment').val(minutes);
-                    timer--;
-                    if (timer === -2) {
-                        alert('đã quá thời hạn thanh toán');
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }
-                        });
-                        $.ajax({
-                            url: "/tickets/delete",
-                            type: 'DELETE',
-                            dataType: 'json',
-                            data: {
-                                'ticket_id': $ticket_id,
-                            },
-                        });
-                        window.location.replace('/');
-                    }
-                }, 1000);
-            }
 
             seatChoice = (row, col, price) => {
                 var $seatCurrent = $('#Seats').find('#Seat_' + row + col);
@@ -620,14 +586,14 @@
                 }
                 $('#seatChoiceNext').click();
                 if ($i !== 0) {
-                    $('#timer').remove();
-                    $('#ticket_info').append(`<div class="card-footer" style="background: #2e292e;"><div id="timer"
-                     class="d-block bg-light text-dark text-center fs-2 m-3"
-                     style="width: 200px; height: 100px; line-height:100px">
-                       </div></div>`)
-                    var fiveMinutes = 60 * 10,
-                        display = document.querySelector('#timer');
-                    startTimer(fiveMinutes, display, $countdown);
+                    // $('#timer').remove();
+                    // $('#ticket_info').append(`<div class="card-footer" style="background: #2e292e;"><div id="timer"
+                    //  class="d-block bg-light text-dark text-center fs-2 m-3"
+                    //  style="width: 200px; height: 100px; line-height:100px">
+                    //    </div></div>`)
+                    // var fiveMinutes = 60 * 10;
+                    // display = document.querySelector('#timer');
+                    // startTimer(fiveMinutes, display, $countdown);
 
                     $.ajaxSetup({
                         headers: {
@@ -660,8 +626,8 @@
             })
 
             comboBack = () => {
-                $('#timer').remove();
-                clearInterval($countdown.interval);
+                // $('#timer').remove();
+                // clearInterval($countdown.interval);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -849,6 +815,19 @@
                 $('#amount').val($sum2);
                 $('#total').val($sum2);
             })
+
+            btnMoneyPayment = () => {
+                moneyOut = parseInt($('#moneyOut').val());
+                if (moneyOut >= 0) {
+                    $('#moneyPayment').submit();
+                } else {
+                    Swal.fire({
+                        title: 'chưa đủ tiền thanh toán',
+                        icon: 'warning',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
 
             // $('#point').bind('keyup', (e) => {
             //     if ($('#moneyIn').val() !== '') {

@@ -26,12 +26,11 @@ use App\Models\User;
 use Carbon\Carbon;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 class WebController extends Controller
 {
@@ -401,9 +400,32 @@ class WebController extends Controller
 
     public function events()
     {
+        $result = new Collection();
         $posts = Post::all();
+        $newss = News::all();
+        foreach ($posts as $post) {
+            $post->setAttribute('type', 'post');
+            $result->push($post);
+        }
+        foreach ($newss as $news) {
+            $news->setAttribute('type', 'news');
+            $result->push($news);
+        }
+        $resultSortByDesc = $result->sortByDesc('created_at');
+        $resultArr = array();
+        foreach ( $resultSortByDesc as $res) {
+            array_push($resultArr, $res);
+        }
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 5;
+//        dd($resultSort->toArray());
+        $currentResults = array_slice($resultArr, $perPage * ($currentPage - 1), $perPage);
+        $paginator =  new LengthAwarePaginator($currentResults, count($resultArr), $perPage, $currentPage, [
+            'path' => '/events'
+        ]);
+//        dd($resultSort);
         return view('web.pages.events', [
-            'posts' => $posts
+            'posts' => $paginator
         ]);
     }
     public function news(Request $request)
@@ -481,27 +503,9 @@ class WebController extends Controller
         return view('web.pages.contact');
     }
     public function ticketPaid_image(Request $request) {
-
-        function base64ToImage($base64_string, $output_file) {
-            $file = fopen($output_file, "w+");
-
-//            $data = explode(',', $base64_string);
-
-            fwrite($file, base64_decode($base64_string));
-            fclose($file);
-
-//            return $file;
-            return $output_file;
-        }
-
-        $imgbase64 = substr($request->image, 22);
-//        Storage::put('public/tickets/ticket_img.png', base64_decode($imgbase64));
-
-        $img = base64ToImage($imgbase64, 'img.png');
-//        $img = asset('storage/tickets/ticket_img.png');
         $name = Auth::user()->fullName;
-//        echo $img;
-        $cloud = Cloudinary::upload($img, [
+        echo $request->image;
+        $cloud = Cloudinary::upload($request->image, [
             'folder' => 'ticket_user',
             'format' => 'png',
         ])->getPublicId();
@@ -584,16 +588,17 @@ class WebController extends Controller
             ]);
     }
     public function ticket_apply_discount(Request $request){
-        $code = $request->discount;
-        $discount = Discount::all()->where('status',1);
-        foreach($discount as $value){
-            if($value['code'] == $code)
-            {
-                return response()->json([
-                    'success'=>"Áp dụng mã thành công",
-                    'percent'=>$value['percent'],
-                ]);
+        $discount = Discount::where('code', $request->discount)->where('status',1)->get()->first();
+        if($discount)
+        {
+            if ($discount->quantity == 0) {
+                return response()->json(['error'=>'Mã giảm giá đã hết !']);
             }
+            return response()->json([
+                'success' => 'Áp dụng mã thành công',
+                'discount_id' => $discount->id,
+                'percent' => $discount->percent,
+            ]);
         }
         return response()->json(['error'=>'Mã giảm giá không tồn tại !']);
     }

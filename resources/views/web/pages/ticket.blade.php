@@ -200,7 +200,8 @@
 
                                                     {{--Ghế--}}
                                                     @foreach($room->rows as $row)
-                                                        <div class="row d-flex flex-nowrap" id="Row_{{ $row->row }}" style="margin: 2px">
+                                                        <div class="row d-flex flex-nowrap justify-content-center" id="Row_{{ $row->row }}"
+                                                              style="@if($room->seats->count() > 300)width: 1500px;@endif margin: 2px" >
                                                             @foreach($room->seats as $seat)
                                                                 @if($seat->row == $row->row)
                                                                     @for($m = 0; $m < $seat->ms; $m++)
@@ -228,13 +229,13 @@
                                                                     @endfor
                                                                 @endif
                                                             @endforeach
+                                                        </div>
                                                             @for($m = 0; $m < $row->mb; $m++)
                                                                 <div class="row d-flex flex-nowrap" style="margin: 2px">
                                                                     <div class="d-inline-block align-middle disabled seat_empty"
                                                                          style="width: 30px; height: 30px; margin: 2px 0;"></div>
                                                                 </div>
                                                             @endfor
-                                                        </div>
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -558,7 +559,6 @@
             }
 
             $('#Seats').on('click', '.btn_next', (e) => {
-
                 if (!checkSeats()) {
                     return;
                 }
@@ -808,11 +808,12 @@
                             $sum_discount = ($sum*(100-data.percent))/100;
                             $('#ticketSeat_totalPrice').text($sum_discount.toLocaleString('vi-VN'));
                             $('#amount').val($sum_discount);
-                            $('#hasDiscount').val('true');
-                        } else if (data['error']) {
+                            $('#hasDiscount').val(data.discount_id);
+                        }
+                        if (data['error']) {
                             $('#disCode').text($('#discount').val());
                             $('#disPercent').text('');
-                            $('#disStatus').addClass('text-danger').removeClass('text-success').text('Mã không hợp lệ');
+                            $('#disStatus').addClass('text-danger').removeClass('text-success').text(data['error']);
                         }
                     }
                 });

@@ -8,6 +8,22 @@
 
             <div class="card-body pt-2">
                 <div class="col">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td>Tên</td>
+                            <td>Số lượng</td>
+                            <td>Chi tiết</td>
+                            <td id="status">@lang('lang.status')</td>
+                        </tr>
+                        </thead>
+                        <tbody id="listFood">
+                        </tbody>
+                    </table>
+                    <div class="form-group">
+                        <label for="ticket_id" class="form-control-label">@lang('lang.ticket_code')</label>
+                        <input id="ticket_id" class="form-control" name="userCode" type="number" value="" readonly>
+                    </div>
                     <div class="content-container">
                         <div id="barcode-scanner-button" class="btn">@lang('lang.barcode_scanner')</div>
                     </div>
@@ -31,22 +47,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="ticket_id" class="form-control-label">@lang('lang.ticket_code')</label>
-                        <input id="ticket_id" class="form-control" name="userCode" type="number" value="" readonly>
-                    </div>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <td>Tên</td>
-                            <td>Số lượng</td>
-                            <td>Chi tiết</td>
-                            <td id="status">@lang('lang.status')</td>
-                        </tr>
-                        </thead>
-                        <tbody id="listFood">
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>

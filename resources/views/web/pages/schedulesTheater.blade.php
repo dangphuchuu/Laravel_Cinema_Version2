@@ -65,30 +65,35 @@
                                                         <i class="fa-solid fa-map-location-dot"></i>
                                                     </a>
                                                 </div>
+
                                             </div>
+
                                         </div>
                                         <!-- Theater: end -->
                                     @endif
+
                                 @endforeach
                             </div>
                         </div>
                     @endforeach
 
-                    <form action="/schedulesByTheater" method="get">
-                        @csrf
-                        <div class="row container mt-5">
-                            <div class="col-10">
-                                <div class="input-group">
-                                    <span class="input-group-text bg-gray-200"> @lang('lang.show_date')</span>
-                                    <input class="form-control ps-2" type="date" min="{{ date('Y-m-d') }}" name="date" value="{{ $date_cur }}"
-                                           aria-label="">
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>
-                            </div>
-                        </div>
-                    </form>
+
+
+{{--                    <form action="/schedulesByTheater" method="get">--}}
+{{--                        @csrf--}}
+{{--                        <div class="row container mt-5">--}}
+{{--                            <div class="col-10">--}}
+{{--                                <div class="input-group">--}}
+{{--                                    <span class="input-group-text bg-gray-200"> @lang('lang.show_date')</span>--}}
+{{--                                    <input class="form-control ps-2" type="date" min="{{ date('Y-m-d') }}" name="date" value="{{ $date_cur }}"--}}
+{{--                                           aria-label="">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-2">--}}
+{{--                                <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
 
                     <div id="theaterSchedulesParent">
                         @foreach($theaters as $theater)

@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css"
           integrity="sha512-aD9ophpFQ61nFZP6hXYu4Q/b/USW7rpLCQLX6Bi0WJHXNO7Js/fUENpBQf/+P4NtpzNX0jSgR5zVvPOJp+W2Kg==" crossorigin="anonymous"
           referrerpolicy="no-referrer"/>
+    {{-- Sweetalert2 --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.12/sweetalert2.css" integrity="sha512-K0TEY7Pji02TnO4NY04f+IU66vsp8z3ecHoID7y0FSVRJHdlaLp/TkhS5WDL3OygMkVns4bz0/ah4j8M3GgguA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         .dropdown .dropdown-menu.show:before {
@@ -130,7 +132,7 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
 <!--   Moris   -->
-{{--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>--}}
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 {{-- Select2 --}}
@@ -141,15 +143,19 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
 
 {{-- ScanbotSDK --}}
-{{--<script src="admin_assets/scanbotSDK/wasm/ScanbotSDK.min.js"></script>--}}
+
 <script src="https://cdn.jsdelivr.net/npm/scanbot-web-sdk@latest/bundle/ScanbotSDK.min.js"></script>
 <!-- After, initialize the Scanbot SDK in your own script -->
+
 <script src="admin_assets/scanbotSDK/js/lib/toastify.js"></script>
-{{--<script src="admin_assets/scanbotSDK/js/config.js"></script>--}}
-{{--<script src="admin_assets/scanbotSDK/js/utils.js"></script>--}}
-{{--<script src="admin_assets/scanbotSDK/js/view-utils.js"></script>--}}
-{{--<script src="admin_assets/scanbotSDK/main.js"></script>--}}
+
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script src="admin_assets/scanbotSDK/js/lib/toastify.js"></script> +
+
+{{-- SweetAlert2 --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.12/sweetalert2.js" integrity="sha512-ywT1Sl8B8rJwwBWFC3rPTu/VQkDrnS19Kw0Xxa6Y9xvzMSwVMHDQscePPR9yNE0oyVsITEcvUPSDW/aS5KX+Mw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 
 <script>
