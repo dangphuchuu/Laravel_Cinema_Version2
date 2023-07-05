@@ -92,7 +92,11 @@
                                             </button>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <span class="badge badge-sm bg-gradient-success">Online</span>
+                                            @if($value['status'] == 1)
+                                                    <span class="badge badge-sm bg-gradient-success">Online</span>
+                                            @else
+                                                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                            @endif
                                         </td>
                                     </tr>
                                         @include('admin.ticket.barcode')
