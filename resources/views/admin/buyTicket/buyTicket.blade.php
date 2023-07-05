@@ -9,7 +9,7 @@
             <div class="card-body pt-2">
                 <div id="lichtheorap" class="collapse show" data-bs-parent="#schedules">
                     <div id="theaterParent">
-                        <form action="/staff" method="get">
+                        <form action="/admin/buyTicket" method="get">
                             @csrf
                             <div class="row container mt-5">
                                 <div class="col-10">
