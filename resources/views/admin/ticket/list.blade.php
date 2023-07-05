@@ -23,6 +23,7 @@
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.date')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.barcode')</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.status')</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.receivedCombo')</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                     </tr>
                                     </thead>
@@ -92,7 +93,18 @@
                                             </button>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <span class="badge badge-sm bg-gradient-success">Online</span>
+                                            @if($value['status'] == 1)
+                                                    <span class="badge badge-sm bg-gradient-success">@lang('lang.not_scanned')</span>
+                                            @else
+                                                    <span class="badge badge-sm bg-gradient-secondary">@lang('lang.scanned')</span>
+                                            @endif
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            @if($value['status'] == 1)
+                                                <span class="badge badge-sm bg-gradient-primary">@lang('lang.not_scanned')</span>
+                                            @else
+                                                <span class="badge badge-sm bg-gradient-secondary">@lang('lang.scanned')</span>
+                                            @endif
                                         </td>
                                     </tr>
                                         @include('admin.ticket.barcode')

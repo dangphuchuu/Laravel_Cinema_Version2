@@ -214,4 +214,7 @@ return [
     'sort_last_month'=>'Lọc tháng trước',
     'sort_by_7days'=>'Lọc theo 7 ngày',
     'active_email'=>'Vui lòng kích hoạt email để nhận các ưu đãi từ HMCinema ! ',
+    'receivedCombo'=>'Trạng thái đã nhận combo',
+    'not_scanned'=>'Chưa nhận',
+    'scanned'=>'Đã nhận',
 ];

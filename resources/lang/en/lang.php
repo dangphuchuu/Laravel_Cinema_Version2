@@ -213,4 +213,7 @@ return [
     'sort_last_month'=>'Sort by last month',
     'sort_by_7days'=>'Sort by 7 days',
     'active_email'=>'Please activate your email to receive more offers from HMCinema !',
+    'receivedCombo'=>'Received Combo',
+    'not_scanned'=>'Not Scanned',
+    'scanned'=>'Scanned',
 ];
