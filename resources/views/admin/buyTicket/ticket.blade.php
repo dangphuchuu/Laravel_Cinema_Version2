@@ -464,7 +464,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="handleMoneyLabel">Modal title</h5>
+                    <h5 class="modal-title" id="handleMoneyLabel">Thanh toán</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -474,7 +474,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="total" class="form-control-label">Tổng tiền vé</label>
-                        <input id="total" class="form-control" name="total" type="number" value="">
+                        <input id="total" class="form-control" name="total" type="number" value="" readonly>
                     </div>
                     <div class="form-group">
                         <label for="moneyIn" class="form-control-label">Khách đưa</label>
@@ -499,16 +499,16 @@
 @endsection
 @section('scripts')
     <script>
-        $(document).ready(() => {
+        $i = 0;
+        $iCombo = 0;
+        let $arrSeatHtml = [];
+        let $ticket_seats = {};
+        let $ticket_combos = {};
+        let $ticket_id = -1;
+        let $sum = 0;
+        let $holdState = false;
 
-            $i = 0;
-            $iCombo = 0;
-            let $arrSeatHtml = [];
-            let $ticket_seats = {};
-            let $ticket_combos = {};
-            let $ticket_id = -1;
-            let $sum = 0;
-            let $holdState = false;
+        $(document).ready(() => {
 
             seatChoice = (row, col, price) => {
                 var $seatCurrent = $('#Seats').find('#Seat_' + row + col);
@@ -854,9 +854,11 @@
             @endforeach
             @endif
             @endforeach
+
+
+
         })
-    </script>
-    <script>
+
         let results = [];
         let scanbotSDK, barcodeScanner;
 
@@ -1026,7 +1028,5 @@
                 controller.style.height = height;
             }
         }
-
-
     </script>
 @endsection
