@@ -159,7 +159,7 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                         <div aria-labelledby="notification-tab">
                             <h3 class="mb-4 text-center">@lang('lang.transaction_history')</h3>
                             <div class="container ">
-                                @foreach( $user['ticket'] as $value)
+                                @foreach( $tickets as $value)
                                 <p style="margin-top: 10px!important;">@lang('lang.ticket_code'): {!! $value['code'] !!} <span>
                                         (@lang('lang.status'):
                                         @if($value['holdState'] == 0 && $value['status'] ==1)
@@ -167,7 +167,7 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                         @elseif($value['holdState'] == 1 && $value['status'] ==1)
                                         @lang('lang.ticket_unSuccess'))
                                         @else
-                                        @lang('lang.ticket_error_booking'))
+                                        @lang('lang.ticket_success'))
                                         @endif</span> </p>
                                 <div class="float-start">
                                     @if(strstr($value['schedule']['movie']['image'],"https") == "")
