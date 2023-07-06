@@ -293,6 +293,12 @@ class StaffController extends Controller
                 $ticket->status = false;
                 $ticket->save();
             }
+            if (strtotime('+ 10 minutes', $ticket->schedule->endTime) > strtotime(date('H:i:s'))) {
+                $message = 'Chưa đến giờ chiếu phim';
+                $check = false;
+                $ticket->status = true;
+                $ticket->save();
+            }
         }
 
         $ticket->save();

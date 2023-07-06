@@ -63,6 +63,7 @@
 @endsection
 @section('scripts')
     <script>
+        let $codeTemp = '';
         let results = [];
         let scanbotSDK, barcodeScanner;
 
@@ -138,44 +139,48 @@
         async function onBarcodesDetected(e) {
             let text = "";
             const $ticketElement = $('#ticket_id');
-            e.barcodes.forEach((barcode) => {
+                e.barcodes.forEach((barcode) => {
                     $ticketElement.val(barcode.text);
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-                    $.ajax({
-                        url: "/admin/scanTicket/handle",
-                        type: 'POST',
-                        dataType: 'json',
-                        data: {
-                            'code': $ticketElement.val(),
-                        },
-                        statusCode: {
-                            200: (data) => {
-                                $('#theater').text(data.theater);
-                                $('#room').text(data.room);
-                                $('#movie').text(data.movie);
-                                $('#date').text(data.date);
-                                $('#startTime').text(data.startTime);
-                                if (data.check) {
-                                    $('#status').addClass('text-success').text(data.message);
-                                } else {
-                                    $('#status').addClass('text-danger').text(data.message);
-                                }
-                            },
-                            500: (data) => {
-                                $('#theater').text('');
-                                $('#room').text('');
-                                $('#movie').text('');
-                                $('#date').text('');
-                                $('#startTime').text('');
-                                $('#status').addClass('text-warning').text('Không tìm thấy vé!');
+                    if ($codeTemp !== barcode.text) {
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             }
+                        });
+                        $.ajax({
+                            url: "/admin/scanTicket/handle",
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                'code': $ticketElement.val(),
+                            },
+                            statusCode: {
+                                200: (data) => {
+                                    $('#theater').text(data.theater);
+                                    $('#room').text(data.room);
+                                    $('#movie').text(data.movie);
+                                    $('#date').text(data.date);
+                                    $('#startTime').text(data.startTime);
+                                    if (data.check) {
+                                        $('#status').addClass('text-success').text(data.message);
+                                    } else {
+                                        $('#status').addClass('text-danger').text(data.message);
+                                    }
+                                    $codeTemp = $ticketElement.val();
+                                },
+                                500: (data) => {
+                                    $('#theater').text('');
+                                    $('#room').text('');
+                                    $('#movie').text('');
+                                    $('#date').text('');
+                                    $('#startTime').text('');
+                                    $('#status').addClass('text-warning').text('Không tìm thấy vé!');
+                                    $codeTemp = $ticketElement.val();
+                                }
 
-                        }
-                    });
+                            }
+                        });
+                    }
             });
 
             let result;
