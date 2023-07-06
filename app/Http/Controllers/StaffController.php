@@ -95,7 +95,7 @@ class StaffController extends Controller
         return response()->json([
             'username' => $user->fullName,
             'userPoint' => $user->point,
-            'userId' => $user->id,
+            'userId' => $user->code,
         ]);
     }
 
