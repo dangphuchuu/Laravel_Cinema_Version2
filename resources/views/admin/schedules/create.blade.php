@@ -23,7 +23,6 @@
                 @csrf
                 <div class="modal-body">
                     <div class="row">
-
                         <div class="col-6">
                             <div class="form-group">
                                 <label> @lang('lang.time')</label>
