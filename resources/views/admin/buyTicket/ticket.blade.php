@@ -464,7 +464,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="handleMoneyLabel">Modal title</h5>
+                    <h5 class="modal-title" id="handleMoneyLabel">Thanh toán</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -854,179 +854,177 @@
             @endforeach
             @endif
             @endforeach
-        })
-    </script>
-    <script>
-        let results = [];
-        let scanbotSDK, barcodeScanner;
 
-        class Config {
-            static license() {
-                return "";
-            }
-            static barcodeScannerContainerId() {
-                return "barcode-scanner-container";
-            }
-        }
 
-        window.onresize = () => {
-            this.resizeContent();
-        };
+            let results = [];
+            let scanbotSDK, barcodeScanner;
 
-        window.onload = async () => {
-            this.resizeContent();
-
-            scanbotSDK = await ScanbotSDK.initialize({ licenseKey: Config.license() });
-
-            $("#barcode-scanner-button").on('click', async (e) => {
-                $("#barcode-scanner-controller").addClass('d-block');
-
-                const barcodeFormats = [
-                    "AZTEC",
-                    "CODABAR",
-                    "CODE_39",
-                    "CODE_93",
-                    "CODE_128",
-                    "DATA_MATRIX",
-                    "EAN_8",
-                    "EAN_13",
-                    "ITF",
-                    "MAXICODE",
-                    "PDF_417",
-                    "QR_CODE",
-                    "RSS_14",
-                    "RSS_EXPANDED",
-                    "UPC_A",
-                    "UPC_E",
-                    "UPC_EAN_EXTENSION",
-                    "MSI_PLESSEY",
-                ];
-
-                const config = {
-                    containerId: Config.barcodeScannerContainerId(),
-                    style: {
-                        window: {
-                            borderColor: "blue"
-                        },
-                        text: {
-                            color: "red",
-                            weight: 500
-                        }
-                    },
-                    onBarcodesDetected: onBarcodesDetected,
-                    returnBarcodeImage: true,
-                    onError: onScannerError,
-                    barcodeFormats: barcodeFormats,
-                    preferredCamera: 'camera2 0, facing back'
-                };
-
-                try {
-                    barcodeScanner = await scanbotSDK.createBarcodeScanner(config);
-                } catch (e) {
-                    console.log(e.name + ': ' + e.message);
-                    alert(e.name + ': ' + e.message);
-                    $("#barcode-scanner-controller").addClass("d-none");
+            class Config {
+                static license() {
+                    return "";
                 }
-            });
+                static barcodeScannerContainerId() {
+                    return "barcode-scanner-container";
+                }
+            }
 
-            $('#back-button').on('click', async (e) => {
-                const controller =
-                    e.target.parentElement.parentElement.parentElement.className;
-                document.getElementByClassName(controller).style.display = "none";
-                barcodeScanner.dispose();
-                barcodeScanner = undefined;
-            })
+            window.onresize = () => {
+                this.resizeContent();
+            };
 
-            $("#camera-swap-button").on('click', async (e) => {
-                barcodeScanner.swapCameraFacing(true);
-            });
+            window.onload = async () => {
+                this.resizeContent();
 
-            $("#camera-switch-button").on('click' ,async (e) => {
-                onCameraSwitch(barcodeScanner);
-            });
-        }
+                scanbotSDK = await ScanbotSDK.initialize({ licenseKey: Config.license() });
 
-        async function onBarcodesDetected(e) {
-            let text = "";
-            e.barcodes.forEach((barcode) => {
-                $('#userId').val(barcode.text);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: "/admin/buyTicket/scanBC",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        'code': barcode.text,
-                    },
-                    statusCode: {
-                        200: (data) => {
-                            $('#username').text(data.username);
-                            $('#userPoint').text(data.userPoint);
-                            $('#userCode').val(data.userId);
-                            $('#userCode2').val(data.userId);
-                            if ($('.table').find('#username').text() === '') {
-                                $('#point').attr('readonly', true);
-                            } else {
-                                $('#point').attr('readonly', false);
+                $("#barcode-scanner-button").on('click', async (e) => {
+                    $("#barcode-scanner-controller").addClass('d-block');
+
+                    const barcodeFormats = [
+                        "AZTEC",
+                        "CODABAR",
+                        "CODE_39",
+                        "CODE_93",
+                        "CODE_128",
+                        "DATA_MATRIX",
+                        "EAN_8",
+                        "EAN_13",
+                        "ITF",
+                        "MAXICODE",
+                        "PDF_417",
+                        "QR_CODE",
+                        "RSS_14",
+                        "RSS_EXPANDED",
+                        "UPC_A",
+                        "UPC_E",
+                        "UPC_EAN_EXTENSION",
+                        "MSI_PLESSEY",
+                    ];
+
+                    const config = {
+                        containerId: Config.barcodeScannerContainerId(),
+                        style: {
+                            window: {
+                                borderColor: "blue"
+                            },
+                            text: {
+                                color: "red",
+                                weight: 500
                             }
-                            $('#point').attr('max', $sum * 90 / 100);
                         },
-                        500: () => {
-                            $('#username').text('');
-                            $('#userPoint').text('');
-                        }
+                        onBarcodesDetected: onBarcodesDetected,
+                        returnBarcodeImage: true,
+                        onError: onScannerError,
+                        barcodeFormats: barcodeFormats,
+                        preferredCamera: 'camera2 0, facing back'
+                    };
 
+                    try {
+                        barcodeScanner = await scanbotSDK.createBarcodeScanner(config);
+                    } catch (e) {
+                        console.log(e.name + ': ' + e.message);
+                        alert(e.name + ': ' + e.message);
+                        $("#barcode-scanner-controller").addClass("d-none");
                     }
                 });
-            });
 
-            let result;
-            if (e.barcodes[0].barcodeImage) {
-                result = await scanbotSDK.toDataUrl(e.barcodes[0].barcodeImage);
+                $('#back-button').on('click', async (e) => {
+                    const controller =
+                        e.target.parentElement.parentElement.parentElement.className;
+                    document.getElementByClassName(controller).style.display = "none";
+                    barcodeScanner.dispose();
+                    barcodeScanner = undefined;
+                })
+
+                $("#camera-swap-button").on('click', async (e) => {
+                    barcodeScanner.swapCameraFacing(true);
+                });
+
+                $("#camera-switch-button").on('click' ,async (e) => {
+                    onCameraSwitch(barcodeScanner);
+                });
             }
 
-            Toastify({ text: text.slice(0, -1), duration: 10000, avatar: result }).showToast();
-        }
+            async function onBarcodesDetected(e) {
+                let text = "";
+                e.barcodes.forEach((barcode) => {
+                    $('#userId').val(barcode.text);
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/admin/buyTicket/scanBC",
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            'code': barcode.text,
+                        },
+                        statusCode: {
+                            200: (data) => {
+                                $('#username').text(data.username);
+                                $('#userPoint').text(data.userPoint);
+                                $('#userCode').val(data.userId);
+                                $('#userCode2').val(data.userId);
+                                if ($('.table').find('#username').text() === '') {
+                                    $('#point').attr('readonly', true);
+                                } else {
+                                    $('#point').attr('readonly', false);
+                                }
+                                $('#point').attr('max', $sum * 90 / 100);
+                            },
+                            500: () => {
+                                $('#username').text('');
+                                $('#userPoint').text('');
+                            }
 
-        async function onCameraSwitch(scanner) {
-            const cameras = await scanner?.fetchAvailableCameras()
-            if (cameras) {
-                const currentCameraInfo = scanner?.getActiveCameraInfo();
-                if (currentCameraInfo) {
-                    const cameraIndex = cameras.findIndex((cameraInfo) => { return cameraInfo.deviceId == currentCameraInfo.deviceId });
-                    const newCameraIndex = (cameraIndex + 1) % (cameras.length);
-                    alert(`Current camera: ${currentCameraInfo.label}.\nSwitching to: ${cameras[newCameraIndex].label}`)
-                    scanner?.switchCamera(cameras[newCameraIndex].deviceId);
+                        }
+                    });
+                });
+
+                let result;
+                if (e.barcodes[0].barcodeImage) {
+                    result = await scanbotSDK.toDataUrl(e.barcodes[0].barcodeImage);
+                }
+
+                Toastify({ text: text.slice(0, -1), duration: 10000, avatar: result }).showToast();
+            }
+
+            async function onCameraSwitch(scanner) {
+                const cameras = await scanner?.fetchAvailableCameras()
+                if (cameras) {
+                    const currentCameraInfo = scanner?.getActiveCameraInfo();
+                    if (currentCameraInfo) {
+                        const cameraIndex = cameras.findIndex((cameraInfo) => { return cameraInfo.deviceId == currentCameraInfo.deviceId });
+                        const newCameraIndex = (cameraIndex + 1) % (cameras.length);
+                        alert(`Current camera: ${currentCameraInfo.label}.\nSwitching to: ${cameras[newCameraIndex].label}`)
+                        scanner?.switchCamera(cameras[newCameraIndex].deviceId);
+                    }
                 }
             }
-        }
 
-        async function onScannerError(e) {
-            console.log("Error:", e);
-            alert(e.name + ': ' + e.message);
-        }
-
-        async function addAllPagesTo(generator) {
-            for (let i = 0; i < results.length; i++) {
-                const result = results[i];
-                await generator.addPage(Utils.imageToDisplay(result));
+            async function onScannerError(e) {
+                console.log("Error:", e);
+                alert(e.name + ': ' + e.message);
             }
-        }
 
-        function resizeContent() {
-            const height = document.body.offsetHeight - (50 + 59);
-            const controllers = document.getElementsByClassName("controller");
-
-            for (let i = 0; i < controllers.length; i++) {
-                const controller = controllers[i];
-                controller.style.height = height;
+            async function addAllPagesTo(generator) {
+                for (let i = 0; i < results.length; i++) {
+                    const result = results[i];
+                    await generator.addPage(Utils.imageToDisplay(result));
+                }
             }
-        }
 
+            function resizeContent() {
+                const height = document.body.offsetHeight - (50 + 59);
+                const controllers = document.getElementsByClassName("controller");
 
+                for (let i = 0; i < controllers.length; i++) {
+                    const controller = controllers[i];
+                    controller.style.height = height;
+                }
+            }
+        })
     </script>
 @endsection
