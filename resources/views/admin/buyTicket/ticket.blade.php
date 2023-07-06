@@ -474,7 +474,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="total" class="form-control-label">Tổng tiền vé</label>
-                        <input id="total" class="form-control" name="total" type="number" value="">
+                        <input id="total" class="form-control" name="total" type="number" value="" readonly>
                     </div>
                     <div class="form-group">
                         <label for="moneyIn" class="form-control-label">Khách đưa</label>
