@@ -232,6 +232,13 @@ class AdminController extends Controller
 //                        dd($data);
                     }
                     $date_current = date("m-Y", strtotime($value['created_at']));
+                    foreach ($theaters as $theater) {
+                        if ($value->schedule_id != null && $value->schedule->room->theater_id == $theater->id) {
+                            $total[$theater->id] = $value['totalPrice'];
+                        } else {
+                            $total[$theater->id] = 0;
+                        }
+                    }
                     array_push($chart_data,$data);
                 }
                 if($value_last->id == $value['id']){
