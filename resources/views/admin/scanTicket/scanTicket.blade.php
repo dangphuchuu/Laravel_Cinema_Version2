@@ -152,7 +152,7 @@
                             type: 'POST',
                             dataType: 'json',
                             data: {
-                                'code': $ticketElement.val(),
+                                'code': barcode.text,
                             },
                             statusCode: {
                                 200: (data) => {

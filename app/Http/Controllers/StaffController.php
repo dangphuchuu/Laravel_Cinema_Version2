@@ -241,10 +241,9 @@ class StaffController extends Controller
     public function handleScanTicket(Request $request) {
         $message = 'vé hợp lệ';
         $check = true;
-
         $ticket = Ticket::where('code',  $request->code)->get()->first();
-
-        if (!$ticket) {
+//        dd($ticket);
+        if (isset($ticket)) {
             $message = 'không tìm thấy vé';
             $check = false;
             return response()->json([
