@@ -174,7 +174,7 @@
                                     $('#movie').text('');
                                     $('#date').text('');
                                     $('#startTime').text('');
-                                    $('#status').addClass('text-warning').text('Không tìm thấy vé!');
+                                    $('#status').addClass('text-warning').text(data.message);
                                     $codeTemp = $ticketElement.val();
                                 }
 

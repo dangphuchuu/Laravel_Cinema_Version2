@@ -242,8 +242,8 @@ class StaffController extends Controller
         $message = 'vé hợp lệ';
         $check = true;
         $ticket = Ticket::where('code',  $request->code)->get()->first();
-//        dd($ticket);
         if (isset($ticket)) {
+//            dd($ticket);
             if ($ticket->status == true) {
                 $ticket->status = false;
                 if ($ticket->schedule->date == date('Y-m-d')) {
@@ -253,7 +253,7 @@ class StaffController extends Controller
                         $ticket->status = false;
                         $ticket->save();
                     }
-                    if (strtotime('+ 10 minutes', $ticket->schedule->startTime) > strtotime(date('H:i:s'))) {
+                    if (strtotime('+ 10 minutes', strtotime($ticket->schedule->startTime)) > strtotime(date('H:i:s'))) {
                         $message = 'Chưa đến giờ chiếu phim';
                         $check = false;
                         $ticket->status = true;
