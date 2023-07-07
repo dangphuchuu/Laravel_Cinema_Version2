@@ -256,50 +256,52 @@ class StaffController extends Controller
                 'message' => $message,
                 'check' => $check,
             ]);
-        }
-
-        if ($ticket->status == false) {
-            $message = 'vé đã sử dụng';
-            $check = false;
-            return response()->json([
-                'theater' => $ticket->schedule->room->theater->name,
-                'room' => $ticket->schedule->room->name,
-                'movie' => $ticket->schedule->movie->name,
-                'date' => $ticket->schedule->date,
-                'startTime' => $ticket->schedule->startTime,
-                'message' => $message,
-                'check' => $check,
-            ]);
-        }
-
-        $ticket->status = false;
-
-        if ($ticket->schedule->date > date('Y-m-d')) {
-            $message = 'Chưa đến ngày chiếu phim';
-            $check = false;
-            $ticket->status = true;
-            $ticket->save();
-        }
-        if ($ticket->schedule->date < date('Y-m-d')) {
-            $message = 'suất chiếu đã kết thúc';
-            $check = false;
-            $ticket->status = false;
-            $ticket->save();
-        }
-        if ($ticket->schedule->date == date('Y-m-d')) {
-            if (strtotime($ticket->schedule->endTime) <= strtotime(date('H:i:s'))) {
-                $message = 'suất chiếu đã kết thúc';
+        } else {
+            if ($ticket->status == false) {
+                $message = 'vé đã sử dụng';
                 $check = false;
+                return response()->json([
+                    'theater' => $ticket->schedule->room->theater->name,
+                    'room' => $ticket->schedule->room->name,
+                    'movie' => $ticket->schedule->movie->name,
+                    'date' => $ticket->schedule->date,
+                    'startTime' => $ticket->schedule->startTime,
+                    'message' => $message,
+                    'check' => $check,
+                ]);
+            } else {
                 $ticket->status = false;
-                $ticket->save();
-            }
-            if (strtotime('+ 10 minutes', $ticket->schedule->endTime) > strtotime(date('H:i:s'))) {
-                $message = 'Chưa đến giờ chiếu phim';
-                $check = false;
-                $ticket->status = true;
-                $ticket->save();
+
+                if ($ticket->schedule->date > date('Y-m-d')) {
+                    $message = 'Chưa đến ngày chiếu phim';
+                    $check = false;
+                    $ticket->status = true;
+                    $ticket->save();
+                }
+                if ($ticket->schedule->date < date('Y-m-d')) {
+                    $message = 'suất chiếu đã kết thúc';
+                    $check = false;
+                    $ticket->status = false;
+                    $ticket->save();
+                }
+                if ($ticket->schedule->date == date('Y-m-d')) {
+                    if (strtotime($ticket->schedule->endTime) <= strtotime(date('H:i:s'))) {
+                        $message = 'suất chiếu đã kết thúc';
+                        $check = false;
+                        $ticket->status = false;
+                        $ticket->save();
+                    }
+                    if (strtotime('+ 10 minutes', $ticket->schedule->startTime) > strtotime(date('H:i:s'))) {
+                        $message = 'Chưa đến giờ chiếu phim';
+                        $check = false;
+                        $ticket->status = true;
+                        $ticket->save();
+                    }
+                }
             }
         }
+
+
 
         $ticket->save();
 
