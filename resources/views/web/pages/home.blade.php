@@ -55,9 +55,7 @@
 
             <div id="vebantruoc" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse"
                  data-bs-parent="#mainContent">
-                @foreach($movies as $movie)
-                    @foreach($movie->schedules as $movie_schedules)
-                    @if(($movie_schedules->early ==1) && ($movie->releaseDate > date("Y-m-d")))
+                @foreach($moviesEarly as $movie)
                         <!-- Movie -->
                         <div class="card-col">
                             <article class="card px-0 overflow-hidden"
@@ -101,8 +99,6 @@
                             </article>
                         </div>
                         <!-- Movie: end -->
-                    @endif
-                    @endforeach
                 @endforeach
             </div>
 

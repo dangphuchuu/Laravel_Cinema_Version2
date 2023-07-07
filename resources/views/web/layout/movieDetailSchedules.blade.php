@@ -1,7 +1,6 @@
-@php use Illuminate\Support\Facades\Auth; @endphp
 <div class="mt-2">
-    <h4>@lang('lang.movie_schedule')</h4>
     <div class="d-flex flex-column mt-2 mb-5" id="schedulesMain">
+
         @for($i = 0; $i <= 7; $i++)
             <div class="collapse collapse-horizontal @if($i == 0) show @endif" id="schedule_date_{{$i}}"
                  data-bs-parent="#schedulesMain">

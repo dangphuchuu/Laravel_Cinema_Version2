@@ -119,12 +119,12 @@
                         hideHover: 'auto',
                         data:[
                             {
-                                date:null,total:null,seat_count:null
+                                date:null,total:null
                             }
                         ],
                         xkey: 'date',
-                        ykeys: ['total','seat_count'],
-                        labels: ['total','seat_count']
+                        ykeys: ['total'],
+                        labels: ['total']
                     });
                     if(data['success'])
                     {
@@ -159,26 +159,50 @@
                 success:function (data)
                 {
                     $('#admin_chart').empty();
-                     chart =  new Morris.Bar({
-                        element: 'admin_chart',
-                        barColors: ['#fc8710','#FF6541','#A4ADD3','#766B56'],
-                        parseTime: false,
-                        hideHover: 'auto',
-                        data:[
-                            {
-                                date:null,seat_count:null
-                            }
-                        ],
-                        xkey: 'date',
-                        ykeys: ['seat_count'],
-                        labels: ['seat_count']
-                    });
-                    if(data['success'])
-                    {
-                        chart.setData(data.chart_data);
-                    }
-                    else if(data['error']){
-                        alert(data.error);
+                    if (statistical_value == 'ticket') {
+                         chart =  new Morris.Bar({
+                            element: 'admin_chart',
+                            barColors: ['#fc8710','#FF6541','#A4ADD3','#766B56'],
+                            parseTime: false,
+                            hideHover: 'auto',
+                            data:[
+                                {
+                                    date:null,seat_count:null
+                                }
+                            ],
+                            xkey: 'date',
+                            ykeys: ['seat_count'],
+                            labels: ['seat_count']
+                        });
+                        if(data['success'])
+                        {
+                            chart.setData(data.chart_data);
+                        }
+                        else if(data['error']){
+                            alert(data.error);
+                        }
+                    } else if (statistical_value == 'theater') {
+                        chart =  new Morris.Bar({
+                            element: 'admin_chart',
+                            barColors: ['#fc8710','#FF6541','#A4ADD3','#766B56'],
+                            parseTime: false,
+                            hideHover: 'auto',
+                            data:[
+                                {
+                                    date:null,seat_count:null
+                                }
+                            ],
+                            xkey: 'date',
+                            ykeys: ['seat_count'],
+                            labels: ['seat_count']
+                        });
+                        if(data['success'])
+                        {
+                            chart.setData(data.chart_data);
+                        }
+                        else if(data['error']){
+                            alert(data.error);
+                        }
                     }
                 }
             });

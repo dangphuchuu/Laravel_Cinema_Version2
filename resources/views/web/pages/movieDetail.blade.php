@@ -122,27 +122,76 @@
 {{--                        </select>--}}
 {{--                    </div>--}}
 {{--                </div>--}}
-                <div class="col-12">
-                    <ul class="list-group list-group-horizontal flex-wrap">
-                        @for($i = 0; $i <= 7; $i++)
-                            <li class="list-group-item border-0">
-                                <button data-bs-toggle="collapse"
-                                        data-bs-target="#schedule_date_{{$i}}"
-                                        aria-expanded="false"
-                                        class="btn btn-block btn-outline-dark p-2 m-2">
-                                    {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
-                                </button>
-                            </li>
-                        @endfor
-                    </ul>
-                </div>
-{{--                <div class="col-2">--}}
-{{--                    <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>--}}
-{{--                </div>--}}
-            </div>
-{{--        </form>--}}
+                @if($schedulesEarly->count() > 0)
+                    <div class="col-12 mt-4">
+                        <h4>Vé bán trước</h4>
+                            @foreach($schedulesEarly as $schedule)
+                                @if(date('Y-m-d') == $schedule->date)
+                                    @if(date('H:i', strtotime('+ 20 minutes', strtotime($schedule->startTime))) >= date('H:i'))
+                                        @if(Auth::check())
+                                            <a href="/tickets/{{$schedule->id}}"
+                                               class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                               style="border-width: 2px; border-style: solid dashed; min-width: 85px">
+                                                <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
+                                                    {{ date('H:i', strtotime($schedule->startTime ).' - '.date('d-m-Y', strtotime($schedule->date)) )}}
+                                                </p>
+                                            </a>
+                                        @else
+                                            <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                               data-bs-toggle="modal"
+                                               data-bs-target="#loginModal"
+                                               style="border-width: 2px; border-style: solid dashed; min-width: 85px">
+                                                <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
+                                                    {{ date('H:i', strtotime($schedule->startTime )).' | '.date('d-m-Y', strtotime($schedule->date)
+                                                    ) }}
+                                                </p>
+                                            </a>
+                                        @endif
+                                    @endif
+                                @endif
+                                @if(date('Y-m-d') < $schedule->date)
+                                    @if(Auth::check())
+                                        <a href="/tickets/{{$schedule->id}}"
+                                           class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                           style="border-width: 2px; border-style: solid dashed; min-width: 85px">
+                                            <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
+                                                {{ date('H:i', strtotime($schedule->startTime )).' | '.date('d-m-Y', strtotime($schedule->date)) }}
+                                            </p>
+                                        </a>
+                                    @else
+                                        <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                           data-bs-toggle="modal"
+                                           data-bs-target="#loginModal"
+                                           style="border-width: 2px; border-style: solid dashed; min-width: 85px">
+                                            <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
+                                                {{ date('H:i', strtotime($schedule->startTime )).' - '.date('d-m-Y', strtotime($schedule->date)) }}
+                                            </p>
+                                        </a>
+                                    @endif
+                                @endif
+                            @endforeach
+                    </div>
 
-        @include('web.layout.movieDetailSchedules')
+                @endif
+                    <div class="col-12 mt-4">
+                        <h4>@lang('lang.movie_schedule')</h4>
+                        <ul class="list-group list-group-horizontal flex-wrap">
+                            @for($i = 0; $i <= 7; $i++)
+                                <li class="list-group-item border-0">
+                                    <button data-bs-toggle="collapse"
+                                            data-bs-target="#schedule_date_{{$i}}"
+                                            aria-expanded="false"
+                                            class="btn btn-block btn-outline-dark p-2 m-2">
+                                        {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
+                                    </button>
+                                </li>
+                            @endfor
+                        </ul>
+                    </div>
+                    @include('web.layout.movieDetailSchedules')
+            </div>
+
+
 
     </section>
 @endsection

@@ -180,17 +180,21 @@ class AdminController extends Controller
         $now = Carbon::now('Asia/Ho_Chi_Minh')->endOfDay();
         $year = Carbon::now('Asia/Ho_Chi_Minh')->subDays(365)->startOfYear()->toDateString();
 
-        $get= Ticket::whereBetween('created_at',[$year,$now])->where('holdState', 0)->orderBy('created_at','ASC')->get();
+        $get = Ticket::whereBetween('created_at',[$year,$now])->where('holdState', 0)->orderBy('created_at','ASC')->get();
         $value_first = $get->first();
         $value_last = $get->last();
         $date_current = date("m-Y",strtotime($value_first['created_at']));
 
         $seat_count = 0;
+        $theaters = Theater::all();
+        foreach ($theaters as $theater) {
+            $total[$theater->id] = 0;
+        }
         $chart_data = [];
         if($request['statistical_value'] == 'ticket')
         {
-            foreach($get as $value){
-                if($date_current == date("m-Y",strtotime($value['created_at'])))
+            foreach($get as $value) {
+                if($date_current == date("m-Y", strtotime($value['created_at'])))
                 {
                     $seat_count += $value['ticketSeats']->count();
                 }else{
@@ -198,16 +202,42 @@ class AdminController extends Controller
                         'date'=>  $date_current ,
                         'seat_count'=> $seat_count
                     );
-                    $date_current = date("m-Y",strtotime($value['created_at']));
+                    $date_current = date("m-Y", strtotime($value['created_at']));
                     $seat_count = $value['ticketSeats']->count();
                     array_push($chart_data,$data);
                 }
                 if($value_last->id == $value['id']){
                     $data = array(
-                        'date'=> date("m-Y",strtotime($value['created_at'])),
+                        'date'=> date("m-Y", strtotime($value['created_at'])),
                         'seat_count'=> $seat_count
                     );
                     array_push($chart_data,$data);
+                }
+            }
+        } else if ($request['statistical_value'] == 'theater') {
+            foreach($get as $value) {
+                if($date_current == date("m-Y", strtotime($value['created_at'])))
+                {
+                    $total[$value->schedule->room->theater_id] += $value['totalPrice'];
+                }else{
+                    foreach ($theaters as $theater) {
+                        $data = array(
+                            'date' =>  $date_current ,
+                            $total[$theater->id]
+                        );
+//                        dd($data);
+                    }
+                    $date_current = date("m-Y", strtotime($value['created_at']));
+                    array_push($chart_data,$data);
+                }
+                if($value_last->id == $value['id']){
+                    foreach ($theaters as $theater) {
+                        $data = array(
+                            'date' =>  $date_current ,
+                            $total[$theater->id]
+                        );
+//                        dd($data);
+                    }
                 }
             }
         }

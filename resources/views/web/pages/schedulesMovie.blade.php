@@ -25,7 +25,7 @@
     }
 @endsection
 @section('content')
-    <section class="container-lg clearfix">
+    <section class="container-lg clearfix" style="min-height: 1000px">
         <!-- Main content -->
         <div class="mt-5" id="schedules">
             {{-- SubNav --}}

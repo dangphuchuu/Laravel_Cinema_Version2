@@ -57,12 +57,24 @@ class WebController extends Controller
         $news = News::orderBy('id', 'DESC')->where('status',1)->take(3)->get();
         $banners = Banner::get()->where('status', 1);
         $movies = Movie::get()->where('status', 1)->where('endDate', '>', date('Y-m-d'))->take(6);
-        return view('web.pages.home', ['movies' => $movies, 'banners' => $banners,'news'=>$news]);
+        $moviesEarly = $movies->filter(function ($movie) {
+            foreach ($movie->schedules as $schedule) {
+                if ($schedule->early == true) {
+                    return $movie;
+                }
+            }
+        });
+        return view('web.pages.home', [
+            'movies' => $movies,
+            'moviesEarly' => $moviesEarly,
+            'banners' => $banners,'news'=>$news
+        ]);
     }
 
     public function movieDetail($id, Request $request)
     {
         $movie = Movie::find($id);
+        $schedulesEarly = new Collection();
         $roomTypes = RoomType::all();
         $cities = [];
         $theaters = Theater::where('status', 1)->get();
@@ -73,6 +85,9 @@ class WebController extends Controller
                 array_push($cities, $theater->city);
             }
         }
+        $schedulesEarly = $movie->schedules->filter(function ($schedule) {
+           return  $schedule->early == true;
+        });
         if (isset($request->city)) {
             $city_cur = $request->city;
         } else {
@@ -86,6 +101,7 @@ class WebController extends Controller
         $theaters_city = Theater::where('status', 1)->where('city', $city_cur)->get();
         return view('web.pages.movieDetail', [
             'movie' => $movie,
+            'schedulesEarly' => $schedulesEarly,
             'theater_city' => $theaters_city,
             'date_cur' => $date_cur,
             'cities' => $cities,
