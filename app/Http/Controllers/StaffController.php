@@ -243,7 +243,7 @@ class StaffController extends Controller
         $check = true;
         $ticket = Ticket::where('code',  $request->code)->get()->first();
 //        dd($ticket);
-        if ($ticket) {
+        if (isset($ticket)) {
             if ($ticket->status == true) {
                 $ticket->status = false;
                 if ($ticket->schedule->date == date('Y-m-d')) {
