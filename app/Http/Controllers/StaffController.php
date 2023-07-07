@@ -243,19 +243,7 @@ class StaffController extends Controller
         $check = true;
         $ticket = Ticket::where('code',  $request->code)->get()->first();
 //        dd($ticket);
-        if (isset($ticket)) {
-            $message = 'không tìm thấy vé';
-            $check = false;
-            return response()->json([
-                'theater' => '',
-                'room' => '',
-                'movie' => '',
-                'date' => '',
-                'startTime' => '',
-                'message' => $message,
-                'check' => $check,
-            ]);
-        } else {
+        if ($ticket) {
             if ($ticket->status == true) {
                 $ticket->status = false;
                 if ($ticket->schedule->date == date('Y-m-d')) {
@@ -298,9 +286,19 @@ class StaffController extends Controller
                     'check' => $check,
                 ]);
             }
+        } else {
+            $message = 'không tìm thấy vé';
+            $check = false;
+            return response()->json([
+                'theater' => '',
+                'room' => '',
+                'movie' => '',
+                'date' => '',
+                'startTime' => '',
+                'message' => $message,
+                'check' => $check,
+            ]);
         }
-
-
 
         $ticket->save();
 
