@@ -228,7 +228,7 @@ class AdminController extends Controller
                     );
                     foreach ($theaters as $theater) {
 
-                        $data[$theater->name] = $total[$theater->id];
+                        $data[$theater->id] = $total[$theater->id];
 //                        dd($data);
                     }
                     $date_current = date("m-Y", strtotime($value['created_at']));
@@ -246,7 +246,7 @@ class AdminController extends Controller
                         'date' =>  $date_current ,
                     );
                     foreach ($theaters as $theater) {
-                        $data[$theater->name] = $total[$theater->id];
+                        $data[$theater->id] = $total[$theater->id];
 //                        dd($data);
                     }
                 }
