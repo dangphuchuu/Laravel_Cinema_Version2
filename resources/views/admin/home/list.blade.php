@@ -189,12 +189,12 @@
                             hideHover: 'auto',
                             data:[
                                 {
-                                    date:null,seat_count:null
+                                    date:null,'Rạp Cao Lỗ':null, 'Rạp Hồ Gươm':null, 'Rạp VinCom Đà Nẵng': null
                                 }
                             ],
                             xkey: 'date',
-                            ykeys: ['seat_count'],
-                            labels: ['seat_count']
+                            ykeys: ['Rạp Cao Lỗ', 'Rạp Hồ Gươm', 'Rạp VinCom Đà Nẵng'],
+                            labels: ['Rạp Cao Lỗ', 'Rạp Hồ Gươm', 'Rạp VinCom Đà Nẵng']
                         });
                         if(data['success'])
                         {
