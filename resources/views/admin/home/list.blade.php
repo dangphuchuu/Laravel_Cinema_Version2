@@ -184,9 +184,10 @@
                     } else if (statistical_value == 'theater') {
                         chart =  new Morris.Bar({
                             element: 'admin_chart',
-                            barColors: ['#fc8710','#FF6541','#A4ADD3','#766B56'],
+                            barColors: ['#fc8710','#2dce89','#A4ADD3','#766B56'],
                             parseTime: false,
                             hideHover: 'auto',
+
                             data:[
                                 {
                                     date:null, '1':null, '2':null, '3': null
