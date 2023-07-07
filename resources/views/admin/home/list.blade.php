@@ -189,11 +189,11 @@
                             hideHover: 'auto',
                             data:[
                                 {
-                                    date:null, '0':null, '1':null, '2': null
+                                    date:null, '1':null, '2':null, '3': null
                                 }
                             ],
                             xkey: 'date',
-                            ykeys: ['0', '1', '2'],
+                            ykeys: ['1', '2', '3'],
                             labels: ['Rạp Cao Lỗ', 'Rạp Hồ Gươm', 'Rạp VinCom Đà Nẵng']
                         });
                         if(data['success'])
