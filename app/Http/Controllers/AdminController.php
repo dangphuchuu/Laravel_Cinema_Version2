@@ -223,11 +223,11 @@ class AdminController extends Controller
                         $total[$value->schedule->room->theater_id] += $value['totalPrice'];
                     }
                 } else {
-                    $data = array();
+                    $data = array(
+                        'date' =>  $date_current ,
+                    );
                     foreach ($theaters as $theater) {
-                        $data = array(
-                            'date' =>  $date_current ,
-                        );
+
                         $data[$theater->name] = $total[$theater->id];
 //                        dd($data);
                     }
@@ -235,11 +235,10 @@ class AdminController extends Controller
                     array_push($chart_data,$data);
                 }
                 if($value_last->id == $value['id']){
-                    $data = array();
+                    $data = array(
+                        'date' =>  $date_current ,
+                    );
                     foreach ($theaters as $theater) {
-                        $data = array(
-                            'date' =>  $date_current ,
-                        );
                         $data[$theater->name] = $total[$theater->id];
 //                        dd($data);
                     }
