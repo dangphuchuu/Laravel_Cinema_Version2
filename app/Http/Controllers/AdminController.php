@@ -218,7 +218,9 @@ class AdminController extends Controller
             foreach($get as $value) {
                 if($date_current == date("m-Y", strtotime($value['created_at'])))
                 {
-                    $total[$value->schedule->room->theater_id] += $value['totalPrice'];
+                    if ($value->schudule != null) {
+                        $total[$value->schedule->room->theater_id] += $value['totalPrice'];
+                    }
                 }else{
                     foreach ($theaters as $theater) {
                         $data = array(
