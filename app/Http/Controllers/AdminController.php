@@ -225,7 +225,7 @@ class AdminController extends Controller
                     foreach ($theaters as $theater) {
                         $data = array(
                             'date' =>  $date_current ,
-                            $total[$theater->id]
+                            $theater->name => $total[$theater->id]
                         );
 //                        dd($data);
                     }
@@ -236,7 +236,7 @@ class AdminController extends Controller
                     foreach ($theaters as $theater) {
                         $data = array(
                             'date' =>  $date_current ,
-                            $total[$theater->id]
+                            $theater->name => $total[$theater->id]
                         );
 //                        dd($data);
                     }
