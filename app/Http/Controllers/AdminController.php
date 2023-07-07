@@ -214,14 +214,16 @@ class AdminController extends Controller
                     array_push($chart_data,$data);
                 }
             }
-        } else if ($request['statistical_value'] == 'theater') {
+        }
+        if ($request['statistical_value'] == 'theater') {
             foreach($get as $value) {
                 if($date_current == date("m-Y", strtotime($value['created_at'])))
                 {
                     if ($value->schedule_id != null) {
                         $total[$value->schedule->room->theater_id] += $value['totalPrice'];
                     }
-                }else{
+                } else {
+                    $data = array();
                     foreach ($theaters as $theater) {
                         $data = array(
                             'date' =>  $date_current ,
@@ -233,6 +235,7 @@ class AdminController extends Controller
                     array_push($chart_data,$data);
                 }
                 if($value_last->id == $value['id']){
+                    $data = array();
                     foreach ($theaters as $theater) {
                         $data = array(
                             'date' =>  $date_current ,
