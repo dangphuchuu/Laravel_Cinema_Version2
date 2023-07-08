@@ -206,7 +206,7 @@ class AuthController extends Controller
             return redirect('/')->with('success','Kích hoạt email thành công');
         }
         else{
-            return redirect('/')->with('warning','Vui thử lại vì đường dẫn hết thời gian sử dụng');
+            return redirect('/')->with('warning','Vui lòng thử lại vì đường dẫn hết thời gian sử dụng');
         }
     }
 }

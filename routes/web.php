@@ -44,10 +44,10 @@ Route::prefix('/')->middleware('user','role:user')->group(function() {
     Route::post('/refund-ticket',[WebController::class,'refund_ticket']);
 
     Route::get('/profile',[WebController::class,'profile']);
-
+    Route::post('/editProfile',[WebController::class,'editProfile']);
     Route::post('/changePassword',[AuthController::class,'changePassword']);
 });
-Route::post('/editProfile',[WebController::class,'editProfile']);
+
 Route::delete('/tickets/delete', [WebController::class, 'ticketDelete']);
 Route::post('/tickets/create', [WebController::class, 'ticketPostCreate']);
 
