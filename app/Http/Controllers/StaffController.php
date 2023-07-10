@@ -387,31 +387,22 @@ class StaffController extends Controller
         }
 
 
-        $htmlFoods = '';
+        $comboHtml = '<ul>';
 
         foreach ($ticket->ticketCombos as $combo) {
-            $htmlFoods .=
-                '<tr>
-                    <td>'.$combo->comboName.'</td>
-                    <td>'.$combo->quantity.'</td>
-                    <td>'.$combo->comboDetails.'</td>
-                </tr>';
+            $comboHtml .= '<li>'.$combo->quantity.' X '.$combo->comboName.'<br>('.$combo->comboDetails.')</li>';
         }
 
         foreach ($ticket->ticketFoods as $food) {
-            $htmlFoods .=
-                '<tr>
-                    <td>'.$food->foodName.'</td>
-                    <td>'.$food->quantity.'</td>
-                    <td></td>
-                </tr>';
+            $comboHtml .= '<li>'.$food->quantity.' X '.$food->foodName.'</li>';
         }
+        $comboHtml .= '</ul>';
 
 
         $ticket->save();
 
         return response()->json([
-            'htmlFoods' => $htmlFoods,
+            'comboHtml' => $comboHtml,
             'message' => $message,
             'check' => $check,
         ]);

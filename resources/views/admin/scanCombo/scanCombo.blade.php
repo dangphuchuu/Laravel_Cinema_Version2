@@ -9,24 +9,23 @@
             <div class="card-body pt-2">
                 <div class="col">
                     <table class="table table-striped">
-                        <thead>
+                        <tbody>
                         <tr>
-                            <td>Tên</td>
-                            <td>Số lượng</td>
-                            <td>Chi tiết</td>
-                            <td id="status">@lang('lang.status')</td>
+                            <td>@lang('lang.name')</td>
+                            <td id="listFood"></td>
                         </tr>
-                        </thead>
-                        <tbody id="listFood">
+                        <tr>
+                            <td>@lang('lang.status')</td>
+                            <td id="status"></td>
+                        </tr>
                         </tbody>
                     </table>
+
                     <div class="form-group">
                         <label for="ticket_id" class="form-control-label">@lang('lang.ticket_code')</label>
                         <input id="ticket_id" class="form-control" name="userCode" type="number" value="" readonly>
                     </div>
-                    <div class="content-container">
-                        <div id="barcode-scanner-button" class="btn">@lang('lang.barcode_scanner')</div>
-                    </div>
+
                     <div id="barcode-scanner-controller" class="controller">
                         <nav class="navbar navbar-dark">
                             <div class="navbar-brand mb-0 h3">
@@ -47,6 +46,9 @@
                         </div>
                     </div>
 
+                    <div class="content-container">
+                        <div id="barcode-scanner-button" class="btn">@lang('lang.barcode_scanner')</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -55,6 +57,7 @@
 @section('scripts')
     <script>
         let results = [];
+        let $codeTemp = '';
         let scanbotSDK, barcodeScanner;
 
         class Config {
@@ -128,35 +131,40 @@
 
         async function onBarcodesDetected(e) {
             let text = "";
+
             const $ticketElement = $('#ticket_id');
             e.barcodes.forEach((barcode) => {
                 $ticketElement.val(barcode.text);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: "/admin/scanCombo/handle",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        'code': $ticketElement.val(),
-                    },
-                    statusCode: {
-                        200: (data) => {
-                            $('#listFood').append($(data.htmlFoods));
-                            if (data.check) {
-                                $('#status').addClass('text-success').text(data.message);
-                            } else {
-                                $('#status').addClass('text-danger').text(data.message);
-                            }
-                        },
-                        500: (data) => {
-                            $('#listFood tr').remove();
+                if ($codeTemp !== barcode.text) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
-                    }
-                });
+                    });
+                    $.ajax({
+                        url: "/admin/scanCombo/handle",
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            'code': $ticketElement.val(),
+                        },
+                        statusCode: {
+                            200: (data) => {
+                                $('#listFood').append($(data.comboHtml));
+                                if (data.check) {
+                                    $('#status').addClass('text-success').text(data.message);
+                                } else {
+                                    $('#status').addClass('text-danger').text(data.message);
+                                }
+                                $codeTemp = barcode.text;
+                            },
+                            500: (data) => {
+                                $('#listFood ul').remove();
+                                $codeTemp = barcode.text;
+                            }
+                        }
+                    });
+                }
             });
 
             let result;

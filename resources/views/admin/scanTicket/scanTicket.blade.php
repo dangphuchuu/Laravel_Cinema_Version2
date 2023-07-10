@@ -35,9 +35,7 @@
                     <label for="ticket_id" class="form-control-label">@lang('lang.ticket_code')</label>
                     <input id="ticket_id" class="form-control" name="userCode" type="number" value="" readonly>
                 </div>
-                <div class="content-container">
-                    <div id="barcode-scanner-button" class="btn">@lang('lang.barcode_scanner')</div>
-                </div>
+
                 <div id="barcode-scanner-controller" class="controller">
                     <nav class="navbar navbar-dark">
                         <div class="navbar-brand mb-0 h3">
@@ -56,6 +54,10 @@
                     <div class="action-bar">
                         <div class="barcode-result-container"></div>
                     </div>
+                </div>
+
+                <div class="content-container">
+                    <div id="barcode-scanner-button" class="btn">@lang('lang.barcode_scanner')</div>
                 </div>
             </div>
         </div>
