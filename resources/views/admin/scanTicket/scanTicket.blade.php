@@ -48,7 +48,7 @@
                             <span id="camera-switch-button">&#8646;</span>
                         </div>
                     </nav>
-                    <div id="barcode-scanner-container" class="view-controller-container">
+                    <div id="barcode-scanner-container" class="view-controller-container" style="max-height: 200px">
                         <div class="web-sdk-progress-bar"></div>
                     </div>
                     <div class="action-bar">

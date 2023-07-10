@@ -152,7 +152,7 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/vn.js"></script>
 
-<script src="admin_assets/scanbotSDK/js/lib/toastify.js"></script> +
+<script src="admin_assets/scanbotSDK/js/lib/toastify.js"></script>
 
 {{-- SweetAlert2 --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.12/sweetalert2.js" integrity="sha512-ywT1Sl8B8rJwwBWFC3rPTu/VQkDrnS19Kw0Xxa6Y9xvzMSwVMHDQscePPR9yNE0oyVsITEcvUPSDW/aS5KX+Mw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
