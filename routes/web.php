@@ -42,9 +42,9 @@ Route::prefix('/')->middleware('user','role:user')->group(function() {
     Route::delete('/tickets/combo/delete', [WebController::class, 'ticketComboDelete']);
 
     Route::post('/refund-ticket',[WebController::class,'refund_ticket']);
-    Route::post('/editProfile',[WebController::class,'editProfile']);
-    Route::get('/profile',[WebController::class,'profile']);
 
+    Route::get('/profile',[WebController::class,'profile']);
+    Route::post('/editProfile',[WebController::class,'editProfile']);
     Route::post('/changePassword',[AuthController::class,'changePassword']);
 });
 
