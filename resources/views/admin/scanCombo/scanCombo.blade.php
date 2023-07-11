@@ -150,7 +150,8 @@
                         },
                         statusCode: {
                             200: (data) => {
-                                $('#listFood').text($(data.comboHtml));
+                                $('#listFood').empty();
+                                $('#listFood').append($(data.comboHtml));
                                 if (data.check) {
                                     $('#status').addClass('text-success').text(data.message);
                                 } else {
