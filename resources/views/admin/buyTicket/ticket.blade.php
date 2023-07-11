@@ -731,7 +731,6 @@
                         200: () => {
                             $holdState = true;
                             $bankCode = $(`input[name="bankCode"]:checked`).val();
-                            console.log($bankCode);
                             if ($bankCode !== 'MONEY') {
                                 if ($ticket_id !== -1) {
                                     $('#ticket_id').val($ticket_id);
@@ -740,6 +739,7 @@
                             } else {
                                 $('#ticketMoney').val($ticket_id);
                                 $('#btn_money').click();
+                                $('#total').val($sum);
                             }
                         }
                     }
@@ -779,7 +779,7 @@
                             'ticket_id': $ticket_id,
                         },
                     });
-                    window.location.replace('/movie/'+ {{$schedule->movie->id}});
+                    window.location.replace('/admin/buyTicket/');
                 });
 
             }

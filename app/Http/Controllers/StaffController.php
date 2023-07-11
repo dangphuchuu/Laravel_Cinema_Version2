@@ -242,8 +242,7 @@ class StaffController extends Controller
         $message = 'vé hợp lệ';
         $check = true;
         $ticket = Ticket::where('code',  $request->code)->get()->first();
-        if (isset($ticket)) {
-//            dd($ticket);
+        if ($ticket) {
             if ($ticket->status == true) {
                 $ticket->status = false;
                 if ($ticket->schedule->date == date('Y-m-d')) {
@@ -274,7 +273,7 @@ class StaffController extends Controller
                     }
                 }
             } else {
-                $message = 'vé đã sử dụng';
+                $message = 'vé không hợp lệ';
                 $check = false;
                 return response()->json([
                     'theater' => $ticket->schedule->room->theater->name,
@@ -327,7 +326,7 @@ class StaffController extends Controller
             'schedule_id' => null,
             'user_id' => null,
             'holdState' => false,
-            'status' => true,
+            'status' => false,
             'code' => rand(10000000, 9999999999)
         ]);
         $ticket->save();
@@ -369,35 +368,31 @@ class StaffController extends Controller
     }
 
     public function handleScanCombo(Request $request) {
+        $ticket = Ticket::where('code', $request->code)->first();
         $message = 'vé hợp lệ';
         $check = true;
 
-        $ticket = Ticket::where('code', $request->code)->first();
         if (!$ticket) {
             $message = 'không tìm thấy vé';
             $check = false;
-        }
-
-        if ($ticket->receivedCombo) {
-            $message = 'Đã lấy đồ ăn';
-            $check = false;
         } else {
-            $ticket->receivedCombo = true;
-            $check = true;
+            if ($ticket->receivedCombo) {
+                $message = 'Đã lấy đồ ăn';
+                $check = false;
+            } else {
+                $ticket->receivedCombo = true;
+                $comboHtml = '<ul>';
+
+                foreach ($ticket->ticketCombos as $combo) {
+                    $comboHtml .= '<li>'.$combo->quantity.' X '.$combo->comboName.'<br>('.$combo->comboDetails.')</li>';
+                }
+
+                foreach ($ticket->ticketFoods as $food) {
+                    $comboHtml .= '<li>'.$food->quantity.' X '.$food->foodName.'</li>';
+                }
+                $comboHtml .= '</ul>';
+            }
         }
-
-
-        $comboHtml = '<ul>';
-
-        foreach ($ticket->ticketCombos as $combo) {
-            $comboHtml .= '<li>'.$combo->quantity.' X '.$combo->comboName.'<br>('.$combo->comboDetails.')</li>';
-        }
-
-        foreach ($ticket->ticketFoods as $food) {
-            $comboHtml .= '<li>'.$food->quantity.' X '.$food->foodName.'</li>';
-        }
-        $comboHtml .= '</ul>';
-
 
         $ticket->save();
 
