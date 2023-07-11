@@ -327,39 +327,45 @@ class StaffController extends Controller
             'user_id' => null,
             'holdState' => false,
             'status' => false,
+            'hasPaid' => false,
             'code' => rand(10000000, 9999999999)
         ]);
         $ticket->save();
-        foreach ($request->ticketCombos as $ticketCombo) {
-            $combo = Combo::find($ticketCombo[0]);
-            $details = '';
-            foreach ($combo->foods as $food) {
-                $details .= $food->pivot->quantity . ' ' . $food->name . ' + ';
+        if ($request->ticketCombos) {
+            foreach ($request->ticketCombos as $ticketCombo) {
+                $combo = Combo::find($ticketCombo[0]);
+                $details = '';
+                foreach ($combo->foods as $food) {
+                    $details .= $food->pivot->quantity . ' ' . $food->name . ' + ';
+                }
+                $details = substr($details, 0, -3);
+                $newTkCb = new TicketCombo([
+                    'comboName' => $combo->name,
+                    'comboPrice' => $combo->price,
+                    'comboDetails' => $details,
+                    'quantity' => $ticketCombo[1],
+                    'ticket_id' => $ticket->id
+                ]);
+
+                $newTkCb->save();
+                unset($newTkCb);
             }
-            $details = substr($details, 0, -3);
-            $newTkCb = new TicketCombo([
-                'comboName' => $combo->name,
-                'comboPrice' => $combo->price,
-                'comboDetails' => $details,
-                'quantity' => $ticketCombo[1],
-                'ticket_id' => $ticket->id
-            ]);
-
-            $newTkCb->save();
-            unset($newTkCb);
         }
-        foreach ($request->ticketFoods as $ticketFood) {
-            $food = Food::find($ticketFood[0]);
-            $newTkF = new TicketFood([
-                'foodName' => $food->name,
-                'foodPrice' => $food->price,
-                'quantity' => $ticketFood[1],
-                'ticket_id' => $ticket->id,
-            ]);
+        if ($request->ticketFoods) {
+            foreach ($request->ticketFoods as $ticketFood) {
+                $food = Food::find($ticketFood[0]);
+                $newTkF = new TicketFood([
+                    'foodName' => $food->name,
+                    'foodPrice' => $food->price,
+                    'quantity' => $ticketFood[1],
+                    'ticket_id' => $ticket->id,
+                ]);
 
-            $newTkF->save();
-            unset($newTkF);
+                $newTkF->save();
+                unset($newTkF);
+            }
         }
+
         return response()->json(['ticket_id' => $ticket->id]);
     }
 
