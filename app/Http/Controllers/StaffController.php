@@ -387,18 +387,17 @@ class StaffController extends Controller
                 $check = false;
             } else {
                 $ticket->receivedCombo = true;
-                $comboHtml = '<ul>';
-
-                foreach ($ticket->ticketCombos as $combo) {
-                    $comboHtml .= '<li>'.$combo->quantity.' X '.$combo->comboName.'<br>('.$combo->comboDetails.')</li>';
-                }
-
-                foreach ($ticket->ticketFoods as $food) {
-                    $comboHtml .= '<li>'.$food->quantity.' X '.$food->foodName.'</li>';
-                }
-                $comboHtml .= '</ul>';
             }
         }
+        $comboHtml = '<ul>';
+        foreach ($ticket->ticketCombos as $combo) {
+            $comboHtml .= '<li>'.$combo->quantity.' X '.$combo->comboName.'<br>('.$combo->comboDetails.')</li>';
+        }
+
+        foreach ($ticket->ticketFoods as $food) {
+            $comboHtml .= '<li>'.$food->quantity.' X '.$food->foodName.'</li>';
+        }
+        $comboHtml .= '</ul>';
 
         $ticket->save();
 

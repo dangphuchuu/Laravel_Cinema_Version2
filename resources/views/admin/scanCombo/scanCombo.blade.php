@@ -153,14 +153,14 @@
                                 $('#listFood').empty();
                                 $('#listFood').append($(data.comboHtml));
                                 if (data.check) {
-                                    $('#status').addClass('text-success').text(data.message);
+                                    $('#status').addClass('text-success').removeClass('text-danger').text(data.message);
                                 } else {
-                                    $('#status').addClass('text-danger').text(data.message);
+                                    $('#status').addClass('text-danger').removeClass('text-success').text(data.message);
                                 }
                                 $codeTemp = barcode.text;
                             },
                             500: (data) => {
-                                $('#listFood ul').remove();
+                                $('#listFood').empty();
                                 $codeTemp = barcode.text;
                             }
                         }
