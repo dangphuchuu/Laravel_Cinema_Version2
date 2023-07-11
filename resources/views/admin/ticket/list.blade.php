@@ -18,7 +18,6 @@
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.room')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.seat')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Combo</th>
-                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.rated')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.time')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.date')</th>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.barcode')</th>
@@ -32,7 +31,7 @@
                                     <tr>
                                         <td class="align-middle text-center">
                                             @isset($value['schedule'])
-                                            <h6 class="mb-0 text-sm " style="width:200px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical">{!! $value['schedule']['movie']['name'] !!}</h6>
+                                            <h6 class="mb-0 text-sm " style="width:150px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical">{!! $value['schedule']['movie']['name'] !!}</h6>
                                             @endisset
                                         </td>
                                         <td class="align-middle text-center">
@@ -47,7 +46,7 @@
                                         </td>
                                         <td class="align-middle text-center">
                                             @isset($value['ticketSeats'])
-                                            <span class="text-secondary font-weight-bold" style="width:200px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical">
+                                            <span class="text-secondary font-weight-bold" style="width:150px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical">
                                                 @foreach($value['ticketSeats'] as $seat)
                                                     @if($loop->first)
                                                 {!! $seat['row']."-".$seat['col'] !!}
@@ -70,11 +69,6 @@
                                                 </span>
 
                                             @endif
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            @isset($value['schedule'])
-                                            <span class="text-secondary font-weight-bold">{!! $value['schedule']['movie']['rating']['name'] !!}</span>
-                                            @endisset
                                         </td>
                                         <td class="align-middle text-center">
                                             @isset($value['schedule'])

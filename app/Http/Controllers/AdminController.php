@@ -18,11 +18,6 @@ class AdminController extends Controller
 {
     function __construct()
     {
-        // Return an instance of the Auth component for the default Firebase project
-        $defaultAuth = Firebase::auth();
-// Return an instance of the Auth component for a specific Firebase project
-        $appAuth = Firebase::project('app')->auth();
-        $anotherAppAuth = Firebase::project('another-app')->auth();
     }
 
     public function home(Request $request)
@@ -30,9 +25,9 @@ class AdminController extends Controller
         $now = Carbon::now('Asia/Ho_Chi_Minh')->endOfDay();
         $year = Carbon::now('Asia/Ho_Chi_Minh')->subDays(365)->startOfYear()->toDateString();
         $start_of_month = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth();
-        $total_year = Ticket::whereBetween('created_at',[$year, $now])->where('holdState', 0)->orderBy('created_at','ASC')->get();
+        $total_year = Ticket::whereBetween('created_at',[$year, $now])->where('hasPaid', 1)->orderBy('created_at','ASC')->get();
 
-        $ticket = Ticket::whereDate('created_at', Carbon::today())->get();
+        $ticket = Ticket::whereDate('created_at', Carbon::today())->where('hasPaid',1)->get();
         $ticket_seat = TicketSeat::get()->whereBetween('created_at',[$year, $now])->count();
         $user = User::role('user')->get();
 
