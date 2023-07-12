@@ -417,4 +417,7 @@ class AdminController extends Controller
         $feed = Feedback::orderBy('id','DESC')->Paginate(15);
         return view('admin.feedback.list',['feed'=>$feed]);
     }
+
 }
+
+

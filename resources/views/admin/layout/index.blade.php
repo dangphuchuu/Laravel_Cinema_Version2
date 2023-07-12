@@ -112,7 +112,9 @@
             </div>
         </div>
     </div>
+    <div id="test" class="text-center"></div>
 </div>
+
 
 <!--   Core JS Files   -->
 <script src="admin_assets/js/core/popper.min.js"></script>
@@ -157,7 +159,7 @@
 {{-- SweetAlert2 --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.12/sweetalert2.js" integrity="sha512-ywT1Sl8B8rJwwBWFC3rPTu/VQkDrnS19Kw0Xxa6Y9xvzMSwVMHDQscePPR9yNE0oyVsITEcvUPSDW/aS5KX+Mw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
+{{--Firebase database--}}
 
 <script>
     var win = navigator.platform.indexOf('Win') > -1;
@@ -190,7 +192,49 @@
                 console.error(error);
         });
 </script>
+<!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js'
 
+    import { getDatabase, ref, onValue, set  } from 'https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js'
+
+    const firebaseConfig = {
+        apiKey: "{{config('services.firebase.apiKey')}}",
+        authDomain: "{{config('services.firebase.authDomain')}}",
+        projectId: "{{config('services.firebase.projectId')}}",
+        storageBucket: "{{config('services.firebase.storageBucket')}}",
+        messagingSenderId: "{{config('services.firebase.messagingSenderId')}}",
+        appId: "{{config('services.firebase.appId')}}",
+        measurementId: "{{config('services.firebase.measurementId')}}",
+        databaseURL:"{{config('services.firebase.databaseURL')}}"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Initialize Realtime Database and get a reference to the service
+    const db = getDatabase(app);
+
+    function writeUserData(userId, name, email, imageUrl) {
+        const db = getDatabase();
+        set(ref(db, 'users/' + userId), {
+            username: name,
+            email: email,
+            profile_picture : imageUrl
+        });
+    }
+
+    writeUserData('2', 'ssMinh', 'minh@gmail.com', 'huungu');
+    const element = document.getElementById("test");
+    const starCountRef = ref(db, 'users/' + 2 );
+    onValue(starCountRef, (snapshot) => {
+        const data = snapshot.val();
+        $("#test").text(data.username);
+    });
+
+
+
+</script>
 @yield('scripts')
 
 </body>
