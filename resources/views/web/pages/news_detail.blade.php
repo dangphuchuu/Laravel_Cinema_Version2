@@ -1,6 +1,6 @@
 @extends('web.layout.index')
 @section('css')
-    .image {
+    .image img{
         width: 100%;
     }
 @endsection
