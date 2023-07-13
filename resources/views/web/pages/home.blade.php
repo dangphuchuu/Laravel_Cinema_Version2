@@ -217,7 +217,7 @@
                                             <h5 class="card-title"
                                                 style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical">
                                                {!! $value['title'] !!}</h5>
-                                            <p class="card-text text-truncate">{!! $value['content'] !!}</p>
+                                            <p class="card-text text-truncate">{!! strip_tags($value['content']) !!}</p>
                                             <p class="card-text"><small class="text-muted">{!! date('d F Y', strtotime($value['created_at'] )) !!}</small></p>
                                         </a>
                                     </div>

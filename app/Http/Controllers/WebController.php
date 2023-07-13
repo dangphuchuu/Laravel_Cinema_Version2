@@ -36,7 +36,7 @@ class WebController extends Controller
 {
     public function __construct()
     {
-        $cloud_name = env('CLOUD_NAME');
+        $cloud_name = cloud_name();
         return view()->share('cloud_name', $cloud_name);
     }
 
@@ -44,9 +44,9 @@ class WebController extends Controller
     {
 //        $discount = Discount::all();
 //        dd($discount);
-        Schedule::where('date', '<', date('Y-m-d'))->update(['status' => false]);
-        Schedule::where('date', '=', date('Y-m-d'))->where('endTime', '<=', date('H:i:s'))->update(['status' => false]);
-        Movie::where('endDate', '<', date('Y-m-d'))->update(['status' => false]);
+        Schedule::update(['status' => false])->where('date', '<', date('Y-m-d'));
+        Schedule::update(['status' => false])->where('date', '=', date('Y-m-d'))->where('endTime', '<=', date('H:i:s'));
+        Movie::update(['status' => false])->where('endDate', '<', date('Y-m-d'));
         Ticket::join('schedules', 'tickets.schedule_id', '=', 'schedules.id')
             ->where('schedules.date', '<', date('Y-m-d'))
             ->update([
