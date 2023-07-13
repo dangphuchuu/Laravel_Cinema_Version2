@@ -47,7 +47,7 @@ return new class extends Migration {
             $table->date('releaseDate');
             $table->date('endDate');
             $table->string('national', 255);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->text('trailer')->nullable();
             $table->bigInteger('rating_id')->unsigned();
             $table->foreign('rating_id')->references('id')->on('rating');
