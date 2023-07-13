@@ -102,12 +102,12 @@
                                 <div class="row g-0">
                                     <div class="col-lg-4 col-12">
                                         <a href="/movie/{{ $movie->id }}">
-                                            @if(strstr($movie->image,"https") === "")
-                                                <img class="img-fluid rounded w-100"
+                                            @if(strstr($movie->image,"https") == "")
+                                                <img class="img-fluid rounded "
                                                      src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $movie->image }}.jpg"
-                                                     alt="">
+                                                     alt="" style="width: 150px; height: 200px">
                                             @else
-                                                <img class="img-fluid rounded w-100" src="{{ $movie->image }}" alt="">
+                                                <img class="img-fluid rounded " style="width: 150px; height: 200px" src="{{ $movie->image }}" alt="">
                                             @endif
                                         </a>
                                     </div>
@@ -242,12 +242,12 @@
                             <div class="row g-0">
                                 <div class="col-lg-4 col-12">
                                     <a href="/movie/{{ $movie->id }}">
-                                        @if(strstr($movie->image,"https") === "")
-                                            <img class="img-fluid rounded w-100"
+                                        @if(strstr($movie->image,"https") == "")
+                                            <img class="img-fluid rounded "
                                                  src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $movie->image }}.jpg"
-                                                 alt="">
+                                                 alt="" style="width: 150px; height: 200px">
                                         @else
-                                            <img class="img-fluid rounded w-100" src="{{ $movie->image }}" alt="">
+                                            <img class="img-fluid rounded " src="{{ $movie->image }}" alt="" style="width: 150px; height: 200px">
                                         @endif
                                     </a>
                                 </div>
