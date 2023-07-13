@@ -66,12 +66,12 @@
                                             @if(strstr($movie->image,"https") == "")
                                                 <img
                                                     src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $movie['image'] !!}.jpg"
-                                                    class="img-fluid rounded w-100"
+                                                    class="img-fluid rounded w-100" style="width: 150px; height: 200px"
                                                     alt="...">
                                             @else
                                                 <img
                                                     src="{{ $movie->image }}"
-                                                    class="img-fluid rounded w-100"
+                                                    class="img-fluid rounded w-100" style="width: 150px; height: 200px"
                                                     alt="...">
                                             @endif
                                         </a>
@@ -116,12 +116,12 @@
                                             @if(strstr($movie->image,"https") == "")
                                                 <img
                                                     src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $movie['image'] !!}.jpg"
-                                                    class="img-fluid rounded w-100"
+                                                    class="img-fluid rounded w-100" style="width: 150px; height: 200px"
                                                     alt="...">
                                             @else
                                                 <img
                                                     src="{{ $movie->image }}"
-                                                    class="img-fluid rounded w-100"
+                                                    class="img-fluid rounded w-100" style="width: 150px; height: 200px"
                                                     alt="...">
                                             @endif
                                         </a>
