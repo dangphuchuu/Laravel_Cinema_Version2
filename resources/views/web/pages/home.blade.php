@@ -65,7 +65,7 @@
                                         <a href="/movie/{{ $movie->id }}">
                                             @if(strstr($movie->image,"https") == "")
                                                 <img
-                                                    src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
+                                                    src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $movie['image'] !!}.jpg"
                                                     class="img-fluid rounded w-100"
                                                     alt="...">
                                             @else
@@ -115,7 +115,7 @@
                                         <a href="/movie/{{ $movie->id }}">
                                             @if(strstr($movie->image,"https") == "")
                                                 <img
-                                                    src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
+                                                    src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $movie['image'] !!}.jpg"
                                                     class="img-fluid rounded w-100"
                                                     alt="...">
                                             @else
