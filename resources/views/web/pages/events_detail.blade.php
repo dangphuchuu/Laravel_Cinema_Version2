@@ -1,4 +1,9 @@
 @extends('web.layout.index')
+@section('css')
+    .image {
+        width: 100%;
+    }
+@endsection
 @section('content')
     <section class="container-lg">
         {{--  Breadcrumb  --}}

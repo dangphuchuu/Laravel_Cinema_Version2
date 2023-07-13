@@ -1,5 +1,6 @@
 @extends('web.layout.index')
 @section('css')
+
 @endsection
 @section('content')
     <section class="container-lg clearfix">
