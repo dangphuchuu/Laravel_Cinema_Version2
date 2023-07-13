@@ -355,7 +355,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="trailer">Trailer</label>
-                                            <input id="trailer" name="trailer" class="form-control" type="text" value="" placeholder="Trailer">
+                                            <input id="trailer" name="trailer" class="form-control" type="text" value="" placeholder="https://www.youtube.com/watch?v=">
                                         </div>
 
 

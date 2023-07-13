@@ -215,24 +215,21 @@
     // Initialize Realtime Database and get a reference to the service
     const db = getDatabase(app);
 
-    function writeUserData(userId, name, email, imageUrl) {
-        const db = getDatabase();
-        set(ref(db, 'users/' + userId), {
-            username: name,
-            email: email,
-            profile_picture : imageUrl
-        });
-    }
+    // function writeUserData(userId, name, email, imageUrl) {
+    //     set(ref(db, 'users/' + userId), {
+    //         username: name,
+    //         email: email,
+    //         profile_picture : imageUrl
+    //     });
+    // }
 
-    writeUserData('2', 'ssMinh', 'minh@gmail.com', 'huungu');
-    const element = document.getElementById("test");
-    const starCountRef = ref(db, 'users/' + 2 );
-    onValue(starCountRef, (snapshot) => {
-        const data = snapshot.val();
-        $("#test").text(data.username);
-    });
-
-
+    // writeUserData('2', 'ssMinh', 'minh@gmail.com', 'huungu');
+    // const element = document.getElementById("test");
+    // const starCountRef = ref(db, 'users/' + 2 );
+    // onValue(starCountRef, (snapshot) => {
+    //     const data = snapshot.val();
+    //     $("#test").text(data.username);
+    // });
 
 </script>
 @yield('scripts')

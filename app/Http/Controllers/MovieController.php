@@ -57,7 +57,8 @@ class MovieController extends Controller
                     'endDate' => $request->endDate,
                     'national' => $request->national,
                     'rating_id' => $request->rating,
-                    'description' => $request->description
+                    'description' => $request->description,
+                    'trailer'=> $request->trailer
                 ]
             );
 
