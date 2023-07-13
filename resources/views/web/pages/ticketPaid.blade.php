@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="icon" type="image/png" href="images/favicon/theater_favicon.png">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <base href="{{asset('')}}">
     <style>
