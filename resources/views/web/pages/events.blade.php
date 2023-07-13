@@ -43,7 +43,7 @@
                                         <p class="card-text"
                                            style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;
                                            -webkit-box-orient: vertical">
-                                            {{ $post->content }}
+                                            {{ strip_tags($post->content) }}
                                         </p>
                                         <p class="card-text">
                                             <small class="text-body-secondary">{{ date('d-m-Y H:i', strtotime($post->created_at)) }}</small>
@@ -66,7 +66,7 @@
                                     <div class="card-body bg-transparent h-75">
                                         <h5 class="card-title">{{ $post->title }}</h5>
                                         <p class="card-text"  style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;
-                                           -webkit-box-orient: vertical">{{ $post->content }}</p>
+                                           -webkit-box-orient: vertical">{{ strip_tags($post->content) }}</p>
                                         <p class="card-text"><small class="text-body-secondary">{{ date('d-m-Y H:i', strtotime($post->created_at)) }}</small></p>
                                     </div>
                                     <div class="card-footer border-0 bg-transparent h-25">

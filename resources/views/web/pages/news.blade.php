@@ -42,7 +42,7 @@
                                         <p class="card-text"
                                            style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;
                                            -webkit-box-orient: vertical">
-                                            {{ $value->content }}
+                                            {{ strip_tags($value->content) }}
                                         </p>
                                         <p class="card-text">
                                             <small class="text-body-secondary">{!! date('d F Y', strtotime($value['created_at'] )) !!}</small>
