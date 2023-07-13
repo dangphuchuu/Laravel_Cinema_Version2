@@ -105,9 +105,9 @@
                                             @if(strstr($movie->image,"https") == "")
                                                 <img class="img-fluid rounded "
                                                      src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $movie->image }}.jpg"
-                                                     alt="" style="width: 150px; height: 200px">
+                                                     alt="" style="width: 210px; height: 280px">
                                             @else
-                                                <img class="img-fluid rounded " style="width: 150px; height: 200px" src="{{ $movie->image }}" alt="">
+                                                <img class="img-fluid rounded " style="width: 210px; height: 280px" src="{{ $movie->image }}" alt="">
                                             @endif
                                         </a>
                                     </div>
@@ -175,9 +175,9 @@
                                             @if(strstr($movie->image,"https") == "")
                                                 <img class="img-fluid rounded "
                                                      src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $movie->image }}.jpg"
-                                                     alt="" style="width: 150px; height: 200px">
+                                                     alt="" style="width: 210px; height: 280px">
                                             @else
-                                                <img class="img-fluid rounded " src="{{ $movie->image }}" alt="" style="width: 150px; height: 200px">
+                                                <img class="img-fluid rounded " src="{{ $movie->image }}" alt="" style="width: 210px; height: 280px">
                                             @endif
                                         </a>
                                     </div>
@@ -245,9 +245,9 @@
                                         @if(strstr($movie->image,"https") == "")
                                             <img class="img-fluid rounded "
                                                  src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $movie->image }}.jpg"
-                                                 alt="" style="width: 150px; height: 200px">
+                                                 alt="" style="width: 210px; height: 280px">
                                         @else
-                                            <img class="img-fluid rounded " src="{{ $movie->image }}" alt="" style="width: 150px; height: 200px">
+                                            <img class="img-fluid rounded " src="{{ $movie->image }}" alt="" style="width: 210px; height: 280px">
                                         @endif
                                     </a>
                                 </div>
