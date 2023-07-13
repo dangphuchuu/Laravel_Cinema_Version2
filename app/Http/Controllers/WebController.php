@@ -44,9 +44,9 @@ class WebController extends Controller
     {
 //        $discount = Discount::all();
 //        dd($discount);
-        Schedule::update(['status' => false])->where('date', '<', date('Y-m-d'));
-        Schedule::update(['status' => false])->where('date', '=', date('Y-m-d'))->where('endTime', '<=', date('H:i:s'));
-        Movie::update(['status' => false])->where('endDate', '<', date('Y-m-d'));
+        Schedule::where('date', '<', date('Y-m-d'))->update(['status' => false]);
+        Schedule::where('date', '=', date('Y-m-d'))->where('endTime', '<=', date('H:i:s'))->update(['status' => false]);
+        Movie::where('endDate', '<', date('Y-m-d'))->update(['status' => false]);
         Ticket::join('schedules', 'tickets.schedule_id', '=', 'schedules.id')
             ->where('schedules.date', '<', date('Y-m-d'))
             ->update([
@@ -600,7 +600,7 @@ class WebController extends Controller
             $user->save();
         }
         $ticket->delete();
-        return response()->json(['success'=>'Hoàn vé thành công,vé sẽ được hoàn vào điểm thưởng vui lòng kiểm tra điểm thưởng trong profile !']);
+        return response()->json(['success'=>'Gửi yêu cầu thành công,vé sẽ được hoàn vào điểm thưởng vui lòng kiểm tra điểm thưởng trong profile !']);
     }
     public function events_detail($id){
         $post = Post::find($id);
