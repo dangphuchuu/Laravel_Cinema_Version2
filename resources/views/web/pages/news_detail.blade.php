@@ -22,7 +22,7 @@
                 @endif
             </div>
             <div class="accordion-item">
-                <div class="accordion-body  mt-4 mb-3">
+                <div class="accordion-body mt-4 mb-3 w-100">
                     {!! $news['content'] !!}
                 </div>
             </div>
