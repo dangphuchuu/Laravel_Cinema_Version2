@@ -1,7 +1,7 @@
 <form action="admin/news/create" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="modal fade" id="news" tabindex="-1" aria-labelledby="news_title" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="news_title">@lang('lang.news')</h5>
@@ -28,7 +28,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">@lang('lang.content')</label>
-                                    <textarea class="form-control" name="contents" id="editor"
+                                    <textarea class="form-control" name="contents" id="conditions"
                                               placeholder="@lang('lang.type') @lang('lang.content')"></textarea>
                                 </div>
                             </div>
