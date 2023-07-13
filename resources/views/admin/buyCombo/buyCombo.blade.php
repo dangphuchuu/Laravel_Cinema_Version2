@@ -85,8 +85,7 @@
                                                     <div class="col-lg-4 col-12">
                                                         @if(strstr($combo->image,"https") == "")
                                                             <img class="img-fluid w-100" alt="..." style="max-height: 361px; max-width: 241px"
-                                                                 src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $combo->image }}
-                                                                 .jpg">
+                                                                 src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $combo->image }}.jpg">
                                                         @else
                                                             <img class="img-fluid w-100" alt="..." style="max-height: 361px; max-width: 241px"
                                                                  src="{{ $combo->image }}">
@@ -137,8 +136,7 @@
                                                         <div class="col-lg-4 col-12">
                                                             @if(strstr($food->image,"https") == "")
                                                                 <img class="img-fluid w-100" alt="..." style="max-height: 361px; max-width: 241px"
-                                                                     src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $food->image
-                                                                      }}.jpg">
+                                                                     src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $food->image }}.jpg">
                                                             @else
                                                                 <img class="img-fluid w-100" alt="..." style="max-height: 361px; max-width: 241px"
                                                                      src="{{ $food->image }}">

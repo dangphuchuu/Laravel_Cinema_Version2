@@ -23,7 +23,7 @@
                     @if($movie->schedulesByDateAndTheater(date('Y-m-d', strtotime('+ '.$i.' day', strtotime(today()))), $theater->id)->count() > 0)
                         <div class="p-2 d-flex flex-row m-1 align-items-center rounded" style="background: #f5f5f5">
                             <div class="flex-shrink-0 p-2 border-end border-4 border-white">
-                                @if(strstr($movie->image,"https") === "")
+                                @if(strstr($movie->image,"https") == "")
                                     <img class="rounded d-block" style="width: 180px" alt="..."
                                          src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $movie->image }}.jpg">
                                 @else

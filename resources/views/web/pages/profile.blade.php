@@ -171,7 +171,7 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                         @endif</span> </p>
                                 <div class="float-start">
                                     @if(strstr($value['schedule']['movie']['image'],"https") == "")
-                                    <img style="width: auto;height: 320px;" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg">
+                                    <img style="width: auto;height: 320px;" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['schedule']['movie']['image'] !!}.jpg">
                                     @else
                                     <img style="width: auto;height: 320px;" src="{!! $value['schedule']['movie']['image'] !!}">
                                     @endif

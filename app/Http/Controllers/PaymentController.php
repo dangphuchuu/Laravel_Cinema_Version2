@@ -106,7 +106,7 @@ class PaymentController extends Controller
         switch ($request->vnp_ResponseCode) {
             case '00':
                 $ticket->hasPaid = true;
-                if ($request->hasDiscount == 'true') {
+                if ($request->hasDiscount != 'false') {
                     $ticket->hasDiscount = true;
                 }
                 $ticket->save();

@@ -57,7 +57,7 @@
                                         aria-expanded="false"
                                         aria-controls="movieChoice_{{$movie->id}} movieSchedules_{{$movie->id}}"
                                         class="btn btn-block border-0 p-2">
-                                    @if(strstr($movie->image,"https") === "")
+                                    @if(strstr($movie->image,"https") == "")
                                         <img class="rounded" style="width: 200px; height: 300px" alt="..."
                                              src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $movie->image }}.jpg">
                                     @else
@@ -76,7 +76,7 @@
                             <div class="d-flex flex-column flex-sm-row align-items-center" style="background: #f5f5f5">
                                 <div class="flex-shrink-0 justify-content-center">
                                     <a href="/movie/{{ $movie->id }}">
-                                        @if(strstr($movie->image,"https") === "")
+                                        @if(strstr($movie->image,"https") == "")
                                             <img class="img-fluid" style="max-height: 361px; max-width: 241px" alt="..."
                                                  src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg">
                                         @else

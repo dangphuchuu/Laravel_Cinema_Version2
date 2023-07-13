@@ -600,7 +600,7 @@ class WebController extends Controller
             $user->save();
         }
         $ticket->delete();
-        return response()->json(['success'=>'Gửi yêu cầu thành công,vé sẽ được hoàn vào điểm thưởng vui lòng kiểm tra điểm thưởng trong profile !']);
+        return response()->json(['success'=>'Hoàn vé thành công,vé sẽ được hoàn vào điểm thưởng vui lòng kiểm tra điểm thưởng trong profile !']);
     }
     public function events_detail($id){
         $post = Post::find($id);
