@@ -38,7 +38,7 @@
 
                                                         <div class="flex-shrink-0 p-2 border-end border-4 border-white">
                                                             <h5>{{$movie->name}}</h5>
-                                                            @if(strstr($movie->image,"https") === "")
+                                                            @if(strstr($movie->image,"https") == "")
                                                                 <img class="rounded d-block" style="width: 180px" alt="..."
                                                                      src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $movie->image }}.jpg">
                                                             @else
