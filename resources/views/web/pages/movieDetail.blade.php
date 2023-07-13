@@ -98,11 +98,13 @@
                 <h4 class="mt-4">Trailer</h4>
 
                 <div class="">
+                    @isset($movie['trailer'])
                     <iframe width="800" height="500" src="https://www.youtube.com/embed/{!! $movie['trailer'] !!}"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen>
                     </iframe>
+                    @endisset
                 </div>
             </div>
         </div>
