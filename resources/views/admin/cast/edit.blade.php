@@ -1,7 +1,7 @@
 <form action="admin/cast/edit/{!! $value['id'] !!}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="modal fade" id="editCast{!! $value['id'] !!}" tabindex="-1" aria-labelledby="cast_title" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="cast_title">{!! $value['name'] !!}</h5>

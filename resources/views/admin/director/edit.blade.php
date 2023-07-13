@@ -1,7 +1,7 @@
 <form action="admin/director/edit/{!! $value['id'] !!}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="modal fade" id="editDirector{!! $value['id'] !!}" tabindex="-1" aria-labelledby="director_title" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="director_title">{!! $value['name'] !!}</h5>

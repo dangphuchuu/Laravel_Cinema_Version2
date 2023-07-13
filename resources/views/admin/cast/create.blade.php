@@ -1,7 +1,7 @@
 <form action="admin/cast/create" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="modal fade" id="cast" tabindex="-1" aria-labelledby="cast_title" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="cast_title">@lang('lang.casts')</h5>
