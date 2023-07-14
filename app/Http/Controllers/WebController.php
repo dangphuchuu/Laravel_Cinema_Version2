@@ -643,4 +643,16 @@ class WebController extends Controller
         }
         return response()->json(['error'=>'Mã giảm giá không tồn tại !']);
     }
+    public function castDetail($id){
+        $cast = Cast::find($id);
+        return view('web.pages.cast_detail',[
+            'cast'=> $cast,
+        ]);
+    }
+    public function directorDetail($id){
+        $director = Director::find($id);
+        return view('web.pages.director_detail',[
+            'director'=> $director,
+        ]);
+    }
 }

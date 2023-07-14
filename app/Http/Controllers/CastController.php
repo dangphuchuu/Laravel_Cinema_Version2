@@ -80,4 +80,5 @@ class CastController extends Controller
         $cast->delete();
         return response()->json(['success' => 'Delete Successfully']);
     }
+
 }
