@@ -135,7 +135,7 @@
                                                class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                                style="border-width: 2px; border-style: solid dashed; min-width: 85px">
                                                 <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
-                                                    {{ date('H:i', strtotime($schedule->startTime ).' - '.date('d-m-Y', strtotime($schedule->date)) )}}
+                                                    {{ date('H:i', strtotime($schedule->startTime )).' - '.date('d-m-Y', strtotime($schedule->date)) }}
                                                 </p>
                                             </a>
                                         @else
