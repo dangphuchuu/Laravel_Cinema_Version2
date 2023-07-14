@@ -41,6 +41,8 @@ class FoodController extends Controller
                     'price' => $request->price,
                 ]
             );
+        }else{
+            return redirect('admin/food')->with('warning','Vui lòng nhập hình ảnh');
         }
         $food->save();
         return redirect('admin/food')->with('success', 'Add Food Successfully!');

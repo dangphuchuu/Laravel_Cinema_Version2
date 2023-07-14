@@ -34,9 +34,11 @@ class BannerController extends Controller
                     'image' => $cloud,
                 ]
             );
+        }else{
+            return redirect('admin/banners')->with('warning','Vui lòng nhập hình ảnh');
         }
         $banner->save();
-        return redirect('admin/banners')->with('success', 'Add Director Successfully!');
+        return redirect('admin/banners');
     }
 
     public function postEdit(Request $request, $id)
