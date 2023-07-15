@@ -9,7 +9,6 @@ use App\Models\Price;
 use App\Models\RoomType;
 use App\Models\Schedule;
 use App\Models\SeatType;
-use App\Models\Theater;
 use App\Models\Ticket;
 use App\Models\TicketCombo;
 use App\Models\TicketFood;
@@ -45,7 +44,7 @@ class StaffController extends Controller
         ]);
     }
 
-    public function ticket(Request $request, $schedule_id) {
+    public function ticket($schedule_id) {
         Ticket::where('holdState', false)->where('hasPaid', false)->where('schedule_id', $schedule_id)->delete();
         $ticketsHolds = Ticket::where('holdState', true)->where('schedule_id', $schedule_id)->get();
 

@@ -57,49 +57,49 @@
             <div id="vebantruoc" class="row g-4 mt-2 row-cols-1 row-cols-md-2 collapse"
                  data-bs-parent="#mainContent">
                 @foreach($moviesEarly as $movie)
-                        <!-- Movie -->
-                        <div class="card-col">
-                            <article class="card px-0 overflow-hidden"
-                                     style="background: #f5f5f5; ">
-                                <div class="row g-0">
-                                    <div class="col-lg-4 col-12">
-                                        <a href="/movie/{{ $movie->id }}">
-                                            @if(strstr($movie->image,"https") == "")
-                                                <img
-                                                    src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $movie['image'] !!}.jpg"
-                                                    class="img-fluid rounded" style="width: 210px; height: 280px"
-                                                    alt="...">
-                                            @else
-                                                <img
-                                                    src="{{ $movie->image }}"
-                                                    class="img-fluid rounded" style="width: 210px; height: 280px"
-                                                    alt="...">
-                                            @endif
+                    <!-- Movie -->
+                    <div class="card-col">
+                        <article class="card px-0 overflow-hidden"
+                                 style="background: #f5f5f5; ">
+                            <div class="row g-0">
+                                <div class="col-lg-4 col-12">
+                                    <a href="/movie/{{ $movie->id }}">
+                                        @if(strstr($movie->image,"https") == "")
+                                            <img
+                                                src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $movie['image'] !!}.jpg"
+                                                class="img-fluid rounded" style="width: 210px; height: 280px"
+                                                alt="...">
+                                        @else
+                                            <img
+                                                src="{{ $movie->image }}"
+                                                class="img-fluid rounded" style="width: 210px; height: 280px"
+                                                alt="...">
+                                        @endif
+                                    </a>
+                                </div>
+                                <div class="col-lg-8 col-12">
+                                    <div class="card-body">
+                                        <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
+                                            <h5 class="card-title">{{ $movie->name }}</h5>
+                                            <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
+                                            <p class="card-text">
+                                                @foreach($movie->movieGenres as $genre)
+                                                    @if ($loop->first)
+                                                        <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                    @else
+                                                        | <a class="link link-dark" href="#">{{ $genre->name }}</a>
+                                                    @endif
+                                                @endforeach
+                                            </p>
+                                            <p class="card-text">Rated: <b class="text-danger">{{ $movie->rating->name }}</b>
+                                                - {{ $movie->rating->description }}</p>
                                         </a>
                                     </div>
-                                    <div class="col-lg-8 col-12">
-                                        <div class="card-body">
-                                            <a href="movie/{{ $movie->id }}" class="link link-dark text-decoration-none">
-                                                <h5 class="card-title">{{ $movie->name }}</h5>
-                                                <p class="card-text text-danger">{{ $movie->showTime }} phút</p>
-                                                <p class="card-text">
-                                                    @foreach($movie->movieGenres as $genre)
-                                                        @if ($loop->first)
-                                                            <a class="link link-dark" href="#">{{ $genre->name }}</a>
-                                                        @else
-                                                            | <a class="link link-dark" href="#">{{ $genre->name }}</a>
-                                                        @endif
-                                                    @endforeach
-                                                </p>
-                                                <p class="card-text">Rated: <b class="text-danger">{{ $movie->rating->name }}</b>
-                                                    - {{ $movie->rating->description }}</p>
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
-                            </article>
-                        </div>
-                        <!-- Movie: end -->
+                            </div>
+                        </article>
+                    </div>
+                    <!-- Movie: end -->
                 @endforeach
             </div>
 
