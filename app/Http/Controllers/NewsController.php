@@ -26,7 +26,7 @@ class NewsController extends Controller
         $request->validate([
             'title' => 'required'
         ], [
-            'title.required' => 'Title is required',
+            'title.required' => 'Please enter Title',
         ]);
         if ($request->hasFile('Image')) {
             $file = $request->file('Image');
@@ -45,6 +45,8 @@ class NewsController extends Controller
                     'user_id' => $request['user_id']
                 ]
             );
+        }else{
+            return redirect('admin/news')->with('warning','Vui lòng nhập hình ảnh');
         }
         $news->save();
         return redirect('admin/news')->with('success', 'Added Successfully!');

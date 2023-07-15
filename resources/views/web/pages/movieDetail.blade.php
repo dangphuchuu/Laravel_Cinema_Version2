@@ -1,11 +1,16 @@
 @extends('web.layout.index')
 @section('content')
+    <style>
+        .hover_movie:hover {
+            color: #f26b38 !important;
+        }
+    </style>
     <section class="container-lg">
         {{--  Breadcrumb  --}}
         <nav aria-label="breadcrumb mt-5">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#" class="link link-dark text-decoration-none">@lang('lang.home')</a></li>
-                <li class="breadcrumb-item"><a href="#" class="link link-dark text-decoration-none">@lang('lang.movie_is_playing')</a></li>
+                <li class="breadcrumb-item"><a href="/" class="link link-dark text-decoration-none">@lang('lang.home')</a></li>
+                <li class="breadcrumb-item"><a href="/movies" class="link link-dark text-decoration-none">@lang('lang.movie_is_playing')</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{!! $movie['name'] !!}</li>
             </ol>
         </nav>
@@ -53,21 +58,25 @@
                         <li class="list-group-item d-flex align-items-center">
                             <strong class="pe-1">@lang('lang.directors'): </strong>
                             @foreach($movie->directors as $director)
+                                <a href="/director/{!! $director['id'] !!}" class="link link-dark text-decoration-none hover_movie">
                                 @if ($loop->first)
                                     {{ $director->name }}
                                 @else
                                     , {{ $director->name }}
                                 @endif
+                                </a>
                             @endforeach
                         </li>
                         <li class="list-group-item d-flex align-items-center text-truncate">
                             <strong class="pe-1">@lang('lang.casts'): </strong>
                             @foreach($movie->casts as $cast)
+                                <a href="/cast/{!! $cast['id'] !!}" class="link link-dark text-decoration-none hover_movie" >
                                 @if ($loop->first)
                                     {{ $cast->name }}
                                 @else
                                     , {{ $cast->name }}
                                 @endif
+                                </a>
                             @endforeach
                         </li>
                         <li class="list-group-item d-flex align-items-center"><strong class="pe-1">@lang('lang.rated'): </strong>
@@ -135,7 +144,7 @@
                                                class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                                style="border-width: 2px; border-style: solid dashed; min-width: 85px">
                                                 <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
-                                                    {{ date('H:i', strtotime($schedule->startTime ).' - '.date('d-m-Y', strtotime($schedule->date)) )}}
+                                                    {{ date('H:i', strtotime($schedule->startTime )).' - '.date('d-m-Y', strtotime($schedule->date)) }}
                                                 </p>
                                             </a>
                                         @else

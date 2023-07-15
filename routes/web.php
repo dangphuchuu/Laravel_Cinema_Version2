@@ -72,6 +72,9 @@ Route::get('/movie/{id}', [WebController::class, 'movieDetail']);
 Route::get('/movies/filter', [WebController::class, 'movieFilter']);
 Route::get('/movies', [WebController::class, 'movies']);
 
+Route::get('/cast/{id}', [WebController::class, 'castDetail']);
+Route::get('/director/{id}', [WebController::class, 'directorDetail']);
+
 Route::get('/schedulesByTheater', [WebController::class, 'schedulesByTheater']);
 Route::get('/schedulesByMovie', [WebController::class, 'schedulesByMovie']);
 

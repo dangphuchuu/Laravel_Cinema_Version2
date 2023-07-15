@@ -41,9 +41,11 @@ class DirectorController extends Controller
                     'content' => $request->contents
                 ]
             );
+        }else{
+            return redirect('admin/cast')->with('warning','Vui lòng nhập hình ảnh');
         }
         $director->save();
-        return redirect('admin/director')->with('success', 'Add Director Successfully!');
+        return redirect('admin/director');
     }
 
     public function postEdit(Request $request, $id)

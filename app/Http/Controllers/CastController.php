@@ -42,9 +42,12 @@ class CastController extends Controller
                     'content' => $request->contents
                 ]
             );
+
+        }else{
+            return redirect('admin/cast')->with('warning','Vui lòng nhập hình ảnh');
         }
         $cast->save();
-        return redirect('admin/cast')->with('success', 'Add Cast Successfully!');
+        return redirect('admin/cast');
     }
 
     public function postEdit(Request $request, $id)
@@ -80,4 +83,5 @@ class CastController extends Controller
         $cast->delete();
         return response()->json(['success' => 'Delete Successfully']);
     }
+
 }

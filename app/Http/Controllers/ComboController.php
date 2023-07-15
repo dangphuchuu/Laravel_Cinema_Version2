@@ -49,6 +49,8 @@ class ComboController extends Controller
                     'created_at' => Carbon::today(),
                 ]
             );
+        }else{
+            return redirect('admin/combo')->with('warning','Vui lòng nhập hình ảnh');
         }
         $combo->save();
 

@@ -61,9 +61,7 @@ class MovieController extends Controller
                     'trailer'=> $request->trailer
                 ]
             );
-
             $movie->save();
-
             $casts = Cast::find($request->casts);
             $movie->casts()->attach($casts);
 
@@ -72,6 +70,8 @@ class MovieController extends Controller
 
             $movieGenres = MovieGenres::find($request->movieGenres);
             $movie->movieGenres()->attach($movieGenres);
+        }else{
+            return redirect('admin/movie')->with('warning','Vui lòng nhập hình ảnh');
         }
         return redirect('admin/movie');
     }
