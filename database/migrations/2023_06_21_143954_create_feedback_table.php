@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('user_id');
             $table->string('fullName', 255);
             $table->string('email', 255)->nullable();
             $table->string('phone', 10)->nullable();
