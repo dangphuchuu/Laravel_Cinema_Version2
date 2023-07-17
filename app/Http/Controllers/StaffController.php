@@ -243,7 +243,7 @@ class StaffController extends Controller
         $ticket = Ticket::where('code',  $request->code)->get()->first();
         if ($ticket) {
             if ($ticket->schedule->date == date('Y-m-d')) {
-                if (strtotime('+ 10 minutes', strtotime($ticket->schedule->startTime)) > strtotime(date('H:i:s'))) {
+                if (strtotime('- 10 minutes', strtotime($ticket->schedule->startTime)) > strtotime(date('H:i:s'))) {
                     $message = 'Chưa đến giờ chiếu phim';
                     $check = false;
                     $ticket->status = true;
