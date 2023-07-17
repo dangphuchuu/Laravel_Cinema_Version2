@@ -1,5 +1,5 @@
 @php use Illuminate\Support\Facades\Cookie; @endphp
-<!-- Login -->
+    <!-- Login -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog container">
         <div class="modal-content">
@@ -9,8 +9,9 @@
             </div>
             <div class="modal-body my-4">
                 <form method='post' action="/signin">
-{{--                    @csrf--}}
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                    {{--                    @csrf--}}
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                    <input type="hidden" name="url" value="{{ url()->current() }}"/>
                     <div class="mb-3">
                         <input class="form-control" type="text" placeholder="@lang('lang.type') email hoặc @lang('lang.phone')"
                                @if(session()->has('username_web'))
@@ -75,7 +76,8 @@
                         <input class="form-control" type="number" placeholder="@lang('lang.type') @lang('lang.phone')..." name="phone" aria-label="">
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="password" placeholder="@lang('lang.type') @lang('lang.password')..." name="password" aria-label="">
+                        <input class="form-control" type="password" placeholder="@lang('lang.type') @lang('lang.password')..." name="password"
+                               aria-label="">
                     </div>
                     <div class="mb-3">
                         <input class="form-control" type="password" placeholder="@lang('lang.re_password')..." name="repassword" aria-label="">

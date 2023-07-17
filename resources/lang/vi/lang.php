@@ -11,7 +11,7 @@ return [
     'movies' => 'Phim',
     'theater' => 'Rạp',
     'schedule' => 'Lịch chiếu',
-    'events' => 'Tin tức & Sự kiện',
+    'events' => 'Sự kiện',
     'ticket' => 'Vé',
     'food' => 'Thức ăn',
     'combo' => 'Combo',
