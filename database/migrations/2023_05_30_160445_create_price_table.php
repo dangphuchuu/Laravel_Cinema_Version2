@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create('prices', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('price')->default(0);
             $table->string('day');
             $table->time('after')->default('08:00');
