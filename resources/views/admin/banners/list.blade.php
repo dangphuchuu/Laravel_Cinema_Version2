@@ -17,6 +17,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">@lang('lang.image')</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.staff')</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">@lang('lang.status')</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
@@ -35,6 +36,9 @@
                                                          src="{!! $value['image'] !!}" alt="user1">
                                                 @endif
                                             </td>
+                                            <td class="align-middle text-center">
+                                                    {!! $value['user']['fullName'] !!}
+                                            </td>
                                             <td id="status{!! $value['id'] !!}" class="align-middle text-center text-sm ">
                                                 @if($value['status'] == 1)
                                                     <a href="javascript:void(0)" class="btn_active"  onclick="changestatus({!! $value['id'] !!},0)">
@@ -46,6 +50,7 @@
                                                     </a>
                                                 @endif
                                             </td>
+
                                             <td class="align-middle">
                                                 <a href="#editBanner" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                                    data-original-title="Edit banner" data-bs-target="#editBanner{!! $value['id'] !!}"
