@@ -55,8 +55,8 @@ class WebController extends Controller
             ]);
 
         $news = News::orderBy('id', 'DESC')->where('status',1)->take(3)->get();
-        $banners = Banner::get()->where('status', 1);
-        $movies = Movie::get()->where('status', 1)->where('endDate', '>', date('Y-m-d'))->take(6);
+        $banners = Banner::where('status', 1)->get();
+        $movies = Movie::where('status', 1)->where('endDate', '>', date('Y-m-d'))->orderBy('releaseDate', 'desc')->get()->take(6);
         $moviesEarly = Movie::all()->filter(function ($movie) {
             foreach ($movie->schedules as $schedule) {
                 if ($schedule->early == true) {
@@ -292,9 +292,10 @@ class WebController extends Controller
     {
         $casts = Cast::all();
         $directors = Director::all();
-        $movies = Movie::all()->where('status', 1)
+        $movies = Movie::orderBy('releaseDate', 'desc')->where('status', 1)
             ->where('releaseDate', '<=', date('Y-m-d'))
-            ->where('endDate', '>', date('Y-m-d'));
+            ->where('endDate', '>', date('Y-m-d'))
+            ->get();
         $moviesSoon = Movie::all()->where('status', 1)->where('releaseDate', '>', date('Y-m-d'));
         $moviesEarly = Movie::join('schedules', 'movies.id', '=', 'schedules.movie_id')
             ->select('movies.*')
