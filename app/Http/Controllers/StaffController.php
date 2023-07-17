@@ -243,38 +243,37 @@ class StaffController extends Controller
         $ticket = Ticket::where('code',  $request->code)->get()->first();
         if ($ticket) {
             if ($ticket->schedule->date == date('Y-m-d')) {
-                if (strtotime($ticket->schedule->endTime) <= strtotime(date('H:i:s'))) {
-                    $message = 'suất chiếu đã kết thúc';
-                    $check = false;
-                    $ticket->status = false;
-                    $ticket->save();
-                }
                 if (strtotime('+ 10 minutes', strtotime($ticket->schedule->startTime)) > strtotime(date('H:i:s'))) {
                     $message = 'Chưa đến giờ chiếu phim';
                     $check = false;
                     $ticket->status = true;
                     $ticket->save();
-                }
-                if (strtotime('+ 10 minutes', strtotime($ticket->schedule->startTime)) <= strtotime(date('H:i:s'))
-                && strtotime($ticket->schedule->endTime) > strtotime(date('H:i:s'))
-                ) {
-                    if ($ticket->status) {
-                        $ticket->status = false;
-                        $message = 'vé hợp lệ';
+                } else {
+                    if (strtotime($ticket->schedule->endTime) > strtotime(date('H:i:s'))) {
+                        if ($ticket->status) {
+                            $ticket->status = false;
+                            $message = 'vé hợp lệ';
+                        } else {
+                            $message = 'vé không hợp lệ';
+                            $check = false;
+                            return response()->json([
+                                'theater' => $ticket->schedule->room->theater->name,
+                                'room' => $ticket->schedule->room->name,
+                                'movie' => $ticket->schedule->movie->name,
+                                'date' => $ticket->schedule->date,
+                                'startTime' => $ticket->schedule->startTime,
+                                'message' => $message,
+                                'check' => $check,
+                            ]);
+                        }
                     } else {
-                        $message = 'vé không hợp lệ';
+                        $message = 'suất chiếu đã kết thúc';
                         $check = false;
-                        return response()->json([
-                            'theater' => $ticket->schedule->room->theater->name,
-                            'room' => $ticket->schedule->room->name,
-                            'movie' => $ticket->schedule->movie->name,
-                            'date' => $ticket->schedule->date,
-                            'startTime' => $ticket->schedule->startTime,
-                            'message' => $message,
-                            'check' => $check,
-                        ]);
+                        $ticket->status = false;
+                        $ticket->save();
                     }
                 }
+
             } else {
                 if ($ticket->schedule->date > date('Y-m-d')) {
                     $message = 'Chưa đến ngày chiếu phim';
