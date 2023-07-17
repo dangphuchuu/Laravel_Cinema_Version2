@@ -18,6 +18,10 @@
                         <td id="room"></td>
                     </tr>
                     <tr>
+                        <td>@lang('lang.seat')</td>
+                        <td id="seats"></td>
+                    </tr>
+                    <tr>
                         <td>@lang('lang.movies')</td>
                         <td id="movie"></td>
                     </tr>
@@ -160,13 +164,14 @@
                                 200: (data) => {
                                     $('#theater').text(data.theater);
                                     $('#room').text(data.room);
+                                    $('#seats').text(data.seats);
                                     $('#movie').text(data.movie);
                                     $('#date').text(data.date);
                                     $('#startTime').text(data.startTime);
                                     if (data.check) {
-                                        $('#status').addClass('text-success').text(data.message);
+                                        $('#status').addClass('text-success').removeClass('text-danger').text(data.message);
                                     } else {
-                                        $('#status').addClass('text-danger').text(data.message);
+                                        $('#status').addClass('text-danger').removeClass('text-success').text(data.message);
                                     }
                                     $codeTemp = $ticketElement.val();
                                 },
@@ -174,6 +179,7 @@
                                     $('#theater').text('');
                                     $('#room').text('');
                                     $('#movie').text('');
+                                    $('#seats').text('');
                                     $('#date').text('');
                                     $('#startTime').text('');
                                     $('#status').addClass('text-warning').text(data.message);

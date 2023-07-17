@@ -240,6 +240,7 @@ class StaffController extends Controller
     public function handleScanTicket(Request $request) {
         $message = 'vé hợp lệ';
         $check = true;
+        $seatsList = '';
         $ticket = Ticket::where('code',  $request->code)->get()->first();
         if ($ticket) {
             if ($ticket->schedule->date == date('Y-m-d')) {
@@ -252,6 +253,7 @@ class StaffController extends Controller
                     if (strtotime($ticket->schedule->endTime) > strtotime(date('H:i:s'))) {
                         if ($ticket->status) {
                             $ticket->status = false;
+                            $check = true;
                             $message = 'vé hợp lệ';
                         } else {
                             $message = 'vé không hợp lệ';
@@ -295,6 +297,7 @@ class StaffController extends Controller
                 'theater' => '',
                 'room' => '',
                 'movie' => '',
+                'seats' => '',
                 'date' => '',
                 'startTime' => '',
                 'message' => $message,
@@ -304,10 +307,15 @@ class StaffController extends Controller
 
         $ticket->save();
 
+        foreach ($ticket->tickSeats as $seats) {
+            $seatsList .= $seats->row.$seats->col.',';
+        }
+
         return response()->json([
             'theater' => $ticket->schedule->room->theater->name,
             'room' => $ticket->schedule->room->name,
             'movie' => $ticket->schedule->movie->name,
+            'seats' => $seatsList,
             'date' => $ticket->schedule->date,
             'startTime' => $ticket->schedule->startTime,
             'message' => $message,
