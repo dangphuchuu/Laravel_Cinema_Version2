@@ -307,7 +307,7 @@ class StaffController extends Controller
 
         $ticket->save();
 
-        foreach ($ticket->tickSeats as $seats) {
+        foreach ($ticket->ticketSeats as $seats) {
             $seatsList .= $seats->row.$seats->col.',';
         }
 
