@@ -40,7 +40,7 @@ class AuthController extends Controller
                 session()->forget('username_web');
                 session()->forget('password_web');
             }
-            return redirect('/')->with('success','Chào mừng bạn '.Auth::user()->fullName.' !');
+            return redirect($request->url)->with('success','Chào mừng bạn '.Auth::user()->fullName.' !');
         } else {
             return redirect('/')->with('warning','Sai tài khoản hoặc mật khẩu');
         }
