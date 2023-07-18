@@ -56,7 +56,7 @@ class WebController extends Controller
 
         $news = News::orderBy('id', 'DESC')->where('status',1)->take(3)->get();
         $banners = Banner::where('status', 1)->get();
-        $movies = Movie::where('status', 1)->where('endDate', '>', date('Y-m-d'))->orderBy('releaseDate', 'desc')->get()->take(6);
+        $movies = Movie::where('status', 1)->where('endDate', '>', date('Y-m-d'))->orderBy('releaseDate', 'desc')->get()->take(7);
         $moviesEarly = Movie::all()->filter(function ($movie) {
             foreach ($movie->schedules as $schedule) {
                 if ($schedule->early == true) {
