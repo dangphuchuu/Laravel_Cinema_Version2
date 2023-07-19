@@ -26,7 +26,7 @@ class StaffController extends Controller
     }
 
     public function buyTicket(Request $request) {
-        $theater = Auth::user()->theater();
+        $theater = Auth::user()->theater;
         if (isset($request->date)) {
             $date_cur = $request->date;
         } else {
