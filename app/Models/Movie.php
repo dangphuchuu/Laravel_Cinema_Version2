@@ -26,22 +26,22 @@ class Movie extends Model
         'status'
     ];
 
-    public function casts(): BelongsToMany
+    public function casts()
     {
         return $this->belongsToMany(Cast::class, 'casts_movies', 'movie_id', 'cast_id');
     }
 
-    public function directors(): BelongsToMany
+    public function directors()
     {
         return $this->belongsToMany(Director::class, 'directors_movies', 'movie_id', 'director_id');
     }
 
-    public function movieGenres(): BelongsToMany
+    public function movieGenres()
     {
         return $this->belongsToMany(MovieGenres::class, 'moviegenres_movies', 'movie_id', 'movieGenre_id');
     }
 
-    public function rating(): BelongsTo
+    public function rating()
     {
         return $this->belongsTo(Rating::class, 'rating_id', 'id');
     }
