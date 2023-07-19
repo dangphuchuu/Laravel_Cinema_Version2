@@ -87,17 +87,25 @@
                                             </button>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            @if($value['status'] == 1)
-                                                    <span class="badge badge-sm bg-gradient-success">@lang('lang.not_scanned')</span>
-                                            @else
+                                            @if($value['schedule_id']!= NULL)
+                                                @if( $value['status'] == 0)
                                                     <span class="badge badge-sm bg-gradient-secondary">@lang('lang.scanned')</span>
+                                                @else
+                                                    <span class="badge badge-sm bg-gradient-success">@lang('lang.not_scanned')</span>
+                                                @endif
+                                            @else
+                                                <span class=""><i class="fa-regular fa-ban"></i></span>
                                             @endif
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            @if($value['receivedCombo'] == 0)
-                                                <span class="badge badge-sm bg-gradient-primary">@lang('lang.not_scanned')</span>
+                                            @if($value['ticketCombos']->count() == 0 && $value['ticketFoods']->count() == 0 )
+                                                <span class=""><i class="fa-regular fa-ban"></i></span>
                                             @else
-                                                <span class="badge badge-sm bg-gradient-secondary">@lang('lang.scanned')</span>
+                                                @if($value['receivedCombo'] == 1)
+                                                    <span class="badge badge-sm bg-gradient-secondary">@lang('lang.scanned')</span>
+                                                @else
+                                                <span class="badge badge-sm bg-gradient-primary">@lang('lang.not_scanned')</span>
+                                                @endif
                                             @endif
                                         </td>
                                     </tr>
