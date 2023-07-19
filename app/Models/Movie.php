@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Movie extends Model
 {
@@ -24,22 +26,22 @@ class Movie extends Model
         'status'
     ];
 
-    public function casts()
+    public function casts(): BelongsToMany
     {
         return $this->belongsToMany(Cast::class, 'casts_movies', 'movie_id', 'cast_id');
     }
 
-    public function directors()
+    public function directors(): BelongsToMany
     {
         return $this->belongsToMany(Director::class, 'directors_movies', 'movie_id', 'director_id');
     }
 
-    public function movieGenres()
+    public function movieGenres(): BelongsToMany
     {
         return $this->belongsToMany(MovieGenres::class, 'moviegenres_movies', 'movie_id', 'movieGenre_id');
     }
 
-    public function rating()
+    public function rating(): BelongsTo
     {
         return $this->belongsTo(Rating::class, 'rating_id', 'id');
     }

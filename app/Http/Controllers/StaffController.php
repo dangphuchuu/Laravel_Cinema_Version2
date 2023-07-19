@@ -21,12 +21,12 @@ class StaffController extends Controller
 {
     public function __construct()
     {
-        $cloud_name = env('CLOUD_NAME');
+        $cloud_name = cloud_name();
         view()->share('cloud_name', $cloud_name);
     }
 
     public function buyTicket(Request $request) {
-        $theater = Auth::user()->theater;
+        $theater = Auth::user()->theater();
         if (isset($request->date)) {
             $date_cur = $request->date;
         } else {
@@ -35,7 +35,8 @@ class StaffController extends Controller
         $roomTypes = RoomType::all();
         $movies = Movie::whereDate('releaseDate', '<=', Carbon::today()->format('Y-m-d'))
             ->where('endDate', '>=', Carbon::today()->format('Y-m-d'))
-            ->where('status', 1)->get();
+            ->where('status', 1)
+            ->get();
         return view('admin.buyTicket.buyTicket', [
             'movies' => $movies,
             'theater' => $theater,
