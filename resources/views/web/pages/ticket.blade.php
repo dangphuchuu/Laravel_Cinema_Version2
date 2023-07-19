@@ -308,6 +308,7 @@
                                                         </button>
                                                     </div>
                                                 </div>
+                                                <div class="card-body" id="combo_{{$combozzz}}"></div>
                                             </div>
                                         </div>
                                     </div>
