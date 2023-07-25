@@ -34,7 +34,7 @@ class StaffController extends Controller
         }
         $roomTypes = RoomType::all();
         $movies = Movie::whereDate('releaseDate', '<=', Carbon::today()->format('Y-m-d'))
-            ->where('endDate', '>=', Carbon::today()->format('Y-m-d'))
+            ->where('endDate', '>', Carbon::today()->format('Y-m-d'))
             ->where('status', 1)
             ->get();
         return view('admin.buyTicket.buyTicket', [
