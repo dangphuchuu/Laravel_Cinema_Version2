@@ -7,6 +7,7 @@ use App\Models\Movie;
 use App\Models\Schedule;
 use App\Models\Subtitle;
 use App\Models\Theater;
+use App\Models\Ticket;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,15 @@ class SchedulesController extends Controller
     //Schedule Movie
     public function schedule(Request $request)
     {
+        Schedule::where('date', '<', date('Y-m-d'))->update(['status' => false]);
+        Schedule::where('date', '=', date('Y-m-d'))->where('endTime', '<=', date('H:i:s'))->update(['status' => false]);
+        Movie::where('endDate', '<', date('Y-m-d'))->update(['status' => false]);
+        Ticket::join('schedules', 'tickets.schedule_id', '=', 'schedules.id')
+            ->where('schedules.date', '<', date('Y-m-d'))
+            ->update([
+                'tickets.status' => false,
+                'tickets.receivedCombo' => true,
+            ]);
 
         $schedules = Schedule::all();
         $theaters = Theater::all();

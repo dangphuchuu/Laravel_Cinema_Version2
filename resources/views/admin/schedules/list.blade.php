@@ -91,7 +91,7 @@
                                                         <tr>
                                                             <th class="text-uppercase fw-bold">@lang('lang.time')</th>
                                                             <th class="text-uppercase fw-bold text-start">@lang('lang.movies')</th>
-                                                            <th class="text-uppercase fw-bold">@lang('lang.early_screening')</th>
+{{--                                                            <th class="text-uppercase fw-bold">@lang('lang.early_screening')</th>--}}
                                                             <th class="text-uppercase fw-bold">@lang('lang.status')</th>
                                                         </tr>
                                                         </thead>
@@ -105,36 +105,37 @@
                                                                 <td class="text-start">
                                                                     {{ $schedule->movie->name }}
                                                                 </td>
-                                                                <td id="early_status{!! $schedule['id'] !!}"
-                                                                    class="align-middle text-center text-sm ">
-                                                                    @if(date('Y-m-d', strtotime($schedule->date))
+                                                                @if(date('Y-m-d', strtotime($schedule->date))
                                                                             < date('Y-m-d', strtotime($schedule->movie->releaseDate)))
-                                                                        @if($schedule->early == 1)
-                                                                            <a href="javascript:void(0)" class="btn_early"
-                                                                               onclick="changeearlystatus({!! $schedule['id'] !!},0)">
+                                                                    <td id="early_status{!! $schedule['id'] !!}"
+                                                                        class="align-middle text-center text-sm ">
+                                                                            @if($schedule->early == 1)
+                                                                                <a href="javascript:void(0)" class="btn_early"
+                                                                                   onclick="changeearlystatus({!! $schedule['id'] !!},0)">
+                                                                                    <span class="badge badge-sm bg-gradient-success">Online</span>
+                                                                                </a>
+                                                                            @else
+                                                                                <a href="javascript:void(0)" class="btn_early"
+                                                                                   onclick="changeearlystatus({!! $schedule['id'] !!},1)">
+                                                                                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                                                                </a>
+                                                                            @endif
+                                                                    </td>
+                                                                @else
+                                                                    <td id="status{!! $schedule['id'] !!}" class="align-middle text-center text-sm ">
+                                                                        @if($schedule->status == 1)
+                                                                            <a href="javascript:void(0)" class="btn_active"
+                                                                               onclick="changestatus({!! $schedule['id'] !!},0)">
                                                                                 <span class="badge badge-sm bg-gradient-success">Online</span>
                                                                             </a>
                                                                         @else
-                                                                            <a href="javascript:void(0)" class="btn_early"
-                                                                               onclick="changeearlystatus({!! $schedule['id'] !!},1)">
+                                                                            <a href="javascript:void(0)" class="btn_active"
+                                                                               onclick="changestatus({!! $schedule['id'] !!},1)">
                                                                                 <span class="badge badge-sm bg-gradient-secondary">Offline</span>
                                                                             </a>
                                                                         @endif
-                                                                    @endif
-                                                                </td>
-                                                                <td id="status{!! $schedule['id'] !!}" class="align-middle text-center text-sm ">
-                                                                    @if($schedule->status == 1)
-                                                                        <a href="javascript:void(0)" class="btn_active"
-                                                                           onclick="changestatus({!! $schedule['id'] !!},0)">
-                                                                            <span class="badge badge-sm bg-gradient-success">Online</span>
-                                                                        </a>
-                                                                    @else
-                                                                        <a href="javascript:void(0)" class="btn_active"
-                                                                           onclick="changestatus({!! $schedule['id'] !!},1)">
-                                                                            <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                                                                        </a>
-                                                                    @endif
-                                                                </td>
+                                                                    </td>
+                                                                @endif
                                                             </tr>
                                                         @endforeach
                                                         <tr>
