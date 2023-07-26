@@ -360,12 +360,13 @@ class AdminController extends Controller
         $user = User::find(Auth::user()->id);
         if ($request['checkPassword'] == 'on') {
             $request->validate([
-                'password' => 'required',
+                'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
                 'repassword' => 'required|same:password'
             ], [
-                'password.required' => 'Type new password',
-                'repassword.required' => 'Type passsword again',
-                'repassword.same' => "Password again isn't correct"
+                'password.regex'=>'Mật khẩu phải có ít nhất 1 chữ hoa,1 chữ thường,1 số,1 kí tự đặc biệt và tối dài tối thiểu 6 kí tự',
+                'password.required' => 'Vui lòng nhập mật khẩu mới',
+                'repassword.required' => 'Vui lòng nhập lại mật khẩu',
+                'repassword.same' => "Mật khẩu nhập lại không đúng"
             ]);
             $request['password'] = bcrypt($request['password']);
         }

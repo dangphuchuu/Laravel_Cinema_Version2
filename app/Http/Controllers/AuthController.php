@@ -118,7 +118,7 @@ class AuthController extends Controller
             $user['password'] = bcrypt($request['password']);
             $user->save();
         }else{
-            return redirect('/profile')->with('danger',"Mật khẩu cũ không đúng !");
+            return redirect('/profile')->with('warning',"Mật khẩu cũ không đúng !");
         }
         return redirect('/signOut')->with('success','Cập nhật mật khẫu thành công');
     }

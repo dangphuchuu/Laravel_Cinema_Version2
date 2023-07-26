@@ -46,18 +46,6 @@
                             <div class="card-header pb-0">
                               <div class="d-flex align-items-center">
                                 <p class="mb-0">@lang('lang.edit') @lang('lang.profile')</p>
-                                  @if(count($errors)>0)
-                                      <div class="alert alert-danger">
-                                          @foreach($errors->all() as $arr)
-                                              {{$arr}}<br>
-                                          @endforeach
-                                      </div>
-                                  @endif
-                                  @if (session('success'))
-                                      <div class="alert alert-success">
-                                          {{ session('success') }}
-                                      </div>
-                                  @endif
                                 <button class="ms-auto">@lang('lang.submit')</button>
                               </div>
                             </div>
