@@ -110,14 +110,14 @@
                                                                     <td id="early_status{!! $schedule['id'] !!}"
                                                                         class="align-middle text-center text-sm ">
                                                                             @if($schedule->early == 1)
-                                                                                <a href="javascript:void(0)" class="btn_early"
+                                                                                <a href="javascript:void(0)" class="btn_active"
                                                                                    onclick="changeearlystatus({!! $schedule['id'] !!},0)">
                                                                                     <span class="badge badge-sm bg-gradient-success">
                                                                                         Early access
                                                                                     </span>
                                                                                 </a>
                                                                             @else
-                                                                                <a href="javascript:void(0)" class="btn_early"
+                                                                                <a href="javascript:void(0)" class="btn_active"
                                                                                    onclick="changeearlystatus({!! $schedule['id'] !!},1)">
                                                                                     <span class="badge badge-sm bg-gradient-secondary">
                                                                                         Offline
