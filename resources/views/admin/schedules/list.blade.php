@@ -302,7 +302,7 @@
         function changeearlystatus(early_id, active) {
             if (active === 1) {
                 $("#early_status" + early_id).html(' <a href="javascript:void(0)"  class="btn_active" onclick="changeearlystatus(' + early_id + ',0)">\
-                    <span class="badge badge-sm bg-gradient-success">Online</span>\
+                    <span class="badge badge-sm bg-gradient-success">Early access</span>\
             </a>')
             } else {
                 $("#early_status" + early_id).html(' <a  href="javascript:void(0)" class="btn_active"  onclick="changeearlystatus(' + early_id + ',1)">\
