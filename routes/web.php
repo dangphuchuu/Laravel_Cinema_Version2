@@ -28,7 +28,7 @@ Route::get('lang/{locale}', function ($locale) {
 require 'admin.php';
 
 // Web Route
-Route::prefix('/')->middleware('user','role:user')->group(function() {
+Route::prefix('/')->middleware('user','role:user|admin|staff')->group(function() {
     Route::get('/payment/result', [PaymentController::class, 'handleResult']);
     Route::post('/payment/create', [PaymentController::class, 'create']);
     Route::post('/payment', [PaymentController::class, 'ticketPayment']);
