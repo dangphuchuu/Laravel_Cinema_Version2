@@ -51,7 +51,7 @@
     @include('admin.layout.nav')
     <!-- End Navbar -->
     @if(count($errors) > 0)
-        <div class="alert alert-danger">
+        <div class="alert alert-warning">
             @foreach($errors->all() as $arr)
                 {{ $arr }}<br>
             @endforeach
