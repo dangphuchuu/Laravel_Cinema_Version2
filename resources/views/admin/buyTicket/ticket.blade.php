@@ -803,6 +803,21 @@
                 }
             })
 
+            $('#userCode').bind('keyup', (e) => {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "/tickets/delete",
+                    type: 'DELETE',
+                    dataType: 'json',
+                    data: {
+                        'ticket_id': $ticket_id,
+                    },
+                });
+            })
 
             $('#moneyIn').bind('keyup', (e) => {
                 $sum3 = $('#total').val();
@@ -811,9 +826,16 @@
             })
 
             $('#point').bind('keyup', (e) => {
-                $('.point2').val($('#point').val());
-                $sum2 = $sum - $('#point').val();
+                $point = $('#point').val();
+
+                if($point > ($sum * 90 / 100)) {
+                    alert('Không sử dụng điểm quá 90% tổng tiền hóa đơn');
+                    $point = $sum * 90 /100;
+                    $('#point').val($point);
+                }
+                $sum2 = $sum - $point;
                 $('#ticketSeat_totalPrice').text($sum2.toLocaleString('vi-VN'));
+                $('.point2').val($point);
                 $('#amount').val($sum2);
                 $('#total').val($sum2);
             })
