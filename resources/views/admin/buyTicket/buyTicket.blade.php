@@ -36,7 +36,7 @@
                                                     <div class="card border mb-2">
                                                         <button type="button" class="btn btn-link"
                                                             data-bs-toggle="modal" data-bs-target="#movieSchedules_{{$movie->id}}">
-                                                        <div class="card-header" style="height: 120px">{{$movie->name}}</div>
+                                                        <div class="card-header p-2" style="height: 80px">{{$movie->name}}</div>
                                                         @if(strstr($movie->image,"https") == "")
                                                             <img class="card-img rounded"
                                                                  style="width: 180px; height: 240px" alt="..."
@@ -134,7 +134,7 @@
                                                     <div class="card border mb-2">
                                                         <button type="button" class="btn btn-link"
                                                                 data-bs-toggle="modal" data-bs-target="#movieSchedules_{{$movie->id}}">
-                                                            <div class="card-header" style="height: 120px">{{$movie->name}}</div>
+                                                            <div class="card-header p-2" style="height: 80px">{{$movie->name}}</div>
                                                             @if(strstr($movie->image,"https") == "")
                                                                 <img class="card-img rounded"
                                                                      style="width: 180px; height: 240px" alt="..."
