@@ -37,8 +37,17 @@ class StaffController extends Controller
             ->where('endDate', '>', Carbon::today()->format('Y-m-d'))
             ->where('status', 1)
             ->get();
+        $moviesEarly = Movie::all()->filter(function ($movie) {
+            foreach ($movie->schedules as $schedule) {
+                if ($schedule->early && $movie->releaseDate > date('Y-m-d')) {
+                    return $movie;
+                }
+            }
+            return null;
+        });
         return view('admin.buyTicket.buyTicket', [
             'movies' => $movies,
+            'moviesEarly' => $moviesEarly,
             'theater' => $theater,
             'date_cur' => $date_cur,
             'roomTypes' => $roomTypes,

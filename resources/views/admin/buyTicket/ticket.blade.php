@@ -23,6 +23,7 @@
         <div class="card">
             <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
                 bán vé
+                <a class="btn btn-danger float-end" href="admin/buyTicket">Hủy</a>
             </div>
 
             <div class="card-body pt-2">
@@ -394,6 +395,7 @@
                                                     <label for="point" class="form-control-label">Điểm khách hàng</label>
                                                     <input id="point" class="form-control disabled" readonly
                                                            min="20000" name="point" type="number" placeholder="0">
+                                                    <p class="text-danger" id="point-validate"></p>
                                                 </div>
                                             </div>
                                             <div class="col">
@@ -645,6 +647,7 @@
             }
 
             comboNext = () => {
+                $('#point').attr('max', $sum * 90 / 100);
                 $('#amount').val($sum);
                 $('#ticket_id').val($ticket_id);
                 $('#total').val($sum);
@@ -803,19 +806,41 @@
                 }
             })
 
-            $('#userCode').bind('keyup', (e) => {
+            $('#userId').bind('keyup', () => {
+                $code = $('#userId').val();
+                console.log($code);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
                 $.ajax({
-                    url: "/tickets/delete",
-                    type: 'DELETE',
+                    url: "/admin/buyTicket/scanBC",
+                    type: 'POST',
                     dataType: 'json',
                     data: {
-                        'ticket_id': $ticket_id,
+                        'code': $code,
                     },
+                    statusCode: {
+                        200: (data) => {
+                            $('#username').text(data.username);
+                            $('#userPoint').text(data.userPoint);
+                            $('#userCode').val(data.userId);
+                            $('#userCode2').val(data.userId);
+                            if ($('.table').find('#username').text() === '') {
+                                $('#point').attr('readonly', true);
+                            } else {
+                                if (parseInt($('#userPoint').text()) >= 20000) {
+                                    $('#point').attr('readonly', false);
+                                }
+                            }
+                        },
+                        500: () => {
+                            $('#username').text('');
+                            $('#userPoint').text('');
+                        }
+
+                    }
                 });
             })
 
@@ -827,7 +852,17 @@
 
             $('#point').bind('keyup', (e) => {
                 $point = $('#point').val();
-
+                $userPoint = parseInt($('#userPoint').text());
+                if ($point > $userPoint) {
+                    alert('Điểm của khách hàng không đủ');
+                    return
+                }
+                if ($point < 20000) {
+                    $('#point-validate').text('Sử dụng tối thiểu 20.000 điểm');
+                    return
+                } else {
+                    $('#point-validate').text('');
+                }
                 if($point > ($sum * 90 / 100)) {
                     alert('Không sử dụng điểm quá 90% tổng tiền hóa đơn');
                     $point = $sum * 90 /100;
@@ -853,16 +888,6 @@
                 }
             }
 
-            // $('#point').bind('keyup', (e) => {
-            //     if ($('#moneyIn').val() !== '') {
-            //         $moneyOut = $('#moneyIn').val() - $sum + parseInt($('#point').val());
-            //         $('#moneyOut').val($moneyOut);
-            //     }
-            //     if ($('#point').val() === '') {
-            //         $moneyOut = parseInt($('#moneyIn').val()) - $sum;
-            //         $('#moneyOut').val($moneyOut);
-            //     }
-            // })
 
             @foreach($room->seats as $seat)
             @if($seat->status == 1)
@@ -999,7 +1024,6 @@
                             } else {
                                 $('#point').attr('readonly', false);
                             }
-                            $('#point').attr('max', $sum * 90 / 100);
                         },
                         500: () => {
                             $('#username').text('');
