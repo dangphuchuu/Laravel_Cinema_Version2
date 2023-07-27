@@ -43,7 +43,6 @@
                             <select id="theater" style="width: 70%" class="statistical-sortby form-control">
                                 <option value="null" selected>Selected</option>
                                 <option value="ticket">Lọc theo vé</option>
-                                <option value="genre">Lọc theo thể loại</option>
                                 <option value="theater">Lọc theo rạp</option>
                             </select>
                         </div>
