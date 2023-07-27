@@ -30,7 +30,6 @@ Route::prefix('admin')->group(function () {
 Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function () {
 
     Route::get('/', [AdminController::class, 'home']);
-
     // statistical
     Route::get('/filter-by-date',[AdminController::class,'filter_by_date']);
     Route::get('/statistical-filter',[AdminController::class,'statistical_filter']);
@@ -86,6 +85,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/edit/{id}', [MovieController::class, 'postEdit']);
         Route::delete('/delete/{id}', [MovieController::class, 'delete']);
         Route::get('/status', [MovieController::class, 'status']);
+        Route::get('/search', [MovieController::class, 'searchMovie']);
     });
 
     //TODO Room
@@ -162,6 +162,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     Route::prefix('user')->group(function () {
         Route::get('/', [AdminController::class, 'user']);
         Route::get('/status', [AdminController::class, 'status']);
+        Route::get('/search', [AdminController::class, 'searchUser']);
     });
 
     //TODO staff_account

@@ -6,7 +6,12 @@
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>@lang('lang.user_account')</h6>
+                            <h6>
+                                @lang('lang.user_account')
+                                <label for="search">
+                                    <input type="text" placeholder="@lang('lang.type') @lang('lang.code') @lang('lang.or') email" class="form-controller" id="search" name="search"/>
+                                </label>
+                            </h6>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
@@ -82,7 +87,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="d-flex justify-content-center mt-3">
+                            <div id="paginate" class="d-flex justify-content-center mt-3">
                                 {!! $users->links() !!}
                             </div>
                         </div>
@@ -95,6 +100,47 @@
     @endcan
 @endsection
 @section('scripts')
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $paginate = $('#paginate');
+            $flag = false;
+            $('#search').on('keyup',function(){
+                $value = $(this).val();
+                if($value != '')
+                    $flag = true;
+                if($flag == true)
+                {
+                $.ajax({
+                    type: 'get',
+                    url: '{{ URL::to('admin/user/search') }}',
+                    data: {
+                        'search': $value
+                    },
+                    success:function(data){
+                        $('tbody').html(data);
+                        console.log($flag);
+                        if($value == ''  ){
+                            if($flag == true)
+                            {
+                                $('.card-body').append($paginate);
+                                $flag = false;
+                            }
+                        }else{
+                            $('#paginate').remove();
+                            $flag = true;
+                        }
+
+                    }
+                });
+                }
+            })
+        });
+    </script>
 <script>
     function changestatus(user_id,active){
         if(active === 1){

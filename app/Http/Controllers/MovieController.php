@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
+
     function __construct()
     {
         $cloud_name = cloud_name();
@@ -145,5 +146,89 @@ class MovieController extends Controller
         $movie['status'] = $request->active;
         $movie->save();
         return response('success',200);
+    }
+    public function searchMovie(Request $request){
+            $output = '';
+            if($request->search == null){
+                $movies = Movie::orderBy('id', 'DESC')->Paginate(5);
+            }else{
+                $movies = Movie::where('name', 'LIKE', '%' . $request->search . '%')->get();
+            }
+            if ($movies) {
+                foreach ($movies as  $movie) {
+                    $output .= '<tr>
+                     <td class="align-middle text-center">';
+                     foreach($movie->movieGenres as $genre){
+                         $output.='
+                     <h6 class="mb-0 text-sm ">'. $genre->name .'</h6>';
+                     }
+                    $output.='
+                        </td>
+                   <td class="align-middle text-center">';
+                    if(strstr($movie->image,"https") == "") {
+                        $output .= '
+                        <img style="width: 300px"
+                             src="https://res.cloudinary.com/'. cloud_name() .'/image/upload/'.$movie->image.'.jpg"
+                             alt="user1">';
+                    }
+                    else {
+                        $output .= '
+                        <img style="width: 300px"
+                             src="'. $movie->image .'" alt="user1">';
+                    }
+                     $output.='</td>
+                     <td class="align-middle text-center">
+                        <div class="accordion-body mt-4 mb-3 w-100">
+                            '. strip_tags($movie->name) .'
+                        </div>
+                    </td>
+                     <td class="align-middle text-center">
+                            <span class="text-secondary font-weight-bold">
+                             '.$movie->showTime.'  minutes
+                            </span>
+                        </td>
+                     <td class="align-middle text-center">
+                        <h6 class="mb-0 text-sm ">'. $movie->national .'</h6>
+                      </td>
+                       <td class="align-middle text-center">
+                        <span class="text-secondary font-weight-bold">
+                        '. date("d-m-Y", strtotime($movie->releaseDate )).'
+                        </span>
+                        </td>
+                      <td class="align-middle text-center">
+                           <span class="text-secondary font-weight-bold">
+                           '.date("d-m-Y", strtotime($movie->endDate)).'
+                           </span>
+                       </td>
+                     <td id="status'. $movie['id'] .'" class="align-middle text-center text-sm">';
+                        if($movie['status'] == 1)
+                        {
+                        $output.='
+                            <a href="javascript:void(0)" class="btn_active"  onclick="changestatus('. $movie['id'] .',0)">
+                                <span class="badge badge-sm bg-gradient-success">Online</span>
+                            </a>';
+                        }
+                        else
+                        {
+                        $output.='
+                            <a href="javascript:void(0)" class="btn_active"  onclick="changestatus('. $movie['id'] .',1)">
+                                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                            </a>';
+                        }
+                        $output.='</td>
+                         <td class="align-middle">';
+                        $output.='
+                            <a href="admin/movie/edit/'. $movie['id'] .'" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                               data-original-title="Edit user">
+                                <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                            </a>';
+                        $output.='
+                        </td>
+                    </tr>';
+
+                }
+            }
+            return Response($output);
+
     }
 }

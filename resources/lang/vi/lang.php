@@ -217,4 +217,5 @@ return [
     'receivedCombo'=>'Trạng thái Combo',
     'not_scanned'=>'Chưa nhận',
     'scanned'=>'Đã nhận',
+    'or'=>'hoặc',
 ];

@@ -6,7 +6,12 @@
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>@lang('lang.movies')</h6>
+                            <h6>
+                                @lang('lang.movies')
+                                <label for="search">
+                                    <input type="text" placeholder="@lang('lang.type') @lang('lang.movies') " class="form-controller" id="search" name="search"/>
+                                </label>
+                            </h6>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
@@ -47,8 +52,9 @@
                                                 @endif
                                             </td>
                                             <td class="align-middle text-center">
-                                                <h6 class="mb-0 text-sm " style="width:200px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical">{{ $movie->name }}</h6>
-
+                                                <div class="accordion-body mt-4 mb-3 w-100">
+                                                    {{ $movie->name }}
+                                                </div>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary font-weight-bold">{{ $movie->showTime }} @lang('lang.minutes')</span>
@@ -57,7 +63,6 @@
                                                 <h6 class="mb-0 text-sm ">{{ $movie->national }}</h6>
                                             </td>
                                             <td class="align-middle text-center">
-
                                                 <span class="text-secondary font-weight-bold">{!! date("d-m-Y", strtotime($movie->releaseDate )) !!}</span>
                                             </td>
                                             <td class="align-middle text-center">
@@ -92,7 +97,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="d-flex justify-content-center mt-3">
+                            <div id="paginate" class="d-flex justify-content-center mt-3">
                                 {!! $movies->links() !!}
                             </div>
                         </div>
@@ -134,6 +139,38 @@
 {{--            });--}}
 {{--        });--}}
 {{--    </script>--}}
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $paginate = $('#paginate');
+        $flag = false;
+    $('#search').on('keyup',function(){
+        $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('admin/movie/search') }}',
+                data: {
+                    'search': $value
+                },
+                success:function(data){
+                    $('tbody').html(data);
+                    if($value == '' && $flag == true){
+                        $('.card-body').append($paginate);
+                        $flag = false;
+                    }else{
+                        $('#paginate').remove();
+                        $flag = true;
+                    }
+
+                }
+            });
+    })
+    });
+</script>
     <script>
         function changestatus(movie_id,active){
             if(active === 1){

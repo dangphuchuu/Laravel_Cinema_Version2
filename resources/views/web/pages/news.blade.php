@@ -63,7 +63,7 @@
                                     <div class="card-body h-75">
                                         <h5 class="card-title">{{ $value->title }}</h5>
                                         <p class="card-text"  style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;
-                                           -webkit-box-orient: vertical">{{ $value->content }}</p>
+                                           -webkit-box-orient: vertical">{{strip_tags($value->content) }}</p>
                                         <p class="card-text"><small class="text-body-secondary">{!! date('d F Y', strtotime($value['created_at'] )) !!}</small></p>
                                     </div>
                                     <div class="card-footer h-25">

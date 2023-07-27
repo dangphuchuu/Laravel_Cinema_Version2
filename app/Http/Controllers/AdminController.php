@@ -263,10 +263,78 @@ class AdminController extends Controller
     //User
     public function user()
     {
-        $users = User::orderBy('id', 'DESC')->with('roles', 'permissions')->Paginate(20);
+        $users = User::orderBy('id', 'DESC')->with('roles', 'permissions')->Paginate(50);
         return view('admin.user_account.list', ['users' => $users]);
     }
+    public function searchUser(Request $request){
+        $output = '';
+        if($request->search == null){
+            $users = User::orderBy('id', 'DESC')->Paginate(50);
+        }else{
+            $users = User::where('code', 'LIKE', '%' . $request->search . '%')->orWhere('email', 'LIKE', '%' . $request->search . '%')->get();
+        }
+        if ($users) {
+            foreach($users as $value) {
+                foreach ($value['roles'] as $role) {
+                    if ($role['name'] == 'user') {
+                        $output.='<tr>
+                        <td class="align-middle text-center">
+                            <h6 class="mb-0 text-sm ">'. $value['code'] .'</h6>
+                        </td>
 
+                        <td class="align-middle text-center">
+                            <h6 class="mb-0 text-sm ">'. $value['fullName'].'</h6>
+                        </td>
+
+                        <td class="align-middle text-center">
+                            <span class="text-secondary font-weight-bold">'. $value['email'] .'</span>
+                        </td>
+
+                        <td class="align-middle text-center">
+                            <span class="text-secondary font-weight-bold">'. $value['phone'] .'</span>
+                        </td>
+
+                         <td class="align-middle text-center">
+                            <button href="#barcode" class="btn btn-link text-danger "
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#barcode'. $value['id'] .'"><i style="color:grey" class="fa-sharp fa-regular fa-eye"></i>
+                            </button>
+                        </td>
+                        <td id="status'. $value['id'] .'" class="align-middle text-center text-sm ">';
+                            if($value['status'] == 1)
+                            {
+                            $output.='
+                             <a href="javascript:void(0)" class="btn_active"  onclick="changestatus('. $value['id'] .',0)">
+                                    <span class="badge badge-sm bg-gradient-success">Online</span>
+                                </a>';
+                            }
+                            else{
+                            $output.='<a href="javascript:void(0)" class="btn_active"  onclick="changestatus('. $value['id'] .',1)">
+                                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                                </a>';
+                            }
+                            $output.='
+                        </td>
+                         <td class="align-middle text-center">
+                            <span class="text-secondary font-weight-bold">'. number_format($value['point'],0,",",".") .' Point</span>
+                        </td>
+                        <td class="align-middle text-center">
+                            <span
+                                class="text-secondary font-weight-bold">'. date("d-m-Y H:m:s", strtotime($value['created_at'])) .'</span>
+                        </td>
+                        <td class="align-middle text-center">
+                            <span
+                                class="text-secondary font-weight-bold">'. date("d-m-Y H:m:s", strtotime($value['updated_at'])) .'</span>
+                        </td>
+                        </tr>';
+                        }
+                    }
+                }
+            }
+
+        return Response($output);
+
+    }
     //Staff
     public function staff()
     {

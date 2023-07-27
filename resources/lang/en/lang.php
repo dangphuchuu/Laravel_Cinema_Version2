@@ -216,4 +216,5 @@ return [
     'receivedCombo'=>'Received Combo',
     'not_scanned'=>'Not Scanned',
     'scanned'=>'Scanned',
+    'or'=>'or',
 ];
