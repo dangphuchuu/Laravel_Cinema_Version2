@@ -425,6 +425,7 @@
                                                 <input type="hidden" id="timePayment" name="time" value="">
                                                 <input type="hidden" id="ticket_id" name="ticket_id" value="">
                                                 <input type="hidden" name="userCode" id="userCode">
+                                                <input type="hidden" name="point" class="point2">
                                             </div>
 
                                         </div>
@@ -487,6 +488,7 @@
                     <input type="hidden" name="vnp_BankCode" value="MONEY">
                     <input type="hidden" name="ticket_id" id="ticketMoney">
                     <input type="hidden" name="userCode" id="userCode2">
+                    <input type="hidden" name="point" class="point2">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
@@ -739,7 +741,6 @@
                             } else {
                                 $('#ticketMoney').val($ticket_id);
                                 $('#btn_money').click();
-                                $('#total').val($sum);
                             }
                         }
                     }
@@ -810,6 +811,7 @@
             })
 
             $('#point').bind('keyup', (e) => {
+                $('.point2').val($('#point').val());
                 $sum2 = $sum - $('#point').val();
                 $('#ticketSeat_totalPrice').text($sum2.toLocaleString('vi-VN'));
                 $('#amount').val($sum2);

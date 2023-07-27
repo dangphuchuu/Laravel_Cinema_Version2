@@ -105,7 +105,7 @@ class StaffController extends Controller
         $vnp_TmnCode = "6JQZ09G6"; //Mã định danh merchant kết nối (Terminal Id)
         $vnp_HashSecret = "QCTWPIWUGYNUJNXJAJMQKHUBCXZMDZXU"; //Secret key
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = $request->getSchemeAndHttpHost() . "/payment/result";
+        $vnp_Returnurl = $request->getSchemeAndHttpHost() . "/payment/result?point=" . $request->point;
         $vnp_apiUrl = "http://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
         $apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
         //Config input format
@@ -191,7 +191,7 @@ class StaffController extends Controller
         switch ($request->vnp_ResponseCode) {
             case '00':
                 if ($request->userCode) {
-                    $user = User::where('code', $request->userCode)->get()->first();
+                    $user = User::where('code', $request->userCode)->first();
                     $money_payment = 0 ;
                     foreach($user['ticket'] as $ticket)
                     {
