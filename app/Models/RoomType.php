@@ -33,4 +33,5 @@ class RoomType extends Model
             ->where('schedules.movie_id', $movie)
             ->where('schedules.status',1)->get();
     }
+
 }

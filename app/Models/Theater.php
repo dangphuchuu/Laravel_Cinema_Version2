@@ -29,4 +29,15 @@ class Theater extends Model
             ->where('date', $date)
             ->where('schedules.movie_id', $movie)->get();
     }
+
+    public function schedulesByTheaterAndMovie($movie, $roomType)
+    {
+        return $this->rooms()->select('schedules.*')
+            ->join('schedules', 'schedules.room_id', '=', 'rooms.id')
+            ->join('theaters', 'theaters.id', '=', 'rooms.theater_id')
+            ->join('roomtypes', 'roomtypes.id', '=', 'rooms.roomType_id')
+            ->where('theaters.id', $this->id)
+            ->where('roomtypes.id', $roomType)
+            ->where('schedules.movie_id', $movie)->get();
+    }
 }

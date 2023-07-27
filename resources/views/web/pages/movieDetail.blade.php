@@ -117,90 +117,73 @@
                 </div>
             </div>
         </div>
-
-{{--        <form action="/movie/{{$movie->id}}" method="get">--}}
-            @csrf
-            <div class="row container mt-5">
-{{--                <div class="col-5">--}}
-{{--                    <div class="input-group">--}}
-{{--                        <span class="input-group-text bg-gray-200"> @lang('lang.city')</span>--}}
-{{--                        <select class="form-select ps-2" name="city" aria-label="">--}}
-{{--                            @foreach($cities as $city)--}}
-{{--                                <option id="{{str_replace(' ', '', $city)}}" value="{{$city}}" @if($city_cur == $city) selected @endif>--}}
-{{--                                    {{$city}}--}}
-{{--                                </option>--}}
-{{--                            @endforeach--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-                @if($schedulesEarly->count() > 0)
-                    <div class="col-12 mt-4">
-                        <h4>Vé bán trước</h4>
-                            @foreach($schedulesEarly as $schedule)
-                                @if(date('Y-m-d') == $schedule->date)
-                                    @if(date('H:i', strtotime('+ 20 minutes', strtotime($schedule->startTime))) >= date('H:i'))
-                                        @if(Auth::check())
-                                            <a href="/tickets/{{$schedule->id}}"
-                                               class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
-                                               style="border-width: 2px; border-style: solid dashed; min-width: 85px">
-                                                <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
-                                                    {{ date('H:i', strtotime($schedule->startTime )).' - '.date('d-m-Y', strtotime($schedule->date)) }}
-                                                </p>
-                                            </a>
-                                        @else
-                                            <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
-                                               data-bs-toggle="modal"
-                                               data-bs-target="#loginModal"
-                                               style="border-width: 2px; border-style: solid dashed; min-width: 85px">
-                                                <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
-                                                    {{ date('H:i', strtotime($schedule->startTime )).' | '.date('d-m-Y', strtotime($schedule->date)
-                                                    ) }}
-                                                </p>
-                                            </a>
-                                        @endif
-                                    @endif
+        @if($schedulesEarly->count() > 0)
+            <div class="col-12 mt-4">
+                <h4>Vé bán trước</h4>
+                    @foreach($schedulesEarly as $schedule)
+                        @if(date('Y-m-d') == $schedule->date)
+                            @if(date('H:i', strtotime('+ 20 minutes', strtotime($schedule->startTime))) >= date('H:i'))
+                                @if(Auth::check())
+                                    <a href="/tickets/{{$schedule->id}}"
+                                       class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                       style="border-width: 2px; border-style: solid dashed; min-width: 85px">
+                                        <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
+                                            {{ date('H:i', strtotime($schedule->startTime )).' - '.date('d-m-Y', strtotime($schedule->date)) }}
+                                        </p>
+                                    </a>
+                                @else
+                                    <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                       data-bs-toggle="modal"
+                                       data-bs-target="#loginModal"
+                                       style="border-width: 2px; border-style: solid dashed; min-width: 85px">
+                                        <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
+                                            {{ date('H:i', strtotime($schedule->startTime )).' | '.date('d-m-Y', strtotime($schedule->date)
+                                            ) }}
+                                        </p>
+                                    </a>
                                 @endif
-                                @if(date('Y-m-d') < $schedule->date)
-                                    @if(Auth::check())
-                                        <a href="/tickets/{{$schedule->id}}"
-                                           class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
-                                           style="border-width: 2px; border-style: solid dashed; min-width: 85px">
-                                            <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
-                                                {{ date('H:i', strtotime($schedule->startTime )).' | '.date('d-m-Y', strtotime($schedule->date)) }}
-                                            </p>
-                                        </a>
-                                    @else
-                                        <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
-                                           data-bs-toggle="modal"
-                                           data-bs-target="#loginModal"
-                                           style="border-width: 2px; border-style: solid dashed; min-width: 85px">
-                                            <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
-                                                {{ date('H:i', strtotime($schedule->startTime )).' - '.date('d-m-Y', strtotime($schedule->date)) }}
-                                            </p>
-                                        </a>
-                                    @endif
-                                @endif
-                            @endforeach
-                    </div>
-
-                @endif
-                    <div class="col-12 mt-4">
-                        <h4>@lang('lang.movie_schedule')</h4>
-                        <ul class="list-group list-group-horizontal flex-wrap">
-                            @for($i = 0; $i <= 7; $i++)
-                                <li class="list-group-item border-0">
-                                    <button data-bs-toggle="collapse"
-                                            data-bs-target="#schedule_date_{{$i}}"
-                                            aria-expanded="false"
-                                            class="btn btn-block btn-outline-dark p-2 m-2">
-                                        {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
-                                    </button>
-                                </li>
-                            @endfor
-                        </ul>
-                    </div>
-                    @include('web.layout.movieDetailSchedules')
+                            @endif
+                        @endif
+                        @if(date('Y-m-d') < $schedule->date)
+                            @if(Auth::check())
+                                <a href="/tickets/{{$schedule->id}}"
+                                   class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                   style="border-width: 2px; border-style: solid dashed; min-width: 85px">
+                                    <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
+                                        {{ date('H:i', strtotime($schedule->startTime )).' | '.date('d-m-Y', strtotime($schedule->date)) }}
+                                    </p>
+                                </a>
+                            @else
+                                <a class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                   data-bs-toggle="modal"
+                                   data-bs-target="#loginModal"
+                                   style="border-width: 2px; border-style: solid dashed; min-width: 85px">
+                                    <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
+                                        {{ date('H:i', strtotime($schedule->startTime )).' - '.date('d-m-Y', strtotime($schedule->date)) }}
+                                    </p>
+                                </a>
+                            @endif
+                        @endif
+                    @endforeach
             </div>
+        @endif
+        <div class="col-12 mt-4">
+            <h4>@lang('lang.movie_schedule')</h4>
+            <ul class="list-group list-group-horizontal flex-wrap">
+                @for($i = 0; $i <= 7; $i++)
+                    <li class="list-group-item border-0">
+                        <button data-bs-toggle="collapse"
+                                data-bs-target="#schedule_date_{{$i}}"
+                                aria-expanded="false"
+                                class="btn btn-block btn-outline-dark p-2 m-2">
+                            {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
+                        </button>
+                    </li>
+                @endfor
+            </ul>
+        </div>
+        @include('web.layout.movieDetailSchedules')
+        </div>
 
 
 
