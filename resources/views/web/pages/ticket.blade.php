@@ -651,7 +651,7 @@
                 $iCombo++;
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
                 $inputCombo.val(parseInt($inputCombo.val()) + 1);
-                if ($inputCombo.val() === '4') {
+                if (parseInt($inputCombo.val()) > 4) {
                     $inputCombo.parent().find('.plus_combo').addClass('disabled');
                     return;
                 }
@@ -663,19 +663,22 @@
                 $sum += price;
                 $('#ticketSeat_totalPrice').text($sum.toLocaleString('vi-VN'));
                 $ticket_combos[id] = [id, parseInt($inputCombo.val())];
+                if ($inputCombo.val() === '4') {
+                    $inputCombo.parent().find('.plus_combo').addClass('disabled');
+                    return;
+                }
             }
 
             minusCombo = (id, price, comboName) => {
                 if ($iCombo !== 0) {
                     $iCombo--;
+                } else {
+                    $inputCombo.parent().find('.minus_combo').addClass('disabled');
+                    return;
                 }
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
                 $inputCombo.val(parseInt($inputCombo.val()) - 1);
                 $inputCombo.parent().find('.plus_combo').removeClass('disabled');
-                if ($inputCombo.val() === '0') {
-                    $inputCombo.parent().find('.minus_combo').addClass('disabled');
-                    return;
-                }
                 if (parseInt($inputCombo.val()) === 0) {
                     $(`#ticketCombo_${id}`).remove();
                 } else {
