@@ -123,6 +123,11 @@
                 $(".theater_item ").find(".btn_theater").removeClass("btn-warning").prop('disabled', false);
                 $(this).addClass("btn-warning").prop('disabled', true);
             });
+
+            $(".listDate button").on('click', function () {
+                $(".listDate").find(".btn").removeClass('active');
+                $(this).addClass("active");
+            })
         })
     </script>
 @endsection

@@ -127,13 +127,17 @@
                                     </p>
                                 </div>
                             </div>
-                            <ul class="list-group list-group-horizontal flex-wrap">
+                            <ul class="list-group list-group-horizontal flex-wrap listDate">
                                 @for($i = 0; $i <= 7; $i++)
                                     <li class="list-group-item border-0">
                                         <button data-bs-toggle="collapse"
                                                 data-bs-target="#schedule_{{$movie->id}}_date_{{$i}}"
-                                                aria-expanded="false"
-                                                class="btn btn-block btn-outline-dark p-2 m-2">
+                                                @if($i == 0)
+                                                    aria-expanded="true"
+                                                @else
+                                                    aria-expanded="false"
+                                                @endif
+                                                class="btn btn-block btn-outline-dark p-2 m-2 @if($i==0) active @endif btn-date">
                                             {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
                                         </button>
                                     </li>
@@ -172,6 +176,11 @@
                 $(".theater_item ").find(".btn_theater").removeClass("btn-warning").prop('disabled', false);
                 $(this).addClass("btn-warning").prop('disabled', true);
             });
+
+            $(".listDate button").on('click', function () {
+                $(".listDate").find(".btn").removeClass('active');
+                $(this).addClass("active");
+            })
 
             var $owlMovies = $('.owl-carousel');
             $owlMovies.owlCarousel({
