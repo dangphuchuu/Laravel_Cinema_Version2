@@ -185,7 +185,7 @@
             var $owlMovies = $('.owl-carousel');
             $owlMovies.owlCarousel({
                 loop:true,
-                nav:true,
+                nav:false,
                 margin:10,
                 responsive:{
                     0:{
@@ -207,9 +207,9 @@
             });
             $owlMovies.on('mousewheel', '.owl-stage', function (e) {
                 if (e.deltaY>0) {
-                    owl.trigger('next.owl');
+                    $owlMovies.trigger('next.owl');
                 } else {
-                    owl.trigger('prev.owl');
+                    $owlMovies.trigger('prev.owl');
                 }
                 e.preventDefault();
             });
