@@ -293,7 +293,7 @@
                                                     </p>
                                                     <p class="card-text">Giá: <span class="fw-bold">{{ number_format($combo->price) }} đ</span></p>
                                                 </div>
-                                                <div class="card-body">
+                                                <div class="card-body input_combo_block">
                                                     <div class="input-group">
                                                         <button class="btn minus_combo disabled"
                                                                 onclick="minusCombo({{$combo->id}}, {{$combo->price}}, '{{ $combo->name }}')">
@@ -442,7 +442,7 @@
     <script>
         $(document).ready(() => {
             $i = 0;
-            $iCombo = 0;
+            let $iCombo = [];
             let $arrSeatHtml = [];
             let $ticket_seats = {};
             let $ticket_combos = {};
@@ -647,6 +647,10 @@
                 }
             }
 
+            $(".input_combo_block").keydown(function(event) {
+                return false;
+            });
+
             plusCombo = (id, price, comboName) => {
                 $iCombo++;
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
@@ -670,13 +674,14 @@
             }
 
             minusCombo = (id, price, comboName) => {
+                $inputCombo = $('#Combo_' + id).find('.input_combo');
                 if ($iCombo !== 0) {
                     $iCombo--;
-                } else {
+                }
+                if (parseInt($inputCombo.val()) === 0) {
                     $inputCombo.parent().find('.minus_combo').addClass('disabled');
                     return;
                 }
-                $inputCombo = $('#Combo_' + id).find('.input_combo');
                 $inputCombo.val(parseInt($inputCombo.val()) - 1);
                 $inputCombo.parent().find('.plus_combo').removeClass('disabled');
                 if (parseInt($inputCombo.val()) === 0) {
