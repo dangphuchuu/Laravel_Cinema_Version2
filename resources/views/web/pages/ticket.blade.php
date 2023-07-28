@@ -203,6 +203,12 @@
                                                         <div class="row d-flex flex-nowrap justify-content-center" id="Row_{{ $row->row }}"
                                                               style="@if($room->seats->count() > 300)width: 1500px;@endif margin: 2px" >
                                                             @foreach($room->seats as $seat)
+                                                                @if($loop->first)
+                                                                    <div class="seat d-inline-block align-middle disabled seat_empty"
+                                                                         style="width: 30px; height: 30px; margin: 2px 0;" choice="empty"></div>
+                                                                    <div class="seat d-inline-block align-middle disabled seat_empty"
+                                                                         style="width: 30px; height: 30px; margin: 2px 0;" choice="empty"></div>
+                                                                @endif
                                                                 @if($seat->row == $row->row)
                                                                     @for($m = 0; $m < $seat->ms; $m++)
                                                                         <div class="seat d-inline-block align-middle disabled seat_empty"
@@ -228,6 +234,12 @@
                                                                              style="width: 30px; height: 30px; margin: 2px 0;" choice="empty"></div>
                                                                     @endfor
                                                                 @endif
+                                                                    @if($loop->last)
+                                                                        <div class="seat d-inline-block align-middle disabled seat_empty"
+                                                                             style="width: 30px; height: 30px; margin: 2px 0;" choice="empty"></div>
+                                                                        <div class="seat d-inline-block align-middle disabled seat_empty"
+                                                                             style="width: 30px; height: 30px; margin: 2px 0;" choice="empty"></div>
+                                                                    @endif
                                                             @endforeach
                                                         </div>
                                                             @for($m = 0; $m < $row->mb; $m++)
@@ -538,13 +550,14 @@
                             // if ((seatLeft2 === 'empty' && seatLeft1 === '0') && (seatRight1 === '1' && seatRight2 === '0')) {
                             //     return true;
                             // }
-                        } else {
+                        }
+                        else {
                             if((seatLeft2 === false && seatLeft1 === '0') || (seatRight2 === false && seatRight1 === '0')) {
                                 alert('Không để trống ghế ngoài cùng');
                                 return false;
                             }
                         }
-                        // console.log(seatLeft2 + ' ' + seatLeft1 + ' <> ' + seatRight1 + ' ' + seatRight2);
+                        console.log(seatLeft2 + ' ' + seatLeft1 + ' <> ' + seatRight1 + ' ' + seatRight2);
                         if ((seatLeft2 === '1' && seatLeft1 === '0') || (seatRight1 === '0' && seatRight2 === '1' )) {
                             alert('Không để ghế trống kế bên');
                             return false;
