@@ -32,61 +32,63 @@
                                     <div class="d-block mt-2 mb-5">
                                         <div class="row">
                                             @foreach($movies as $movie)
-                                                <div class="col-3">
-                                                    <div class="card border mb-2">
-                                                        <button type="button" class="btn btn-link"
-                                                            data-bs-toggle="modal" data-bs-target="#movieSchedules_{{$movie->id}}">
-                                                        <div class="card-header p-2" style="height: 80px">{{$movie->name}}</div>
-                                                        @if(strstr($movie->image,"https") == "")
-                                                            <img class="card-img rounded"
-                                                                 style="width: 180px; height: 240px" alt="..."
-                                                                 src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $movie->image }}.jpg">
-                                                        @else
-                                                            <img class="card-img rounded"
-                                                                 style="width: 180px; height: 240px" alt="..." src="{{
-                                                            $movie->image }}">
-                                                        @endif
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal fade" id="movieSchedules_{{$movie->id}}" tabindex="-1" role="dialog"
-                                                         aria-labelledby="movieTitle_{{$movie->id}}" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="movieTitle_{{$movie->id}}">{{$movie->name}}</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                            aria-label="Close">X</button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <div class="card-body">
-                                                                        {{-- a Theater schedule --}}
-                                                                        <div class="flex-grow-1 border-start border-5 border-white p-2 ps-4">
-                                                                            @foreach($roomTypes as $roomType)
-                                                                                @if($roomType->schedulesByDateAndTheaterAndMovie($date_cur, $theater->id, $movie->id)->count() > 0)
-                                                                                    <div class="d-flex flex-column flex-nowrap overflow-auto mb-4">
-                                                                                        <div class="fw-bold">{{ $roomType->name }}</div>
-                                                                                        <div class="d-flex flex-wrap overflow-wrapper">
-                                                                                            @foreach($roomType->schedulesByDateAndTheaterAndMovie($date_cur, $theater->id, $movie->id) as $schedule)
-                                                                                                <a href="/admin/buyTicket/{{$schedule->id}}"
-                                                                                                   class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
-                                                                                                   style="border-width: 2px; border-style: solid dashed; min-width: 85px">
-                                                                                                    <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
-                                                                                                        {{ date('H:i', strtotime($schedule->startTime ))}}
-                                                                                                    </p>
-                                                                                                </a>
-                                                                                            @endforeach
+                                                @if($movie->schedulesByDateAndTheater($date_cur ,$theater->id)->count() > 0)
+                                                    <div class="col-3">
+                                                        <div class="card border mb-2">
+                                                            <button type="button" class="btn btn-link"
+                                                                data-bs-toggle="modal" data-bs-target="#movieSchedules_{{$movie->id}}">
+                                                            <div class="card-header p-2" style="height: 80px">{{$movie->name}}</div>
+                                                            @if(strstr($movie->image,"https") == "")
+                                                                <img class="card-img rounded"
+                                                                     style="width: 180px; height: 240px" alt="..."
+                                                                     src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $movie->image }}.jpg">
+                                                            @else
+                                                                <img class="card-img rounded"
+                                                                     style="width: 180px; height: 240px" alt="..." src="{{
+                                                                $movie->image }}">
+                                                            @endif
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal fade" id="movieSchedules_{{$movie->id}}" tabindex="-1" role="dialog"
+                                                             aria-labelledby="movieTitle_{{$movie->id}}" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="movieTitle_{{$movie->id}}">{{$movie->name}}</h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                                aria-label="Close">X</button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="card-body">
+                                                                            {{-- a Theater schedule --}}
+                                                                            <div class="flex-grow-1 border-start border-5 border-white p-2 ps-4">
+                                                                                @foreach($roomTypes as $roomType)
+                                                                                    @if($roomType->schedulesByDateAndTheaterAndMovie($date_cur, $theater->id, $movie->id)->count() > 0)
+                                                                                        <div class="d-flex flex-column flex-nowrap overflow-auto mb-4">
+                                                                                            <div class="fw-bold">{{ $roomType->name }}</div>
+                                                                                            <div class="d-flex flex-wrap overflow-wrapper">
+                                                                                                @foreach($roomType->schedulesByDateAndTheaterAndMovie($date_cur, $theater->id, $movie->id) as $schedule)
+                                                                                                    <a href="/admin/buyTicket/{{$schedule->id}}"
+                                                                                                       class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
+                                                                                                       style="border-width: 2px; border-style: solid dashed; min-width: 85px">
+                                                                                                        <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
+                                                                                                            {{ date('H:i', strtotime($schedule->startTime ))}}
+                                                                                                        </p>
+                                                                                                    </a>
+                                                                                                @endforeach
+                                                                                            </div>
                                                                                         </div>
-                                                                                    </div>
-                                                                                @endif
-                                                                            @endforeach
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            </div>
+                                                                            {{-- a Theater schedule: end --}}
                                                                         </div>
-                                                                        {{-- a Theater schedule: end --}}
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                @endif
                                             @endforeach
                                         </div>
 
