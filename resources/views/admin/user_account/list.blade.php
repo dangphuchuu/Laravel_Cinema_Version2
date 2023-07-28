@@ -9,7 +9,7 @@
                             <h6>
                                 @lang('lang.user_account')
                                 <label for="search">
-                                    <input type="text" placeholder="@lang('lang.type') @lang('lang.code') @lang('lang.or') email" class="form-controller" id="search" name="search"/>
+                                    <input type="text" placeholder="@lang('lang.type') @lang('lang.code')" class="form-controller" id="search" name="search"/>
                                 </label>
                             </h6>
                         </div>
