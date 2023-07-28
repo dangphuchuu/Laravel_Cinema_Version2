@@ -43,12 +43,12 @@
                 <div id="barcode-scanner-controller" class="controller">
                     <nav class="navbar navbar-dark">
                         <div class="navbar-brand mb-0 h3">
-                            <span id="back-button">&#8249;</span>
-                            @lang('lang.barcode_scanner')
+                            <span id="back-button">&#8249;@lang('lang.barcode_scanner')</span>
+
                         </div>
                         <div class="spacer"></div>
                         <div class="camera-button-container h3">
-                            <span id="camera-swap-button">&#8645;</span>
+{{--                            <span id="camera-swap-button">&#8645;</span>--}}
                             <span id="camera-switch-button">&#8646;</span>
                         </div>
                     </nav>
@@ -113,7 +113,7 @@
                     returnBarcodeImage: true,
                     onError: onScannerError,
                     barcodeFormats: barcodeFormats,
-                    preferredCamera: 'camera2 0, facing back'
+                    preferredCamera: 'DroidCam Source 2'
                 };
 
                 try {
@@ -128,7 +128,7 @@
             $('#back-button').on('click', async (e) => {
                 const controller =
                     e.target.parentElement.parentElement.parentElement.className;
-                document.getElementByClassName(controller).style.display = "none";
+                $('.controller').style = "display:none";
                 barcodeScanner.dispose();
                 barcodeScanner = undefined;
             })
