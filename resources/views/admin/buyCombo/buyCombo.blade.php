@@ -360,12 +360,13 @@
             }
 
             minusFood = (id, price, foodName) => {
-                $inputFood = $('#Food_' + id).find('.input_food');
-                $inputFood.val(parseInt($inputFood.val()) - 1);
                 if ($inputFood.val() === '0') {
                     $inputFood.parent().find('.minus_food').addClass('disabled');
                     return;
                 }
+                $inputFood = $('#Food_' + id).find('.input_food');
+                $inputFood.val(parseInt($inputFood.val()) - 1);
+
                 if (parseInt($inputFood.val()) === 0) {
                     $('.minus_food_' + id).addClass('disabled');
                     $(`#ticketFood_${id}`).remove();
@@ -399,13 +400,14 @@
             }
 
             minusCombo = (id, price, comboName) => {
-                $inputCombo = $('#Combo_' + id).find('.input_combo');
-                $inputCombo.val(parseInt($inputCombo.val()) - 1);
-                $inputCombo.parent().find('.plus_combo').removeClass('disabled');
                 if ($inputCombo.val() === '0') {
                     $inputCombo.parent().find('.minus_combo').addClass('disabled');
                     return;
                 }
+                $inputCombo = $('#Combo_' + id).find('.input_combo');
+                $inputCombo.val(parseInt($inputCombo.val()) - 1);
+                $inputCombo.parent().find('.plus_combo').removeClass('disabled');
+
                 if (parseInt($inputCombo.val()) === 0) {
                     $(`#ticketCombo_${id}`).remove();
                 } else {
