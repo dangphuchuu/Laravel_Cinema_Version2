@@ -104,10 +104,10 @@ class AuthController extends Controller
         $user = User::find(Auth::user()->id);
         if(Hash::check($request['oldpassword'], $user->password)){
             $request->validate([
-                'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
+                'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
                 'repassword' => 'required|same:password'
             ],[
-                'password.regex'=>'Mật khẩu phải có ít nhất 1 chữ hoa,1 chữ thường,1 số,1 kí tự đặc biệt và tối dài tối thiểu 6 kí tự',
+                'password.regex'=>'Mật khẩu phải có ít nhất 1 chữ hoa,1 chữ thường,1 số và độ dài tối thiểu 6 kí tự',
                 'password.required' => 'Vui lòng nhập mật khẩu mới',
                 'repassword.required' => 'Vui lòng nhập lại mật khẩu',
                 'repassword.same' => "Mật khẩu nhập lại không trùng khớp !"
