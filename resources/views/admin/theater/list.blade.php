@@ -232,6 +232,12 @@
 
             });
         });
+
+        btnEdit = (id) => {
+            console.log(id+ 'theater')
+            $('#theater_edit_form_' + id).trigger( "submit" );
+        }
+
     </script>
 @endsection
 

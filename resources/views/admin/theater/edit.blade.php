@@ -7,7 +7,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="admin/theater/edit/{{$theater->id}}" method="post"
+                      id="theater_edit_form_{{$theater->id}}">
+                    @csrf
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
@@ -104,7 +106,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">@lang('lang.close')</button>
-                <button type="button" class="btn bg-gradient-info">@lang('lang.save')</button>
+                <button type="button" class="btn bg-gradient-info" onclick="btnEdit({{$theater->id}})">
+                    @lang('lang.save')
+                </button>
             </div>
         </div>
     </div>

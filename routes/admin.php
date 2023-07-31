@@ -111,7 +111,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     Route::prefix('theater')->group(function () {
         Route::get('/', [TheaterController::class, 'theater']);
         Route::post('/create', [TheaterController::class, 'postCreate']);
-        Route::get('/edit', [TheaterController::class, 'edit_cinema']);
+        Route::post('/edit/{id}', [TheaterController::class, 'postEdit']);
         Route::get('/status', [TheaterController::class, 'status']);
         Route::delete('/delete/{id}', [TheaterController::class, 'delete']);
     });

@@ -64,6 +64,19 @@ class TheaterController extends Controller
         else{
             return response()->json(['error' => "Please change status to offline" ]);
         }
+    }
 
+    public function postEdit($id, Request $request)
+    {
+
+        $theater = Theater::find($id);
+        $theater->name = $request->name;
+        $theater->address = $request->address;
+        $theater->city = $request->city;
+        $theater->location = $request->location;
+        $theater->updated_at = Carbon::today();
+
+        $theater->save();
+        return redirect('/admin/theater')->with('success', 'Updated '. $theater->name .' Theater Successfully!');
     }
 }
