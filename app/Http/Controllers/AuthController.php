@@ -52,7 +52,7 @@ class AuthController extends Controller
             'fullName' => 'required|min:1',
             'email' => 'nullable|required_without:phone|max:255|unique:users',
             'phone' => 'nullable|required_without:email|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:12|unique:users',
-            'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
+            'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
             'repassword' => 'required|same:password',
         ], [
             'fullName.required' => 'Vui lòng nhập họ tên',
@@ -60,7 +60,7 @@ class AuthController extends Controller
             'email.unique' => 'Email đã tồn tại ',
             'phone.min'=>'Vui lòng nhập tối thiểu 10 số',
             'phone.max'=>'Chỉ được nhập tối đa 12 số',
-            'password.regex'=>'Mật khẩu phải có ít nhất 1 chữ hoa,1 chữ thường,1 số,1 kí tự đặc biệt và tối dài tối thiểu 6 kí tự',
+            'password.regex'=>'Mật khẩu phải có ít nhất 1 chữ hoa,1 chữ thường,1 số và độ dài tối thiểu 6 kí tự',
             'phone.required_without' => 'Vui lòng nhập mail hoặc số điện thoại',
             'phone.unique' => 'Số điện thoại đã tồn tại',
             'password.required' => 'Vui lòng nhập mật khẩu',
@@ -104,10 +104,10 @@ class AuthController extends Controller
         $user = User::find(Auth::user()->id);
         if(Hash::check($request['oldpassword'], $user->password)){
             $request->validate([
-                'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
+                'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
                 'repassword' => 'required|same:password'
             ],[
-                'password.regex'=>'Mật khẩu phải có ít nhất 1 chữ hoa,1 chữ thường,1 số,1 kí tự đặc biệt và tối dài tối thiểu 6 kí tự',
+                'password.regex'=>'Mật khẩu phải có ít nhất 1 chữ hoa,1 chữ thường,1 số và độ dài tối thiểu 6 kí tự',
                 'password.required' => 'Vui lòng nhập mật khẩu mới',
                 'repassword.required' => 'Vui lòng nhập lại mật khẩu',
                 'repassword.same' => "Mật khẩu nhập lại không trùng khớp !"
@@ -169,10 +169,10 @@ class AuthController extends Controller
         if($user){
             $reset = User::find($user->id);
             $request->validate([
-                'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
+                'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
                 'repassword' => 'required|same:password'
             ],[
-                'password.regex'=>'Mật khẩu phải có ít nhất 1 chữ hoa,1 chữ thường,1 số,1 kí tự đặc biệt và tối dài tối thiểu 6 kí tự',
+                'password.regex'=>'Mật khẩu phải có ít nhất 1 chữ hoa,1 chữ thường,1 số và độ dài tối thiểu 6 kí tự',
                 'password.required' => 'Vui lòng nhập mật khẩu mới !',
                 'repassword.required' => 'Vui lòng nhập lại mật khẩu !',
                 'repassword.same' => "Mật khẩu nhập lại không khớp !"
