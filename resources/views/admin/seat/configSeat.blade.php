@@ -47,6 +47,10 @@
             </div>
             <input type="hidden" name="room" value="{{ $room->id }}">
             <input type="hidden" name="seat" value="{{ $seat->id }}">
+            <a href="admin/seat/delete/{{$seat->id}}" class="btn btn-primary mt-4"
+                    data-bs-dismiss="offcanvas">
+                <i class="fa-solid fa-trash-can fa-lg"></i> @lang('lang.delete')
+            </a>
             <button type="submit" class="btn btn-primary mt-4"
                     data-bs-dismiss="offcanvas">
                 @lang('lang.confirm')
