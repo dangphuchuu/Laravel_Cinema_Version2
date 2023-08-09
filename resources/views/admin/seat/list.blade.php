@@ -71,9 +71,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <button type="button" class="btn btn-primary">@lang('lang.save')</button>
-                        </div>
                     </div>
                 </div>
             </div>
