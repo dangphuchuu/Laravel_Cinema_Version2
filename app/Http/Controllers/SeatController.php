@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Models\Seat;
 use App\Models\SeatType;
-use App\Models\Theater;
 use Illuminate\Http\Request;
 
 class SeatController extends Controller
@@ -65,15 +64,13 @@ class SeatController extends Controller
         }
         return redirect('admin/seat/' . $request->room);
     }
-    public function delete($id){
-        $room = Room::find($id);
-        if($room['status'] == 0){
-            Room::destroy($id);
-            return response()->json(['success' => 'Delete Successfully']);
+    public function delete($id, Request $request){
+        $seat = Seat::find($id);
+        if ($seat) {
+            $seat->delete();
         }
-        else{
-            return response()->json(['error' => 'Please change status to offline']);
-        }
+        return redirect('admin/seat/' . $request->room)->with('success', 'Xóa thành công');
+
     }
     public function on($id,$room_id){
         Seat::where('id', $id)->update(['status' => 0]);
