@@ -8,6 +8,7 @@ use App\Models\Ticket;
 use App\Models\TicketSeat;
 use App\Models\User;
 use App\Models\Movie;
+use App\Models\Info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +18,11 @@ use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
-    function __construct()
+
+    public function __construct()
     {
+        $info = Info::find(1);
+        view()->share('info', $info);
     }
 
     public function home(Request $request)

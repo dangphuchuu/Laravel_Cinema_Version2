@@ -18,7 +18,7 @@
                             </ul>
                         </div>
                         <div class="col-3">
-                            <img style="width: 150px;float: right;" src="images/favicon/theater_favicon.png" />
+                            <img style="width: 150px;float: right;" src="images/favicon/{{$info['logo']}}" />
                         </div>
                     </div>
 

@@ -75,5 +75,7 @@ class DatabaseSeeder extends Seeder
         //TODO: Prices
         require 'prices.php';
 
+        //TODO: Info
+        require 'info.php';
     }
 }

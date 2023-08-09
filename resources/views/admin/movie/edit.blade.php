@@ -397,7 +397,7 @@
             "locale": "@lang('lang.language')"
         });
         $(document).ready(function () {
-            $('#national option[value="{!! $movie['national'] !!}"]').prop("selected",true);
+            $("#national option[value='{!! $movie['national'] !!}']").prop("selected",true);
 
             $('.director-input').val([
                 @foreach($movie['directors'] as $director)

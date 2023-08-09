@@ -12,7 +12,7 @@
 
     <base href="{{asset('')}}">
 
-    <link rel="icon" type="image/png" href="images/favicon/theater_favicon.png">
+    <link rel="icon" type="image/png" href="images/favicon/{{$info['logo']}}">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"

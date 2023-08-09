@@ -23,6 +23,7 @@ use App\Models\Ticket;
 use App\Models\TicketCombo;
 use App\Models\TicketSeat;
 use App\Models\User;
+use App\Models\Info;
 use Carbon\Carbon;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
@@ -32,18 +33,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+
 class WebController extends Controller
 {
     public function __construct()
     {
         $cloud_name = cloud_name();
+        $info = Info::find(1);
+        view()->share('info', $info);
         return view()->share('cloud_name', $cloud_name);
     }
 
     public function home()
     {
-//        $discount = Discount::all();
-//        dd($discount);
         Schedule::where('date', '<', date('Y-m-d'))->update(['status' => false]);
         Schedule::where('date', '=', date('Y-m-d'))->where('endTime', '<=', date('H:i:s'))->update(['status' => false]);
         Movie::where('endDate', '<', date('Y-m-d'))->update(['status' => false]);
@@ -54,9 +56,9 @@ class WebController extends Controller
                 'tickets.receivedCombo' => true,
             ]);
 
-        $news = News::orderBy('id', 'DESC')->where('status',1)->take(3)->get();
+        $news = News::orderBy('id', 'DESC')->where('status', 1)->take(3)->get();
         $banners = Banner::where('status', 1)->get();
-        $movies = Movie::where('status', 1)->where('endDate', '>', date('Y-m-d'))->where('releaseDate','<=',date('Y-m-d'))->orderBy('releaseDate', 'desc')->get()->take(6);
+        $movies = Movie::where('status', 1)->where('endDate', '>', date('Y-m-d'))->where('releaseDate', '<=', date('Y-m-d'))->orderBy('releaseDate', 'desc')->get()->take(6);
 
         $moviesEarly = Movie::all()->filter(function ($movie) {
             foreach ($movie->schedules as $schedule) {
@@ -65,10 +67,13 @@ class WebController extends Controller
                 }
             }
         });
+
+
         return view('web.pages.home', [
             'movies' => $movies,
             'moviesEarly' => $moviesEarly,
-            'banners' => $banners,'news'=>$news
+            'banners' => $banners,
+            'news' => $news,
         ]);
     }
 
@@ -87,7 +92,7 @@ class WebController extends Controller
             }
         }
         $schedulesEarly = $movie->schedules->filter(function ($schedule) {
-           return  $schedule->early == true;
+            return  $schedule->early == true;
         });
         if (isset($request->city)) {
             $city_cur = $request->city;
@@ -120,10 +125,9 @@ class WebController extends Controller
         foreach ($ticketsHolds as $ticketsHold) {
             $time = strtotime(date('Y-m-d H:i:s')) - strtotime($ticketsHold->created_at);
 
-            if ($time > (9*60)) {
+            if ($time > (9 * 60)) {
                 $ticketsHold->delete();
             }
-
         }
         $seatTypes = SeatType::all();
         $combos = Combo::where('status', 1)->get();
@@ -188,7 +192,6 @@ class WebController extends Controller
         }
 
         return response()->json(['ticket_id' => $ticket->id]);
-
     }
 
     public function ticketDelete(Request $request)
@@ -374,7 +377,7 @@ class WebController extends Controller
             }
             $movies = Movie::find($movies_id);
             $movies = $movies->filter(function ($movie) {
-               return $movie->status == true;
+                return $movie->status == true;
             });
             $moviesShowing = $movies->filter(function ($movie) {
                 return ($movie->releaseDate <=  date('Y-m-d') && $movie->endDate >= date('Y-m-d'));
@@ -382,14 +385,14 @@ class WebController extends Controller
             $moviesSoon = $movies->filter(function ($movie) {
                 return $movie->releaseDate >  date('Y-m-d');
             });
-            $moviesEarly = $movies->filter(function($movie) {
+            $moviesEarly = $movies->filter(function ($movie) {
                 foreach ($movie->schedules as $schedule) {
                     if ($schedule->early) {
                         return $movie;
                     }
                 };
             });
-//            dd($moviesEarly);
+            //            dd($moviesEarly);
             return view('web.pages.movies', [
                 'movies' => $moviesShowing,
                 'moviesSoon' => $moviesSoon,
@@ -400,8 +403,6 @@ class WebController extends Controller
                 'directors' => $directors
             ]);
         }
-
-
     }
 
     public function search(Request $request)
@@ -455,17 +456,17 @@ class WebController extends Controller
         }
         $resultSortByDesc = $result->sortByDesc('created_at');
         $resultArr = array();
-        foreach ( $resultSortByDesc as $res) {
+        foreach ($resultSortByDesc as $res) {
             array_push($resultArr, $res);
         }
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $perPage = 5;
-//        dd($resultSort->toArray());
+        //        dd($resultSort->toArray());
         $currentResults = array_slice($resultArr, $perPage * ($currentPage - 1), $perPage);
         $paginator =  new LengthAwarePaginator($currentResults, count($resultArr), $perPage, $currentPage, [
             'path' => '/events'
         ]);
-//        dd($resultSort);
+        //        dd($resultSort);
         return view('web.pages.events', [
             'posts' => $paginator
         ]);
@@ -473,68 +474,67 @@ class WebController extends Controller
     public function news(Request $request)
     {
         $news = News::all();
-        return view('web.pages.news',['news'=>$news]);
+        return view('web.pages.news', ['news' => $news]);
     }
 
     public function profile()
     {
         if (Auth::check()) {
-           $user = Auth::user();
+            $user = Auth::user();
         } else {
             return redirect('/');
         }
-        $sum = 0 ;
-        foreach($user['ticket'] as $ticket)
-        {
-            $sum+= $ticket['totalPrice'];
+        $sum = 0;
+        foreach ($user['ticket'] as $ticket) {
+            $sum += $ticket['totalPrice'];
         }
         $sort_ticket = $user['ticket']->sortDesc();
-        $sum_percent = ($sum*100)/4000000;
-        return view('web.pages.profile', ['sort_ticket'=>$sort_ticket,'user' => $user,'sum'=>$sum,'sum_percent'=>$sum_percent]);
+        $sum_percent = ($sum * 100) / 4000000;
+        return view('web.pages.profile', ['sort_ticket' => $sort_ticket, 'user' => $user, 'sum' => $sum, 'sum_percent' => $sum_percent]);
     }
 
     public function editProfile(Request $request)
     {
         $request->validate([
-            'phone'=>'regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:12',
-        ],[
-            'phone.regex'=>'Số điện thoại từ 0-9 và không bao gồm kí tự',
-            'phone.min'=>'Nhập tối thiểu 10 số',
-            'phone.max'=>'Nhập tối đa 12 số',
+            'phone' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:12',
+        ], [
+            'phone.regex' => 'Số điện thoại từ 0-9 và không bao gồm kí tự',
+            'phone.min' => 'Nhập tối thiểu 10 số',
+            'phone.max' => 'Nhập tối đa 12 số',
         ]);
         $user = User::find(Auth::user()->id);
-        $email = User::where('email',"=", $request->email)->first();
-        $phone = User::where('phone',"=", $request->phone)->first();
+        $email = User::where('email', "=", $request->email)->first();
+        $phone = User::where('phone', "=", $request->phone)->first();
         if ($phone && $user->phone != $phone->phone) {
-            if(!isset($request->phone) ){
+            if (!isset($request->phone)) {
                 return redirect('/profile')->with('warning', 'Không được để trống !');
             }
-//            dd($user->phone);
+            //            dd($user->phone);
             return redirect('/profile')->with('warning', 'Số điện thoại này đã tồn tại trong hệ thống');
         }
         if ($email && $user->email != $email->email) {
-            if(!isset($request->email) ){
+            if (!isset($request->email)) {
                 return redirect('/profile')->with('warning', 'Không được để trống !');
             }
             return redirect('/profile')->with('warning', 'email này đã tồn tại trong hệ thống');
         }
         $token = Str::random(20);
         $to_email = $request['email'];
-        $link_verify = url('/verify-email?email='.$to_email.'&token='.$token);
+        $link_verify = url('/verify-email?email=' . $to_email . '&token=' . $token);
         $user->fullName = $request->fullName;
         $user->phone = $request->phone;
         $user->email = $request->email;
-        if($user->isDirty('email'))//check value has changed
+        if ($user->isDirty('email')) //check value has changed
         {
             $user->email_verified = 0;
         }
         $user->save();
-        if(isset($request->email) && $user['email_verified'] == 0){
+        if (isset($request->email) && $user['email_verified'] == 0) {
             Mail::send('web.pages.verify_account_mail', [
                 'to_email' => $to_email,
-                'link_verify'=>$link_verify,
+                'link_verify' => $link_verify,
             ], function ($email) use ($to_email) {
-                $email->subject('Kích hoạt tài khoản: '.$to_email);
+                $email->subject('Kích hoạt tài khoản: ' . $to_email);
                 $email->to($to_email);
             });
             return redirect('/profile')->with('success', 'Vui lòng kiểm tra mail để kích hoạt !');
@@ -542,10 +542,12 @@ class WebController extends Controller
         return redirect('/profile')->with('success', 'Update profile successfully!');
     }
 
-    public function contact(){
+    public function contact()
+    {
         return view('web.pages.contact');
     }
-    public function ticketPaid_image(Request $request) {
+    public function ticketPaid_image(Request $request)
+    {
         $name = Auth::user()->fullName;
         echo $request->image;
         $cloud = Cloudinary::upload($request->image, [
@@ -555,8 +557,7 @@ class WebController extends Controller
 
         $email_cur = Auth::user()->email;
 
-        if(isset(Auth::user()->email) && Auth::user()->email_verified == true)
-        {
+        if (isset(Auth::user()->email) && Auth::user()->email_verified == true) {
             Mail::send('web.pages.ticket_mail', [
                 'name' => $name,
                 'cloud' => $cloud,
@@ -568,53 +569,50 @@ class WebController extends Controller
         }
         return response();
     }
-    public function refund_ticket(Request $request){
+    public function refund_ticket(Request $request)
+    {
         $ticket = Ticket::find($request->ticket_id);
         $user = User::find($ticket['user_id']);
-        $money_payment = 0 ;
-        if($ticket['schedule']['date'] == date("Y-m-d" ))
-        {
-            if(strtotime($ticket['schedule']['startTime'])-3600 <= strtotime(date("H:i:s"))){
+        $money_payment = 0;
+        if ($ticket['schedule']['date'] == date("Y-m-d")) {
+            if (strtotime($ticket['schedule']['startTime']) - 3600 <= strtotime(date("H:i:s"))) {
 
-                return response()->json(['error'=>'Đã quá thời gian hoàn vé mong quý khách thông cảm !']);
+                return response()->json(['error' => 'Đã quá thời gian hoàn vé mong quý khách thông cảm !']);
             }
         }
-        if($ticket['schedule']['date'] < date("Y-m-d" ))
-        {
-            return response()->json(['error'=>'Đã quá thời gian hoàn vé mong quý khách thông cảm !']);
+        if ($ticket['schedule']['date'] < date("Y-m-d")) {
+            return response()->json(['error' => 'Đã quá thời gian hoàn vé mong quý khách thông cảm !']);
         }
-        if($ticket['hasDiscount'] == 1)
-        {
-            return response()->json(['error'=>'Vé đã áp dụng mã khuyến mãi nên không thể hoàn lại. Mong quý khách thông cảm !']);
+        if ($ticket['hasDiscount'] == 1) {
+            return response()->json(['error' => 'Vé đã áp dụng mã khuyến mãi nên không thể hoàn lại. Mong quý khách thông cảm !']);
         }
-        foreach($user['ticket'] as $ticket)
-        {
+        foreach ($user['ticket'] as $ticket) {
             $money_payment += $ticket['totalPrice'];
         }
-        if ($money_payment< 4000000)
-        {
-            $user['point'] = $user['point'] -($ticket['totalPrice']*5/100) +  $ticket['totalPrice'] ;
+        if ($money_payment < 4000000) {
+            $user['point'] = $user['point'] - ($ticket['totalPrice'] * 5 / 100) +  $ticket['totalPrice'];
             $user->save();
-        }
-        else
-        {
-            $user['point'] = $user['point'] -($ticket['totalPrice']*10/100) +  $ticket['totalPrice'] ;
+        } else {
+            $user['point'] = $user['point'] - ($ticket['totalPrice'] * 10 / 100) +  $ticket['totalPrice'];
             $user->save();
         }
         $ticket->delete();
-        return response()->json(['success'=>'Gửi yêu cầu thành công,vé sẽ được hoàn vào điểm thưởng vui lòng kiểm tra điểm thưởng trong profile !']);
+        return response()->json(['success' => 'Gửi yêu cầu thành công,vé sẽ được hoàn vào điểm thưởng vui lòng kiểm tra điểm thưởng trong profile !']);
     }
-    public function events_detail($id){
+    public function events_detail($id)
+    {
         $post = Post::find($id);
-        $post_all = Post::where('status',1)->where('id',"!=",$id)->take(4)->get();
-        return view('web.pages.events_detail',['post'=>$post,'post_all'=>$post_all]);
+        $post_all = Post::where('status', 1)->where('id', "!=", $id)->take(4)->get();
+        return view('web.pages.events_detail', ['post' => $post, 'post_all' => $post_all]);
     }
-    public function news_detail($id){
+    public function news_detail($id)
+    {
         $news = News::find($id);
-        $news_all = News::where('status',1)->where('id',"!=",$id)->take(4)->get();
-        return view('web.pages.news_detail',['news'=>$news,'news_all'=>$news_all]);
+        $news_all = News::where('status', 1)->where('id', "!=", $id)->take(4)->get();
+        return view('web.pages.news_detail', ['news' => $news, 'news_all' => $news_all]);
     }
-    public function feedback(Request $request){
+    public function feedback(Request $request)
+    {
         $feedback = new Feedback([
             'fullName' => $request->fullName,
             'message' =>  $request->message
@@ -622,20 +620,20 @@ class WebController extends Controller
         if ($request->email) {
             $feedback->email = $request->email;
         }
-        if ($request-> phone) {
+        if ($request->phone) {
             $feedback->phone = $request->phone;
         }
         $feedback->save();
         return response()->json([
-                'success'=>'Thông tin của bạn đã được gửi thành công. HMCinema xin cảm ơn ý kiến của bạn về hệ thống !',
-            ]);
+            'success' => 'Thông tin của bạn đã được gửi thành công. HMCinema xin cảm ơn ý kiến của bạn về hệ thống !',
+        ]);
     }
-    public function ticket_apply_discount(Request $request){
-        $discount = Discount::where('code', $request->discount)->where('status',1)->get()->first();
-        if($discount)
-        {
+    public function ticket_apply_discount(Request $request)
+    {
+        $discount = Discount::where('code', $request->discount)->where('status', 1)->get()->first();
+        if ($discount) {
             if ($discount->quantity == 0) {
-                return response()->json(['error'=>'Mã giảm giá đã hết !']);
+                return response()->json(['error' => 'Mã giảm giá đã hết !']);
             }
             return response()->json([
                 'success' => 'Áp dụng mã thành công',
@@ -643,18 +641,20 @@ class WebController extends Controller
                 'percent' => $discount->percent,
             ]);
         }
-        return response()->json(['error'=>'Mã giảm giá không tồn tại !']);
+        return response()->json(['error' => 'Mã giảm giá không tồn tại !']);
     }
-    public function castDetail($id){
+    public function castDetail($id)
+    {
         $cast = Cast::find($id);
-        return view('web.pages.cast_detail',[
-            'cast'=> $cast,
+        return view('web.pages.cast_detail', [
+            'cast' => $cast,
         ]);
     }
-    public function directorDetail($id){
+    public function directorDetail($id)
+    {
         $director = Director::find($id);
-        return view('web.pages.director_detail',[
-            'director'=> $director,
+        return view('web.pages.director_detail', [
+            'director' => $director,
         ]);
     }
 }

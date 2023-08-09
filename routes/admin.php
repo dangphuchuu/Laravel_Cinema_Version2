@@ -18,6 +18,7 @@ use App\Http\Controllers\SeatController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TheaterController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\InfoController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
@@ -31,9 +32,9 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
 
     Route::get('/', [AdminController::class, 'home']);
     // statistical
-    Route::get('/filter-by-date',[AdminController::class,'filter_by_date']);
-    Route::get('/statistical-filter',[AdminController::class,'statistical_filter']);
-    Route::get('/statistical-sortby',[AdminController::class,'statistical_sortby']);
+    Route::get('/filter-by-date', [AdminController::class, 'filter_by_date']);
+    Route::get('/statistical-filter', [AdminController::class, 'statistical_filter']);
+    Route::get('/statistical-sortby', [AdminController::class, 'statistical_sortby']);
 
     // scan ticket
     Route::prefix('scanTicket')->group(function () {
@@ -123,7 +124,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/edit', [SchedulesController::class, 'postEdit']);
         Route::get('/status', [SchedulesController::class, 'status']);
         Route::get('/early_status', [SchedulesController::class, 'early_status']);
-//        Route::delete('/delete/{id}', [SchedulesController::class, 'delete']);
+        //        Route::delete('/delete/{id}', [SchedulesController::class, 'delete']);
         Route::get('/deleteall', [SchedulesController::class, 'deleteAll']);
     });
 
@@ -146,7 +147,6 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     //TODO Book_Ticket
     Route::prefix('ticket')->group(function () {
         Route::get('/', [TicketController::class, 'ticket']);
-
     });
 
     //TODO Food/Topping
@@ -222,4 +222,9 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::post('/edit', [PriceController::class, 'edit']);
     });
 
+    //TODO Info
+    Route::prefix('info')->group(function () {
+        Route::get('/', [InfoController::class, 'info']);
+        Route::post('/', [InfoController::class, 'postInfo']);
+    });
 });
