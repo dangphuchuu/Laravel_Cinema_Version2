@@ -217,4 +217,5 @@ return [
     'not_scanned'=>'Not Scanned',
     'scanned'=>'Scanned',
     'or'=>'or',
+    'delete'=>'delete',
 ];

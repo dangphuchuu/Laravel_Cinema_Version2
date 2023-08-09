@@ -52,75 +52,65 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="email" class="form-control" name="email" value="{!! $user['email'] !!}"  aria-label="">
+                                            <input type="email" class="form-control" name="email" value="{!! $user['email'] !!}" aria-label="">
                                             <labeL class="text-danger">
                                                 @if(isset($user['email']) && $user['email_verified']== 0)
-                                                          @lang('lang.active_email')
-                                                   @endif
+                                                @lang('lang.active_email')
+                                                @endif
                                             </labeL>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>@lang('lang.phone')</label>
-                                            <input type="text" class="form-control" name="phone"  value="{!! $user['phone'] !!}" aria-label="">
+                                            <input type="text" class="form-control" name="phone" value="{!! $user['phone'] !!}" aria-label="">
                                         </div>
                                     </div>
                                     <div class="col-md-12 ">
-                                          <div class="col text-end">
-                                              <img style="width: 40px" src="images/icon/vip.ico">
-                                          </div>
+                                        <div class="col text-end">
+                                            <img style="width: 40px" src="images/icon/vip.ico">
+                                        </div>
                                         <div class="col">
                                             <div class="progress">
-                                                <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
-                                                     role="progressbar"
-                                                     aria-valuenow="{!! $sum_percent !!}"
-                                                     aria-valuemin="0" aria-valuemax="100"
-                                                     style="width:
-                                                     @if($sum_percent <100)
-                                                     {!! $sum_percent !!}%
-                                                     @else
-                                                     100%
-                                                     @endif
-                                                     ">
-                                                    @if($sum_percent < 100)
-                                                        {!! $sum_percent !!}%
-                                                    @else
-                                                        100%
-                                                    @endif
+                                                <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{!! $sum_percent !!}" aria-valuemin="0" aria-valuemax="100" 
+                                                @if($sum_percent <100) 
+                                                style="width:{!! $sum_percent !!}%" 
+                                                @else 
+                                                style="width:100%" 
+                                                @endif>
+                                                    @if($sum_percent < 100) {!! round($sum_percent) !!}% @else 100% @endif </div>
                                                 </div>
                                             </div>
+
                                         </div>
 
+
+
+                                        <div class="col-md-12 mt-4">
+                                            <table class="table table-bordered ">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-xxs text-center">@lang('lang.card_level')</th>
+                                                        <th class="text-xxs text-center">@lang('lang.total_spending')</th>
+                                                        <th class="text-xxs text-center">@lang('lang.point')</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            @if($sum < 4000000) Member @else Vip @endif </td>
+                                                        <td class="text-center">{!! number_format($sum,0,",",".") !!} VNĐ</td>
+                                                        <td class="text-center">{!! number_format($user['point'],0,",",".") !!} P</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-
-
-
-                                    <div class="col-md-12 mt-4">
-                                        <table class="table table-bordered ">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-xxs text-center">@lang('lang.card_level')</th>
-                                                    <th class="text-xxs text-center">@lang('lang.total_spending')</th>
-                                                    <th class="text-xxs text-center">@lang('lang.point')</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-center">
-                                                        @if($sum < 4000000) Member @else Vip @endif </td>
-                                                    <td class="text-center">{!! number_format($sum,0,",",".") !!} VNĐ</td>
-                                                    <td class="text-center">{!! number_format($user['point'],0,",",".") !!} P</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div>
+                                        <button class="btn btn-primary" type="submit">@lang('lang.update')</button>
                                     </div>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary" type="submit">@lang('lang.update')</button>
                                 </div>
                             </div>
-                        </div>
                     </form>
                     <form action="/changePassword" method="POST">
                         @csrf
@@ -160,6 +150,7 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                             <h3 class="mb-4 text-center">@lang('lang.transaction_history')</h3>
                             <div class="container ">
                                 @foreach($sort_ticket as $value)
+                                @if(isset($value['schedule']['movie']['image']))
                                 <p style="margin-top: 10px!important;">@lang('lang.ticket_code'): {!! $value['code'] !!} <span>
                                         (@lang('lang.status'):
                                         @if($value['holdState'] == 0 && $value['status'] ==1)
@@ -170,11 +161,14 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                         @lang('lang.ticket_success'))
                                         @endif</span> </p>
                                 <div class="float-start">
+
                                     @if(strstr($value['schedule']['movie']['image'],"https") == "")
                                     <img style="width: auto;height: 320px;" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['schedule']['movie']['image'] !!}.jpg">
                                     @else
                                     <img style="width: auto;height: 320px;" src="{!! $value['schedule']['movie']['image'] !!}">
                                     @endif
+
+
                                 </div>
                                 <div style="margin-left: 30%;">
                                     <p>{!! $value['schedule']['movie']['name'] !!}</p>
@@ -204,10 +198,11 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                     <button href="#profileModal" data-toggle="tooltip" data-bs-target="#profileModal{!! $value['id'] !!}" data-bs-toggle="modal" class="btn btn-warning">@lang('lang.detail')</button>
                                     <a href="/tickets/completed/{!! $value['id'] !!}" class="btn btn-warning"><i class="fa-solid fa-ticket"></i></a>
                                     @else
-                                        <button  class="btn btn-warning" disabled >X</button>
+                                    <button class="btn btn-warning" disabled>X</button>
                                     @endif
                                     @include('web.pages.profile_modal')
                                 </div>
+                                @endif
                                 @endforeach
                             </div>
                         </div>
@@ -230,35 +225,34 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
     });
 </script>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#download").click(function(){
+    $(document).ready(function() {
+        $("#download").click(function() {
             screenshot();
         });
     });
 
-    function screenshot(){
-        html2canvas(document.getElementById("photo")).then(function(canvas){
-            downloadImage(canvas.toDataURL(),"BillInfo.png");
+    function screenshot() {
+        html2canvas(document.getElementById("photo")).then(function(canvas) {
+            downloadImage(canvas.toDataURL(), "BillInfo.png");
         });
     }
 
-    function downloadImage(uri, filename){
+    function downloadImage(uri, filename) {
         var link = document.createElement('a');
-        if(typeof link.download !== 'string'){
+        if (typeof link.download !== 'string') {
             window.open(uri);
-        }
-        else{
+        } else {
             link.href = uri;
             link.download = filename;
             accountForFirefox(clickLink, link);
         }
     }
 
-    function clickLink(link){
+    function clickLink(link) {
         link.click();
     }
 
-    function accountForFirefox(click){
+    function accountForFirefox(click) {
         var link = arguments[1];
         document.body.appendChild(link);
         click(link);
@@ -266,13 +260,13 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
     }
 </script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('.refund-ticket').on('click', function () {
+        $('.refund-ticket').on('click', function() {
             var ticket_id = $(this).data("id");
             if (confirm("Bạn có chắc chắn muốn hoàn vé ?") === true) {
                 $.ajax({
@@ -282,7 +276,7 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                     data: {
                         'ticket_id': ticket_id,
                     },
-                    success: function (data) {
+                    success: function(data) {
                         if (data['success']) {
                             alert(data.success);
                             window.location.reload();

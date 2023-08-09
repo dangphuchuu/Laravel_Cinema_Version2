@@ -218,4 +218,5 @@ return [
     'not_scanned'=>'Chưa nhận',
     'scanned'=>'Đã nhận',
     'or'=>'hoặc',
+    'delete'=>'xóa',
 ];
