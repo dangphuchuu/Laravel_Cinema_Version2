@@ -48,4 +48,8 @@ class Schedule extends Model
             ->groupBy('theaters.name')->get();
         return $theates;
     }
+    public function Ticket()
+    {
+        return $this->hasMany(Ticket::class, 'schedule_id','id');
+    }
 }

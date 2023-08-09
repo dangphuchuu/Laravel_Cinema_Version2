@@ -40,4 +40,11 @@ class Theater extends Model
             ->where('roomtypes.id', $roomType)
             ->where('schedules.movie_id', $movie)->get();
     }
+    public function Ticket()
+    {
+        return $this->rooms()->select('tickets.*')
+            ->join('schedules', 'schedules.room_id', '=', 'rooms.id')
+            ->join('tickets', 'tickets.schedule_id', '=', 'schedules.id')
+            ->where('rooms.theater_id', $this->id);
+    }
 }
