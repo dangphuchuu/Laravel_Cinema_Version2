@@ -104,7 +104,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
         Route::get('/on/{id},{room_id}', [SeatController::class, 'on']);
         Route::get('/off/{id},{room_id}', [SeatController::class, 'off']);
         Route::post('/row', [SeatController::class, 'postEditRow']);
-        Route::delete('/delete/{id}', [SeatController::class, 'delete']);
+        Route::get('/delete/{id}', [SeatController::class, 'delete']);
     });
 
     //TODO Theater
