@@ -2,7 +2,7 @@
     <section class="container">
         <div class="row">
             <div class="col-sm-4 col-xl-2">
-                <h5>{{$info['name']}}</h5>
+                <h5>{{isset($info['name']) ? $info['name'] : ''}}</h5>
                 <ul class="list-unstyled text-small">
                     <li><a class="link-secondary" href="#">Giới thiệu</a></li>
                     <li><a class="link-secondary" href="movie-list-left.html">Phim</a></li>
@@ -30,26 +30,26 @@
                 <h5>@lang('lang.contact')</h5>
                 <div class="row">
                     <p class="fs-4 col-sm-12 col-xl-6">
-                        {{$info['email']}}
+                        {{isset($info['email']) ? $info['email'] : ''}}
                     </p>
                     <div class="social col-sm-12 col-xl-6">
-                        <a class="link link-dark text-decoration-none rounded-circle fs-4" href="{!! $info['facebook'] !!}"><i class="fa-brands fa-facebook"></i></a>
-                        <a class="link link-dark text-decoration-none rounded-circle fs-4" href="{!! $info['twitter'] !!}"><i class="fa-brands fa-twitter"></i></a>
-                        <a class="link link-dark text-decoration-none rounded-circle fs-4" href="{!! $info['instagram'] !!}"><i class="fa-brands fa-instagram"></i></a>
-                        <a class="link link-dark text-decoration-none rounded-circle fs-4" href="{!! $info['youtube'] !!}"><i class="fa-brands fa-youtube"></i></a>
+                        <a class="link link-dark text-decoration-none rounded-circle fs-4" href="{{isset($info['facebook']) ? $info['facebook'] : ''}}"><i class="fa-brands fa-facebook"></i></a>
+                        <a class="link link-dark text-decoration-none rounded-circle fs-4" href="{{isset($info['twitter']) ? $info['twitter'] : ''}}"><i class="fa-brands fa-twitter"></i></a>
+                        <a class="link link-dark text-decoration-none rounded-circle fs-4" href="{{isset($info['instagram']) ? $info['instagram'] : ''}}"><i class="fa-brands fa-instagram"></i></a>
+                        <a class="link link-dark text-decoration-none rounded-circle fs-4" href="{{isset($info['youtube']) ? $info['youtube'] : ''}}"><i class="fa-brands fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="row">
                     <p class="link-info">
-                        {{$info['worktime']}}
+                        {{isset($info['worktime']) ? $info['worktime'] : ''}}
                     </p>
                 </div>
                 <div class="row">
                     <p class="link-info">
-                        Hotline: {{$info['phone']}}
+                        Hotline: {{isset($info['phone']) ? $info['phone'] : ''}}
                     </p>
                 </div>
-                <p class="copy mt-4">{{$info['copyright']}}</p>
+                <p class="copy mt-4">{{isset($info['copyright']) ? $info['copyright'] : ''}}</p>
             </div>
         </div>
     </section>

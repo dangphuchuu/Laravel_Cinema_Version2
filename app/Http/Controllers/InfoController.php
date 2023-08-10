@@ -24,10 +24,9 @@ class InfoController extends Controller
             if ($format != 'jpg' && $format != 'png' && $format != 'jpeg') {
                 return redirect('admin/info')->with('warning', 'Không hỗ trợ ' . $format);
             }
-            $name = $file->getClientOriginalName();
-            $img = Str::random(4) . '-' . $name;
+            $img = 'cinema.png';
             while (file_exists('images/favicon/' . $img)) {
-                $img = Str::random(4) . '-' . $name;
+                $img = 'cinema.png';
             }
             $file->move('images/favicon/', $img);
             if ($info->logo != '') {
