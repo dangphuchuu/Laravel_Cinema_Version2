@@ -129,7 +129,7 @@ class MovieController extends Controller
         $movie->movieGenres()->attach($movieGenres);
 
 
-        return redirect('admin/movie')->with('success', "Updated Sucessfully!");
+        return redirect('admin/movie')->with('success', "Cập nhật thành công!");
     }
 
     public function delete($id)
@@ -137,7 +137,7 @@ class MovieController extends Controller
         $movie = Movie::find($id);
         Cloudinary::destroy($movie['image']);
         $movie->delete();
-        return response()->json(['success' => 'Delete Successfully']);
+        return response()->json(['success' => 'Xóa thành công!']);
     }
 
     public function status(Request $request)

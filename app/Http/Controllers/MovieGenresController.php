@@ -19,8 +19,8 @@ class MovieGenresController extends Controller
         $request->validate([
             'name' => 'required|unique:movie_genres'
         ], [
-            'name.required' => "Please enter movie genre",
-            'name.unique' => 'Movie genre exists'
+            'name.required' => "Vui lòng điền tên danh mục",
+            'name.unique' => 'Danh mục phim đã tồn tại'
         ]);
         MovieGenres::create($request->all());
         return redirect('admin/movie_genres')->with('success', 'Added Successfully!');
@@ -32,29 +32,29 @@ class MovieGenresController extends Controller
         $request->validate([
             'name' => 'required|unique:movie_genres'
         ], [
-            'name.required' => "Please enter movie genre",
-            'name.unique' => 'Movie genre exists'
+            'name.required' => "Vui lòng điền tên danh mục",
+            'name.unique' => 'Danh mục phim đã tồn tại'
         ]);
         $movieGenres->update($request->all());
-        return redirect('admin/movie_genres')->with('success', 'Updated Successfully!');
+        return redirect('admin/movie_genres')->with('success', 'Cập nhật thành công!');
     }
 
     public function delete($id)
     {
         $movie_genres = MovieGenres::find($id);
         $check = count($movie_genres->movies);
-        if($check ==0){
+        if ($check == 0) {
             MovieGenres::destroy($id);
-            return response()->json(['success' => 'Delete Successfully']);
-        }
-        else{
-            return response()->json(['error' => "Can't delete because Movie Generes exist Movie" ]);
+            return response()->json(['success' => 'Xóa thành công']);
+        } else {
+            return response()->json(['error' => "Không thể xóa vì còn tồn tại phim trong danh mục"]);
         }
     }
-    public function status(Request $request){
+    public function status(Request $request)
+    {
         $movie_genres = MovieGenres::find($request->genre_id);
         $movie_genres['status'] = $request->active;
         $movie_genres->save();
-        return response('success',200);
+        return response('success', 200);
     }
 }

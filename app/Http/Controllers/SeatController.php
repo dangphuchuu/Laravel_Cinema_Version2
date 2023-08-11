@@ -69,7 +69,7 @@ class SeatController extends Controller
         if ($seat) {
             $seat->delete();
         }
-        return redirect('admin/seat/' . $request->room)->with('success', 'Xóa thành công');
+        return redirect('admin/seat/' . $request->room)->with('success', 'Xóa thành công!');
 
     }
     public function on($id,$room_id){

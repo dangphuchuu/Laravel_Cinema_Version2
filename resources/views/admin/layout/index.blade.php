@@ -69,7 +69,8 @@
         @endif
         @if (session('success'))
         <div class="alert alert-success">
-            {{ session('success') }}
+        <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+        <span class="alert-text"><strong>Success!</strong> {{ session('success') }}!</span>
         </div>
         @endif
         @yield('content')

@@ -39,7 +39,7 @@ class TheaterController extends Controller
         ]);
 
         $theater->save();
-        return redirect('/admin/theater')->with('success', 'Add Theater Successfully!');
+        return redirect('/admin/theater')->with('success', 'Thêm rạp phim thành công!');
     }
 
     public function status(Request $request)
@@ -47,22 +47,21 @@ class TheaterController extends Controller
         $theaters = Theater::find($request->theater_id);
         $theaters['status'] = $request->active;
         $theaters->save();
-        return response('success',200);
+        return response('success', 200);
     }
-    public function delete($id){
+    public function delete($id)
+    {
         $theaters = Theater::find($id);
         $check = count($theaters->rooms);
-        if($theaters['status'] ==0 ){
-            if($check ==0){
+        if ($theaters['status'] == 0) {
+            if ($check == 0) {
                 Theater::destroy($id);
-                return response()->json(['success' => 'Delete Successfully']);
+                return response()->json(['success' => 'Xóa rạp phim thành công!']);
+            } else {
+                return response()->json(['error' => "Không thể xóa rạp phim vì còn tồn tại phòng phim!"]);
             }
-            else{
-                return response()->json(['error' => "Can't delete because Theater exist Room" ]);
-            }
-        }
-        else{
-            return response()->json(['error' => "Please change status to offline" ]);
+        } else {
+            return response()->json(['error' => "Vui lòng chuyển trạng thái sang offline!"]);
         }
     }
 
@@ -77,6 +76,6 @@ class TheaterController extends Controller
         $theater->updated_at = Carbon::today();
 
         $theater->save();
-        return redirect('/admin/theater')->with('success', 'Updated '. $theater->name .' Theater Successfully!');
+        return redirect('/admin/theater')->with('success', 'Cập nhật ' . $theater->name . ' thành công !');
     }
 }

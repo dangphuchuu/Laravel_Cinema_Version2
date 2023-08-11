@@ -140,9 +140,9 @@ class SchedulesController extends Controller
         $schedule = Schedule::find($id);
         if ($schedule['status'] == 0) {
             Schedule::destroy($id);
-            return redirect('admin/schedule?theater=' . $request->theater . '&date=' . $request->date)->with('success', 'Delete Successfully');
+            return redirect('admin/schedule?theater=' . $request->theater . '&date=' . $request->date)->with('success', 'Xóa thành công!');
         } else {
-            return redirect('admin/schedule?theater=' . $request->theater . '&date=' . $request->date)->with('error', "Please change status to offline");
+            return redirect('admin/schedule?theater=' . $request->theater . '&date=' . $request->date)->with('error', "Vui lòng chuyển trạng thái sang offline!");
         }
 
     }
@@ -154,7 +154,7 @@ class SchedulesController extends Controller
 //            ->with('success', 'Deleted all schedules successfully!');
         Schedule::where('room_id', $request->room_id)->where('date', $request->date)->delete();
         return response()->json([
-            'success'=>'Xóa thành công'
+            'success'=>'Xóa thành công!'
         ]);
     }
 }

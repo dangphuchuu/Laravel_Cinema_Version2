@@ -31,7 +31,7 @@ class AdminController extends Controller
         $year = Carbon::now('Asia/Ho_Chi_Minh')->subDays(365)->startOfYear()->toDateString();
         $start_of_month = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth();
         $total_year = Ticket::whereBetween('created_at', [$year, $now])->where('hasPaid', 1)->orderBy('created_at', 'ASC')->get();
-        $theaters = Theater::orderBy('id', 'ASC')->take(4)->get();
+        $theaters = Theater::orderBy('id', 'ASC')->get();
         $ticket = Ticket::whereDate('created_at', Carbon::today())->where('hasPaid', 1)->get();
         $ticket_seat = TicketSeat::get()->whereBetween('created_at', [$year, $now])->count();
         $user = User::role('user')->get();
@@ -522,5 +522,149 @@ class AdminController extends Controller
     {
         $feed = Feedback::orderBy('id', 'DESC')->Paginate(15);
         return view('admin.feedback.list', ['feed' => $feed]);
+    }
+    public function search_movie(Request $request)
+    {
+        $output = '';
+        if ($request->search_movie == null) {
+            $movies = Movie::all();
+            foreach ($movies as $movie) {
+                $total_seat = 0;
+                $total_price = 0;
+                foreach ($movie['schedules'] as $movie_schedule) {
+                    foreach ($movie_schedule['Ticket'] as $movie_ticket) {
+                        $total_seat += $movie_ticket['ticketseats']->count();
+                        $total_price += $movie_ticket['totalPrice'];
+                    }
+                }
+                $movie->setAttribute('totalPrice', $total_price);
+                $movie->setAttribute('ticketseats', $total_seat);
+            }
+
+            $movies = $movies->sortByDesc('totalPrice');
+        } else {
+            $movies = Movie::where('name', 'LIKE', '%' . $request->search_movie . '%')->get();
+            foreach ($movies as $movie) {
+                $total_seat = 0;
+                $total_price = 0;
+                foreach ($movie['schedules'] as $movie_schedule) {
+                    foreach ($movie_schedule['Ticket'] as $movie_ticket) {
+                        $total_seat += $movie_ticket['ticketseats']->count();
+                        $total_price += $movie_ticket['totalPrice'];
+                    }
+                }
+                $movie->setAttribute('totalPrice', $total_price);
+                $movie->setAttribute('ticketseats', $total_seat);
+            }
+
+            $movies = $movies->sortByDesc('totalPrice');
+        }
+        if ($movies) {
+            foreach ($movies as $movie) {
+                $output .= '<tr>
+                <td class="w-30">
+                    <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                            <p class="text-xs font-weight-bold mb-0">Phim</p>
+                            <h6 class="text-sm mb-0">' .
+                    $movie['name'] . '
+                            </h6>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="text-center">
+                        <p class="text-xs font-weight-bold mb-0">Vé</p>
+                        <h6 class="text-sm mb-0">' .
+                    $movie['ticketseats'] . '
+                        </h6>
+                    </div>
+                </td>
+                <td>
+                    <div class="text-center">
+                        <p class="text-xs font-weight-bold mb-0">Tổng tiền</p>
+                        <h6 class="text-sm mb-0">' .
+                    number_format($movie['totalPrice'], 0, ",", ".") . ' đ
+                        </h6>
+                    </div>
+                </td>
+            </tr>';
+            }
+        }
+        return response()->json(["output" => $output]);
+    }
+    public function search_theater(Request $request)
+    {
+        $output = '';
+        if ($request->search_theater == null) {
+            $theaters = Theater::all();
+            foreach ($theaters as $theater) {
+                $total_seat = 0;
+                $total_price = 0;
+                foreach ($theater['rooms'] as $theater_room) {
+                    foreach ($theater_room['schedules'] as $theater_schedule) {
+                        foreach ($theater_schedule['Ticket'] as $theater_ticket) {
+                            $total_seat += $theater_ticket['ticketseats']->count();
+                            $total_price += $theater_ticket['totalPrice'];
+                        }
+                    }
+                }
+                $theater->setAttribute('totalPrice', $total_price);
+                $theater->setAttribute('ticketseats', $total_seat);
+            }
+
+            $theaters = $theaters->sortByDesc('totalPrice');
+        } else {
+            $theaters = Theater::where('name', 'LIKE', '%' . $request->search_theater . '%')->get();
+            foreach ($theaters as $theater) {
+                $total_seat = 0;
+                $total_price = 0;
+                foreach ($theater['rooms'] as $theater_room) {
+                    foreach ($theater_room['schedules'] as $theater_schedule) {
+                        foreach ($theater_schedule['Ticket'] as $theater_ticket) {
+                            $total_seat += $theater_ticket['ticketseats']->count();
+                            $total_price += $theater_ticket['totalPrice'];
+                        }
+                    }
+                }
+                $theater->setAttribute('totalPrice', $total_price);
+                $theater->setAttribute('ticketseats', $total_seat);
+            }
+
+            $theaters = $theaters->sortByDesc('totalPrice');
+        }
+        if ($theaters) {
+            foreach ($theaters as $theater) {
+                $output .= '<tr>
+                <td class="w-30">
+                    <div class="d-flex px-2 py-1 align-items-center">
+                        <div class="ms-4">
+                            <p class="text-xs font-weight-bold mb-0">Rạp</p>
+                            <h6 class="text-sm mb-0">' .
+                    $theater['name'] . '
+                            </h6>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="text-center">
+                        <p class="text-xs font-weight-bold mb-0">Vé bán ra</p>
+                        <h6 class="text-sm mb-0">' .
+                    $theater['ticketseats'] . '
+                        </h6>
+                    </div>
+                </td>
+                <td>
+                    <div class="text-center">
+                        <p class="text-xs font-weight-bold mb-0">Tổng tiền</p>
+                        <h6 class="text-sm mb-0">' .
+                    number_format($theater['totalPrice'], 0, ",", ".") . ' đ
+                        </h6>
+                    </div>
+                </td>
+            </tr>';
+            }
+        }
+        return response()->json(["output" => $output]);
     }
 }

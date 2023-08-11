@@ -203,4 +203,51 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#search_movie').on('keyup', function() {
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: "{{ URL::to('admin/search_movie') }}",
+                data: {
+                    'search_movie': $value
+                },
+
+                success: function(data) {
+                    $('#tbody_movie').html(data.output);
+                }
+            });
+        })
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#search_theater').on('keyup', function() {
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: "{{ URL::to('admin/search_theater') }}",
+                data: {
+                    'search_theater': $value
+                },
+
+                success: function(data) {
+                    $('#tbody_theater').html(data.output);
+                    console.log($value);
+                }
+            });
+        })
+    });
+</script>
 @endsection

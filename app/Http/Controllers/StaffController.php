@@ -221,10 +221,10 @@ class StaffController extends Controller
                 $ticket->hasPaid = true;
                 $ticket->save();
 
-                return redirect('admin/buyTicket')->with('success', 'thanh toán thành công !');
+                return redirect('admin/buyTicket')->with('success', 'thanh toán thành công!');
             default:
                 Ticket::where('code', $request->vnp_TxnRef)->delete();
-                return redirect('admin/buyTicket')->with('fail', 'thanh toán thất bại');
+                return redirect('admin/buyTicket')->with('fail', 'thanh toán thất bại!');
         }
     }
 

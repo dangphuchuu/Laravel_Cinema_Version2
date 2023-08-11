@@ -16,7 +16,7 @@ class RoomController extends Controller
     {
         $roomType = RoomType::find($request->roomType);
         $theater = Theater::find($request->theaterId);
-//        dd($roomType->id);
+        //        dd($roomType->id);
         $room = new Room([
             'name' => $request->name,
             'theater_id' => $theater->id,
@@ -42,9 +42,10 @@ class RoomController extends Controller
             }
         }
 
-        return redirect('admin/theater')->with('success', 'Add new room at ' . $theater->name . ' successfully!');
+        return redirect('admin/theater')->with('success', 'Thêm mới phòng tại ' . $theater->name . ' thành công!');
     }
-    public function status(Request $request){
+    public function status(Request $request)
+    {
         $room = Room::find($request->room_id);
         $room['status'] = $request->active;
         $room->save();

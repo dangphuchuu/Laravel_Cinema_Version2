@@ -31,6 +31,9 @@ Route::prefix('admin')->group(function () {
 Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function () {
 
     Route::get('/', [AdminController::class, 'home']);
+    //Revenue
+    Route::get('/search_movie', [AdminController::class, 'search_movie']);
+    Route::get('/search_theater', [AdminController::class, 'search_theater']);
     // statistical
     Route::get('/filter-by-date', [AdminController::class, 'filter_by_date']);
     Route::get('/statistical-filter', [AdminController::class, 'statistical_filter']);

@@ -3,7 +3,9 @@
         <div class="card ">
             <div class="card-header pb-0 p-3">
                 <div class="d-flex justify-content-between ">
-                    <h6 class="mb-2">@lang('lang.revenue_by_movie')</h6>
+                    <h6 class="mb-2">
+                        @lang('lang.revenue_by_movie')
+                    </h6>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#movie" class="float-end">Xem tất cả</a>
                 </div>
             </div>
