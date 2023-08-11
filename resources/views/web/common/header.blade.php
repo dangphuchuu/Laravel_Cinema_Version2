@@ -9,10 +9,10 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
             <ul class="navbar-nav text-uppercase mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link @yield('movies')" href="/movies" role="button">@lang('lang.movies')</a>
+                    <a class="nav-link @yield('movies')" href="/movies" role="button">@lang('lang.sortby_movies')</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link @yield('schedules')" href="/schedulesByMovie">@lang('lang.movie_schedule')</a>
+                    <a class="nav-link @yield('schedules')" href="/schedulesByMovie">@lang('lang.sortby_schedules')</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link @yield('events')" href="/events">@lang('lang.news_events')</a>

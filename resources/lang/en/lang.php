@@ -221,4 +221,6 @@ return [
     'terms_of_use' => 'Terms of use',
     'information' => 'Information',
     'worktime'=>'Worktime',
+    'sortby_movies'=>'Sort by Movies',
+    'sortby_schedules'=>'Sort by Schedules',
 ];
