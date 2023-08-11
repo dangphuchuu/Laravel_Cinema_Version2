@@ -51,4 +51,12 @@ class RoomController extends Controller
         $room->save();
         return response();
     }
+
+    public function delete($id) {
+        $seat = Room::find($id);
+        if ($seat) {
+            $seat->delete();
+        }
+        return redirect('admin/theater')->with('success', 'Xóa thành công!');
+    }
 }

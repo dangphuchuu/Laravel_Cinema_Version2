@@ -48,7 +48,7 @@
 
             </td>
             <td class="align-middle">
-                <a href="javascript:void(0)" class="text-secondary font-weight-bold text-xs delete-room"
+                <a href="admin/room/delete/{{$room->id}}" class="text-secondary font-weight-bold text-xs delete-room"
                    data-url="{{ url('admin/seat/delete', $room['id'] ) }}" data-toggle="tooltip">
                     <i class="fa-solid fa-trash-can fa-lg"></i>
                 </a>
