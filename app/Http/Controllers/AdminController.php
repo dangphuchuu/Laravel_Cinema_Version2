@@ -311,7 +311,7 @@ class AdminController extends Controller
         if ($request->search == null) {
             $users = User::orderBy('id', 'DESC')->Paginate(50);
         } else {
-            $users = User::where('code', 'LIKE', '%' . $request->search . '%')->get();
+            $users = User::where('code', 'LIKE', '%' . $request->search . '%')->where('email', 'LIKE', '%' . $request->search . '%')->get();
         }
         if ($users) {
             foreach ($users as $value) {
