@@ -57,6 +57,17 @@ class Movie extends Model
             ->join('rooms', 'rooms.id', '=', 'schedules.room_id')
             ->join('theaters', 'theaters.id', '=', 'rooms.theater_id')
             ->where('date', $date)
+            ->where('schedules.status', true)
+            ->where('theaters.id', $theater)->get();
+    }
+
+    public function schedulesEarlyByTheaterAndDate($date, $theater)
+    {
+        return $this->schedules()->select('schedules.*', 'theaters.id as theater')
+            ->join('rooms', 'rooms.id', '=', 'schedules.room_id')
+            ->join('theaters', 'theaters.id', '=', 'rooms.theater_id')
+            ->where('date', $date)
+            ->where('schedules.early', true)
             ->where('theaters.id', $theater)->get();
     }
 }

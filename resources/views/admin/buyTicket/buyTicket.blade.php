@@ -132,6 +132,7 @@
                                     <div class="d-block mt-2 mb-5">
                                             <div class="row">
                                             @foreach($moviesEarly as $movie)
+                                                @if($movie->schedulesEarlyByTheaterAndDate($date_cur ,$theater->id)->count() > 0)
                                                 <div class="col-3">
                                                     <div class="card border mb-2">
                                                         <button type="button" class="btn btn-link"
@@ -202,6 +203,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @endif
                                             @endforeach
                                         </div>
                                 </div>

@@ -491,6 +491,7 @@
                     <input type="hidden" name="ticket_id" id="ticketMoney">
                     <input type="hidden" name="userCode" id="userCode2">
                     <input type="hidden" name="point" class="point2">
+                    <input type="hidden" name="type" value="ticket">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>

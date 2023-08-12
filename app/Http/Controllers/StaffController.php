@@ -35,7 +35,6 @@ class StaffController extends Controller
         $roomTypes = RoomType::all();
         $movies = Movie::whereDate('releaseDate', '<=', Carbon::today()->format('Y-m-d'))
             ->where('endDate', '>', Carbon::today()->format('Y-m-d'))
-            ->where('status', 1)
             ->get();
         $moviesEarly = Movie::all()->filter(function ($movie) {
             foreach ($movie->schedules as $schedule) {
@@ -114,7 +113,8 @@ class StaffController extends Controller
         $vnp_TmnCode = "6JQZ09G6"; //Mã định danh merchant kết nối (Terminal Id)
         $vnp_HashSecret = "QCTWPIWUGYNUJNXJAJMQKHUBCXZMDZXU"; //Secret key
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = $request->getSchemeAndHttpHost() . "/payment/result?point=" . $request->point;
+        $vnp_Returnurl = $request->getSchemeAndHttpHost()
+            . "/payment/result?point=" . $request->point . "type=" . $request->type;
         $vnp_apiUrl = "http://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
         $apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
         //Config input format
@@ -221,7 +221,11 @@ class StaffController extends Controller
                 $ticket->hasPaid = true;
                 $ticket->save();
 
-                return redirect('admin/buyTicket')->with('success', 'thanh toán thành công!');
+                if ($request->type == 'ticket') {
+                    return redirect('admin/buyTicket')->with('success', 'thanh toán thành công!');
+                } else {
+                    return redirect('admin/buyCombo')->with('success', 'thanh toán thành công!');
+                }
             default:
                 Ticket::where('code', $request->vnp_TxnRef)->delete();
                 return redirect('admin/buyTicket')->with('fail', 'thanh toán thất bại!');
