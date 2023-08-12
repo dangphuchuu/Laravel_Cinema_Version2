@@ -311,7 +311,7 @@ class AdminController extends Controller
         if ($request->search == null) {
             $users = User::orderBy('id', 'DESC')->Paginate(50);
         } else {
-            $users = User::where('code', 'LIKE', '%' . $request->search . '%')->get();
+            $users = User::where('code', 'LIKE', '%' . $request->search . '%')->orWhere('email', 'LIKE', '%' . $request->search . '%')->get();
         }
         if ($users) {
             foreach ($users as $value) {
@@ -418,7 +418,7 @@ class AdminController extends Controller
 
         $staff->save();
         $staff->syncRoles('staff');
-        return redirect('/admin/staff')->with('success', 'Create Account Successfully!');
+        return redirect('/admin/staff')->with('success', 'Tạo tài khoản thành công!');
     }
 
     public function postPermission(Request $request, $id)
@@ -426,27 +426,31 @@ class AdminController extends Controller
         $data = $request->all();
         $user = User::find($id);
         if ($user->hasRole('admin')) {
-            return redirect('admin/staff')->with('warning', 'Cannot change permission for admin!');
+            return redirect('admin/staff')->with('warning', 'Không thể thay đổi quyền của admin!');
         } else {
             if (array_key_exists('permission', $data)) {
                 $user->syncPermissions($data['permission']);
             } else {
-                return redirect('admin/staff')->with('warning', 'Please check least 1 Permission!');
+                return redirect('admin/staff')->with('warning', 'Vui lòng chọn ít nhất 1 quyền!');
             }
         }
 
 
-        return redirect('admin/staff')->with('success', 'Updated Permission Sucessfully !');
+        return redirect('admin/staff')->with('success', 'Cập nhật quyền thành công!');
     }
 
     public function delete($id)
     {
         $user = User::find($id);
-        if ($user->hasRole('admin')) {
-            return response()->json(['error' => "Can't Delete Admin Account !"]);
+        if ($user['status'] == 0) {
+            if ($user->hasRole('admin')) {
+                return response()->json(['error' => "Không thể xóa tài khoản admin!"]);
+            } else {
+                User::destroy($id);
+                return response()->json(['success' => 'Xóa thành công!']);
+            }
         } else {
-            User::destroy($id);
-            return response()->json(['success' => 'Delete Successfully']);
+            return response()->json(['error' => "Vui lòng chuyển trạng thái sang offline!"]);
         }
     }
 
@@ -498,7 +502,7 @@ class AdminController extends Controller
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
             return redirect('admin');
         } else {
-            return redirect('admin/sign_in')->with('warning', "Sign in unsuccessfully!");
+            return redirect('admin/sign_in')->with('warning', "Đăng nhập thành công!");
         }
     }
 
@@ -512,7 +516,7 @@ class AdminController extends Controller
     {
         $user = User::find($request->user_id);
         if ($user->hasRole('admin')) {
-            return response()->json(['error' => "Can't change Admin Status!"]);
+            return response()->json(['error' => "Không thể thay đổi trạng thái của admin!"]);
         } else {
             $user['status'] = $request->active;
             $user->save();

@@ -221,5 +221,7 @@ return [
     'delete' => 'xóa',
     'terms_of_use' => 'Điều khoản sử dụng',
     'information' => 'Thông tin',
-    'worktime' => 'Thời gian làm việc'
+    'worktime' => 'Thời gian làm việc',
+    'sortby_movies'=>'Tìm kiếm theo bộ lọc',
+    'sortby_schedules'=>'Tìm kiếm theo lịch chiếu',
 ];
