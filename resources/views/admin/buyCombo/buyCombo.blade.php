@@ -22,7 +22,8 @@
     <div class="container-fluid py-4">
         <div class="card">
             <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                bán vé
+                bán Combo
+                <a class="btn btn-danger float-end" href="admin/buyCombo">Hủy</a>
             </div>
 
             <div class="card-body pt-2">
@@ -173,7 +174,8 @@
 
                                 <div class="d-flex justify-content-center mt-4">
 
-                                    <button class="btn btn-warning mx-2  text-decoration-underline text-center btn_next"
+                                    <button class="btn btn-warning mx-2 text-decoration-underline text-center
+                                    btn_next disabled"
                                             onclick="comboNext()"
                                             aria-controls="Payment"
                                             aria-expanded="false"
@@ -264,12 +266,12 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/admin/buyTicket/handleResult" method="post">
+                <form id="moneyPayment" action="/admin/buyTicket/handleResult" method="post">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="total" class="form-control-label">Tổng tiền vé</label>
-                            <input id="total" class="form-control" name="total" type="number" value="">
+                            <input id="total" class="form-control" name="total" type="number" value="" readonly>
                         </div>
                         <div class="form-group">
                             <label for="moneyIn" class="form-control-label">Khách đưa</label>
@@ -287,7 +289,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn bg-gradient-primary">Thanh toán</button>
+                        <button type="button" onclick="btnMoneyPayment()" class="btn bg-gradient-primary">Thanh
+                            toán</button>
                     </div>
                 </form>
             </div>
@@ -300,9 +303,7 @@
             let $ticket_combos = {};
             let $ticket_foods = {};
             let $ticket_id = -1;
-            let $countdown = {
-                interval: null
-            };
+            let $iCombo = 0;
             let $sum = 0;
             let $holdState = false;
 
@@ -346,6 +347,10 @@
             }
 
             plusFood = (id, price, foodName) => {
+                $iCombo++;
+                if($iCombo !== 0) {
+                    $('.btn_next').removeClass('disabled');
+                }
                 $inputFood = $('#Food_' + id).find('.input_food');
                 $inputFood.val(parseInt($inputFood.val()) + 1);
                 $inputFood.parent().find('.minus_food').removeClass('disabled');
@@ -361,6 +366,10 @@
             }
 
             minusFood = (id, price, foodName) => {
+                $iCombo--;
+                if($iCombo === 0) {
+                    $('.btn_next').addClass('disabled');
+                }
                 if ($inputFood.val() === '0') {
                     $inputFood.parent().find('.minus_food').addClass('disabled');
                     return;
@@ -384,6 +393,10 @@
             }
 
             plusCombo = (id, price, comboName) => {
+                $iCombo++;
+                if($iCombo !== 0) {
+                    $('.btn_next').removeClass('disabled');
+                }
                 $inputCombo = $('#Combo_' + id).find('.input_combo');
                 $inputCombo.val(parseInt($inputCombo.val()) + 1);
                 // if ($inputCombo.val() === '4') {
@@ -401,6 +414,10 @@
             }
 
             minusCombo = (id, price, comboName) => {
+                $iCombo--;
+                if($iCombo === 0) {
+                    $('.btn_next').addClass('disabled');
+                }
                 if ($inputCombo.val() === '0') {
                     $inputCombo.parent().find('.minus_combo').addClass('disabled');
                     return;
@@ -517,6 +534,35 @@
                 $moneyOut = parseInt($('#moneyIn').val()) - $sum;
                 $('#moneyOut').val($moneyOut);
             })
+
+            btnMoneyPayment = () => {
+                moneyOut = parseInt($('#moneyOut').val());
+                if (moneyOut >= 0) {
+                    $('#moneyPayment').submit();
+                } else {
+                    Swal.fire({
+                        title: 'chưa đủ tiền thanh toán',
+                        icon: 'warning',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
         })
+    </script>
+    <script>
+        @if(session('success'))
+        Swal.fire({
+            title: '{{session('success')}}',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+        })
+        @endif
+        @if(session('fail'))
+        Swal.fire({
+            title: '{{session('fail')}}',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+        })
+        @endif
     </script>
 @endsection
