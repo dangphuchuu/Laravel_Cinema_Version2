@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\RoomType;
 use App\Models\Seat;
 use App\Models\SeatType;
 use Illuminate\Http\Request;
@@ -12,10 +13,12 @@ class SeatController extends Controller
     public function seats($id)
     {
         $room = Room::find($id);
+        $roomTypes = RoomType::all();
         $seatTypes = SeatType::all();
         return view('admin.seat.list', [
             'room' => $room,
-            'seatTypes' => $seatTypes
+            'seatTypes' => $seatTypes,
+            'roomTypes' => $roomTypes,
         ]);
     }
 

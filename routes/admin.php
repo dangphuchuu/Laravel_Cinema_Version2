@@ -96,7 +96,7 @@ Route::prefix('admin')->middleware('admin', 'role:admin|staff')->group(function 
     Route::prefix('room')->group(function () {
         Route::get('/delete/{id}', [RoomController::class, 'delete']);
         Route::post('/create', [RoomController::class, 'postCreate']);
-        Route::post('/edit', [RoomController::class, 'postEdit']);
+        Route::post('/edit/{id}', [RoomController::class, 'postEdit']);
         Route::get('/status', [RoomController::class, 'status']);
         Route::get('/', [RoomController::class, 'room']);
     });

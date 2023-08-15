@@ -46,7 +46,7 @@ class RoomController extends Controller
     }
     public function status(Request $request)
     {
-        $room = Room::find($request->room_id);
+        $room = Room::find($request->room_id);         
         $room['status'] = $request->active;
         $room->save();
         return response();
@@ -58,5 +58,16 @@ class RoomController extends Controller
             $seat->delete();
         }
         return redirect('admin/theater')->with('success', 'Xóa thành công!');
+    }
+
+    public function postEdit($id, Request $request) {
+        $room = Room::find($id);
+        if ($room) {
+            $room->name = $request->name;
+            $room->roomType_id = $request->type;
+            $room->save();
+        }
+
+        return redirect('admin/seat/' . $id)->with('success', 'Cập nhật thông tin phòng thành công!');
     }
 }

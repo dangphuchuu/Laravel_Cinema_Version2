@@ -4,7 +4,42 @@
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
-                    <div class="card mb-4" @if($room->seats->count() > 300) style="width: 1500px" @endif>
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <h6>Thông tin phòng</h6>
+                        </div>
+                        <div class="card-body">
+                            <form action="admin/room/edit/{{$room->id}}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="name">Email address</label>
+                                            <input id="name" type="text" name="name" class="form-control"
+                                                   placeholder="Name..." value="{{$room->name}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="type">Room type</label>
+                                            <select class="form-control" name="type" id="type">
+                                                @foreach($roomTypes as $type)
+                                                    <option value="{{$type->id}}"
+                                                        @if($room->roomType_id == $type->id) selected @endif>
+                                                        {{$type->name}}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary float-end">save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card mb-2" @if($room->seats->count() > 300) style="width: 1500px" @endif>
                         <div class="card-header pb-0">
                             <h6>{{$room->name}}</h6>
                         </div>
@@ -17,7 +52,6 @@
                                     <div class="row d-block m-2" style="margin: 2px">
                                         <div class="d-inline-block align-middle my-0 mx-1 py-1 px-0 disabled"
                                              style="width: 30px; height: 30px; line-height: 22px; font-size: 10px">
-
                                         </div>
                                     </div>
                                     @foreach($room->rows as $row)
