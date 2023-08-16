@@ -27,7 +27,7 @@ class SchedulesController extends Controller
         //     ]);
 
         $schedules = Schedule::all();
-        $theaters = Theater::all();
+        $theaters = Theater::all()->where('status',1);
         $audios = Audio::all();
         $subtitles = Subtitle::all();
         if (isset($request->theater) && isset($request->date)) {
