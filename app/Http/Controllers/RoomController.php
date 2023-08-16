@@ -53,9 +53,13 @@ class RoomController extends Controller
     }
 
     public function delete($id) {
-        $seat = Room::find($id);
-        if ($seat) {
-            $seat->delete();
+        $room = Room::find($id);
+        if ($room) {
+            if ($room->schedules->count() == 0) {
+                $room->delete();
+            } else {
+                return redirect('admin/theater')->with('warning', 'có suất chiếu tại phòng, không thể xóa!');
+            }
         }
         return redirect('admin/theater')->with('success', 'Xóa thành công!');
     }
