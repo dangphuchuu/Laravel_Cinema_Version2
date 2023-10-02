@@ -28,12 +28,11 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 -   Step 3 : php artisan key:generate
 -   Step 4 : create database with name cinema and setting in .env
 -   Step 5 : php artisan migrate:fresh --seed
--   Step 6 :composer dumpautoload
--   Step 7: php artisan serve
+-   Step 6 : composer dumpautoload
+-   Step 7 : php artisan serve
 
 ## Command Line
 
--
 -   create database and model: "php artisan make:model Example -m"
 -   create Controller: "php artisan make:controller ExampleController"
 -   rollback database and seed: "php artisan migrate:fresh --seed"
