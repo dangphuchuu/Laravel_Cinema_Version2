@@ -60,10 +60,10 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 ## Config Mail in .ENV
 
 -   Create application password: https://support.google.com/mail/answer/185833?hl=vi to config:
--   MAIL_USERNAME
--   MAIL_PASSWORD
--   MAIL_FROM_ADDRESS
--   MAIL_NAME
+-   MAIL_USERNAME = example@gmail.com
+-   MAIL_PASSWORD = application password
+-   MAIL_FROM_ADDRESS = example@gmail.com
+-   MAIL_NAME = example
 
 ## Config Cloudinary in .ENV
 
