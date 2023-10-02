@@ -57,4 +57,17 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 -   https://github.com/picqer/php-barcode-generator
 -   https://github.com/cloudinary-devs/cloudinary-laravel#installation
 
-#
+## Config Mail in .ENV
+
+-   Create application password: https://support.google.com/mail/answer/185833?hl=vi to config:
+-   MAIL_USERNAME
+-   MAIL_PASSWORD
+-   MAIL_FROM_ADDRESS
+-   MAIL_NAME
+
+## Config Cloudinary in .ENV
+
+-   Create account in https://console.cloudinary.com/ to config:
+-   CLOUD_NAME = Cloud Name
+-   CLOUDINARY_URL = API Environment variable
+-   CLOUDINARY_NOTIFICATION_URL = API Environment variable
