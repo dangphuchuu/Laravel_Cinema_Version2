@@ -1,10 +1,10 @@
 <!-- Modal -->
-<div class="modal fade modal-lg" id="TheaterEditModal{{ $theater->id }}" tabindex="-1" aria-labelledby="TheaterModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+<div class="modal fade" id="TheaterEditModal{{ $theater->id }}" tabindex="-1" aria-labelledby="TheaterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="TheaterModalLabel">{!! $theater->name !!}</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <form action="admin/theater/edit/{{$theater->id}}" method="post"
@@ -26,7 +26,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="city_theater_{{ $theater->id }}">@lang('lang.city')</label>
-                                <select id="city_theater_{{ $theater->id }}" class="form-select" name="city">
+                                <select id="city_theater_{{ $theater->id }}" class="form-select form-control" name="city">
                                     <option value="An Giang">An Giang</option>
                                     <option value="Bắc Giang">Bắc Giang</option>
                                     <option value="Bắc Kạn">Bắc Kạn</option>

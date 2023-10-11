@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="movie_title">@lang('lang.movie_genre')</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="card-body">
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('lang.save')</button>
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">@lang('lang.save')</button>
             </div>
         </div>
     </div>

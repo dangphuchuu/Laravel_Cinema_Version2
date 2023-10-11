@@ -5,7 +5,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="combo_title">Combo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
 
                 <div class="modal-body">
@@ -14,15 +14,13 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="nameCreate">@lang('lang.name')</label>
-                                    <input id="nameCreate" class="form-control" type="text" name="name" required autocomplete="off"
-                                           placeholder="@lang('lang.type') @lang('lang.name')">
+                                    <input id="nameCreate" class="form-control" type="text" name="name" required autocomplete="off" placeholder="@lang('lang.type') @lang('lang.name')">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="priceCreate">@lang('lang.price')</label>
-                                    <input id="priceCreate" class="form-control" type="number" name="price"
-                                           placeholder="@lang('lang.type') @lang('lang.price')">
+                                    <input id="priceCreate" class="form-control" type="number" name="price" placeholder="@lang('lang.type') @lang('lang.price')">
                                 </div>
                             </div>
                             <div class="col-12">
@@ -38,7 +36,7 @@
                                     <span class="input-group-text text-black-50">@lang('lang.food'): </span>
                                     <select type='text' name='food[]' class="form-select" aria-label="food">
                                         @foreach($foods as $food)
-                                            <option value="{{$food->id}}">{{$food->name}}</option>
+                                        <option value="{{$food->id}}">{{$food->name}}</option>
                                         @endforeach
                                     </select>
                                     <span class="input-group-text text-black-50">@lang('lang.quantity'): </span>
@@ -46,7 +44,7 @@
                                     <button type="button" class="btn btn-danger mb-0 delete_food"><i class="fa-solid fa-trash"></i></button>
                                 </div>
                             </div>
-                            <button type="button" class="btn m-1 btn-primary add_food">ADD FOOD</button>
+                           <i class="add_food fa-sharp fa-light fa-circle-plus"></i>
                         </div>
                     </div>
                 </div>
@@ -60,5 +58,3 @@
         </div>
     </div>
 </form>
-
-

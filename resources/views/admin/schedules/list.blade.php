@@ -27,11 +27,11 @@ padding-left: 5px;
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <form action="admin/schedule" method="get">
-                        <div class="row container">
+                        <div class="row ">
                             <div class="col-5">
-                                <div class="input-group">
-                                    <span class="input-group-text bg-gray-200"> @lang('lang.theater')</span>
-                                    <select id="theater" class="form-select ps-2" name="theater" aria-label="">
+                                <div class="input-group ">
+                                    <span class="input-group-text bg-gray-200 ml-2"> @lang('lang.theater')</span>
+                                    <select id="theater" class="form-select ps-2 form-control" name="theater" aria-label="">
                                         @foreach($theaters as $theater)
                                         <option value="{{ $theater->id }}" @if($theater==$theater_cur) selected @endif>
                                             {{ $theater->name }}
@@ -51,7 +51,7 @@ padding-left: 5px;
                             </div>
                         </div>
                     </form>
-                    <div class="table-responsive m-2">
+                    <div class="table-responsive mt-3">
                         <table class="table table-bordered table-striped align-items-center text-center">
                             <colgroup>
                                 <col span="1" style="width: 40%;">

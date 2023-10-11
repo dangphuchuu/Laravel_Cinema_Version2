@@ -195,7 +195,7 @@
 
                                     <tr>
                                         <td colspan="6">
-                                            <button type="submit" class="btn btn-primary float-end m-2">@lang('lang.save')</button>
+                                            <button type="submit" class="btn bg-gradient-primary float-right mr-5">@lang('lang.save')</button>
                                         </td>
                                     </tr>
                                     </tfoot>

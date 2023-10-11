@@ -168,7 +168,6 @@
     <script>
         $(document).ready(function () {
             $('#city').select2();
-            $('#city_create').select2();
         })
 
         editTheater = (theater_id, city) => {

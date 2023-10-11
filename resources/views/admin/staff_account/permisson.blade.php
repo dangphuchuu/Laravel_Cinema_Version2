@@ -1,11 +1,11 @@
-<div class="modal fade modal-lg" id="permission{!! $value['id'] !!}" tabindex="-1" aria-labelledby="permission_title" aria-hidden="true">
+<div class="modal fade " id="permission{!! $value['id'] !!}" tabindex="-1" aria-labelledby="permission_title" aria-hidden="true">
     <form action="admin/staff/permission/{!! $value['id'] !!}" method="POST">
         @csrf
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="permission_title">{!! $value['fullName'] !!}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <?php
                 $user_permission = $value->getDirectPermissions();//get permission for user

@@ -5,7 +5,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="cast_title">{!! $value['name'] !!}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
 
                 <div class="modal-body">
@@ -26,8 +26,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">@lang('lang.birthday')</label>
-                                    <input class="form-control" type="date" value="{!! $value['birthday'] !!}" name="birthday"
-                                           min="1900-01-01" max="2100-01-01">
+                                    <input class="form-control" type="date" value="{!! $value['birthday'] !!}" name="birthday" min="1900-01-01" max="2100-01-01">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -35,11 +34,9 @@
                                     <label for="example-text-input" class="form-control-label">@lang('lang.image')</label>
                                     <input type='file' name='Image' class="form-control image-cast">
                                     @if(strstr($value['image'],"https") == "")
-                                        <img style="width: 300px" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
-                                             class="img_cast" alt="user1">
+                                    <img style="width: 300px" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg" class="img_cast" alt="user1">
                                     @else
-                                        <img style="width: 300px"
-                                             src="{!! $value['image'] !!}" class="img_cast" alt="user1">
+                                    <img style="width: 300px" src="{!! $value['image'] !!}" class="img_cast" alt="user1">
                                     @endif
                                 </div>
                             </div>

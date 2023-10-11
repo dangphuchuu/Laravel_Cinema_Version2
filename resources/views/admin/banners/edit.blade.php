@@ -5,7 +5,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="banner_title">{!! $value['name'] !!}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
@@ -15,12 +15,9 @@
                                     <label for="example-text-input" class="form-control-label">@lang('lang.image')</label>
                                     <input type='file' name='Image' class="form-control image-director">
                                     @if(strstr($value['image'],"https") == "")
-                                        <img style="width: 300px" class="img_direc"
-                                             src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
-                                             alt="user1">
+                                    <img style="width: 300px" class="img_direc" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg" alt="user1">
                                     @else
-                                        <img style="width: 300px" class="img_direc"
-                                             src="{!! $value['image'] !!}" alt="user1">
+                                    <img style="width: 300px" class="img_direc" src="{!! $value['image'] !!}" alt="user1">
                                     @endif
                                 </div>
                             </div>

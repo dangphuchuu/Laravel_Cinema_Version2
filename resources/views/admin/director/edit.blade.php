@@ -5,7 +5,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="director_title">{!! $value['name'] !!}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
 
                 <div class="modal-body">
@@ -14,7 +14,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">@lang('lang.name')</label>
-                                    <input class="form-control" type="text" value="{!! $value['name'] !!}" name="name" >
+                                    <input class="form-control" type="text" value="{!! $value['name'] !!}" name="name">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -26,8 +26,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">@lang('lang.birthday')</label>
-                                    <input class="form-control" type="date" value="{!! $value['birthday'] !!}" name="birthday"
-                                           min="1900-01-01" max="2100-01-01">
+                                    <input class="form-control" type="date" value="{!! $value['birthday'] !!}" name="birthday" min="1900-01-01" max="2100-01-01">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -35,11 +34,9 @@
                                     <label for="example-text-input" class="form-control-label">@lang('lang.image')</label>
                                     <input type='file' name='Image' class="form-control image-director">
                                     @if(strstr($value['image'],"https") == "")
-                                        <img style="width: 300px" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg"
-                                             class="img_direc" alt="user1">
+                                    <img style="width: 300px" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $value['image'] !!}.jpg" class="img_direc" alt="user1">
                                     @else
-                                        <img style="width: 300px"
-                                             src="{!! $value['image'] !!}" class="img_direc" alt="user1">
+                                    <img style="width: 300px" src="{!! $value['image'] !!}" class="img_direc" alt="user1">
                                     @endif
                                 </div>
                             </div>
@@ -54,8 +51,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('lang.close')</button>
+                    <button type="submit" class="btn btn-primary">@lang('lang.save')</button>
                 </div>
 
             </div>

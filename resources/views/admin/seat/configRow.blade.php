@@ -12,7 +12,7 @@
                 <div class="form-check">
                     <input class="form-check-input seat_type_radio" type="radio" name="seatType"
                            id="ColorRadio_{{ $seatType->id }}_{{ $room->id }}_{{ $row->row }}" value="{{ $seatType->id }}">
-                    <label class="custom-control-label flex-fill d-flex border-0 ps-1 my-2"
+                    <label class="form-check-label flex-fill d-flex border-0 ps-1 my-2"
                            for="ColorRadio_{{ $seatType->id }}_{{ $room->id }}_{{ $row->row }}">
                     <span class="fw-bold d-block text-center me-1 seat_color_{{ $seatType->id }}"
                           style="width: 20px; height: 20px; background-color: {{ $seatType->color }};"></span>

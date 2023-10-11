@@ -7,12 +7,6 @@
                 <div class="card">
                     <form method="post" action="/admin/movie/edit/{!! $movie['id'] !!}" enctype="multipart/form-data">
                         @csrf
-                        <div class="card-header pb-0">
-                            <div class="d-flex align-items-center">
-                                <p class="mb-0">@lang('lang.movies')</p>
-                                <button type="submit" class="btn bg-gradient-primary btn-sm ms-auto">@lang('lang.submit')</button>
-                            </div>
-                        </div>
                         <div class="card-body">
                             <p class="text-uppercase text-sm">@lang('lang.edit')</p>
                             <div class="row">
@@ -31,7 +25,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="national" class="form-control-label">@lang('lang.national')</label>
-                                        <select class="form-select" name="national" id="national">
+                                        <select class="form-select form-control" name="national" id="national">
                                             <option value="">@lang('lang.national')</option>
                                             <option value="Afghanistan">Afghanistan</option>
                                             <option value="Aland Islands">Quần đảo Aland</option>
@@ -323,7 +317,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="rating" class="form-label">@lang('lang.rated')</label>
-                                        <select id="rating" class="form-select" name="rating">
+                                        <select id="rating" class="form-select form-control" name="rating">
                                             @foreach($rating as $item)
                                                 <option
                                                 @if(isset($movie))
@@ -358,7 +352,7 @@
                                             @endif" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-7">
                                     <div class="form-group">
                                         <label for="cast" class="form-label">@lang('lang.casts')</label>
                                         <select id="cast" class="form-control cast-input" name="casts[]" multiple>
@@ -376,6 +370,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <button type="submit" class="float-right btn bg-gradient-primary mt-3">@lang('lang.submit')</button>
                         </div>
                     </form>
                 </div>

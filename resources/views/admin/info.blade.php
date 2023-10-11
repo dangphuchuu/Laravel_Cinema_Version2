@@ -7,24 +7,19 @@
             <div class="card">
                 <form method="post" action="/admin/info/" enctype="multipart/form-data">
                     @csrf
-                    <div class="card-header pb-0">
-                        <div class="d-flex align-items-center">
-                            <p class="mb-0">@lang('lang.information')</p>
-                            <button type="submit" class="btn bg-gradient-primary btn-sm ms-auto">@lang('lang.submit')</button>
-                        </div>
-                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-10">
                                 <div class="form-group file-uploader">
                                     <label for="movieImage">@lang('lang.image')</label>
                                     <input id="movieImage" type="file" name="Image" class="form-control image-movie">
-                                    <img style="width: 300px" 
-                                    @if(isset($info['logo'])) 
-                                    src="images/favicon/{{$info['logo']}}" 
-                                    @else src="" 
-                                    @endif class="img_movie" alt="user1">
+                                    <img style="width: 300px" @if(isset($info['logo'])) src="images/favicon/{{$info['logo']}}" @else src="" @endif class="img_movie" alt="user1">
                                 </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" style="margin-right:15px;" class="me-5  btn btn-danger float-right mb-3">
+                                    @lang('lang.update')
+                                </button>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">

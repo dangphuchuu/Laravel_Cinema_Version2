@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
-                        <button style="float:right;padding-right:30px;" class="me-5  btn btn-primary float-right mb-3" data-bs-toggle="modal" data-bs-target="#movie_genre">
+                        <button style="margin-right:15px;" class="me-5  btn btn-primary float-right mb-3" data-bs-toggle="modal" data-bs-target="#movie_genre">
                             @lang('lang.create')
                         </button>
                         <table class="table align-items-center mb-0">

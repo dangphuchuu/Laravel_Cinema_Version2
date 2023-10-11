@@ -479,7 +479,7 @@ class AdminController extends Controller
             $request['password'] = bcrypt($request['password']);
         }
         $user->update($request->all());
-        return redirect('admin/sign_out')->with('success', 'Update Successfully');
+        return redirect('admin/profile')->with('success', 'Update Successfully');
     }
     //Sign_in
     public function sign_in()

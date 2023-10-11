@@ -23,7 +23,7 @@
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
                                 <a style="float:right;padding-right:30px;" class="text-light">
-                                    <button class=" btn bg-gradient-info float-right mb-3" data-bs-toggle="modal" data-bs-target="#discount">@lang('lang.create')
+                                    <button class=" btn bg-gradient-info float-right m-1" data-bs-toggle="modal" data-bs-target="#discount">@lang('lang.create')
                                     </button>
                                 </a>
                                 <table class="table align-items-center mb-0 ">

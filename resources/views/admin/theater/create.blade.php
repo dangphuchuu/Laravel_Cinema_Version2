@@ -1,31 +1,31 @@
 <!-- Modal -->
-<div class="modal fade modal-lg" id="theaterCreateModal" tabindex="-1" aria-labelledby="TheaterCreateModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade " id="theaterCreateModal" tabindex="-1" aria-labelledby="TheaterCreateModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="TheaterCreateModalLabel">Create Theater</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <form action="/admin/theater/create" method="post">
-                @csrf
-                <div class="modal-body">
+            <div class="modal-body">
+                <form action="/admin/theater/create" method="post">
+                    @csrf
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="name" class="form-label">Theater name</label>
+                                <label for="name" class="form-label">@lang('lang.name')</label>
                                 <input class="form-control" id="name" type="text" name="name" placeholder="type name...">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="address" class="form-label">Theater address</label>
+                                <label for="address" class="form-label">@lang('lang.address')</label>
                                 <input class="form-control" id="address" type="text" name="address" placeholder="type address...">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="city_create" class="form-label">Theater city</label>
-                                <select id="city_create" class="form-select" name="city">
+                                <label for="city_create" class="form-label">@lang('lang.city')</label>
+                                <select id="city_create" class="form-control form-select " name="city">
                                     <option value="An Giang">An Giang</option>
                                     <option value="Bắc Giang">Bắc Giang</option>
                                     <option value="Bắc Kạn">Bắc Kạn</option>
@@ -95,19 +95,18 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="location" class="form-control-label">Theater location</label>
-                                <input class="form-control" id="location" type="text" name="location"
-                                       placeholder="type location...">
+                                <label for="location" class="form-control-label">@lang('lang.location')</label>
+                                <input class="form-control" id="location" type="text" name="location" placeholder="type location...">
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn bg-gradient-info">Save</button>
+                    </div>
+                </form>
+            </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn bg-gradient-info">Save</button>
-                </div>
-            </form>
         </div>
     </div>
 </div>
