@@ -224,4 +224,10 @@ return [
     'worktime' => 'Thời gian làm việc',
     'sortby_movies'=>'Tìm kiếm theo bộ lọc',
     'sortby_schedules'=>'Tìm kiếm theo lịch chiếu',
+    'schedules' => 'Lịch chiếu',
+    'homepage' => 'Trang chủ',
+    'sales' => 'Khuyến mãi',
+    'see-all' => 'Xem tất cả',
+    'Policy' => 'Chính sách',
+    'Questions' => 'Hỏi đáp',
 ];

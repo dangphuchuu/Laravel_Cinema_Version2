@@ -1,15 +1,6 @@
 @extends('web.layout.index')
-@php
-$fmt = datefmt_create(
-    'vi_VN',
-    IntlDateFormatter::FULL,
-    IntlDateFormatter::FULL,
-    'Viet_Nam/Ho_Chi_Minh',
-    IntlDateFormatter::GREGORIAN,
-);
-@endphp
 @section('schedules')
-active link-danger
+    active
 @endsection
 @section('css')
     .swiper {
@@ -40,7 +31,7 @@ active link-danger
             {{-- SubNav --}}
             <ul class="nav justify-content-center mb-4">
                 <li class="nav-item">
-                    <button class="h5 nav-link link-danger active fw-bold border-bottom border-2 border-danger"
+                    <button class="h5 nav-link link-warning active fw-bold border-bottom border-2 border-warning"
                             aria-expanded="true"
                             data-bs-toggle="collapse"
                             data-bs-target="#lichtheophim" disabled>
@@ -60,17 +51,17 @@ active link-danger
                 <div class="owl-carousel">
                     @foreach($movies as $movie)
                             <?php $film[$movie->id] = $movie ?>
-                            <div class="item" data-merge="1">
+                            <div class="item">
                                 <button data-bs-toggle="collapse"
                                         data-bs-target=".multi-collapse_Movie_{{ $movie->id }}"
                                         aria-expanded="false"
                                         aria-controls="movieChoice_{{$movie->id}} movieSchedules_{{$movie->id}}"
                                         class="btn btn-block border-0 p-2">
                                     @if(strstr($movie->image,"https") == "")
-                                        <img class="rounded" style="width: 200px; height: 300px" alt="{{$movie->name}}"
+                                        <img class="rounded" style="width: 200px; height: 300px" alt="..."
                                              src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $movie->image }}.jpg">
                                     @else
-                                        <img class="rounded" style="width: 200px; height: 300px" alt="{{$movie->name}}" src="{{ $movie->image }}">
+                                        <img class="rounded" style="width: 200px; height: 300px" alt="..." src="{{ $movie->image }}">
                                     @endif
                                 </button>
                             </div>
@@ -82,14 +73,14 @@ active link-danger
                         <!-- Movie -->
                         <div class="collapse multi-collapse_Movie_{{ $movie->id }}" id="movieChoice_{{ $movie->id }}"
                              data-bs-parent="#collapseMovieParent">
-                            <div class="d-flex flex-column flex-sm-row align-items-center rounded overflow-hidden" style="background: #f5f5f5">
+                            <div class="d-flex flex-column flex-sm-row align-items-center" style="background: #f5f5f5">
                                 <div class="flex-shrink-0 justify-content-center">
                                     <a href="/movie/{{ $movie->id }}">
                                         @if(strstr($movie->image,"https") == "")
-                                            <img class="img-fluid rounded" style="max-height: 361px; max-width: 241px" alt="..."
+                                            <img class="img-fluid" style="max-height: 361px; max-width: 241px" alt="..."
                                                  src="https://res.cloudinary.com/dgk9ztl5h/image/upload/{{ $movie->image }}.jpg">
                                         @else
-                                            <img class="img-fluid rounded" style="max-height: 361px; max-width: 241px" alt="..." src="{{ $movie->image }}">
+                                            <img class="img-fluid" style="max-height: 361px; max-width: 241px" alt="..." src="{{ $movie->image }}">
                                         @endif
                                     </a>
                                 </div>
@@ -129,15 +120,16 @@ active link-danger
                                                             @elseif($movie->rating->name == 'P') bg-success
                                                             @elseif($movie->rating->name == 'P') bg-primary
                                                             @else bg-info
-                                                            @endif me-1">
+                                                            @endif me-1"
+                                        >
                                             {{ $movie->rating->name }}
                                         </span> - {{ $movie->rating->description }}
                                     </p>
                                 </div>
                             </div>
-                            <ul class="list-group list-group-horizontal flex-nowrap overflow-x-auto listDate justify-content-evenly my-4">
+                            <ul class="list-group list-group-horizontal flex-wrap listDate">
                                 @for($i = 0; $i <= 7; $i++)
-                                    <li class="list-group-item border-0 p-0">
+                                    <li class="list-group-item border-0">
                                         <button data-bs-toggle="collapse"
                                                 data-bs-target="#schedule_{{$movie->id}}_date_{{$i}}"
                                                 @if($i == 0)
@@ -145,17 +137,10 @@ active link-danger
                                                 @else
                                                     aria-expanded="false"
                                                 @endif
-                                                class="btn btn-outline-danger px-3 py-1 m-1 @if($i==0) active @endif btn-date">
-                                                <div class="d-block">
-                                                    {{ date('D', strtotime('+ '.$i.' day', strtotime(today()))) }}
-                                                    <div><hr class="m-1"></div>
-                                                    {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
-                                                </div>
+                                                class="btn btn-block btn-outline-dark p-2 m-2 @if($i==0) active @endif btn-date">
+                                            {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
                                         </button>
                                     </li>
-                                    @if($i<7)
-                                        <div class="vr"></div>
-                                    @endif
                                 @endfor
                             </ul>
                         </div>
@@ -178,8 +163,13 @@ active link-danger
     <script>
         $(document).ready(function () {
             $("#schedules .nav .nav-item .nav-link").on("click", function () {
-                $("#schedules .nav-item").find(".active").removeClass("active link-danger fw-bold border-bottom border-2 border-danger").addClass("link-secondary").prop('disabled', false);
-                $(this).addClass("active link-danger fw-bold border-bottom border-2 border-danger").removeClass("link-secondary").prop('disabled', true);
+                $("#schedules .nav-item").find(".active").removeClass("active link-warning fw-bold border-bottom border-2 border-warning").addClass("link-secondary").prop('disabled', false);
+                $(this).addClass("active link-warning fw-bold border-bottom border-2 border-warning").removeClass("link-secondary").prop('disabled', true);
+            });
+
+            $("#lichtheorap .d-flex .flex-city .btn").on("click", function () {
+                $("#lichtheorap .flex-city").find(".btn").removeClass("btn-warning").addClass("btn-secondary").prop('disabled', false);
+                $(this).addClass("btn-warning").removeClass("btn-secondary").prop('disabled', true);
             });
 
             $(".theater_item .btn_theater").on("click", function () {
@@ -196,25 +186,21 @@ active link-danger
             $owlMovies.owlCarousel({
                 loop:true,
                 nav:false,
-                autoWidth:true,
                 margin:10,
-                // responsive:{
-                //     0:{
-                //         items:2
-                //     },
-                //     600:{
-                //         items:3
-                //     },
-                //     960:{
-                //         items:4
-                //     },
-                //     1200:{
-                //         items:5
-                //     },
-                //     1400:{
-                //         items:6
-                //     }
-                // },
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:3
+                    },
+                    960:{
+                        items:4
+                    },
+                    1400:{
+                        items:6
+                    }
+                },
                 autoplay:true,
                 autoplayTimeout:2000,
                 autoplayHoverPause:true,

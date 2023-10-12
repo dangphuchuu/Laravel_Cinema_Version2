@@ -1,7 +1,7 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
 @extends('web.layout.index')
 @section('support')
-active link-danger
+    active
 @endsection
 @section('css')
     .form {
@@ -202,42 +202,37 @@ active link-danger
     }
 @endsection
 @section('content')
-    <section class="container-lg clearfix pb-5">
-        <h2 class="text-center my-4">@lang('lang.contact')</h2>
-        <div class="row">
-            <div class="col-6">
-                <div class="form justify-content-center">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="fullname" class="form-label">@lang('lang.fullname')</label>
-                        <input type="text" class="form-control" id="fullname" name="fullName" placeholder="@lang('lang.fullname')">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">@lang('lang.phone')</label>
-                        <input type="text" class="form-control" id="phone" name="phone" placeholder="phone">
-                    </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label">@lang('lang.message')</label>
-                        <textarea class="form-control input01 message_feedback" id="message" name="message" rows="3"></textarea>
-                    </div>
-                    <a class="fancy feedback" href="javascript:void(0)" type="button">
-                        <span class="top-key"></span>
-                        <span class="text ">@lang('lang.send')</span>
-                        <span class="bottom-key-1"></span>
-                        <span class="bottom-key-2"></span>
-                    </a>
+    <section class="container-lg clearfix">
+        <div class="form justify-content-center">
+                <div class="flex">
+                    <label>
+                        <input id="fullname" required name="fullName"  value="@if(Auth::check()) {{ Auth::user()->fullName }} @endif"
+                                type="text" class="input">
+                        <span>@lang('lang.fullname')</span>
+                    </label>
+
+                    <label>
+                        <input id="email" name="email" value="@if(Auth::check()) {{ Auth::user()->email}} @endif" type="email" class="input">
+                        <span>email</span>
+                    </label>
                 </div>
-            </div>
-            <div class="col-6">
-                <div class="rounded overflow-hidden">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.9459979854155!2d106.67781657573566!3d10.738645559888056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752fac4c2ec679%3A0x1b72da582829a169!2zMTgwIMSQLiBDYW8gTOG7lywgUGjGsOG7nW5nIDQsIFF14bqtbiA4LCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1697044532531!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </div>
+
+                <label>
+                    <input id="phone" name="phone"  value="@if(Auth::check()) {{ Auth::user()->phone }} @endif" type="tel" class="input">
+                    <span>@lang('lang.phone')</span>
+                </label>
+                <label>
+                    <textarea id="message" required name="message" rows="3"  class="input01 message_feedback"></textarea>
+                    <span>@lang('lang.message')</span>
+                </label>
+
+                <a class="fancy feedback" href="javascript:void(0)" >
+                    <span class="top-key"></span>
+                    <span class="text ">@lang('lang.send')</span>
+                    <span class="bottom-key-1"></span>
+                    <span class="bottom-key-2"></span>
+                </a>
+    </div>
     </section>
 @endsection
 @section('js')

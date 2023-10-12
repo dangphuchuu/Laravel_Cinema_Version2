@@ -1,6 +1,6 @@
 @extends('web.layout.index')
 @section('schedules')
-active link-danger
+    active
 @endsection
 
 @section('content')
@@ -16,22 +16,21 @@ active link-danger
                 </li>
                 <li class="vr mx-5"></li>
                 <li class="nav-item">
-                    <button class="h5 nav-link link-danger active fw-bold border-bottom border-2 border-danger disabled"
+                    <button class="h5 nav-link link-warning active fw-bold border-bottom border-2 border-warning"
                             data-bs-toggle="collapse"
-                            data-bs-target="#lichtheorap">
+                            data-bs-target="#lichtheorap" disabled>
                         @lang('lang.theater_showtime')
                     </button>
                 </li>
             </ul>
 
             <div id="lichtheorap" class="collapse show" data-bs-parent="#schedules">
-                <div class="d-flex flex-row mt-4 justify-content-center">
+                <div class="d-flex flex-row mt-4">
                     @foreach($cities as $city)
                         <div class="flex-city p-2 m-1 border-0">
-                            <button class="btn @if($loop->first) btn-danger disabled @else btn-secondary @endif p-3"
+                            <button class="btn @if($loop->first) btn-warning @else btn-secondary @endif p-3"
                                     data-bs-toggle="collapse"
-                                    data-bs-target="#Theater_{{str_replace(' ', '', $city)}}">
-                                {{$city}}
+                                    data-bs-target="#Theater_{{str_replace(' ', '', $city)}}" @if($loop->first) disabled @endif>{{$city}}
                             </button>
                         </div>
                     @endforeach
@@ -45,31 +44,26 @@ active link-danger
                                     @if($city == $theater->city)
                                         <!-- Theater -->
                                         <div class="col">
-                                            <div class="card px-0 overflow-hidden bg-tertiary theater_item">
-                                                <button class="btn rounded-0 border-0 btn_theater @if($loop->first) btn-danger disabled @endif"
+                                            <div class="card px-0 overflow-hidden theater_item"
+                                                 style="background: #f5f5f5">
+                                                <button class="btn rounded-0 border-0 btn_theater @if($loop->first) btn-warning @endif"
                                                         data-bs-toggle="collapse"
-                                                        data-bs-target="#TheaterSchedules_{{$theater->id}}">
+                                                        data-bs-target="#TheaterSchedules_{{$theater->id}}"
+                                                        @if($loop->first) disabled @endif>
                                                     <div class="card-body">
                                                         <h5 class="card-title fs-4">{{ $theater->name }}</h5>
+                                                        <p class="card-text fs-6 text-secondary">
+                                                            <i class="fa-solid fa-location-dot"></i>
+                                                            {{ $theater->address }}
+                                                        </p>
                                                     </div>
                                                 </button>
 
-                                                <div class="card-footer bg-danger-subtle">
-                                                    <div class="row">
-                                                        <div class="col-8">
-                                                            <p class="card-text fs-6">
-                                                                <i class="fa-solid fa-location-dot"></i>
-                                                                {{ $theater->address }}
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-4">
-                                                            <a href="{{ $theater->location }}"
-                                                               class="btn text-uppercase d-flex float-end" target="_blank">
-                                                                <i class="fa-solid fa-map-location-dot"></i>
-                                                                <i class="fa-solid fa-chevron-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
+                                                <div class="card-footer">
+                                                    <a href="{{ $theater->location }}"
+                                                       class="btn w-100 h-100 text-uppercase" target="_blank">xem Bản đồ
+                                                        <i class="fa-solid fa-map-location-dot"></i>
+                                                    </a>
                                                 </div>
 
                                             </div>
@@ -77,6 +71,7 @@ active link-danger
                                         </div>
                                         <!-- Theater: end -->
                                     @endif
+
                                 @endforeach
                             </div>
                         </div>
@@ -115,18 +110,18 @@ active link-danger
     <script>
         $(document).ready(function () {
             $("#schedules .nav .nav-item .nav-link").on("click", function () {
-                $("#schedules .nav-item").find(".active").removeClass("active link-danger fw-bold border-bottom border-2 border-danger").addClass("link-secondary disabled");
-                $(this).addClass("active link-danger fw-bold border-bottom border-2 border-danger").removeClass("link-secondary disabled");
+                $("#schedules .nav-item").find(".active").removeClass("active link-warning fw-bold border-bottom border-2 border-warning").addClass("link-secondary").prop('disabled', false);
+                $(this).addClass("active link-warning fw-bold border-bottom border-2 border-warning").removeClass("link-secondary").prop('disabled', true);
             });
 
             $("#lichtheorap .d-flex .flex-city .btn").on("click", function () {
-                $("#lichtheorap .flex-city").find(".btn").removeClass("btn-danger disabled").addClass("btn-secondary");
-                $(this).addClass("btn-danger disabled").removeClass("btn-secondary");
+                $("#lichtheorap .flex-city").find(".btn").removeClass("btn-warning").addClass("btn-secondary").prop('disabled', false);
+                $(this).addClass("btn-warning").removeClass("btn-secondary").prop('disabled', true);
             });
 
             $(".theater_item .btn_theater").on("click", function () {
-                $(".theater_item ").find(".btn_theater").removeClass("btn-danger disabled");
-                $(this).addClass("btn-danger disabled");
+                $(".theater_item ").find(".btn_theater").removeClass("btn-warning").prop('disabled', false);
+                $(this).addClass("btn-warning").prop('disabled', true);
             });
 
             $(".listDate button").on('click', function () {

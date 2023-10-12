@@ -169,21 +169,16 @@
         @endif
         <div class="col-12 mt-4">
             <h4>@lang('lang.movie_schedule')</h4>
-            <ul class="listDate list-group list-group-horizontal flex-nowrap overflow-x-auto listDate justify-content-evenly my-4">
+            <ul class="list-group list-group-horizontal flex-wrap">
                 @for($i = 0; $i <= 7; $i++)
                     <li class="list-group-item border-0">
                         <button data-bs-toggle="collapse"
                                 data-bs-target="#schedule_date_{{$i}}"
                                 aria-expanded="false"
-                                class="btn btn-outline-danger px-3 py-1 m-1 @if($i==0) active @endif btn-date">
-                            <div class="d-block">
-                                {{ date('D', strtotime('+ '.$i.' day', strtotime(today()))) }}
-                                <div><hr class="m-1"></div>
-                                {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
-                            </div>
+                                class="btn btn-block btn-outline-dark p-2 m-2">
+                            {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
                         </button>
                     </li>
-                    <div class="vr"></div>
                 @endfor
             </ul>
         </div>
@@ -195,12 +190,4 @@
     </section>
 @endsection
 @section('js')
-<script>
-    $(document).ready(function () {
-        $(".listDate button").on('click', function () {
-                $(".listDate").find(".btn").removeClass('active');
-                $(this).addClass("active");
-            })
-    })
-</script>
 @endsection

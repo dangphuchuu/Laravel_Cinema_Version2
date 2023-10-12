@@ -13,8 +13,7 @@
 
     <base href="{{asset('')}}">
 
-    {{-- Favicon --}}
-    <link rel="icon" type="image/png" href="images/favicon/cinema.png">
+    <link rel="icon" type="image/png" href="images/favicon/cinema.png ">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -37,7 +36,7 @@
     </style>
 </head>
 
-<body style="margin-top: 120px">
+<body>
     <div class="wrapper">
         {{-- Header --}}
         @include('web.common.header')
@@ -70,14 +69,9 @@
         @endif
 
         @yield('content')
-        
+
         {{-- Footer --}}
         @include('web.common.footer')
-
-        <button onclick="topFunction()" id="myBtn" title="Go to top" class="btn btn-danger rounded-pill position-fixed" 
-                style="width: 60px; height: 60px; bottom: 30px; right: 30px;">
-            <i class="fa-regular fa-chevron-up fa-lg"></i>
-        </button>
 
     </div>
 
@@ -104,27 +98,6 @@
     {{-- CKeditor --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
 
-    <script>
-        // Get the button:
-        let mybutton = document.getElementById("myBtn");
-
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
-
-        function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
-        } else {
-            mybutton.style.display = "none";
-        }
-        }
-
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        } 
-    </script>
     @yield('js')
 </body>
 

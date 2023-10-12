@@ -56,7 +56,8 @@ class WebController extends Controller
                 'tickets.receivedCombo' => true,
             ]);
 
-        $news = News::orderBy('id', 'DESC')->where('status', 1)->take(3)->get();
+        $news = News::orderBy('id', 'DESC')->where('status', 1)->take(9)->get();
+        $events = Post::orderBy('id', 'DESC')->where('status', 1)->take(9)->get();
         $banners = Banner::where('status', 1)->get();
         $movies = Movie::where('status', 1)->where('endDate', '>', date('Y-m-d'))->where('releaseDate', '<=', date('Y-m-d'))->orderBy('releaseDate', 'desc')->get()->take(6);
 
@@ -74,6 +75,7 @@ class WebController extends Controller
             'moviesEarly' => $moviesEarly,
             'banners' => $banners,
             'news' => $news,
+            'events' => $events
         ]);
     }
 
