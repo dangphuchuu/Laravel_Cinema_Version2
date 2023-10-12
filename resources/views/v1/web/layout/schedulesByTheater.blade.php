@@ -1,5 +1,5 @@
 <div class="collapse @if($loop->first) show @endif" id="TheaterSchedules_{{$theater->id}}" data-bs-parent="#theaterSchedulesParent">
-    <ul class="list-group list-group-horizontal flex-nowrap overflow-x-auto mt-4 listDate justify-content-evenly my-4">
+    <ul class="list-group list-group-horizontal flex-wrap mt-4 listDate">
         @for($i = 0; $i <= 7; $i++)
             <li class="list-group-item border-0">
                 <button data-bs-toggle="collapse"
@@ -9,17 +9,10 @@
                         @else
                             aria-expanded="false"
                         @endif
-                        class="btn btn-outline-danger px-3 py-1 m-1 @if($i==0) active @endif btn-date">
-                    <div class="d-block">
-                        {{ date('D', strtotime('+ '.$i.' day', strtotime(today()))) }}
-                        <div class="text-secondary"><hr class="m-1"></div>
-                        {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
-                    </div>
+                        class="btn btn-block btn-outline-dark p-2 m-2 @if($i==0) active @endif btn-date">
+                    {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
                 </button>
             </li>
-            @if($i<7)
-                <div class="vr"></div>
-             @endif
         @endfor
     </ul>
     <div class="mt-2">

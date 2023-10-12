@@ -12,7 +12,7 @@
                         <div class="flex-shrink-1 p-3">
                             <h6 class="fw-bold">{{ $theater->name }}</h6>
                         </div>
-                        {{-- a Theater schedules --}}
+                        {{-- a Theater schedule --}}
                         <div class="flex-fill border-start border-5 border-white p-2 ps-4">
                             @foreach($roomTypes as $roomType)
                                 @if($roomType->schedulesByDateAndTheaterAndMovie(date('Y-m-d', strtotime('+ '.$i.' day', strtotime(today()))), $theater->id, $movie->id)->count() > 0)
@@ -71,7 +71,7 @@
                         {{-- a Theater schedule: end --}}
                     </div>
                 @endif
-                @endforeach
+            @endforeach
                 </div>
             @endfor
         </div>

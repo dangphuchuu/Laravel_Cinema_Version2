@@ -1,48 +1,17 @@
-<div class="collapse @if($loop->first) show @endif" id="TheaterSchedules_{{$theater->id}}" data-bs-parent="#theaterSchedulesParent">
-    <ul class="list-group list-group-horizontal flex-nowrap overflow-x-auto mt-4 listDate justify-content-evenly my-4">
+<div class="mt-2">
+    <div class="d-flex flex-column mt-2 mb-5" id="schedulesMain">
+
         @for($i = 0; $i <= 7; $i++)
-            <li class="list-group-item border-0">
-                <button data-bs-toggle="collapse"
-                        data-bs-target="#schedule_{{$theater->id}}_date_{{$i}}"
-                        @if($i == 0)
-                            aria-expanded="true"
-                        @else
-                            aria-expanded="false"
-                        @endif
-                        class="btn btn-outline-danger px-3 py-1 m-1 @if($i==0) active @endif btn-date">
-                    <div class="d-block">
-                        {{ date('D', strtotime('+ '.$i.' day', strtotime(today()))) }}
-                        <div class="text-secondary"><hr class="m-1"></div>
-                        {{ date('d/m', strtotime('+ '.$i.' day', strtotime(today()))) }}
-                    </div>
-                </button>
-            </li>
-            @if($i<7)
-                <div class="vr"></div>
-             @endif
-        @endfor
-    </ul>
-    <div class="mt-2">
-        <h4>Lịch chiếu phim</h4>
-        <div>
-            <div class="d-block mt-2 mb-5"  id="schedulesMain_{{$theater->id}}">
-                @for($i = 0; $i <= 7; $i++)
-                    <div class="collapse collapse-horizontal @if($i == 0) show @endif" id="schedule_{{$theater->id}}_date_{{$i}}"
-                         data-bs-parent="#schedulesMain_{{$theater->id}}">
-                        @foreach($movies as $movie)
-                    {{--                    {{ dd($movie->schedulesByDate($date_cur)) }}--}}
-                    @if($movie->schedulesByDateAndTheater(date('Y-m-d', strtotime('+ '.$i.' day', strtotime(today()))), $theater->id)->count() > 0)
-                        <div class="p-2 d-flex flex-row m-1 align-items-center rounded" style="background: #f5f5f5">
-                            <div class="flex-shrink-0 p-2 border-end border-4 border-white">
-                                @if(strstr($movie->image,"https") == "")
-                                    <img class="rounded d-block" style="width: 180px" alt="..."
-                                         src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $movie->image }}.jpg">
-                                @else
-                                    <img class="rounded d-block" style="width: 180px" alt="..." src="{{ $movie->image }}">
-                                @endif
+            <div class="collapse collapse-horizontal @if($i == 0) show @endif" id="schedule_date_{{$i}}"
+                 data-bs-parent="#schedulesMain">
+                @foreach($theaters as $theater)
+                    @if($theater->schedulesByDateAndMovie(date('Y-m-d', strtotime('+ '.$i.' day', strtotime(today()))), $movie->id)->count() > 0)
+                        <div class="p-2 d-flex flex-row m-1 align-items-center" style="background: #f5f5f5">
+                            <div class="flex-shrink-1 p-3">
+                                <h6 class="fw-bold">{{ $theater->name }}</h6>
                             </div>
                             {{-- a Theater schedule --}}
-                            <div class="flex-grow-1 border-start border-5 border-white p-2 ps-4">
+                            <div class="flex-fill border-start border-5 border-white p-2 ps-4">
                                 @foreach($roomTypes as $roomType)
                                     @if($roomType->schedulesByDateAndTheaterAndMovie(date('Y-m-d', strtotime('+ '.$i.' day', strtotime(today()))), $theater->id, $movie->id)->count() > 0)
                                         <div class="d-flex flex-column flex-nowrap overflow-auto mb-4">
@@ -101,9 +70,7 @@
                         </div>
                     @endif
                 @endforeach
-                    </div>
-                @endfor
             </div>
-        </div>
+        @endfor
     </div>
 </div>

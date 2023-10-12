@@ -223,4 +223,10 @@ return [
     'worktime'=>'Worktime',
     'sortby_movies'=>'Sort by Movies',
     'sortby_schedules'=>'Sort by Schedules',
+    'schedules' => 'showtimes',
+    'homepage' => 'Home',
+    'sales' => 'sales',
+    'see-all' => 'See all',
+    'Policy' => 'Policy',
+    'Questions' => 'Questions'
 ];

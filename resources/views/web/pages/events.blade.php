@@ -1,102 +1,41 @@
 @extends('web.layout.index')
 @section('events')
-active
+active link-danger
 @endsection
 @section('content')
 <section class="container-lg">
     <!-- Main content -->
     <div class="mt-5" id="Events">
-        <ul class="nav justify-content-start mb-4 align-items-center">
-            <li class="nav-item">
-                <a class="h5 nav-link link-warning active fw-bold border-bottom border-2 border-warning" href="#tintuc" role="button" data-bs-target="#tintuc" disabled>
-                    @lang('lang.events')
-                </a>
-            </li>
-        </ul>
+        <div class="d-flex justify-content-center my-5">
+            <h2 class="fw-bold">
+                @lang('lang.events')
+            </h2>
+        </div> 
 
-        <div id="tintuc" class="d-flex flex-column" data-bs-parent="#Events">
-            <?php $i = 1 ?>
-            @foreach($posts as $post)
-            <?php $i++ ?>
-            @if($i % 2 == 0)
-            <!-- Post -->
-            <div class="card bg-transparent border-0 mb-3">
-                <div class="d-flex">
-                    <div class="flex-shrink-0">
-                        <a @if($post->type == 'post') href="/events-detail/{!! $post->id !!}"
-                            @else href="/events-detail/{!! $post->id !!}" @endif>
-                            @if(strstr($post->image,"https") === "")
-                            <img class="img-fluid rounded-start" style="max-width: 300px" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $post->image }}.jpg" alt="">
+        <div id="events" class="container">
+            <div class="row row-cols-2 row-cols-lg-4 g-2">
+                @foreach($posts->where('status',1) as $value)
+                <div class="col" style="height: 420px">
+                    <a href="/news-detail/{!! $value['id'] !!}" class="btn p-0 m-0 border-0">
+                        <div class="card bg-body-tertiary" style="height: 420px">
+                            @if(strstr($value->image,"https") === "")
+                            <img class="card-img-top h-auto" height="150px" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $value->image }}.jpg" alt="">
                             @else
-                            <img class="img-fluid rounded-start" style="max-width: 300px" src="{{ $post->image }}" alt="">
+                            <img class="card-img-top h-auto" height="150px" src="{{ $value->image }}" alt="">
                             @endif
-                        </a>
-                    </div>
-                    <div class="flex-grow-1">
-                        <div class="card-body bg-transparent h-75">
-                            <h5 class="card-title">{{ $post->title }}</h5>
-                            <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;
-                                           -webkit-box-orient: vertical">
-                                {{ strip_tags($post->content) }}
-                            </p>
-                            <p class="card-text">
-                                <small class="text-body-secondary">{{ date('d-m-Y H:i', strtotime($post->created_at)) }}</small>
-                            </p>
+                            <div class="card-body">
+                                <p class="card-text text-secondary text-start">{{ date('d/m/Y', strtotime($value->created_at)) }}</p>
+                                <h5 class="card-title text-start">{{ $value->title }}</h5>
+                                <p class="card-text text-start text-secondary" 
+                                    style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical">
+                                    {{ strip_tags($value->content) }}
+                                </p>
+                            </div>
                         </div>
-                        <div class="card-footer bg-transparent border-0 h-25">
-                            <a @if($post->type == 'post') href="/events-detail/{!! $post->id !!}"
-                                @else href="/events-detail/{!! $post->id !!}" @endif class="btn btn-primary float-end">@lang('lang.show')</a>
-                        </div>
-                    </div>
+                    </a>
                 </div>
+                @endforeach
             </div>
-            <!-- Post: end -->
-            <div class="bg-dark mb-4" style="height: 2px"></div>
-            @else
-            <!-- Post -->
-            <div class="card bg-transparent border-0 mb-3">
-                <div class="d-flex">
-                    <div class="flex-grow-1">
-                        <div class="card-body bg-transparent h-75">
-                            <h5 class="card-title">{{ $post->title }}</h5>
-                            <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;
-                                           -webkit-box-orient: vertical">{{ strip_tags($post->content) }}</p>
-                            <p class="card-text"><small class="text-body-secondary">{{ date('d-m-Y H:i', strtotime($post->created_at)) }}</small></p>
-                        </div>
-                        <div class="card-footer border-0 bg-transparent h-25">
-                            <a @if($post->type == 'post') href="/events-detail/{!! $post->id !!}"
-                                @else href="/events-detail/{!! $post->id !!}" @endif class="btn btn-primary float-start">XEM</a>
-                        </div>
-                    </div>
-                    <div class="flex-shrink-0">
-                        <a @if($post->type == 'post') href="/events-detail/{!! $post->id !!}"
-                            @else href="/events-detail/{!! $post->id !!}" @endif>
-                            @if(strstr($post->image,"https") === "")
-                            <img class="img-fluid rounded-start" style="max-width: 300px" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $post->image }}.jpg" alt="">
-                            @else
-                            <img class="img-fluid rounded-start" style="max-width: 300px" src="{{ $post->image }}" alt="">
-                            @endif
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- Post: end -->
-            <div class="bg-dark mb-4" style="height: 2px"></div>
-            @endif
-            @endforeach
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item @if($posts->currentPage() == 1) disabled @endif">
-                        <a class="page-link" href="/events?page={{ $posts->currentPage()-1 }}">Previous</a>
-                    </li>
-                    @for($i = 1; $i <= $posts->lastPage(); $i++)
-                        <li class="page-item"><a class="page-link" href="/events?page={{$i}}">{{$i}}</a></li>
-                        @endfor
-                        <li class="page-item @if($posts->currentPage() == $posts->lastPage()) disabled @endif">
-                            <a class="page-link" href="/events?page={{$posts->currentPage()+1}}">Next</a>
-                        </li>
-                </ul>
-            </nav>
         </div>
     </div>
 </section>

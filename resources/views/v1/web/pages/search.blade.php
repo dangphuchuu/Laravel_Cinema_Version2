@@ -1,6 +1,6 @@
 @extends('web.layout.index')
-@section('movies')
-    active link-danger
+@section('events')
+    active
 @endsection
 @section('content')
     <section class="container-lg clearfix">

@@ -9,7 +9,8 @@
             </div>
             <div class="modal-body my-4">
                 <form method='post' action="/signin">
-                    @csrf
+                    {{--                    @csrf--}}
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                     <input type="hidden" name="url" value="{{ url()->current() }}"/>
                     <div class="mb-3">
                         <input class="form-control" type="text" placeholder="@lang('lang.type') email hoặc @lang('lang.phone')"
@@ -72,7 +73,7 @@
                                autocomplete="email">
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="text" placeholder="@lang('lang.type') @lang('lang.phone')..." name="phone" aria-label="">
+                        <input class="form-control" type="number" placeholder="@lang('lang.type') @lang('lang.phone')..." name="phone" aria-label="">
                     </div>
                     <div class="mb-3">
                         <input class="form-control" type="password" placeholder="@lang('lang.type') @lang('lang.password')..." name="password"
