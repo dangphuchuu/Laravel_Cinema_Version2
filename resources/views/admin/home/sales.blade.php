@@ -4,9 +4,8 @@
         <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
-                <div class="inner">
-                    <h3>{!! number_format($sum_today,0,",",".") !!} Vnđ</h3>
-
+                <div class="inner ">
+                    <h3>{!! number_format($sum_today,0,",",".") !!} </h3>
                     <p>@lang('lang.today_money')</p>
                 </div>
                 <div class="icon">
@@ -45,14 +44,12 @@
         <!-- ./col -->
         <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-danger ">
                 <div class="inner">
-                    <h3> {!! number_format($sum,0,",",".") !!} Vnđ</h3>
-
+                    <h3> {!! number_format($sum,0,",",".") !!} <sup>đ</sup></h3>
                     <p>@lang('lang.total_revenue')</p>
                 </div>
                 <div class="icon">
-
                     <i class="ion ion-stats-bars"></i>
                 </div>
             </div>

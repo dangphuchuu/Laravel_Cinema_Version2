@@ -22,13 +22,11 @@
             </div>
         </div>
         <div class="d-block text-center">
-            <p>Cơ quan chủ quản: BỘ VĂN HÓA, THỂ THAO VÀ DU LỊCH</p>
-            <p>Bản quyền thuộc HMCinema.</p>
+            <p>Bản quyền thuộc {{isset($info['name']) ? $info['name'] : ''}}.</p>
             <p>Email: {{isset($info['email']) ? $info['email'] : ''}} - Hotline {{isset($info['phone']) ? $info['phone'] : ''}}</p>
-            <p>Cơ quan chủ quản: BỘ VĂN HÓA, THỂ THAO VÀ DU LỊCH</p>
         </div>
         <div class="d-block text-center mt-3">
-            Copyright 2023. THHNCinema All Rights Reservered. Dev by THHN
+        {{isset($info['copyright']) ? $info['copyright'] : ''}}
         </div>
     </div>
 </footer>

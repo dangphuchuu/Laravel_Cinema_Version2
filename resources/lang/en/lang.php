@@ -11,7 +11,7 @@ return [
     'movies' => 'Movies',
     'theater' => 'Theaters',
     'schedule' => 'Schedule',
-    'events' => 'News & Events',
+    'events' => 'Events',
     'ticket' => 'Ticket',
     'food' => 'Food',
     'combo' => 'Combo',
@@ -228,5 +228,7 @@ return [
     'sales' => 'sales',
     'see-all' => 'See all',
     'Policy' => 'Policy',
-    'Questions' => 'Questions'
+    'Questions' => 'Questions',
+    'manage' => 'Manage',
+    'counter'=>'Counter',
 ];
