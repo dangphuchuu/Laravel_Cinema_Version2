@@ -1,7 +1,7 @@
 @extends('admin.layout.index')
 @section('content')
 @can('statistical')
-<div class="container-fluid py-4">
+<div class="container-fluid py-2">
     <!-- Sales -->
     @include('admin.home.sales')
     <!-- Chart -->

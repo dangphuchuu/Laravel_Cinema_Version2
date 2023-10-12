@@ -8,7 +8,7 @@
                             <input type="text" placeholder="@lang('lang.type') @lang('lang.theater') " class="form-controller" id="search_theater" name="search_theater" />
                         </label>
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <div class="card-body">

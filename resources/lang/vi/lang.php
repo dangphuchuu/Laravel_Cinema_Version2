@@ -230,4 +230,6 @@ return [
     'see-all' => 'Xem tất cả',
     'Policy' => 'Chính sách',
     'Questions' => 'Hỏi đáp',
+    'manage' => 'Quản Lý',
+    'counter'=>'Quẩy',
 ];
