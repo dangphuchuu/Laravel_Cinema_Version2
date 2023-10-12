@@ -1,36 +1,38 @@
 @extends('web.layout.index')
 @section('home') 
-active link-danger
+bg-danger link-light
 @endsection
 @section('css')
 
 @endsection
 @section('content')
-<section class="container-lg clearfix">
-    <!-- Slider -->
-    <div id="carouselExampleAutoplaying" class="carousel slide shadow" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            @foreach($banners as $banner)
-            <div class="carousel-item @if($loop->first) active @endif">
-                @if(strstr($banner->image,"https") == "")
-                    <img class="d-block rounded h-auto w-100 rounded-3" width="1000px" height="500px" style="object-fit: contain; object-position: 50% 100%" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $banner['image'] !!}.jpg" alt="...">
-                    @else
-                    <img class="d-block rounded h-auto w-100 rounded-3" width="1000px" height="500px" style="object-fit: contain; object-position: 50% 100%" src="{{ $banner->image }}"  alt="...">
-                    @endif
+<section class="clearfix">
+    <div class="w-100">
+        <!-- Slider -->
+        <div id="carouselExampleAutoplaying" class="carousel slide shadow" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach($banners as $banner)
+                <div class="carousel-item @if($loop->first) active @endif">
+                    @if(strstr($banner->image,"https") == "")
+                        <img class="d-block h-auto w-100" width="1920px" height="1080px" style="object-fit: contain; object-position: 50% 100%" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $banner['image'] !!}.jpg" alt="...">
+                        @else
+                        <img class="d-block h-auto w-100" width="1920px" height="1080px" style="object-fit: contain; object-position: 50% 100%" src="{{ $banner->image }}"  alt="...">
+                        @endif
+                </div>
+                @endforeach
             </div>
-            @endforeach
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <i class="fa-regular fa-circle-chevron-left fa-2xl"></i>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <i class="fa-regular fa-circle-chevron-right fa-2xl"></i>
+            </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-            <i class="fa-regular fa-circle-chevron-left fa-2xl"></i>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-          <i class="fa-regular fa-circle-chevron-right fa-2xl"></i>
-        </button>
-      </div>
-    <!--end slider -->
+        <!--end slider -->
+    </div>
 
     <!-- Main content -->
-    <div class="mt-5" id="mainContent">
+    <div class="container-lg mt-5" id="mainContent">
         <div class="row">
             {{-- movies --}}
             <div class="col-12 col-lg-9">

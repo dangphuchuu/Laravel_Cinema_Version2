@@ -183,7 +183,9 @@
                             </div>
                         </button>
                     </li>
-                    <div class="vr"></div>
+                    @if($i<7)
+                        <div class="vr"></div>
+                    @endif
                 @endfor
             </ul>
         </div>

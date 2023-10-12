@@ -19,7 +19,7 @@
             </li>
             @if($i<7)
                 <div class="vr"></div>
-             @endif
+            @endif
         @endfor
     </ul>
     <div class="mt-2">

@@ -1,7 +1,7 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
 @extends('web.layout.index')
 @section('support')
-active link-danger
+bg-danger link-light
 @endsection
 @section('css')
     .form {

@@ -9,7 +9,7 @@ $fmt = datefmt_create(
 );
 @endphp
 @section('schedules')
-active link-danger
+bg-danger link-light
 @endsection
 @section('css')
     .swiper {

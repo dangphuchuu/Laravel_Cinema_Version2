@@ -27,7 +27,7 @@
                                                                class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                                                style="border-width: 2px; border-style: solid dashed; min-width: 85px">
                                                                 <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
-                                                                    {{ date('H:i', strtotime($schedule->startTime ))}}
+                                                                    {{ date('H:i', strtotime($schedule->startTime )) }}
                                                                 </p>
                                                             </a>
                                                         @else
@@ -36,7 +36,7 @@
                                                                data-bs-target="#loginModal"
                                                                style="border-width: 2px; border-style: solid dashed; min-width: 85px">
                                                                 <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
-                                                                    {{ date('H:i', strtotime($schedule->startTime ))}}
+                                                                    {{ date('H:i', strtotime($schedule->startTime )) }}
                                                                 </p>
                                                             </a>
                                                         @endif
@@ -48,7 +48,7 @@
                                                            class="btn btn-warning rounded-0 p-1 m-0 me-4 border-2 border-light"
                                                            style="border-width: 2px; border-style: solid dashed; min-width: 85px">
                                                             <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
-                                                                {{ date('H:i', strtotime($schedule->startTime ))}}
+                                                                {{ date('H:i', strtotime($schedule->startTime )) }}
                                                             </p>
                                                         </a>
                                                     @else
@@ -57,7 +57,7 @@
                                                            data-bs-target="#loginModal"
                                                            style="border-width: 2px; border-style: solid dashed; min-width: 85px">
                                                             <p class="btn btn-warning rounded-0 m-0 border border-light border-1">
-                                                                {{ date('H:i', strtotime($schedule->startTime ))}}
+                                                                {{ date('H:i', strtotime($schedule->startTime )) }}
                                                             </p>
                                                         </a>
                                                     @endif

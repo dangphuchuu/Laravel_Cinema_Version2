@@ -1,6 +1,6 @@
 @extends('web.layout.index')
 @section('events')
-active link-danger
+bg-danger link-light
 @endsection
 @section('content')
 <section class="container-lg">

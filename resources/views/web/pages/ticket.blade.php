@@ -33,62 +33,7 @@
             </ol>
         </nav>
 
-        {{--Thông tin vé--}}
-        <div class="fixed-bottom w-100" style="min-height: 200px">
-            <div id="ticket_info" class="card mb-3 bg-dark text-light px-0 border-danger border-2 rounded-2">
-                <div class="row g-0">
-                    <div class="col-2 d-none d-md-block">
-                        @if(strstr($movie->image,"https") == "")
-                            <img class="p-1" alt="{{ $movie->name }}" style="height: 200px"
-                                 src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $movie->image }}.jpg">
-                        @else
-                            <img class="p-1" alt="{{ $movie->name }}" style="height: 200px"
-                                 src="{{ $movie->image }}">
-                        @endif
-                    </div>
-                    <div class="col-6 col-md-5">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $movie->name }}</h5>
-                            <div><hr class="m-1"></div>
-                            <ul class="list-group">
-                                <li class="list-group-item bg-transparent text-light border-0">
-                                    @lang('lang.showtime_web'):
-                                    <strong class="ps-2">
-                                        {{ date('d/m/Y', strtotime($schedule->date)).' '.date('H:i', strtotime($schedule->startTime)) }}
-                                    </strong>
-                                </li>
-                                <li class="list-group-item bg-transparent text-light border-0">
-                                    @lang('lang.theater'): <strong class="ps-2">{{ $room->theater->name }}</strong>
-                                </li>
-                                <li class="list-group-item bg-transparent text-light border-0">
-                                    @lang('lang.room'): <strong class="ps-2">{{ $room->name }}</strong>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-5" style="background: #2e292e;">
-                        <div class="card-text text-light p-2">
-                            <span class="flex-shrink-0"><i class="fa-solid fa-popcorn"></i>&numsp;Combo:</span>
-                            <div id="ticket_combos" class="flex-grow-1 text-end d-flex flex-column"></div>
-                        </div>
-                        <div><hr class="m-1"></div>
-                        <div class="card-text text-light p-2">
-                            <span class="flex-shrink-0">
-                                <i class="fa-solid fa-seat-airline text-uppercase"></i>&numsp;@lang('lang.seat'):
-                            </span>
-                            <div id="ticket_seats" class="flex-grow-1 justify-content-end d-flex"></div>
-                        </div>
-                        <div><hr class="m-1"></div>
-                        <div class="card-text text-light p-2">
-                            <span class="flex-shrink-0"><i class="fa-solid fa-equals"></i>&numsp;@lang('lang.total_price'):</span>
-                            <div class="flex-grow-1 text-end .ticketTotal"><span id="ticketSeat_totalPrice"></span> đ</div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-
-            </div>
-        </div>
+        
 
         <div class="container-fluid">
             <div class="row">
@@ -250,7 +195,7 @@
                             </div>
 
                             <div class="d-flex justify-content-start w-50 ms-2 mt-4 float-end">
-                                <button class="btn btn-warning text-decoration-underline text-center btn_next">
+                                <button class="btn btn-warning mb-5 text-decoration-underline text-center btn_next">
                                     @lang('lang.next') <i class="fa-solid fa-angle-right"></i>
                                 </button>
                                 <button
@@ -318,7 +263,7 @@
                             </div>
 
                             <div class="d-flex justify-content-center mt-4">
-                                <button id="comboBack" class="btn btn-warning mx-2 text-decoration-underline text-center btn_back"
+                                <button id="comboBack" class="btn btn-warning mb-5 mx-2 text-decoration-underline text-center btn_back"
                                         onclick="comboBack()"
                                         aria-expanded="false"
                                         data-bs-toggle="collapse"
@@ -326,7 +271,7 @@
                                 ><i class="fa-solid fa-angle-left"></i> @lang('lang.previous')
                                 </button>
 
-                                <button class="btn btn-warning mx-2  text-decoration-underline text-center btn_next"
+                                <button class="btn btn-warning mb-5 mx-2  text-decoration-underline text-center btn_next"
                                         onclick="comboNext()"
                                         aria-controls="Payment"
                                         aria-expanded="false"
@@ -420,7 +365,7 @@
 
 
                                 <div class="d-flex justify-content-center mt-4">
-                                    <button type="button" class="btn btn-warning mx-2 text-decoration-underline text-center"
+                                    <button type="button" class="btn btn-warning mb-5 mx-2 text-decoration-underline text-center"
                                             onclick="paymentBack()"
                                             aria-expanded="true"
                                             data-bs-toggle="collapse"
@@ -428,12 +373,70 @@
                                         <i class="fa-solid fa-angle-left"></i> @lang('lang.previous')
                                     </button>
                                     <button type="button" onclick="paymentNext()"
-                                            class="btn btn-warning mx-2 text-decoration-underline text-uppercase text-center">
+                                            class="btn btn-warning mb-5 mx-2 text-decoration-underline text-uppercase text-center">
                                         Đặt vé <i class="fa-solid fa-angle-right"></i>
                                     </button>
                                 </div>
                             </form>
                         </div>
+                        
+                        
+                    {{--Thông tin vé--}}
+                    <div class="w-100" style="min-height: 200px">
+                        <div id="ticket_info" class="card mb-3 bg-dark text-light px-0 rounded-2 w-100">
+                            <div class="row g-0">
+                                <div class="col-2 d-none d-md-block">
+                                    @if(strstr($movie->image,"https") == "")
+                                        <img class="p-1" alt="{{ $movie->name }}" style="height: 200px"
+                                            src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $movie->image }}.jpg">
+                                    @else
+                                        <img class="p-1" alt="{{ $movie->name }}" style="height: 200px"
+                                            src="{{ $movie->image }}">
+                                    @endif
+                                </div>
+                                <div class="col-6 col-md-5">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $movie->name }}</h5>
+                                        <div><hr class="m-1"></div>
+                                        <ul class="list-group">
+                                            <li class="list-group-item bg-transparent text-light border-0">
+                                                @lang('lang.showtime_web'):
+                                                <strong class="ps-2">
+                                                    {{ date('d/m/Y', strtotime($schedule->date)).' '.date('H:i', strtotime($schedule->startTime)) }}
+                                                </strong>
+                                            </li>
+                                            <li class="list-group-item bg-transparent text-light border-0">
+                                                @lang('lang.theater'): <strong class="ps-2">{{ $room->theater->name }}</strong>
+                                            </li>
+                                            <li class="list-group-item bg-transparent text-light border-0">
+                                                @lang('lang.room'): <strong class="ps-2">{{ $room->name }}</strong>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-5" style="background: #2e292e;">
+                                    <div class="card-text text-light p-2">
+                                        <span class="flex-shrink-0"><i class="fa-solid fa-popcorn"></i>&numsp;Combo:</span>
+                                        <div id="ticket_combos" class="flex-grow-1 text-end d-flex flex-column"></div>
+                                    </div>
+                                    <div><hr class="m-1"></div>
+                                    <div class="card-text text-light p-2">
+                                        <span class="flex-shrink-0">
+                                            <i class="fa-solid fa-seat-airline text-uppercase"></i>&numsp;@lang('lang.seat'):
+                                        </span>
+                                        <div id="ticket_seats" class="flex-grow-1 justify-content-end d-flex"></div>
+                                    </div>
+                                    <div><hr class="m-1"></div>
+                                    <div class="card-text text-light p-2">
+                                        <span class="flex-shrink-0"><i class="fa-solid fa-equals"></i>&numsp;@lang('lang.total_price'):</span>
+                                        <div class="flex-grow-1 text-end .ticketTotal"><span id="ticketSeat_totalPrice"></span> đ</div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
