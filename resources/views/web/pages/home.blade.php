@@ -61,15 +61,7 @@ active link-danger
                                 </a>
                                 <div class="card-text p-1">
                                     <div class="d-flex">
-                                        <p class="text-secondary me-3 fs-6">
-                                            @foreach($movie->movieGenres as $genre)
-                                            @if ($loop->first)
-                                            {{ $genre->name }}
-                                            @else
-                                            , {{ $genre->name }}
-                                            @endif
-                                            @endforeach
-                                        </p>
+                                       
                                         <p class="text-secondary fs-6 float-end">
                                             {{ date('d/m/Y', strtotime($movie->releaseDate)) }}
                                         </p>
@@ -118,15 +110,6 @@ active link-danger
                                 </a>
                                 <div class="card-text p-1">
                                     <div class="d-flex">
-                                        <p class="text-secondary me-3 fs-6">
-                                            @foreach($movie->movieGenres as $genre)
-                                            @if ($loop->first)
-                                            {{ $genre->name }}
-                                            @else
-                                            , {{ $genre->name }}
-                                            @endif
-                                            @endforeach
-                                        </p>
                                         <p class="text-secondary fs-6 float-end">
                                             {{ date('d/m/Y', strtotime($movie->releaseDate)) }}
                                         </p>
@@ -149,18 +132,25 @@ active link-danger
             <div class="col-12 col-lg-3">
                 <div>
                     <div class="d-flex justify-content-between mb-3">
-                        <h3 class="fw-bold">@lang('lang.events')</h3>
-                        <a class="link link-dark fs-5">@lang("lang.see-all")</a>
+                        <h3 class="fw-bold">@lang('lang.news')</h3>
+                        <a href="/news" class="link link-dark fs-5">@lang("lang.see-all")</a>
                     </div>
 
                     <div class="h-auto w-100" width="150px" height="800px">
                         <div id="carouselExampleIndicatorsNews" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
+                            @if($news->count()>0)
                               <button type="button" data-bs-target="#carouselExampleIndicatorsNews" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                              @endif
+                              @if($news->count()<=6 && $news->count()>=3)
                               <button type="button" data-bs-target="#carouselExampleIndicatorsNews" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                              @endif
+                              @if($news->count()<=9 && $news->count()>=6)
                               <button type="button" data-bs-target="#carouselExampleIndicatorsNews" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                              @endif
                             </div>
                             <div class="carousel-inner">
+                            @if($news->count()>0)
                                 <div class="carousel-item active">
                                     <div class="row row-cols-3 row-cols-lg-1 g-3">
                                         @foreach($news as $key => $newsItem)
@@ -178,6 +168,8 @@ active link-danger
                                         @endforeach
                                     </div>
                                 </div>
+                                @endif
+                                @if($news->count()<=6 && $news->count()>=3)
                                 <div class="carousel-item">
                                     <div class="row row-cols-3 row-cols-lg-1 g-3">
                                         @foreach($news as $key => $newsItem)
@@ -195,6 +187,8 @@ active link-danger
                                         @endforeach
                                     </div>
                                 </div>
+                                @endif
+                                @if($news->count()<=9 && $news->count()>=6)
                                 <div class="carousel-item">
                                     <div class="row row-cols-3 row-cols-lg-1 g-3">
                                         @foreach($news as $key => $newsItem)
@@ -212,6 +206,7 @@ active link-danger
                                         @endforeach
                                     </div>
                                 </div>
+                                @endif
                             </div>
                             <button class="carousel-control-prev d-none" type="button" data-bs-target="#carouselExampleIndicatorsNews" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -227,17 +222,24 @@ active link-danger
                 </div>
                 <div>
                     <div class="d-flex justify-content-between mt-5 mb-3">
-                        <h3 class="fw-bold">@lang('lang.news')</h3>
-                        <a class="link link-dark fs-5">@lang("lang.see-all")</a>
+                        <h3 class="fw-bold">@lang('lang.events')</h3>
+                        <a href="/events" class="link link-dark fs-5">@lang("lang.see-all")</a>
                     </div>
 
                     <div id="carouselExampleIndicatorsEvents" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                          <button type="button" data-bs-target="#carouselExampleIndicatorsEvents" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                          <button type="button" data-bs-target="#carouselExampleIndicatorsEvents" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                          <button type="button" data-bs-target="#carouselExampleIndicatorsEvents" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            @if($events->count()>0)
+                              <button type="button" data-bs-target="#carouselExampleIndicatorsEvents" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                              @endif
+                              @if($events->count()<=6 && $events->count()>=3)
+                              <button type="button" data-bs-target="#carouselExampleIndicatorsEvents" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                              @endif
+                              @if($events->count()<=9 && $events->count()>=6)
+                              <button type="button" data-bs-target="#carouselExampleIndicatorsEvents" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                              @endif
                         </div>
                         <div class="carousel-inner">
+                        @if($events->count()>0)
                             <div class="carousel-item active">
                                 <div class="row row-cols-3 row-cols-lg-1 g-3">
                                     @foreach($events as $key => $eventItem)
@@ -255,6 +257,8 @@ active link-danger
                                     @endforeach
                                 </div>
                             </div>
+                            @endif
+                            @if($news->count()<=6 && $news->count()>=3)
                             <div class="carousel-item">
                                 <div class="row row-cols-3 row-cols-lg-1 g-3">
                                     @foreach($events as $key => $eventItem)
@@ -272,6 +276,8 @@ active link-danger
                                     @endforeach
                                 </div>
                             </div>
+                            @endif
+                            @if($news->count()<=9 && $news->count()>=6)
                             <div class="carousel-item">
                                 <div class="row row-cols-3 row-cols-lg-1 g-3">
                                     @foreach($events as $key => $eventItem)
@@ -289,6 +295,7 @@ active link-danger
                                     @endforeach
                                 </div>
                             </div>
+                            @endif
                         </div>
                         <button class="carousel-control-prev d-none" type="button" data-bs-target="#carouselExampleIndicatorsEvents" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -67,17 +67,6 @@
                             <p>Rạp</p>
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a href="admin/news" class="nav-link">
-                            <p>Tin tức</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="admin/events" class="nav-link">
-                            <p>Sự kiện</p>
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a href="admin/food" class="nav-link">
                             <p>Thức ăn</p>
@@ -209,6 +198,20 @@
                     <li class="nav-item">
                         <a href="admin/banners" class="nav-link">
                             <p>Banner</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="admin/news" class="nav-link">
+                            <p>Tin tức</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="admin/events" class="nav-link">
+                            <p>Sự kiện</p>
                         </a>
                     </li>
                 </ul>
