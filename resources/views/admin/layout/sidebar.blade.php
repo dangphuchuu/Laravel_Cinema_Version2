@@ -1,31 +1,19 @@
 <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex dropdown">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex ">
         <!-- <div class="image">
             <img src="admin_assets/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
         </div> -->
-
-        <li class=" dropdown d-flex align-items-center position-relative">
-            <a class="text-white font-weight-bold px-0 dropdown active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="d-sm-inline d-none " style="color:black"> @lang('lang.lang'): <img class="rounded ms-1" style="max-width: 30px" src="images/language/@lang('lang.flag').png" alt="vietnamese"></span>
-            </a>
-            <ul class="dropdown-menu shadow dropdown-menu-end position-absolute " style="background-color: #f5f5f5; z-index: 999;">
-                <li>
-                    <a class="dropdown-item" href="lang/en">
-                        <img class="rounded me-1" style="max-width: 30px" src="images/language/united-states.png" alt="engligh">
-                        @lang('lang.en')
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="lang/vi">
-                        <img class="rounded me-1" style="max-width: 30px" src="images/language/vietnam.png" alt="vietnamese">
-                        @lang('lang.vi')
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-
+        <div class="btn group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                Dropright button
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+                <a class="dropdown-item" href="#">Link 3</a>
+            </div>
+        </div>
 
     </div>
 
@@ -69,7 +57,7 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <p>
-                    @lang('lang.manage') @lang('lang.theater')
+                        @lang('lang.manage') @lang('lang.theater')
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
@@ -95,7 +83,7 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <p>
-                    @lang('lang.ticket')
+                        @lang('lang.ticket')
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
@@ -110,7 +98,7 @@
                     <li class="nav-item">
                         <a href="admin/ticket" class="nav-link">
                             <p>
-                            @lang('lang.ticket_information')
+                                @lang('lang.ticket_information')
                             </p>
                         </a>
                     </li>
@@ -122,7 +110,7 @@
             <li class="nav-item">
                 <a href="admin/schedule" class="nav-link">
                     <p>
-                    @lang('lang.schedules')
+                        @lang('lang.schedules')
                     </p>
                 </a>
             </li>
@@ -131,7 +119,7 @@
             <li class="nav-item">
                 <a href="admin/discount" class="nav-link">
                     <p>
-                    @lang('lang.discount')
+                        @lang('lang.discount')
                     </p>
                 </a>
             </li>
@@ -140,7 +128,7 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <p>
-                    @lang('lang.manage') @lang('lang.user')
+                        @lang('lang.manage') @lang('lang.user')
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
@@ -164,7 +152,7 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <p>
-                    @lang('lang.counter')
+                        @lang('lang.counter')
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
@@ -202,7 +190,7 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <p>
-                    @lang('lang.manage') @lang('lang.information')
+                        @lang('lang.manage') @lang('lang.information')
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
