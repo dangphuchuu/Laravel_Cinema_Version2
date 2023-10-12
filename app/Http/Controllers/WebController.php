@@ -625,7 +625,7 @@ class WebController extends Controller
         }
         $feedback->save();
         return response()->json([
-            'success' => 'Thông tin của bạn đã được gửi thành công. HMCinema xin cảm ơn ý kiến của bạn về hệ thống !',
+            'success' => 'Thông tin của bạn đã được gửi thành công. THHNCinema xin cảm ơn ý kiến của bạn về hệ thống !',
         ]);
     }
     public function ticket_apply_discount(Request $request)

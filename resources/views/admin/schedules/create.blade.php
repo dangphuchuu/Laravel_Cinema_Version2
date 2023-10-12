@@ -24,14 +24,14 @@ $endTimeLatest = date('H:i', $endTime + 600);
                             <div class="form-group">
                                 <label> @lang('lang.time')</label>
                                 <div class="d-flex position-relative">
-                                    <input class="form-control" id="time" type="time" name="startTime" @if($room->schedulesByDate(date('Y-m-d', strtotime($date_cur)))->count() == 0)
+                                    <input class="form-control" id="time" type="time" name="startTime" 
+                                    @if($room->schedulesByDate(date('Y-m-d', strtotime($date_cur)))->count() == 0)
                                     min="08:00"
-                                    @else
-                                    @if($endTime > strtotime('22:00'))
+                                    @elseif($endTime > strtotime('22:00'))
                                     min="22:00"
                                     @else
                                     min="{{$endTimeLatest}}"
-                                    @endif
+                                    
                                     @endif
                                     max="22:00"
                                     @if($room->schedulesByDate(date('Y-m-d', strtotime($date_cur)))->count() == 0)

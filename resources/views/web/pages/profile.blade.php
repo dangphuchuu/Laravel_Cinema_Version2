@@ -195,10 +195,10 @@ $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                                     </p>
                                     <p>{!! number_format($value['totalPrice'],0,",",".") !!}</p>
                                     @if($value['holdState'] == 0)
-                                    <button href="#profileModal" data-toggle="tooltip" data-bs-target="#profileModal{!! $value['id'] !!}" data-bs-toggle="modal" class="btn btn-warning">@lang('lang.detail')</button>
-                                    <a href="/tickets/completed/{!! $value['id'] !!}" class="btn btn-warning"><i class="fa-solid fa-ticket"></i></a>
+                                    <button href="#profileModal" data-toggle="tooltip" data-bs-target="#profileModal{!! $value['id'] !!}" data-bs-toggle="modal" class="btn btn-danger">@lang('lang.detail')</button>
+                                    <a href="/tickets/completed/{!! $value['id'] !!}" class="btn btn-danger"><i class="fa-solid fa-ticket"></i></a>
                                     @else
-                                    <button class="btn btn-warning" disabled>X</button>
+                                    <button class="btn btn-danger" disabled>X</button>
                                     @endif
                                     @include('web.pages.profile_modal')
                                 </div>
