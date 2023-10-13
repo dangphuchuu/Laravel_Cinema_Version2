@@ -16,7 +16,7 @@ active link-danger
             <div class="row row-cols-2 row-cols-lg-4 g-2">
                 @foreach($posts->where('status',1) as $value)
                 <div class="col" style="height: 420px">
-                    <a href="/news-detail/{!! $value['id'] !!}" class="btn p-0 m-0 border-0">
+                    <a href="/events-detail/{!! $value['id'] !!}" class="btn p-0 m-0 border-0">
                         <div class="card bg-body-tertiary" style="height: 420px">
                             @if(strstr($value->image,"https") === "")
                             <img class="card-img-top h-auto" height="150px" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $value->image }}.jpg" alt="">

@@ -556,14 +556,14 @@ class WebController extends Controller
         ])->getPublicId();
 
         $email_cur = Auth::user()->email;
-
+        $info = Info::all();
         if (isset(Auth::user()->email) && Auth::user()->email_verified == true) {
             Mail::send('web.pages.ticket_mail', [
                 'name' => $name,
                 'cloud' => $cloud,
                 'cloud_name' => cloud_name(),
             ], function ($email) use ($email_cur) {
-                $email->subject('Vé xem phim tại HM Cinema');
+                $email->subject('Vé xem phim tạiiokok');
                 $email->to($email_cur);
             });
         }
