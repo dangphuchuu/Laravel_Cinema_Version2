@@ -1,20 +1,17 @@
 <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex ">
-        <!-- <div class="image">
-            <img src="admin_assets/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
-        </div> -->
-        <div class="btn group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                Dropright button
-            </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Link 1</a>
-                <a class="dropdown-item" href="#">Link 2</a>
-                <a class="dropdown-item" href="#">Link 3</a>
-            </div>
+    <div class="user-panel mt-3 pb-3 mb-3 ml-2 d-flex">
+        @if(Auth::check())
+        <div class="info ">
+            <a class="d-block">{{ Auth::user()->fullName }}</a>
         </div>
-
+        @endif
+        <div class="info">
+            <a href="/admin/profile" class="d-block"><i class="fa-sharp fa-regular fa-gear"></i></a>
+        </div>
+        <div class="info">
+            <a href="/admin/sign_out" class="d-block"><i class="fa-regular fa-right-from-bracket"></i></a>
+        </div>
     </div>
 
     <!-- Sidebar Menu -->
