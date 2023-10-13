@@ -11,10 +11,10 @@
             <a class="btn btn-outline-danger dropdown-item text-decoration-none text-nowrap @yield('home')" href="/" role="button">@lang('lang.homepage')</a>
           </li>
           <li class="ms-1 my-2 my-lg-0">
-              <a class="btn btn-outline-danger dropdown-item text-decoration-none text-nowrap @yield('movies')" href="/movies" role="button">@lang('lang.movies')</a>
+              <a class="btn btn-outline-danger dropdown-item text-decoration-none text-nowrap @yield('movies')" href="/movies" role="button">@lang('lang.sortby_movies')</a>
           </li>
           <li class="ms-1 my-2 my-lg-0">
-              <a class="btn btn-outline-danger dropdown-item text-decoration-none text-nowrap @yield('schedules')" href="/schedulesByMovie">@lang('lang.schedules')</a>
+              <a class="btn btn-outline-danger dropdown-item text-decoration-none text-nowrap @yield('schedules')" href="/schedulesByMovie">@lang('lang.sortby_schedules')</a>
           </li>
           <li class="ms-1 my-2 my-lg-0">
               <a class="btn btn-outline-danger dropdown-item text-decoration-none text-nowrap @yield('news')" href="/news">@lang('lang.news')</a>
