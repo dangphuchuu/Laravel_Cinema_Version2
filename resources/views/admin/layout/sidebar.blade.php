@@ -26,7 +26,7 @@
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
+                <ul class="nav nav-treeview user-panel">
                     <li class="nav-item">
                         <a href="admin/movie_genres" class="nav-link">
                             <p>@lang('lang.movie_genre')</p>
@@ -58,7 +58,7 @@
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
+                <ul class="nav nav-treeview user-panel">
                     <li class="nav-item">
                         <a href="admin/theater" class="nav-link">
                             <p>@lang('lang.theater')</p>
@@ -84,14 +84,14 @@
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
+                <ul class="nav nav-treeview ">
                     <li class="nav-item">
                         <a href="admin/prices" class="nav-link">
                             <p>@lang('lang.prices_ticket')</p>
                         </a>
                     </li>
                 </ul>
-                <ul class="nav nav-treeview">
+                <ul class="nav nav-treeview user-panel">
                     <li class="nav-item">
                         <a href="admin/ticket" class="nav-link">
                             <p>
@@ -136,7 +136,7 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="nav nav-treeview">
+                <ul class="nav nav-treeview user-panel">
                     <li class="nav-item">
                         <a href="admin/user" class="nav-link">
                             <p>@lang('lang.customer')</p>
@@ -174,7 +174,7 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="nav nav-treeview">
+                <ul class="nav nav-treeview user-panel">
                     <li class="nav-item">
                         <a href="admin/buyCombo" class="nav-link">
                             <p>@lang('lang.sell_combo')</p>
