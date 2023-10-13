@@ -231,5 +231,5 @@ return [
     'Policy' => 'Chính sách',
     'Questions' => 'Hỏi đáp',
     'manage' => 'Quản Lý',
-    'counter'=>'Quẩy',
+    'counter'=>'Quầy trực tiếp',
 ];
