@@ -20,7 +20,7 @@
     }
 @endsection
 @section('content')
-    <section class="container-fluid clearfix row">
+    <section class="container-fluid clearfix row py-5">
         {{--  Breadcrumb  --}}
         <nav aria-label="breadcrumb mt-5">
             <ol class="breadcrumb">

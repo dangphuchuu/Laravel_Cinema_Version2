@@ -38,9 +38,9 @@
                     </div>
 
                     <div class="modal-footer justify-content-center text-center">
-                        <button type='submit' class="btn btn-warning text-uppercase">@lang('lang.signin')</button>
+                        <button type='submit' class="btn btn-danger text-uppercase">@lang('lang.signin')</button>
                         <p class="text-dark w-100">@lang('lang.have_account')?
-                            <a class="link link-warning" data-bs-target="#registerModal" data-bs-toggle="modal"
+                            <a class="link link-danger" data-bs-target="#registerModal" data-bs-toggle="modal"
                                href="#registerModal">@lang('lang.signup')
                             </a>
                         </p>
@@ -82,9 +82,9 @@
                         <input class="form-control" type="password" placeholder="@lang('lang.re_password')..." name="repassword" aria-label="">
                     </div>
                     <div class="modal-footer justify-content-center text-center">
-                        <button type='submit' class="btn btn-warning text-uppercase">@lang('lang.signup')</button>
+                        <button type='submit' class="btn btn-danger text-uppercase">@lang('lang.signup')</button>
                         <p class="text-dark w-100">@lang('lang.not_have_account')?
-                            <a class="link link-warning" data-bs-target="#loginModal" data-bs-toggle="modal" href="#loginModal">@lang('lang.signin')
+                            <a class="link link-danger" data-bs-target="#loginModal" data-bs-toggle="modal" href="#loginModal">@lang('lang.signin')
                             </a>
                         </p>
                     </div>
@@ -109,9 +109,9 @@
                         <input class="form-control" type="email" placeholder="@lang('lang.type') email" name="email" aria-label="">
                     </div>
                     <div class="modal-footer justify-content-center text-center">
-                        <button type='submit' class="btn btn-warning text-uppercase">@lang('lang.submit')</button>
+                        <button type='submit' class="btn btn-danger text-uppercase">@lang('lang.submit')</button>
                         <p class="text-dark w-100">@lang('lang.have_account')?
-                            <a class="link link-warning" data-bs-target="#loginModal" data-bs-toggle="modal" href="#loginModal">@lang('lang.signin')
+                            <a class="link link-danger" data-bs-target="#loginModal" data-bs-toggle="modal" href="#loginModal">@lang('lang.signin')
                             </a>
                         </p>
                     </div>

@@ -1,10 +1,10 @@
 @extends('web.layout.index')
 @section('schedules')
-bg-danger link-light
+active link-danger
 @endsection
 
 @section('content')
-    <section class="container-lg clearfix" style="min-height: 1000px">
+    <section class="container-lg clearfix py-5" style="min-height: 1000px">
         <!-- Main content -->
         <div class="mt-5" id="schedules">
             {{-- SubNav --}}

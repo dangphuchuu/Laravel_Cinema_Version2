@@ -1,9 +1,9 @@
 @extends('web.layout.index')
 @section('movies')
-bg-danger link-light
+active link-danger
 @endsection
 @section('content')
-    <section class="container-lg clearfix">
+    <section class="container-lg clearfix py-5">
         <!-- Main content -->
         <div class="mt-5 h-auto" id="Movies" style="height: 1600px">
             <ul class="nav justify-content-start mb-4 align-items-center">

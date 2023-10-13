@@ -1,7 +1,7 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
 @extends('web.layout.index')
 @section('support')
-bg-danger link-light
+active link-danger
 @endsection
 @section('css')
     .form {
@@ -202,7 +202,7 @@ bg-danger link-light
     }
 @endsection
 @section('content')
-    <section class="container-lg clearfix pb-5">
+    <section class="container-lg clearfix py-5">
         <h2 class="text-center my-4">@lang('lang.contact')</h2>
         <div class="row">
             <div class="col-6">

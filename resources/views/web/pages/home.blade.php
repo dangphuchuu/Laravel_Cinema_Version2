@@ -1,12 +1,12 @@
 @extends('web.layout.index')
 @section('home') 
-bg-danger link-light
+active link-danger
 @endsection
 @section('css')
 
 @endsection
 @section('content')
-<section class="clearfix">
+<section class="clearfix pb-5">
     <div class="w-100">
         <!-- Slider -->
         <div id="carouselExampleAutoplaying" class="carousel slide shadow" data-bs-ride="carousel">

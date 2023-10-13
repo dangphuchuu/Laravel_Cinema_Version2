@@ -1,15 +1,6 @@
 @extends('web.layout.index')
-@php
-$fmt = datefmt_create(
-    'vi_VN',
-    IntlDateFormatter::FULL,
-    IntlDateFormatter::FULL,
-    'Viet_Nam/Ho_Chi_Minh',
-    IntlDateFormatter::GREGORIAN,
-);
-@endphp
 @section('schedules')
-bg-danger link-light
+active link-danger
 @endsection
 @section('css')
     .swiper {
@@ -34,7 +25,7 @@ bg-danger link-light
     }
 @endsection
 @section('content')
-    <section class="container-lg clearfix" style="min-height: 1000px">
+    <section class="container-lg clearfix py-5" style="min-height: 1000px">
         <!-- Main content -->
         <div class="mt-5" id="schedules">
             {{-- SubNav --}}

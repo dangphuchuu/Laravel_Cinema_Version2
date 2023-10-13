@@ -5,7 +5,7 @@
     }
 @endsection
 @section('content')
-    <section class="container-lg">
+    <section class="container-lg py-5">
         {{--  Breadcrumb  --}}
         <nav aria-label="breadcrumb mt-5">
             <ol class="breadcrumb">

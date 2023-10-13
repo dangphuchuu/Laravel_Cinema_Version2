@@ -5,7 +5,7 @@
             color: #f26b38 !important;
         }
     </style>
-    <section class="container-lg">
+    <section class="container-lg py-5">
         {{--  Breadcrumb  --}}
         <nav aria-label="breadcrumb mt-5">
             <ol class="breadcrumb">
@@ -29,10 +29,6 @@
                             <img class="card-img-top rounded-0" alt='...'
                                  src="{!! $movie['image'] !!}">
                         @endif
-                    </div>
-                    <div class="card-body border border-4 border-warning border-top-0 d-flex align-items-center">
-                        <strong class="card-text p-2">@lang('lang.evaluate'): </strong>
-                        <div id='score' class="score"></div>
                     </div>
                 </div>
 

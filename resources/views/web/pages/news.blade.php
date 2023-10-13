@@ -1,9 +1,9 @@
 @extends('web.layout.index')
 @section('news')
-bg-danger link-light
+active link-danger
 @endsection
 @section('content')
-<section class="container-lg">
+<section class="container-lg py-5">
     <!-- Main content -->
     <div class="mt-5" id="Events">
         
