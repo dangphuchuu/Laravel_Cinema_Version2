@@ -14,9 +14,9 @@ bg-danger link-light
                 @foreach($banners as $banner)
                 <div class="carousel-item @if($loop->first) active @endif">
                     @if(strstr($banner->image,"https") == "")
-                        <img class="d-block h-auto w-100" width="1920px" height="1080px" style="object-fit: contain; object-position: 50% 100%" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $banner['image'] !!}.jpg" alt="...">
+                        <img class="d-block h-auto w-100" width="1920px" height="1080px" style="object-fit: contain; object-position: 50% 100%" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{!! $banner['image'] !!}.jpg" alt="banner">
                         @else
-                        <img class="d-block h-auto w-100" width="1920px" height="1080px" style="object-fit: contain; object-position: 50% 100%" src="{{ $banner->image }}"  alt="...">
+                        <img class="d-block h-auto w-100" width="1920px" height="1080px" style="object-fit: contain; object-position: 50% 100%" src="{{ $banner->image }}"  alt="banner">
                         @endif
                 </div>
                 @endforeach

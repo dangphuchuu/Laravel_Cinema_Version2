@@ -7,10 +7,10 @@
         </div>
         @endif
         <div class="info">
-            <a href="/admin/profile" class="d-block"><i class="fa-sharp fa-regular fa-gear"></i></a>
+            <a href="/admin/profile" class="d-block" data-toggle="tooltip" data-placement="top" title="profile"><i class="fa-sharp fa-regular fa-gear"></i></a>
         </div>
         <div class="info">
-            <a href="/admin/sign_out" class="d-block"><i class="fa-regular fa-right-from-bracket"></i></a>
+            <a href="/admin/sign_out" class="d-block" data-toggle="tooltip" data-placement="top" title="logout"><i class="fa-regular fa-right-from-bracket"></i></a>
         </div>
     </div>
 

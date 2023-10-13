@@ -37,7 +37,7 @@
     </style>
 </head>
 
-<body style="margin-top: 80px">
+<body>
     <div class="wrapper">
         {{-- Header --}}
         @include('web.common.header')
