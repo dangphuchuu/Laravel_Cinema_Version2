@@ -2,8 +2,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow" style="backdrop-filter: blur(50px); height: 80px;">
   <div class="container-fluid px-0 container-lg">
     <a class="navbar-brand ms-4" href="#">
-      <img src="images/favicon/cinema.png" height=40" width="auto" alt="Logo" class="d-inline-block align-text-top">
-      THHN Cinema
+      <img src="images/favicon/cinema.png" height="40" width="auto" alt="Logo" class="d-inline-block align-text-top">
+      {{isset($info['name']) ? $info['name'] : ''}}
     </a>
 
     <button class="navbar-toggler me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
