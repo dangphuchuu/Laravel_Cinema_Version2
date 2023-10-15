@@ -176,7 +176,7 @@
           console.error(error);
       });
   </script>
-    <script>
+  <script>
     ClassicEditor
       .create(document.querySelector('#create_events'))
       .then(editor => {
@@ -187,7 +187,7 @@
           console.error(error);
       });
   </script>
-    <script>
+  <script>
     ClassicEditor
       .create(document.querySelector('#edit_events'))
       .then(editor => {
