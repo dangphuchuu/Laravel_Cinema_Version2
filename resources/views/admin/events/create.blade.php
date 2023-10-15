@@ -14,8 +14,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">@lang('lang.title')</label>
-                                    <input class="form-control" type="text" value="" name="title"
-                                           placeholder="@lang('lang.type') @lang('lang.title')">
+                                    <input class="form-control" type="text" value="" name="title" placeholder="@lang('lang.type') @lang('lang.title')">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -28,15 +27,13 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">@lang('lang.content')</label>
-                                    <textarea class="form-control" name="contents" id="editor"
-                                              placeholder="@lang('lang.conditions') @lang('lang.content')"></textarea>
+                                    <textarea class="form-control" name="contents" id="create_events" placeholder="@lang('lang.conditions') @lang('lang.content')"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">@lang('lang.conditions')</label>
-                                    <textarea class="form-control" name="conditions" id="conditions"
-                                              placeholder="@lang('lang.type') @lang('lang.conditions')"></textarea>
+                                    <textarea class="form-control" name="conditions" id="edit_events" placeholder="@lang('lang.type') @lang('lang.conditions')"></textarea>
                                 </div>
                             </div>
                         </div>
