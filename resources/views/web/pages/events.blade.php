@@ -13,15 +13,15 @@ active link-danger
         </div>
 
         <div id="events" class="container">
-            <div class="row row-cols-2 row-cols-lg-4 g-2">
+            <div class="row row-cols-1 row-cols-lg-4 g-2">
                 @foreach($posts->where('status',1) as $value)
                 <div class="col" style="height: 420px">
                     <a href="/events-detail/{!! $value['id'] !!}" class="btn p-0 m-0 border-0">
-                        <div class="card bg-body-tertiary" style="height: 420px">
+                        <div class="card bg-body-tertiary" style="height: 420px;width:100%">
                             @if(strstr($value->image,"https") == "")
-                            <img class="card-img-top h-auto" height="150px" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $value->image }}.jpg" alt="">
+                            <img class="card-img-top h-auto" height="50%" src="https://res.cloudinary.com/{!! $cloud_name !!}/image/upload/{{ $value->image }}.jpg" alt="">
                             @else
-                            <img class="card-img-top h-auto" height="150px" src="{{ $value->image }}" alt="">
+                            <img class="card-img-top h-auto" height="50%" src="{{ $value->image }}" alt="">
                             @endif
                             <div class="card-body">
                                 <p class="card-text text-secondary text-start">{{ date('d/m/Y', strtotime($value->created_at)) }}</p>
