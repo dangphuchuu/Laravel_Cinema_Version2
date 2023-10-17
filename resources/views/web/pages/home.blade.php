@@ -245,7 +245,7 @@ active link-danger
                         @if ($key < 3) <div class="col">
                             <a class="link" href="/events-detail/{{ $eventItem->id }}">
                                 @if(strstr($eventItem['image'],"https") == "")
-                                <img class="d-block w-100 rounded rounded-3" style="max-height: 160px" src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $eventItem['image'] }}.jpg" alt="{{ $newsItem['id']}}">
+                                <img class="d-block w-100 rounded rounded-3" style="max-height: 160px" src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $eventItem['image'] }}.jpg" alt="{{ $eventItem['id']}}">
                                 @else
                                 <img class="d-block w-100 rounded rounded-3" style="max-height: 160px" src="{{ $eventItem['image'] }}" alt="{{ $eventItem['id']}}">
                                 @endif
@@ -256,14 +256,14 @@ active link-danger
                 </div>
                 @endif
             </div>
-            @if($news->count() > 3)
+            @if($events->count() > 3)
             <div class="carousel-item">
                 <div class="row row-cols-3 row-cols-lg-1 g-3">
                     @foreach($events as $key => $eventItem)
                     @if ($key >= 3 && $key < 6) <div class="col">
                         <a class="link" href="/events-detail/{{ $eventItem->id }}">
                             @if(strstr($eventItem['image'],"https") == "")
-                            <img class="d-block w-100 rounded rounded-3" style="max-height: 160px" src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $eventItem['image'] }}.jpg" alt="{{ $newsItem['id']}}">
+                            <img class="d-block w-100 rounded rounded-3" style="max-height: 160px" src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $eventItem['image'] }}.jpg" alt="{{ $eventItem['id']}}">
                             @else
                             <img class="d-block w-100 rounded rounded-3" style="max-height: 160px" src="{{ $eventItem['image'] }}" alt="{{ $eventItem['id']}}">
                             @endif
@@ -274,14 +274,14 @@ active link-danger
             </div>
             @endif
         </div>
-        @if($news->count() > 6)
+        @if($events->count() > 6)
         <div class="carousel-item">
             <div class="row row-cols-3 row-cols-lg-1 g-3">
                 @foreach($events as $key => $eventItem)
                 @if ($key >=6 && $key < 9) <div class="col">
                     <a class="link" href="/events-detail/{{ $eventItem->id }}">
                         @if(strstr($eventItem['image'],"https") == "")
-                        <img class="d-block w-100 rounded rounded-3" style="max-height: 160px" src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $eventItem['image'] }}.jpg" alt="{{ $newsItem['id']}}">
+                        <img class="d-block w-100 rounded rounded-3" style="max-height: 160px" src="https://res.cloudinary.com/{{ $cloud_name }}/image/upload/{{ $eventItem['image'] }}.jpg" alt="{{ $eventItem['id']}}">
                         @else
                         <img class="d-block w-100 rounded rounded-3" style="max-height: 160px" src="{{ $eventItem['image'] }}" alt="{{ $eventItem['id']}}">
                         @endif
